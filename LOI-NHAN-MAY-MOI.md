@@ -9,7 +9,7 @@
 Muốn cập nhật từ máy cũ: `git pull`. Máy cũ không tự đồng bộ: mọi thay đổi muốn mang theo phải được commit và đẩy.
 
 ## Đọc theo thứ tự
-1. File này. 2. `CLAUDE.md` (luật cứng của dự án). 3. **`docs/PLAN-CHUYEN-MAY.md`** (12 quyết định + trình tự cài T0–T8). 4. `docs/PLAN.md` (các giai đoạn) và `docs/CHECKLIST.md` (việc cụ thể).
+1. File này. 2. `CLAUDE.md` (luật cứng của dự án). 3. **`docs/PLAN-CHUYEN-MAY.md`** (12 quyết định + trình tự cài T0–T8) và **`docs/CAI-DAT-MAY-MOI.md`** (danh sách công cụ/extension cần cài, phiên bản máy cũ, lệnh kiểm). 4. `docs/PLAN.md` (các giai đoạn) và `docs/CHECKLIST.md` (việc cụ thể).
 
 ## Tình trạng trong một đoạn
 Xưởng video ngắn "Cáo văn phòng" đã dựng xong khung và qua test trên máy cũ: `studio` 24 test, `tools/fox` 7 test, `tools/mascot` 7 test đều đạt. **Chưa kiểm chứng:** Codex thật chưa từng chạy lần nào (chưa đăng nhập); chưa có phòng ban hay cơ sở dữ liệu thật; chưa có mẫu giọng đọc nào được tạo hay nghe; chưa chạy trọn một lượt ý tưởng → kế hoạch với hai vòng tranh luận bằng chủ đề thật; chưa thử tài khoản phụ thật. Phần nào đã thử bằng cách nào được ghi trong từng tài liệu.
