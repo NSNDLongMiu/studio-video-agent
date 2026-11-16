@@ -1,0 +1,15 @@
+{
+  "name": "chip-mascot-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Vẽ linh vật Chíp (SVG theo bộ phận), xuất PNG trong suốt, và cho Chíp 'nói' theo file giọng đọc.",
+  "scripts": {
+    "build": "node build.mjs",
+    "narrate": "node narrate.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "tiktoker-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Điều hành xưởng video ngắn: phòng ban, đội, biên chế, duyệt đề xuất, dashboard.",
+  "scripts": {
+    "dashboard": "node --disable-warning=ExperimentalWarning src/dashboard.mjs",
+    "status": "node --disable-warning=ExperimentalWarning src/cli.mjs status",
+    "mcp": "node --disable-warning=ExperimentalWarning src/mcp.mjs",
+    "demo": "node --disable-warning=ExperimentalWarning src/cli.mjs seed-demo",
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.mjs",
+    "start": "node --disable-warning=ExperimentalWarning src/cli.mjs start",
+    "worker": "node --disable-warning=ExperimentalWarning src/cli.mjs worker",
+    "accounts": "node --disable-warning=ExperimentalWarning src/cli.mjs accounts",
+    "jobs": "node --disable-warning=ExperimentalWarning src/cli.mjs jobs",
+    "office": "node --disable-warning=ExperimentalWarning src/cli.mjs office"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+studio/data/
+*.log
+studio/accounts/
+studio/data/mcp-agent.json
+tools/whatsmyagentdoing/
+brand/cao/_raw/
+brand/cao/_index/
+__pycache__/
+*.pyc
+.venv/
+Thumbs.db

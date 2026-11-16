@@ -1,0 +1,29 @@
+{
+  "_ghi_chu": "id (a01..d15) -> tên theo ý nghĩa. Cùng tên xuất hiện nhiều lần thì bản ưu tiên d, a, b; bản sau đặt hậu tố _2, _3. Sửa tên ở đây rồi chạy: python -X utf8 tools/fox/build.py",
+  "poses": {
+    "d01": "present_open", "a01": "present_open", "b02": "present_hand",
+    "a02": "point_left", "a03": "point_right", "a05": "point_down",
+    "d02": "point_up", "a04": "point_up", "b03": "point_up",
+    "a06": "arms_crossed", "d10": "arms_crossed", "b01": "arms_crossed",
+    "a07": "wave", "b06": "wave",
+    "d05": "clipboard", "a08": "clipboard",
+    "a09": "laptop_hold", "b04": "laptop_hold", "b05": "laptop_typing",
+    "d08": "think", "a10": "think", "b08": "think",
+    "d09": "idea", "a11": "idea", "b09": "idea",
+    "a12": "desk_typing", "b15": "desk_typing", "d11": "desk_video", "a13": "desk_headset",
+    "d12": "cheer_jump", "a14": "cheer_seated", "b13": "cheer",
+    "a15": "shrug", "b10": "welcome", "b11": "surprised", "b12": "stop",
+    "d04": "thumbs_up", "b07": "thumbs_up", "d03": "board_chart", "a16": "board_chart",
+    "d06": "mic", "d07": "read_paper", "d13": "bow", "b14": "bow",
+    "d14": "sleep", "d15": "love"
+  },
+  "faces": {
+    "b16": "face_happy", "b17": "face_laugh", "b18": "face_content", "b19": "face_neutral", "b20": "face_surprised",
+    "b21": "face_gasp", "b22": "face_worried", "b23": "face_angry", "b24": "face_sad", "b25": "face_cry"
+  },
+  "mouths": {
+    "b26": "mouth_01_closed", "b27": "mouth_02_smile", "b28": "mouth_03_small_open", "b29": "mouth_04_o",
+    "b30": "mouth_05_big_open", "b31": "mouth_06_wide", "b32": "mouth_07_mid_open", "b33": "mouth_08_mid_open_b",
+    "b34": "mouth_09_grimace", "b35": "mouth_10_o_small", "b36": "mouth_11_flat", "b37": "mouth_12_smile_teeth"
+  }
+}

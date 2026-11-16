@@ -1,0 +1,822 @@
+{
+ "poses": {
+  "present_open": {
+   "from": "d01",
+   "size": [
+    290,
+    326
+   ]
+  },
+  "point_up": {
+   "from": "d02",
+   "size": [
+    222,
+    326
+   ]
+  },
+  "board_chart": {
+   "from": "d03",
+   "size": [
+    322,
+    325
+   ]
+  },
+  "thumbs_up": {
+   "from": "d04",
+   "size": [
+    209,
+    326
+   ]
+  },
+  "clipboard": {
+   "from": "d05",
+   "size": [
+    222,
+    325
+   ]
+  },
+  "mic": {
+   "from": "d06",
+   "size": [
+    271,
+    334
+   ]
+  },
+  "read_paper": {
+   "from": "d07",
+   "size": [
+    219,
+    327
+   ]
+  },
+  "think": {
+   "from": "d08",
+   "size": [
+    205,
+    331
+   ]
+  },
+  "idea": {
+   "from": "d09",
+   "size": [
+    233,
+    329
+   ]
+  },
+  "arms_crossed": {
+   "from": "d10",
+   "size": [
+    197,
+    329
+   ]
+  },
+  "desk_video": {
+   "from": "d11",
+   "size": [
+    346,
+    327
+   ]
+  },
+  "cheer_jump": {
+   "from": "d12",
+   "size": [
+    239,
+    341
+   ]
+  },
+  "bow": {
+   "from": "d13",
+   "size": [
+    235,
+    328
+   ]
+  },
+  "sleep": {
+   "from": "d14",
+   "size": [
+    324,
+    329
+   ]
+  },
+  "love": {
+   "from": "d15",
+   "size": [
+    221,
+    347
+   ]
+  },
+  "present_open_2": {
+   "from": "a01",
+   "size": [
+    287,
+    346
+   ]
+  },
+  "point_left": {
+   "from": "a02",
+   "size": [
+    219,
+    346
+   ]
+  },
+  "point_right": {
+   "from": "a03",
+   "size": [
+    279,
+    338
+   ]
+  },
+  "point_up_2": {
+   "from": "a04",
+   "size": [
+    236,
+    348
+   ]
+  },
+  "point_down": {
+   "from": "a05",
+   "size": [
+    235,
+    337
+   ]
+  },
+  "arms_crossed_2": {
+   "from": "a06",
+   "size": [
+    213,
+    331
+   ]
+  },
+  "wave": {
+   "from": "a07",
+   "size": [
+    237,
+    340
+   ]
+  },
+  "clipboard_2": {
+   "from": "a08",
+   "size": [
+    240,
+    331
+   ]
+  },
+  "laptop_hold": {
+   "from": "a09",
+   "size": [
+    255,
+    330
+   ]
+  },
+  "think_2": {
+   "from": "a10",
+   "size": [
+    187,
+    332
+   ]
+  },
+  "idea_2": {
+   "from": "a11",
+   "size": [
+    222,
+    336
+   ]
+  },
+  "desk_typing": {
+   "from": "a12",
+   "size": [
+    319,
+    317
+   ]
+  },
+  "desk_headset": {
+   "from": "a13",
+   "size": [
+    246,
+    302
+   ]
+  },
+  "cheer_seated": {
+   "from": "a14",
+   "size": [
+    241,
+    313
+   ]
+  },
+  "shrug": {
+   "from": "a15",
+   "size": [
+    246,
+    313
+   ]
+  },
+  "board_chart_2": {
+   "from": "a16",
+   "size": [
+    371,
+    327
+   ]
+  },
+  "arms_crossed_3": {
+   "from": "b01",
+   "size": [
+    197,
+    327
+   ]
+  },
+  "present_hand": {
+   "from": "b02",
+   "size": [
+    249,
+    325
+   ]
+  },
+  "point_up_3": {
+   "from": "b03",
+   "size": [
+    218,
+    325
+   ]
+  },
+  "laptop_hold_2": {
+   "from": "b04",
+   "size": [
+    204,
+    320
+   ]
+  },
+  "laptop_typing": {
+   "from": "b05",
+   "size": [
+    235,
+    318
+   ]
+  },
+  "wave_2": {
+   "from": "b06",
+   "size": [
+    218,
+    319
+   ]
+  },
+  "thumbs_up_2": {
+   "from": "b07",
+   "size": [
+    222,
+    320
+   ]
+  },
+  "think_3": {
+   "from": "b08",
+   "size": [
+    163,
+    295
+   ]
+  },
+  "idea_3": {
+   "from": "b09",
+   "size": [
+    175,
+    292
+   ]
+  },
+  "welcome": {
+   "from": "b10",
+   "size": [
+    219,
+    285
+   ]
+  },
+  "surprised": {
+   "from": "b11",
+   "size": [
+    172,
+    288
+   ]
+  },
+  "stop": {
+   "from": "b12",
+   "size": [
+    179,
+    286
+   ]
+  },
+  "cheer": {
+   "from": "b13",
+   "size": [
+    163,
+    285
+   ]
+  },
+  "bow_2": {
+   "from": "b14",
+   "size": [
+    145,
+    271
+   ]
+  },
+  "desk_typing_2": {
+   "from": "b15",
+   "size": [
+    221,
+    293
+   ]
+  }
+ },
+ "faces": {
+  "face_happy": {
+   "from": "b16",
+   "size": [
+    148,
+    144
+   ]
+  },
+  "face_laugh": {
+   "from": "b17",
+   "size": [
+    147,
+    145
+   ]
+  },
+  "face_content": {
+   "from": "b18",
+   "size": [
+    145,
+    143
+   ]
+  },
+  "face_neutral": {
+   "from": "b19",
+   "size": [
+    143,
+    145
+   ]
+  },
+  "face_surprised": {
+   "from": "b20",
+   "size": [
+    146,
+    147
+   ]
+  },
+  "face_gasp": {
+   "from": "b21",
+   "size": [
+    142,
+    143
+   ]
+  },
+  "face_worried": {
+   "from": "b22",
+   "size": [
+    149,
+    146
+   ]
+  },
+  "face_angry": {
+   "from": "b23",
+   "size": [
+    145,
+    145
+   ]
+  },
+  "face_sad": {
+   "from": "b24",
+   "size": [
+    146,
+    144
+   ]
+  },
+  "face_cry": {
+   "from": "b25",
+   "size": [
+    147,
+    148
+   ]
+  }
+ },
+ "mouths": {
+  "mouth_01_closed": {
+   "from": "b26",
+   "size": [
+    119,
+    81
+   ]
+  },
+  "mouth_02_smile": {
+   "from": "b27",
+   "size": [
+    116,
+    81
+   ]
+  },
+  "mouth_03_small_open": {
+   "from": "b28",
+   "size": [
+    118,
+    81
+   ]
+  },
+  "mouth_04_o": {
+   "from": "b29",
+   "size": [
+    112,
+    81
+   ]
+  },
+  "mouth_05_big_open": {
+   "from": "b30",
+   "size": [
+    115,
+    81
+   ]
+  },
+  "mouth_06_wide": {
+   "from": "b31",
+   "size": [
+    117,
+    81
+   ]
+  },
+  "mouth_07_mid_open": {
+   "from": "b32",
+   "size": [
+    118,
+    81
+   ]
+  },
+  "mouth_08_mid_open_b": {
+   "from": "b33",
+   "size": [
+    118,
+    81
+   ]
+  },
+  "mouth_09_grimace": {
+   "from": "b34",
+   "size": [
+    120,
+    81
+   ]
+  },
+  "mouth_10_o_small": {
+   "from": "b35",
+   "size": [
+    106,
+    81
+   ]
+  },
+  "mouth_11_flat": {
+   "from": "b36",
+   "size": [
+    114,
+    81
+   ]
+  },
+  "mouth_12_smile_teeth": {
+   "from": "b37",
+   "size": [
+    115,
+    81
+   ]
+  }
+ },
+ "motion": {
+  "arms_up_1": {
+   "from": "c-arms_up-1",
+   "size": [
+    92,
+    102
+   ]
+  },
+  "arms_up_2": {
+   "from": "c-arms_up-2",
+   "size": [
+    99,
+    101
+   ]
+  },
+  "arms_up_3": {
+   "from": "c-arms_up-3",
+   "size": [
+    101,
+    101
+   ]
+  },
+  "arms_up_4": {
+   "from": "c-arms_up-4",
+   "size": [
+    108,
+    102
+   ]
+  },
+  "arms_up_5": {
+   "from": "c-arms_up-5",
+   "size": [
+    114,
+    102
+   ]
+  },
+  "arms_up_6": {
+   "from": "c-arms_up-6",
+   "size": [
+    127,
+    102
+   ]
+  },
+  "bow_1": {
+   "from": "c-bow-1",
+   "size": [
+    101,
+    122
+   ]
+  },
+  "bow_2": {
+   "from": "c-bow-2",
+   "size": [
+    102,
+    122
+   ]
+  },
+  "bow_3": {
+   "from": "c-bow-3",
+   "size": [
+    106,
+    115
+   ]
+  },
+  "bow_4": {
+   "from": "c-bow-4",
+   "size": [
+    122,
+    105
+   ]
+  },
+  "bow_5": {
+   "from": "c-bow-5",
+   "size": [
+    103,
+    122
+   ]
+  },
+  "bow_6": {
+   "from": "c-bow-6",
+   "size": [
+    104,
+    122
+   ]
+  },
+  "emphasis_1": {
+   "from": "c-emphasis-1",
+   "size": [
+    111,
+    120
+   ]
+  },
+  "emphasis_2": {
+   "from": "c-emphasis-2",
+   "size": [
+    117,
+    120
+   ]
+  },
+  "emphasis_3": {
+   "from": "c-emphasis-3",
+   "size": [
+    114,
+    120
+   ]
+  },
+  "emphasis_4": {
+   "from": "c-emphasis-4",
+   "size": [
+    126,
+    120
+   ]
+  },
+  "emphasis_5": {
+   "from": "c-emphasis-5",
+   "size": [
+    120,
+    120
+   ]
+  },
+  "emphasis_6": {
+   "from": "c-emphasis-6",
+   "size": [
+    114,
+    119
+   ]
+  },
+  "nod_1": {
+   "from": "c-nod-1",
+   "size": [
+    113,
+    135
+   ]
+  },
+  "nod_2": {
+   "from": "c-nod-2",
+   "size": [
+    112,
+    135
+   ]
+  },
+  "nod_3": {
+   "from": "c-nod-3",
+   "size": [
+    116,
+    124
+   ]
+  },
+  "nod_4": {
+   "from": "c-nod-4",
+   "size": [
+    123,
+    119
+   ]
+  },
+  "nod_5": {
+   "from": "c-nod-5",
+   "size": [
+    111,
+    134
+   ]
+  },
+  "nod_6": {
+   "from": "c-nod-6",
+   "size": [
+    110,
+    135
+   ]
+  },
+  "point_1": {
+   "from": "c-point-1",
+   "size": [
+    120,
+    150
+   ]
+  },
+  "point_2": {
+   "from": "c-point-2",
+   "size": [
+    140,
+    150
+   ]
+  },
+  "point_3": {
+   "from": "c-point-3",
+   "size": [
+    161,
+    150
+   ]
+  },
+  "point_4": {
+   "from": "c-point-4",
+   "size": [
+    161,
+    150
+   ]
+  },
+  "point_5": {
+   "from": "c-point-5",
+   "size": [
+    161,
+    150
+   ]
+  },
+  "point_6": {
+   "from": "c-point-6",
+   "size": [
+    160,
+    149
+   ]
+  },
+  "present_1": {
+   "from": "c-present-1",
+   "size": [
+    132,
+    117
+   ]
+  },
+  "present_2": {
+   "from": "c-present-2",
+   "size": [
+    134,
+    116
+   ]
+  },
+  "present_3": {
+   "from": "c-present-3",
+   "size": [
+    135,
+    117
+   ]
+  },
+  "present_4": {
+   "from": "c-present-4",
+   "size": [
+    135,
+    117
+   ]
+  },
+  "present_5": {
+   "from": "c-present-5",
+   "size": [
+    136,
+    116
+   ]
+  },
+  "present_6": {
+   "from": "c-present-6",
+   "size": [
+    145,
+    117
+   ]
+  },
+  "turn_1": {
+   "from": "c-turn-1",
+   "size": [
+    105,
+    119
+   ]
+  },
+  "turn_2": {
+   "from": "c-turn-2",
+   "size": [
+    108,
+    120
+   ]
+  },
+  "turn_3": {
+   "from": "c-turn-3",
+   "size": [
+    103,
+    120
+   ]
+  },
+  "turn_4": {
+   "from": "c-turn-4",
+   "size": [
+    103,
+    120
+   ]
+  },
+  "turn_5": {
+   "from": "c-turn-5",
+   "size": [
+    100,
+    120
+   ]
+  },
+  "turn_6": {
+   "from": "c-turn-6",
+   "size": [
+    123,
+    120
+   ]
+  },
+  "wave_1": {
+   "from": "c-wave-1",
+   "size": [
+    123,
+    152
+   ]
+  },
+  "wave_2": {
+   "from": "c-wave-2",
+   "size": [
+    130,
+    152
+   ]
+  },
+  "wave_3": {
+   "from": "c-wave-3",
+   "size": [
+    153,
+    152
+   ]
+  },
+  "wave_4": {
+   "from": "c-wave-4",
+   "size": [
+    149,
+    153
+   ]
+  },
+  "wave_5": {
+   "from": "c-wave-5",
+   "size": [
+    136,
+    152
+   ]
+  },
+  "wave_6": {
+   "from": "c-wave-6",
+   "size": [
+    139,
+    152
+   ]
+  }
+ }
+}

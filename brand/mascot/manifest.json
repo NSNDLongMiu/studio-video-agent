@@ -1,0 +1,135 @@
+{
+  "name": "Chíp",
+  "image_size": [
+    900,
+    1040
+  ],
+  "files": [
+    {
+      "file": "chip.svg",
+      "bytes": 7434
+    },
+    {
+      "file": "chip.png",
+      "bytes": 73399
+    },
+    {
+      "file": "poses/rest.png",
+      "bytes": 73399
+    },
+    {
+      "file": "poses/wave.png",
+      "bytes": 76866
+    },
+    {
+      "file": "poses/present.png",
+      "bytes": 73289
+    },
+    {
+      "file": "poses/point_right.png",
+      "bytes": 73898
+    },
+    {
+      "file": "poses/point_up.png",
+      "bytes": 76471
+    },
+    {
+      "file": "poses/hips.png",
+      "bytes": 71282
+    },
+    {
+      "file": "poses/cheer.png",
+      "bytes": 81347
+    },
+    {
+      "file": "poses/shrug.png",
+      "bytes": 73315
+    },
+    {
+      "file": "poses/thumbs_up.png",
+      "bytes": 75757
+    },
+    {
+      "file": "poses/think.png",
+      "bytes": 75376
+    },
+    {
+      "file": "expressions/neutral.png",
+      "bytes": 75210
+    },
+    {
+      "file": "expressions/happy.png",
+      "bytes": 73399
+    },
+    {
+      "file": "expressions/excited.png",
+      "bytes": 78407
+    },
+    {
+      "file": "expressions/surprised.png",
+      "bytes": 76580
+    },
+    {
+      "file": "expressions/thinking.png",
+      "bytes": 74384
+    },
+    {
+      "file": "expressions/oops.png",
+      "bytes": 75156
+    },
+    {
+      "file": "expressions/determined.png",
+      "bytes": 74997
+    },
+    {
+      "file": "expressions/wink.png",
+      "bytes": 77853
+    },
+    {
+      "file": "expressions/sleepy.png",
+      "bytes": 73507
+    },
+    {
+      "file": "character-sheet.png",
+      "bytes": 359007
+    }
+  ],
+  "arms": [
+    "rest",
+    "wave",
+    "present",
+    "point_right",
+    "point_up",
+    "hips",
+    "cheer",
+    "shrug",
+    "thumbs_up",
+    "think"
+  ],
+  "expressions": [
+    "neutral",
+    "happy",
+    "excited",
+    "surprised",
+    "thinking",
+    "oops",
+    "determined",
+    "wink",
+    "sleepy"
+  ],
+  "mouths": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "M4",
+    "grin",
+    "sad",
+    "flat"
+  ],
+  "legs": [
+    "stand",
+    "step",
+    "jump"
+  ]
+}

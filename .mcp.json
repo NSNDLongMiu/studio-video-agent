@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "studio": {
+      "command": "node",
+      "args": ["--disable-warning=ExperimentalWarning", "studio/src/mcp.mjs"],
+      "env": { "STUDIO_ROLE": "director" }
+    }
+  }
+}

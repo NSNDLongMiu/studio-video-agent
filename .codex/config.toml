@@ -1,0 +1,10 @@
+# Cấu hình Codex riêng cho dự án này. Codex chỉ nạp file này khi dự án được "tin cậy"
+# (lần đầu mở Codex trong thư mục này nó sẽ hỏi). Lệnh `studio produce` còn tự truyền
+# cùng cấu hình MCP bằng -c nên chạy được kể cả khi chưa tin cậy.
+
+# Sổ sách xưởng: Codex ở vai "agent" => KHÔNG có công cụ duyệt / mở-đóng phòng / đổi chỉ tiêu.
+[mcp_servers.studio]
+command = "node"
+args = ["--disable-warning=ExperimentalWarning", "e:/Tiktoker/studio/src/mcp.mjs"]
+env = { STUDIO_ROLE = "agent" }
+startup_timeout_sec = 30

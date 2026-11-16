@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xưởng video — Giám đốc</title>
+<style>
+:root{
+  --bg:#f4f5f7;--card:#fff;--ink:#14171c;--mute:#6a7280;--line:#e3e6eb;--accent:#2f6bff;--accent-ink:#fff;
+  --ok:#17a35a;--warn:#d98a00;--bad:#d6334a;--idle:#aab1bd;--chip:#eef1f6;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0e1116;--card:#171b22;--ink:#e8ebf0;--mute:#8d96a5;--line:#262c36;--accent:#5b8cff;--accent-ink:#0b0e14;
+  --ok:#34c77b;--warn:#f0b13a;--bad:#ff6178;--idle:#5a6272;--chip:#1f2530;
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+h1{font-size:18px;margin:0 8px 0 0}
+.live{display:flex;align-items:center;gap:6px;color:var(--mute);font-size:12px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--idle);flex:none}
+.dot.working{background:var(--ok);animation:pulse 1.6s infinite}.dot.blocked{background:var(--bad)}.dot.idle{background:var(--idle)}.dot.offline{background:transparent;border:1px solid var(--idle)}
+@keyframes pulse{50%{opacity:.35}}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 12px;min-width:92px}
+.stat b{display:block;font-size:18px}.stat span{color:var(--mute);font-size:11px}
+main{padding:20px;max-width:1500px;margin:0 auto;display:grid;gap:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:6px 12px}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.danger{color:var(--bad)}button.sm{padding:3px 9px;font-size:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.panel h2{font-size:13px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute)}
+.attn{border-left:4px solid var(--warn)}
+.attn li{margin:6px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.attn ul{list-style:none;margin:0;padding:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px}
+.dept h3{margin:0;font-size:16px}.dept .sub{color:var(--mute);font-size:12px}
+.dept header{position:static;border:0;padding:0;background:none;display:flex;gap:8px;align-items:flex-start}
+.dept .hd{flex:1}
+.kpis{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{background:var(--chip);border-radius:999px;padding:2px 10px;font-size:12px}
+.chip.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.chip.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.chip.warn{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}
+.meter{height:6px;border-radius:4px;background:var(--chip);overflow:hidden;margin:4px 0 2px}.meter i{display:block;height:100%;background:var(--accent)}
+.team{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-top:10px}
+.team h4{margin:0 0 6px;font-size:13px;display:flex;justify-content:space-between;gap:8px}
+.m{display:grid;grid-template-columns:14px 150px 1fr auto;gap:8px;align-items:center;padding:3px 0;font-size:13px}
+.m .t{color:var(--mute);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.m .t.stale{color:var(--warn)}
+.eng{font-size:10px;border-radius:4px;padding:1px 5px;background:var(--chip);color:var(--mute);text-transform:uppercase}
+.eng.codex{color:var(--ok)}.eng.claude{color:var(--accent)}
+.vids{margin-top:6px;display:flex;flex-wrap:wrap;gap:6px}
+.vid{font-size:11px;border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.vid.help{border-color:var(--bad);color:var(--bad)}
+.closed{opacity:.6}
+.feed{max-height:260px;overflow:auto;font-size:12px}.feed div{padding:3px 0;border-bottom:1px dashed var(--line)}.feed time{color:var(--mute);margin-right:8px}
+dialog{border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);padding:18px;min-width:340px}
+dialog::backdrop{background:#0008}
+dialog label{display:block;margin:8px 0 2px;font-size:12px;color:var(--mute)}
+dialog input,dialog select,dialog textarea{width:100%;font:inherit;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.err{color:var(--bad);font-size:12px;min-height:16px;margin-top:8px}
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;display:none;z-index:9}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:16px}
+.panel h2 .sm{margin-left:8px;text-transform:none;letter-spacing:0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:7px 0;border-bottom:1px dashed var(--line)}.row:last-child{border:0}
+.row .grow{flex:1;min-width:200px}.row .sub{color:var(--mute);font-size:12px}
+.dot.ready{background:var(--ok)}.dot.limited{background:var(--warn)}.dot.auth_error{background:var(--bad)}.dot.disabled{background:transparent;border:1px solid var(--idle)}
+.chip.run{background:color-mix(in srgb,var(--accent) 20%,transparent);color:var(--accent)}
+.chk label{display:flex;gap:8px;align-items:flex-start;padding:3px 0;cursor:pointer}.chk label.done span{text-decoration:line-through;color:var(--mute)}
+.chk h5{margin:12px 0 4px;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.pbar{height:6px;border-radius:4px;background:var(--chip);overflow:hidden;margin:6px 0 4px}.pbar i{display:block;height:100%;background:var(--ok)}
+.err.ok{color:var(--ok)}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.m{grid-template-columns:14px 1fr}.m .t,.m .eng{grid-column:2}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Xưởng video</h1>
+  <div class="live"><span class="dot working" id="liveDot"></span><span id="liveTxt">đang kết nối…</span></div>
+  <div class="live"><span class="dot" id="wkDot"></span><span id="wkTxt"></span><button class="sm" id="wkBtn" hidden onclick="startWorker()">Bật worker</button></div>
+  <button class="sm" id="officeBtn" onclick="openOffice()" title="Xem các agent như đang ngồi trong văn phòng (2D, không tốn token)">🏢 Văn phòng 2D</button>
+  <div class="stats" id="stats"></div>
+</header>
+<main>
+  <div class="bar">
+    <button class="primary" onclick="openDept()">+ Mở phòng ban</button>
+    <button onclick="openTopic()">+ Giao chủ đề</button>
+  </div>
+  <section class="panel attn" id="attn" hidden></section>
+  <section class="grid2">
+    <article class="panel"><h2>Tài khoản Claude / Codex <button class="sm" onclick="openAcct()">+ Thêm</button></h2><div id="accts"></div>
+      <label class="sub" style="display:flex;gap:6px;margin-top:10px;align-items:flex-start"><input type="checkbox" id="paidFb" onchange="setSetting('paid_fallback', this.checked?'on':'off')"><span>Khi mọi tài khoản gói đều hết limit, cho dùng tài khoản <b>API trả phí</b> (tính tiền theo lượt dùng). Mặc định tắt.</span></label></article>
+    <article class="panel"><h2>Hàng đợi việc nền</h2><div id="jobs"></div></article>
+  </section>
+  <section class="grid" id="depts"></section>
+  <section class="panel chk"><h2>Checklist của team <span id="chkProg" class="sub"></span></h2><div class="pbar"><i id="chkBar" style="width:0"></i></div><div id="chk"></div></section>
+  <section class="panel"><h2>Nhật ký hoạt động</h2><div class="feed" id="feed"></div></section>
+</main>
+
+<dialog id="dDept"><form method="dialog" onsubmit="return false">
+  <h3 style="margin-top:0">Mở phòng ban mới</h3>
+  <label>Tên phòng</label><input id="dpName" placeholder="Thể thao">
+  <label>Mô tả (tuỳ chọn)</label><input id="dpDesc" placeholder="Tin nóng, highlight…">
+  <label>Chỉ tiêu video/ngày</label><input id="dpTarget" type="number" min="0" max="100" value="2">
+  <label>Số đội ban đầu (mỗi đội ~2 video/ngày)</label><input id="dpTeams" type="number" min="0" max="10" value="1">
+  <div class="err" id="dpErr"></div>
+  <div class="bar" style="margin-top:8px"><button class="primary" onclick="submitDept()">Mở phòng</button><button onclick="dDept.close()">Huỷ</button></div>
+</form></dialog>
+
+<dialog id="dTopic"><form method="dialog" onsubmit="return false">
+  <h3 style="margin-top:0">Giao chủ đề cho phòng</h3>
+  <label>Phòng</label><select id="tpDept"></select>
+  <label>Chủ đề</label><input id="tpText" placeholder="3 sai lầm khi chạy bộ">
+  <label>Yêu cầu thêm (giọng điệu, đối tượng, cấm kỵ…)</label><textarea id="tpBrief" rows="3"></textarea>
+  <div class="err" id="tpErr"></div>
+  <div class="bar" style="margin-top:8px"><button class="primary" onclick="submitTopic()">Giao</button><button onclick="dTopic.close()">Huỷ</button></div>
+</form></dialog>
+<dialog id="dAcct"><form method="dialog" onsubmit="return false">
+  <h3 style="margin-top:0">Thêm tài khoản</h3>
+  <label>Dịch vụ</label><select id="acProv"><option value="claude">Claude</option><option value="codex">Codex (ChatGPT)</option></select>
+  <label>Nhãn (a-z, 0-9, gạch ngang)</label><input id="acLabel" placeholder="nam">
+  <label>Chủ tài khoản (ai dùng ghế này)</label><input id="acOwner" placeholder="Tên thành viên">
+  <label>Loại</label><select id="acKind"><option value="subscription">Gói đăng ký (Plus/Pro/Max…)</option><option value="api_key">API trả phí (chỉ dùng khi bật dự phòng)</option></select>
+  <label style="display:flex;gap:6px;align-items:center"><input type="checkbox" id="acDef" style="width:auto"> Dùng đăng nhập mặc định đang có trên máy này</label>
+  <label>File chứa API key (chỉ Claude kiểu API)</label><input id="acSecret" placeholder="E:/keys/claude-api.txt">
+  <div class="err" id="acErr"></div>
+  <div class="bar" style="margin-top:8px"><button class="primary" onclick="submitAcct()">Thêm</button><button onclick="dAcct.close()">Đóng</button></div>
+</form></dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const STAGE = {ideation:'ý tưởng',planning:'kế hoạch',production:'sản xuất',review:'duyệt/QC',ready:'sẵn sàng đăng',published:'đã đăng',rejected:'huỷ'};
+const ST = {working:'đang làm',idle:'rảnh',blocked:'VƯỚNG',offline:'nghỉ'};
+let last = '', data = null;
+
+async function api(path, body) {
+  const r = await fetch(path, body === undefined ? {} : {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(j.error || r.statusText);
+  return j;
+}
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2600); }
+async function act(fn, ok) { try { await fn(); toast(ok); await refresh(true); } catch (e) { toast('⚠ ' + e.message); } }
+
+function render(o) {
+  const t = o.totals;
+  $('stats').innerHTML = [
+    [t.departments_active,'phòng'],[t.teams,'đội'],[`${t.members_working}/${t.members}`,'người đang làm'],
+    [`${t.videos_done_today}/${t.videos_planned_today}`,'video hôm nay'],[`${t.capacity_today}/${t.target_today}`,'năng lực / chỉ tiêu'],[t.videos_active,'video đang làm']
+  ].map(([b,s]) => `<div class="stat"><b>${esc(b)}</b><span>${s}</span></div>`).join('');
+
+  const a = $('attn');
+  a.hidden = !o.attention.length;
+  a.innerHTML = '<h2>Cần giám đốc chú ý</h2><ul>' + o.attention.map((x) => {
+    if (x.kind === 'proposal') return `<li><span>⏳ ${esc(x.message)}</span><button class="primary sm" onclick="decide(${x.proposal_id},'approve')">Duyệt</button><button class="danger sm" onclick="decide(${x.proposal_id},'reject')">Từ chối</button></li>`;
+    if (x.kind === 'approve_produce') return `<li><span>📝 ${esc(x.message)}</span><button class="primary sm" onclick="prodVideo('${esc(x.video_id)}')">Duyệt & sản xuất</button></li>`;
+    if (x.kind === 'job_human') return `<li><span>🙋 ${esc(x.message)}</span><button class="sm" onclick="job(${x.job_id},'retry')">Chạy lại</button><button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button></li>`;
+    if (x.kind === 'limit_wait') return `<li><span>⏳ ${esc(x.message)} — tự chạy tiếp lúc <b>${fmtT(x.until)}</b> (còn ${left(x.until)})</span></li>`;
+    if (x.kind === 'worker') return `<li><span>⚠ ${esc(x.message)}</span><button class="primary sm" onclick="startWorker()">Bật worker</button></li>`;
+    const icon = {help:'🆘', stale:'⚠', no_account:'🔑', auth:'🔑'}[x.kind] || '📉';
+    return `<li><span>${icon} ${esc(x.message)}</span></li>`;
+  }).join('') + '</ul>';
+
+  $('depts').innerHTML = o.departments.map((d) => {
+    if (d.status === 'closed') return `<article class="panel dept closed"><header><div class="hd"><h3>${esc(d.name)} <span class="sub">[${esc(d.slug)}] — ĐÃ ĐÓNG</span></h3></div><button class="sm" onclick="reopen('${d.slug}')">Mở lại</button></header></article>`;
+    const pct = d.daily_target ? Math.min(100, Math.round(d.capacity / d.daily_target * 100)) : 100;
+    const cap = d.gap_videos > 0 ? `<span class="chip bad">thiếu ${d.gap_videos} video/ngày</span>` : d.surplus_teams > 0 ? `<span class="chip warn">dư ${d.surplus_teams} đội</span>` : '<span class="chip ok">đủ năng lực</span>';
+    return `<article class="panel dept">
+      <header><div class="hd"><h3>${esc(d.name)} <span class="sub">[${esc(d.slug)}]</span></h3><div class="sub">${esc(d.description)}</div></div>
+        <button class="sm" onclick="setTarget('${d.slug}',${d.daily_target})">Đổi chỉ tiêu</button><button class="sm danger" onclick="closeDept('${d.slug}','${esc(d.name)}')">Đóng phòng</button></header>
+      <div class="kpis"><span class="chip">chỉ tiêu <b>${d.daily_target}</b>/ngày</span><span class="chip"><b>${d.teams.length}</b> đội · năng lực <b>${d.capacity}</b></span>${cap}
+        <span class="chip"><b>${d.members_working}/${d.members_total}</b> người đang làm</span><span class="chip">hôm nay <b>${d.done_today}/${d.planned_today}</b> xong</span>
+        ${d.topics_open?`<span class="chip warn">${d.topics_open} chủ đề chưa giao</span>`:''}${d.needs_help?`<span class="chip bad">🆘 ${d.needs_help} cần hỗ trợ</span>`:''}</div>
+      <div class="meter" title="năng lực so với chỉ tiêu"><i style="width:${pct}%"></i></div>
+      ${d.teams.map(teamHtml).join('') || '<div class="sub" style="margin-top:8px">Chưa có đội nào — trưởng phòng cần đề xuất thêm đội.</div>'}
+    </article>`;
+  }).join('') || '<div class="panel">Chưa có phòng ban nào. Bấm “+ Mở phòng ban”.</div>';
+
+  if (o.pool) renderPool(o.pool);
+  $('feed').innerHTML = o.events.map((e) => `<div><time>${new Date(e.ts).toLocaleTimeString('vi-VN')}</time>${esc(e.message)}</div>`).join('');
+  $('tpDept').innerHTML = o.departments.filter((d) => d.status === 'active').map((d) => `<option value="${esc(d.slug)}">${esc(d.name)}</option>`).join('');
+}
+function teamHtml(t) {
+  const rows = t.members.filter((m) => !(m.on_call && m.status === 'idle')).map((m) => `
+    <div class="m"><span class="dot ${m.status}"></span><span>${esc(m.label)} <span class="eng ${m.engine}">${m.engine}</span></span>
+    <span class="t ${m.stale?'stale':''}" title="${esc(m.task)}">${ST[m.status]}${m.task?': '+esc(m.task):''}${m.stale?' ⚠ im lặng '+m.minutes_since_update+'p':''}</span><span class="sub">${m.video_id?esc(m.video_id):''}</span></div>`).join('');
+  const vids = t.videos.map((v) => `<span class="vid ${v.needs_help?'help':''}" title="${esc(v.title)}">${esc(v.id)} · ${STAGE[v.stage]}${v.needs_help?' 🆘':''}</span>`).join('');
+  return `<div class="team"><h4><span>${esc(t.name)}</span><span class="sub">hôm nay ${t.used_today}/${t.capacity_per_day} suất</span></h4>${rows}<div class="vids">${vids}</div></div>`;
+}
+
+async function refresh(force) {
+  try {
+    const o = await api('/api/overview');
+    data = o;
+    const key = JSON.stringify({...o, generated_at: 0}) + Math.floor(Date.now() / 60000);
+    if (force || key !== last) { last = key; render(o); }
+    $('liveDot').className = 'dot working'; $('liveTxt').textContent = 'trực tiếp · ' + new Date().toLocaleTimeString('vi-VN');
+  } catch (e) { $('liveDot').className = 'dot blocked'; $('liveTxt').textContent = 'mất kết nối: ' + e.message; }
+}
+const fmtT = (iso) => iso ? new Date(iso).toLocaleString('vi-VN', {hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'}) : '?';
+const left = (iso) => { const ms = Date.parse(iso) - Date.now(); if (!(ms > 0)) return 'sắp xong'; const m = Math.round(ms / 60000); return m >= 1440 ? Math.floor(m/1440)+' ngày '+Math.floor((m%1440)/60)+'g' : m >= 60 ? Math.floor(m/60)+'g '+(m%60)+'p' : m+'p'; };
+const JOBST = {queued:'xếp hàng', running:'ĐANG CHẠY', waiting_limit:'CHỜ', succeeded:'xong', failed:'thất bại', needs_human:'CẦN NGƯỜI', cancelled:'đã huỷ'};
+const JOBCLS = {running:'run', waiting_limit:'warn', needs_human:'bad', failed:'bad', succeeded:'ok'};
+const KIND = {plan:'kế hoạch', produce:'sản xuất', qc:'QC', rescue:'gỡ vướng', dept_review:'rà soát'};
+
+function renderPool(pool) {
+  const w = pool.worker;
+  $('wkDot').className = 'dot ' + (w.alive ? 'working' : 'blocked');
+  $('wkTxt').textContent = w.alive ? `Worker chạy · ${w.running} việc` : 'Worker TẮT';
+  $('wkBtn').hidden = w.alive;
+  $('paidFb').checked = pool.settings.paid_fallback === 'on';
+  $('accts').innerHTML = pool.accounts.map((a) => {
+    const st = a.status === 'ready' ? (a.capped ? 'đủ số lượt/ngày' : 'sẵn sàng') : a.status === 'limited' ? `HẾT LIMIT — hồi ${fmtT(a.limited_until)} (còn ${left(a.limited_until)})` : a.status === 'auth_error' ? 'LỖI ĐĂNG NHẬP — cần đăng nhập lại' : 'đã tắt';
+    return `<div class="row"><span class="dot ${a.status}"></span><div class="grow"><b>${esc(a.provider)}/${esc(a.label)}</b> <span class="chip">${a.kind==='api_key'?'API trả phí':'gói'}</span> ${a.owner?`<span class="chip">${esc(a.owner)}</span>`:''}
+      <div class="sub" title="${esc(a.last_limit_raw)}">${esc(st)} · hôm nay ${a.runs_today} lượt · tổng ${a.runs} · bị limit ${a.limit_hits} lần${a.status==='limited'&&a.last_limit_raw?' · “'+esc(a.last_limit_raw.slice(0,80))+'”':''}${a.status==='auth_error'&&a.last_error?' · '+esc(a.last_error.slice(0,80)):''}</div></div>
+      ${a.status==='auth_error'||a.status==='limited'?`<button class="sm" onclick="acct(${a.id},'unlimit','Đã đánh dấu sẵn sàng')">${a.status==='limited'?'Đã hồi limit':'Đã đăng nhập lại'}</button>`:''}
+      ${a.kind!=='api_key'?`<button class="sm" onclick="copyLogin(${a.id})" title="Chép lệnh đăng nhập">Lệnh đăng nhập</button>`:''}
+      <button class="sm" onclick="acct(${a.id},'${a.enabled?'disable':'enable'}','${a.enabled?'Đã tắt':'Đã bật'}')">${a.enabled?'Tắt':'Bật'}</button>
+      <button class="sm danger" onclick="rmAcct(${a.id},'${esc(a.provider)}/${esc(a.label)}')">Gỡ</button></div>`;
+  }).join('') || '<div class="sub">Chưa có tài khoản nào. Bấm “+ Thêm” (hoặc chạy <code>accounts init</code> để dùng đăng nhập mặc định của máy).</div>';
+
+  $('jobs').innerHTML = pool.jobs.map((j) => {
+    const extra = j.status==='waiting_limit' ? (j.wait_reason==='no_account' ? `chưa có tài khoản ${j.provider} dùng được` : `chờ hồi limit — tự chạy lại ${fmtT(j.next_run_at)} (còn ${left(j.next_run_at)})`)
+      : j.status==='running' ? 'đang chạy bằng tài khoản #'+j.account_id : (j.last_error||'');
+    const can = ['queued','running','waiting_limit'].includes(j.status), retry = ['failed','needs_human','cancelled'].includes(j.status);
+    return `<div class="row"><div class="grow"><span class="chip ${JOBCLS[j.status]||''}">${JOBST[j.status]}</span> <span class="chip">${KIND[j.kind]||j.kind}</span> <b>#${j.id}</b> ${esc(j.title)}
+      <div class="sub" title="${esc(j.last_error)}">${esc(extra)}${j.attempts?' · lần thử '+j.attempts:''}</div></div>
+      ${can?`<button class="sm danger" onclick="job(${j.id},'cancel')">Huỷ</button>`:''}${retry?`<button class="sm" onclick="job(${j.id},'retry')">Chạy lại</button>`:''}</div>`;
+  }).join('') || '<div class="sub">Trống. Việc được xếp khi bạn dùng /new-topic, /produce… hoặc nút “Duyệt & sản xuất”.</div>';
+}
+const acct = (id, what, msg) => act(() => api(`/api/accounts/${id}/${what}`, {}), msg);
+const job = (id, what) => act(() => api(`/api/jobs/${id}/${what}`, {}), what==='cancel'?'Đã yêu cầu huỷ':'Đã xếp chạy lại');
+const rmAcct = (id, name) => { if (confirm(`Gỡ tài khoản ${name} khỏi kho? (thư mục đăng nhập trên đĩa vẫn còn)`)) acct(id, 'remove', 'Đã gỡ'); };
+const setSetting = (key, value) => act(() => api('/api/settings', {key, value}), 'Đã lưu cài đặt');
+async function openOffice() {
+  const w = window.open('about:blank', '_blank'); // mở sẵn trong thao tác bấm để trình duyệt không chặn
+  try {
+    const r = await api('/api/office/start', {});
+    const ok = r.results.find((x) => x.url);
+    if (!ok) { if (w) w.close(); return toast('⚠ ' + (r.results[0]?.error || 'Không mở được văn phòng')); }
+    if (w) w.location = ok.url; else toast('Văn phòng: ' + ok.url);
+    toast(r.results.length > 1 ? `Đã mở. Còn ${r.results.length - 1} bản cho tài khoản phụ: ` + r.results.slice(1).map((x) => x.url || 'lỗi').join('  ') : 'Đã mở Văn phòng 2D');
+  } catch (e) { if (w) w.close(); toast('⚠ ' + e.message); }
+}
+const startWorker = () => act(() => api('/api/worker/start', {}), 'Đã yêu cầu bật worker');
+const prodVideo = (id) => act(() => api(`/api/videos/${id}/produce`, {}), 'Đã xếp hàng sản xuất ' + id);
+function copyLogin(id) {
+  const a = data.pool.accounts.find((x) => x.id === id);
+  navigator.clipboard?.writeText(a.login).then(() => toast('Đã chép lệnh — dán vào PowerShell để đăng nhập'), () => prompt('Chạy lệnh này trong PowerShell:', a.login));
+}
+function openAcct() { $('acErr').textContent = ''; $('dAcct').showModal(); }
+async function submitAcct() {
+  try {
+    const r = await api('/api/accounts', {provider:$('acProv').value, label:$('acLabel').value.trim(), owner:$('acOwner').value.trim(), kind:$('acKind').value, useDefault:$('acDef').checked, secret_file:$('acSecret').value.trim()});
+    $('acErr').className = 'err ok'; $('acErr').textContent = $('acDef').checked || $('acKind').value==='api_key' ? 'Đã thêm.' : 'Đã thêm. Đăng nhập bằng lệnh (đã chép): ' + r.login;
+    if (!$('acDef').checked) navigator.clipboard?.writeText(r.login).catch(() => {});
+    $('acLabel').value = ''; refresh(true);
+  } catch (e) { $('acErr').className = 'err'; $('acErr').textContent = e.message; }
+}
+
+async function loadChecklist() {
+  try {
+    const items = await api('/api/checklist');
+    const done = items.filter((i) => i.done).length;
+    $('chkProg').textContent = items.length ? `${done}/${items.length} xong` : '';
+    $('chkBar').style.width = items.length ? Math.round(done / items.length * 100) + '%' : '0';
+    let sec = null, html = '';
+    for (const i of items) {
+      if (i.section !== sec) { sec = i.section; html += `<h5>${esc(sec)}</h5>`; }
+      html += `<label class="${i.done?'done':''}"><input type="checkbox" ${i.done?'checked':''} onchange="tick(${i.line})"><span>${esc(i.text).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')}</span></label>`;
+    }
+    $('chk').innerHTML = html || '<div class="sub">Chưa có docs/CHECKLIST.md</div>';
+  } catch (e) { $('chk').textContent = e.message; }
+}
+const tick = (line) => api('/api/checklist/toggle', {line}).then(loadChecklist).catch((e) => toast('⚠ ' + e.message));
+
+const decide = (id, how) => {
+  const note = how === 'reject' ? (prompt('Lý do từ chối (tuỳ chọn):') ?? null) : '';
+  if (note === null) return;
+  act(() => api(`/api/proposals/${id}/${how}`, {note}), how === 'approve' ? `Đã duyệt đề xuất #${id}` : `Đã từ chối đề xuất #${id}`);
+};
+const setTarget = (slug, cur) => { const v = prompt(`Chỉ tiêu video/ngày cho phòng "${slug}":`, cur); if (v === null) return; act(() => api(`/api/departments/${slug}/target`, {target:Number(v)}), 'Đã đặt chỉ tiêu — trưởng phòng sẽ rà soát năng lực'); };
+const reopen = (slug) => act(() => api(`/api/departments/${slug}/reopen`, {initial_teams:1}), 'Đã mở lại phòng');
+function closeDept(slug, name) {
+  if (!confirm(`Đóng phòng "${name}"? Toàn bộ đội sẽ giải thể.`)) return;
+  api(`/api/departments/${slug}/close`, {}).then(() => { toast('Đã đóng phòng'); refresh(true); }).catch((e) => {
+    if (confirm(e.message + '\n\nVẫn đóng và HUỶ các video đang làm?')) act(() => api(`/api/departments/${slug}/close`, {force:true}), 'Đã đóng phòng (huỷ video đang làm)');
+  });
+}
+function openDept() { $('dpErr').textContent = ''; $('dDept').showModal(); }
+async function submitDept() {
+  try { await api('/api/departments', {name:$('dpName').value.trim(), description:$('dpDesc').value.trim(), daily_target:Number($('dpTarget').value), initial_teams:Number($('dpTeams').value)}); $('dDept').close(); $('dpName').value=''; toast('Đã mở phòng ban'); refresh(true); }
+  catch (e) { $('dpErr').textContent = e.message; }
+}
+function openTopic() { $('tpErr').textContent = ''; if (!$('tpDept').options.length) return toast('Chưa có phòng nào đang mở'); $('dTopic').showModal(); }
+async function submitTopic() {
+  try { await api('/api/topics', {dept:$('tpDept').value, text:$('tpText').value.trim(), brief:$('tpBrief').value.trim()}); $('dTopic').close(); $('tpText').value=''; $('tpBrief').value=''; toast('Đã giao chủ đề — dùng /new-topic trong Claude để chạy quy trình'); refresh(true); }
+  catch (e) { $('tpErr').textContent = e.message; }
+}
+refresh(true); loadChecklist(); setInterval(refresh, 3000);
+</script>
+</body>
+</html>

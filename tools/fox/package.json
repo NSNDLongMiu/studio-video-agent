@@ -1,0 +1,13 @@
+{
+  "name": "cao-van-phong-tools",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mascot Cáo văn phòng: tách sticker từ assets/mascot, đặt tên, và dựng lớp dẫn truyện trong suốt.",
+  "scripts": {
+    "extract": "python -X utf8 extract.py",
+    "build": "python -X utf8 build.py",
+    "narrate": "node narrate.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}
