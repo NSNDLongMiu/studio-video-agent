@@ -27,7 +27,7 @@ Xưởng video ngắn "Cáo văn phòng" đã dựng xong khung và qua test tr�
 - **Văn phong:** trẻ trung, câu chữ văn phòng (quy tắc ở `docs/mascot.md`).
 - **Luôn gắn nhãn AI** cho mọi video; `tools/qc-publish.mjs` kiểm `publish.json`.
 - **Văn phòng 2D:** dùng whatsmyagentdoing, **chỉ chế độ 2D**, ghim v0.8.1 (`docs/office.md`).
-- Cần giọng đọc tiếng Việt **một Bắc + một Nam**. Đề xuất ở `docs/voice.md`.
+- Giọng đọc: **đã chốt 17/11/2026, dùng toàn giọng Bắc** (Minh Đức nam chính, Quỳnh Anh nữ phụ; `temperature=0.65` + tăng tốc 8%) — đã bỏ yêu cầu giọng Nam ban đầu. Chi tiết ở `docs/voice.md`.
 - Giám đốc muốn nhận **prompt viết sẵn** để tự giao việc cho agent khác (đã có prompt nhép miệng).
 - Máy mới là PC rất mạnh: không cần lo hiệu năng, nhưng cấu hình cụ thể (GPU) chưa biết, hãy hỏi.
 

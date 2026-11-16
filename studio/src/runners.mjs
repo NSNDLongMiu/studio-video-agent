@@ -16,7 +16,16 @@ const timeoutMs = (kind) => Number(process.env.STUDIO_JOB_TIMEOUT_MIN || { plan:
 // ---------- tìm CLI ----------
 export function findClaude() {
   if (process.env.CLAUDE_JS) return { cmd: process.execPath, pre: [process.env.CLAUDE_JS], shell: false };
-  return { cmd: 'claude', pre: [], shell: false };
+  // npm cài "claude" trên Windows chỉ tạo shim claude.cmd/claude.ps1 (không có file "claude" trần chạy được) ->
+  // shell:false không tìm ra lệnh. shell:true thì tìm ra shim, nhưng khi đường dẫn dự án có khoảng trắng (vd
+  // "D:\Agent Video Studio\...mcp-agent.json"), việc ghép lại dòng lệnh qua shell làm các phần tử args bị cắt sai
+  // chỗ dấu cách -> lỗi "MCP config file not found". Giống findCodex(), trỏ thẳng tới claude.exe thật (gói npm
+  // của Claude Code ship sẵn file .exe, không phải .js) để chạy shell:false, args giữ nguyên từng phần tử.
+  for (const dir of (process.env.PATH || '').split(path.delimiter)) {
+    const exe = path.join(dir, 'node_modules', '@anthropic-ai', 'claude-code', 'bin', 'claude.exe');
+    if (dir && fs.existsSync(exe)) return { cmd: exe, pre: [], shell: false };
+  }
+  return { cmd: 'claude', pre: [], shell: true };
 }
 export function findCodex() {
   if (process.env.CODEX_JS) return { cmd: process.execPath, pre: [process.env.CODEX_JS], shell: false };
@@ -202,7 +211,12 @@ export async function runCodexProduce(job, account, { onChild } = {}) {
   S.reportStatus({ team_id: team.id, role: 'producer', status: 'working', task: `Codex đang sản xuất ${v.id}`, video_id: v.id, by: 'worker' });
 
   const cx = findCodex();
-  const args = [...cx.pre, 'exec', '--cd', S.ROOT, '--sandbox', 'workspace-write', '--skip-git-repo-check', ...(process.env.STUDIO_CODEX_MODEL ? ['-m', process.env.STUDIO_CODEX_MODEL] : []), ...codexMcpOverrides(), '-o', lastMsg, '-'];
+  // '--sandbox workspace-write' một mình không đủ ở chế độ nền (approval mặc định 'never' âm thầm hạ
+  // xuống chỉ-đọc, chặn cả ghi file lẫn MCP studio — đã kiểm thật, không phải đoán). '--approve-for-me'
+  // là cờ chính thức của Codex cho đúng tình huống này: không có ai duyệt theo thời gian thực, Codex tự
+  // duyệt nhưng vẫn giới hạn trong sandbox workspace-write (không ra ngoài thư mục dự án, không có mạng).
+  // Giám đốc đã xác nhận bật (17/11/2026). Không dùng chung được với '--sandbox' (hai cờ loại trừ nhau).
+  const args = [...cx.pre, 'exec', '--cd', S.ROOT, '--approve-for-me', '--skip-git-repo-check', ...(process.env.STUDIO_CODEX_MODEL ? ['-m', process.env.STUDIO_CODEX_MODEL] : []), ...codexMcpOverrides(), '-o', lastMsg, '-'];
   const res = await execProcess({ cmd: cx.cmd, args, env: { ...accountEnv('codex', account), STUDIO_ROLE: 'agent', STUDIO_TEAM_ID: String(team.id), STUDIO_VIDEO_ID: v.id }, cwd: S.ROOT, input: producerPrompt(v, team, topic, job.attempts > 0 || job.resumed), logFile, limitMs: timeoutMs('produce'), onChild, shell: cx.shell, label: `codex exec ${v.id} · tài khoản ${account.label}` });
 
   const last = fs.existsSync(lastMsg) ? fs.readFileSync(lastMsg, 'utf8').trim() : '';
@@ -237,7 +251,7 @@ export function checkAuth(account) {
   if (account.provider === 'claude') {
     if (account.kind === 'api_key') return { loggedIn: !!(account.secret_file && fs.existsSync(account.secret_file)), detail: 'API key (file)' };
     const cx = findClaude();
-    const r = spawnSync(cx.cmd, [...cx.pre, 'auth', 'status', '--json'], { env, encoding: 'utf8', windowsHide: true, timeout: 30_000 });
+    const r = spawnSync(cx.cmd, [...cx.pre, 'auth', 'status', '--json'], { env, encoding: 'utf8', windowsHide: true, timeout: 30_000, shell: cx.shell });
     try {
       const j = JSON.parse(r.stdout);
       return { loggedIn: !!j.loggedIn, detail: j.loggedIn ? `${j.authMethod}${j.loginExpiresAt ? `, hạn đăng nhập ${j.loginExpiresAt}` : ''}` : 'chưa đăng nhập', expires: j.loginExpiresAt };

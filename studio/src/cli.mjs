@@ -4,6 +4,8 @@
 //   worker | worker stop                   chỉ worker / dừng worker đang chạy
 //   dashboard                              chỉ dashboard (http://localhost:4747)
 //   accounts list|add|login|check|enable|disable|unlimit|remove|init
+//   dept create <mã-phòng> --name "Tên" [--target N] [--teams N]   mở phòng ban mới
+//   topic submit <mã-phòng> "<chủ đề>" [--brief "..."]            ghi chủ đề cho phòng (-> dùng topic-id ở "enqueue plan")
 //   jobs [list] | jobs cancel <id> | jobs retry <id> | jobs log <id>
 //   enqueue plan <topic-id> [--episodes N] [--rounds N] [--auto-produce]
 //   enqueue produce|qc|rescue <video-id> [--force]   |   enqueue dept_review <phòng>
@@ -147,6 +149,18 @@ async function main() {
     case 'accounts':
       await accountsCmd();
       break;
+    case 'dept': {
+      if (args[0] !== 'create') throw new S.StudioError('Cú pháp: dept create <mã-phòng> --name "Tên" [--target N] [--teams N]');
+      const r = S.createDepartment({ slug: args[1], name: flags.name, daily_target: flags.target, initial_teams: flags.teams, by: 'director' });
+      say(`✔ Đã mở phòng "${r.dept}" (${r.teams.length} đội).`);
+      break;
+    }
+    case 'topic': {
+      if (args[0] !== 'submit') throw new S.StudioError('Cú pháp: topic submit <mã-phòng> "<chủ đề>" [--brief "..."]');
+      const r = S.submitTopic({ dept: args[1], text: args.slice(2).join(' '), brief: flags.brief || '', by: 'director' });
+      say(`✔ Đã ghi chủ đề #${r.topic_id} vào phòng "${r.dept}".`);
+      break;
+    }
     case 'enqueue':
       enqueue(args[0], args[1]);
       break;

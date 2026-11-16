@@ -470,6 +470,17 @@ export function resolveEscalation({ video_id, note = '', by = 'support' }) {
 
 export const recentEvents = (limit = 40) => all('SELECT * FROM events ORDER BY id DESC LIMIT ?', limit);
 
+/** Tài khoản (claude/codex) đang hoặc nhiều khả năng sẽ chạy việc của 1 phòng — để dashboard trỏ đúng tab Văn phòng 2D.
+ *  Việc đang 'running' thì lấy đúng account_id đã dùng; không thì đoán bằng tài khoản ưu tiên cao nhất còn dùng được
+ *  (ước lượng đơn giản, không tính capped/giờ hồi như pool.pickAccount — chỉ để gợi ý link, không ảnh hưởng vận hành). */
+function officeAccountHint(dept, provider) {
+  const running = get("SELECT account_id aid FROM jobs WHERE dept=? AND provider=? AND status='running' ORDER BY id DESC LIMIT 1", dept, provider);
+  const row = running?.aid
+    ? get('SELECT provider,label,home FROM accounts WHERE id=?', running.aid)
+    : get("SELECT provider,label,home FROM accounts WHERE provider=? AND enabled=1 AND status='ready' ORDER BY priority,id LIMIT 1", provider);
+  return row ? { provider: row.provider, label: row.label, is_default: !row.home, live: !!running?.aid } : null;
+}
+
 // ---------- tổng quan cho dashboard / Claude ----------
 export function overview({ dept: only } = {}) {
   const day = today();
@@ -529,6 +540,7 @@ export function overview({ dept: only } = {}) {
       planned_today: planned, done_today: done, active_videos: active, needs_help: help, topics_open: open,
       members_total: core.length, members_working: working, members_blocked: blocked,
       teams: teamsOut, pending_proposals: pend,
+      office: d.status === 'active' ? { claude: officeAccountHint(d.slug, 'claude'), codex: officeAccountHint(d.slug, 'codex') } : null,
     };
   });
   return { generated_at: now(), today: day, totals, attention, departments: out, events: recentEvents(30) };

@@ -5,6 +5,6 @@
 # Sổ sách xưởng: Codex ở vai "agent" => KHÔNG có công cụ duyệt / mở-đóng phòng / đổi chỉ tiêu.
 [mcp_servers.studio]
 command = "node"
-args = ["--disable-warning=ExperimentalWarning", "e:/Tiktoker/studio/src/mcp.mjs"]
+args = ["--disable-warning=ExperimentalWarning", "d:/Agent Video Studio/studio/src/mcp.mjs"]
 env = { STUDIO_ROLE = "agent" }
 startup_timeout_sec = 30

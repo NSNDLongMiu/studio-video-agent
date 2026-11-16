@@ -174,7 +174,8 @@ function render(o) {
         <button class="sm" onclick="setTarget('${d.slug}',${d.daily_target})">Đổi chỉ tiêu</button><button class="sm danger" onclick="closeDept('${d.slug}','${esc(d.name)}')">Đóng phòng</button></header>
       <div class="kpis"><span class="chip">chỉ tiêu <b>${d.daily_target}</b>/ngày</span><span class="chip"><b>${d.teams.length}</b> đội · năng lực <b>${d.capacity}</b></span>${cap}
         <span class="chip"><b>${d.members_working}/${d.members_total}</b> người đang làm</span><span class="chip">hôm nay <b>${d.done_today}/${d.planned_today}</b> xong</span>
-        ${d.topics_open?`<span class="chip warn">${d.topics_open} chủ đề chưa giao</span>`:''}${d.needs_help?`<span class="chip bad">🆘 ${d.needs_help} cần hỗ trợ</span>`:''}</div>
+        ${d.topics_open?`<span class="chip warn">${d.topics_open} chủ đề chưa giao</span>`:''}${d.needs_help?`<span class="chip bad">🆘 ${d.needs_help} cần hỗ trợ</span>`:''}
+        ${officeChip(d.slug,'claude',d.office?.claude)}${officeChip(d.slug,'codex',d.office?.codex)}</div>
       <div class="meter" title="năng lực so với chỉ tiêu"><i style="width:${pct}%"></i></div>
       ${d.teams.map(teamHtml).join('') || '<div class="sub" style="margin-top:8px">Chưa có đội nào — trưởng phòng cần đề xuất thêm đội.</div>'}
     </article>`;
@@ -183,6 +184,27 @@ function render(o) {
   if (o.pool) renderPool(o.pool);
   $('feed').innerHTML = o.events.map((e) => `<div><time>${new Date(e.ts).toLocaleTimeString('vi-VN')}</time>${esc(e.message)}</div>`).join('');
   $('tpDept').innerHTML = o.departments.filter((d) => d.status === 'active').map((d) => `<option value="${esc(d.slug)}">${esc(d.name)}</option>`).join('');
+}
+function officeChip(deptSlug, provider, hint) {
+  if (!hint) return '';
+  const label = hint.is_default ? 'mặc định' : `${hint.provider}/${hint.label}`;
+  const name = provider === 'claude' ? 'Claude' : 'Codex';
+  return `<span class="chip" style="cursor:pointer" title="Mở Văn phòng 2D đúng tài khoản ${esc(label)} — ${hint.live?'đang chạy việc này':'dự kiến, chưa chắc là tài khoản sẽ chạy'}" onclick="openOfficeFor('${esc(deptSlug)}','${provider}')">${hint.live?'🟢':'⚪'} 🏢 ${name}: ${esc(label)}</span>`;
+}
+async function openOfficeFor(deptSlug, provider) {
+  const dept = data?.departments?.find((d) => d.slug === deptSlug);
+  const hint = dept?.office?.[provider];
+  if (!hint) return toast('Chưa rõ tài khoản để mở Văn phòng 2D cho phòng này');
+  const w = window.open('about:blank', '_blank');
+  try {
+    const r = await api('/api/office/start', {});
+    const match = hint.is_default
+      ? r.results.find((x) => x.label === 'mặc định (đăng nhập của máy)')
+      : r.results.find((x) => x.label.includes(`${hint.provider}/${hint.label}`));
+    if (!match || !match.url) { if (w) w.close(); return toast('⚠ Không mở được bản Văn phòng cho tài khoản ' + hint.provider + '/' + hint.label); }
+    if (w) w.location = match.url; else toast('Văn phòng: ' + match.url);
+    toast(`Đang mở — ${hint.provider}/${hint.label}${hint.live ? ' (đang chạy việc này)' : ' (dự kiến — hiện chưa có việc chạy)'}`);
+  } catch (e) { if (w) w.close(); toast('⚠ ' + e.message); }
 }
 function teamHtml(t) {
   const rows = t.members.filter((m) => !(m.on_call && m.status === 'idle')).map((m) => `
@@ -237,14 +259,21 @@ const job = (id, what) => act(() => api(`/api/jobs/${id}/${what}`, {}), what==='
 const rmAcct = (id, name) => { if (confirm(`Gỡ tài khoản ${name} khỏi kho? (thư mục đăng nhập trên đĩa vẫn còn)`)) acct(id, 'remove', 'Đã gỡ'); };
 const setSetting = (key, value) => act(() => api('/api/settings', {key, value}), 'Đã lưu cài đặt');
 async function openOffice() {
-  const w = window.open('about:blank', '_blank'); // mở sẵn trong thao tác bấm để trình duyệt không chặn
+  // Nhiều tài khoản claude/codex = nhiều bản văn phòng (mỗi bản chỉ đọc 1 tài khoản). Trước đây chỉ mở tab cho
+  // bản đầu (mặc định) và các bản phụ chỉ nhắc qua 1 dòng toast chớp qua — rất dễ xem nhầm bản đang RẢNH mà
+  // tưởng không ai làm gì, trong khi việc thật đang chạy ở tài khoản khác. Mở sẵn đủ tab (trong thao tác bấm,
+  // trước khi gọi API) để trình duyệt không chặn popup, rồi gán URL khi có kết quả.
+  const MAX_TABS = 6;
+  const wins = Array.from({ length: MAX_TABS }, () => window.open('about:blank', '_blank'));
   try {
     const r = await api('/api/office/start', {});
-    const ok = r.results.find((x) => x.url);
-    if (!ok) { if (w) w.close(); return toast('⚠ ' + (r.results[0]?.error || 'Không mở được văn phòng')); }
-    if (w) w.location = ok.url; else toast('Văn phòng: ' + ok.url);
-    toast(r.results.length > 1 ? `Đã mở. Còn ${r.results.length - 1} bản cho tài khoản phụ: ` + r.results.slice(1).map((x) => x.url || 'lỗi').join('  ') : 'Đã mở Văn phòng 2D');
-  } catch (e) { if (w) w.close(); toast('⚠ ' + e.message); }
+    const ok = r.results.filter((x) => x.url);
+    if (!ok.length) { wins.forEach((w) => w && w.close()); return toast('⚠ ' + (r.results[0]?.error || 'Không mở được văn phòng')); }
+    ok.forEach((x, i) => { if (wins[i]) wins[i].location = x.url; });
+    wins.slice(ok.length).forEach((w) => w && w.close());
+    const bad = r.results.filter((x) => !x.url);
+    toast(`Đã mở ${ok.length} bản (mỗi tài khoản 1 bản: ${ok.map((x) => x.label).join(', ')})` + (bad.length ? ` — lỗi: ${bad.map((x) => x.error).join('; ')}` : ''));
+  } catch (e) { wins.forEach((w) => w && w.close()); toast('⚠ ' + e.message); }
 }
 const startWorker = () => act(() => api('/api/worker/start', {}), 'Đã yêu cầu bật worker');
 const prodVideo = (id) => act(() => api(`/api/videos/${id}/produce`, {}), 'Đã xếp hàng sản xuất ' + id);

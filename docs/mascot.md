@@ -6,7 +6,7 @@
 - Cáo cam lông mềm kiểu 3D hoạt hình, đuôi to có chóp trắng.
 - Kính tròn gọng đen, áo sơ mi trắng, cà vạt xanh navy, thẻ nhân viên, đồng hồ, quần tây đen, giày da đen.
 - Đạo cụ có trong bộ ảnh: laptop (logo khiên cam), bảng biểu đồ, micro MC, kẹp tài liệu, bàn làm việc, tai nghe.
-- **Văn phong (đã chốt):** trẻ trung, câu chữ văn phòng. Quy tắc ở mục "Văn phong của Cáo" bên dưới. **Câu chào:** đang chờ giám đốc chọn 1 trong 4 bộ đề xuất.
+- **Văn phong (đã chốt):** trẻ trung, câu chữ văn phòng. Quy tắc ở mục "Văn phong của Cáo" bên dưới. **Câu chào — đã chốt 17/11/2026:** không bắt cứng 1 bộ. **Bộ B (Đi làm)** làm điểm neo mặc định, nhưng planner được phép **đổi/trộn theo từng video** miễn **hài hước và thu hút** — ưu tiên hiệu quả hơn giữ đúng 1 công thức.
 
 ## Văn phong của Cáo (đã chốt: trẻ trung, câu chữ văn phòng)
 **Quy tắc cho planner/producer** (đề xuất cách áp dụng, giám đốc chỉnh nếu thấy chưa hợp):
@@ -35,7 +35,7 @@
 | Kết quả tốt | "Ngon! Hoàn thành chỉ tiêu rồi!" | `cheer` |
 | Sai lầm | "Ối, ai cũng từng gặp. Cáo xin lỗi trước nhé!" | `bow` |
 | Nhắc lưu video | "Lưu lại kẻo quên nha!" | `thumbs_up` |
-Trong lúc chưa chọn bộ, planner dùng **Bộ A** và ghi rõ trong `concept.md` là bản tạm.
+**Đã chốt (17/11/2026):** không bắt cứng 1 bộ — **Bộ B** là điểm neo mặc định, planner được đổi/trộn theo từng video miễn hài hước và thu hút (ghi rõ trong `concept.md` bộ nào đang dùng cho video đó, để dễ theo dõi).
 
 ## Bộ tài sản (`brand/cao/`, tạo bằng `tools/fox/`)
 Xem toàn bộ có tên: **`brand/cao/catalog.png`**.

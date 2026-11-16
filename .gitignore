@@ -11,3 +11,11 @@ __pycache__/
 .venv/
 Thumbs.db
 .local/
+
+# Thành phẩm/nguyên liệu dựng video (nặng, sinh lại được từ *.md + công cụ) — không đẩy lên repo công khai.
+# Giữ lại văn bản (concept/plan/debate/brief/notes/script.md) ngay trong content/<phòng>/<chủ đề>/epNN/.
+content/*/*/*/final/
+content/*/*/*/assets/
+/voice-samples/
+/voice-ab/
+/voice-final/
