@@ -3,6 +3,11 @@
 > Viết ngày 16/11/2026 trên máy cũ, khi giám đốc chuyển sang PC mạnh. Dành cho **giám đốc** và cho **phiên Claude/Codex mở trên máy mới**.
 > Bộ nhớ riêng của Claude **không đi theo repo**: những điều quan trọng đã được chép vào đây. Nếu có chỗ nào mâu thuẫn với tài liệu khác, hỏi giám đốc.
 
+## Lấy dự án
+`git clone https://github.com/NSNDLongMiu/studio-video-agent.git` (nhánh `main`). Đã đẩy ngày 16/11/2026, commit `30fe8bb`, 221 tệp; đã kiểm: clone mới chạy đủ test (xem mục "Không nằm trong repo" cho phần phải cài lại).
+**Repo này CÔNG KHAI** (giám đốc đã xác nhận). Vì vậy: **không bao giờ commit token, khoá, `studio/accounts`, `auth.json`, ảnh chụp có thông tin riêng**; trước mỗi lần đẩy hãy quét nội dung sẽ commit. Commit đầu dùng tác giả `NSNDLongMiu` + địa chỉ `noreply` của GitHub để không lộ email cá nhân; máy mới nên làm tương tự (đặt `git config user.email` thành địa chỉ noreply của tài khoản GitHub) nếu không muốn email lộ ra repo công khai.
+Muốn cập nhật từ máy cũ: `git pull`. Máy cũ không tự đồng bộ: mọi thay đổi muốn mang theo phải được commit và đẩy.
+
 ## Đọc theo thứ tự
 1. File này. 2. `CLAUDE.md` (luật cứng của dự án). 3. **`docs/PLAN-CHUYEN-MAY.md`** (12 quyết định + trình tự cài T0–T8). 4. `docs/PLAN.md` (các giai đoạn) và `docs/CHECKLIST.md` (việc cụ thể).
 
