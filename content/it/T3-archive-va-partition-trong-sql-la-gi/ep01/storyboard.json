@@ -1,0 +1,231 @@
+{
+  "video_id": "IT-T3-E01",
+  "status": "APPROVED",
+  "talking_head_ratio": 0,
+  "visual_style_note": "Bản đầu; Claude đã duyệt vòng 1 kèm sửa nhỏ (xem review/storyboard-r1.md).Nguồn lời và mốc: ep01/script.md script-r2; giữ 0/3/9/14/18/24/28/32/39 giây, 1170 frame ở 30 fps. Mọi t trong animation_timeline là giây CỤC BỘ của cảnh, t=0 là frame đầu cảnh; khoảng ghi trong event kết thúc trước hoặc đúng duration_s. text_overlay là danh sách chữ được phép, không phải một thẻ hiện đồng loạt; lịch hiện nằm trong timeline. Chữ phụ đề lấy nguyên voice_over, ngắt nhóm nghĩa, không đọc thêm nhãn. Một sơ đồ đồ hoạ tự tạo bằng Pillow/SVG và các lớp ffmpeg, không dùng stock hay sơ đồ hãng. Hình chính là sơ đồ dữ liệu/quy trình, vì vậy scene_type theo hình chính, không theo Cáo nhỏ; character_acting=0 giây, talking_head_ratio=0/39=0. Cáo hiện 39/39 giây, 100%, ảnh tĩnh think/present_hand/point_up/shrug/point_right/clipboard/thumbs_up trong D:/Agent Video Studio/brand/cao/poses/, cao tối đa 300 px, không upscale ảnh nguồn, fit toàn thân và đuôi trong x=90..360,y=1190..1490. Đổi dáng bằng cut tại 3/9/14/18/28/32; không đổi tại 24, không --intro, không nhép miệng, không hứa đưa tay chạm ô hay cầm thêm đạo cụ. Camera là crop/scale lớp sơ đồ phẳng, không phải 3D; HUD chữ, Cáo, phụ đề và nhãn AI ghép SAU camera. Wide là nhìn đủ bảng và vùng bên phải; medium ở cảnh 2-3 phóng nhẹ hình bảng chính (1.04 đến 1.08 lần), bù x để mép trái vẫn x=100, giữ đủ 12 ô và khung. Medium cảnh 5 và 7 chỉ phóng tối đa 1.02 lần cả sơ đồ, neo (540,920) hoặc (540,960): mép trái >=91, mép phải <=989, đáy không vượt 960. Mã ô được vẽ lại ở tâm ô sau biến đổi, luôn 48 px; mọi chữ khác cũng giữ cỡ gốc. Nếu dùng zoompan, một ảnh đầu vào cho mỗi cảnh và d=90/180/150/120/180/120/120/210 tương ứng, fps=30; không nhân d cho mỗi frame ảnh lặp. Nếu dùng overlay với x/y theo t, bắt buộc eval=frame, setpts=PTS-STARTPTS từng lớp. Camera và chuyển trạng thái chạy trong thời lượng đã có, concat không chồng thời gian hai cảnh; transition mô tả phép đổi lớp tại ranh giới, không thêm đuôi xfade. Các phép crop và overlay động phải xem khung thử khi sản xuất; recipes mục 9 chưa xác minh nên không coi mô tả này là QC render. Nền #101827, khung #94A3B8, chữ #F8FAFC, Partition #38BDF8, Archive #FBBF24, ô mờ #64748B; mã chữ trên nền sáng (thẻ vàng #FBBF24, ô xanh #38BDF8) dùng màu tối #101827, trên nền #64748B hoặc navy dùng #F8FAFC (chữ #F8FAFC trên vàng không đủ tương phản); thêm độ dày viền và mã ô, không chỉ dựa màu. Segoe UI: hook Bold 64 px, thuật ngữ 60 px, nhãn/mã 48 px, phụ đề 52 px, nhãn Có dùng AI 40 px. Chữ quan trọng x=90..990,y=250..1500; SQL x=100,y=250..300 suốt video; chip y=320..480, hai hàng cao tối thiểu 72 px, không thu font. Hook hai dòng y=322 và 396. Hàng nhãn sơ đồ y=520..584, chữ căn theo bbox có dấu; cảnh 2-4 Đơn hàng x=100, Một bảng logic x=340, Minh hoạ x=740. Cảnh 1/5-8 Đơn hàng x=100, Minh hoạ x=400; Lưu trữ x=750 khi có hộp. Bảng nguồn x=100..690,y=620..920; khung đơn, lưới bốn cột ba hàng, ô gốc rộng 147.5 cao 100, T1-T4 hàng đầu, T5-T8 hàng giữa, T9-T12 hàng cuối. Mỗi ô là một PHẦN dữ liệu theo tháng trong một năm giả định. Hộp lưu trữ nguồn x=730..980,y=620..920, ba vị trí đích tâm (855,670),(855,770),(855,870). Archive dùng chính thẻ T1-T3 rộng 128 cao 80 từ bảng chuyển sang, không tạo bản sao; khe x=690..730 luôn phân biệt hai khung. Cảnh 6 dịch bảng VÀ hộp xuống đúng 40 px trong 0.5 giây, đáy=960, header không dịch; dành y=588..652 cho Chính 9 · Lưu trữ 3, hai nhãn độc lập 48 px cạnh nhau x=100 và 350, dấu · x=310, khoảng cách hàng >=4 px, bảng bắt đầu y=660. Giữ hình học này cảnh 7-8. Không nén thành chín ô mới: T4-T12 ở nguyên vị trí, ba vị trí trống T1-T3 không có mã hay bóng thẻ. Phụ đề có nền tối mờ x=100..980,y=1000..1140, tối đa hai dòng, trên đầu Cáo; khoảng cách đáy sơ đồ đến phụ đề >=40 px. Dùng ASS PlayResX=1080,PlayResY=1920 để đặt 52 px đúng, không chép MarginV=190 của mẫu Cáo lớn. Có dùng AI cố định x=730..980,y=1460..1500; y>1500 để trống. Mọi nhãn <=4 từ, hook và phụ đề là câu. Không thêm chữ ngoài text_overlay, không SQL giả, không đồng hồ, benchmark hay tỷ lệ tốc độ. Hộp Lưu trữ là nơi logic, không vẽ máy chủ hay ranh giới CSDL. Minh Đức nam miền Bắc, chỉ lời và nghỉ tự nhiên, không nhạc/SFX. Chưa có giọng đo thật: storyboard dùng mốc mặc định, không kích hoạt dự phòng lời hoặc dời mốc cảnh 2 ở lượt này.",
+  "scenes": [
+    {
+      "scene_id": "1",
+      "narrative_purpose": "Gọi cả hai thao tác trong hook và mở câu hỏi sẽ được trả lời ở kết: chia phần hay chuyển dữ liệu cũ.",
+      "visual_concept": "Ngay frame đầu là bảng Đơn hàng đủ 12 ô và hai nhánh mũi tên hướng sang phải, một nhánh đề xuất chia, một nhánh đề xuất chuyển phần cũ. Chưa thao tác lên bất kỳ ô nào. Tắt tiếng vẫn thấy hai lựa chọn khác nhau trên cùng bảng.",
+      "scene_type": "process_animation",
+      "environment": "Background navy phẳng, ánh sáng đồ hoạ đồng đều; midground bảng 12 ô x=100..690,y=620..920; near hai mũi tên nét 6 px không có vật thể che bảng, chip bên phải và HUD hook. Cáo tách lớp góc trái dưới; không có văn phòng, nhân vật phụ hoặc logo.",
+      "character_action": "think xuất hiện ngay frame 0, giữ tay suy nghĩ như ảnh nguồn trong góc nhỏ đủ 3 giây; không vẫy, không hoạt hình cánh tay.",
+      "props": [
+        "Khung Đơn hàng viền 4 px, 12 thẻ chữ nhật 128x80 px, bo góc 12 px, mã T1 đến T12 48 px ở tâm; thẻ nằm trong lưới 4x3.",
+        "Hai đường mũi tên từ sát cạnh phải bảng (690,770), nhánh trên tới (760,660), nhánh dưới tới (760,860); đầu tam giác 14 px, không đi xuyên ô.",
+        "Nhãn Chia ra trong vùng y=600..672, mép trái chữ x>=775 (cách đầu mũi tên >=12 px); nhãn Chuyển dữ liệu cũ xuống hai dòng, ưu tiên ngắt Chuyển / dữ liệu cũ, mép trái chữ x>=775, mép phải <=990, y=780..924. Đo bbox bằng PIL (segoeui.ttf 48 px); nếu dòng nào vượt x=990 thì rút đầu mũi tên dưới về (745,860), không thu chữ. Hai dòng là cùng một nhãn, không thêm chữ.",
+        "Hook hai dòng 64 px, SQL, Minh hoạ, Có dùng AI; ảnh think.png."
+      ],
+      "camera": { "shot": "wide", "movement": "static" },
+      "animation_timeline": [
+        { "t": 0, "event": "Toàn bộ hook, SQL, Minh hoạ, bảng đủ T1-T12, hai nhánh mũi tên cùng nhãn và think đã hiện. Lời vào ngay; không dựng intro." },
+        { "t": 0.5, "event": "0.5-1.1: hai nét mũi tên cùng tăng opacity từ 0.65 lên 1, giữ vị trí và giữ đủ thẻ. Chuyển động chỉ gợi hai hướng thao tác, không gợi tốc độ đọc." },
+        { "t": 1.1, "event": "1.1-3.0: giữ toàn cảnh cho người xem đọc hook; không countdown, không ô nào rời khung." }
+      ],
+      "voice_over": "Bảng lớn: chia ra hay chuyển bớt?",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nBảng lớn: chia ra\nhay chuyển bớt?\nĐơn hàng\nChia ra\nChuyển dữ liệu cũ\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "2",
+      "narrative_purpose": "Định nghĩa Partition bằng việc chia phần mà vẫn đủ dữ liệu trong cùng một bảng logic.",
+      "visual_concept": "Mũi tên lựa chọn biến mất; đường phân cách của chính bảng đó trở nên rõ và đồng màu xanh, khung ngoài giữ nguyên bao đủ 12 thẻ. Không có thẻ trượt ra ngoài. Cụm nghĩa xuất hiện trước khi khung được gắn nhãn Một bảng logic.",
+      "scene_type": "process_animation",
+      "environment": "Background navy liên tục; mid cùng bảng nhưng crop medium chỉ phóng hình bảng chính 1.04 lần và bù x về mép 100; near đường chia 6 px cùng khung ngoài 5 px. Vùng bên phải bỏ hai nhánh, để thoáng. HUD nhãn không chịu scale camera.",
+      "character_action": "Tại giây toàn cục 3, cut think sang present_hand.png, giữ bàn tay mở trình bày có sẵn trong ảnh; không giả động tác vẽ đường chia.",
+      "props": [
+        "Cùng 12 thẻ mã T1-T12 và cùng tên Đơn hàng, không thay bảng bằng bảng mới.",
+        "Ba đường dọc và hai đường ngang phân chia lưới, độ dày tăng 2 lên 6 px; khung ngoài không tách thành nhiều bảng.",
+        "Hàng chip đầu y=320..392: Partition x=100, Phân vùng x=500, cỡ 60 px. Hàng sau y=404..480: Chia nhiều phần 48 px.",
+        "Sau giây cục bộ 2.8, nhãn Một bảng logic nằm x=340 trong hàng header y=520..584; Vẫn đủ và 12/12 phần ở dải chip, không viết thành một nhãn dài."
+      ],
+      "camera": { "shot": "medium", "movement": "static" },
+      "animation_timeline": [
+        { "t": 0, "event": "Match-cut giữ bảng và mã ô; bỏ hook và hai nhánh, cut sang present_hand. Hiện Partition, Phân vùng, Chia nhiều phần, chưa hiện Một bảng logic. Đặt medium 1.04 lần, hình bảng x=100..714, không cắt ô." },
+        { "t": 0.6, "event": "0.6-1.4: đồng thời tăng độ dày các đường chia lên 6 px và viền xanh từng phần; tất cả mã và thẻ còn nguyên, không chạy đếm tuần tự." },
+        { "t": 2.8, "event": "Toàn cục 5.8: bỏ ba chip định nghĩa; hiện nhãn Một bảng logic tại header, đồng thời hiện hai chip độc lập Vẫn đủ và 12/12 phần tại y=320..392. Khung ngoài tăng sáng một lần 0.5 giây, xác nhận nó vẫn bao đủ thẻ." },
+        { "t": 3.3, "event": "3.3-6.0: giữ 12 phần bằng nhau, cùng Đơn hàng; không ô nào mờ, không có hộp lưu trữ." }
+      ],
+      "voice_over": "Chia ra gọi là Partition, tức phân vùng.\nLà chia bảng thành nhiều phần.\nVẫn chung một tên bảng, dữ liệu vẫn đủ.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nPartition\nPhân vùng\nChia nhiều phần\nMột bảng logic\nVẫn đủ\n12/12 phần\nĐơn hàng\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 6,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "3",
+      "narrative_purpose": "Chứng minh điều kiện lọc đúng cột tháng có thể bỏ qua phần khác, không hứa hiệu năng.",
+      "visual_concept": "Sau khi chỉ rõ cách chia theo tháng, giá trị Tháng 11 gắn với thẻ T11 bằng cùng màu viền xanh, không dùng nét dẫn dài. Chỉ T11 sáng và viền dày; 11 thẻ còn lại chuyển mờ cùng lúc nhưng vẫn nhìn được mã. Phạm vi cần chú ý thu về một phần, không phải dữ liệu bị xoá.",
+      "scene_type": "data_visualization",
+      "environment": "Background navy giữ nguyên; mid bảng và khung Một bảng logic; near viền T11 8 px xanh, các ô khác viền 2 px. Camera chỉ tác động hình bảng, HUD và Cáo đứng yên.",
+      "character_action": "Cut present_hand sang point_up.png đúng toàn cục 9; tay chỉ lên như ảnh, khớp chip điều kiện nằm phía trên, không vẽ thêm cử chỉ.",
+      "props": [
+        "Chip Chia theo tháng y=320..392 xuất hiện trước chip Tháng 11 y=404..480; Tháng 11 là giá trị lọc, không vẽ hàm hay SQL.",
+        "T11 là ô thứ ba hàng cuối, tâm nguồn (468.75,870). 11 ô còn lại dùng nền #64748B trầm, mã vẫn tương phản đọc được, không alpha=0.",
+        "Không vẽ nét dẫn dài từ chip xuống T11 (mọi đường đi đều cắt hàng nhãn y=520..584 hoặc đè mã ô). Liên kết bằng màu: chip Tháng 11 có viền #38BDF8, T11 có viền xanh cùng màu; không có nhãn mới.",
+        "Khung Đơn hàng và Một bảng logic vẫn bao đủ 12 phần, Minh hoạ cố định."
+      ],
+      "camera": { "shot": "medium", "movement": "push_in" },
+      "animation_timeline": [
+        { "t": 0, "event": "Bỏ Vẫn đủ và 12/12 phần; hiện Chia theo tháng, giữ đủ 12 ô bình thường. Cut sang point_up tại toàn cục 9. Bắt đầu cùng cỡ medium 1.04 như cảnh 2." },
+        { "t": 0.4, "event": "Hiện Tháng 11 ở hàng chip thứ hai (viền xanh #38BDF8), sau chip Chia theo tháng; cùng lúc T11 nhận viền xanh 4 px làm dấu, 11 ô khác chưa đổi." },
+        { "t": 1.4, "event": "1.4-1.9: khi vào Lọc đúng cột chia, thay riêng chip Tháng 11 bằng Lọc đúng cột chia; giữ Chia theo tháng. T11 sáng xanh viền 8 px, toàn bộ 11 ô khác cùng mờ. Không thẻ nào mất mã." },
+        { "t": 1.9, "event": "1.9-2.7: push-in nhẹ hình bảng từ 1.04 đến 1.08, crop/bù x sao mép trái vẫn 100 và mép phải <=738, y trong 596..944. Tâm chú ý T11; không cắt bất kỳ phần hay khung. HUD chữ không phóng." },
+        { "t": 2.7, "event": "2.7-5.0: giữ chỉ T11 sáng cho câu Máy có thể bỏ qua phần khác; không quét từng ô, không đo thời gian, khung và 11 phần mờ vẫn còn." }
+      ],
+      "voice_over": "Sếp cần tháng mười một?\nLọc đúng cột chia.\nMáy có thể bỏ qua phần khác.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nChia theo tháng\nTháng 11\nLọc đúng cột chia\nMột bảng logic\nĐơn hàng\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 5,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "4",
+      "narrative_purpose": "Đặt giới hạn cho ví dụ pruning: lọc cột khác có thể phải đọc nhiều phần.",
+      "visual_concept": "Cắt về nhìn đủ bảng: yêu cầu lọc trạng thái thay điều kiện tháng, và cả 12 ô bật sáng xanh đồng thời. Không có ô mờ hay nhóm con được chọn. Người xem thấy phạm vi sáng mở rộng rõ so với một ô ở cảnh trước.",
+      "scene_type": "data_visualization",
+      "environment": "Background navy; mid bảng về tọa độ gốc x=100..690,y=620..920; near toàn lưới 12 ô viền xanh 6 px như nhau. Vùng bên phải thoáng, không hộp lưu trữ, không đèn chạy.",
+      "character_action": "Cut point_up sang shrug.png ở toàn cục 14; giữ dáng nhún vai có sẵn đủ bốn giây, không animate tay.",
+      "props": [
+        "Cùng bảng Đơn hàng, Một bảng logic, mã T1-T12; giữ cấu trúc lưới chia theo tháng nhưng không giữ chip Chia theo tháng của cảnh trước.",
+        "Chip Lọc theo trạng thái ở y=320..392; hai chip Có thể vẫn đọc và nhiều phần ở y=404..480, cạnh nhau, mỗi nhãn <=4 từ.",
+        "Mười hai nền ô đều sáng #38BDF8, viền cùng 6 px, chữ tối tương phản trên nền sáng; T11 không còn viền riêng, cùng viền 6 px như mười một ô kia."
+      ],
+      "camera": { "shot": "wide", "movement": "static" },
+      "animation_timeline": [
+        { "t": 0, "event": "Cut sang wide và shrug. Thay chip cột chia bằng Lọc theo trạng thái, bỏ viền riêng của T11. Ngay frame đầu cảnh, cả T1-T12 sáng cùng lúc, không ô nào bị mờ; không có đoạn trung gian quét chọn từng ô." },
+        { "t": 0.5, "event": "Hiện hai chip Có thể vẫn đọc và nhiều phần ở hàng hai, giữ điều kiện Lọc theo trạng thái bên trên." },
+        { "t": 0.8, "event": "0.8-4.0: giữ toàn bộ 12 ô đồng sáng, không thay độ sáng từng phần, không đồng hồ hoặc giả lập nhanh/chậm." }
+      ],
+      "voice_over": "Lọc cột khác, có thể vẫn đọc nhiều phần.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nLọc theo trạng thái\nCó thể vẫn đọc\nnhiều phần\nMột bảng logic\nĐơn hàng\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "wiperight",
+      "duration_s": 4,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "5",
+      "narrative_purpose": "Định nghĩa Archive bằng việc chuyển dữ liệu cũ ít dùng sang nơi riêng và còn giữ mã nhận diện.",
+      "visual_concept": "Độ sáng trở về bình thường, hộp lưu trữ mở ngoài khung chính. Chính ba thẻ T1-T3 đổi sang vàng rồi lần lượt trượt ngang sang hộp bên phải; T4-T12 ở nguyên vị trí. Không vẽ máy chủ, không vẽ thùng rác; người xem theo dõi được cùng một thẻ trước và sau chuyển.",
+      "scene_type": "process_animation",
+      "environment": "Background navy; mid bảng chính bên trái và hộp nơi lưu bên phải, hai khung rời cách nhau 40 px trước camera; near ba thẻ chuyển động nằm trên lớp khung, giữ mã rõ khi đi qua khe. HUD Archive ở trên, không nhầm với nhãn Lưu trữ của hộp.",
+      "character_action": "Cut shrug sang point_right.png tại toàn cục 18, tay chỉ phải như nguồn để hướng mắt tới hộp. Giữ pose này xuyên cảnh 6 đến giây 28, không giả cầm hoặc đẩy thẻ.",
+      "props": [
+        "Hộp chữ nhật rỗng x=730..980,y=620..920, bo góc 16 px, viền vàng 5 px; nhãn Lưu trữ ở header x=750,y=520..584; không nối khung này vào khung bảng chính.",
+        "Ba thẻ T1,T2,T3 cùng kích thước 128x80, giữ mã 48 px, vàng #FBBF24; bắt đầu tại tâm (173.75,670),(321.25,670),(468.75,670), kết thúc (855,670),(855,770),(855,870).",
+        "T4-T12 giữ nguyên vị trí nguồn; ba vị trí đầu sau chuyển là khoảng trống không nhãn, không clone thẻ và không tái đánh số.",
+        "Dải chip hàng đầu Archive và Lưu trữ cỡ 60 px, hàng sau Chuyển để giữ 48 px; từ cục bộ 2.5 chỉ còn Cũ, ít dùng trong dải chip."
+      ],
+      "camera": { "shot": "medium", "movement": "push_in" },
+      "animation_timeline": [
+        { "t": 0, "event": "Toàn cục 18: cut sang point_right, bỏ chip lọc và nhãn Một bảng logic, trả cả 12 ô về mức bình thường; các đường chia 4x3 trở về nét mảnh 2 px #94A3B8 (không còn xanh dày), vì Archive làm độc lập không cần Partition; đường chia chỉ xanh dày lại ở cảnh 8, cảnh 6-7 giữ trạng thái mảnh này. Hiện Archive, Lưu trữ, Chuyển để giữ. Hàng header bố trí Đơn hàng x=100, Minh hoạ x=400, Lưu trữ x=750." },
+        { "t": 0.1, "event": "0.1-0.6: wiperight chỉ mở lớp viền hộp rỗng bên phải; bảng chính không bị wipe, không chồng thời lượng cảnh trước." },
+        { "t": 0.8, "event": "0.8-1.6: push-in rất nhẹ về vùng hộp, scale hình cả sơ đồ 1.00 đến 1.02 neo (540,920). Toàn bộ hai khung, khe tách và 12 thẻ vẫn nằm x=91..989,y<=920; giữ chữ 48 px bằng lớp nhãn riêng." },
+        { "t": 2.5, "event": "Toàn cục 20.5: bỏ cả ba chip định nghĩa, hiện Cũ, ít dùng. T1-T3 chuyển vàng và viền dày đồng thời; các ô khác bình thường." },
+        { "t": 2.8, "event": "2.8-3.6: di chuyển T1 từ tâm nguồn sang vị trí lưu đầu; overlay eval=frame, thẻ nguồn chính là thẻ chuyển, không để bản sao tại gốc." },
+        { "t": 3.6, "event": "3.6-4.4: di chuyển T2 sang vị trí lưu giữa; cùng thời lượng 0.8 giây như T1, không ngụ ý hiệu năng." },
+        { "t": 4.4, "event": "4.4-5.2: di chuyển T3 sang vị trí lưu cuối, giữ nguyên mã; T4-T12 không di chuyển." },
+        { "t": 5.2, "event": "5.2-6.0: giữ rõ chín thẻ ở bảng chính, ba thẻ trong hộp ngoài khung. Không có thêm thẻ hay ô nào biến mất." }
+      ],
+      "voice_over": "Chuyển bớt gọi là Archive, tức lưu trữ.\nDữ liệu cũ, ít dùng sang nơi riêng.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nArchive\nLưu trữ\nChuyển để giữ\nCũ, ít dùng\nĐơn hàng\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "6",
+      "narrative_purpose": "Xác nhận dữ liệu còn ở hai nơi và nơi lưu phụ thuộc hệ thống; chống nhầm Archive là xoá.",
+      "visual_concept": "Camera nới ra để cùng thấy hai nhóm, và hai bộ đếm đồng thời gắn với chính nhóm chín thẻ và nhóm ba thẻ đang hiện. Hai khung sáng viền một nhịp cùng lúc chứng minh cả hai nơi đều còn dữ liệu; không vẽ quá trình di chuyển thêm.",
+      "scene_type": "data_visualization",
+      "environment": "Background navy; mid hai khung giữ kết quả 9/3 nhưng cùng hạ xuống 40 px để dành hàng đếm. Near hàng bộ đếm riêng, mỗi hàng chữ có chiều cao 64 px; bottom diagram=960, subtitles từ 1000. Không xuất hiện ranh giới CSDL vật lý.",
+      "character_action": "Tiếp tục đúng point_right.png từ cảnh 5, không đổi dáng ở giây 24, không bounce như vừa đổi pose; giữ đủ đến giây 28.",
+      "props": [
+        "Hàng header y=520..584: Đơn hàng, Minh hoạ, Lưu trữ; hàng đếm y=588..652: Chính 9 x=100, dấu · x=310, Lưu trữ 3 x=350, font 48 px giữ nguyên.",
+        "Bảng chính x=100..690,y=660..960 và hộp ngoài x=730..980,y=660..960 sau dịch +40; T1-T3 ở tâm đích y=710,810,910, T4-T12 cũng dịch y cùng +40, không đổi mã.",
+        "Hai nét dẫn ngắn từ bộ đếm tới khung tương ứng, không chữ, không nối hai nơi thành một khung chung. Đường đi: nét dẫn của Chính 9 hạ thẳng xuống mép trên bảng chính; nét dẫn của Lưu trữ 3 đi ngang trong hàng đếm y≈620 rồi gấp xuống mép trên hộp tại (855,660), không cắt hàng header y=520..584.",
+        "Một chip khái niệm duy nhất: Vẫn giữ lại rồi Tuỳ hệ thống, tại y=320..392; cùng hai bộ đếm là tối đa ba chip."
+      ],
+      "camera": { "shot": "wide", "movement": "pull_out" },
+      "animation_timeline": [
+        { "t": 0, "event": "Bỏ Cũ, ít dùng, hiện Vẫn giữ lại; giữ point_right, tất cả chín thẻ chính và ba thẻ lưu. Không reset dữ liệu." },
+        { "t": 0.1, "event": "0.1-0.6: pull-out hình sơ đồ 1.02 về 1.00 và cùng dịch bảng/hộp/các thẻ xuống đúng 40 px. Header đứng yên, điểm đáy cuối=960; không thẻ nào rời nơi hiện tại." },
+        { "t": 0.6, "event": "Hiện đồng thời Chính 9 · Lưu trữ 3 trong hàng y=588..652, không chạy số 0-9 hay 0-3. Hai viền khung cùng tăng sáng 0.4 giây, nét dẫn chỉ vào mỗi nhóm tương ứng. Giữ khoảng trống vị trí T1-T3 trong bảng chính." },
+        { "t": 2, "event": "Toàn cục 26: thay Vẫn giữ lại bằng Tuỳ hệ thống, không chồng hai chip. Hai bộ đếm và sơ đồ không đổi. Không biến hộp thành server bên ngoài CSDL, không hứa tra cứu dễ." },
+        { "t": 2.4, "event": "2.4-4.0: giữ kết quả 9/3, nhãn nơi lưu và mã ô rõ để người xem tự đối chiếu." }
+      ],
+      "voice_over": "Vẫn giữ lại.\nNơi lưu tuỳ hệ thống.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nVẫn giữ lại\nTuỳ hệ thống\nChính 9\n·\nLưu trữ 3\nĐơn hàng\nLưu trữ\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 4,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "7",
+      "narrative_purpose": "Gắn Archive với cách quản lý dữ liệu, phân biệt với một câu lệnh SQL chuẩn chung.",
+      "visual_concept": "Trên kết quả 9/3 đã có, một nét mũi tên ngắn hướng từ bảng sang nơi lưu được vẽ trong khe hai khung: đó là quan hệ quản lý giữa hai nơi, không phải cửa sổ lệnh. Nhãn giải thích đi kèm sơ đồ cụ thể; khi phủ định lệnh chuẩn, vẫn thấy dữ liệu ở nguyên hai nơi.",
+      "scene_type": "process_animation",
+      "environment": "Background navy liên tục; mid hai khung đã hạ 40 px cùng kết quả chín/ba; near nét quản lý trong khe x=690..730 ở y=810 và chip giải thích y=320..480. Medium scale hình 1.02 neo (540,960), giữ đáy 960 và chữ tách lớp; không zoom Cáo.",
+      "character_action": "Cut point_right sang clipboard.png tại giây 28. Cáo giữ kẹp tài liệu vốn có trong ảnh như đang kiểm việc lưu giữ; không viết thêm chữ trên clipboard, không thêm terminal cạnh Cáo.",
+      "props": [
+        "Giữ Đơn hàng, hộp Lưu trữ, các mã đúng nơi và hai bộ đếm Chính 9 · Lưu trữ 3; bỏ chip Tuỳ hệ thống.",
+        "Một mũi tên đồ hoạ không chữ từ (694,810) tới (726,810), nét 6 px, đầu tam giác 14 px (đủ thấy trên điện thoại), chỉ quan hệ từ chính sang lưu; không có thẻ chạy trên nét này.",
+        "28-30: Archive 60 px hàng đầu, Cách quản lý và dữ liệu thành hai chip độc lập 48 px hàng sau. 30-32: thay cả nhóm bằng Không phải rồi lệnh SQL chuẩn, hai chip 48 px trong dải trên.",
+        "Không ô nhập lệnh, không con trỏ gõ chữ, không câu SQL bị gạch, không biểu tượng lỗi phần mềm."
+      ],
+      "camera": { "shot": "medium", "movement": "static" },
+      "animation_timeline": [
+        { "t": 0, "event": "Cut sang clipboard và medium 1.02; bỏ Tuỳ hệ thống, giữ cả hai bộ đếm. Hiện Archive, Cách quản lý, dữ liệu theo hai hàng trong dải chip." },
+        { "t": 0.4, "event": "0.4-0.9: vẽ nét mũi tên hướng phải trong khe hai khung, chỉ trên nền trống; đồng thời viền bảng chính sáng 0.4-0.7 rồi viền hộp Lưu trữ sáng 0.7-1.0 (một lần, cùng kiểu cảnh 6) để thấy chiều quan hệ. Viền hai nơi giữ riêng; tất cả thẻ ở nguyên chỗ, không archive thêm phần nào." },
+        { "t": 2, "event": "Toàn cục 30: bỏ ba chip giải thích; hiện hai chip Không phải và lệnh SQL chuẩn theo thứ tự đọc. Sơ đồ 9/3 và mũi tên vẫn hiện, không thay bằng thẻ chữ toàn màn hình." },
+        { "t": 2.5, "event": "2.5-4.0: giữ đủ dữ liệu và bộ đếm, không thêm minh hoạ terminal giả; clipboard chỉ là ảnh tĩnh nhỏ." }
+      ],
+      "voice_over": "Archive là cách quản lý.\nKhông phải lệnh SQL chuẩn.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nArchive\nCách quản lý\ndữ liệu\nKhông phải\nlệnh SQL chuẩn\nĐơn hàng\nLưu trữ\nChính 9\n·\nLưu trữ 3\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 4,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    },
+    {
+      "scene_id": "8",
+      "narrative_purpose": "Trả lời hook bằng việc diễn lại cùng ví dụ: Partition và Archive khác nhau và có thể kết hợp.",
+      "visual_concept": "Dấu chạy lại bằng hình vòng cung có đầu mũi tên báo rõ đang diễn lại ví dụ, rồi CUT toàn sơ đồ về 12 thẻ ban đầu với hộp rỗng. Tuyệt đối không có cảnh ba ô bay ngược về bảng. Sau đó nhấn đường chia theo tháng, rồi chính T1-T3 trượt sang lưu, kết đủ 9/3. Đây là lần chạy lại, không phải thao tác chuyển thêm từ kết quả cũ.",
+      "scene_type": "process_animation",
+      "environment": "Background navy giữ nhận diện; mid wide đủ hai nơi ở y=660..960, có khoảng trống giữa hai khung; near biểu tượng replay không chữ trong khoảng bên phải hàng đếm đã bỏ. Không dùng timecode, đồng hồ hoặc tốc độ tua lại. Cáo và HUD đứng ngoài vùng cut đặt lại.",
+      "character_action": "Cut clipboard sang thumbs_up.png đúng giây 32, giữ động tác tán thành có sẵn đến frame cuối 39. Cáo không làm động tác tua lại và không thay dáng lần nữa.",
+      "props": [
+        "Biểu tượng chạy lại tự vẽ bằng cung tròn bán kính 22 px, nét 5 px với một đầu tam giác, tâm (945,616); không số, không chữ, không vẽ kim đồng hồ. Hiện trong 32-33 giây, ngoài khung bảng.",
+        "Trạng thái đặt lại: đủ T1-T12 tại vị trí gốc cộng y=40, hộp Lưu trữ rỗng; ba ô đầu trở lại bằng cut toàn trạng thái, không di chuyển ngược từng ô, không nhân đôi mã.",
+        "Các đường chia 4x3 xanh dày 6 px, một khung bảng chính giữ tên Đơn hàng; không gộp hộp lưu trữ vào khung bảng.",
+        "T1-T3 trượt tới ba vị trí hộp tại y=710,810,910; T4-T12 ở nguyên. Cuối có hai bộ đếm trong hàng y=588..652 và hai chip Lưu trữ tháng cũ, Vẫn giữ lại trong dải y=320..480."
+      ],
+      "camera": { "shot": "wide", "movement": "static" },
+      "animation_timeline": [
+        { "t": 0, "event": "Toàn cục 32: cut sang wide, đổi Cáo thumbs_up, bỏ chip phủ định và mũi tên quản lý; hiện Hai việc khác nhau. Gỡ hai bộ đếm trước khi reset, hiện biểu tượng replay không chữ. Trong 0.2 giây đầu còn giữ trạng thái kết quả cũ để dấu replay được nhận biết." },
+        { "t": 0.2, "event": "Một CUT dứt khoát của toàn lớp sơ đồ sang trạng thái đầu cùng ví dụ: 12 thẻ có đủ mã trong Đơn hàng, hộp Lưu trữ rỗng. Dấu replay vẫn giữ tới cục bộ 1.0. KHÔNG tween đường bay từ hộp về bảng, không crossfade làm thấy hai bản thẻ chồng nhau. Đây là G8: chạy lại ví dụ bằng ngôn ngữ cắt dựng." },
+        { "t": 1, "event": "Toàn cục 33: bỏ dấu replay và Hai việc khác nhau; hiện Dùng chung được ở hàng chip đầu, Chia theo tháng ở hàng sau. 1.0-1.7: các đường chia 4x3 cùng tăng sáng xanh, khung chính vẫn bao đủ 12 thẻ. Giữ trạng thái chia đến cục bộ 3.0, không ô nào rời bảng trước 35." },
+        { "t": 3, "event": "Toàn cục 35: thay hai chip bằng Lưu trữ tháng cũ và Vẫn giữ lại, mỗi nhãn một hàng <=4 từ. T1-T3 đổi vàng cùng lúc; 3.0-3.6: T1 trượt từ vị trí đầu sang vị trí lưu trên, giữ nguyên mã." },
+        { "t": 3.6, "event": "3.6-4.2: T2 trượt sang vị trí lưu giữa, không tạo bản sao; T4-T12 vẫn bất động." },
+        { "t": 4.2, "event": "4.2-4.8: T3 trượt sang vị trí lưu dưới; chuyển động kết thúc trước giây 37, mỗi thẻ 0.6 giây trong khả năng overlay." },
+        { "t": 5, "event": "Toàn cục 37: kết quả đúng chín thẻ chính, ba thẻ lưu; hiện đồng thời Chính 9 · Lưu trữ 3. Giữ hai chip kết, Đơn hàng, Lưu trữ và mọi mã đúng nơi. Không chuyển thêm ô thứ tư." },
+        { "t": 6.5, "event": "38.5-39.0: giữ hình trả lời hook, tối thiểu nửa giây sau lời nếu giọng thật vừa; không thêm CTA hay fade đen làm mất khung kết, kết đúng frame 1170." }
+      ],
+      "voice_over": "Mình chốt: hai việc khác nhau.\nBạn có thể dùng chung.\nChia theo tháng, lưu trữ tháng cũ.",
+      "text_overlay": "SQL\nMinh hoạ\nCó dùng AI\nHai việc khác nhau\nDùng chung được\nChia theo tháng\nLưu trữ tháng cũ\nVẫn giữ lại\nChính 9\n·\nLưu trữ 3\nĐơn hàng\nLưu trữ\nT1\nT2\nT3\nT4\nT5\nT6\nT7\nT8\nT9\nT10\nT11\nT12",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 7,
+      "quality_check": { "has_real_illustration": true, "repeats_previous_layout": false, "silent_comprehensible": true }
+    }
+  ]
+}

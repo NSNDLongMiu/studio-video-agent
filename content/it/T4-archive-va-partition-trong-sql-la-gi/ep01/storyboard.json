@@ -1,0 +1,648 @@
+{
+  "video_id": "IT-T4-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "Đã đọc đủ 6 file JSX thực tế trong studio/renderer-remotion/src/scenes. C01 cần vẽ tay bằng Pillow silhouette sếp, laptop mở, phiến bung và đổi bố cục 2,0 s: CharacterScene chỉ OfficeEnvironment/poses/roleLabels/noteCard, không có các cơ cấu này; QASequenceScene chỉ beats hook/dialogue/code/note, không giữ đúng vật và Cáo xuyên video. C02–C04 cần lưới 2×3 chung khung, chọn T6, chặn nhánh rồi phân sáu nhánh: ExplainerScene cố định các khối 280×120 nối hàng ngang ở y=860 và một điểm chạy, không có lưới/trạng thái từng ô/nhánh. C05 cần kéo/trả nguyên bó thẻ và đường đo, không có object_interaction component. C06 cần ô tìm hóa đơn, khay rỗng và T1 chuyển nguyên khối: UiSimulationScene chỉ gõ codeLines, banner lỗi/thành công trong DeveloperWorkspace, không biểu đạt tìm/di chuyển dữ liệu. C07–C10 cần thẻ lật, đường tra, cửa có mặt nạ và một hóa đơn rút từ đúng T1: không component nào hỗ trợ; PromptReviewScene chỉ thẻ yêu cầu/tag thiếu và connector tay cố định, không phải mô hình lưu/tra. C11 cần hai cơ cấu lưu cạnh nhau xuyên cue và một hóa đơn trả vào ngăn: ExplainerScene dù nhận comparison_scene vẫn là chuỗi bước, không hai cơ cấu độc lập. C12 cần hai thẻ ghép vật tuần tự rồi cửa khép, không chỉ noteCard. DataVizScene chỉ biểu đồ thanh số liệu, không vẽ Cáo, không phù hợp mọi cảnh trong video này. Vì vậy C01–C12 đều vẽ các đạo cụ/mặt nạ/layer bằng Pillow, ghép/chuyển động phẳng bằng FFmpeg với PNG pose gốc. Sau khi Claude APPROVED mới dựng thẳng Pillow+FFmpeg; không chạy producer.mjs/orchestrator.mjs, không viết JSX/sửa engine hoặc thay bằng thẻ chữ tĩnh.",
+  "r8_timing_override": {
+    "by": "Claude (RESCUE R8, 18/11/2026)",
+    "note": "Chỉ dời mốc thời gian theo giọng thật; không đổi nội dung/thứ tự cảnh/lời/chữ. Các số 32,9 s / 29,95 s / 987 frame / đuôi 0,35 s còn trong visual_style_note là mốc dự kiến cũ và được thay bằng khối này (chi tiết: ep01/notes.md, mục Hướng dẫn từ Claude — RESCUE).",
+    "total_s": 33.3,
+    "total_frames_30fps": 999,
+    "scene_boundaries_s": "C01 0–2,2; C02 –5,0; C03 –7,6; C04 –10,0; C05 –13,0; C06 –17,7; C07 –19,3; C08 –21,6; C09 –23,4; C10 –25,25; C11 –30,35 (đổi: trước 29,95); C12 –33,3 (đổi: trước 29,95–32,9; dài vẫn 2,95)",
+    "pose_starts_s": "0; 2,2; 5,0; 10,0; 13,0; 16,0; 18,0; 21,6; 23,8; 27,95 (shrug, không đổi); 30,35 (thumbs_up, trước 29,95)",
+    "voice_cues_s": [
+      { "cue": 1, "take": "01", "start": 0.020, "end": 2.193 },
+      { "cue": 2, "take": "02-short (bản rút gọn đã duyệt, dứt ≤ 4,9)", "start": 2.200, "end": 4.782 },
+      { "cue": 3, "take": "03", "start": 5.000, "end": 7.483 },
+      { "cue": 4, "take": "04", "start": 7.600, "end": 9.663 },
+      { "cue": 5, "take": "05", "start": 10.000, "end": 12.833 },
+      { "cue": 6, "take": "06-4", "start": 13.000, "end": 14.629 },
+      { "cue": 7, "take": "07-2", "start": 14.750, "end": 17.632 },
+      { "cue": 8, "take": "08", "start": 17.700, "end": 18.890 },
+      { "cue": 9, "take": "09", "start": 19.080, "end": 21.379 },
+      { "cue": 10, "take": "10", "start": 21.510, "end": 23.210 },
+      { "cue": 11, "take": "11-4", "start": 23.400, "end": 25.183 },
+      { "cue": 12, "take": "12", "start": 25.250, "end": 30.239 },
+      { "cue": 13, "take": "13-3", "start": 30.350, "end": 33.169 }
+    ]
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "VÒNG 2 — sửa theo ep 01/review/storyboard-r 1.md G1–G8 và N1–N3. DRAFT, chỉ Claude được APPROVED. Đây là thiết kế, chưa render video/đo TTS/QC chuyển động. 12 cảnh/13 lời, tổng 32,9 s; voice_over/text_overlay/duration_s giữ nguyên từng giá trị vòng 1 và script.md. Renderer_reason giữ nguyên sau đối chiếu đủ sáu JSX thật; Pillow vẽ layer RGBA, FFmpeg ghép/chuyển động phẳng; không JSX/engine mới, không thẻ chữ thay minh họa. overlay chuyển vị trí cần eval=frame; zoompan.d bằng số frame đoạn. 30 fps =987 frame; các mốc nửa frame 25,25/27,95/29,95 dùng half-up trên trục tuyệt đối, không làm tròn duration rồi cộng. Frame 60/540/702 tương ứng 2,0/18,0/23,4 s. Transition nối lớp vật, không thay tổng thời gian, không overlap để lộ đáp sớm.\nCanvas 1080×1920; safe x=90–990/y=250–1500. Navy #101828; chữ #F8FAFC trên tối hoặc #101828 trên trắng. #22C55E=đang chọn/đọc; #667085=bỏ qua tháng, hàng còn nguyên; #FACC15=chưa loại tháng, sáu nhánh chứ không quét mọi dòng; #EF4444=khay tìm trống tại nơi đang tìm; #60A5FA=giữ/chuyển/kho, dùng cho thẻ/mũi tên/đường tra C07–C09; trắng/xám=trung tính. Cam mascot chỉ nhận diện. Cửa/khối sau cửa C07–C09 trắng/xám, không xanh dương cho tới frame 702. Không nhãn Kho lưu/T1/mã đọc được bên trong cửa trước 23,4 s. Mã trong ô tìm là yêu cầu ví dụ, không tiết lộ nơi lưu. Không logo/cú pháp SQL/tên lệnh tách hoặc xóa.\nSegoe UI Semibold khóa 72–80 px, tin hook 90 px, mã 56–64 px. text_overlay là đúng danh sách chữ đồ họa nguồn, không có nghĩa tất cả đồng hiện. ≤3 nhóm trừ phụ đề/AI; T1–T6 gắn lưới là một nhóm sơ đồ. Không chip chương theo plan vì ngân sách chữ đã đầy. Nhãn AI tạo 56 px x=820–990/y=1430–1490 suốt video. Bố cục chính vẫn ba vùng: hook; MỘT BẢNG đúng[2,0;18,0); đường/kho/kết sau 18. Lưới không thu/đổi vị trí để nhét khay: phần trống nội bộ T6 và lối dọc phải các ô được phân vùng cụ thể trong props C02–C06. C02–C06 cùng khung medium/static do plan; repeats_previous_layout=true từ C03–C06, đa dạng bằng kết quả→cơ chế→sáu nhánh→bó thẻ/khung bóng→tìm hụt, không giả đổi cỡ máy. Không đoạn tĩnh>2 s, không cần hold_reason.\nCáo chỉ 10 pose gốc: surprised, point_up, point_right, read_paper, laptop_typing, think, clipboard, point_left, shrug, thumbs_up. Không nhép miệng/rig/tay/mắt mới, đổi pose bằng cắt. Căn hộp alpha: tâm x≈570, mép phải≤800. Trước 2 s cao 480/y 1000–1480; 2–18 s cao 380/y 1120–1500; sau 18 s cao 450/y 1030–1480. PNG nguồn nhỏ có thể mềm khi phóng, không hứa chất lượng rig. Che riêng khiên cam laptop_typing bằng mặt nắp trơn ghép lớp, không sửa mascot gốc. Mốc pose giữ 0;2,2;5;10;13;16;18;21,6;23,8;27,95;29,95 s. Claude đã CHẤP NHẬN shrug 27,95 ở review mục 3(i): sau đo TTS, thumbs_up bám đầu lời 13; shrug≤thumbs_up−2,0 s, không sớm hơn đầu vế Nó không phải lệnh SQL chuẩn; ≥2,0 s thắng bám cue. Không sửa script/plan. Khi sản xuất ghi notes.md: shrug 27,95 theo storyboard APPROVED thay 26,1 trong script/plan.\nGuide chỉ phải C02–C04 đi sát x=984, guide chỉ trái C09 từ tay point_left qua x=94 lên thẻ. C07–C08 BỎ guide x=94: thẻ tách khỏi mép phải clipboard, đi ra phải rồi lên hành lang x=810–882, qua SAU matte phụ đề; chỉ nở 320×280 khi đã ở y≤850, rồi mới trượt trái ở trên đầu Cáo. Lộ trình và lớp che cụ thể trong C07–C08, không xuyên thân/chân Cáo. Đạo cụ phẳng tự vẽ bằng Pillow, lật bằng scale ngang có mặt nạ; camera chỉ crop/pan ảnh phẳng, không góc 3D.\nPhụ đề chép lời duy nhất:56 px/line-height 64/viền 3, x=100–980, tối đa 2 dòng. Hộp chuẩn y 840–980 trước 2; y 950–1090 trong 2–18; y 860–1000 sau 18. Riêng TOÀN BỘ cue lời 8 giữ MỘT dòng ghim cùng vị trí: bbox mực x=193–887/y=949–1007, có viền x=190–890/y=946–1010; nền matte x=100–980/y=940–1016. Đã đo Segoe UI Semibold 56: bbox thô(0,17,694,75), đặt gốc(193,932). Như vậy không chạm lưới đáy 930 hay đầu Cáo sau 18 y 1030; matte đè trên thẻ đang bay. ASS PlayRes 1080×1920, một dialogue/cue duy nhất xuyên frame 540, không tách câu thành hai mảnh, không nhảy phụ đề. Giữ captions.srt nguyên bản kể cả xoá ở lời 5. Producer ghi notes.md:18,000 cách đầu cue hỏi thực bao nhiêu giây (dự kiến 0,300); nếu lời 8 bắt đầu sau 18 hoặc cần dời frame 540 phải trình duyệt lại.\nGiọng Minh Đức VieNeu cục bộ, atempo 1,08 đúng một lần, không tăng thêm; không nhạc/AI trả phí. Giữ ba SFX tự tạo dưới giọng≥12dB tại 0/15,7/23,4 s. Đo/nghe đủ 13 lời rồi trình duyệt mốc theo giọng thật; không tự đổi 32,9 s để chèn im. C02 T6 xanh/năm ô xám hoàn tất≤3,10; lời 2 dứt≤4,9 s, nếu vượt chỉ kích hoạt bản dự phòng đã Claude duyệt trong script và đồng bộ caption/notes, voice_over bản chính của storyboard giữ nguyên. Đuôi dự kiến 0,35 s, tối đa 0,7; không lặng thiết kế≥0,8. C11 hai cách lưu cạnh nhau qua toàn cụm mỗi hệ mỗi cách; trả giấy cục bộ trong ngăn trái, không băng ngang so sánh. C12 hai thẻ đủ chữ từ 29,95 tới 32,9 s, ghép vật tuần tự rồi chỉ cửa chạy, không nhún Cáo.\nTHUMBNAIL giữ hook 1,70 s trong cửa sổ 1,6–1,9: tin Vào họp rồi!90 px, Tình huống dựng 72 px hai dòng, Đơn hàng 72 px, silhouette sếp/laptop/Cáo surprised và phiến chờ. Bố trí tọa độ không giao chữ trong C01. Khi kiểm ở 180×320 ưu tiên hai nhãn tình huống/tin sếp, không dùng khung kết/lưới. quality_check là tự chấm thiết kế, chưa phải QC video; phải so khung 360×640 trước/sau và mở bìa 180×320 sau dựng.",
+  "scenes": [
+    {
+      "scene_id": "C01-0.0-2.2",
+      "narrative_purpose": "Đặt áp lực công sở cụ thể: sếp đã vào họp nhưng báo cáo chưa xong; cho thấy đây là tình huống dựng.",
+      "scene_type": "environment_scene",
+      "visual_concept": "Silhouette sếp gửi tin vào cạnh phiến đơn hàng đang chờ; laptop mở khiến phiến dữ liệu bung lớn, Cáo bất ngờ nhìn sự cố. Không số hiệu năng, không tia quét toàn bảng. Hệ quả hiểu qua tin họp đối diện tiến trình còn dang dở.",
+      "environment": "Background văn phòng navy/vách/bóng bàn không chữ. Mid phiến x=100/y=250/w=880/h=580, đáy 830; phiến là nền chứa các vùng rời nhau, không phủ dữ liệu bằng tin: trái x=120–510 dành nhãn/hàng, phải x=530–960 dành tin/avatar. Near laptop x=110/y=1130/w=240/h=270, Cáo surprised cao 480/y 1000–1480, hộp ngang khoảng 427–713 theo pose 172×288, không chạm laptop hay AI x 820–990/y 1430–1490. Phụ đề y 840–980. Tọa độ là khung ổn định 1,6–1,9 s sau push-in phẳng tối đa 3%; không crop safe.",
+      "character_action": "surprised từ 0 đến 2,2 s, hướng về laptop và phiến phía trên; cao 480 px, tâm x≈570, mép phải alpha ≤800. Đúng 2,0 s thu về cao 380 px, y=1120–1500, vẫn surprised. Không nhép miệng, không đổi dáng sớm.",
+      "props": [
+        "Phiến x 100/y 250/w 880/h 580, bo 24, bóng ngoài không có chữ; vùng hàng x 130–490/y 620–700, thanh chờ x 130/y 750/w 360/h 28 không phần trăm, không tia quét. Đơn hàng 72 px: hộp mực x 130–453/y 510–582, vùng dành x 120–510/y 490–594.",
+        "Bong bóng tin x 530/y 270/w 430/h 240, đuôi trong x 600–650/y 510–536; Vào họp rồi!90 px chia Vào họp / rồi!, mực dòng 1 x 554–898/y 294–382, dòng 2 x 554–692/y 400–473. Sếp silhouette x 600/y 550/w 150/h 180: đầu tròn 52 px, vai hình thang; không tên/chân dung/logo. Avatar không chạm bong bóng/tiến trình.",
+        "Tình huống dựng 72 px chia Tình huống / dựng trong vùng x 120–510/y 270–454; hộp mực dòng 1 x 130–505/y 280–355, dòng 2 x 130–300/y 374–446. Không chồng Đơn hàng ở y 510 hay tin bên phải. Ba nhóm có cỡ nguồn tương đương 15/12/12 px tại 180×320; ưu tiên tin sếp và nhãn tình huống khi QC.",
+        "Laptop tự vẽ x 110/y 1130/w 240/h 270: màn hình x 130–330/y 1130–1320, đế x 110–350/y 1340–1400, không chữ/logo; bản lề mở về phía trên trong chính hộp này. Cáo ở bên phải laptop, mép phải≤800; laptop không vào dải phụ đề hoặc nhãn AI."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "main_change": "Tin trượt lên 160 px ở vùng phải, avatar sếp hiện bên dưới khi tin dừng; laptop mở và phiến bung lên cao 580 px với thanh chờ còn dang dở. Cuối cảnh phiến nới thành tiền thân lưới; nhìn thấy sự cố công sở ở 360×640, camera nhỏ không tính.",
+      "text_overlay": "Vào họp rồi!\nTình huống dựng\nĐơn hàng\nMỘT BẢNG",
+      "text_groups": 3,
+      "voice_over": "Sếp đợi báo cáo, bảng đơn hàng vẫn chạy!",
+      "sound_effects": [
+        "0,00 s: báo tin tự tạo ≤0,15 s, nhỏ hơn giọng ≥12 dB; không nhạc."
+      ],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 0.00 s] Lời 1 0–2,10. 0–0,6 bong bóng tin 430×240 tại x 530 đi lên từ y 430 tới 270 (160 px), luôn trong x 90–990/y 250–830. Avatar sếp chưa hiện trong đoạn tin trượt để không chồng nhau; tin ở phần phải, nhãn/hàng ở phần trái. Cáo surprised cạnh laptop."
+        },
+        {
+          "t": 0.6,
+          "event": "[Toàn video 0.60 s] Tin dừng(530,270,430,240), cắt hiện silhouette sếp(600,550,150,180), đuôi tin kết nối avatar; không giao nhau. 0,6–1,4 laptop mở bản lề trong hộp x 110–350/y 1130–1400; phiến bung từ màn hình tới x 100–980/y 250–830. Các vùng nhãn trái/tin phải bám phiến, không chồng chữ; tiến trình không số."
+        },
+        {
+          "t": 1.4,
+          "event": "[Toàn video 1.40 s] 1,4–1,6 phiến mở rộng đến hộp cuối; push_in phẳng tối đa 3% hoàn tất trong cùng nhịp, tọa độ props là tọa độ SAU camera. Giữ 1,6–1,9 để lấy bìa 1,70 s: tin/avatar/ba nhãn đều ở các vùng tách nhau."
+        },
+        {
+          "t": 1.9,
+          "event": "[Toàn video 1.90 s] 1,9–2,0 phiến nới hình học chuẩn bị chia, không thêm chữ hay lưới vào thumbnail trước đó."
+        },
+        {
+          "t": 2,
+          "event": "[Toàn video 2.00 s] Đúng frame 60 xóa toàn bộ chữ hook rồi hiện MỘT BẢNG x 130–550/y 250–326; thu Cáo về 380/y 1120–1500, giữ surprised. Đổi phụ đề y 950–1090. 2,0–2,2 phiến thành vùng lưới x 130–950/y 330–930; không chồng nhóm chữ cũ/mới."
+        }
+      ],
+      "duration_s": 2.2,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C02-2.2-5.0",
+      "narrative_purpose": "Cho ích lợi đầu tiên trước giây 5: cùng một bảng chia theo tháng có thể bỏ các phần không cần.",
+      "scene_type": "process_animation",
+      "visual_concept": "Chỉ cho KẾT QUẢ: phiến thành sáu ô chung một bảng; T6 xanh và năm ô xám, hàng vẫn nguyên. Ba thanh kết quả trượt từ phần hàng T6 sang phần khay riêng trong chính T6. Không đường từ chip, không cây nhánh/cửa chặn trong C02.",
+      "environment": "Background navy. Mid giữ đúng khung/lưới 600 px theo plan; Near khay nội bộ T6 ở x 800–938/y 830–924, không đặt dưới lưới. Cáo 380/y 1120–1500; phụ đề y 950–1090. Khay và hàng chuyển luôn trong x 90–990/y<950.",
+      "character_action": "Cắt sang point_up đúng 2,2 s, chỉ T6 ở trên bên phải Cáo. Không quay đầu/diễn tay mới: đường nối đồ họa dẫn từ hướng ngón tay lên T6. Giữ pose tới 5,0 s.",
+      "props": [
+        "Khung MỘT BẢNG x=100–980/y=250–930; lưới cao 600 px, cột trái x=130–528, phải x=552–950; T1/T2 y=330–514, T3/T4 y=538–722, T5/T6 y=746–930. Mã T 56 px: hộp x=148–244 hoặc 570–666, y=342–408/550–616/758–824, luôn lớp trên. Mỗi ô có ba thanh hàng 110×18 px tại x=150 hoặc 574, y=422/448/474, 630/656/682, 838/864/890; đây là ký hiệu hàng, không số liệu dung lượng. Phần x=800–938 của cột phải chừa trống làm lối báo cáo/khay, không đặt mã T hay hàng gốc ở đó.",
+        "Khay kết quả không chữ nằm RIÊNG trong T6: x=800/y=830/w=138/h=94, đáy y=924. Ba thanh kết quả 110×18 px từ x=574 tới x=814 (dịch phải 240 px), giữ y=838/864/890. Không thanh nào vượt x=924/y=908, không qua ô T5/T4 hay mã T6. Hàng gốc vẫn nguyên; layer hàng kết quả biểu đạt trích kết quả, không cắt dữ liệu khỏi bảng.",
+        "Viền trắng chung, MỘT BẢNG72 px và chip tháng 72 px x 590–950/y 250–326. T6 xanh #22C55E, năm ô #667085; các hàng không bị xóa. KHÔNG vẽ đường điều kiện/cửa chặn. Guide chỉ dẫn từ point_up qua x 984 chỉ tới viền T6, là guide mascot trung tính 8 px, không nối chip hay phân nhánh, không dùng làm bằng chứng cơ chế."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Phiến tách thành lưới 2×3; tới 3,10 s T6 xanh/năm ô xám đã xong. Sau đó ba thanh kết quả lần lượt dịch phải 240 px trong T6 sang khay riêng; chưa giải thích bằng đường/cửa chặn.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6\ntháng",
+      "text_groups": 3,
+      "voice_over": "Chia bảng theo tháng, máy có thể bỏ qua phần không cần.",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 2.20 s] Lời 2 bắt đầu; cắt point_up. 2,2–2,9 khe tách phiến thành sáu ô đúng GRID; mã T gắn từng ô, các thanh hàng trong props đã định vị, khay chưa có hàng."
+        },
+        {
+          "t": 0.7,
+          "event": "[Toàn video 2.90 s] 2,9–3,10 T6 chuyển xanh, năm ô xám, hoàn tất chậm nhất 3,10 s. Chip tháng là nhãn truy vấn, không có đường từ chip/cửa chặn trong cảnh này."
+        },
+        {
+          "t": 0.9,
+          "event": "[Toàn video 3.10 s] 3,1–3,7 thanh kết quả 1 (574,838,110,18) trượt đến(814,838,110,18); 3,7–4,3 thanh 2 cùng quãng tại y 864; 4,3–4,9 thanh 3 tại y 890. Khay(800,830,138,94) không đổi; hàng gốc vẫn nguyên, không che hàng ô khác."
+        },
+        {
+          "t": 2.7,
+          "event": "[Toàn video 4.90 s] Ba thanh đã nằm x 814–924 trong khay, giữ tới 5,0. Lời đầy đủ dự kiến dứt 4,86 s, bắt buộc đo≤4,9; nếu vượt chỉ dùng bản dự phòng được Claude duyệt, không tăng tốc thêm. Không bổ sung nhánh/cửa để lấp 0,1 s."
+        }
+      ],
+      "duration_s": 2.8,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C03-5.0-7.6",
+      "narrative_purpose": "Nêu điều kiện để bỏ phần không cần trong ví dụ chia theo tháng, không biến lợi ích thành lời hứa cho mọi truy vấn.",
+      "scene_type": "process_animation",
+      "visual_concept": "Chỉ cho CƠ CHẾ: lưới trở lại trung tính, chip tháng tạo mạch nối đúng T6; năm thanh cửa chặn đóng trên nhánh không phù hợp. Đầu khóa trượt dọc đoạn riêng rồi khớp cổng T6. Khay từ C02 giữ đầy, không lặp hàng ra khay.",
+      "environment": "Background navy liên tục; mid đúng khung/lưới 600 px của C02, neutral khi vào cảnh; mạch chạy trong khe chừa sẵn, không đè hàng/mã. Near khay đầy nội bộ T6 x 800–938/y 830–924 giữ nguyên; Cáo/phụ đề cùng vị trí 2–18 s, không crop/zoom.",
+      "character_action": "point_right từ 5,0 s; chip tháng x=590–950 và T6 đều bên phải tâm Cáo x≈570. Guide từ đầu ngón tay thật đi sang phải rồi lên x=984, tới chip/T6; không đòi tay chỉ chéo mới.",
+      "props": [
+        "Khung MỘT BẢNG x=100–980/y=250–930; lưới cao 600 px, cột trái x=130–528, phải x=552–950; T1/T2 y=330–514, T3/T4 y=538–722, T5/T6 y=746–930. Mã T 56 px: hộp x=148–244 hoặc 570–666, y=342–408/550–616/758–824, luôn lớp trên. Mỗi ô có ba thanh hàng 110×18 px tại x=150 hoặc 574, y=422/448/474, 630/656/682, 838/864/890; đây là ký hiệu hàng, không số liệu dung lượng. Phần x=800–938 của cột phải chừa trống làm lối báo cáo/khay, không đặt mã T hay hàng gốc ở đó.",
+        "Khay kết quả không chữ nằm RIÊNG trong T6: x=800/y=830/w=138/h=94, đáy y=924. Ba thanh kết quả 110×18 px từ x=574 tới x=814 (dịch phải 240 px), giữ y=838/864/890. Không thanh nào vượt x=924/y=908, không qua ô T5/T4 hay mã T6. Hàng gốc vẫn nguyên; layer hàng kết quả biểu đạt trích kết quả, không cắt dữ liệu khỏi bảng. C03 giữ ba thanh kết quả ở đích x 814, không phát thêm hay chuyển thanh nào.",
+        "Mạch điều kiện 10 px chạy trong khe: từ chip (770,322) tới (540,322), trục x=540 xuống y=942; nhánh ở y=526/734/942 sang x=510 (cột trái) hoặc x=780 (cột phải), quay lên cổng tại y=502/710/918. Năm cửa chặn 32×10 px tâm x=510/780, y=520/728/936 (trừ nhánh T6), đặt trong khe ngoài ô, không đè mã/hàng. Cổng T6 (780,918) bên trái khay x=800. Toàn bộ nét có hộp bao x=494–796/y=317–947, không vào phụ đề y≥950.",
+        "Đầu khóa chữ U trắng/xanh 16×36 px chạy trên đoạn cuối đường vào cổng T6, dọc x 780 từ y 746 tới y 902 (156 px), khóa ôm cổng ở y 918. Nét xanh chỉ đường chọn; không thêm nhóm chữ. Guide point_right trung tính từ tay thật sangx 984 rồi lên chip, không xuyên phụ đề."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Trên lưới vừa về trung tính, mạch mới từ tháng nối sáu cổng; năm cửa đóng, chỉ nhánh T6 còn thông. Đầu khóa đi 156 px rồi ôm cổng T6. Khay đã đầy đứng yên: cơ chế chọn/chặn là quan hệ mới, không lặp kết quả C02.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6\ntháng",
+      "text_groups": 3,
+      "voice_over": "Lọc đúng cột đã chia thì mới bỏ qua được.",
+      "sound_effects": [],
+      "transition": "cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 5.00 s] Cắt point_right; mọi ô trở về viền/hàng trắng trung tính. Khay đầy giữ nguyên x 800–938/y 830–924, ba thanh x 814/y 838,864,890 KHÔNG di chuyển. Camera medium/static giống C02, repeats_previous_layout=true. Lời 3 5,0–7,35."
+        },
+        {
+          "t": 0.1,
+          "event": "[Toàn video 5.10 s] 5,1–6,2 vẽ mạch từ chip(770,322) sang trục(540,322) rồi xuống y 942, nhánh qua các khe 526/734/942 tới cổng 502/710/918 như ROUTE. Tất cả nhãn/hàng không bị nét đè; nhánh T6 x 780 ở bên trái khay."
+        },
+        {
+          "t": 1.2,
+          "event": "[Toàn video 6.20 s] 6,2–6,9 năm cửa 32×10 trong các khe đóng lần lượt ngang nhánh T1–T5; nhánh T6 không cửa, xanh. Năm ô xám sau khi cửa đóng, T6 chọn xanh; không rút thêm hàng."
+        },
+        {
+          "t": 1.9,
+          "event": "[Toàn video 6.90 s] 6,9–7,6 đầu khóa 16×36 trượt trên x 780 từ y 746 tới 902, khớp cổng T6 ở 918 (quãng 156 px). Quan hệ khóa đúng nhánh mới thấy ở 360×640, khay và hàng kết quả đứng yên suốt cảnh."
+        }
+      ],
+      "duration_s": 2.6,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C04-7.6-10.0",
+      "narrative_purpose": "Đối chiếu điều kiện khách với tháng; giải tỏa áp lực sếp bằng một báo cáo ví dụ, không khẳng định quét mọi dòng.",
+      "scene_type": "comparison_scene",
+      "visual_concept": "Một nhánh đọc biến thành cây sáu nhánh đến sáu ô vàng: điều kiện khách chưa loại được tháng nào. Sau khi thấy quan hệ này, tờ báo cáo không chữ từ khay trượt về tin sếp và tin nhận khép lại.",
+      "environment": "Background navy; mid giữ nguyên khung/lưới 600 px, cây sáu nhánh chạy trong khe. Near báo cáo đi theo lối TRONG phần rỗng bên phải các ô cột phải x 800–938, không dùng lề 40 px ngoài lưới. Khay vẫn nội bộ T6 x 800–938/y 830–924; không thêm bảng/crop. Cáo 380, phụ đề y 950–1090.",
+      "character_action": "Giữ point_right suốt cảnh, chỉ đầu phân nhánh ở bên phải Cáo. Hướng tay nối guide lên mạng sáu nhánh rồi theo đường báo cáo đi tới tin sếp; không diễn quay đầu bằng ảnh mới.",
+      "props": [
+        "Khung MỘT BẢNG x=100–980/y=250–930; lưới cao 600 px, cột trái x=130–528, phải x=552–950; T1/T2 y=330–514, T3/T4 y=538–722, T5/T6 y=746–930. Mã T 56 px: hộp x=148–244 hoặc 570–666, y=342–408/550–616/758–824, luôn lớp trên. Mỗi ô có ba thanh hàng 110×18 px tại x=150 hoặc 574, y=422/448/474, 630/656/682, 838/864/890; đây là ký hiệu hàng, không số liệu dung lượng. Phần x=800–938 của cột phải chừa trống làm lối báo cáo/khay, không đặt mã T hay hàng gốc ở đó.",
+        "Khay kết quả không chữ nằm RIÊNG trong T6: x=800/y=830/w=138/h=94, đáy y=924. Ba thanh kết quả 110×18 px từ x=574 tới x=814 (dịch phải 240 px), giữ y=838/864/890. Không thanh nào vượt x=924/y=908, không qua ô T5/T4 hay mã T6. Hàng gốc vẫn nguyên; layer hàng kết quả biểu đạt trích kết quả, không cắt dữ liệu khỏi bảng.",
+        "Mạch điều kiện 10 px chạy trong khe: từ chip (770,322) tới (540,322), trục x=540 xuống y=942; nhánh ở y=526/734/942 sang x=510 (cột trái) hoặc x=780 (cột phải), quay lên cổng tại y=502/710/918. Năm cửa chặn 32×10 px tâm x=510/780, y=520/728/936 (trừ nhánh T6), đặt trong khe ngoài ô, không đè mã/hàng. Cổng T6 (780,918) bên trái khay x=800. Toàn bộ nét có hộp bao x=494–796/y=317–947, không vào phụ đề y≥950. C04 mở năm cửa, bỏ đầu khóa và nối đủ sáu cổng bằng #FACC15, không cho hàng chạy ra cả sáu ô.",
+        "Báo cáo không chữ 104×80 px, đầu x 814/y 834 (trong khay); lộ trình top-left(814,834)→(814,740)→(814,340), sau đó thu 72×48 và đến(842,266). Hộp x 814–918 trong đoạn dọc không che mã T2/T4/T6 (x 570–666) hoặc hàng (x 574–684), dù các ô đã vàng/xám. Vùng chip chia chữ khách bên trái x 610–800, lối báo cáo x 814–946 bên phải. Không đi xuống qua y 924.",
+        "Chip khách thay tháng; báo cáo được mặt nạ bao tin nhận tại x 842/y 266/w 72/h 48 nuốt hết trước khi Nhận rồi!72 px thay khách lúc 9,3. Bao tin x 590–950/y 250–326 thuộc nhóm 3, không chữ/avatar riêng. 9,4–10 khay rút vào thành phải T6: hộp hữu hình (800,830,138,94)→(916,830,22,94), clip tại x 938 rồi đóng khe; đường đi 116 px, đáy y 924, không che hàng/mã."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Cùng khung medium/static: nhánh T6 đổi thành sáu nhánh mở/vàng tới sáu ô; báo cáo từ khay theo phần trống bên phải các ô lên bao tin; cuối cùng khay rút 116 px vào thành T6. repeats_previous_layout=true vì khung giữ nguyên, quan hệ đơn→sáu nhánh mới thực sự đổi.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6\nkhách\nNhận rồi!",
+      "text_groups": 3,
+      "voice_over": "Chỉ lọc khách, chưa loại được tháng nào.",
+      "sound_effects": [],
+      "transition": "cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 7.60 s] Bỏ tháng/đầu khóa trước khi hiện khách; mở năm cửa. 7,6–8,7 sáu nhánh trong khe cùng nối tới biên sáu ô, chuyển vàng; không quét mọi dòng. Lời 4 7,6–9,50. Camera/khung như C03, khai lặp bố cục thật."
+        },
+        {
+          "t": 1.1,
+          "event": "[Toàn video 8.70 s] 8,7–9,3 ba thanh kết quả trong khay kết thành báo cáo 104×80 tại(814,834). Báo cáo đi qua(814,740)→(814,340) trong lối x 814–918, sau đó thu 72×48 tới(842,266); hàng gốc và mã T2/T4/T6 bên trái lối vẫn nguyên, không che khách ở x 610–800."
+        },
+        {
+          "t": 1.7,
+          "event": "[Toàn video 9.30 s] Báo cáo đã bị mặt nạ bao tin nuốt hết; xóa khách trước rồi hiện Nhận rồi!72 px trong cùng nhóm 3, không chồng chữ/hình báo cáo vào chữ. 9,3–9,4 nắp bao tin gập, nhãn MỘT BẢNG và mã T giữ."
+        },
+        {
+          "t": 1.8,
+          "event": "[Toàn video 9.40 s] 9,4–10 khay rỗng rút: x 800→916,y 830,w 138→22,h 94, phần dư clip ở thành x 938 rồi đóng. Không thanh nào rời vùng này, không lọt phụ đề y≥950. Hình bao tin khép tiếp, không SFX nhận; C05 về trung tính."
+        }
+      ],
+      "duration_s": 2.4,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C05-10.0-13.0",
+      "narrative_purpose": "Chứng minh chia bảng tự nó không làm mất hay nén dữ liệu cũ; gọi tên Partition bằng lời.",
+      "scene_type": "object_interaction",
+      "visual_concept": "Bó thẻ trong T1 được kéo ra để đối chiếu, rồi trở về đúng khe. Hai cạnh T1 được đường đo không số đi dọc; chiều rộng, chiều cao, số hàng và độ dày bó thẻ không đổi.",
+      "environment": "Background navy. Mid lưới y=330–930 vẫn cao 600 px, tất cả viền/hàng trắng, không chip/tin. Near bó thẻ T1 nằm dưới các nhãn, Cáo read_paper ở dưới lưới. Không thêm bảng before/after hay chữ nén/xóa.",
+      "character_action": "read_paper từ 10,0 s, giữ 380 px ở vị trí cũ. Giấy pose là giấy đối chiếu không chữ; Cáo đối chiếu bó thẻ T1 trượt phải rồi về ngay trong ô, KHÔNG đưa bó tới giấy/tay Cáo, không tạo động tác tay mới.",
+      "props": [
+        "Khung MỘT BẢNG x=100–980/y=250–930; lưới cao 600 px, cột trái x=130–528, phải x=552–950; T1/T2 y=330–514, T3/T4 y=538–722, T5/T6 y=746–930. Mã T 56 px: hộp x=148–244 hoặc 570–666, y=342–408/550–616/758–824, luôn lớp trên. Mỗi ô có ba thanh hàng 110×18 px tại x=150 hoặc 574, y=422/448/474, 630/656/682, 838/864/890; đây là ký hiệu hàng, không số liệu dung lượng. Phần x=800–938 của cột phải chừa trống làm lối báo cáo/khay, không đặt mã T hay hàng gốc ở đó.",
+        "Bó ba thanh T1 x 150–260/y 422–492 (110×18 tại 422/448/474). 10,05–11,3 dịch nguyên bó sang x 280–390 (130 px); 11,3–12,5 về đúng x 150–260. Giữ nguyên rộng/cao/số hàng/khoảng 26, hoàn toàn trong T1 x 130–528 dưới mã y 342–408, không tới T2.",
+        "Khung bóng mờ CỐ ĐỊNH x 142/y 414/w 126/h 86, nét trắng 4 px opacity 0,8 và nền trắng 12% trong khung (để thấy khe trống ở 360×640), dấu khe mở bên phải; không nhân đôi hàng có nội dung. Khung bóng ở chỗ cũ suốt khi bó trượt để so vật ra/vào rõ ở 360×640. Nét đo trắng 8 px không số dọc cạnh dưới/ngoài T1: (138,506)→(520,506) rồi(520,506)→(520,338), chặn đầu 16 px, không che mã/hàng."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Bó ba hàng rời khung bóng cố định 130 px rồi về trúng chính khung đó; kích thước và số hàng không đổi. Nét đo trắng 8 px chạy 382+168 px dọc hai cạnh T1. Cùng khung lưới, bằng chứng vật không bị mất/thu nhỏ nhìn rõ hơn nhờ bóng gốc, không phải camera.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6",
+      "text_groups": 2,
+      "voice_over": "Partition không tự xoá, không tự nén dữ liệu cũ.",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 10.00 s] Xóa tin Nhận rồi!/mạng nhánh/khay, giữ nguyên khung/lưới trung tính 600 px. Cắt read_paper. Lời 5 10–12,80, captions.srt giữ xoá. Khung bóng x 142/y 414/w 126/h 86 hiện cố định quanh chỗ bó thẻ gốc."
+        },
+        {
+          "t": 0.05,
+          "event": "[Toàn video 10.05 s] 10,05–11,3 bó ba thanh x 150–260/y 422–492 trượt phải 130 px tới x 280–390, không co bó/đổi hàng; khung bóng ở x 142–268 không chạy theo. Bó chỉ ở trong T1, không đưa về giấy Cáo, không che T2/mã T."
+        },
+        {
+          "t": 1.3,
+          "event": "[Toàn video 11.30 s] 11,3–12,5 trả nguyên bó về x 150–260, khớp ba vị trí gốc trong khung bóng; không fade mất hàng, không thay cỡ ô T1."
+        },
+        {
+          "t": 2.5,
+          "event": "[Toàn video 12.50 s] 12,5–13 nét đo trắng 8 px chạy từ(138,506) qua(520,506) lên(520,338), hai đầu gạch 16 px; khung bóng giữ tới cuối cảnh rồi bỏ ở 13,0. Đây là thay đổi đường hình học, không đo/nêu dung lượng thực."
+        }
+      ],
+      "duration_s": 3,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C06-13.0-17.7",
+      "narrative_purpose": "Nối partition với archive bằng chính T1; tạo nhu cầu tra lại của kế toán và cho thấy tìm sai nơi trả khay rỗng.",
+      "scene_type": "ui_simulation",
+      "visual_concept": "T1 nguyên vẹn rời lưới qua hành lang che; ở nơi đang dùng chỉ còn ô mờ. Silhouette kế toán đưa yêu cầu, Cáo nhập mã ví dụ vào ô tìm; kính lúp đi qua khay nơi đang dùng và trở về ô T1 mờ, không tuyên bố hóa đơn đã mất.",
+      "environment": "Background navy/vách che đích. Mid giữ khung/lưới 600 px; ô tìm đổi sang x 278/y 618/w 650/h 96 (đáy 714), dưới mã hàng giữa đáy 616; mã T luôn lớp trên. Ô tìm nổi trên thân ô T3/T4 theo plan, không đổi kích thước lưới. Near kế toán silhouette x 160/y 1130/w 160/h 280 đối diện Cáo/laptop ở bên trái, không chồng lưới/nhãn T/phụ đề y 950–1090/AI. Khay đỏ dùng phần trống trong T6, không nằm dưới lưới.",
+      "character_action": "laptop_typing từ 13,0 s, cao 380 px y=1120–1500. Laptop có sẵn trong pose, không thêm bàn/laptop thứ hai; che biểu tượng khiên trên nắp bằng một miếng mặt nắp trơn ghép trước, không sửa PNG gốc. think từ đúng 16,0 s, nhìn khay trống; giữ tới 18,0 s.",
+      "props": [
+        "Khung MỘT BẢNG x=100–980/y=250–930; lưới cao 600 px, cột trái x=130–528, phải x=552–950; T1/T2 y=330–514, T3/T4 y=538–722, T5/T6 y=746–930. Mã T 56 px: hộp x=148–244 hoặc 570–666, y=342–408/550–616/758–824, luôn lớp trên. Mỗi ô có ba thanh hàng 110×18 px tại x=150 hoặc 574, y=422/448/474, 630/656/682, 838/864/890; đây là ký hiệu hàng, không số liệu dung lượng. Phần x=800–938 của cột phải chừa trống làm lối báo cáo/khay, không đặt mã T hay hàng gốc ở đó.",
+        "T1 nguyên 398×184 px và hàng dịch trái 410 px trong 13–14,1. Mặt nạ cổng tại x 118–130/y 330–514 che phần vượt mép trái ô; chỉ phần giao x 130–528 được vẽ, không có pixel T1 di chuyển ngoài x 90–990. Ô gốc giữ T1 mờ/viền. Không che T2 hay hàng dưới; đích hoàn toàn khuất, không nhãn/cú pháp lệnh.",
+        "Ô tìm x 278/y 618/w 650/h 96, bo 16; HĐ 4721 · ví dụ 56 px, mực x 302–800/y 636–699. Không còn hộp cũ y 440–640 che T4; mọi mã T nằm lớp cao hơn cả panel/kính lúp. Panel có thể che một phần thân hàng giữa đúng chức năng UI, không che mã; khay/hàng kết quả không che hàng ô nào.",
+        "Khay đỏ rỗng ban đầu x 766/y 830/w 172/h 94, cuối mở rộng sang trái x 714/y 830/w 224/h 94, clip trong T6; phần hàng T6 x 574–684 vẫn không bị che, nhãn T6 x 570–666/y 758–824 ở trên khay. Toàn bộ đáy y 924<950, phải 938<990. Khay không chữ, không kết quả chạy ra.",
+        "Kính lúp 150 px đường kính, nét 8: tâm(856,560)→(856,856), quãng 296 px dọc lối trống x 781–931; sau đó(856,856)→(400,450)→(330,450) tới ô T1 mờ. Trên đường về mã T luôn lớp trên kính, phần cắt qua panel không che chữ ô tìm vì panel cũng nằm trên kính. Kính là nét rỗng không mặt đục, không xóa/che hàng bằng mảng đặc.",
+        "Kế toán silhouette trung tính x 160/y 1130/w 160/h 280, đầu tròn 64 tại(208,1130), vai hình thangx 176–304/y 1206–1280, thân/giấy hình khối không chữ tới 1410; cách mép phụ đề 40 px, cách lưới 200 px, bên trái Cáo (hộp alpha Cáo bắt đầu≈413), AI ở x 820–990. Không chân dung/logo. Laptop chỉ dùng đạo cụ trong laptop_typing; che khiên cam bằng mặt nắp trơn ghép lớp."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Cùng khung medium/static: T1 chuyển trái sau mặt nạ, chỉ còn chỗ mờ; UI tìm mã mở dưới hàng nhãn T; kính lúp đi 296 px tới khay nội bộ T6 rỗng đỏ, khay nới rồi kính về ô T1. Kế toán đối diện Cáo đang gõ làm rõ nhu cầu tìm lại, camera không tracking.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6\nHĐ 4721 · ví dụ",
+      "text_groups": 3,
+      "voice_over": "Tháng đầu ít dùng, mình cất đi.\nKế toán cần hóa đơn cũ, mình tìm ở bảng đang dùng.",
+      "sound_effects": [
+        "15,70 s: click tự tạo ≤0,10 s, nhỏ hơn giọng ≥12 dB; bỏ nếu che âm tiết."
+      ],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 13.00 s] Cắt laptop_typing. 13–14,1 nguyên T1 dịch trái 410 px qua cổng che x 118–130/y 330–514, vẽ chỉ phần còn trong ô x 130–528; giữ nhãn T1 mờ ở chỗ cũ lớp trên. Không vẽ đích/mã hóa đơn ở đích. Lời 6 13–14,65."
+        },
+        {
+          "t": 1.1,
+          "event": "[Toàn video 14.10 s] 14,1–15,2 panel tìm mở trong hộp(278,618,650,96), mã HĐ 4721 · ví dụ xuất hiện liền cụm; silhouette kế toán xuất hiện tại(160,1130,160,280) đối diện Cáo. Camera medium/static, tất cả khung neo nguyên; chỉ layer panel đổi hình."
+        },
+        {
+          "t": 1.8,
+          "event": "[Toàn video 14.80 s] Lời 7 bắt đầu 14,8, dứt 17,60; giữ nghỉ 0,15 sau lời 6. Kế toán/laptop/panel cùng hiện nhưng không thêm thoại/nhóm chữ."
+        },
+        {
+          "t": 2.2,
+          "event": "[Toàn video 15.20 s] 15,2–16,4 kính 150 px tâm(856,560) đi xuống(856,856), quãng 296 px trong lối trống x 781–931; khay(766,830,172,94) mở rỗng/viền đỏ. Không qua mã T4/T6 hay hàng ô khác. Click giữ 15,7 s, nhỏ hơn giọng≥12dB."
+        },
+        {
+          "t": 3,
+          "event": "[Toàn video 16.00 s] Cắt think đúng 16,0 khi kính đang đi; không tracking/crop hay tạo chuyển động mắt."
+        },
+        {
+          "t": 3.4,
+          "event": "[Toàn video 16.40 s] 16,4–17,7 khay rỗng mở x 766→714,w 172→224, phải 938/đáy 924 giữ; hàng T6 kết thúc x 684 không bị che. Kính rỗng đi từ(856,856) tới(400,450) rồi 17,7–18 tới(330,450); nhãn T và chữ panel giữ lớp trên. Đích khuất kín, không có kho/mã trongkho trước 23,4."
+        }
+      ],
+      "duration_s": 4.7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C07-17.7-19.3",
+      "narrative_purpose": "Đặt câu hỏi mở rồi biến tìm hụt thành hành động tạo đường tra; không dùng khoảng chờ trống để trì hoãn đáp.",
+      "scene_type": "object_interaction",
+      "visual_concept": "Kính lúp chỉ ô T1 mờ rồi nối hình sang thẻ chỉ dẫn tách từ kẹp giấy Cáo. Thẻ lật có mũi tên và kéo đầu vệt chuyển ra khỏi hành lang; đích vẫn bị che kín.",
+      "environment": "Đến frame 539 giữ khung/lưới/panel C06. Đúng frame 540 cắt sangnavy/vách trung tính, bỏ hết chữ cũ; cụm chính y 250–850, nhãn Chuyển nơi lưu 80 px x 130–950/y 250–326. Cáo clipboard 450/y 1030–1480. RIÊNG cue lời 8 ghim một dòng mực x 193–887/y 949–1007, viền x 190–890/y 946–1010; matte x 100–980/y 940–1016 suốt 17,7–19,15. Không nhảy/tách cue ở 18. Cửa còn bị vách che, chưa có màu kho.",
+      "character_action": "think tới 18,0; cắt clipboard đúng 18,0 cách think 2,0 s. Theo ảnh thật, bảng kẹp bên PHẢI thân; thẻ layer riêng tách từ mép ngoài bảng rồi trượt RA PHẢI, lên qua bên phải đầu Cáo, sau matte phụ đề rồi mới nở phía trên. Không có guide x 94 ở C07–C08, không băng ngang thân/chạy dưới chân, không giả bàn tay chuyển động.",
+      "props": [
+        "Kính lúp 150 px về ô T1 mờ tới 18,0 như C06; panel/khung/mã cũ bỏ tại 540 trước nhãn mới. Kế toán silhouette cũng bỏ khi đổi bố cục.",
+        "Thẻ nhỏ 72×64 px tách ở top-left(706,1250) sát mép ngoài bảng kẹp; 18,05–18,20 đi ra(810,1250), 18,20–18,48 lên(810,784). Dải chuyển x 810–882 nằm bên phải toàn hộp Cáo≤800, cao hơn nhãn AI y 1430. Đi sau matte phụ đề, không vẽ hướng dẫn xuyên chữ. Bắt đầu chỉ tiếp xúc mép bảng kẹp, không đi ngang thân.",
+        "18,48–18,70: từ hình nhỏ(810,784,72,64) nở/lên tới(500,500,320,280), cả hành trình đáy≤850 nên trên đầu Cáo và dưới nhãn đầu. 18,70–19,30 lật 2D bằng co ngang quanh tâm(660,640), mặt trước thẻ x 500–820/y 500–780. Mặt #60A5FA, chữ Ví dụ 72 px tối, mũi tên #60A5FA trên mảnh lót trắng không chữ; không thêm nhóm chữ.",
+        "Đường tra/vệt chuyển 12 px #60A5FA xuất phát mép thẻ(820,700), đoạn đầu chỉ tới(930,700) trên vách kín, chưa mở cửa. Cửa/hình khối trung tính trắng/xám, bị vách che tới 19,85 để không chồng thẻ đang ở bên phải; không Kho lưu/T1/mã. BỎ hoàn toàn guide mép trái x 94 trong C07–C08."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "main_change": "Kính về chỗ T1 mờ; cắt bố cục đúng 18,0 nhưng một cue hỏi/âm thanh/chữ liên tục. Thẻ rời mép ngoài clipboard sang phải 104 px, lên 466 px qua sau matte, nở 320×280 trên đầu Cáo rồi lật mũi tên. Không có guide trái xuyên thân.",
+      "text_overlay": "MỘT BẢNG\nT1\nT2\nT3\nT4\nT5\nT6\nHĐ 4721 · ví dụ\nChuyển nơi lưu\nVí dụ",
+      "text_groups": 3,
+      "voice_over": "Hóa đơn tháng đầu đi đâu?",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 17.70 s] Lời 8 một cue 17,7–19,15. Ghim dòng Hóa đơn tháng đầu đi đâu? với bbox mực(193,949)–(887,1007), viền 3 tới 1010; matte(100,940,880,76), GIỮ suốt cue. 17,7–18 kính từ(400,450) về(330,450) chạm ô T1 mờ; giữ MỘT BẢNG đến frame 539."
+        },
+        {
+          "t": 0.3,
+          "event": "[Toàn video 18.00 s] Đúng frame 540 xóa 3 nhóm cũ/khung/lưới/panel/kế toán rồi hiện Chuyển nơi lưu và thẻ chỉ dẫn; cắt clipboard, cao 450. Phụ đề vẫn MỘT cue/MỘT dòng ở chỗ ghim, không cắt âm/chữ/nhảy vị trí. Producer ghi notes:18,000 cách đầu cue thực bao nhiêu giây, dự kiến 0,300; nếu cue bắt đầu sau 18 hoặc phải dời frame 540 trình Claude duyệt lại."
+        },
+        {
+          "t": 0.35,
+          "event": "[Toàn video 18.05 s] 18,05–18,20 thẻ 72×64 từ(706,1250) ra(810,1250), chỉ rời mép bảng kẹp bên phải; 18,20–18,48 lên(810,784), không cắt thân/chân. Vùng phụ đề đè matte che thẻ lúc đi qua; không guide x 94. 18,48–18,70 nở/lên thành(500,500,320,280) với đáy luôn dưới 850."
+        },
+        {
+          "t": 1,
+          "event": "[Toàn video 18.70 s] 18,7–19,3 thẻ lật 2D tại x 500/y 500/w 320/h 280, mặt #60A5FA/mũi tên #60A5FA trên lót trắng; hiện Ví dụ 72 px, kéo đoạn tra từ(820,700) tới(930,700). Cửa vẫn bị vách trung tính che, không nội dung kho, không có guide rìa trái."
+        }
+      ],
+      "duration_s": 1.6,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C08-19.3-21.6",
+      "narrative_purpose": "Cho thấy người dùng chủ động để một thẻ chỉ dẫn cho phần chuyển; đây là thiết kế ví dụ, không tính năng tự sinh.",
+      "scene_type": "process_animation",
+      "visual_concept": "Thẻ chỉ dẫn được đặt bên trái Cáo; mũi tên thẻ khớp với đầu đường tra, sau đó kính lúp đi từ thẻ dọc đường tới cửa khuất. Thẻ và đích có quan hệ hình học đọc được khi tắt tiếng.",
+      "environment": "Background vách navy che đích; mid cụm đường tra/cửa y 250–850 cao 600 px. Thẻ ban đầu x 500–820/y 500–780 dịch trái tới 130–450, hoàn toàn trên đầu Cáo; cửa trung tính x 650–950/y 330–850 chỉ hiện sau 19,85 khi thẻ đã qua trái. Near clipboard 450/y 1030–1480. Cue 8 còn ghim đến 19,15; từ lời 9 phụ đề chuẩn y 860–1000.",
+      "character_action": "Giữ clipboard cao 450 suốt, Cáo gắn với thẻ mình vừa tách từ mép bảng kẹp bên phải. Đường bay C07 đã ra phải/rồi lên; C08 chỉ đi trái ở y 500–780 trên đầu Cáo. Bỏ guide x 94; không giả đường từ kẹp bên phải xuyên thân sang trái.",
+      "props": [
+        "Thẻ 320×280 #60A5FA, Ví dụ 72 px, mũi tên #60A5FA trên mảnh lót trắng; top-left(500,500)→(130,500), dịch trái 370 px, không đổi chữ/màu. Không che Chuyển nơi lưu y 250–326 hay phụ đề y 860–1000.",
+        "Đường tra 12 px #60A5FA, khi thẻ dừng nối từ(450,700)→(520,700)→(520,420)→(650,420); mũi tên 28 px. Cửa(650,330,300,520) trắng/xám, không xanh dương; khối sau cửa cũng trung tính và bị mặt nạ kín. Cửa được vách che tới sau 19,85, chỉ hiện khi cạnh phải thẻ<650 nên không chồng nhau.",
+        "Kính lúp 150 px nét #60A5FA đi từ(450,700) tới(520,700) rồi(520,510) trong 20,9–21,6, không phủ chữ Ví dụ trên nửa trên thẻ. Không có guide rìa trái x 94 ở C08."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Thẻ đã lên trên đầu Cáo trượt trái 370 px đến x 130–450; một đường xanh dương mới khóa vào mũi tên, kính lúp rời thẻ lên đường tới cửa trung tính. Khung giữ, quan hệ thẻ→đường→đích được tạo, không cắt qua Cáo.",
+      "text_overlay": "Chuyển nơi lưu\nVí dụ",
+      "text_groups": 2,
+      "voice_over": "Mình để thẻ chỉ dẫn cho phần đã chuyển.",
+      "sound_effects": [],
+      "transition": "wiperight",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 19.30 s] Lời 9 19,3–21,45. 19,3–20,4 thẻ(500,500,320,280) trượt trái 370 tới(130,500); toàn đường bay nằm y 500–780 trên đầu Cáo. Đoạn đường mồi C07 thu theo mép phải thẻ rồi xóa hết trước khi vẽ đường mới tại 20,4. Không guide x 94, không lặp đường bay từ dưới. Sau 19,85 thẻ phải<650 mới bỏ mặt vách che để thấy cửa trắng/xám x 650–950/y 330–850."
+        },
+        {
+          "t": 1.1,
+          "event": "[Toàn video 20.40 s] 20,4–20,9 đường #60A5FA 12 px gắn mũi tên thẻ tại(450,700), vẽ qua(520,700),(520,420),tới(650,420). Cửa vẫn đóng, không màu/nhãn kho, không thêm nhóm chữ."
+        },
+        {
+          "t": 1.6,
+          "event": "[Toàn video 20.90 s] 20,9–21,6 kính lúp 150 px đi(450,700)→(520,700)→(520,510), chỉ một vật chuyển. Wiperight là matte lớp đường quét trong chính đoạn này sang C09, không đổi Cáo/phụ đề hay cộng trừ thời lượng; tuyệt đối không lộ C10."
+        }
+      ],
+      "duration_s": 2.3,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C09-21.6-23.4",
+      "narrative_purpose": "Nhấn yêu cầu còn đường tra lại sau khi cất, đưa mắt tới nơi sắp trả lời.",
+      "scene_type": "process_animation",
+      "visual_concept": "Theo đường từ thẻ bên trái tới cửa phải; cửa hé chỉ lộ cạnh hình khối. Không dùng tên kho hay mã để tiết lộ đáp trước 23,4 s.",
+      "environment": "Background vẫn vách che; mid đường và cửa chiếm y=250–850 cao 600 px, thẻ bên trái Cáo x=130–450. Near Cáo point_left luôn hiện, nhãn Chuyển nơi lưu ở dải trên và Ví dụ trên thẻ. Không có hóa đơn đọc được sau khe.",
+      "character_action": "point_left từ 21,6 s, cao 450 px; đích chỉ là thẻ/đầu đường tra ở bên trái Cáo. Guide từ ngón tay sang x=94 rồi lên thẻ; nhánh đường tiếp tục tới cửa bên phải, tránh hiểu Cáo đang chỉ nhầm phía.",
+      "props": [
+        "Thẻ Ví dụ x 130/y 500/w 320/h 280, mặt #60A5FA, mũi tên và đường tra 12 px #60A5FA theo C08. Nhãn Chuyển nơi lưu 80 px x 130–950/y 250–326; không mã/nhóm chữ mới.",
+        "Kính lúp 150 px tiếp từ(520,510)→(520,420)→(650,420). Cửa trắng/xám x 650/y 330/w 300/h 520, trượt hé 100 px trong x 650–950, phần cánh vượt khung bị clip. Mặt nạ kín phía trong giữ đến frame 701; chỉ cạnh khối trắng/xám trung tính thấy ở khe, không màu xanh kho/T1/mã.",
+        "Guide chỉ trái 8 px #60A5FA chỉ có ở C09: từ ngón tay thật point_left đi sangx 94 rồi lên mép trái thẻ. Không kế thừa guide từ clipboard. Circleopen sẽ chạy BÊN TRONG C10 từ 702, không xfade/overlap ở đuôi C09."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Kính lúp đi nốt đường xanh dương tới cửa, cửa trắng/xám trượt hé 100 px nhưng mặt che kho còn kín. Khungmedium/static giống C08, không pan 80 px/giả close_up; chuyển vật và quan hệ thẻ dẫn đến cửa là bằng chứng.",
+      "text_overlay": "Chuyển nơi lưu\nVí dụ",
+      "text_groups": 2,
+      "voice_over": "Cất rồi, phải có đường tra lại.",
+      "sound_effects": [],
+      "transition": "circleopen",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 21.60 s] Cắt point_left, thẻ ở bên trái Cáo. Lời 10 21,6–23,25. 21,6–22,5 kính lúp 150 px từ(520,510) qua(520,420) tới(650,420); đường/mũi tên/thẻ #60A5FA. Camera medium/static, không pan lớp vật/crop; guide x 94 bây giờ xuất phát từ tay chỉ trái thật."
+        },
+        {
+          "t": 0.9,
+          "event": "[Toàn video 22.50 s] 22,5–23,4 cửa trắng/xám trượt hé 100 px, clip trong x 650–950/y 330–850. Mặt nạ kín che T1/mã/nhãn Kho lưu suốt frame 701; cạnh khối sau lưng vẫn trắng/xám, không xanh dương."
+        },
+        {
+          "t": 1.75,
+          "event": "[Toàn video 23.35 s] C09 không chứa pixel C10 ở bất kỳ frame nào. Chỉ chuẩn bị tham số circleopen; KHÔNG chạy xfade chồng đuôi C09. Mặt nạ đáp sẽ bắt từ frame 702 ở C10, không đổi tổng 1,8 s."
+        }
+      ],
+      "duration_s": 1.8,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C10-23.4-25.25",
+      "narrative_purpose": "Trả câu hỏi đúng 23,4 s: hóa đơn vẫn còn ở nơi lưu, thẻ chỉ dẫn thực sự dẫn tới đúng T1.",
+      "scene_type": "object_interaction",
+      "visual_concept": "Mặt che trong cửa mở đúng mốc, T1 nguyên hàng và mã HĐ 4721 xuất hiện; hóa đơn duy nhất rút ra, tiến về Cáo và lớn lên 560 px để đọc được mã. Không nhân đôi hóa đơn.",
+      "environment": "Background kho xanh dương trên nền navy; mid cụm kho y=250–850 cao 600 px; hóa đơn khi là tiêu điểm y=250–810 cao 560 px. Near thẻ Ví dụ bên trái, đường nối tới T1; Cáo y=1030–1480, phụ đề y=860–1000. Nhãn Kho lưu không nằm đè trên hóa đơn.",
+      "character_action": "point_left tới 23,8 s chỉ thẻ ở bên trái Cáo; read_paper từ 23,8 s, cách point_left từ 21,6 s đúng 2,2 s. Giấy trong pose là giấy đối chiếu; hóa đơn đồ họa nằm phía trên hướng về Cáo, không giả động tác tay đón/ghép giấy vào pose.",
+      "props": [
+        "Kho có cửa, ngăn T1 xanh dương #60A5FA, hàng và kích thước gốc khớp T1 đã chuyển.",
+        "Một hóa đơn hình giấy trắng có góc gập, viền xanh, 3–4 dòng không chữ và mã HĐ 4721 64 px khi phóng đủ; bỏ ký hiệu mã trên khe khi hóa đơn rời khe để không thành hai hóa đơn.",
+        "Nhãn Kho lưu 80 px; T1/mã gắn cùng cụm vật; thẻ Ví dụ 72 px nối tới T1. Chỉ ba nhóm chữ."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "pull_out"
+      },
+      "main_change": "Cửa mở cho thấy T1 còn nguyên, hóa đơn rời ngăn tiến ra vùng đọc cao 560 px; thẻ còn nối đúng T1. Câu hỏi được trả bằng tìm thấy đúng vật.",
+      "text_overlay": "Kho lưu\nT1\nHĐ 4721\nVí dụ",
+      "text_groups": 3,
+      "voice_over": "Ở kho lưu! Hóa đơn vẫn còn.",
+      "sound_effects": [
+        "23,40 s: chạm giấy tự tạo ≤0,15 s, nhỏ hơn giọng ≥12 dB; không nhạc."
+      ],
+      "transition": "match_cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 23.40 s] Đúng frame 702 mới dựng layer C10: bỏ Chuyển nơi lưu trước, nền/cửa kho/T1 chuyển #60A5FA. Circleopen là mặt nạ NỘI BỘ C10, không xfade ghép đuôi C09; bán kính khởi đầu 160 px tâm T1 để ngay frame 702 thấy T1/HĐ 4721, mở nốt đến 23,60. Kho lưu hiện cùng frame 702 ngoài mặt nạ cửa. Không pixel C10 trước f 702, không trừ cộng duration. Lời 11 23,4–25,10."
+        },
+        {
+          "t": 0.05,
+          "event": "[Toàn video 23.45 s] 23,45–24,2 một hóa đơn rút khỏi T1; đường thẻ còn nối đúng ngăn. Camera pull_out phẳng tối đa 4% để thấy ngăn/giấy, không thay chuyển động giấy. Mã trên khe bỏ khi giấy rời, không nhân đôi."
+        },
+        {
+          "t": 0.4,
+          "event": "[Toàn video 23.80 s] Cắt read_paper giữ tới 27,95 theo Claude đã chấp nhận ở review 3(i), không phải đề xuất mới. Không tạo hoạt ảnh tay/mắt."
+        },
+        {
+          "t": 0.8,
+          "event": "[Toàn video 24.20 s] 24,2–25,25 hóa đơn tiến về phía Cáo theo chéo và mở cao 560 px tại y 250–810. Mã một lần trên giấy, đường chuyển không che mã T1/thẻ; tổng cụm kho/giấy giữ y 250–850."
+        }
+      ],
+      "duration_s": 1.85,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C11-25.25-30.35",
+      "narrative_purpose": "Gọi tên archive, cho thấy cách lưu có thể khác theo hệ; hoàn tất việc trả hóa đơn về đúng khe trước câu chốt.",
+      "scene_type": "comparison_scene",
+      "visual_concept": "Kho mở rộng thành một cách lưu dạng ngăn; bên cạnh hiện cách lưu dạng khối tệp không chữ. Hai cách giữ cạnh nhau xuyên cụm lời mỗi hệ mỗi cách. Chỉ ngăn thật chứa T1/hóa đơn; khối tệp là minh họa thay thế rỗng, không sao chép dữ liệu hay gắn logo hệ quản trị.",
+      "environment": "Backgroundnavy; mid cụm so sánh y 250–850 cao 600: ngăn trái x 130–530/y 330–850, tệp rỗng phải x 590–950/y 390–810, nhãn Kho lưu ở dải đầu. Hóa đơn từ 560 px ở đầu cảnh thu về chi tiết trong ngăn trái khi ngăn mở 25,25–26,4; sau đó giấy 260×260ở x 240/y 540, mã 56 px vẫn đủ đọc. Near Cáo 450, phụ đề y 860–1000; ba nhóm chữ như C10.",
+      "character_action": "Giữ read_paper đến 27,95 s; cắt shrug đúng 27,95, giữ đến thumbs_up 30,35 (2,40 s; mốc dời theo giọng thật, RESCUE R8 18/11/2026), Claude đã CHẤP NHẬN review 3(i). Sau đo TTS: shrug≤thumbs_up−2,0 s và không sớm hơn đầu vế Nó không phải lệnh SQL chuẩn; ≥2,0 s thắng bám cue. Hai cách lưu đồng hiện suốt cụm mỗi hệ mỗi cách. Không sửa script/plan; Producer ghi notes mốc đã duyệt thay 26,1.",
+      "props": [
+        "Ngăn x 130–530/y 330–850 xanh dương, T1/hàng nguyên. Hóa đơn DUY NHẤT còn mã HĐ 4721 56 px; sau 26,4 bbox x 240/y 540/w 260/h 260, khe đích(140,540,260,260) trong ngăn trái. Khoảng trả giấy chỉ 100 px sang trái; không bay ngang qua khối tệp phải hoặc qua Cáo/phụ đề. Nhãn T1 x 150–246/y 350–416, cách giấy 124 px.",
+        "Khối tệp thay thế x 590/y 390/w 360/h 420, tai gập/ba vạch trắng không chữ/viền xanh, rỗng không hóa đơn; không logo/tên hệ/Cách 1/Cách 2. Giữ nguyên vị trí/hình qua 27,55–30,35 để so sánh.",
+        "Ray đón giấy x 140–500/y 810–830, môi khe không chữ chạy cục bộ 70 px rồi đóng; nằm hẳn trong ngăn trái. Không glow/pulse/zoom quanh hóa đơn lúc lời mỗi hệ mỗi cách. Vị trí chữ Ví dụ (Claude chốt khi duyệt vì ngăn trái x 130–530 chiếm chỗ thẻ cũ x 130–450/y 500–780 của C09–C10): chip 72 px x 590–950/y 250–326 cùng dải đầu với Kho lưu (x 130–430), không chồng khối tệp (y≥390) hay ngăn trái; thẻ cũ biến mất khi ngăn mở, không vẽ đường nối. Mã gắn vật và Kho lưu vẫn 3 nhóm, không chữ mới."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "main_change": "Ngăn mở/giấy thu về trong cụm trái, khối tệp rỗng tách sang phải; hai cách lưu cạnh nhau đến 30,35. Cuối chỉ giấy trượt 100 px về khe trái rồi môi khe đóng 70 px, chuyển động gọn trong ngăn không cạnh tranh so sánh, không gộp hai hình.",
+      "text_overlay": "Kho lưu\nT1\nHĐ 4721\nVí dụ",
+      "text_groups": 3,
+      "voice_over": "Cất như vậy gọi là archive. Nó không phải lệnh SQL chuẩn, mỗi hệ mỗi cách.",
+      "sound_effects": [],
+      "transition": "cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 25.25 s] Lời 12 25,25–29,80. 25,25–26,4 ngăn trái mở rộng lộ ray; hóa đơn 560 px thu cùng cụm về(240,540,260,260), không tạo bản sao giấy. Ngăn chính giữ x 130–530/y 330–850. Read_paper giữ; mã HĐ 4721 56 px trên giấy, T1 ở y 350–416 không chồng."
+        },
+        {
+          "t": 1.15,
+          "event": "[Toàn video 26.40 s] 26,4–27,55 khối tệp rỗng trượt ra/phải tới(590,390,360,420), chỉ tệp chuyển, hóa đơn ngăn trái đứng. Không logo/tên hệ/mã trên tệp."
+        },
+        {
+          "t": 2.3,
+          "event": "[Toàn video 27.55 s] 27,55–27,95 hai hình ngăn/tệp tách hẳn, mũi nối chung phân hai hướng hình học; KHÔNG gộp lại trước cụm mỗi hệ mỗi cách. Hai hình đồng hiện đến 30,35."
+        },
+        {
+          "t": 2.7,
+          "event": "[Toàn video 27.95 s] Cắt shrug đã được Claude chấp nhận. 27,95–28,7 ray ngăn trái kéo 100 px đón mép giấy, tệp rỗng giữ cạnh. Cụm mỗi hệ mỗi cách (đo thật 29,52–30,24) phải được hai hình đồng hiện suốt; sau TTS giữ shrug≤thumbs_up−2 s, không sớm hơn đầu vế giới hạn."
+        },
+        {
+          "t": 3.45,
+          "event": "[Toàn video 28.70 s] 28,7–29,15 chỉ hóa đơn 260×260 từ(240,540) sang(140,540), quãng 100 px trong ngăn trái; không phóng/nhấp sáng/quét qua tệp. 29,15–30,35 chỉ môi khe/ray x 140–500/y 810–830 khép 70 px, giấy đứng trong khe. Hai cách lưu giữ cạnh suốt; hoàn tất trước cảnh kết, mã T1/nhãn thẻ không bị che."
+        }
+      ],
+      "duration_s": 5.1,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "C12-30.35-33.3",
+      "narrative_purpose": "Gom hai khái niệm thành câu chốt hiển thị và mời người xem trả lời nhẹ bằng lời; hoàn tất hành động cất với thẻ chỉ dẫn còn ngoài.",
+      "scene_type": "object_interaction",
+      "visual_concept": "Hai thẻ định nghĩa đầy đủ ghép với hai vật tương ứng: thẻ Partition về biểu tượng lưới, thẻ Archive về ngăn lưu. Sau hai lượt ghép, cửa ngăn khép theo hai nhịp; thẻ chỉ dẫn còn ngoài để vẫn có đường tra.",
+      "environment": "Backgroundnavy, bỏ tệp/nhãn/mã cũ trước C12. Mid cụm thẻ+hai biểu tượng trongx 110–990/y 250–850 cao 600 px; lưới trên bên phải và ngăn dưới bên phải đều cao 220 px, không nhét vào khoảng 110 px. Near Cáo 450/y 1030–1480, phụ đề CTA y 860–1000; chỉ hai nhóm chữ chốt.",
+      "character_action": "thumbs_up từ 30,35 s, cao 450 px, tâm x≈570 mép phải ≤800. Giữ ảnh tĩnh tới hết; không nhún theo tiếng/bounce ở cảnh kết. Ngón tay cạnh hai vật đã ghép đúng, không đứng góc chỉ đổi chữ.",
+      "props": [
+        "Thẻ Partition 680×110 px: đầu(110,250), cuối(110,370), trượt dọc 120 px. Partition: chia bảng 72 px MỘT dòng, đã đo Segoe UI Semibold rộng 638 px; inset 20 px, bbox mực đầu x 130–768/y 270–344, cuối y 390–464. Đủ chữ từng frame, không typing/co font. Biểu tượng lưới(770,380,220,220), nét trắng 8 px chia 2×3 không mã, chừa mép trái 20 px để thẻ ghép; sáu ô hình còn rộng≥88/cao 56.",
+        "Thẻ Partition cuối hộp(110,370,680,110) chồng mép trái lưới 20 px: vùng tiếp xúc x 770–790/y 380–480, điểm giữa(780,430); phần mực kết thúc x 768 nên không bị chạm/cắt. Lưới/phần thẻ không vào ngoài x 90–990. Ban đầu thẻ đáy 360 cách lưới đỉnh 380 là 20 px, quan hệ rời thành chạm thật.",
+        "Thẻ Archive 440×180 px: đầu(160,550), cuối(280,550), trượt phải 120 px. Chữ 72 px đúng hai dòng Archive: cất / dữ liệu cũ; rộng đo 380/322 px, inset 20, dòng mực cuối x 300–680/y 570–628 và x 300–622/y 650–716. Biểu tượng ngăn(700,630,290,220), cao cũng 220 px, khung x 700–990/y 630–850. Thẻ cuối(280,550,440,180) chồng mép trái ngăn 20 px, vùng x 700–720/y 630–730, điểm chạm(710,680); chữ kết thúc x 680 cách ngăn 20 px.",
+        "Ngăn có khe mở x 730–830/y 650–830 và vùng đỗ cửa phải x 880–980/y 650–830. Cánh 100×180 px trượt trái 150 px: (880,650)→(805,650)→(730,650), đáy 830; toàn hộp dịch trong x 730–980/y 650–830, không clip quãng giả. Mép phải thẻ Archive 720 cách cửa≥10 px mọi frame, không đè thẻ. Thẻ chỉ dẫn KHÔNG chữ 28×50 px x 732/y 590, nằm ngoài ngăn phía trên, mũi tên nhỏ chỉ khe; không đồng hiện mã/nhãn cũ. Hóa đơn đã về khe C11, không chuyển thêm."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "main_change": "Thẻ Partition dịch xuống 120 px từ rời sang đè mép lưới 20 px tại(780,430); thẻ Archive dịch phải 120 px ghép ngăn cao 220 tại(710,680). Sau đó chỉ cửa 100×180 trượt trái 150 px qua 2nhịp, cách thẻ≥10 px. Ghép đúng vật thấy ở 360×640, hai thẻ đủ chữ suốt.",
+      "text_overlay": "Partition: chia bảng\nArchive: cất dữ liệu cũ",
+      "text_groups": 2,
+      "voice_over": "Bảng bạn chia theo cột nào? Chưa chia thì gõ 'chưa'.",
+      "sound_effects": [],
+      "transition": "cut",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "[Toàn video 30.35 s] Xóa Kho lưu/T1/HĐ 4721/Ví dụ và tệp thay thế trước khi hiện HAI thẻ đủ nguyên văn. Thẻ 1(110,250,680,110), thẻ 2(160,550,440,180); lưới(770,380,220,220), ngăn(700,630,290,220). Cắt thumbs_up, không nhún. Lời 13 30,35–33,17 (đo thật); chữ giữ tới 33,3."
+        },
+        {
+          "t": 0.01,
+          "event": "[Toàn video 30.36 s] Nhịp 30,35–30,95 chỉ thẻ Partition đi xuống 120 px đến(110,370), tiếp xúc thật với mép lưới x 770–790/y 380–480, tâm chạm(780,430). Không trượt horizontal, không làm nở chữ; thẻ Archive và cửa tĩnh."
+        },
+        {
+          "t": 0.6,
+          "event": "[Toàn video 30.95 s] 30,95–31,55 chỉ thẻ Archive đi phải 120 px từ(160,550) tới(280,550), đè mép ngăn 20 px tại x 700–720/y 630–730, tâm(710,680). Chữ vẫn đủ hai dòng, không cắt; mực kết thúc x 680, cửa cách thẻ≥10 px."
+        },
+        {
+          "t": 1.2,
+          "event": "[Toàn video 31.55 s] 31,55–32,6 chỉ cánh cửa 100×180 tại y 650–830 trượt trái x 880→805, nửa hành trình 75 px. Thẻ chỉ dẫn nằm ngoài x 732/y 590/w 28/h 50; hai thẻ chốt/lưới/ngăn đứng nguyên, không chuyển giấy."
+        },
+        {
+          "t": 2.25,
+          "event": "[Toàn video 32.60 s] 32,6–33,3 cửa trượt nốt x 805→730 thêm 75 px, tổng 150; hộp cửa luôn trong x 730–980/y 650–830, không đè thẻ Archive phải 720. Lời dứt đo thật 33,17, đuôi 0,13 có cửa vẫn đổi. Hai thẻ và AI giữ đến frame cuối; không fade đen/cắt thẻ theo lời. Đuôi thực>0,7 phải duyệt lại nhịp, không thêm im/tăng tốc."
+        }
+      ],
+      "duration_s": 2.95,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

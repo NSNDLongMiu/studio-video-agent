@@ -1,0 +1,7 @@
+# Chủ đề #4 — IT
+
+**Chủ đề:** Archive và Partition trong SQL là gì?
+
+**Ghi chú của giám đốc:** LÀM LẠI HOÀN TOÀN theo quy trình mới ngày 18/11/2026 (chuẩn gốc: docs/chat-luong-xem.md, R1–R10). Cùng chủ đề với bản IT-T3-E01 trước đó nhưng đây là bản làm lại từ đầu để so sánh. KHÔNG dựa vào bản cũ: không đọc, không tái dùng debate/concept/plan/script/storyboard/hook/sơ đồ/lời thoại trong thư mục content/it/T3-archive-va-partition-trong-sql-la-gi/. Ý tưởng, hook, hình ảnh và lời đọc phải tự đề xuất mới. Yêu cầu chất lượng xem: hook bằng tình huống hoặc hệ quả công sở cụ thể (nhân vật + sự cố; giờ/số là ví dụ dựng, ghi rõ là ví dụ, không giả sự kiện thật); trước giây 5 người xem phải biết vì sao cần quan tâm hoặc học được một điều; có câu hỏi mở và nói rõ trả ở giây nào; kết có câu chốt hiển thị + kêu gọi tự nhiên, nhẹ; chữ trên hình không chép lại lời đọc (phụ đề là kênh duy nhất chép lời), mỗi nhịp một tiêu điểm; hình đổi thật nhìn ra được ở 360x640, vật chính đủ lớn; Cáo có hành vi gắn với vật đang đổi, không làm nhãn dán góc; bìa là khung hook, đọc được ở 180x320; nhịp theo giọng thật, đuôi im cuối video tối đa 0,7 giây. Giữ nguyên: 9:16 1080x1920, 15–45 giây, không nhạc nền, nhãn AI, kiểm nguồn chính thức (PostgreSQL/MySQL...), độ chính xác kỹ thuật vẫn là điều kiện cần (partition không phải lệnh nén/xoá; archive là cách quản lý dữ liệu, không phải một lệnh SQL chuẩn chung).
+
+**Đội phụ trách:** IT · Đội 3 (đội #4)
