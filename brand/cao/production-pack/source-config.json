@@ -1,0 +1,125 @@
+{
+  "animations": [
+    {
+      "id": "wave",
+      "label": "Vẫy chào",
+      "source": "generated/wave-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 8,
+      "loop": true,
+      "notes": "Một chu kỳ vẫy tay; không nhép miệng."
+    },
+    {
+      "id": "chair_spin",
+      "label": "Xoay ghế một vòng",
+      "source": "generated/chair_spin-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": true,
+      "notes": "Cáo ngồi trên ghế có sẵn; không vẽ thêm ghế/bàn chồng lên."
+    },
+    {
+      "id": "stand_up",
+      "label": "Đứng dậy từ ghế",
+      "source": "generated/stand_up-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": false,
+      "notes": "Phát một lần, giữ pose cuối. Ghế vẫn ở trong ảnh."
+    },
+    {
+      "id": "sit_down",
+      "label": "Ngồi xuống ghế",
+      "source": "generated/stand_up-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": false,
+      "reverse": true,
+      "notes": "Đảo thứ tự frame của stand_up, không tạo thêm frame độc lập. Ghế vẫn trong ảnh."
+    },
+    {
+      "id": "walk",
+      "label": "Đi bộ tại chỗ",
+      "source": "generated/walk-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 8,
+      "loop": true,
+      "notes": "Di chuyển tại chỗ; producer thêm chuyển vị toàn lớp nếu cần đi qua cảnh."
+    },
+    {
+      "id": "idle_blink",
+      "label": "Đứng dẫn chuyện, chớp mắt",
+      "source": "generated/idle_blink-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 4,
+      "loop": true,
+      "notes": "Không khớp miệng theo giọng đọc."
+    },
+    {
+      "id": "point_present",
+      "label": "Giơ tay chỉ dẫn",
+      "source": "generated/point_present-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": false,
+      "notes": "Chỉ về phía phải màn hình, giữ pose cuối; không có bảng tích hợp."
+    },
+    {
+      "id": "bow",
+      "label": "Cúi chào",
+      "source": "generated/bow-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": false,
+      "notes": "Cúi rồi đứng lại; phát một lần."
+    },
+    {
+      "id": "nod",
+      "label": "Gật đầu",
+      "source": "generated/nod-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": true,
+      "notes": "Gật đầu nhẹ, thân đứng yên."
+    },
+    {
+      "id": "turn",
+      "label": "Quay người một vòng",
+      "source": "generated/turn-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": true,
+      "notes": "Quay đứng tại chỗ, không có ghế."
+    },
+    {
+      "id": "arms_up",
+      "label": "Giơ hai tay ăn mừng",
+      "source": "generated/arms_up-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 6,
+      "loop": false,
+      "notes": "Phát một lần, giữ tay giơ ở cuối."
+    },
+    {
+      "id": "desk_typing",
+      "label": "Ngồi bàn gõ máy",
+      "source": "generated/desk_typing-raw-v1.png",
+      "cols": 4,
+      "rows": 2,
+      "fps": 8,
+      "loop": true,
+      "notes": "Bàn, ghế và laptop có sẵn trong ảnh; không vẽ chồng thêm. Chuyển động tay nhỏ."
+    }
+  ]
+}

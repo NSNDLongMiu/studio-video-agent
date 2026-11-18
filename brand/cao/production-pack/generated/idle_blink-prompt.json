@@ -1,0 +1,9 @@
+{
+  "id": "idle_blink",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-db35b54e-6552-4b45-96d0-81b35fa8d276.png",
+  "workspace_file": "brand/cao/production-pack/generated/idle_blink-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Asset: an eight-frame IDLE BLINK animation atlas, TRUE TRANSPARENT BACKGROUND.\nIdentity reference image: reproduce same orange office fox with fluffy white cheeks/chest/tail tip, round black spectacles, white short-sleeve shirt, navy tie, ID badge, dark trousers, black leather shoes, wristwatch, original3Dfilm-quality fur and proportions.\nProduce one uniform4-column×2-row atlas, landscape1536x1024 or more. One full-body fox per cell, generous transparent padding all sides. Precisely same body pose/scale/foot position/head position/tail silhouette across all8cells; stationary relaxed threequarter-front presenter stance, both arms naturally down. Tiny breathing only. NO camera change. Mouth gently closed in all8frames; no teeth, no speech.\nOnly eyelids change across row-major frames:1eyesopen,2eyesopen,3halfclosed,4fullyclosed,5halfclosed,6eyesopen,7eyesopen,8eyesopen. Glasses never change shape or position; eyebrows subtly relaxed. End matches start for a seamless2secondidle loop.\nRender EMPTY ALPHA transparency, no background colors, floor, castshadow, glow, grid lines, numbers,text or checkerboard. Full ears/feet/tail inside everycell with10%padding. Exact same fox copied consistently while eyelids change, not eight different body poses.",
+  "ai_generated_content": true
+}

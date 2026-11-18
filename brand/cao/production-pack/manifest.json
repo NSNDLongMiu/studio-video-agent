@@ -1,0 +1,7176 @@
+{
+  "schema_version": 1,
+  "pack_id": "cao_production_pack",
+  "name": "Cáo văn phòng — production animation pack",
+  "path_base": "manifest_directory",
+  "built_by": "tools/fox/build-production.py",
+  "source_config": "source-config.json",
+  "normalization": {
+    "canvas": [
+      512,
+      512
+    ],
+    "anchor": [
+      256,
+      480
+    ],
+    "alpha_ground_threshold": 32,
+    "rescaling": false,
+    "horizontal_alignment": "cell_center_fixed",
+    "soft_alpha_clipping": "Counted and reported, never clipped alpha>=32"
+  },
+  "animations": [
+    {
+      "id": "wave",
+      "label": "Vẫy chào",
+      "frames": [
+        "frames/wave/0001.png",
+        "frames/wave/0002.png",
+        "frames/wave/0003.png",
+        "frames/wave/0004.png",
+        "frames/wave/0005.png",
+        "frames/wave/0006.png",
+        "frames/wave/0007.png",
+        "frames/wave/0008.png"
+      ],
+      "frame_sha256": [
+        "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+        "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+        "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+        "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+        "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+        "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+        "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+        "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+      ],
+      "fps": 8,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/wave-raw-v1.png",
+      "source_sha256": "668e1a912544dd3dc0929a48be010609ffc39c3a07eb30e26630accb9f516b3b",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          440,
+          440
+        ],
+        "subject_width_range": [
+          277,
+          310
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            320,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 45,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            279,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              384,
+              480
+            ],
+            "transparent_pixels": 166713,
+            "soft_alpha_pixels_below32": 21948,
+            "visible_alpha32_pixels": 73483
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            328,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 234,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            287,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              29,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              392,
+              480
+            ],
+            "transparent_pixels": 162242,
+            "soft_alpha_pixels_below32": 25852,
+            "visible_alpha32_pixels": 74050
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            341,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 195,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            300,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              405,
+              480
+            ],
+            "transparent_pixels": 161900,
+            "soft_alpha_pixels_below32": 25872,
+            "visible_alpha32_pixels": 74372
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            351,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 38,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            310,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              435,
+              512
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              415,
+              480
+            ],
+            "transparent_pixels": 161219,
+            "soft_alpha_pixels_below32": 26231,
+            "visible_alpha32_pixels": 74694
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            345,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              16,
+              448,
+              502
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              409,
+              480
+            ],
+            "transparent_pixels": 161038,
+            "soft_alpha_pixels_below32": 26637,
+            "visible_alpha32_pixels": 74469
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            324,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 11,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              16,
+              448,
+              498
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              388,
+              480
+            ],
+            "transparent_pixels": 167185,
+            "soft_alpha_pixels_below32": 21107,
+            "visible_alpha32_pixels": 73852
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            322,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 12,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            281,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              16,
+              448,
+              505
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              386,
+              480
+            ],
+            "transparent_pixels": 162215,
+            "soft_alpha_pixels_below32": 26310,
+            "visible_alpha32_pixels": 73619
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            24,
+            318,
+            464
+          ],
+          "translation": [
+            64,
+            16
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            277,
+            440
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              16,
+              436,
+              510
+            ],
+            "alpha32_bbox": [
+              105,
+              40,
+              382,
+              480
+            ],
+            "transparent_pixels": 166136,
+            "soft_alpha_pixels_below32": 22569,
+            "visible_alpha32_pixels": 73439
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 535,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.985746,
+              "rgb_mae_visible_overlap": 4.869915
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.982634,
+              "rgb_mae_visible_overlap": 4.532524
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.981971,
+              "rgb_mae_visible_overlap": 4.608151
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.983973,
+              "rgb_mae_visible_overlap": 5.337443
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.974454,
+              "rgb_mae_visible_overlap": 5.013228
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.99156,
+              "rgb_mae_visible_overlap": 3.961996
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.991873,
+              "rgb_mae_visible_overlap": 3.860206
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.989465,
+            "rgb_mae_visible_overlap": 5.232894
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/wave-light.jpg",
+          "qc/wave-dark.jpg"
+        ]
+      },
+      "notes": "Một chu kỳ vẫy tay; không nhép miệng.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/wave-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/wave.mov",
+      "preview": "previews/wave.mp4",
+      "preview_light": "previews/wave-light.mp4"
+    },
+    {
+      "id": "chair_spin",
+      "label": "Xoay ghế một vòng",
+      "frames": [
+        "frames/chair_spin/0001.png",
+        "frames/chair_spin/0002.png",
+        "frames/chair_spin/0003.png",
+        "frames/chair_spin/0004.png",
+        "frames/chair_spin/0005.png",
+        "frames/chair_spin/0006.png",
+        "frames/chair_spin/0007.png",
+        "frames/chair_spin/0008.png"
+      ],
+      "frame_sha256": [
+        "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+        "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+        "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+        "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+        "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+        "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+        "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+        "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+      ],
+      "fps": 6,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/chair_spin-raw-v1.png",
+      "source_sha256": "3e3c14368929d99d81a87b150962163e4ae509c418b557f0ab32eab8e29fe7c7",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          427,
+          432
+        ],
+        "subject_width_range": [
+          242,
+          297
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            66,
+            39,
+            319,
+            468
+          ],
+          "translation": [
+            64,
+            12
+          ],
+          "clipped_alpha_nonzero_pixels": 184,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            253,
+            429
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              21,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              130,
+              51,
+              383,
+              480
+            ],
+            "transparent_pixels": 164268,
+            "soft_alpha_pixels_below32": 20795,
+            "visible_alpha32_pixels": 77081
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            62,
+            39,
+            343,
+            468
+          ],
+          "translation": [
+            64,
+            12
+          ],
+          "clipped_alpha_nonzero_pixels": 146,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            281,
+            429
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              29,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              126,
+              51,
+              407,
+              480
+            ],
+            "transparent_pixels": 153517,
+            "soft_alpha_pixels_below32": 29763,
+            "visible_alpha32_pixels": 78864
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            55,
+            38,
+            351,
+            467
+          ],
+          "translation": [
+            64,
+            13
+          ],
+          "clipped_alpha_nonzero_pixels": 172,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            296,
+            429
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              16,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              119,
+              51,
+              415,
+              480
+            ],
+            "transparent_pixels": 164089,
+            "soft_alpha_pixels_below32": 26776,
+            "visible_alpha32_pixels": 71279
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            48,
+            36,
+            345,
+            468
+          ],
+          "translation": [
+            64,
+            12
+          ],
+          "clipped_alpha_nonzero_pixels": 325,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            297,
+            432
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              27,
+              440,
+              512
+            ],
+            "alpha32_bbox": [
+              112,
+              48,
+              409,
+              480
+            ],
+            "transparent_pixels": 152869,
+            "soft_alpha_pixels_below32": 32695,
+            "visible_alpha32_pixels": 76580
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            70,
+            40,
+            312,
+            467
+          ],
+          "translation": [
+            64,
+            13
+          ],
+          "clipped_alpha_nonzero_pixels": 83,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            242,
+            427
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              13,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              134,
+              53,
+              376,
+              480
+            ],
+            "transparent_pixels": 168101,
+            "soft_alpha_pixels_below32": 20190,
+            "visible_alpha32_pixels": 73853
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            44,
+            40,
+            308,
+            467
+          ],
+          "translation": [
+            64,
+            13
+          ],
+          "clipped_alpha_nonzero_pixels": 67,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            264,
+            427
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              13,
+              448,
+              509
+            ],
+            "alpha32_bbox": [
+              108,
+              53,
+              372,
+              480
+            ],
+            "transparent_pixels": 169521,
+            "soft_alpha_pixels_below32": 21861,
+            "visible_alpha32_pixels": 70762
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            34,
+            36,
+            304,
+            468
+          ],
+          "translation": [
+            64,
+            12
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            270,
+            432
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              12,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              98,
+              48,
+              368,
+              480
+            ],
+            "transparent_pixels": 174572,
+            "soft_alpha_pixels_below32": 22007,
+            "visible_alpha32_pixels": 65565
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            37,
+            319,
+            467
+          ],
+          "translation": [
+            64,
+            13
+          ],
+          "clipped_alpha_nonzero_pixels": 35,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            278,
+            430
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              13,
+              436,
+              509
+            ],
+            "alpha32_bbox": [
+              105,
+              50,
+              383,
+              480
+            ],
+            "transparent_pixels": 166775,
+            "soft_alpha_pixels_below32": 21998,
+            "visible_alpha32_pixels": 73371
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 1012,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.848281,
+              "rgb_mae_visible_overlap": 41.403361
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.81203,
+              "rgb_mae_visible_overlap": 36.623278
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.88032,
+              "rgb_mae_visible_overlap": 36.067823
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.726456,
+              "rgb_mae_visible_overlap": 29.700153
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.803494,
+              "rgb_mae_visible_overlap": 27.112087
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.829598,
+              "rgb_mae_visible_overlap": 38.193863
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.838678,
+              "rgb_mae_visible_overlap": 38.459118
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.741202,
+            "rgb_mae_visible_overlap": 49.306342
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/chair_spin-light.jpg",
+          "qc/chair_spin-dark.jpg"
+        ]
+      },
+      "notes": "Cáo ngồi trên ghế có sẵn; không vẽ thêm ghế/bàn chồng lên.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/chair_spin-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/chair_spin.mov",
+      "preview": "previews/chair_spin.mp4",
+      "preview_light": "previews/chair_spin-light.mp4"
+    },
+    {
+      "id": "stand_up",
+      "label": "Đứng dậy từ ghế",
+      "frames": [
+        "frames/stand_up/0001.png",
+        "frames/stand_up/0002.png",
+        "frames/stand_up/0003.png",
+        "frames/stand_up/0004.png",
+        "frames/stand_up/0005.png",
+        "frames/stand_up/0006.png",
+        "frames/stand_up/0007.png",
+        "frames/stand_up/0008.png"
+      ],
+      "frame_sha256": [
+        "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+        "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+        "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+        "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+        "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+        "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+        "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+        "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+      ],
+      "fps": 6,
+      "loop": false,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/stand_up-raw-v1.png",
+      "source_sha256": "5fbf3eb82983bdc783ccc0398c8dfadae2966811624336fca947cd12cdffa21f",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            46,
+            334,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 7,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            287,
+            435
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              45,
+              398,
+              480
+            ],
+            "transparent_pixels": 148164,
+            "soft_alpha_pixels_below32": 28293,
+            "visible_alpha32_pixels": 85687
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            62,
+            338,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 20,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            291,
+            419
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              61,
+              402,
+              480
+            ],
+            "transparent_pixels": 139046,
+            "soft_alpha_pixels_below32": 38620,
+            "visible_alpha32_pixels": 84478
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            69,
+            353,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            306,
+            412
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              6,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              68,
+              417,
+              480
+            ],
+            "transparent_pixels": 141486,
+            "soft_alpha_pixels_below32": 36453,
+            "visible_alpha32_pixels": 84205
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            44,
+            362,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 92,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            315,
+            435
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              447,
+              512
+            ],
+            "alpha32_bbox": [
+              111,
+              45,
+              426,
+              480
+            ],
+            "transparent_pixels": 147721,
+            "soft_alpha_pixels_below32": 27967,
+            "visible_alpha32_pixels": 86456
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            38,
+            352,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 51,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            305,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              37,
+              416,
+              480
+            ],
+            "transparent_pixels": 136809,
+            "soft_alpha_pixels_below32": 38013,
+            "visible_alpha32_pixels": 87322
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            27,
+            337,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 37,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            290,
+            454
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              26,
+              401,
+              480
+            ],
+            "transparent_pixels": 132289,
+            "soft_alpha_pixels_below32": 42554,
+            "visible_alpha32_pixels": 87301
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            22,
+            327,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 28,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            280,
+            459
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              21,
+              391,
+              480
+            ],
+            "transparent_pixels": 143557,
+            "soft_alpha_pixels_below32": 30723,
+            "visible_alpha32_pixels": 87864
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            21,
+            320,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 54,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            273,
+            460
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              447,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              20,
+              384,
+              480
+            ],
+            "transparent_pixels": 147845,
+            "soft_alpha_pixels_below32": 26291,
+            "visible_alpha32_pixels": 88008
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 289,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.784243,
+              "rgb_mae_visible_overlap": 32.305746
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.912311,
+              "rgb_mae_visible_overlap": 27.716248
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.872844,
+              "rgb_mae_visible_overlap": 31.079309
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.915901,
+              "rgb_mae_visible_overlap": 24.121473
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.906032,
+              "rgb_mae_visible_overlap": 27.599845
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.932535,
+              "rgb_mae_visible_overlap": 25.89413
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.943788,
+              "rgb_mae_visible_overlap": 19.628322
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.803724,
+            "rgb_mae_visible_overlap": 42.054391
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/stand_up-light.jpg",
+          "qc/stand_up-dark.jpg"
+        ]
+      },
+      "notes": "Phát một lần, giữ pose cuối. Ghế vẫn ở trong ảnh.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/stand_up-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/stand_up.mov",
+      "preview": "previews/stand_up.mp4",
+      "preview_light": "previews/stand_up-light.mp4"
+    },
+    {
+      "id": "sit_down",
+      "label": "Ngồi xuống ghế",
+      "frames": [
+        "frames/sit_down/0001.png",
+        "frames/sit_down/0002.png",
+        "frames/sit_down/0003.png",
+        "frames/sit_down/0004.png",
+        "frames/sit_down/0005.png",
+        "frames/sit_down/0006.png",
+        "frames/sit_down/0007.png",
+        "frames/sit_down/0008.png"
+      ],
+      "frame_sha256": [
+        "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+        "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+        "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+        "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+        "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+        "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+        "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+        "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+      ],
+      "fps": 6,
+      "loop": false,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/stand_up-raw-v1.png",
+      "source_sha256": "5fbf3eb82983bdc783ccc0398c8dfadae2966811624336fca947cd12cdffa21f",
+      "source_reverse": true,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            21,
+            320,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 54,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            273,
+            460
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              447,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              20,
+              384,
+              480
+            ],
+            "transparent_pixels": 147845,
+            "soft_alpha_pixels_below32": 26291,
+            "visible_alpha32_pixels": 88008
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            22,
+            327,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 28,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            280,
+            459
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              21,
+              391,
+              480
+            ],
+            "transparent_pixels": 143557,
+            "soft_alpha_pixels_below32": 30723,
+            "visible_alpha32_pixels": 87864
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            27,
+            337,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 37,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            290,
+            454
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              26,
+              401,
+              480
+            ],
+            "transparent_pixels": 132289,
+            "soft_alpha_pixels_below32": 42554,
+            "visible_alpha32_pixels": 87301
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            38,
+            352,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 51,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            305,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              37,
+              416,
+              480
+            ],
+            "transparent_pixels": 136809,
+            "soft_alpha_pixels_below32": 38013,
+            "visible_alpha32_pixels": 87322
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            44,
+            362,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 92,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            315,
+            435
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              447,
+              512
+            ],
+            "alpha32_bbox": [
+              111,
+              45,
+              426,
+              480
+            ],
+            "transparent_pixels": 147721,
+            "soft_alpha_pixels_below32": 27967,
+            "visible_alpha32_pixels": 86456
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            69,
+            353,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            306,
+            412
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              6,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              68,
+              417,
+              480
+            ],
+            "transparent_pixels": 141486,
+            "soft_alpha_pixels_below32": 36453,
+            "visible_alpha32_pixels": 84205
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            62,
+            338,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 20,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            291,
+            419
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              61,
+              402,
+              480
+            ],
+            "transparent_pixels": 139046,
+            "soft_alpha_pixels_below32": 38620,
+            "visible_alpha32_pixels": 84478
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            46,
+            334,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 7,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            287,
+            435
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              111,
+              45,
+              398,
+              480
+            ],
+            "transparent_pixels": 148164,
+            "soft_alpha_pixels_below32": 28293,
+            "visible_alpha32_pixels": 85687
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 289,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.943788,
+              "rgb_mae_visible_overlap": 19.628322
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.932535,
+              "rgb_mae_visible_overlap": 25.89413
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.906032,
+              "rgb_mae_visible_overlap": 27.599845
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.915901,
+              "rgb_mae_visible_overlap": 24.121473
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.872844,
+              "rgb_mae_visible_overlap": 31.079309
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.912311,
+              "rgb_mae_visible_overlap": 27.716248
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.784243,
+              "rgb_mae_visible_overlap": 32.305746
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.803724,
+            "rgb_mae_visible_overlap": 42.054391
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/sit_down-light.jpg",
+          "qc/sit_down-dark.jpg"
+        ]
+      },
+      "notes": "Đảo thứ tự frame của stand_up, không tạo thêm frame độc lập. Ghế vẫn trong ảnh.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/sit_down-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/sit_down.mov",
+      "preview": "previews/sit_down.mp4",
+      "preview_light": "previews/sit_down-light.mp4"
+    },
+    {
+      "id": "walk",
+      "label": "Đi bộ tại chỗ",
+      "frames": [
+        "frames/walk/0001.png",
+        "frames/walk/0002.png",
+        "frames/walk/0003.png",
+        "frames/walk/0004.png",
+        "frames/walk/0005.png",
+        "frames/walk/0006.png",
+        "frames/walk/0007.png",
+        "frames/walk/0008.png"
+      ],
+      "frame_sha256": [
+        "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+        "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+        "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+        "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+        "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+        "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+        "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+        "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+      ],
+      "fps": 8,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/walk-raw-v1.png",
+      "source_sha256": "3cf2270234087b2613e7f823381194300a11e11d1e36d3629cc1fcfa54616677",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          456,
+          472
+        ],
+        "subject_width_range": [
+          286,
+          307
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            23,
+            15,
+            330,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            307,
+            470
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              8,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              87,
+              10,
+              394,
+              480
+            ],
+            "transparent_pixels": 162485,
+            "soft_alpha_pixels_below32": 18563,
+            "visible_alpha32_pixels": 81096
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            22,
+            15,
+            328,
+            483
+          ],
+          "translation": [
+            64,
+            -3
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            306,
+            468
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              6,
+              448,
+              509
+            ],
+            "alpha32_bbox": [
+              86,
+              12,
+              392,
+              480
+            ],
+            "transparent_pixels": 164575,
+            "soft_alpha_pixels_below32": 18568,
+            "visible_alpha32_pixels": 79001
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            20,
+            15,
+            319,
+            478
+          ],
+          "translation": [
+            64,
+            2
+          ],
+          "clipped_alpha_nonzero_pixels": 8,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            299,
+            463
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              2,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              84,
+              17,
+              383,
+              480
+            ],
+            "transparent_pixels": 164893,
+            "soft_alpha_pixels_below32": 22088,
+            "visible_alpha32_pixels": 75163
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            22,
+            14,
+            315,
+            470
+          ],
+          "translation": [
+            64,
+            10
+          ],
+          "clipped_alpha_nonzero_pixels": 180,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            293,
+            456
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              10,
+              430,
+              512
+            ],
+            "alpha32_bbox": [
+              86,
+              24,
+              379,
+              480
+            ],
+            "transparent_pixels": 171055,
+            "soft_alpha_pixels_below32": 14546,
+            "visible_alpha32_pixels": 76543
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            24,
+            15,
+            323,
+            487
+          ],
+          "translation": [
+            64,
+            -7
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            299,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              2,
+              448,
+              489
+            ],
+            "alpha32_bbox": [
+              88,
+              8,
+              387,
+              480
+            ],
+            "transparent_pixels": 159966,
+            "soft_alpha_pixels_below32": 20587,
+            "visible_alpha32_pixels": 81591
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            25,
+            15,
+            314,
+            483
+          ],
+          "translation": [
+            64,
+            -3
+          ],
+          "clipped_alpha_nonzero_pixels": 13,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            289,
+            468
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              489
+            ],
+            "alpha32_bbox": [
+              89,
+              12,
+              378,
+              480
+            ],
+            "transparent_pixels": 158395,
+            "soft_alpha_pixels_below32": 25246,
+            "visible_alpha32_pixels": 78503
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            25,
+            16,
+            313,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            288,
+            463
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              448,
+              494
+            ],
+            "alpha32_bbox": [
+              89,
+              17,
+              377,
+              480
+            ],
+            "transparent_pixels": 165753,
+            "soft_alpha_pixels_below32": 21600,
+            "visible_alpha32_pixels": 74791
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            27,
+            14,
+            313,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            286,
+            465
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              445,
+              495
+            ],
+            "alpha32_bbox": [
+              91,
+              15,
+              377,
+              480
+            ],
+            "transparent_pixels": 167841,
+            "soft_alpha_pixels_below32": 16960,
+            "visible_alpha32_pixels": 77343
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 201,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.898391,
+              "rgb_mae_visible_overlap": 14.558581
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.874904,
+              "rgb_mae_visible_overlap": 22.997099
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.8686,
+              "rgb_mae_visible_overlap": 26.69067
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.786966,
+              "rgb_mae_visible_overlap": 36.387325
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.834447,
+              "rgb_mae_visible_overlap": 24.479043
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.866775,
+              "rgb_mae_visible_overlap": 25.479181
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.843914,
+              "rgb_mae_visible_overlap": 16.580633
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.796707,
+            "rgb_mae_visible_overlap": 26.501291
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/walk-light.jpg",
+          "qc/walk-dark.jpg"
+        ]
+      },
+      "notes": "Di chuyển tại chỗ; producer thêm chuyển vị toàn lớp nếu cần đi qua cảnh.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/walk-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/walk.mov",
+      "preview": "previews/walk.mp4",
+      "preview_light": "previews/walk-light.mp4"
+    },
+    {
+      "id": "idle_blink",
+      "label": "Đứng dẫn chuyện, chớp mắt",
+      "frames": [
+        "frames/idle_blink/0001.png",
+        "frames/idle_blink/0002.png",
+        "frames/idle_blink/0003.png",
+        "frames/idle_blink/0004.png",
+        "frames/idle_blink/0005.png",
+        "frames/idle_blink/0006.png",
+        "frames/idle_blink/0007.png",
+        "frames/idle_blink/0008.png"
+      ],
+      "frame_sha256": [
+        "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+        "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+        "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+        "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+        "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+        "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+        "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+        "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+      ],
+      "fps": 4,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/idle_blink-raw-v1.png",
+      "source_sha256": "fa679859dd4908e2b6773482677fe5efb8a167b0ea39bca8808bdb21146407c1",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          472,
+          473
+        ],
+        "subject_width_range": [
+          304,
+          305
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            31,
+            12,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            473
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              95,
+              7,
+              399,
+              480
+            ],
+            "transparent_pixels": 142989,
+            "soft_alpha_pixels_below32": 31472,
+            "visible_alpha32_pixels": 87683
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            31,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              95,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 145118,
+            "soft_alpha_pixels_below32": 29362,
+            "visible_alpha32_pixels": 87664
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            31,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              95,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 143347,
+            "soft_alpha_pixels_below32": 31150,
+            "visible_alpha32_pixels": 87647
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            31,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              442,
+              507
+            ],
+            "alpha32_bbox": [
+              95,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 138597,
+            "soft_alpha_pixels_below32": 35944,
+            "visible_alpha32_pixels": 87603
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            31,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 3,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            304,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              95,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 147702,
+            "soft_alpha_pixels_below32": 26869,
+            "visible_alpha32_pixels": 87573
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            30,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 2,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            305,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              2,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              94,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 151145,
+            "soft_alpha_pixels_below32": 23502,
+            "visible_alpha32_pixels": 87497
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            30,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 3,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            305,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              491
+            ],
+            "alpha32_bbox": [
+              94,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 148790,
+            "soft_alpha_pixels_below32": 25844,
+            "visible_alpha32_pixels": 87510
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            30,
+            13,
+            335,
+            485
+          ],
+          "translation": [
+            64,
+            -5
+          ],
+          "clipped_alpha_nonzero_pixels": 17,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            305,
+            472
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              442,
+              493
+            ],
+            "alpha32_bbox": [
+              94,
+              8,
+              399,
+              480
+            ],
+            "transparent_pixels": 149318,
+            "soft_alpha_pixels_below32": 25325,
+            "visible_alpha32_pixels": 87501
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 25,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.996141,
+              "rgb_mae_visible_overlap": 4.009226
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.996186,
+              "rgb_mae_visible_overlap": 5.318402
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.9964,
+              "rgb_mae_visible_overlap": 5.403203
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.995148,
+              "rgb_mae_visible_overlap": 6.618621
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.99585,
+              "rgb_mae_visible_overlap": 5.653471
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.996612,
+              "rgb_mae_visible_overlap": 3.623223
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.996566,
+              "rgb_mae_visible_overlap": 3.498739
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.994785,
+            "rgb_mae_visible_overlap": 4.746659
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/idle_blink-light.jpg",
+          "qc/idle_blink-dark.jpg"
+        ]
+      },
+      "notes": "Không khớp miệng theo giọng đọc.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/idle_blink-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/idle_blink.mov",
+      "preview": "previews/idle_blink.mp4",
+      "preview_light": "previews/idle_blink-light.mp4"
+    },
+    {
+      "id": "point_present",
+      "label": "Giơ tay chỉ dẫn",
+      "frames": [
+        "frames/point_present/0001.png",
+        "frames/point_present/0002.png",
+        "frames/point_present/0003.png",
+        "frames/point_present/0004.png",
+        "frames/point_present/0005.png",
+        "frames/point_present/0006.png",
+        "frames/point_present/0007.png",
+        "frames/point_present/0008.png"
+      ],
+      "frame_sha256": [
+        "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+        "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+        "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+        "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+        "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+        "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+        "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+        "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+      ],
+      "fps": 6,
+      "loop": false,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/point_present-raw-v1.png",
+      "source_sha256": "6e167878b7d06b4e2095db0127443b528ea44b29beb8364b24124c4bffcc5500",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          445
+        ],
+        "subject_width_range": [
+          271,
+          312
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            317,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 1,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            271,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              381,
+              480
+            ],
+            "transparent_pixels": 174041,
+            "soft_alpha_pixels_below32": 10176,
+            "visible_alpha32_pixels": 77927
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            323,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 4,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            277,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              387,
+              480
+            ],
+            "transparent_pixels": 172410,
+            "soft_alpha_pixels_below32": 12023,
+            "visible_alpha32_pixels": 77711
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            338,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 3,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            292,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              448,
+              510
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              402,
+              480
+            ],
+            "transparent_pixels": 174242,
+            "soft_alpha_pixels_below32": 10108,
+            "visible_alpha32_pixels": 77794
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            340,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 9,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            294,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              33,
+              442,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              404,
+              480
+            ],
+            "transparent_pixels": 169490,
+            "soft_alpha_pixels_below32": 14925,
+            "visible_alpha32_pixels": 77729
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            339,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            293,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              79,
+              6,
+              448,
+              486
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              403,
+              480
+            ],
+            "transparent_pixels": 174694,
+            "soft_alpha_pixels_below32": 9627,
+            "visible_alpha32_pixels": 77823
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            348,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            302,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              65,
+              15,
+              448,
+              486
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              412,
+              480
+            ],
+            "transparent_pixels": 175261,
+            "soft_alpha_pixels_below32": 9019,
+            "visible_alpha32_pixels": 77864
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            355,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            309,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              65,
+              26,
+              448,
+              500
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              419,
+              480
+            ],
+            "transparent_pixels": 175487,
+            "soft_alpha_pixels_below32": 8564,
+            "visible_alpha32_pixels": 78093
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            29,
+            358,
+            474
+          ],
+          "translation": [
+            64,
+            6
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            312,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              71,
+              23,
+              426,
+              494
+            ],
+            "alpha32_bbox": [
+              110,
+              35,
+              422,
+              480
+            ],
+            "transparent_pixels": 173384,
+            "soft_alpha_pixels_below32": 10595,
+            "visible_alpha32_pixels": 78165
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 17,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.969677,
+              "rgb_mae_visible_overlap": 4.639768
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.958649,
+              "rgb_mae_visible_overlap": 4.543877
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.955797,
+              "rgb_mae_visible_overlap": 4.855837
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.966051,
+              "rgb_mae_visible_overlap": 6.787766
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.975347,
+              "rgb_mae_visible_overlap": 4.931132
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.977669,
+              "rgb_mae_visible_overlap": 4.640994
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.995326,
+              "rgb_mae_visible_overlap": 3.851756
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.923215,
+            "rgb_mae_visible_overlap": 6.892033
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/point_present-light.jpg",
+          "qc/point_present-dark.jpg"
+        ]
+      },
+      "notes": "Chỉ về phía phải màn hình, giữ pose cuối; không có bảng tích hợp.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/point_present-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/point_present.mov",
+      "preview": "previews/point_present.mp4",
+      "preview_light": "previews/point_present-light.mp4"
+    },
+    {
+      "id": "bow",
+      "label": "Cúi chào",
+      "frames": [
+        "frames/bow/0001.png",
+        "frames/bow/0002.png",
+        "frames/bow/0003.png",
+        "frames/bow/0004.png",
+        "frames/bow/0005.png",
+        "frames/bow/0006.png",
+        "frames/bow/0007.png",
+        "frames/bow/0008.png"
+      ],
+      "frame_sha256": [
+        "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+        "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+        "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+        "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+        "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+        "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+        "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+        "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+      ],
+      "fps": 6,
+      "loop": false,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/bow-raw-v1.png",
+      "source_sha256": "eb07bb2b833c1b1fbad6c72ae73870603ab123ed1d0918f7cff9b6c77437b297",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          373,
+          454
+        ],
+        "subject_width_range": [
+          261,
+          301
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            53,
+            27,
+            314,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            261,
+            453
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              17,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              117,
+              27,
+              378,
+              480
+            ],
+            "transparent_pixels": 150771,
+            "soft_alpha_pixels_below32": 37894,
+            "visible_alpha32_pixels": 73479
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            48,
+            33,
+            320,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            272,
+            448
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              17,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              112,
+              32,
+              384,
+              480
+            ],
+            "transparent_pixels": 148240,
+            "soft_alpha_pixels_below32": 42053,
+            "visible_alpha32_pixels": 71851
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            41,
+            66,
+            325,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            284,
+            415
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              6,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              105,
+              65,
+              389,
+              480
+            ],
+            "transparent_pixels": 154418,
+            "soft_alpha_pixels_below32": 38262,
+            "visible_alpha32_pixels": 69464
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            39,
+            99,
+            339,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            300,
+            382
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              7,
+              438,
+              511
+            ],
+            "alpha32_bbox": [
+              103,
+              98,
+              403,
+              480
+            ],
+            "transparent_pixels": 174836,
+            "soft_alpha_pixels_below32": 22988,
+            "visible_alpha32_pixels": 64320
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            43,
+            107,
+            344,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            301,
+            373
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              107,
+              107,
+              408,
+              480
+            ],
+            "transparent_pixels": 173793,
+            "soft_alpha_pixels_below32": 24715,
+            "visible_alpha32_pixels": 63636
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            43,
+            72,
+            321,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            278,
+            408
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              107,
+              72,
+              385,
+              480
+            ],
+            "transparent_pixels": 159317,
+            "soft_alpha_pixels_below32": 35048,
+            "visible_alpha32_pixels": 67779
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            37,
+            38,
+            312,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            275,
+            442
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              101,
+              38,
+              376,
+              480
+            ],
+            "transparent_pixels": 158661,
+            "soft_alpha_pixels_below32": 32880,
+            "visible_alpha32_pixels": 70603
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            33,
+            26,
+            300,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            267,
+            454
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              490
+            ],
+            "alpha32_bbox": [
+              97,
+              26,
+              364,
+              480
+            ],
+            "transparent_pixels": 160153,
+            "soft_alpha_pixels_below32": 27867,
+            "visible_alpha32_pixels": 74124
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 0,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.861129,
+              "rgb_mae_visible_overlap": 42.511741
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.804628,
+              "rgb_mae_visible_overlap": 44.982388
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.77202,
+              "rgb_mae_visible_overlap": 47.203331
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.90272,
+              "rgb_mae_visible_overlap": 28.24582
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.794135,
+              "rgb_mae_visible_overlap": 40.891097
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.802295,
+              "rgb_mae_visible_overlap": 42.280234
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.852292,
+              "rgb_mae_visible_overlap": 41.415905
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.805298,
+            "rgb_mae_visible_overlap": 42.558418
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/bow-light.jpg",
+          "qc/bow-dark.jpg"
+        ]
+      },
+      "notes": "Cúi rồi đứng lại; phát một lần.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/bow-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/bow.mov",
+      "preview": "previews/bow.mp4",
+      "preview_light": "previews/bow-light.mp4"
+    },
+    {
+      "id": "nod",
+      "label": "Gật đầu",
+      "frames": [
+        "frames/nod/0001.png",
+        "frames/nod/0002.png",
+        "frames/nod/0003.png",
+        "frames/nod/0004.png",
+        "frames/nod/0005.png",
+        "frames/nod/0006.png",
+        "frames/nod/0007.png",
+        "frames/nod/0008.png"
+      ],
+      "frame_sha256": [
+        "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+        "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+        "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+        "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+        "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+        "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+        "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+        "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+      ],
+      "fps": 6,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/nod-raw-v1.png",
+      "source_sha256": "ba750dd0c46127ea76e6e72a1b26c5d700f2635214bacecac0e42107b6352a9a",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          423,
+          455
+        ],
+        "subject_width_range": [
+          280,
+          283
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            20,
+            329,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 81,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            455
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              20,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              25,
+              393,
+              480
+            ],
+            "transparent_pixels": 149028,
+            "soft_alpha_pixels_below32": 31494,
+            "visible_alpha32_pixels": 81622
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            27,
+            329,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 149,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            448
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              24,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              32,
+              393,
+              480
+            ],
+            "transparent_pixels": 150018,
+            "soft_alpha_pixels_below32": 31795,
+            "visible_alpha32_pixels": 80331
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            39,
+            327,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 86,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            281,
+            436
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              20,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              110,
+              44,
+              391,
+              480
+            ],
+            "transparent_pixels": 147853,
+            "soft_alpha_pixels_below32": 34958,
+            "visible_alpha32_pixels": 79333
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            45,
+            51,
+            326,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 10,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            281,
+            424
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              24,
+              442,
+              512
+            ],
+            "alpha32_bbox": [
+              109,
+              56,
+              390,
+              480
+            ],
+            "transparent_pixels": 159214,
+            "soft_alpha_pixels_below32": 24668,
+            "visible_alpha32_pixels": 78262
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            52,
+            326,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 14,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            280,
+            423
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              501
+            ],
+            "alpha32_bbox": [
+              110,
+              57,
+              390,
+              480
+            ],
+            "transparent_pixels": 154805,
+            "soft_alpha_pixels_below32": 29638,
+            "visible_alpha32_pixels": 77701
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            39,
+            327,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 31,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            281,
+            436
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              495
+            ],
+            "alpha32_bbox": [
+              110,
+              44,
+              391,
+              480
+            ],
+            "transparent_pixels": 157494,
+            "soft_alpha_pixels_below32": 25866,
+            "visible_alpha32_pixels": 78784
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            27,
+            329,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 56,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            448
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              493
+            ],
+            "alpha32_bbox": [
+              110,
+              32,
+              393,
+              480
+            ],
+            "transparent_pixels": 152249,
+            "soft_alpha_pixels_below32": 29620,
+            "visible_alpha32_pixels": 80275
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            46,
+            22,
+            329,
+            475
+          ],
+          "translation": [
+            64,
+            5
+          ],
+          "clipped_alpha_nonzero_pixels": 34,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            453
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              6,
+              447,
+              499
+            ],
+            "alpha32_bbox": [
+              110,
+              27,
+              393,
+              480
+            ],
+            "transparent_pixels": 155239,
+            "soft_alpha_pixels_below32": 25819,
+            "visible_alpha32_pixels": 81086
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 461,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.961379,
+              "rgb_mae_visible_overlap": 23.516477
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.93887,
+              "rgb_mae_visible_overlap": 27.652168
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.951665,
+              "rgb_mae_visible_overlap": 25.628855
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.98973,
+              "rgb_mae_visible_overlap": 7.816226
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.937247,
+              "rgb_mae_visible_overlap": 28.796354
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.94985,
+              "rgb_mae_visible_overlap": 25.395161
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.970918,
+              "rgb_mae_visible_overlap": 18.467916
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.984607,
+            "rgb_mae_visible_overlap": 13.059046
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/nod-light.jpg",
+          "qc/nod-dark.jpg"
+        ]
+      },
+      "notes": "Gật đầu nhẹ, thân đứng yên.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/nod-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/nod.mov",
+      "preview": "previews/nod.mp4",
+      "preview_light": "previews/nod-light.mp4"
+    },
+    {
+      "id": "turn",
+      "label": "Quay người một vòng",
+      "frames": [
+        "frames/turn/0001.png",
+        "frames/turn/0002.png",
+        "frames/turn/0003.png",
+        "frames/turn/0004.png",
+        "frames/turn/0005.png",
+        "frames/turn/0006.png",
+        "frames/turn/0007.png",
+        "frames/turn/0008.png"
+      ],
+      "frame_sha256": [
+        "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+        "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+        "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+        "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+        "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+        "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+        "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+        "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+      ],
+      "fps": 6,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/turn-raw-v1.png",
+      "source_sha256": "7d8381f0de8a32b57444c136021b47766e9ca7731c70e4712217602f246da90a",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          450
+        ],
+        "subject_width_range": [
+          217,
+          274
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            60,
+            32,
+            321,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 8,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            261,
+            447
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              10,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              124,
+              33,
+              385,
+              480
+            ],
+            "transparent_pixels": 155406,
+            "soft_alpha_pixels_below32": 28708,
+            "visible_alpha32_pixels": 78030
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            48,
+            32,
+            322,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            274,
+            448
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              112,
+              32,
+              386,
+              480
+            ],
+            "transparent_pixels": 148476,
+            "soft_alpha_pixels_below32": 34843,
+            "visible_alpha32_pixels": 78825
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            49,
+            35,
+            314,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            265,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              9,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              113,
+              35,
+              378,
+              480
+            ],
+            "transparent_pixels": 155443,
+            "soft_alpha_pixels_below32": 39060,
+            "visible_alpha32_pixels": 67641
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            64,
+            35,
+            305,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            241,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              17,
+              436,
+              512
+            ],
+            "alpha32_bbox": [
+              128,
+              35,
+              369,
+              480
+            ],
+            "transparent_pixels": 160087,
+            "soft_alpha_pixels_below32": 31018,
+            "visible_alpha32_pixels": 71039
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            95,
+            34,
+            312,
+            479
+          ],
+          "translation": [
+            64,
+            1
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            217,
+            445
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              448,
+              500
+            ],
+            "alpha32_bbox": [
+              159,
+              35,
+              376,
+              480
+            ],
+            "transparent_pixels": 168025,
+            "soft_alpha_pixels_below32": 22825,
+            "visible_alpha32_pixels": 71294
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            82,
+            32,
+            325,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            243,
+            448
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              146,
+              32,
+              389,
+              480
+            ],
+            "transparent_pixels": 164935,
+            "soft_alpha_pixels_below32": 23710,
+            "visible_alpha32_pixels": 73499
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            81,
+            33,
+            339,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            258,
+            447
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              145,
+              33,
+              403,
+              480
+            ],
+            "transparent_pixels": 155806,
+            "soft_alpha_pixels_below32": 39645,
+            "visible_alpha32_pixels": 66693
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            80,
+            31,
+            325,
+            481
+          ],
+          "translation": [
+            64,
+            -1
+          ],
+          "clipped_alpha_nonzero_pixels": 3,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            245,
+            450
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              447,
+              511
+            ],
+            "alpha32_bbox": [
+              144,
+              30,
+              389,
+              480
+            ],
+            "transparent_pixels": 164200,
+            "soft_alpha_pixels_below32": 24164,
+            "visible_alpha32_pixels": 73780
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 11,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.858075,
+              "rgb_mae_visible_overlap": 38.896908
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.778752,
+              "rgb_mae_visible_overlap": 45.692232
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.810278,
+              "rgb_mae_visible_overlap": 41.468432
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.757697,
+              "rgb_mae_visible_overlap": 52.004672
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.827133,
+              "rgb_mae_visible_overlap": 34.077817
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.765442,
+              "rgb_mae_visible_overlap": 43.779752
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.792891,
+              "rgb_mae_visible_overlap": 42.403801
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.714263,
+            "rgb_mae_visible_overlap": 51.948471
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/turn-light.jpg",
+          "qc/turn-dark.jpg"
+        ]
+      },
+      "notes": "Quay đứng tại chỗ, không có ghế.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/turn-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/turn.mov",
+      "preview": "previews/turn.mp4",
+      "preview_light": "previews/turn-light.mp4"
+    },
+    {
+      "id": "arms_up",
+      "label": "Giơ hai tay ăn mừng",
+      "frames": [
+        "frames/arms_up/0001.png",
+        "frames/arms_up/0002.png",
+        "frames/arms_up/0003.png",
+        "frames/arms_up/0004.png",
+        "frames/arms_up/0005.png",
+        "frames/arms_up/0006.png",
+        "frames/arms_up/0007.png",
+        "frames/arms_up/0008.png"
+      ],
+      "frame_sha256": [
+        "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+        "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+        "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+        "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+        "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+        "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+        "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+        "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+      ],
+      "fps": 6,
+      "loop": false,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/arms_up-raw-v1.png",
+      "source_sha256": "bf47bbe21b217c5306a6f7e6ad62b64769851ed593084340919760219c370dbf",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          443,
+          443
+        ],
+        "subject_width_range": [
+          253,
+          317
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            56,
+            26,
+            309,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 199,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            253,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              11,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              120,
+              37,
+              373,
+              480
+            ],
+            "transparent_pixels": 133180,
+            "soft_alpha_pixels_below32": 55964,
+            "visible_alpha32_pixels": 73000
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            56,
+            26,
+            309,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 178,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            253,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              18,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              120,
+              37,
+              373,
+              480
+            ],
+            "transparent_pixels": 134963,
+            "soft_alpha_pixels_below32": 55340,
+            "visible_alpha32_pixels": 71841
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            55,
+            26,
+            325,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 118,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            270,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              28,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              119,
+              37,
+              389,
+              480
+            ],
+            "transparent_pixels": 143954,
+            "soft_alpha_pixels_below32": 43470,
+            "visible_alpha32_pixels": 74720
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            56,
+            26,
+            339,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 88,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            283,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              26,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              120,
+              37,
+              403,
+              480
+            ],
+            "transparent_pixels": 143621,
+            "soft_alpha_pixels_below32": 41951,
+            "visible_alpha32_pixels": 76572
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            56,
+            26,
+            362,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 43,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            306,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              11,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              120,
+              37,
+              426,
+              480
+            ],
+            "transparent_pixels": 131757,
+            "soft_alpha_pixels_below32": 51804,
+            "visible_alpha32_pixels": 78583
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            49,
+            26,
+            361,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 25,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            312,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              11,
+              448,
+              505
+            ],
+            "alpha32_bbox": [
+              113,
+              37,
+              425,
+              480
+            ],
+            "transparent_pixels": 133785,
+            "soft_alpha_pixels_below32": 49517,
+            "visible_alpha32_pixels": 78842
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            47,
+            26,
+            364,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 66,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            317,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              11,
+              448,
+              507
+            ],
+            "alpha32_bbox": [
+              111,
+              37,
+              428,
+              480
+            ],
+            "transparent_pixels": 136213,
+            "soft_alpha_pixels_below32": 46426,
+            "visible_alpha32_pixels": 79505
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            49,
+            26,
+            364,
+            469
+          ],
+          "translation": [
+            64,
+            11
+          ],
+          "clipped_alpha_nonzero_pixels": 21,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            315,
+            443
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              11,
+              448,
+              509
+            ],
+            "alpha32_bbox": [
+              113,
+              37,
+              428,
+              480
+            ],
+            "transparent_pixels": 145686,
+            "soft_alpha_pixels_below32": 37106,
+            "visible_alpha32_pixels": 79352
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 738,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.958793,
+              "rgb_mae_visible_overlap": 13.86802
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.944992,
+              "rgb_mae_visible_overlap": 9.468426
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.939417,
+              "rgb_mae_visible_overlap": 8.322339
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.908167,
+              "rgb_mae_visible_overlap": 8.285747
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.927881,
+              "rgb_mae_visible_overlap": 12.017109
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.952828,
+              "rgb_mae_visible_overlap": 11.292148
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.991363,
+              "rgb_mae_visible_overlap": 4.102052
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.8398,
+            "rgb_mae_visible_overlap": 12.629692
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/arms_up-light.jpg",
+          "qc/arms_up-dark.jpg"
+        ]
+      },
+      "notes": "Phát một lần, giữ tay giơ ở cuối.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/arms_up-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/arms_up.mov",
+      "preview": "previews/arms_up.mp4",
+      "preview_light": "previews/arms_up-light.mp4"
+    },
+    {
+      "id": "desk_typing",
+      "label": "Ngồi bàn gõ máy",
+      "frames": [
+        "frames/desk_typing/0001.png",
+        "frames/desk_typing/0002.png",
+        "frames/desk_typing/0003.png",
+        "frames/desk_typing/0004.png",
+        "frames/desk_typing/0005.png",
+        "frames/desk_typing/0006.png",
+        "frames/desk_typing/0007.png",
+        "frames/desk_typing/0008.png"
+      ],
+      "frame_sha256": [
+        "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+        "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+        "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+        "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+        "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+        "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+        "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+        "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+      ],
+      "fps": 8,
+      "loop": true,
+      "canvas": [
+        512,
+        512
+      ],
+      "anchor": [
+        256,
+        480
+      ],
+      "quality_status": "PASS",
+      "source": "generated/desk_typing-raw-v1.png",
+      "source_sha256": "1b3aa790426d91a4feca906151af02ba22e8c191118e710a5a5cd18432694093",
+      "source_reverse": false,
+      "generation": "imagegen built-in; exact FFmpeg crop/pad export; no intermediate frames invented",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          451,
+          452
+        ],
+        "subject_width_range": [
+          363,
+          363
+        ]
+      },
+      "frame_metrics": [
+        {
+          "frame": 1,
+          "atlas_cell_index": 1,
+          "source_rect": [
+            0,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            28,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            452
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              511
+            ],
+            "alpha32_bbox": [
+              77,
+              28,
+              440,
+              480
+            ],
+            "transparent_pixels": 143101,
+            "soft_alpha_pixels_below32": 25332,
+            "visible_alpha32_pixels": 93711
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 2,
+          "atlas_cell_index": 2,
+          "source_rect": [
+            384,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            29,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            451
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              29,
+              440,
+              480
+            ],
+            "transparent_pixels": 140743,
+            "soft_alpha_pixels_below32": 27781,
+            "visible_alpha32_pixels": 93620
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 3,
+          "atlas_cell_index": 3,
+          "source_rect": [
+            768,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            28,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            452
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              28,
+              440,
+              480
+            ],
+            "transparent_pixels": 141623,
+            "soft_alpha_pixels_below32": 26898,
+            "visible_alpha32_pixels": 93623
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 4,
+          "atlas_cell_index": 4,
+          "source_rect": [
+            1152,
+            0,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            28,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            452
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              19,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              28,
+              440,
+              480
+            ],
+            "transparent_pixels": 145018,
+            "soft_alpha_pixels_below32": 23458,
+            "visible_alpha32_pixels": 93668
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 5,
+          "atlas_cell_index": 5,
+          "source_rect": [
+            0,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            28,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            452
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              1,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              28,
+              440,
+              480
+            ],
+            "transparent_pixels": 145369,
+            "soft_alpha_pixels_below32": 23122,
+            "visible_alpha32_pixels": 93653
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 6,
+          "atlas_cell_index": 6,
+          "source_rect": [
+            384,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            29,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            451
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              29,
+              440,
+              480
+            ],
+            "transparent_pixels": 145175,
+            "soft_alpha_pixels_below32": 23357,
+            "visible_alpha32_pixels": 93612
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 7,
+          "atlas_cell_index": 7,
+          "source_rect": [
+            768,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            29,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            451
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              5,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              29,
+              440,
+              480
+            ],
+            "transparent_pixels": 146029,
+            "soft_alpha_pixels_below32": 22472,
+            "visible_alpha32_pixels": 93643
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        },
+        {
+          "frame": 8,
+          "atlas_cell_index": 8,
+          "source_rect": [
+            1152,
+            512,
+            384,
+            512
+          ],
+          "source_alpha32_bbox": [
+            13,
+            29,
+            376,
+            480
+          ],
+          "translation": [
+            64,
+            0
+          ],
+          "clipped_alpha_nonzero_pixels": 0,
+          "clipped_alpha32_pixels": 0,
+          "source_visible_touches_cell_boundary": false,
+          "native_subject_size": [
+            363,
+            451
+          ],
+          "export": {
+            "size": [
+              512,
+              512
+            ],
+            "alpha_extrema": [
+              0,
+              254
+            ],
+            "alpha_nonzero_bbox": [
+              64,
+              0,
+              448,
+              512
+            ],
+            "alpha32_bbox": [
+              77,
+              29,
+              440,
+              480
+            ],
+            "transparent_pixels": 148965,
+            "soft_alpha_pixels_below32": 19560,
+            "visible_alpha32_pixels": 93619
+          },
+          "pixel_verification": {
+            "retained_rgba_pixel_mismatches": 0,
+            "padding_alpha_zero": true
+          }
+        }
+      ],
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 0,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.996643,
+              "rgb_mae_visible_overlap": 4.676609
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.997088,
+              "rgb_mae_visible_overlap": 4.269562
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.996919,
+              "rgb_mae_visible_overlap": 3.926799
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.995366,
+              "rgb_mae_visible_overlap": 4.529578
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.99711,
+              "rgb_mae_visible_overlap": 4.575748
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.997387,
+              "rgb_mae_visible_overlap": 4.276563
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.996865,
+              "rgb_mae_visible_overlap": 3.736048
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.994421,
+            "rgb_mae_visible_overlap": 4.615237
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/desk_typing-light.jpg",
+          "qc/desk_typing-dark.jpg"
+        ]
+      },
+      "notes": "Bàn, ghế và laptop có sẵn trong ảnh; không vẽ chồng thêm. Chuyển động tay nhỏ.",
+      "reviewed_by": "Codex root + independent production_tools visual review",
+      "review_notes": [
+        "PASS for stylized keyframe animation at native display size; actual decoded previews inspected on light/dark backgrounds.",
+        "Full-body/props intact; ordered motion matches action; source FPS and native pixel size explicitly retained.",
+        "Not audio lip sync; source has 8 keyframes per motion. No inferred high-resolution or 30fps original frames."
+      ],
+      "review": {
+        "evidence": "qc/animation-review.json",
+        "montage": "qc/desk_typing-review.png",
+        "scope": "native-scale asset QC, not storyboard/video publication approval"
+      },
+      "clip": "clips/desk_typing.mov",
+      "preview": "previews/desk_typing.mp4",
+      "preview_light": "previews/desk_typing-light.mp4"
+    }
+  ],
+  "summary": {
+    "animations": 12,
+    "frames": 96,
+    "unique_frame_sha256": 88,
+    "reversed_sequence_frame_files": 8,
+    "pass": 12,
+    "failed": 0,
+    "review_required": 0
+  },
+  "ai_generated_content": true,
+  "ai_disclosure": "Hình ảnh Cáo được tạo bằng AI (Codex imagegen).",
+  "production_use": "Ready alpha overlays via tools/fox/animate.mjs or clips/*.mov. Remotion pose IDs are separate; no studio code changed."
+}

@@ -1,0 +1,9 @@
+{
+  "id": "nod",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-3a5df12f-9be4-4b58-9560-eef490e3443a.png",
+  "workspace_file": "brand/cao/production-pack/generated/nod-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Create ONE production PNG sprite atlas with real transparent alpha. Strict identity reference: same orange officefox, fluffywhite muzzle/chest/tailtip, roundblackglasses,white shortsleevedshirt,navytie,IDbadge,wristwatch,darktrousers,blackshoes,3Dfilmrender. EXACTLY8 sequentialframes in uniform4columns×2rows,landscape1536x1024. Fullbody onefox eachcell,samefixedcamera,scale,groundlineandposition,10%emptymargins. Absolutely no backgroundcolor,floor,shadows,grid,text,captions,numbers or watermarks. Preservecomplete ears/tail/feet, noextra limbs. Animate a small friendly nod while standing still at threequarterfront. Armsrelaxeddown,closedmouthsmile.Bodyandglassesidentical. Onlyheadnods modestly atneck. Frame1headneutral;2startdown;3downabout10degrees;4lowest15degrees;5holdlowest;6rises;7almostneutral;8neutral. Do notbowatthewaist; torso remainsuprightandfeetfixed. Firstandlastmatch,usableasloop.",
+  "ai_generated_content": true
+}

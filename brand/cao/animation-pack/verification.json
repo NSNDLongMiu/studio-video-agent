@@ -1,0 +1,16 @@
+{
+  "source_originals_sha256_match": true,
+  "source_and_archive_files": 467,
+  "readable_frame_pngs": 457,
+  "rejected_pngs": 2,
+  "contact_sheets": 12,
+  "csv_png_records": 465,
+  "existing_pose_alternatives_verified": 15,
+  "tests": {
+    "command": "node --test tools/fox/test/*.test.mjs (PATH uses full installed FFmpeg)",
+    "passed": 10,
+    "failed": 0
+  },
+  "technical_examples": "../animation-pack-examples/measurements.json",
+  "production_ready": false
+}

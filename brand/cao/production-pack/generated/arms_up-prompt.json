@@ -1,0 +1,9 @@
+{
+  "id": "arms_up",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-c10c4d86-57b8-40dd-8529-e05d759f95fd.png",
+  "workspace_file": "brand/cao/production-pack/generated/arms_up-raw-v1.png",
+  "prompt": "Use case:stylized-concept. Production transparent sprite atlas for officefox celebration.\nStrictidentityfromreference:orangefluffyfur,whitemuzzle/chest/tailtip,large roundblackglasses,whiteshortsleeveshirt,navytie,IDbadge,wristwatch,darktrousers,blackdressshoes,same3Dfilmstyleandproportions.\nCreate8orderedanimationframes in precise4columns×2rows uniformatlas,landscape1536x1024. Fullbodyonefoxeverycell. Samefixedcamera,samefeetbaseline,samebodysizeandposition,10%transparentpadding.\nAction:raisenbothhands joyfullytocelebrate withoutjumping. Frame1armsdownsmallsmile;2elbowsbendhandsatchest;3handsreachshoulders;4botharmsraisebesidehead;5bothhandsuphighopenpalms;6fullcelebrationhandsupwithhappyeyes;7relaxedfinalhandsup;8holdhandsup. Keep complete hands and earsinsidecell,normalanatomy,fivefingersmaximumperhand,noextrafloatingprops. Feetremainplanted; no confetti,symbols,stars,heartsortext. Mouthhappybutnoaudio/lipsync.\nActualtransparentALPHABACKGROUND,nobgcolor,gradient,floor,shadows,gridlines,captions,numbering,checkerboard or watermark.",
+  "ai_generated_content": true
+}

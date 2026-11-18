@@ -1,0 +1,9 @@
+{
+  "id": "chair_spin",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-fb7a4159-c7d5-4647-b068-e4ae8ec345e3.png",
+  "workspace_file": "brand/cao/production-pack/generated/chair_spin-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Asset: true-alpha sprite atlas for a looping office-chair rotation.\nUse reference image1 ONLY for office fox identity, and image2 ONLY for chair shape and seated rotation idea. Orange fluffy office fox, white muzzle/chest and tailtip, round black glasses, white short sleeved shirt, navy tie, charcoal trousers, black shoes, wristwatch and employee badge. Exactly same fox and BLACK padded five-wheel swivel OFFICE CHAIR in all eight frames.\nRender an atlas of EIGHT successive rotation keyframes in exactly FOUR columns by TWO rows. Full character+chair fits within each cell; fixed orthographic camera, fixed chair axle, identical scale, generous transparent margins. The chair wheelbase remains on exactly the same ground line. No zoom, translation or changing seat size. The fox remains seated, both hands resting on chair armrests. Sequence degrees row-major:0 front,45 front-right,90 rightprofile,135 rear-right,180 full back,225 rear-left,270 leftprofile,315 front-left. Next frame would return to front for seamless loop. Head/glasses/white tail naturally rotate with body, no morphing anatomy. Match physical rotations rather than unrelated poses.\nLandscape1536x1024 or highest possible. Background must be truly empty transparent alpha, not a drawing of transparency. Absolutely no gray/beige background, gradient, cast shadows, floor, gridlines, captions, arrows, numbering or watermark. Transparent between chair legs and around armrests. Preserve full ears, tail, all chair wheels and feet. Minimum10% padding in each cell.",
+  "ai_generated_content": true
+}

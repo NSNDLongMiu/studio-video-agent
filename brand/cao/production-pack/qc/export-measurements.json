@@ -1,0 +1,2596 @@
+{
+  "technical_pass": true,
+  "source_digests_unchanged": true,
+  "counts": {
+    "mov": 12,
+    "mp4": 24
+  },
+  "source_fps_note": "4to8sourceframespersecond;output30fpsusesframeholds,nointerpolation,nativecanvasheight512,noautomaticupscale",
+  "checked_mov_frames": [
+    0,
+    30,
+    59
+  ],
+  "animations": [
+    {
+      "id": "wave",
+      "label": "Vẫy chào",
+      "source_fps": 8,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\wave.mov",
+          "animation_id": "wave",
+          "source_frames": 8,
+          "source_sha256": [
+            "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+            "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+            "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+            "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+            "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+            "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+            "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+            "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\wave.mp4",
+          "animation_id": "wave",
+          "source_frames": 8,
+          "source_sha256": [
+            "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+            "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+            "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+            "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+            "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+            "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+            "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+            "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\wave-light.mp4",
+          "animation_id": "wave",
+          "source_frames": 8,
+          "source_sha256": [
+            "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+            "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+            "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+            "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+            "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+            "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+            "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+            "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 73483,
+          "visible_alpha32_bbox": [
+            389,
+            1060,
+            668,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 73483,
+          "visible_alpha32_bbox": [
+            389,
+            1060,
+            668,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 73439,
+          "visible_alpha32_bbox": [
+            389,
+            1060,
+            666,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "chair_spin",
+      "label": "Xoay ghế một vòng",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\chair_spin.mov",
+          "animation_id": "chair_spin",
+          "source_frames": 8,
+          "source_sha256": [
+            "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+            "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+            "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+            "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+            "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+            "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+            "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+            "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\chair_spin.mp4",
+          "animation_id": "chair_spin",
+          "source_frames": 8,
+          "source_sha256": [
+            "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+            "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+            "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+            "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+            "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+            "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+            "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+            "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\chair_spin-light.mp4",
+          "animation_id": "chair_spin",
+          "source_frames": 8,
+          "source_sha256": [
+            "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+            "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+            "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+            "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+            "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+            "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+            "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+            "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 77081,
+          "visible_alpha32_bbox": [
+            414,
+            1071,
+            667,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 65565,
+          "visible_alpha32_bbox": [
+            382,
+            1068,
+            652,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 76580,
+          "visible_alpha32_bbox": [
+            396,
+            1068,
+            693,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "stand_up",
+      "label": "Đứng dậy từ ghế",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": false,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\stand_up.mov",
+          "animation_id": "stand_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\stand_up.mp4",
+          "animation_id": "stand_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\stand_up-light.mp4",
+          "animation_id": "stand_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 85687,
+          "visible_alpha32_bbox": [
+            395,
+            1065,
+            682,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 87864,
+          "visible_alpha32_bbox": [
+            395,
+            1041,
+            675,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 88008,
+          "visible_alpha32_bbox": [
+            395,
+            1040,
+            668,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "sit_down",
+      "label": "Ngồi xuống ghế",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": false,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\sit_down.mov",
+          "animation_id": "sit_down",
+          "source_frames": 8,
+          "source_sha256": [
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\sit_down.mp4",
+          "animation_id": "sit_down",
+          "source_frames": 8,
+          "source_sha256": [
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\sit_down-light.mp4",
+          "animation_id": "sit_down",
+          "source_frames": 8,
+          "source_sha256": [
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 88008,
+          "visible_alpha32_bbox": [
+            395,
+            1040,
+            668,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 84478,
+          "visible_alpha32_bbox": [
+            395,
+            1081,
+            686,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 85687,
+          "visible_alpha32_bbox": [
+            395,
+            1065,
+            682,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "label": "Đi bộ tại chỗ",
+      "source_fps": 8,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\walk.mov",
+          "animation_id": "walk",
+          "source_frames": 8,
+          "source_sha256": [
+            "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+            "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+            "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+            "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+            "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+            "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+            "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+            "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\walk.mp4",
+          "animation_id": "walk",
+          "source_frames": 8,
+          "source_sha256": [
+            "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+            "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+            "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+            "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+            "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+            "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+            "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+            "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\walk-light.mp4",
+          "animation_id": "walk",
+          "source_frames": 8,
+          "source_sha256": [
+            "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+            "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+            "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+            "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+            "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+            "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+            "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+            "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 81096,
+          "visible_alpha32_bbox": [
+            371,
+            1030,
+            678,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 81096,
+          "visible_alpha32_bbox": [
+            371,
+            1030,
+            678,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 77343,
+          "visible_alpha32_bbox": [
+            375,
+            1035,
+            661,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "idle_blink",
+      "label": "Đứng dẫn chuyện, chớp mắt",
+      "source_fps": 4,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\idle_blink.mov",
+          "animation_id": "idle_blink",
+          "source_frames": 8,
+          "source_sha256": [
+            "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+            "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+            "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+            "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+            "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+            "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+            "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+            "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 4,
+            "source_duration": 2,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\idle_blink.mp4",
+          "animation_id": "idle_blink",
+          "source_frames": 8,
+          "source_sha256": [
+            "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+            "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+            "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+            "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+            "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+            "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+            "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+            "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 4,
+            "source_duration": 2,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\idle_blink-light.mp4",
+          "animation_id": "idle_blink",
+          "source_frames": 8,
+          "source_sha256": [
+            "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+            "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+            "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+            "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+            "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+            "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+            "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+            "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 4,
+            "source_duration": 2,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 87683,
+          "visible_alpha32_bbox": [
+            379,
+            1027,
+            683,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 87573,
+          "visible_alpha32_bbox": [
+            379,
+            1028,
+            683,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 87501,
+          "visible_alpha32_bbox": [
+            378,
+            1028,
+            683,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "point_present",
+      "label": "Giơ tay chỉ dẫn",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": false,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\point_present.mov",
+          "animation_id": "point_present",
+          "source_frames": 8,
+          "source_sha256": [
+            "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+            "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+            "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+            "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+            "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+            "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+            "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+            "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\point_present.mp4",
+          "animation_id": "point_present",
+          "source_frames": 8,
+          "source_sha256": [
+            "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+            "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+            "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+            "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+            "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+            "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+            "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+            "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\point_present-light.mp4",
+          "animation_id": "point_present",
+          "source_frames": 8,
+          "source_sha256": [
+            "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+            "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+            "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+            "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+            "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+            "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+            "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+            "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 77927,
+          "visible_alpha32_bbox": [
+            394,
+            1055,
+            665,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 78093,
+          "visible_alpha32_bbox": [
+            394,
+            1055,
+            703,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 78165,
+          "visible_alpha32_bbox": [
+            394,
+            1055,
+            706,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "label": "Cúi chào",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": false,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\bow.mov",
+          "animation_id": "bow",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+            "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+            "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+            "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+            "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+            "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+            "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+            "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\bow.mp4",
+          "animation_id": "bow",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+            "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+            "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+            "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+            "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+            "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+            "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+            "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\bow-light.mp4",
+          "animation_id": "bow",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+            "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+            "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+            "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+            "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+            "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+            "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+            "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 73479,
+          "visible_alpha32_bbox": [
+            401,
+            1047,
+            662,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 70603,
+          "visible_alpha32_bbox": [
+            385,
+            1058,
+            660,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 74124,
+          "visible_alpha32_bbox": [
+            381,
+            1046,
+            648,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "nod",
+      "label": "Gật đầu",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\nod.mov",
+          "animation_id": "nod",
+          "source_frames": 8,
+          "source_sha256": [
+            "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+            "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+            "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+            "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+            "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+            "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+            "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+            "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\nod.mp4",
+          "animation_id": "nod",
+          "source_frames": 8,
+          "source_sha256": [
+            "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+            "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+            "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+            "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+            "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+            "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+            "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+            "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\nod-light.mp4",
+          "animation_id": "nod",
+          "source_frames": 8,
+          "source_sha256": [
+            "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+            "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+            "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+            "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+            "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+            "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+            "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+            "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 81622,
+          "visible_alpha32_bbox": [
+            394,
+            1045,
+            677,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 80275,
+          "visible_alpha32_bbox": [
+            394,
+            1052,
+            677,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 78262,
+          "visible_alpha32_bbox": [
+            393,
+            1076,
+            674,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Quay người một vòng",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\turn.mov",
+          "animation_id": "turn",
+          "source_frames": 8,
+          "source_sha256": [
+            "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+            "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+            "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+            "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+            "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+            "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+            "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+            "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\turn.mp4",
+          "animation_id": "turn",
+          "source_frames": 8,
+          "source_sha256": [
+            "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+            "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+            "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+            "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+            "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+            "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+            "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+            "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\turn-light.mp4",
+          "animation_id": "turn",
+          "source_frames": 8,
+          "source_sha256": [
+            "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+            "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+            "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+            "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+            "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+            "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+            "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+            "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 78030,
+          "visible_alpha32_bbox": [
+            408,
+            1053,
+            669,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 66693,
+          "visible_alpha32_bbox": [
+            429,
+            1053,
+            687,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 71039,
+          "visible_alpha32_bbox": [
+            412,
+            1055,
+            653,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "arms_up",
+      "label": "Giơ hai tay ăn mừng",
+      "source_fps": 6,
+      "source_frames": 8,
+      "source_loop": false,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\arms_up.mov",
+          "animation_id": "arms_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+            "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+            "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+            "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+            "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+            "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+            "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+            "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\arms_up.mp4",
+          "animation_id": "arms_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+            "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+            "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+            "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+            "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+            "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+            "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+            "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\arms_up-light.mp4",
+          "animation_id": "arms_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+            "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+            "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+            "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+            "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+            "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+            "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+            "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 73000,
+          "visible_alpha32_bbox": [
+            404,
+            1057,
+            657,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 79505,
+          "visible_alpha32_bbox": [
+            395,
+            1057,
+            712,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 79352,
+          "visible_alpha32_bbox": [
+            397,
+            1057,
+            712,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    },
+    {
+      "id": "desk_typing",
+      "label": "Ngồi bàn gõ máy",
+      "source_fps": 8,
+      "source_frames": 8,
+      "source_loop": true,
+      "outputs": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\clips\\desk_typing.mov",
+          "animation_id": "desk_typing",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+            "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+            "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+            "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+            "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+            "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+            "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+            "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "qtrle",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "argb",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\desk_typing.mp4",
+          "animation_id": "desk_typing",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+            "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+            "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+            "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+            "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+            "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+            "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+            "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\desk_typing-light.mp4",
+          "animation_id": "desk_typing",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+            "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+            "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+            "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+            "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+            "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+            "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+            "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+          ],
+          "quality_status": "PASS",
+          "review_only": false,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "decoded_alpha_checks": [
+        {
+          "frame": 0,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 93711,
+          "visible_alpha32_bbox": [
+            361,
+            1048,
+            724,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 30,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 93711,
+          "visible_alpha32_bbox": [
+            361,
+            1048,
+            724,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        },
+        {
+          "frame": 59,
+          "corners_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "visible_alpha32_pixels": 93619,
+          "visible_alpha32_bbox": [
+            361,
+            1049,
+            724,
+            1500
+          ],
+          "visible_foreground_bottom_margin": 420
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "status": "HOLD_FOR_VISUAL_REVIEW",
+  "summary": {
+    "original_files": 467,
+    "copied_bytes": 32138253,
+    "frame_files": 458,
+    "readable_frames": 457,
+    "broken_frames": 1,
+    "source_sheets": 7,
+    "broken_source_sheets": 1,
+    "byte_identical_frame_duplicates": 0,
+    "approved_frames": 0,
+    "verified_animation_sequences": 0,
+    "existing_artwork_sheet_matches": 3,
+    "existing_pose_alternatives": 15
+  },
+  "byte_preservation_pass": true,
+  "decode_pass": false,
+  "production_ready": false,
+  "rejected_assets": [
+    {
+      "id": "cao_mit_03_039",
+      "kind": "frame",
+      "group_id": "03",
+      "group_label": "Dẫn chuyện, đi bộ, biểu cảm, làm việc",
+      "group_warning": "Ô chỉ khoảng 76×114 px; nhiều ô cắt qua nhân vật. frame_039.png rỗng.",
+      "tags": [
+        "dan-chuyen",
+        "di-bo",
+        "bieu-cam",
+        "lam-viec"
+      ],
+      "path": "originals/03_Dan_chuyen_di_bo_bieu_cam_lam_viec/frame_039.png",
+      "source_path": "03_Dan_chuyen_di_bo_bieu_cam_lam_viec/frame_039.png",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "quality_flags": [
+        "decode_failed"
+      ],
+      "status": "BROKEN",
+      "error": "UnidentifiedImageError: cannot identify image file 'D:\\\\Agent Video Studio\\\\brand\\\\cao\\\\animation-pack\\\\originals\\\\03_Dan_chuyen_di_bo_bieu_cam_lam_viec\\\\frame_039.png'"
+    },
+    {
+      "id": "cao_mit_06_sheet",
+      "kind": "source_sheet",
+      "group_id": "06",
+      "group_label": "Cử chỉ làm việc",
+      "group_warning": "Có ô chứa các nhân vật bị chia đôi. Sprite sheet nguồn bị hỏng/truncated.",
+      "tags": [
+        "cu-chi",
+        "lam-viec"
+      ],
+      "path": "originals/06_Cu_chi_lam_viec/sprite_sheet_goc.png",
+      "source_path": "06_Cu_chi_lam_viec/sprite_sheet_goc.png",
+      "bytes": 721057,
+      "sha256": "15bb9cb90457cb72062e94eabd999c22700d1ccd591ea0b1fe15f6d3ce01845b",
+      "quality_flags": [
+        "decode_failed"
+      ],
+      "status": "BROKEN",
+      "error": "SyntaxError: broken PNG file (incomplete checksum in b'IDAT')"
+    }
+  ],
+  "groups": [
+    {
+      "id": "01",
+      "directory": "01_Xoay_ghe_ngoi_quay_lung_dung_day",
+      "label": "Xoay ghế, ngồi quay lưng, đứng dậy",
+      "tags": [
+        "ghe",
+        "ngoi",
+        "quay-lung",
+        "dung-day"
+      ],
+      "warning": "Còn nền tối và đường chia ô; các ô không bảo đảm cùng tỷ lệ/vị trí.",
+      "frame_count": 24,
+      "readable_frames": 24,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/01-01.jpg"
+      ]
+    },
+    {
+      "id": "02",
+      "directory": "02_Xoay_nguoi_ngoi_xuong_xoay_ghe",
+      "label": "Xoay người, ngồi xuống, xoay ghế",
+      "tags": [
+        "xoay-nguoi",
+        "ngoi-xuong",
+        "ghe"
+      ],
+      "warning": "Ô 96×128 px; có ô chứa các phần của hai hình khác nhau, chân/hình hàng bên cạnh.",
+      "frame_count": 128,
+      "readable_frames": 128,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/02-01.jpg",
+        "catalog/02-02.jpg",
+        "catalog/02-03.jpg"
+      ]
+    },
+    {
+      "id": "03",
+      "directory": "03_Dan_chuyen_di_bo_bieu_cam_lam_viec",
+      "label": "Dẫn chuyện, đi bộ, biểu cảm, làm việc",
+      "tags": [
+        "dan-chuyen",
+        "di-bo",
+        "bieu-cam",
+        "lam-viec"
+      ],
+      "warning": "Ô chỉ khoảng 76×114 px; nhiều ô cắt qua nhân vật. frame_039.png rỗng.",
+      "frame_count": 180,
+      "readable_frames": 179,
+      "broken_frames": 1,
+      "contact_sheets": [
+        "catalog/03-01.jpg",
+        "catalog/03-02.jpg",
+        "catalog/03-03.jpg",
+        "catalog/03-04.jpg"
+      ]
+    },
+    {
+      "id": "04",
+      "directory": "04_Chi_tro_gioi_thieu",
+      "label": "Chỉ trỏ, giới thiệu",
+      "tags": [
+        "chi-tro",
+        "gioi-thieu",
+        "vay-chao"
+      ],
+      "warning": "Lưới cắt không khớp sheet có cột nhãn; frame_001 chỉ có nhãn chữ, không có Cáo.",
+      "frame_count": 48,
+      "readable_frames": 48,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/04-01.jpg"
+      ]
+    },
+    {
+      "id": "05",
+      "directory": "05_Bieu_cam_tu_the",
+      "label": "Biểu cảm, tư thế",
+      "tags": [
+        "bieu-cam",
+        "tu-the"
+      ],
+      "warning": "Các ô chạm biên; có tay/đầu bị cắt và phần hình của hàng bên cạnh.",
+      "frame_count": 15,
+      "readable_frames": 15,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/05-01.jpg"
+      ]
+    },
+    {
+      "id": "06",
+      "directory": "06_Cu_chi_lam_viec",
+      "label": "Cử chỉ làm việc",
+      "tags": [
+        "cu-chi",
+        "lam-viec"
+      ],
+      "warning": "Có ô chứa các nhân vật bị chia đôi. Sprite sheet nguồn bị hỏng/truncated.",
+      "frame_count": 15,
+      "readable_frames": 15,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/06-01.jpg"
+      ]
+    },
+    {
+      "id": "07",
+      "directory": "07_Khau_hinh_bieu_cam",
+      "label": "Khẩu hình, biểu cảm",
+      "tags": [
+        "khau-hinh",
+        "bieu-cam",
+        "khuon-mat"
+      ],
+      "warning": "Các ô 128×256 px cắt qua mặt/thân; không phải bộ viseme có thể ghép miệng trực tiếp.",
+      "frame_count": 48,
+      "readable_frames": 48,
+      "broken_frames": 0,
+      "contact_sheets": [
+        "catalog/07-01.jpg"
+      ]
+    }
+  ],
+  "warning": "Bộ ảnh tham khảo cần kiểm tra/cắt lại, chưa duyệt cho sản xuất. Thứ tự frame là thứ tự file nguồn, không phải timeline chuyển động. Không suy luận FPS, vòng lặp hay nhép miệng từ tên thư mục."
+}

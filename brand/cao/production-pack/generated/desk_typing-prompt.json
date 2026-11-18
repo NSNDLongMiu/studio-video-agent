@@ -1,0 +1,9 @@
+{
+  "id": "desk_typing",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-33d3a910-edcf-49a2-8b2a-87721446c976.png",
+  "workspace_file": "brand/cao/production-pack/generated/desk_typing-raw-v1.png",
+  "prompt": "Use case:stylized-concept. Production animation sprite atlas with actualtransparentbackground.\nStrictcharacteridentityreference: sameorangeofficefox,whitefluffymuzzle/chest/tailtip, roundblackglasses,whiteoffice short-sleevedshirt,navytie,IDbadge,wristwatch,darktrousers,blackshoes and3Dfilmstyle.\nCreate8consecutiveframes ofONE typingloop inexact4columns×2rows,uniformcells,landscape1536x1024 orhigher. Eachcellshows full desksetup andfoxseatedbehindit,withroomforall chairfeet,desklegs,tail andshoes. Samefixedcamera,scaleandfurniturepositions,10%emptymargins.\nProps:simple rectangularwalnutoffice desk withthinblacklegs,plainblackswivelchair,andoneopen darkgraylaptop withBLANKunbranded lid facingviewer. No chart,extramonitor,headphones,plants,mugs,logosortext.\nFoxlooksdownslightlyatlaptopwithsmile. Bothhandsrestonkeyboardandalternate smalldeliberatefinger/wristmovements over8frames toshowtyping; shoulders/elbows/headstable. Frame1resttyping,2leftfingerpress,3leftrelease/rightlower,4rightpress,5rightrelease/leftlower,6leftpress,7rightpress,8returntowardframe1. Showplausible wrists/hands;noextrafingers, no giantbodybobbing; firstandlastmatchloop. Desk,laptop,chair,tailandbodymustNOTshiftorswitchshape.\nTRUEemptyalphatransparency allaround andBETWEENdesklegs, nofloor,backgroundcolor,gradient,glow,castshadow,gridlines,labels,numbers,checkerboard orwatermark.",
+  "ai_generated_content": true
+}

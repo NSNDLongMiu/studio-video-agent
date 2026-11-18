@@ -1,0 +1,1170 @@
+{
+  "summary": {
+    "animations": 12,
+    "frames": 96,
+    "unique_frame_sha256": 88,
+    "reversed_sequence_frame_files": 8,
+    "pass": 0,
+    "failed": 0,
+    "review_required": 12
+  },
+  "source_atlases_unchanged": true,
+  "rebuilt": [
+    "arms_up",
+    "bow",
+    "chair_spin",
+    "desk_typing",
+    "idle_blink",
+    "nod",
+    "point_present",
+    "sit_down",
+    "stand_up",
+    "turn",
+    "walk",
+    "wave"
+  ],
+  "ffmpeg": "C:\\Users\\PC\\AppData\\Local\\ffmpeg\\ffmpeg-master-latest-win64-gpl\\bin\\ffmpeg.exe",
+  "screening_only": true,
+  "animations": [
+    {
+      "id": "wave",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          440,
+          440
+        ],
+        "subject_width_range": [
+          277,
+          310
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 535,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.985746,
+              "rgb_mae_visible_overlap": 4.869915
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.982634,
+              "rgb_mae_visible_overlap": 4.532524
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.981971,
+              "rgb_mae_visible_overlap": 4.608151
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.983973,
+              "rgb_mae_visible_overlap": 5.337443
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.974454,
+              "rgb_mae_visible_overlap": 5.013228
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.99156,
+              "rgb_mae_visible_overlap": 3.961996
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.991873,
+              "rgb_mae_visible_overlap": 3.860206
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.989465,
+            "rgb_mae_visible_overlap": 5.232894
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/wave-light.jpg",
+          "qc/wave-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "chair_spin",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          427,
+          432
+        ],
+        "subject_width_range": [
+          242,
+          297
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 1012,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.848281,
+              "rgb_mae_visible_overlap": 41.403361
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.81203,
+              "rgb_mae_visible_overlap": 36.623278
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.88032,
+              "rgb_mae_visible_overlap": 36.067823
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.726456,
+              "rgb_mae_visible_overlap": 29.700153
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.803494,
+              "rgb_mae_visible_overlap": 27.112087
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.829598,
+              "rgb_mae_visible_overlap": 38.193863
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.838678,
+              "rgb_mae_visible_overlap": 38.459118
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.741202,
+            "rgb_mae_visible_overlap": 49.306342
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/chair_spin-light.jpg",
+          "qc/chair_spin-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "stand_up",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 289,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.784243,
+              "rgb_mae_visible_overlap": 32.305746
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.912311,
+              "rgb_mae_visible_overlap": 27.716248
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.872844,
+              "rgb_mae_visible_overlap": 31.079309
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.915901,
+              "rgb_mae_visible_overlap": 24.121473
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.906032,
+              "rgb_mae_visible_overlap": 27.599845
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.932535,
+              "rgb_mae_visible_overlap": 25.89413
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.943788,
+              "rgb_mae_visible_overlap": 19.628322
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.803724,
+            "rgb_mae_visible_overlap": 42.054391
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/stand_up-light.jpg",
+          "qc/stand_up-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "sit_down",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 289,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.943788,
+              "rgb_mae_visible_overlap": 19.628322
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.932535,
+              "rgb_mae_visible_overlap": 25.89413
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.906032,
+              "rgb_mae_visible_overlap": 27.599845
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.915901,
+              "rgb_mae_visible_overlap": 24.121473
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.872844,
+              "rgb_mae_visible_overlap": 31.079309
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.912311,
+              "rgb_mae_visible_overlap": 27.716248
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.784243,
+              "rgb_mae_visible_overlap": 32.305746
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.803724,
+            "rgb_mae_visible_overlap": 42.054391
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/sit_down-light.jpg",
+          "qc/sit_down-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "walk",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          456,
+          472
+        ],
+        "subject_width_range": [
+          286,
+          307
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 201,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.898391,
+              "rgb_mae_visible_overlap": 14.558581
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.874904,
+              "rgb_mae_visible_overlap": 22.997099
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.8686,
+              "rgb_mae_visible_overlap": 26.69067
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.786966,
+              "rgb_mae_visible_overlap": 36.387325
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.834447,
+              "rgb_mae_visible_overlap": 24.479043
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.866775,
+              "rgb_mae_visible_overlap": 25.479181
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.843914,
+              "rgb_mae_visible_overlap": 16.580633
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.796707,
+            "rgb_mae_visible_overlap": 26.501291
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/walk-light.jpg",
+          "qc/walk-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "idle_blink",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          472,
+          473
+        ],
+        "subject_width_range": [
+          304,
+          305
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 25,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.996141,
+              "rgb_mae_visible_overlap": 4.009226
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.996186,
+              "rgb_mae_visible_overlap": 5.318402
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.9964,
+              "rgb_mae_visible_overlap": 5.403203
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.995148,
+              "rgb_mae_visible_overlap": 6.618621
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.99585,
+              "rgb_mae_visible_overlap": 5.653471
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.996612,
+              "rgb_mae_visible_overlap": 3.623223
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.996566,
+              "rgb_mae_visible_overlap": 3.498739
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.994785,
+            "rgb_mae_visible_overlap": 4.746659
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/idle_blink-light.jpg",
+          "qc/idle_blink-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "point_present",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          445
+        ],
+        "subject_width_range": [
+          271,
+          312
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 17,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.969677,
+              "rgb_mae_visible_overlap": 4.639768
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.958649,
+              "rgb_mae_visible_overlap": 4.543877
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.955797,
+              "rgb_mae_visible_overlap": 4.855837
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.966051,
+              "rgb_mae_visible_overlap": 6.787766
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.975347,
+              "rgb_mae_visible_overlap": 4.931132
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.977669,
+              "rgb_mae_visible_overlap": 4.640994
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.995326,
+              "rgb_mae_visible_overlap": 3.851756
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.923215,
+            "rgb_mae_visible_overlap": 6.892033
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/point_present-light.jpg",
+          "qc/point_present-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "bow",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          373,
+          454
+        ],
+        "subject_width_range": [
+          261,
+          301
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 0,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.861129,
+              "rgb_mae_visible_overlap": 42.511741
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.804628,
+              "rgb_mae_visible_overlap": 44.982388
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.77202,
+              "rgb_mae_visible_overlap": 47.203331
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.90272,
+              "rgb_mae_visible_overlap": 28.24582
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.794135,
+              "rgb_mae_visible_overlap": 40.891097
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.802295,
+              "rgb_mae_visible_overlap": 42.280234
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.852292,
+              "rgb_mae_visible_overlap": 41.415905
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.805298,
+            "rgb_mae_visible_overlap": 42.558418
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/bow-light.jpg",
+          "qc/bow-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "nod",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          423,
+          455
+        ],
+        "subject_width_range": [
+          280,
+          283
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 461,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.961379,
+              "rgb_mae_visible_overlap": 23.516477
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.93887,
+              "rgb_mae_visible_overlap": 27.652168
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.951665,
+              "rgb_mae_visible_overlap": 25.628855
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.98973,
+              "rgb_mae_visible_overlap": 7.816226
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.937247,
+              "rgb_mae_visible_overlap": 28.796354
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.94985,
+              "rgb_mae_visible_overlap": 25.395161
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.970918,
+              "rgb_mae_visible_overlap": 18.467916
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.984607,
+            "rgb_mae_visible_overlap": 13.059046
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/nod-light.jpg",
+          "qc/nod-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "turn",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          450
+        ],
+        "subject_width_range": [
+          217,
+          274
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 11,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.858075,
+              "rgb_mae_visible_overlap": 38.896908
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.778752,
+              "rgb_mae_visible_overlap": 45.692232
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.810278,
+              "rgb_mae_visible_overlap": 41.468432
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.757697,
+              "rgb_mae_visible_overlap": 52.004672
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.827133,
+              "rgb_mae_visible_overlap": 34.077817
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.765442,
+              "rgb_mae_visible_overlap": 43.779752
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.792891,
+              "rgb_mae_visible_overlap": 42.403801
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.714263,
+            "rgb_mae_visible_overlap": 51.948471
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/turn-light.jpg",
+          "qc/turn-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "arms_up",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          443,
+          443
+        ],
+        "subject_width_range": [
+          253,
+          317
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 738,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.958793,
+              "rgb_mae_visible_overlap": 13.86802
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.944992,
+              "rgb_mae_visible_overlap": 9.468426
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.939417,
+              "rgb_mae_visible_overlap": 8.322339
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.908167,
+              "rgb_mae_visible_overlap": 8.285747
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.927881,
+              "rgb_mae_visible_overlap": 12.017109
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.952828,
+              "rgb_mae_visible_overlap": 11.292148
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.991363,
+              "rgb_mae_visible_overlap": 4.102052
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.8398,
+            "rgb_mae_visible_overlap": 12.629692
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/arms_up-light.jpg",
+          "qc/arms_up-dark.jpg"
+        ]
+      }
+    },
+    {
+      "id": "desk_typing",
+      "quality_status": "REVIEW_REQUIRED",
+      "native_resolution": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          451,
+          452
+        ],
+        "subject_width_range": [
+          363,
+          363
+        ]
+      },
+      "qc": {
+        "main_subject_alpha_threshold": 32,
+        "clipped_alpha32_pixels": 0,
+        "clipped_soft_alpha_pixels": 0,
+        "visible_source_boundary_frames": [],
+        "continuity": {
+          "adjacent_pairs": [
+            {
+              "from": 1,
+              "to": 2,
+              "alpha32_iou": 0.996643,
+              "rgb_mae_visible_overlap": 4.676609
+            },
+            {
+              "from": 2,
+              "to": 3,
+              "alpha32_iou": 0.997088,
+              "rgb_mae_visible_overlap": 4.269562
+            },
+            {
+              "from": 3,
+              "to": 4,
+              "alpha32_iou": 0.996919,
+              "rgb_mae_visible_overlap": 3.926799
+            },
+            {
+              "from": 4,
+              "to": 5,
+              "alpha32_iou": 0.995366,
+              "rgb_mae_visible_overlap": 4.529578
+            },
+            {
+              "from": 5,
+              "to": 6,
+              "alpha32_iou": 0.99711,
+              "rgb_mae_visible_overlap": 4.575748
+            },
+            {
+              "from": 6,
+              "to": 7,
+              "alpha32_iou": 0.997387,
+              "rgb_mae_visible_overlap": 4.276563
+            },
+            {
+              "from": 7,
+              "to": 8,
+              "alpha32_iou": 0.996865,
+              "rgb_mae_visible_overlap": 3.736048
+            }
+          ],
+          "last_to_first": {
+            "from": 8,
+            "to": 1,
+            "alpha32_iou": 0.994421,
+            "rgb_mae_visible_overlap": 4.615237
+          },
+          "interpretation": "Screening metrics only. Articulated movement changes silhouette; these numbers do not approve continuity or loops."
+        },
+        "automatic_approval": false,
+        "exact_retained_rgba_pixels_verified": true,
+        "required_review": [
+          "Identity and limb anatomy",
+          "Complete silhouette and alpha on light/dark backgrounds",
+          "Frame order and articulation",
+          "Loop seam or one-shot start/end",
+          "Actual exported clip at intended display scale"
+        ],
+        "contact_sheets": [
+          "qc/desk_typing-light.jpg",
+          "qc/desk_typing-dark.jpg"
+        ]
+      }
+    }
+  ]
+}

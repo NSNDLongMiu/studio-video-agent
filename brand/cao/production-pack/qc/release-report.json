@@ -1,0 +1,63 @@
+{
+  "release_status": "READY_FOR_NATIVE_SCALE_ASSET_USE",
+  "date_local": "2026-11-17",
+  "review_scope": "Asset QC only; video/storyboard/publication approvals unchanged",
+  "summary": {
+    "animations": 12,
+    "frames": 96,
+    "unique_frame_sha256": 88,
+    "reversed_sequence_frame_files": 8,
+    "pass": 12,
+    "failed": 0,
+    "review_required": 0
+  },
+  "ready_alpha_mov": 12,
+  "ready_mp4_previews": 24,
+  "showcase": "showcase.mp4",
+  "showcase_duration_seconds": 24,
+  "native_canvas": [
+    512,
+    512
+  ],
+  "actual_subject_height_range": [
+    373,
+    473
+  ],
+  "source_fps_range": [
+    4,
+    8
+  ],
+  "output_fps": 30,
+  "output_canvas": [
+    1080,
+    1920
+  ],
+  "frame_hashes_verified": 96,
+  "unique_frame_hashes": 88,
+  "generated_source_atlases_preserved": 11,
+  "archived_source_files_sha256_preserved": 467,
+  "tests": {
+    "command": "node --test tools/fox/test/*.test.mjs",
+    "passed": 12,
+    "failed": 0,
+    "ffmpeg": "full installed build with qtrle"
+  },
+  "evidence": [
+    "qc/build-report.json",
+    "qc/pixel-verification.json",
+    "qc/animation-review.json",
+    "qc/export-measurements.json",
+    "qc/showcase-measurements.json"
+  ],
+  "limitations": [
+    "8 keyframes per motion; output30fps duplicates sourceframes, no interpolation",
+    "sit_down reuses stand_up in reverse",
+    "Native scale reviewed, not HD source or arbitrary close-up guarantee",
+    "No audio lip sync",
+    "Ready MOV via FFmpeg; Remotion pose whitelist unchanged"
+  ],
+  "ai_generated_content": true,
+  "generation_mode": "built-in imagegen",
+  "prompts_directory": "generated/",
+  "production_entrypoint": "node tools/fox/animate.mjs --id <id> --duration <seconds> --out <video>/assets/cao.mov"
+}

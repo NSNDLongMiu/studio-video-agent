@@ -1,0 +1,125 @@
+{
+  "note": "Existing production poses corresponding to source artwork; aliases do not approve draft cells.",
+  "alternatives": [
+    {
+      "asset_id": "cao_mit_05_001",
+      "pose_id": "present_open",
+      "path": "../poses/present_open.png",
+      "source_ref": "d01",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_002",
+      "pose_id": "point_up",
+      "path": "../poses/point_up.png",
+      "source_ref": "d02",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_003",
+      "pose_id": "board_chart",
+      "path": "../poses/board_chart.png",
+      "source_ref": "d03",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_004",
+      "pose_id": "thumbs_up",
+      "path": "../poses/thumbs_up.png",
+      "source_ref": "d04",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_005",
+      "pose_id": "clipboard",
+      "path": "../poses/clipboard.png",
+      "source_ref": "d05",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_006",
+      "pose_id": "mic",
+      "path": "../poses/mic.png",
+      "source_ref": "d06",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_007",
+      "pose_id": "read_paper",
+      "path": "../poses/read_paper.png",
+      "source_ref": "d07",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_008",
+      "pose_id": "think",
+      "path": "../poses/think.png",
+      "source_ref": "d08",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_009",
+      "pose_id": "idea",
+      "path": "../poses/idea.png",
+      "source_ref": "d09",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_010",
+      "pose_id": "arms_crossed",
+      "path": "../poses/arms_crossed.png",
+      "source_ref": "d10",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_011",
+      "pose_id": "desk_video",
+      "path": "../poses/desk_video.png",
+      "source_ref": "d11",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_012",
+      "pose_id": "cheer_jump",
+      "path": "../poses/cheer_jump.png",
+      "source_ref": "d12",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_013",
+      "pose_id": "bow",
+      "path": "../poses/bow.png",
+      "source_ref": "d13",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_014",
+      "pose_id": "sleep",
+      "path": "../poses/sleep.png",
+      "source_ref": "d14",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    },
+    {
+      "asset_id": "cao_mit_05_015",
+      "pose_id": "love",
+      "path": "../poses/love.png",
+      "source_ref": "d15",
+      "basis": "same_source_sheet_rgb_and_existing_extraction_index",
+      "note": "Existing separated pose from same artwork, not a new animation frame."
+    }
+  ]
+}

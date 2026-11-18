@@ -1,0 +1,119 @@
+{
+  "purpose": "Technical smoke demonstration of draft still, not production approval",
+  "list_count": 457,
+  "missing_id": {
+    "exit_code": 1,
+    "error": "Không có asset: not_a_real_asset. Dùng --list để tra cứu."
+  },
+  "no_ack": {
+    "exit_code": 1,
+    "error": "Asset cần xem lại crop/nền/chất lượng. Kiểm tra catalog rồi dùng --ack-review để xuất ảnh tĩnh đã chọn; cờ này không cấp duyệt sản xuất.",
+    "output_exists": false
+  },
+  "mov": {
+    "out": "D:\\Agent Video Studio\\brand\\cao\\animation-pack-examples\\cao_mit_05_005-still.mov",
+    "asset_id": "cao_mit_05_005",
+    "source_sha256": "9c0b4672356cff7e6898881b810848f0bfea9721abeedf8bb933512af2c4165c",
+    "mode": "still_image",
+    "animation_verified": false,
+    "production_approved": false,
+    "quality_flags": [
+      "crop_alignment_unverified",
+      "background_residue_possible",
+      "continuity_unverified",
+      "below_1000px_reference_height",
+      "foreground_touches_cell_boundary"
+    ],
+    "geometry": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 2,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 246,
+        "height": 341
+      },
+      "drawWidth": 246,
+      "drawHeight": 341,
+      "x": 417,
+      "y": 1159,
+      "upscaled": false,
+      "height_capped_to_native": false
+    },
+    "measured": {
+      "streams": [
+        {
+          "codec_name": "qtrle",
+          "width": 1080,
+          "height": 1920,
+          "pix_fmt": "argb",
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "2.000000"
+      }
+    },
+    "warning": "Ảnh tĩnh gốc; không nhép miệng, không suy diễn chuyển động. Cần QC hình thật theo từng cảnh."
+  },
+  "mp4": {
+    "out": "D:\\Agent Video Studio\\brand\\cao\\animation-pack-examples\\cao_mit_05_005-preview.mp4",
+    "asset_id": "cao_mit_05_005",
+    "source_sha256": "9c0b4672356cff7e6898881b810848f0bfea9721abeedf8bb933512af2c4165c",
+    "mode": "still_image",
+    "animation_verified": false,
+    "production_approved": false,
+    "quality_flags": [
+      "crop_alignment_unverified",
+      "background_residue_possible",
+      "continuity_unverified",
+      "below_1000px_reference_height",
+      "foreground_touches_cell_boundary"
+    ],
+    "geometry": {
+      "width": 1080,
+      "height": 1920,
+      "fps": 30,
+      "duration": 2,
+      "crop": {
+        "x": 0,
+        "y": 0,
+        "width": 246,
+        "height": 341
+      },
+      "drawWidth": 246,
+      "drawHeight": 341,
+      "x": 417,
+      "y": 1159,
+      "upscaled": false,
+      "height_capped_to_native": false
+    },
+    "measured": {
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "2.000000"
+      }
+    },
+    "warning": "Ảnh tĩnh gốc; không nhép miệng, không suy diễn chuyển động. Cần QC hình thật theo từng cảnh."
+  },
+  "visual_review": {
+    "status": "NOT_PRODUCTION_READY",
+    "viewed": "Source PNG and extracted first frame of MP4 preview",
+    "findings": [
+      "Background removal damages parts of ear, muzzle and tail.",
+      "Colored background chunks and halos remain around the character.",
+      "Native-resolution still remains small in a 1080x1920 composition.",
+      "Technical smoke only: no animation continuity or lip sync established."
+    ]
+  }
+}

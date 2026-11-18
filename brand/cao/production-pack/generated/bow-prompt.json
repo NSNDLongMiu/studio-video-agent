@@ -1,0 +1,9 @@
+{
+  "id": "bow",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-6608c6b0-5323-4b5d-8818-d65612d16c00.png",
+  "workspace_file": "brand/cao/production-pack/generated/bow-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Asset: eight-frame transparent sprite animation of polite bow.\nStrict identity reference sameorangeofficefox,fluffywhitecheeks andtailtip, roundblackglasses,whiteshortsleeveshirt,navytie,IDbadge,wristwatch,charcoaltrousers,blackdressshoes,3Danimatedfilmstyle.\nUniform4columns×2rows atlas of8successive frames. Fixed camera,frontal slightthreequarter. Fullbodyfox samefootpositions andscaleinallcells. Plentytransparentpadding toavoidclippedears/tail.\nMotion rowmajor:1standingupright armsbybody withkind closedmouthsmile;2head/shoulders start incliningforward,handsjoininginfront;3bowhalfway;4deep politebow about35degreesatwaist,headslightlydown;5hold deepestbow;6riseshalfway;7nearlyupright;8backtostartupright. Bendfromhips,not shrinking body or movingfeet. Correctneck,arms,kneesandtail. Keep sameglassesandfaceclothes.\nTrueemptyALPHAtransparentbackground,no colors,floor,shadows,gridlines,cellborders,text,captions,numbers,watermarks.8frames ofONE coherentbow,no chair or props. Landscape1536x1024 or higher.",
+  "ai_generated_content": true
+}

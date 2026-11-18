@@ -1,0 +1,455 @@
+{
+  "animations": 12,
+  "frame_files": 96,
+  "unique_rgba_frame_png_sha256": 88,
+  "all_retained_rgba_pixels_exact": true,
+  "all_source_sha256_unchanged": true,
+  "clipped_alpha32_pixels": 0,
+  "native_resolution_and_edges": [
+    {
+      "id": "wave",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          440,
+          440
+        ],
+        "subject_width_range": [
+          277,
+          310
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 535,
+      "exact_rgba": true,
+      "ground_shifts": [
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ]
+    },
+    {
+      "id": "chair_spin",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          427,
+          432
+        ],
+        "subject_width_range": [
+          242,
+          297
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 1012,
+      "exact_rgba": true,
+      "ground_shifts": [
+        12,
+        12,
+        13,
+        12,
+        13,
+        13,
+        12,
+        13
+      ]
+    },
+    {
+      "id": "stand_up",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 289,
+      "exact_rgba": true,
+      "ground_shifts": [
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "id": "sit_down",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          412,
+          460
+        ],
+        "subject_width_range": [
+          273,
+          315
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 289,
+      "exact_rgba": true,
+      "ground_shifts": [
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "id": "walk",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          456,
+          472
+        ],
+        "subject_width_range": [
+          286,
+          307
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 201,
+      "exact_rgba": true,
+      "ground_shifts": [
+        -5,
+        -3,
+        2,
+        10,
+        -7,
+        -3,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "idle_blink",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          472,
+          473
+        ],
+        "subject_width_range": [
+          304,
+          305
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 25,
+      "exact_rgba": true,
+      "ground_shifts": [
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5,
+        -5
+      ]
+    },
+    {
+      "id": "point_present",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          445
+        ],
+        "subject_width_range": [
+          271,
+          312
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 17,
+      "exact_rgba": true,
+      "ground_shifts": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ]
+    },
+    {
+      "id": "bow",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          373,
+          454
+        ],
+        "subject_width_range": [
+          261,
+          301
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 0,
+      "exact_rgba": true,
+      "ground_shifts": [
+        0,
+        -1,
+        -1,
+        -1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "nod",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          423,
+          455
+        ],
+        "subject_width_range": [
+          280,
+          283
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 461,
+      "exact_rgba": true,
+      "ground_shifts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "id": "turn",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          445,
+          450
+        ],
+        "subject_width_range": [
+          217,
+          274
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 11,
+      "exact_rgba": true,
+      "ground_shifts": [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "id": "arms_up",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          443,
+          443
+        ],
+        "subject_width_range": [
+          253,
+          317
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 738,
+      "exact_rgba": true,
+      "ground_shifts": [
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11,
+        11
+      ]
+    },
+    {
+      "id": "desk_typing",
+      "frames": 8,
+      "native": {
+        "atlas": [
+          1536,
+          1024
+        ],
+        "cell": [
+          384,
+          512
+        ],
+        "rescaled": false,
+        "subject_height_range": [
+          451,
+          452
+        ],
+        "subject_width_range": [
+          363,
+          363
+        ]
+      },
+      "source_edge_frames": [],
+      "clipped_alpha32": 0,
+      "clipped_soft_alpha": 0,
+      "exact_rgba": true,
+      "ground_shifts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "quality_approval": "REVIEW_REQUIRED: visual+clipreviewneeded"
+}

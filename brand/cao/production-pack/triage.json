@@ -1,0 +1,131 @@
+{
+  "purpose": "Read-only visual triage of source groups 01–03 before production repair/generation",
+  "source_images_viewed": [
+    "brand/cao/animation-pack/originals/01_Xoay_ghe_ngoi_quay_lung_dung_day/sprite_sheet_goc.png",
+    "brand/cao/animation-pack/originals/02_Xoay_nguoi_ngoi_xuong_xoay_ghe/sprite_sheet_goc.png",
+    "brand/cao/animation-pack/originals/03_Dan_chuyen_di_bo_bieu_cam_lam_viec/sprite_sheet_goc.png"
+  ],
+  "identity_invariants": [
+    "Orange fluffy 3D cartoon office fox, large white-tipped tail",
+    "Round black glasses, white shirt, navy tie, black trousers and shoes",
+    "Preserve proportions, glasses size, muzzle, ears, eye color and fur from clean existing pose reference",
+    "Employee badge and watch should be consistent with chosen clean reference; the source sheets omit or vary these details",
+    "Fixed camera and constant lighting for each sequence; chair movement is object/character rotation, not camera rotation"
+  ],
+  "groups": [
+    {
+      "id": "01",
+      "visual_layout": "6 columns × 4 rows, 24 cells",
+      "advantages": "Large enough to identify all poses clearly; source grid aligns with its intended poses",
+      "limitations": [
+        "Opaque dark blue background with white grid lines",
+        "Each sprite about 200–240 pixels high; not enough native resolution for 760px full-body video use",
+        "Body size and chair proportions vary slightly across cells",
+        "No timing/FPS supplied; sequence is a chain of distinct actions rather than one loop"
+      ],
+      "intended_actions": [
+        {
+          "id": "chair_spin",
+          "source_description": "First approximately 15 cells: seated front → right profile → rear → left profile → front",
+          "playback": "Can become a loop only after a matching first/last pose and stable chair-foot pivot are established"
+        },
+        {
+          "id": "stand_up",
+          "source_description": "Remaining cells: forward lean from seat, push off armrests, hips rise, stand beside/in front of same chair",
+          "playback": "One-shot with final standing pose held; keep chair in the frame"
+        },
+        {
+          "id": "present_hand",
+          "source_description": "Final two cells: standing fox opens one hand outward",
+          "playback": "Insufficient intermediate poses for smooth standalone animation"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "visual_layout": "Approximately 17 characters across each of 8 visual rows; existing pack incorrectly uses 16 × 8 crops",
+      "numeric_screening": "First-row dark-foot pixels resolve into 17 nearby x-clusters after merging split shoes; not 16 equal cells",
+      "limitations": [
+        "Sprites roughly 70–120 pixels high on an opaque tan gradient",
+        "Several actions and framing scales mixed in one sheet",
+        "Bust row cannot be combined with full-body row as one animation",
+        "Different head/tail visibility is actual perspective change, not facial animation"
+      ],
+      "intended_actions_by_visual_row": [
+        "Standing full-body turn front → side → back → side → front",
+        "Standing → lean forward → sit down on black wheeled office chair",
+        "Seated chair turn front → right profile → back → left profile → front",
+        "Seated reverse turn back → side → front",
+        "Forward lean and rise from chair to standing",
+        "Bust/head turn with rear views; not a lip-sync set",
+        "Rear/tail/body turn, cropped above head in places",
+        "Full-body standing turn"
+      ]
+    },
+    {
+      "id": "03",
+      "visual_layout": "9 visual rows with unequal spacing, prop widths and group lengths; no uniform rectangular grid can correctly extract every sprite",
+      "limitations": [
+        "Most figures only approximately 70–115 pixels high",
+        "Full body, bust, props and desk compositions mixed on opaque tan background",
+        "Generic board charts are illustration props, not factual data visualizations",
+        "The empty frame_039.png is not a reliably identified missing animation frame because the underlying equal-grid extraction is wrong"
+      ],
+      "intended_actions_by_visual_row": [
+        "Idle narrator full body, subtle turn and blink",
+        "Bust expressions and blink sequence",
+        "Wave, pointing, conversational open-hand gestures",
+        "Presenting examples with bar/line/pie/checklist boards and some plain standing variants",
+        "Walking and direction/turn variants",
+        "Standing turn, cheer jump, wave/present gestures",
+        "Holding laptop/typing and headset conversational poses",
+        "Desk typing from multiple viewing angles, lean/relax variants",
+        "Chair rotation and sitting/rising variants"
+      ]
+    }
+  ],
+  "recommended_generation_priority": [
+    {
+      "id": "chair_spin",
+      "reason": "Largest new capability requested by the supplied sheets; no existing high-quality clean production sequence",
+      "requirements": "Same black wheeled office chair in all views, same ground pivot, constant character height, front/right/rear/left/front; frames in row-major order with no labels"
+    },
+    {
+      "id": "sit_down",
+      "reason": "One-shot transition needed between standing narrator and seated scenes",
+      "requirements": "Chair present from first frame and stationary; fox feet maintain ground plane, bends hips/knees, contacts seat smoothly; hold seated final pose"
+    },
+    {
+      "id": "stand_up",
+      "reason": "Completes seated→standing storytelling and hook transition",
+      "requirements": "Same chair as sit_down; forward lean, weight transfer to feet, rise, settle; no disappearing chair; hold standing final pose"
+    },
+    {
+      "id": "walk",
+      "reason": "Actual articulated full-body movement beyond swapping static poses",
+      "requirements": "In-place walk cycle at fixed three-quarter view, distinct foot contact/passing poses, alternating arms, consistent tail, first and last phases match without a duplicated pause"
+    },
+    {
+      "id": "wave",
+      "reason": "Reusable channel greeting, existing tiny 6-frame source is not full-resolution production material",
+      "requirements": "Fixed feet and body scale, smooth hand raise and wave, no body morphing, return to starting arm pose"
+    },
+    {
+      "id": "idle_blink",
+      "reason": "Stable holding shot to join one-shot actions without repeated cuts",
+      "requirements": "Feet/tail locked, very small breathing and one natural blink; no mouth lip-sync inference"
+    },
+    {
+      "id": "point_present",
+      "reason": "Common production narration action without embedding a misleading generic chart",
+      "requirements": "One explicit pointing/open-hand action; keep other arm, face, stance and camera consistent; no built-in chart or text"
+    }
+  ],
+  "handoff_constraints": [
+    "Do not relabel 458 old source cells as 458 production frames",
+    "Do not invent FPS or claim smooth animation merely from sorted PNG names",
+    "New images must be generated/edited with imagegen and saved inside the workspace",
+    "Verify actual alpha, complete body silhouette and clips on both light and dark backgrounds",
+    "Keep raw archive, existing working poses and original assets/mascot unchanged"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\showcase.mp4",
+  "animations": [
+    {
+      "id": "wave",
+      "label": "Vẫy chào",
+      "source_fps": 8,
+      "source_frames": 8
+    },
+    {
+      "id": "chair_spin",
+      "label": "Xoay ghế một vòng",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "stand_up",
+      "label": "Đứng dậy từ ghế",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "sit_down",
+      "label": "Ngồi xuống ghế",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "walk",
+      "label": "Đi bộ tại chỗ",
+      "source_fps": 8,
+      "source_frames": 8
+    },
+    {
+      "id": "idle_blink",
+      "label": "Đứng dẫn chuyện, chớp mắt",
+      "source_fps": 4,
+      "source_frames": 8
+    },
+    {
+      "id": "point_present",
+      "label": "Giơ tay chỉ dẫn",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "bow",
+      "label": "Cúi chào",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "nod",
+      "label": "Gật đầu",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "turn",
+      "label": "Quay người một vòng",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "arms_up",
+      "label": "Giơ hai tay ăn mừng",
+      "source_fps": 6,
+      "source_frames": 8
+    },
+    {
+      "id": "desk_typing",
+      "label": "Ngồi bàn gõ máy",
+      "source_fps": 8,
+      "source_frames": 8
+    }
+  ],
+  "sound": false,
+  "measured": {
+    "streams": [
+      {
+        "codec_name": "h264",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "nb_frames": "720"
+      }
+    ],
+    "format": {
+      "duration": "24.000000"
+    }
+  },
+  "faststart": true,
+  "visual_review": {
+    "frames_seconds": [
+      0.5,
+      10.5,
+      22.5
+    ],
+    "checked": [
+      "Vietnamese accents display correctly in titles and all sampled labels.",
+      "Longest action label fits portrait width with visible left/right margins.",
+      "No label overlaps mascot; native-scale mascot remains above420px bottom safe area."
+    ],
+    "evidence": [
+      "qc/showcase-first.png",
+      "qc/showcase-long-label.png",
+      "qc/showcase-last.png"
+    ]
+  }
+}

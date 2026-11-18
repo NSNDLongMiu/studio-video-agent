@@ -1,0 +1,2045 @@
+{
+  "review_samples_seconds": [
+    0,
+    0.25,
+    0.5,
+    0.75
+  ],
+  "dark_top_light_bottom": true,
+  "animations": [
+    {
+      "id": "wave",
+      "frames": 8,
+      "status": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\wave.mp4",
+          "animation_id": "wave",
+          "source_frames": 8,
+          "source_sha256": [
+            "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+            "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+            "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+            "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+            "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+            "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+            "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+            "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\wave-light.mp4",
+          "animation_id": "wave",
+          "source_frames": 8,
+          "source_sha256": [
+            "eb3518f11ccdba3a8c8a490b0b511e2c53cc44f2907d4e916a0b0d9f3397d46a",
+            "ce314cd6032198658f6b7f8e0073327bbcfece292c3c9f47d2f3418760431a1c",
+            "807b86f3e54e71fe9d5833d632916eb4a467bd00962e6b5f4a2ce46850d365c0",
+            "8af75adddf62611599d48284b0a805d9c73d2d637908d831507150f21aaa8d6d",
+            "8e8175b8c90e579287d226bfa61f08b98adf16ff1680edc72c0abcb2914fac05",
+            "14acbee17d810226ba37a10dd195ebabd12dcae91a5ec3b3718e1bd2c11230fe",
+            "d0d21eeecfdfe0ef5ad26bedda9004fb2bb72305e5554124ad8488e3a741a71f",
+            "fa41b9fda61f2cfe2ab1c89033e6e95539c6558cdeda51730aa48e6aacce3a02"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at 0/.25/.5/.75 seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Raised hand changes position consistently; face, clothes, shoes and ground registration remain steady.",
+          "Last-to-first pose is visually compatible with a greeting loop."
+        ],
+        "limits": [
+          "Eight source frames at 6 or 8 fps, frame-held into 30fps output; no synthesized intermediate poses.",
+          "Native figure height427?472px; no HD-detail claim or automatic upscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "montage": "qc/wave-review.png",
+      "all_frame_montage": "qc/wave-all-review.png"
+    },
+    {
+      "id": "chair_spin",
+      "frames": 8,
+      "status": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\chair_spin.mp4",
+          "animation_id": "chair_spin",
+          "source_frames": 8,
+          "source_sha256": [
+            "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+            "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+            "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+            "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+            "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+            "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+            "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+            "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\chair_spin-light.mp4",
+          "animation_id": "chair_spin",
+          "source_frames": 8,
+          "source_sha256": [
+            "3888988f317abf71ff1b2f72793ea6aa0b28b4fb944a312f664c6e337238522b",
+            "9180a36752ced178c71beec050e77ae62e4cd6dac19684c2c3a9ceae60829bc0",
+            "3b3e601646c2ce12d85afbf32a92c444c9dd5ef5a86a9639f500333dc98c38cf",
+            "f450deaa7fb07775c88a1c8731ca8c28729ec1e0d1ca2a834d0a1016a5a2f2ba",
+            "cc1dae2fbf9c6fa67d62959291d6353f2d5c81f361de3cb6de6af21c65ad2add",
+            "434cd8c2bfc03f2bb29798b19ab125a122d77ec3a7dc99c05eaff0b12255bb74",
+            "4cfad754d358f3fc67c6290ea5bf0f0b5549e31d9dd66a51ad8f9fd695b3f032",
+            "3b41f3b4d021a52df86de06c54e29696178b369c03985b12acf699505b413275"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at 0/.25/.5/.75 seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Fox and chair turn through front, side, rear and opposite side views without isolated props or clipped silhouette.",
+          "Eight-view rotation is readable at 6 source frames per second; not a physically rigged 3D spin."
+        ],
+        "limits": [
+          "Eight source frames at 6 or 8 fps, frame-held into 30fps output; no synthesized intermediate poses.",
+          "Native figure height427?472px; no HD-detail claim or automatic upscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "montage": "qc/chair_spin-review.png",
+      "all_frame_montage": "qc/chair_spin-all-review.png"
+    },
+    {
+      "id": "stand_up",
+      "frames": 8,
+      "status": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\stand_up.mp4",
+          "animation_id": "stand_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\stand_up-light.mp4",
+          "animation_id": "stand_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at 0/.25/.5/.75 seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Seated pose leans forward, lifts and resolves into a stable standing final pose.",
+          "Chair stays present throughout; use only in scenes requiring the integrated chair."
+        ],
+        "limits": [
+          "Eight source frames at 6 or 8 fps, frame-held into 30fps output; no synthesized intermediate poses.",
+          "Native figure height427?472px; no HD-detail claim or automatic upscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "montage": "qc/stand_up-review.png",
+      "all_frame_montage": "qc/stand_up-all-review.png"
+    },
+    {
+      "id": "sit_down",
+      "frames": 8,
+      "status": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\sit_down.mp4",
+          "animation_id": "sit_down",
+          "source_frames": 8,
+          "source_sha256": [
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\sit_down-light.mp4",
+          "animation_id": "sit_down",
+          "source_frames": 8,
+          "source_sha256": [
+            "55c30319f36bacc6d6c229cfa3b6144c64d6e91fef6702dd2fbbe5b1c84c0922",
+            "136c85e34dd6ab248259b29e22cbb43c343d82494b5abd7983d5e19013e9fb1b",
+            "c9f1814329bbd947a73482f48a8f11f2aab3b38282a4b0317af86e28a2e54304",
+            "03feb246fd610edc1e64798a92dea09e4c65bac1088e7289ffec8caba02fbba0",
+            "80b5d77bdd2361b0c70408a826b5f82bf1ef7a31894e6b89fc8e6e8627072418",
+            "8c5cbd37fed82a4b86380c7057cf986bb374df5c855d75ceb8d83b3c6073df70",
+            "48db02fded57fc0785a5069eba3855a61ac56ffa0aeb16d73a40f87b3b0f95f4",
+            "f6a3f037b9d110d6d08aabda45d74d95b541fed9d40bb0d02c75ec5c8dadf94b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at 0/.25/.5/.75 seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Explicit reversed stand_up source frames resolve standing-to-seated coherently.",
+          "Chair stays present throughout; final seated frame is held for extended duration."
+        ],
+        "limits": [
+          "Eight source frames at 6 or 8 fps, frame-held into 30fps output; no synthesized intermediate poses.",
+          "Native figure height427?472px; no HD-detail claim or automatic upscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "montage": "qc/sit_down-review.png",
+      "all_frame_montage": "qc/sit_down-all-review.png"
+    },
+    {
+      "id": "walk",
+      "frames": 8,
+      "status": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\walk.mp4",
+          "animation_id": "walk",
+          "source_frames": 8,
+          "source_sha256": [
+            "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+            "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+            "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+            "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+            "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+            "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+            "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+            "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\walk-light.mp4",
+          "animation_id": "walk",
+          "source_frames": 8,
+          "source_sha256": [
+            "e13bb428beabbbbe0fc74cf25781318c05257123720d753094e4f51e8c5610ac",
+            "daec04efba6720aff7478295d5fea03e52a576e6a0b229cc8a3e1525fdc293b2",
+            "057b64fa542cc5382d5368995da12597ba6b7512f6fd96e87ca35c094ef3d222",
+            "d6fc24b639d8d527c712219671b70ef0f574150b43ef3d85de5537632322c25c",
+            "55a70b7e374e69dd53d32af696526cdddb0786597d944c099e38d144c3ea46c8",
+            "0787bf4bdf3063dc045d5f835c44b6d8f258c536512915b87aa40ddbf60743ed",
+            "c674183b8cd87571b1c320cd7fbe5859bf7ab161b83b7267d7db482c57c44273",
+            "9eb77dfe41113d67b1d20ed6aac14915da8f5a0fbbc69cdb5bdc451f1852325b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at 0/.25/.5/.75 seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Readable stylized walk in place with leg/arm changes and small head/tail bob.",
+          "This clip does not move the character across the screen; compositor must animate position if walking travel is required."
+        ],
+        "limits": [
+          "Eight source frames at 6 or 8 fps, frame-held into 30fps output; no synthesized intermediate poses.",
+          "Native figure height427?472px; no HD-detail claim or automatic upscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "montage": "qc/walk-review.png",
+      "all_frame_montage": "qc/walk-all-review.png"
+    },
+    {
+      "id": "idle_blink",
+      "source_frame_sha256": [
+        "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+        "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+        "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+        "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+        "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+        "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+        "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+        "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\idle_blink.mp4",
+          "animation_id": "idle_blink",
+          "source_frames": 8,
+          "source_sha256": [
+            "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+            "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+            "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+            "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+            "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+            "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+            "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+            "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 4,
+            "source_duration": 2,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\idle_blink-light.mp4",
+          "animation_id": "idle_blink",
+          "source_frames": 8,
+          "source_sha256": [
+            "6ebc5e91226223bcb27c389224c94ea0c03ca63e6173f3daf0b29242ead1af96",
+            "ecbd74262b4624427a8a88b8591babf3fc8b853b84be4bf4b9fa7c14b2e96c16",
+            "58151afd27f3b7d2e4e5579cd143098b9162c8a80aae216c1724677e9834f4c9",
+            "85f8e7e43e77d1d62323acd2ed9c896db56b3b7a5fb08bbd87d006905771c4e0",
+            "36cac13400767aa566238e26a5e2b31c7862894dc7e1c76d0b70eff237e93647",
+            "d68222157ff08b12065cce3c78ce337573e5b84c12f160ea2b8bf00b61c63dec",
+            "467f9737cc6fbcdacb8f353cdcf9c11ecea2f941c0686d19d4568c8cdb84a373",
+            "d2ad7a8d217db5019097cf766b4ac001b78240be460e12aa4db790507fe87a27"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 4,
+            "source_duration": 2,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Eyes visibly progress open, half closed, closed, half open and open while feet and full-body registration stay stable.",
+          "A slow stylized blink/idle loop; no speaking mouth animation."
+        ],
+        "limits": [
+          "8 sourceframes at 4fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 472?473px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/idle_blink-all-review.png",
+      "montage": "qc/idle_blink-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 87843,
+            "changed_visible_pixels": 17950,
+            "changed_visible_fraction": 0.204342,
+            "mean_premultiplied_channel_difference": 3.472012
+          },
+          {
+            "visible_union_pixels": 87823,
+            "changed_visible_pixels": 18612,
+            "changed_visible_fraction": 0.211926,
+            "mean_premultiplied_channel_difference": 4.424198
+          },
+          {
+            "visible_union_pixels": 87783,
+            "changed_visible_pixels": 17274,
+            "changed_visible_fraction": 0.196781,
+            "mean_premultiplied_channel_difference": 4.42525
+          },
+          {
+            "visible_union_pixels": 87801,
+            "changed_visible_pixels": 22644,
+            "changed_visible_fraction": 0.257901,
+            "mean_premultiplied_channel_difference": 5.519606
+          },
+          {
+            "visible_union_pixels": 87717,
+            "changed_visible_pixels": 19584,
+            "changed_visible_fraction": 0.223263,
+            "mean_premultiplied_channel_difference": 4.706649
+          },
+          {
+            "visible_union_pixels": 87652,
+            "changed_visible_pixels": 15338,
+            "changed_visible_fraction": 0.174987,
+            "mean_premultiplied_channel_difference": 3.09937
+          },
+          {
+            "visible_union_pixels": 87656,
+            "changed_visible_pixels": 14732,
+            "changed_visible_fraction": 0.168066,
+            "mean_premultiplied_channel_difference": 3.035396
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 87821,
+          "changed_visible_pixels": 21931,
+          "changed_visible_fraction": 0.249724,
+          "mean_premultiplied_channel_difference": 4.230689
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "point_present",
+      "source_frame_sha256": [
+        "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+        "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+        "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+        "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+        "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+        "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+        "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+        "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\point_present.mp4",
+          "animation_id": "point_present",
+          "source_frames": 8,
+          "source_sha256": [
+            "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+            "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+            "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+            "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+            "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+            "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+            "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+            "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\point_present-light.mp4",
+          "animation_id": "point_present",
+          "source_frames": 8,
+          "source_sha256": [
+            "a97ec6b52a5b9c1e29c38d6518bf938cb59c6ea63e1657a2304432e5edc1077e",
+            "e9d570a51a50999b6f1399bb76fefb10e3092daa29002569981fd529b682cb22",
+            "c1b7aa07355f6892c05b30ba2f04387ba8e90fb3686a45bb70eabee26cd64df0",
+            "8d6ce90bfb8039269e64f0f2af8e01f33a1fd84bd6818d715f822bd8c147451f",
+            "cba821f3f25b90385281155a8406a144299510eca90c3524f742ef9043a61eff",
+            "30b0171afd0bfab899374c45eee7ab860c0fac0cd373995543f8c1417b1123a5",
+            "47bb997f9379ad60cad8330a177c0cb9bd600b03c9ed9e2c37e5787124ab78b1",
+            "9d0827ddc5e83bf62baedb79f3b4e002c53743e8565c3c1c8d3dfc33db902b58"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Rightward presentation arm lifts across ordered poses and resolves into a clear pointing final pose.",
+          "No board/desk baked in; one-shot holds the pointing pose."
+        ],
+        "limits": [
+          "8 sourceframes at 6fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 445?445px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/point_present-all-review.png",
+      "montage": "qc/point_present-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 79017,
+            "changed_visible_pixels": 18746,
+            "changed_visible_fraction": 0.23724,
+            "mean_premultiplied_channel_difference": 8.166733
+          },
+          {
+            "visible_union_pixels": 79394,
+            "changed_visible_pixels": 18534,
+            "changed_visible_fraction": 0.233443,
+            "mean_premultiplied_channel_difference": 10.147997
+          },
+          {
+            "visible_union_pixels": 79519,
+            "changed_visible_pixels": 19061,
+            "changed_visible_fraction": 0.239704,
+            "mean_premultiplied_channel_difference": 10.60271
+          },
+          {
+            "visible_union_pixels": 79119,
+            "changed_visible_pixels": 24888,
+            "changed_visible_fraction": 0.314564,
+            "mean_premultiplied_channel_difference": 10.171583
+          },
+          {
+            "visible_union_pixels": 78815,
+            "changed_visible_pixels": 19636,
+            "changed_visible_fraction": 0.24914,
+            "mean_premultiplied_channel_difference": 7.518962
+          },
+          {
+            "visible_union_pixels": 78859,
+            "changed_visible_pixels": 17838,
+            "changed_visible_fraction": 0.226201,
+            "mean_premultiplied_channel_difference": 7.180789
+          },
+          {
+            "visible_union_pixels": 78312,
+            "changed_visible_pixels": 14930,
+            "changed_visible_fraction": 0.190648,
+            "mean_premultiplied_channel_difference": 3.613318
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 81162,
+          "changed_visible_pixels": 28490,
+          "changed_visible_fraction": 0.351026,
+          "mean_premultiplied_channel_difference": 17.555012
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "bow",
+      "source_frame_sha256": [
+        "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+        "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+        "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+        "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+        "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+        "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+        "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+        "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\bow.mp4",
+          "animation_id": "bow",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+            "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+            "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+            "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+            "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+            "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+            "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+            "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\bow-light.mp4",
+          "animation_id": "bow",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d3d675989397d41de0483509e77338e37d019e81d9cc4eafefc380caa3e2884",
+            "9d5c04beb892365f21f6337eab50150f948791eff4c84446f42e72b191c3a232",
+            "cf7895e4e588c81dedd57049ad898ea94bffdb639e7b4fda96ed3946a69c975c",
+            "c921412fb92f7d4a8f6411ea3acd124e0cd18249cc88ba0a77c3bed811b18872",
+            "04d146f4b7c29e56ae36b5aa5d7e64cc3e25f61f30abb7de34f081eabbec1b5b",
+            "f80d02a5467aab8911501f235938eb3d7a61eb15a846a629e72e830236e04007",
+            "f9e558ec5d53e9730efc8c141b1996db8b91b690a99d99ef7b0fc9e609f74b2e",
+            "e60fd086691ff8a99d19695c1459e07262c684189ccad218e092cd96b0826996"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Torso and head incline together with hands joining in front, then return upright.",
+          "Use as one-shot bow; no automatic reverse or loop."
+        ],
+        "limits": [
+          "8 sourceframes at 6fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 373?454px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/bow-all-review.png",
+      "montage": "qc/bow-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 78087,
+            "changed_visible_pixels": 69169,
+            "changed_visible_fraction": 0.885794,
+            "mean_premultiplied_channel_difference": 49.074678
+          },
+          {
+            "visible_union_pixels": 78307,
+            "changed_visible_pixels": 71752,
+            "changed_visible_fraction": 0.916291,
+            "mean_premultiplied_channel_difference": 58.142026
+          },
+          {
+            "visible_union_pixels": 75498,
+            "changed_visible_pixels": 71289,
+            "changed_visible_fraction": 0.94425,
+            "mean_premultiplied_channel_difference": 61.905663
+          },
+          {
+            "visible_union_pixels": 67249,
+            "changed_visible_pixels": 53875,
+            "changed_visible_fraction": 0.801127,
+            "mean_premultiplied_channel_difference": 33.064233
+          },
+          {
+            "visible_union_pixels": 73247,
+            "changed_visible_pixels": 63619,
+            "changed_visible_fraction": 0.868554,
+            "mean_premultiplied_channel_difference": 55.035045
+          },
+          {
+            "visible_union_pixels": 76781,
+            "changed_visible_pixels": 65810,
+            "changed_visible_fraction": 0.857113,
+            "mean_premultiplied_channel_difference": 57.135021
+          },
+          {
+            "visible_union_pixels": 78134,
+            "changed_visible_pixels": 65805,
+            "changed_visible_fraction": 0.842207,
+            "mean_premultiplied_channel_difference": 49.76358
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 81761,
+          "changed_visible_pixels": 72970,
+          "changed_visible_fraction": 0.892479,
+          "mean_premultiplied_channel_difference": 56.844491
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "nod",
+      "source_frame_sha256": [
+        "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+        "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+        "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+        "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+        "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+        "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+        "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+        "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\nod.mp4",
+          "animation_id": "nod",
+          "source_frames": 8,
+          "source_sha256": [
+            "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+            "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+            "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+            "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+            "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+            "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+            "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+            "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\nod-light.mp4",
+          "animation_id": "nod",
+          "source_frames": 8,
+          "source_sha256": [
+            "8ac87618a1c9e3a44558564622476a091cabf73cf195f05a01daa3df6caa3803",
+            "bf53e74f47114457477dd21b4afd7ec7cec0cd4a68f8f73ea1600b67e034aea4",
+            "3e3d482d6576b637e53f087fdf9695d319fa1a4147c49b542b32e3fdb7e39591",
+            "d781a687b0ff14efd8d6a7d9393e50f601abe80cb408ddc00d6a43f402f85ee1",
+            "ab2941e17a381ff4346c920ae73cc9bc8cba1bc7317c0521b3ead81916a65e60",
+            "a2ecdd5229685314a7dbcd5a5e202eeca8c20a995db35c9df1ee5b78507775d6",
+            "0270430ba2bd5da4e41b788db36854b69cf3b1946cf8484718f6d65e6a17c7b0",
+            "948d1b246e8978467a8028863743803eba4df23878a7b5e26e28e2c367a8b9e2"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Head tilts down and returns while body and ground stay substantially steady.",
+          "Subtle stylized nod; slight image-generated pose variation remains between source frames."
+        ],
+        "limits": [
+          "8 sourceframes at 6fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 423?455px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/nod-all-review.png",
+      "montage": "qc/nod-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 82571,
+            "changed_visible_pixels": 47118,
+            "changed_visible_fraction": 0.570636,
+            "mean_premultiplied_channel_difference": 22.713366
+          },
+          {
+            "visible_union_pixels": 82349,
+            "changed_visible_pixels": 51396,
+            "changed_visible_fraction": 0.624124,
+            "mean_premultiplied_channel_difference": 28.907123
+          },
+          {
+            "visible_union_pixels": 80749,
+            "changed_visible_pixels": 49219,
+            "changed_visible_fraction": 0.609531,
+            "mean_premultiplied_channel_difference": 25.401383
+          },
+          {
+            "visible_union_pixels": 78384,
+            "changed_visible_pixels": 29840,
+            "changed_visible_fraction": 0.38069,
+            "mean_premultiplied_channel_difference": 7.355528
+          },
+          {
+            "visible_union_pixels": 80777,
+            "changed_visible_pixels": 50309,
+            "changed_visible_fraction": 0.622813,
+            "mean_premultiplied_channel_difference": 29.564802
+          },
+          {
+            "visible_union_pixels": 81575,
+            "changed_visible_pixels": 47528,
+            "changed_visible_fraction": 0.582629,
+            "mean_premultiplied_channel_difference": 25.672618
+          },
+          {
+            "visible_union_pixels": 81871,
+            "changed_visible_pixels": 39166,
+            "changed_visible_fraction": 0.478387,
+            "mean_premultiplied_channel_difference": 17.870603
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 81985,
+          "changed_visible_pixels": 33791,
+          "changed_visible_fraction": 0.412161,
+          "mean_premultiplied_channel_difference": 11.805809
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "turn",
+      "source_frame_sha256": [
+        "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+        "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+        "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+        "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+        "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+        "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+        "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+        "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\turn.mp4",
+          "animation_id": "turn",
+          "source_frames": 8,
+          "source_sha256": [
+            "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+            "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+            "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+            "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+            "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+            "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+            "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+            "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\turn-light.mp4",
+          "animation_id": "turn",
+          "source_frames": 8,
+          "source_sha256": [
+            "39fa01144b408c7fe0e2826a10679df98e5e8b7c4be91c53403fc8aa1b669eeb",
+            "5c50a6f8b8e3051b1b7940ce0fbe1bd4c5c642effd4dc7a1e37c8c82330d7dac",
+            "f309d8ef6fd9703c44db706f53e23f615154241a0484470a091d1f6f1c076d81",
+            "675d82e6a0d4f9d6b9bf559df677f0c683bb4f5967b2a8bc4b8bfb8b63bd6aea",
+            "23e3414fbf71c403d496ee486fcadf508ac669757dfc27d68c1c0f72faf09a06",
+            "f5c69244186521b77fea2b1919dde6569e56a9c6ed8602dc642cf5a25a9a4c6b",
+            "d663b5f3becefa23a6af04ece2417a9d8f89284d7106ead912a5493cb07117f7",
+            "9525ab1241e69c71b7c90fc3e284e7ba1011f38b3d79bd27fec0cda38feb6a0b"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Eight ordered front/three-quarter/side/rear views form a readable full-body turn.",
+          "No chair/desk baked in; not a fully rigged 3D model."
+        ],
+        "limits": [
+          "8 sourceframes at 6fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 445?450px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/turn-all-review.png",
+      "montage": "qc/turn-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 84418,
+            "changed_visible_pixels": 72470,
+            "changed_visible_fraction": 0.858466,
+            "mean_premultiplied_channel_difference": 46.107366
+          },
+          {
+            "visible_union_pixels": 82342,
+            "changed_visible_pixels": 74892,
+            "changed_visible_fraction": 0.909524,
+            "mean_premultiplied_channel_difference": 58.405691
+          },
+          {
+            "visible_union_pixels": 76607,
+            "changed_visible_pixels": 68631,
+            "changed_visible_fraction": 0.895884,
+            "mean_premultiplied_channel_difference": 53.46298
+          },
+          {
+            "visible_union_pixels": 80977,
+            "changed_visible_pixels": 74595,
+            "changed_visible_fraction": 0.921187,
+            "mean_premultiplied_channel_difference": 66.589766
+          },
+          {
+            "visible_union_pixels": 79246,
+            "changed_visible_pixels": 65691,
+            "changed_visible_fraction": 0.82895,
+            "mean_premultiplied_channel_difference": 47.293106
+          },
+          {
+            "visible_union_pixels": 79409,
+            "changed_visible_pixels": 72709,
+            "changed_visible_fraction": 0.915627,
+            "mean_premultiplied_channel_difference": 57.307824
+          },
+          {
+            "visible_union_pixels": 78350,
+            "changed_visible_pixels": 69983,
+            "changed_visible_fraction": 0.89321,
+            "mean_premultiplied_channel_difference": 55.922166
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 88557,
+          "changed_visible_pixels": 81563,
+          "changed_visible_fraction": 0.921023,
+          "mean_premultiplied_channel_difference": 72.976881
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "arms_up",
+      "source_frame_sha256": [
+        "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+        "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+        "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+        "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+        "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+        "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+        "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+        "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\arms_up.mp4",
+          "animation_id": "arms_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+            "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+            "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+            "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+            "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+            "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+            "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+            "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\arms_up-light.mp4",
+          "animation_id": "arms_up",
+          "source_frames": 8,
+          "source_sha256": [
+            "71b707ec013b1219060760beb0ec61bd8b383930407c209add234f5c67b108b2",
+            "7bd0f59a516f866fe9ace7cf65932f1d33421641affa515bf3ad47789d26a34b",
+            "7b856d80ce448d826427c6db8f849f6f8e1ad66bde87cfa91cf137d718aa215c",
+            "10373cd8ff02be5a278bc35b3504f81b0d7c6b6b36102ec56dcac8f787b2cedf",
+            "491084ec9414aa334cb0971bb39cf203404daf390972e1712f7dee89e64c1810",
+            "0bc62e51a5b08b985bf3a6bd6383c93dfbf1c3b718f71209b07cb089cef47d6e",
+            "20e85f3d356a3cf690a3b46ad6cd3cd638254038b41661ed2e4e719018c5b8a9",
+            "8d3ef529bdfacf4a7f9974998e3838cb994405c5be4100c076c782383e12efa6"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "hold",
+            "source_fps": 6,
+            "source_duration": 1.3333333333333333,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Both arms rise from rest through bent elbows to open raised hands, then hold.",
+          "One-shot celebration; final raised-hands pose is held."
+        ],
+        "limits": [
+          "8 sourceframes at 6fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 443?443px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/arms_up-all-review.png",
+      "montage": "qc/arms_up-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 73944,
+            "changed_visible_pixels": 29561,
+            "changed_visible_fraction": 0.399776,
+            "mean_premultiplied_channel_difference": 16.393198
+          },
+          {
+            "visible_union_pixels": 75353,
+            "changed_visible_pixels": 24185,
+            "changed_visible_fraction": 0.320956,
+            "mean_premultiplied_channel_difference": 14.882547
+          },
+          {
+            "visible_union_pixels": 78009,
+            "changed_visible_pixels": 25004,
+            "changed_visible_fraction": 0.320527,
+            "mean_premultiplied_channel_difference": 15.285769
+          },
+          {
+            "visible_union_pixels": 81311,
+            "changed_visible_pixels": 30298,
+            "changed_visible_fraction": 0.372619,
+            "mean_premultiplied_channel_difference": 20.784966
+          },
+          {
+            "visible_union_pixels": 81657,
+            "changed_visible_pixels": 31544,
+            "changed_visible_fraction": 0.386299,
+            "mean_premultiplied_channel_difference": 20.083603
+          },
+          {
+            "visible_union_pixels": 81086,
+            "changed_visible_pixels": 30358,
+            "changed_visible_fraction": 0.374393,
+            "mean_premultiplied_channel_difference": 15.589959
+          },
+          {
+            "visible_union_pixels": 79773,
+            "changed_visible_pixels": 16476,
+            "changed_visible_fraction": 0.206536,
+            "mean_premultiplied_channel_difference": 4.238137
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 82809,
+          "changed_visible_pixels": 40558,
+          "changed_visible_fraction": 0.489778,
+          "mean_premultiplied_channel_difference": 34.852366
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      }
+    },
+    {
+      "id": "desk_typing",
+      "source_frame_sha256": [
+        "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+        "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+        "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+        "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+        "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+        "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+        "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+        "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+      ],
+      "frames": 8,
+      "status_at_review": "REVIEW_REQUIRED",
+      "previews": [
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\desk_typing.mp4",
+          "animation_id": "desk_typing",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+            "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+            "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+            "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+            "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+            "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+            "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+            "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        },
+        {
+          "out": "D:\\Agent Video Studio\\brand\\cao\\production-pack\\previews\\desk_typing-light.mp4",
+          "animation_id": "desk_typing",
+          "source_frames": 8,
+          "source_sha256": [
+            "3d256853e2fbfb6e98ae0efdaeb63f16801af7425cafd7ffe40c144f6b821e9a",
+            "11b63c26af369716981b384dd6c7f92c124a9474221cb97902e6cf797396eebb",
+            "1bc0a3f6d15d47e75fa6eb0081fad9a95586a4ff7634406c6012840dea639329",
+            "2d24576dd7c36e707609245aa3b753f256d7de325151c5a94066923dac40d5e5",
+            "3eca2092919d2277176a85b7e6c3f2d9f60b480a7b4fcc13759d61e82bc3b296",
+            "1eff261bc3451b3fdbcf9f2810cf085aa1a1be0f3dbd513caaa507c78abd48c8",
+            "5342a30e8a473f06a79121aaa3cc1237dfbc7d4b9401da5333fee83e72ee2309",
+            "b677532ed05c8eb94e72fb423280574c493f81756e09b81c99b37b24c254d10f"
+          ],
+          "quality_status": "REVIEW_REQUIRED",
+          "review_only": true,
+          "geometry": {
+            "width": 1080,
+            "height": 1920,
+            "fps": 30,
+            "duration": 2,
+            "repeat": "loop",
+            "source_fps": 8,
+            "source_duration": 1,
+            "drawWidth": 512,
+            "drawHeight": 512,
+            "x": 284,
+            "y": 1020,
+            "ground": [
+              540,
+              1500
+            ],
+            "upscaled": false,
+            "interpolation": false
+          },
+          "measured": {
+            "streams": [
+              {
+                "codec_name": "h264",
+                "width": 1080,
+                "height": 1920,
+                "pix_fmt": "yuv420p",
+                "r_frame_rate": "30/1",
+                "nb_frames": "60"
+              }
+            ],
+            "format": {
+              "duration": "2.000000"
+            }
+          }
+        }
+      ],
+      "visual_review": {
+        "recommendation": "PASS_AT_NATIVE_SCALE",
+        "reviewed": [
+          "Actual decoded dark and light MP4 samples at0/.25/.5/.75seconds",
+          "All eight actual decoded ordered frames on dark background, including loop endpoints or one-shot final pose"
+        ],
+        "alpha": "No obvious beige plate, dark/light halo or lost body part visible at native scale in reviewed composites.",
+        "motion_findings": [
+          "Alternating finger and wrist positions are visibly distinct in the actual decoded frame details; this is not eight copies of a static picture.",
+          "Desk, chair and laptop are integrated and visually stable; do not overlay additional furniture on them.",
+          "Typing animation stays in place and does not expose an editable laptop display."
+        ],
+        "limits": [
+          "8 sourceframes at 8fps, frame-held into30fps output; no synthesized intermediateposes.",
+          "Native figureheight 451?452px; noHDdetailclaim or automaticupscaling.",
+          "No lip-sync or audio."
+        ]
+      },
+      "all_frame_montage": "qc/desk_typing-all-review.png",
+      "montage": "qc/desk_typing-review.png",
+      "motion_metrics": {
+        "unique_source_pngs": 8,
+        "unique_decoded_rgba_frames": 8,
+        "adjacent": [
+          {
+            "visible_union_pixels": 93823,
+            "changed_visible_pixels": 19781,
+            "changed_visible_fraction": 0.210833,
+            "mean_premultiplied_channel_difference": 3.90781
+          },
+          {
+            "visible_union_pixels": 93758,
+            "changed_visible_pixels": 18772,
+            "changed_visible_fraction": 0.200218,
+            "mean_premultiplied_channel_difference": 3.580345
+          },
+          {
+            "visible_union_pixels": 93790,
+            "changed_visible_pixels": 17375,
+            "changed_visible_fraction": 0.185254,
+            "mean_premultiplied_channel_difference": 3.323366
+          },
+          {
+            "visible_union_pixels": 93878,
+            "changed_visible_pixels": 22155,
+            "changed_visible_fraction": 0.235998,
+            "mean_premultiplied_channel_difference": 3.901599
+          },
+          {
+            "visible_union_pixels": 93768,
+            "changed_visible_pixels": 19059,
+            "changed_visible_fraction": 0.203257,
+            "mean_premultiplied_channel_difference": 3.784672
+          },
+          {
+            "visible_union_pixels": 93750,
+            "changed_visible_pixels": 18122,
+            "changed_visible_fraction": 0.193301,
+            "mean_premultiplied_channel_difference": 3.540057
+          },
+          {
+            "visible_union_pixels": 93778,
+            "changed_visible_pixels": 17247,
+            "changed_visible_fraction": 0.183913,
+            "mean_premultiplied_channel_difference": 3.19242
+          }
+        ],
+        "last_to_first": {
+          "visible_union_pixels": 93927,
+          "changed_visible_pixels": 23292,
+          "changed_visible_fraction": 0.24798,
+          "mean_premultiplied_channel_difference": 4.075089
+        },
+        "explanation": "Visible support alpha>=32; RGB differences are premultiplied by alpha. Pixel variation alone does not prove correct motion; inspect actual composites."
+      },
+      "typing_hand_roi": {
+        "rectangle": [
+          205,
+          260,
+          305,
+          305
+        ],
+        "coordinate_base": "512x512 normalized sourcecanvas",
+        "adjacent": [
+          {
+            "changed_fraction": 0.6948888888888889,
+            "mean_rgb_difference": 24.271929411764134
+          },
+          {
+            "changed_fraction": 0.6515555555555556,
+            "mean_rgb_difference": 19.553725780682022
+          },
+          {
+            "changed_fraction": 0.5506666666666666,
+            "mean_rgb_difference": 14.037850108931996
+          },
+          {
+            "changed_fraction": 0.5017777777777778,
+            "mean_rgb_difference": 7.687845751633586
+          },
+          {
+            "changed_fraction": 0.7002222222222222,
+            "mean_rgb_difference": 24.303477414669096
+          },
+          {
+            "changed_fraction": 0.6397777777777778,
+            "mean_rgb_difference": 20.246347712417847
+          },
+          {
+            "changed_fraction": 0.5582222222222222,
+            "mean_rgb_difference": 12.70964851125589
+          }
+        ],
+        "actual_decode_detail_montage": "qc/desk-typing-hands.png",
+        "note": "Visual review confirms finger/wrist pose changes; numerical difference alone does not prove action correctness."
+      }
+    }
+  ],
+  "review_scope": "Technical encode/decode and visual source/edge/ordered-pose review; root owns final manifest quality status."
+}

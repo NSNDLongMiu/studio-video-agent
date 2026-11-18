@@ -1,0 +1,9 @@
+{
+  "id": "point_present",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-ca6240d5-319e-4839-88d9-70f28b3e0fd6.png",
+  "workspace_file": "brand/cao/production-pack/generated/point_present-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Asset: truealpha animation sprite atlas for office-fox presenter.\nUse supplied image as strict identity/style reference: same orangefluffy fox, whitecheeks/chest/tailtip, roundblackglasses, whiteshortsleevedshirt, navytie, employeeID, wristwatch, darktrousers and blackshoes. Same face and proportions.\nMake exactly8 successive frames arranged4columns×2rows in uniform cells, landscape1536x1024 or higher. Fullbody onefox eachcell, fixedcamera/size/groundline,10%transparentpadding, no cropping. Action: fox smoothly raises LEFT arm on VIEWER'S RIGHT to point with indexfinger toward upperright of screen, then holds. Otherarm staysdown; no furniture or board.\nRowmajor:1neutral armsdown;2elbowstarts bending;3forearmraising;4elbowat chest level;5armextends diagonally toward upperright;6indexfingerfullyextended pointing;7settles pointing;8holdfinalpoint. Keep headlooking towardviewer with small CLOSEDmouthsmile. Preserve glasses/eyes/tie, no changing expression/size. All frames show the exactsame motion trajectory and hand, no extra fingerslimbs.\nBackground completely transparent ALPHA, no backgroundcolor,gradient,castshadow,floor,grid,text,labels or checkerboard. Do not draw actual charts/arrows—onlyfox action. Keep handcomfortably insidecell.",
+  "ai_generated_content": true
+}

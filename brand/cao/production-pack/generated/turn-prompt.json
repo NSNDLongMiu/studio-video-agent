@@ -1,0 +1,9 @@
+{
+  "id": "turn",
+  "mode": "built-in image_gen",
+  "transparent_background_requested": true,
+  "source_generated_file": "C:\\Users\\PC\\.codex\\generated_images\\01a1e881-affd-7a70-a7d3-76c368665f38\\exec-89e77cda-395d-4874-897d-179728ce5fdc.png",
+  "workspace_file": "brand/cao/production-pack/generated/turn-raw-v1.png",
+  "prompt": "Use case: stylized-concept. Create ONE production PNG sprite atlas with real transparent alpha. Strict identity reference: same orange officefox, fluffywhite muzzle/chest/tailtip, roundblackglasses,white shortsleevedshirt,navytie,IDbadge,wristwatch,darktrousers,blackshoes,3Dfilmrender. EXACTLY8 sequentialframes in uniform4columns×2rows,landscape1536x1024. Fullbody onefox eachcell,samefixedcamera,scale,groundlineandposition,10%emptymargins. Absolutely no backgroundcolor,floor,shadows,grid,text,captions,numbers or watermarks. Preservecomplete ears/tail/feet, noextra limbs. Animate one full360degree standingturn in place. Foxremainsstandingupright,armsrelaxedbybody,feetpivotnaturally on fixedcenter. Rowmajorfacingangles:0front,45front-right,90rightprofile,135rear-right,180fullback,225rear-left,270leftprofile,315front-left. Nochair,noprops. Clothingandtailrotatephysicallywithbody,glassesarmsvisiblefromside. Groundpivotremainsfixed,bodyheightconstant. Nextframewouldreturntofrontforseamlessloop.",
+  "ai_generated_content": true
+}
