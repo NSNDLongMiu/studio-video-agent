@@ -1,10 +1,10 @@
 # PROMPT giao cho agent khác: thêm "nhép miệng" cho linh vật Cáo văn phòng
 
-> Cách dùng: mở một phiên agent mới (Claude Code, Codex…) **với thư mục làm việc là `E:\Tiktoker`**, dán toàn bộ phần trong khung bên dưới làm tin nhắn đầu tiên.
+> Cách dùng: mở một phiên agent mới (Claude Code, Codex…) **với thư mục làm việc là `D:\Agent Video Studio`**, dán toàn bộ phần trong khung bên dưới làm tin nhắn đầu tiên.
 > Máy triển khai là PC mạnh của giám đốc (cấu hình chưa rõ, agent phải tự kiểm tra, xem mục 8). Máy phát triển hiện tại chỉ có CPU Intel i7-13700H, RAM 31,5 GB, không có card rời.
 
 ````text
-Bạn là kỹ sư đồ hoạ/video. Nhiệm vụ: thêm tính năng NHÉP MIỆNG (lip-sync) cho linh vật "Cáo văn phòng" của kênh video ngắn, để miệng cáo mở/đóng khớp với giọng đọc tiếng Việt. Làm trong thư mục E:\Tiktoker. Trả lời và viết tài liệu bằng tiếng Việt có dấu.
+Bạn là kỹ sư đồ hoạ/video. Nhiệm vụ: thêm tính năng NHÉP MIỆNG (lip-sync) cho linh vật "Cáo văn phòng" của kênh video ngắn, để miệng cáo mở/đóng khớp với giọng đọc tiếng Việt. Làm trong thư mục D:\Agent Video Studio. Trả lời và viết tài liệu bằng tiếng Việt có dấu.
 
 ## 1. Bối cảnh (đọc trước khi làm)
 - Kênh "Cáo văn phòng": video dọc 9:16 (1080x1920) cho TikTok/Facebook Reels/YouTube Shorts. Linh vật là cáo cam 3D hoạt hình mặc đồ công sở (kính tròn, sơ mi trắng, cà vạt). TOÀN BỘ nội dung gắn nhãn AI.

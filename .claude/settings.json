@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__studio__studio_overview",
+      "mcp__studio__list_topics",
+      "mcp__studio__list_videos",
+      "mcp__studio__list_proposals",
+      "mcp__studio__list_jobs",
+      "mcp__studio__list_accounts",
+      "mcp__studio__get_video",
+      "mcp__studio__report_status",
+      "mcp__studio__log_event"
+    ],
+    "ask": [
+      "mcp__studio__approve_proposal",
+      "mcp__studio__reject_proposal",
+      "mcp__studio__set_daily_target",
+      "mcp__studio__create_department",
+      "mcp__studio__close_department",
+      "mcp__studio__reopen_department"
+    ]
+  }
+}

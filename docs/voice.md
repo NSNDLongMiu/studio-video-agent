@@ -41,11 +41,39 @@ Máy triển khai dùng GPU AMD (không phải NVIDIA) nên bỏ đường CUDA 
 3. Giọng đã chọn ghi vào mục "Giọng chính thức" dưới đây để Producer dùng thống nhất. **Luôn gắn nhãn AI** (xem `docs/platform-specs.md`).
 
 ### Giọng chính thức — **toàn bộ dùng giọng Bắc** (đã bỏ yêu cầu giọng Nam, quyết định 17/11/2026)
-Thông số chung cho cả 2 giọng dưới: `temperature=0.65` (mặc định v3 Turbo là 0,4 — tăng lên cho "có cảm xúc" hơn theo yêu cầu giám đốc; **đổi lại dễ phát âm sai/lạ hơn chút, cần nghe lại khi đổi câu mới**) + hậu kỳ `ffmpeg -filter:a atempo=1.08` (**+8% tốc độ**, giữ nguyên cao độ — v3 Turbo không có tham số tốc độ riêng). Script `tools/voice/vieneu_samples.py` hiện **chưa có cờ `--temperature`** — khi nối vào pipeline sản xuất thật, nhớ áp đúng 2 tham số trên.
+Thông số chung cho cả 2 giọng dưới: `temperature=0.65` (mặc định v3 Turbo là 0,4, tăng để giọng có cảm xúc theo yêu cầu giám đốc). Script `tools/voice/vieneu_samples.py` hiện chưa có cờ `--temperature`. Nhịp hậu kỳ theo Y6 bên dưới.
 - **Giọng nam chính (kênh, Cáo dẫn truyện): Minh Đức** (Nam · Bắc · Phong cách tin tức) — đã chốt, nghe mẫu ở `voice-ab/1_bieucam_nhanh.wav`.
 - **Giọng nữ (nhân vật nữ phụ, vd "Chị Phỏng vấn"): Quỳnh Anh** (Nữ · Bắc) — đã chốt, nghe mẫu ở `voice-final/QuynhAnh_*_bieucam_nhanh.wav`.
 
-## Cách nghe thử có tiêu chí
+## Xử lý lời thoại trước khi dựng (Y6–Y8)
+
+**Y6 — Tốc độ.** Giám đốc yêu cầu giảm nhẹ, tham khảo 0,9–0,95 lần tốc độ cũ. Quy đổi từ `atempo` 1,08: 1,08 × 0,9 ≈ 0,97 và 1,08 × 0,95 ≈ 1,03. Mặc định hậu kỳ `atempo` ≈ 1,00, đoạn `[kỹ thuật]` phức tạp ≈ 0,97, đoạn `[dẫn]` ≈ 1,03. Giám đốc nghe để tinh chỉnh. Giữ hình đủ lâu để hiểu, tránh chuyển cảnh liên tục.
+
+**Y7 — Khoảng nghỉ.** Sinh audio từng câu sau khi chuẩn hoá, áp tốc độ đoạn rồi chèn nghỉ theo ngữ cảnh. Tính cả khoảng nghỉ TTS đã tạo để tránh cộng trùng; phối hợp nhịp nghỉ với hiệu ứng hình, chuyển cảnh hoặc âm thanh.
+
+| Vị trí | Giây tham khảo của giám đốc |
+|---|---|
+| Sau dấu phẩy | 0,2–0,4 |
+| Sau dấu chấm | 0,4–0,7 |
+| Sau câu hỏi hoặc ý quan trọng | 0,7–1,2 |
+| Khi chuyển sang nội dung mới | 0,8–1,5 |
+
+Nhịp nghỉ dài đi với hình đang đổi đáng xem hoặc chuyển cảnh có chủ đích. Đo lại sau TTS và gửi mốc cho Kịch bản/Đạo diễn hình ảnh duyệt lại. Đuôi im mặc định ≤ 0,7 s; ngoại lệ ghi giây và lý do trong `notes.md`. Tổng 15–45 giây, quá trần thì rút phạm vi, không tăng tốc để bù.
+
+**Y8 — Từ điển `tools/voice/pronunciation.json`.** Kịch bản liệt kê thuật ngữ và phân loại đọc từng chữ cái (vd API) hoặc đọc như một từ (vd Database, Deadlock, Transaction, Query, Index, Backend, Frontend); cấu hình từng cách đọc trong từ điển. Công cụ (chi tiết ở `tools/voice/README.md`):
+
+```text
+node tools/voice/pronounce.mjs <apply|check|terms|list|init-extra> [--file <tệp>] [--column "Lời đọc"] [--text "<chuỗi>"] [--extra <tệp.json>] [--ignore a,b] [--json]
+```
+
+Có **hai tầng từ điển**: từ điển chung `tools/voice/pronunciation.json` (chỉ giám đốc hoặc người có quyền sửa `tools/` cập nhật) và **từ điển riêng của từng video** `<thư mục video>/assets/voice/pronunciation.local.json` (Producer được ghi vì nằm trong thư mục video; truyền bằng `--extra`, mục riêng ghi đè mục chung khi trùng và có cảnh báo).
+
+1. `check --file <script.md> --column "Lời đọc" --extra <tệp riêng>` trước khi sinh audio (chỉ quét cột lời đọc của bảng cảnh). Thuật ngữ lạ (`unknown`, mã thoát 1) được bổ sung vào **tệp riêng của video** (tạo khung bằng `init-extra`), `verified:false` và ghi “CHƯA KIỂM — giám đốc nghe”; chạy lại `check` tới khi mã thoát 0 rồi mới tổng hợp giọng. Khi giám đốc đã nghe và chốt, mục được chuyển từ tệp riêng lên từ điển chung và đặt `verified:true`.
+2. `apply --file <script.md> --column "Lời đọc" --json --extra <tệp riêng>` tạo văn bản đưa TTS (từng câu). Chữ trên hình và phụ đề giữ chính tả chuẩn. Sinh từng câu theo Y6–Y7 (đường Remotion: `studio/renderer-remotion/scripts/gen_vo.py`, dùng chính từ điển này).
+3. Dùng `terms` để rà danh sách, sinh một clip mẫu mỗi thuật ngữ ở `assets/voice/term-check/<slug>.wav`. Trong `notes.md` ghi bảng “nghe kiểm” gồm thuật ngữ, cách đọc, đường dẫn clip và trạng thái.
+4. Rà lại toàn bộ văn bản đã đưa TTS, nhất là đoạn nhiều thuật ngữ, và đo thời lượng/khoảng nghỉ. Agent kiểm bằng văn bản và số đo. Không đưa audio vào mô hình, không cài công cụ nhận dạng giọng. Phát âm thật là **CHƯA KIỂM — giám đốc nghe** đến khi giám đốc xác nhận. Chỉ sau xác nhận đó mới cập nhật `verified:true`.
+
+## Cách nghe thử có tiêu chí (giám đốc)
 Dùng đúng bộ câu trong `tools/voice/sample_text.txt` (đủ giọng vui, câu dài, thuật ngữ văn phòng, số và viết tắt), cho mỗi giọng nghe và chấm 1–5:
 1. Tự nhiên, không "đọc máy". 2. Đúng dấu/thanh điệu, đúng giọng miền. 3. Nhịp trẻ trung, đủ nhanh cho video ngắn. 4. Đọc đúng số, viết tắt, từ mượn (KPI, deadline, TikTok). 5. Ổn định ở câu dài, không lỗi lặp/nuốt chữ.
 

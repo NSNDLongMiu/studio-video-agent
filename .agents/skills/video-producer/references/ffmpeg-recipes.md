@@ -33,7 +33,7 @@ Sai thường gặp: đặt `FontSize=60`/`MarginV=400` → chữ khổng lồ h
 
 ## 4. Chuẩn hoá âm lượng  ✅ đã kiểm
 `-af loudnorm=I=-14:TP=-1.5:LRA=11`
-Trộn nhạc nền + lời: `[0:a]volume=1[v];[1:a]volume=0.2[m];[v][m]amix=inputs=2:duration=first:dropout_transition=0,loudnorm=I=-14:TP=-1.5:LRA=11` (⚠ chưa kiểm — thử rồi xem `qc-video`).
+(Hiện KHÔNG dùng nhạc nền — giám đốc chốt 18/11/2026; công thức giữ để tham khảo.) Trộn nhạc nền + lời: `[0:a]volume=1[v];[1:a]volume=0.2[m];[v][m]amix=inputs=2:duration=first:dropout_transition=0,loudnorm=I=-14:TP=-1.5:LRA=11` (⚠ chưa kiểm — thử rồi xem `qc-video`).
 
 ## 5. Nền màu / thẻ chữ không cần nguyên liệu  ✅ đã kiểm
 ```
@@ -66,6 +66,8 @@ ffmpeg -y -f lavfi -i "color=c=0x1b2a49:s=1080x1920:r=30:d=<thời lượng>" -i
 | Cáo | ~800–1500 | chân chạm y=1500 (`overlay y=H-h-420`) |
 | Vùng giao diện nền tảng | 1500–1920 | không đặt gì quan trọng |
 ⚠ Đừng dùng `MarginV=63` (phụ đề sát đáy) khi có Cáo: phụ đề sẽ đè lên chân Cáo. Muốn nội dung chính (đồ hoạ/số liệu) chiếm khoảng giữa thì thu Cáo nhỏ lại (`--height 520`) hoặc `--pos left|right`.
+
+> **Bố cục "Cáo cao 760 px" ở trên là mẫu CŨ, trước yêu cầu Y2/Y3 của giám đốc (18/11/2026).** Luật hiện hành (`docs/chat-luong-xem.md`, `docs/mascot.md`): Cáo **chỉ xuất hiện ở cảnh mở / giữa (vài thời điểm quan trọng) / kết**, không xuất hiện liên tục; khi cùng minh hoạ Cáo rộng khoảng **15–25% khung (162–270 px ở 1080 px)**. Quy đổi: sticker có rộng/cao ≈ 0,62–0,83 (ví dụ `think` 205×331, `point_right` 279×338), nên `--height` ≈ **200–430 px tuỳ dáng** (đo bằng ảnh thật rồi chọn cho rộng nằm trong 162–270 px; ảnh nguồn cao ≈ 330 px nên chỉ phóng tối đa ~1,5 lần). Chỉ bật lớp Cáo ở các mốc có Cáo bằng `overlay=...:enable='between(t,A,B)'` (hoặc cắt lớp `.mov` theo mốc); ngoài các mốc đó không ghép Cáo. `MarginV` của phụ đề tính lại theo vị trí/cỡ Cáo thực tế (khi Cáo nhỏ hơn, phụ đề có thể thấp hơn mẫu trên; vẫn phải nằm trong vùng an toàn và **trên đầu Cáo** khi Cáo hiện). Luôn mở khung thật để kiểm.
 
 ## 9. Tham khảo, CHƯA kiểm — tự thử và xác minh bằng khung hình
 - Ảnh tĩnh thành cảnh chuyển động (Ken Burns): `zoompan=z='min(zoom+0.0008,1.2)':d=150:s=1080x1920:fps=30` (d = số khung hình).

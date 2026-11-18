@@ -46,6 +46,11 @@ test('khởi tạo: phòng, chủ đề, tài khoản, worker', async () => {
   const topic = S.submitTopic({ dept: 'sport', text: 'Chạy bộ đúng cách' }).topic_id;
   const a = S.assignTopic({ topic_id: topic, episodes: 1 });
   fs.writeFileSync(path.resolve(S.ROOT, a.topic_folder, 'plan.md'), '# plan có sẵn');
+  // Visual Director (vai trò thứ 6, 17/11/2026) phải duyệt storyboard trước khi produce chạy được -
+  // test giả lập việc đó đã xong để không phải dựng lại toàn bộ chuỗi plan trong các test worker này.
+  const videoFolder = S.getVideo(a.videos[0]).folder;
+  fs.mkdirSync(path.resolve(S.ROOT, videoFolder), { recursive: true });
+  fs.writeFileSync(path.resolve(S.ROOT, videoFolder, 'storyboard.json'), JSON.stringify({ video_id: a.videos[0], status: 'APPROVED', scenes: [] }));
   globalThis.ctx = { topic, video: a.videos[0], team: a.team_id, folder: a.topic_folder };
   for (const [p, l, pr] of [['claude', 'a', 1], ['claude', 'b', 2], ['codex', 'x', 1], ['codex', 'y', 2]]) {
     P.addAccount({ provider: p, label: l, owner: `Người ${l}`, priority: pr, ready: true });
@@ -53,6 +58,7 @@ test('khởi tạo: phòng, chủ đề, tài khoản, worker', async () => {
   }
   assert.equal(P.listAccounts().length, 4);
   assert.ok(fs.readFileSync(path.join(tmp, 'accounts', 'codex', 'x', 'config.toml'), 'utf8').includes('cli_auth_credentials_store = "file"'));
+  P.setSetting('auto_produce', 'off'); // các test dưới tự điều khiển từng bước; mặc định thật là bật (xem auto-produce.test.mjs)
   worker = runWorker({ tickMs: 80 });
   await waitFor(() => P.workerState().alive, 'worker sống');
 });
@@ -156,4 +162,58 @@ test('6) hết limit không đọc được giờ hồi → lùi dần, không q
   const until = Date.parse(acct('claude/a').limited_until);
   assert.ok(until - Date.now() > 20 * 60_000, 'lùi ~30 phút khi không rõ giờ hồi');
   delete process.env.STUB_LIMIT_MSG;
+});
+
+test('7) việc kế hoạch cần Codex viết mà Codex bận → tạm dừng CHỜ CODEX (không phạt tài khoản Claude), Codex rảnh thì chạy tiếp', async () => {
+  delete process.env.STUB_LIMIT_MSG;
+  process.env.STUDIO_CODEX_WAIT_MS = '60000';
+  for (const l of ['a', 'b']) (P.clearLimit(`claude/${l}`), P.setAccountEnabled(`claude/${l}`, true));
+  mode('a', 'codexwait');
+  mode('b', 'codexwait');
+  const t = S.submitTopic({ dept: 'sport', text: 'Giãn cơ sau khi chạy' }).topic_id;
+  S.assignTopic({ topic_id: t, episodes: 1 });
+  const { job_id } = P.enqueueJob({ kind: 'plan', topic_id: t });
+  await waitFor(() => job(job_id).status === 'waiting_limit' && job(job_id).wait_reason === 'codex', 'chờ Codex');
+  assert.match(job(job_id).last_error, /Codex đang sản xuất/);
+  assert.equal(acct('claude/a').status, 'ready', 'tài khoản Claude không bị đánh dấu hết limit');
+  assert.ok(P.poolOverview().attention.some((x) => x.kind === 'limit_wait' && x.provider === 'codex'), 'dashboard báo đang chờ Codex');
+  mode('a', 'ok');
+  mode('b', 'ok');
+  P.wakeJobs('codex'); // vd Codex vừa đăng nhập lại / hồi limit / bấm "Kiểm tra lại"
+  await waitFor(() => job(job_id).status === 'succeeded', 'chạy tiếp khi Codex rảnh');
+  delete process.env.STUDIO_CODEX_WAIT_MS;
+});
+
+test('8) QC lỗi thiết kế: review + needs_help là phán quyết, không xếp produce/rescue', async () => {
+  for (const label of ['a', 'b']) {
+    P.clearLimit(`claude/${label}`);
+    P.setAccountEnabled(`claude/${label}`, true);
+    mode(label, 'qc-design');
+  }
+  const video = globalThis.ctx.video;
+  S.setVideoStage({ video_id: video, stage: 'review' });
+  const before = P.listJobs({ video_id: video }).map((j) => j.id);
+  const { job_id } = P.enqueueJob({ kind: 'qc', video_id: video });
+  await waitFor(() => job(job_id).status === 'succeeded', 'QC đã báo lỗi thiết kế');
+  assert.equal(job(job_id).last_error, '');
+  assert.equal(S.getVideo(video).stage, 'review');
+  assert.equal(S.getVideo(video).needs_help, 1);
+  assert.match(S.getVideo(video).help_reason, /^QC-THIẾT-KẾ:/);
+  assert.deepEqual(P.listJobs({ video_id: video }).filter((j) => !before.includes(j.id)).map((j) => j.kind), ['qc']);
+  const dashboard = S.overview();
+  assert.ok(dashboard.attention.some((a) => a.kind === 'help' && a.dept === 'sport'));
+  assert.ok(dashboard.departments.flatMap((d) => d.teams).flatMap((t) => t.videos).some((v) => v.id === video && v.stage === 'review' && v.needs_help));
+});
+
+test('9) QC chưa phán quyết: review không needs_help vẫn bị đánh lỗi', async () => {
+  for (const label of ['a', 'b']) mode(label, 'qc-no-verdict');
+  const video = globalThis.ctx.video;
+  S.resolveEscalation({ video_id: video, note: 'Đã xử lý thiết kế trong test', by: 'test' });
+  assert.equal(S.getVideo(video).stage, 'review');
+  assert.equal(S.getVideo(video).needs_help, 0);
+  const before = P.listJobs({ video_id: video }).map((j) => j.id);
+  const { job_id } = P.enqueueJob({ kind: 'qc', video_id: video });
+  await waitFor(() => job(job_id).status === 'needs_human', 'QC thiếu phán quyết vẫn lỗi');
+  assert.match(job(job_id).last_error, /Claude chưa đưa ra phán quyết/);
+  assert.deepEqual(P.listJobs({ video_id: video }).filter((j) => !before.includes(j.id)).map((j) => j.kind), ['qc']);
 });

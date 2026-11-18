@@ -5,14 +5,16 @@
 //   dashboard                              chỉ dashboard (http://localhost:4747)
 //   accounts list|add|login|check|enable|disable|unlimit|remove|init
 //   dept create <mã-phòng> --name "Tên" [--target N] [--teams N]   mở phòng ban mới
+//   dept purge <mã-phòng> [--force]        xoá sạch phòng đã đóng + chủ đề/video/job/đề xuất liên quan (không hoàn tác)
 //   topic submit <mã-phòng> "<chủ đề>" [--brief "..."]            ghi chủ đề cho phòng (-> dùng topic-id ở "enqueue plan")
 //   jobs [list] | jobs cancel <id> | jobs retry <id> | jobs log <id>
-//   enqueue plan <topic-id> [--episodes N] [--rounds N] [--auto-produce]
+//   enqueue plan <topic-id> [--episodes N] [--rounds N] [--auto-produce | --no-auto-produce]   (không ghi cờ → theo cài đặt auto_produce, mặc định bật)
 //   enqueue produce|qc|rescue <video-id> [--force]   |   enqueue dept_review <phòng>
 //   produce <video-id…>                    = enqueue produce
 //   approve <id> | reject <id>             duyệt/từ chối đề xuất nhân sự
 //   settings [khoá giá-trị]                cài đặt (vd paid_fallback on)
-//   office [stop|status] [--private] [--hours N] [--default-only] [--no-open]   Văn phòng 2D (whatsmyagentdoing)
+//   accounts assign <provider/nhãn> <mã-phòng|none>   cấp tài khoản cho phòng (none = trả về dùng chung)
+//   office [stop|status] [--private] [--hours N] [--no-open]   Văn phòng 2D (whatsmyagentdoing) — mỗi phòng 1 bản
 //   seed-demo                              dữ liệu mẫu (chỉ khi DB trống)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,7 +29,7 @@ import * as O from './office.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const [cmd, ...rest] = process.argv.slice(2);
-const BOOL = new Set(['--force', '--auto-produce', '--default', '--probe', '--private', '--no-open', '--default-only']);
+const BOOL = new Set(['--force', '--auto-produce', '--no-auto-produce', '--default', '--probe', '--private', '--no-open', '--default-only']);
 const flags = {};
 const args = [];
 for (let i = 0; i < rest.length; i++) {
@@ -83,6 +85,12 @@ async function accountsCmd() {
       if (st.loggedIn) P.clearLimit(a.id);
       break;
     }
+    case 'assign': {
+      if (!ref || !args[2]) throw new S.StudioError('Cú pháp: accounts assign <provider/nhãn | email> <mã-phòng|none>');
+      const r = P.assignAccount(ref, args[2]);
+      say(r.dept ? `✔ ${r.person} → phòng "${r.dept}": chỉ việc của phòng này dùng; có Văn phòng 2D riêng (bật lại: npm run office --prefix studio).` : `✔ ${r.person} → dùng chung (không theo dõi trên Văn phòng 2D).`);
+      break;
+    }
     case 'check': {
       const list = ref ? [P.resolveAccount(ref)] : P.listAccounts().filter((a) => a.enabled);
       for (const a of list) {
@@ -115,19 +123,22 @@ async function accountsCmd() {
     case 'unlimit':
       say(JSON.stringify(P.clearLimit(ref)));
       break;
+    case 'owner':
+      say(JSON.stringify(P.setAccountOwner(ref, args.slice(2).join(' '))));
+      break;
     case 'remove': {
       const r = P.removeAccount(ref);
       say(`Đã gỡ khỏi kho.${r.home ? ` Thư mục đăng nhập vẫn còn (xoá tay nếu muốn): ${r.home}` : ''}`);
       break;
     }
     default:
-      say('accounts: list | add <claude|codex> <nhãn> [--owner Tên] [--default] [--secret-file path] [--priority N] [--max-runs-per-day N] | login <tk> | check [tk] [--probe] | enable|disable|unlimit|remove <tk> | init');
+      say('accounts: list | add <claude|codex> <nhãn> [--owner Tên] [--default] [--secret-file path] [--priority N] [--max-runs-per-day N] | login <tk> | check [tk] [--probe] | enable|disable|unlimit|remove <tk> | owner <tk> <tên chủ> | init');
   }
 }
 
 function enqueue(kind, target) {
   const o = { kind, by: 'director', force: !!flags.force };
-  if (kind === 'plan') Object.assign(o, { topic_id: Number(target), episodes: flags.episodes, rounds: flags.rounds, auto_produce: !!flags['auto-produce'] });
+  if (kind === 'plan') Object.assign(o, { topic_id: Number(target), episodes: flags.episodes, rounds: flags.rounds, auto_produce: flags['no-auto-produce'] ? false : flags['auto-produce'] ? true : undefined });
   else if (kind === 'dept_review') o.dept = target;
   else o.video_id = target;
   const r = P.enqueueJob(o);
@@ -150,7 +161,12 @@ async function main() {
       await accountsCmd();
       break;
     case 'dept': {
-      if (args[0] !== 'create') throw new S.StudioError('Cú pháp: dept create <mã-phòng> --name "Tên" [--target N] [--teams N]');
+      if (args[0] === 'purge') {
+        const r = S.purgeDepartment({ slug: args[1], force: !!flags.force, by: 'director' });
+        say(`✔ Đã xoá sạch phòng "${r.dept}" (${r.deleted.topics} chủ đề, ${r.deleted.videos} video, ${r.deleted.jobs} việc, ${r.deleted.proposals} đề xuất).`);
+        break;
+      }
+      if (args[0] !== 'create') throw new S.StudioError('Cú pháp: dept create <mã-phòng> --name "Tên" [--target N] [--teams N]  |  dept purge <mã-phòng> [--force]');
       const r = S.createDepartment({ slug: args[1], name: flags.name, daily_target: flags.target, initial_teams: flags.teams, by: 'director' });
       say(`✔ Đã mở phòng "${r.dept}" (${r.teams.length} đội).`);
       break;
@@ -207,12 +223,27 @@ async function main() {
       }
       if (args[0] === 'status') {
         const st = await O.officeStatus();
-        say(st.installed ? `Văn phòng 2D (${st.version}): ${st.running.length ? st.running.map((r) => r.url).join('  ') : 'đang tắt'}` : `Chưa cài. Chạy: ${O.installHint()}`);
+        if (!st.installed) {
+          say(`Chưa cài. Chạy: ${O.installHint()}`);
+          break;
+        }
+        say(`Văn phòng 2D (${st.version}) — mỗi phòng ban 1 bản, chỉ đọc tài khoản đã cấp cho phòng đó:`);
+        if (!st.directory.length) say('  (chưa có tài khoản nào được cấp cho phòng ban — cấp bằng: accounts assign <provider/nhãn> <mã-phòng>)');
+        for (const d of st.directory) {
+          const r = st.running.find((x) => x.name === d.name);
+          say(`  ${d.name.padEnd(12)} ${r ? `cổng ${r.port}  ${r.url}` : '(chưa bật)'}  ${d.label.split(': ').slice(1).join(': ')}`);
+        }
+        for (const r of st.running.filter((x) => !st.directory.some((d) => d.name === x.name))) say(`  ⚠ cổng ${r.port}: bản thừa (${r.name}) — bật lại "npm run office" sẽ tự tắt`);
+        say('Phòng đang mở:');
+        if (!st.departments.length) say('  (không có phòng nào đang mở)');
+        for (const d of st.departments) say(`  ${d.name} [${d.slug}]: ${d.office.length ? d.office.join(', ') : 'chưa được cấp tài khoản riêng → dùng tài khoản dùng chung, không theo dõi'}${d.running_jobs ? ` · ${d.running_jobs} việc đang chạy` : ''}`);
         break;
       }
-      const r = await O.startOffice({ private: !!flags.private, hours: flags.hours ? Number(flags.hours) : 24, includeAccounts: !flags['default-only'], open: !flags['no-open'] });
-      for (const x of r.results) say(x.url ? `${x.started ? '▶' : '·'} ${x.label}: ${x.url}${x.started ? '' : ' (đã chạy sẵn)'}` : `✖ ${x.label}: ${x.error}`);
-      say(r.results.length > 1 ? `Mỗi bản chỉ thấy 1 cặp thư mục Claude/Codex; ${r.results.length - 1} bản bổ sung dành cho tài khoản phụ.` : 'Dừng bằng: npm run office --prefix studio -- stop');
+      const r = await O.startOffice({ private: !!flags.private, hours: flags.hours ? Number(flags.hours) : 24, open: !flags['no-open'] });
+      for (const x of r.results) say(x.url ? `${x.started ? '▶' : '·'} ${x.name.padEnd(14)} cổng ${x.port}  ${x.url}  ${x.label.split(': ').slice(1).join(': ')}${x.started ? '' : ' (đã chạy sẵn)'}` : `✖ ${x.name}: ${x.error}`);
+      if (!r.results.length) say('Chưa có tài khoản nào được cấp cho phòng ban nên không có gì để theo dõi. Cấp bằng: node studio/src/cli.mjs accounts assign <provider/nhãn> <mã-phòng>');
+      else say('Mỗi bản = 1 phòng ban (chỉ đọc tài khoản đã cấp cho phòng). Tài khoản dùng chung không được theo dõi.');
+      say('Dừng bằng: npm run office --prefix studio -- stop');
       if (r.private) say('Chế độ --private: ẩn nội dung trò chuyện, chỉ hiện trạng thái.');
       break;
     }

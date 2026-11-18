@@ -80,7 +80,8 @@ dialog input,dialog select,dialog textarea{width:100%;font:inherit;padding:6px 8
   <h1>🎬 Xưởng video</h1>
   <div class="live"><span class="dot working" id="liveDot"></span><span id="liveTxt">đang kết nối…</span></div>
   <div class="live"><span class="dot" id="wkDot"></span><span id="wkTxt"></span><button class="sm" id="wkBtn" hidden onclick="startWorker()">Bật worker</button></div>
-  <button class="sm" id="officeBtn" onclick="openOffice()" title="Xem các agent như đang ngồi trong văn phòng (2D, không tốn token)">🏢 Văn phòng 2D</button>
+  <button class="sm" id="officeBtn" onclick="openOffice()" title="Xem các agent như đang ngồi trong văn phòng (2D, không tốn token). Mỗi phòng ban 1 bản (VP-it, VP-sport…), chỉ đọc tài khoản đã cấp cho phòng; tài khoản dùng chung không được theo dõi.">🏢 Văn phòng 2D</button>
+  <span class="sub" id="officeDir" title="Mỗi bản Văn phòng 2D = 1 phòng ban"></span>
   <div class="stats" id="stats"></div>
 </header>
 <main>
@@ -144,6 +145,24 @@ async function api(path, body) {
   return j;
 }
 function toast(msg) { const t = $('toast'); t.textContent = msg; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2600); }
+let lastAttn = [];
+const RECHECK_TIP = {
+  auth: 'Kiểm tra đăng nhập thật của tài khoản này ngay (vd vừa đăng nhập xong); đạt thì việc đang chờ tự chạy',
+  no_account: 'Kiểm tra lại đăng nhập/limit các tài khoản của loại này ngay (tài khoản hết limit được gọi thử 1 câu rất ngắn)',
+  limit_wait: 'Gọi thử 1 câu rất ngắn để biết tài khoản đã hồi limit chưa; hồi rồi thì việc tự chạy tiếp ngay',
+  worker: 'Kiểm tra và bật worker nếu đang tắt',
+};
+async function recheck(i, btn) {
+  const item = i === null ? { all: true } : lastAttn[i];
+  if (!item) return refresh(true);
+  const old = btn?.textContent;
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Đang kiểm tra…'; }
+  try {
+    const r = await api('/api/attention/recheck', i === null ? { all: true } : item);
+    toast((r.lines || []).join(' · ') || 'Đã kiểm tra');
+  } catch (e) { toast('⚠ ' + e.message); }
+  finally { if (btn) { btn.disabled = false; btn.textContent = old; } await refresh(true); }
+}
 async function act(fn, ok) { try { await fn(); toast(ok); await refresh(true); } catch (e) { toast('⚠ ' + e.message); } }
 
 function render(o) {
@@ -155,60 +174,79 @@ function render(o) {
 
   const a = $('attn');
   a.hidden = !o.attention.length;
-  a.innerHTML = '<h2>Cần giám đốc chú ý</h2><ul>' + o.attention.map((x) => {
-    if (x.kind === 'proposal') return `<li><span>⏳ ${esc(x.message)}</span><button class="primary sm" onclick="decide(${x.proposal_id},'approve')">Duyệt</button><button class="danger sm" onclick="decide(${x.proposal_id},'reject')">Từ chối</button></li>`;
-    if (x.kind === 'approve_produce') return `<li><span>📝 ${esc(x.message)}</span><button class="primary sm" onclick="prodVideo('${esc(x.video_id)}')">Duyệt & sản xuất</button></li>`;
-    if (x.kind === 'job_human') return `<li><span>🙋 ${esc(x.message)}</span><button class="sm" onclick="job(${x.job_id},'retry')">Chạy lại</button><button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button></li>`;
-    if (x.kind === 'limit_wait') return `<li><span>⏳ ${esc(x.message)} — tự chạy tiếp lúc <b>${fmtT(x.until)}</b> (còn ${left(x.until)})</span></li>`;
-    if (x.kind === 'worker') return `<li><span>⚠ ${esc(x.message)}</span><button class="primary sm" onclick="startWorker()">Bật worker</button></li>`;
+  lastAttn = o.attention;
+  const rc = (i) => `<button class="sm" onclick="recheck(${i},this)" title="${RECHECK_TIP[o.attention[i].kind] || 'Tính lại số liệu ngay'}">🔄 Kiểm tra lại</button>`;
+  a.innerHTML = '<h2 style="display:flex;gap:10px;align-items:center">Cần giám đốc chú ý <button class="sm" onclick="recheck(null,this)" title="Kiểm tra lại mọi mục ngay">🔄 Kiểm tra lại tất cả</button></h2><ul>' + o.attention.map((x, i) => {
+    if (x.kind === 'topic_proposal') return `<li><span>💡 ${esc(x.message)}</span><button class="primary sm" onclick="decideTopic(${x.topic_id},'approve')">Duyệt & giao làm</button><button class="danger sm" onclick="decideTopic(${x.topic_id},'reject')">Từ chối</button>${rc(i)}</li>`;
+    if (x.kind === 'proposal') return `<li><span>⏳ ${esc(x.message)}</span><button class="primary sm" onclick="decide(${x.proposal_id},'approve')">Duyệt</button><button class="danger sm" onclick="decide(${x.proposal_id},'reject')">Từ chối</button>${rc(i)}</li>`;
+    if (x.kind === 'approve_produce') return `<li><span>📝 ${esc(x.message)}</span><button class="primary sm" onclick="prodVideo('${esc(x.video_id)}')">Duyệt & sản xuất</button>${rc(i)}</li>`;
+    if (x.kind === 'job_human') return `<li><span>🙋 ${esc(x.message)}</span><button class="sm" onclick="job(${x.job_id},'retry')">Chạy lại</button><button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button>${rc(i)}</li>`;
+    if (x.kind === 'limit_wait') return `<li><span>⏳ ${esc(x.message)} — tự chạy tiếp lúc <b>${fmtT(x.until)}</b> (còn ${left(x.until)})</span>${rc(i)}</li>`;
+    if (x.kind === 'worker') return `<li><span>⚠ ${esc(x.message)}</span><button class="primary sm" onclick="startWorker()">Bật worker</button>${rc(i)}</li>`;
     const icon = {help:'🆘', stale:'⚠', no_account:'🔑', auth:'🔑'}[x.kind] || '📉';
-    return `<li><span>${icon} ${esc(x.message)}</span></li>`;
+    return `<li><span>${icon} ${esc(x.message)}</span>${rc(i)}</li>`;
   }).join('') + '</ul>';
 
   $('depts').innerHTML = o.departments.map((d) => {
-    if (d.status === 'closed') return `<article class="panel dept closed"><header><div class="hd"><h3>${esc(d.name)} <span class="sub">[${esc(d.slug)}] — ĐÃ ĐÓNG</span></h3></div><button class="sm" onclick="reopen('${d.slug}')">Mở lại</button></header></article>`;
+    if (d.status === 'closed') return `<article class="panel dept closed"><header><div class="hd"><h3>${esc(d.name)} <span class="sub">[${esc(d.slug)}] — ĐÃ ĐÓNG</span></h3></div><button class="sm" onclick="reopen('${d.slug}')">Mở lại</button></header>
+      <div class="kpis">${deptAccts(d)}${officeChips(d)}</div></article>`;
     const pct = d.daily_target ? Math.min(100, Math.round(d.capacity / d.daily_target * 100)) : 100;
     const cap = d.gap_videos > 0 ? `<span class="chip bad">thiếu ${d.gap_videos} video/ngày</span>` : d.surplus_teams > 0 ? `<span class="chip warn">dư ${d.surplus_teams} đội</span>` : '<span class="chip ok">đủ năng lực</span>';
     return `<article class="panel dept">
       <header><div class="hd"><h3>${esc(d.name)} <span class="sub">[${esc(d.slug)}]</span></h3><div class="sub">${esc(d.description)}</div></div>
-        <button class="sm" onclick="setTarget('${d.slug}',${d.daily_target})">Đổi chỉ tiêu</button><button class="sm danger" onclick="closeDept('${d.slug}','${esc(d.name)}')">Đóng phòng</button></header>
+        <button class="sm ${d.auto_topics?'primary':''}" onclick="toggleAutoTopics('${d.slug}',${!d.auto_topics})" title="${d.auto_topics?'BẬT: mỗi đội tự tìm chủ đề trong chủ đề chung của phòng và ĐỀ XUẤT — bạn duyệt mới làm. Bấm để TẮT.':'TẮT: chỉ bạn đưa chủ đề; không có chủ đề thì đội không làm gì. Bấm để BẬT.'}">🔎 Tự tìm chủ đề: ${d.auto_topics?'BẬT':'TẮT'}</button><button class="sm" onclick="setTarget('${d.slug}',${d.daily_target})">Đổi chỉ tiêu</button><button class="sm danger" onclick="closeDept('${d.slug}','${esc(d.name)}')">Đóng phòng</button></header>
       <div class="kpis"><span class="chip">chỉ tiêu <b>${d.daily_target}</b>/ngày</span><span class="chip"><b>${d.teams.length}</b> đội · năng lực <b>${d.capacity}</b></span>${cap}
         <span class="chip"><b>${d.members_working}/${d.members_total}</b> người đang làm</span><span class="chip">hôm nay <b>${d.done_today}/${d.planned_today}</b> xong</span>
         ${d.topics_open?`<span class="chip warn">${d.topics_open} chủ đề chưa giao</span>`:''}${d.needs_help?`<span class="chip bad">🆘 ${d.needs_help} cần hỗ trợ</span>`:''}
-        ${officeChip(d.slug,'claude',d.office?.claude)}${officeChip(d.slug,'codex',d.office?.codex)}</div>
+        ${officeChips(d)}</div>
+      <div class="kpis">${deptAccts(d)}</div>
       <div class="meter" title="năng lực so với chỉ tiêu"><i style="width:${pct}%"></i></div>
-      ${d.teams.map(teamHtml).join('') || '<div class="sub" style="margin-top:8px">Chưa có đội nào — trưởng phòng cần đề xuất thêm đội.</div>'}
+      ${d.teams.map((t) => teamHtml(t, d)).join('') || '<div class="sub" style="margin-top:8px">Chưa có đội nào — trưởng phòng cần đề xuất thêm đội.</div>'}
     </article>`;
   }).join('') || '<div class="panel">Chưa có phòng ban nào. Bấm “+ Mở phòng ban”.</div>';
 
+  $('officeDir').innerHTML = !(o.office || []).length ? 'chưa cấp tài khoản cho phòng nào' : (o.office || []).map((x) => `<span title="${esc(x.label)}${x.port_known ? '' : ' — cổng dự kiến, chưa bật'}"><b>${esc(x.name)}</b> :${x.port}</span>`).join(' · ');
   if (o.pool) renderPool(o.pool);
   $('feed').innerHTML = o.events.map((e) => `<div><time>${new Date(e.ts).toLocaleTimeString('vi-VN')}</time>${esc(e.message)}</div>`).join('');
   $('tpDept').innerHTML = o.departments.filter((d) => d.status === 'active').map((d) => `<option value="${esc(d.slug)}">${esc(d.name)}</option>`).join('');
 }
-function officeChip(deptSlug, provider, hint) {
-  if (!hint) return '';
-  const label = hint.is_default ? 'mặc định' : `${hint.provider}/${hint.label}`;
-  const name = provider === 'claude' ? 'Claude' : 'Codex';
-  return `<span class="chip" style="cursor:pointer" title="Mở Văn phòng 2D đúng tài khoản ${esc(label)} — ${hint.live?'đang chạy việc này':'dự kiến, chưa chắc là tài khoản sẽ chạy'}" onclick="openOfficeFor('${esc(deptSlug)}','${provider}')">${hint.live?'🟢':'⚪'} 🏢 ${name}: ${esc(label)}</span>`;
+// Tài khoản đã cấp cho phòng (email là chính). Chưa cấp -> phòng dùng tài khoản dùng chung, không được theo dõi.
+function deptAccts(d) {
+  const xs = (data?.pool?.accounts || []).filter((a) => a.dept === d.slug);
+  if (!xs.length) return '<span class="chip warn" title="Cấp ở khung Tài khoản (nút “Cấp cho phòng”)">🔑 chưa cấp tài khoản — dùng tài khoản dùng chung</span>';
+  const st = (a) => a.status === 'ready' || (a.status === 'auth_error' && !a.email) ? '' : a.status === 'auth_error' ? ' · lỗi đăng nhập' : a.status === 'limited' ? ' · hết limit' : ' · tắt';
+  return '<span class="sub">🔑 Tài khoản:</span> ' + xs.map((a) => `<span class="chip ${a.status==='ready'?'ok':'bad'}" title="ghế ${esc(a.label)}${a.owner?' · chủ: '+esc(a.owner):''}">${a.provider==='claude'?'Claude':'Codex'} ${esc(a.email||'(chưa đăng nhập)')}${st(a)}</span>`).join('');
 }
-async function openOfficeFor(deptSlug, provider) {
-  const dept = data?.departments?.find((d) => d.slug === deptSlug);
-  const hint = dept?.office?.[provider];
-  if (!hint) return toast('Chưa rõ tài khoản để mở Văn phòng 2D cho phòng này');
+// Văn phòng 2D: mỗi phòng 1 bản (VP-<phòng>), chỉ đọc tài khoản đã cấp cho phòng. Tài khoản dùng chung không được theo dõi.
+function officeChips(d) {
+  const vps = (data?.office || []).filter((x) => x.dept === d.slug);
+  if (!vps.length) return `<span class="chip" title="Phòng chưa được cấp tài khoản riêng: việc chạy bằng tài khoản dùng chung và không được theo dõi. Cấp ở khung Tài khoản (nút “Cấp cho phòng”).">🏢 chưa cấp tài khoản</span>`;
+  const live = d.office?.claude?.live || d.office?.codex?.live;
+  return vps.map((vp) => `<span class="chip" style="cursor:pointer" title="Mở ${esc(vp.label)}${vp.port_known ? '' : ' — cổng dự kiến, chưa bật'}" onclick="openOfficeFor('${esc(vp.name)}')">${live?'🟢':'⚪'} 🏢 <b>${esc(vp.name)}</b> :${vp.port}</span>`).join('');
+}
+async function openOfficeFor(name) {
   const w = window.open('about:blank', '_blank');
   try {
     const r = await api('/api/office/start', {});
-    const match = hint.is_default
-      ? r.results.find((x) => x.label === 'mặc định (đăng nhập của máy)')
-      : r.results.find((x) => x.label.includes(`${hint.provider}/${hint.label}`));
-    if (!match || !match.url) { if (w) w.close(); return toast('⚠ Không mở được bản Văn phòng cho tài khoản ' + hint.provider + '/' + hint.label); }
+    const match = r.results.find((x) => x.name === name);
+    if (!match || !match.url) { if (w) w.close(); return toast('⚠ Không mở được ' + name + (match?.error ? ': ' + match.error : '')); }
     if (w) w.location = match.url; else toast('Văn phòng: ' + match.url);
-    toast(`Đang mở — ${hint.provider}/${hint.label}${hint.live ? ' (đang chạy việc này)' : ' (dự kiến — hiện chưa có việc chạy)'}`);
+    toast(`Đang mở ${match.label} (cổng ${match.port})`);
+    refresh(true);
   } catch (e) { if (w) w.close(); toast('⚠ ' + e.message); }
 }
-function teamHtml(t) {
-  const rows = t.members.filter((m) => !(m.on_call && m.status === 'idle')).map((m) => `
-    <div class="m"><span class="dot ${m.status}"></span><span>${esc(m.label)} <span class="eng ${m.engine}">${m.engine}</span></span>
+async function assignAcct(id, name, cur) {
+  const opts = (data?.departments || []).map((d) => `${d.slug}${d.status === 'closed' ? ' (đã đóng)' : ''}`).join(', ');
+  const v = prompt(`Cấp ${name} cho phòng nào? Nhập mã phòng (${opts || 'chưa có phòng'}), hoặc "none" để trả về dùng chung (không theo dõi).`, cur || '');
+  if (v === null) return;
+  act(() => api(`/api/accounts/${id}/assign`, { dept: v.trim() === 'none' || !v.trim() ? null : v.trim() }), 'Đã cập nhật — bấm 🏢 Văn phòng 2D để bật lại theo phòng');
+}
+// Bộ core (giám đốc duyệt 18/11/2026): mỗi đội chỉ hiện các vị trí core; rê chuột vào tên để xem công việc cụ thể.
+// "Tìm chủ đề" chỉ hiện khi phòng bật tự tìm chủ đề.
+const ENG = {idea:'Claude + Codex · Claude chốt', script:'Codex viết · Claude duyệt', visual:'Codex làm · Claude duyệt', producer:'Codex', qc:'Claude', rescue:'Claude', scout:'Claude'};
+function teamHtml(t, d) {
+  const rows = t.members.filter((m) => m.role !== 'scout' || d?.auto_topics || m.status !== 'idle').map((m) => `
+    <div class="m"><span class="dot ${m.status}"></span><span title="${esc(m.duty||'')}">${esc(m.label)} <span class="eng ${m.engine}">${esc(ENG[m.role]||m.engine)}</span></span>
     <span class="t ${m.stale?'stale':''}" title="${esc(m.task)}">${ST[m.status]}${m.task?': '+esc(m.task):''}${m.stale?' ⚠ im lặng '+m.minutes_since_update+'p':''}</span><span class="sub">${m.video_id?esc(m.video_id):''}</span></div>`).join('');
   const vids = t.videos.map((v) => `<span class="vid ${v.needs_help?'help':''}" title="${esc(v.title)}">${esc(v.id)} · ${STAGE[v.stage]}${v.needs_help?' 🆘':''}</span>`).join('');
   return `<div class="team"><h4><span>${esc(t.name)}</span><span class="sub">hôm nay ${t.used_today}/${t.capacity_per_day} suất</span></h4>${rows}<div class="vids">${vids}</div></div>`;
@@ -237,12 +275,13 @@ function renderPool(pool) {
   $('paidFb').checked = pool.settings.paid_fallback === 'on';
   $('accts').innerHTML = pool.accounts.map((a) => {
     const st = a.status === 'ready' ? (a.capped ? 'đủ số lượt/ngày' : 'sẵn sàng') : a.status === 'limited' ? `HẾT LIMIT — hồi ${fmtT(a.limited_until)} (còn ${left(a.limited_until)})` : a.status === 'auth_error' ? 'LỖI ĐĂNG NHẬP — cần đăng nhập lại' : 'đã tắt';
-    return `<div class="row"><span class="dot ${a.status}"></span><div class="grow"><b>${esc(a.provider)}/${esc(a.label)}</b> <span class="chip">${a.kind==='api_key'?'API trả phí':'gói'}</span> ${a.owner?`<span class="chip">${esc(a.owner)}</span>`:''}
+    return `<div class="row"><span class="dot ${a.status}"></span><div class="grow"><b>${a.provider==='claude'?'Claude':'Codex'} · ${esc(a.email||'(chưa đăng nhập)')}</b> <span class="sub">ghế ${esc(a.label)}</span> <span class="chip ${a.dept?'ok':''}" title="${a.dept?'Chỉ phòng này dùng; được theo dõi trên Văn phòng 2D':'Dùng chung cho phòng chưa được cấp tài khoản; không theo dõi'}">${a.dept?'phòng '+esc(a.dept):'dùng chung'}</span> <span class="chip">${a.kind==='api_key'?'API trả phí':'gói'}</span> ${a.owner?`<span class="chip" title="chủ ghế">${esc(a.owner)}</span>`:''}
       <div class="sub" title="${esc(a.last_limit_raw)}">${esc(st)} · hôm nay ${a.runs_today} lượt · tổng ${a.runs} · bị limit ${a.limit_hits} lần${a.status==='limited'&&a.last_limit_raw?' · “'+esc(a.last_limit_raw.slice(0,80))+'”':''}${a.status==='auth_error'&&a.last_error?' · '+esc(a.last_error.slice(0,80)):''}</div></div>
       ${a.status==='auth_error'||a.status==='limited'?`<button class="sm" onclick="acct(${a.id},'unlimit','Đã đánh dấu sẵn sàng')">${a.status==='limited'?'Đã hồi limit':'Đã đăng nhập lại'}</button>`:''}
       ${a.kind!=='api_key'?`<button class="sm" onclick="copyLogin(${a.id})" title="Chép lệnh đăng nhập">Lệnh đăng nhập</button>`:''}
+      <button class="sm" onclick="assignAcct(${a.id},'${esc(a.person)}','${esc(a.dept||'')}')">Cấp cho phòng</button>
       <button class="sm" onclick="acct(${a.id},'${a.enabled?'disable':'enable'}','${a.enabled?'Đã tắt':'Đã bật'}')">${a.enabled?'Tắt':'Bật'}</button>
-      <button class="sm danger" onclick="rmAcct(${a.id},'${esc(a.provider)}/${esc(a.label)}')">Gỡ</button></div>`;
+      <button class="sm danger" onclick="rmAcct(${a.id},'${esc(a.person)}')">Gỡ</button></div>`;
   }).join('') || '<div class="sub">Chưa có tài khoản nào. Bấm “+ Thêm” (hoặc chạy <code>accounts init</code> để dùng đăng nhập mặc định của máy).</div>';
 
   $('jobs').innerHTML = pool.jobs.map((j) => {
@@ -268,11 +307,12 @@ async function openOffice() {
   try {
     const r = await api('/api/office/start', {});
     const ok = r.results.filter((x) => x.url);
-    if (!ok.length) { wins.forEach((w) => w && w.close()); return toast('⚠ ' + (r.results[0]?.error || 'Không mở được văn phòng')); }
+    if (!ok.length) { wins.forEach((w) => w && w.close()); return toast('⚠ ' + (r.results[0]?.error || (r.results.length ? 'Không mở được văn phòng' : 'Chưa có tài khoản nào được cấp cho phòng ban — không có gì để theo dõi. Cấp ở khung Tài khoản.'))); }
     ok.forEach((x, i) => { if (wins[i]) wins[i].location = x.url; });
     wins.slice(ok.length).forEach((w) => w && w.close());
     const bad = r.results.filter((x) => !x.url);
-    toast(`Đã mở ${ok.length} bản (mỗi tài khoản 1 bản: ${ok.map((x) => x.label).join(', ')})` + (bad.length ? ` — lỗi: ${bad.map((x) => x.error).join('; ')}` : ''));
+    refresh(true);
+    toast(`Đã mở ${ok.length} bản (mỗi phòng 1 bản): ${ok.map((x) => `${x.name} :${x.port}`).join(' · ')}` + (bad.length ? ` — lỗi: ${bad.map((x) => x.error).join('; ')}` : ''));
   } catch (e) { wins.forEach((w) => w && w.close()); toast('⚠ ' + e.message); }
 }
 const startWorker = () => act(() => api('/api/worker/start', {}), 'Đã yêu cầu bật worker');
@@ -307,6 +347,8 @@ async function loadChecklist() {
 }
 const tick = (line) => api('/api/checklist/toggle', {line}).then(loadChecklist).catch((e) => toast('⚠ ' + e.message));
 
+const toggleAutoTopics = (slug, on) => { if (!on || confirm('BẬT tự tìm chủ đề cho phòng này?\nMỗi đội sẽ tự tìm chủ đề trong chủ đề chung của phòng và ĐỀ XUẤT — bạn duyệt mới làm.')) act(() => api(`/api/departments/${slug}/auto-topics`, {on}), on ? 'Đã BẬT tự tìm chủ đề' : 'Đã TẮT tự tìm chủ đề — chỉ bạn đưa chủ đề'); };
+const decideTopic = (id, how) => { const note = how === 'reject' ? (prompt('Lý do từ chối (không bắt buộc):') ?? null) : ''; if (note === null) return; act(() => api(`/api/topics/${id}/${how}`, {note}), how === 'approve' ? 'Đã duyệt — đội bắt đầu lên kế hoạch' : 'Đã từ chối chủ đề'); };
 const decide = (id, how) => {
   const note = how === 'reject' ? (prompt('Lý do từ chối (tuỳ chọn):') ?? null) : '';
   if (note === null) return;

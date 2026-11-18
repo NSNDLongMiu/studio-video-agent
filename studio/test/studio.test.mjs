@@ -17,7 +17,7 @@ test('kịch bản: Thể thao tăng lên 4 video/ngày -> trưởng phòng đ�
   S.createDepartment({ name: 'IT', slug: 'it', daily_target: 1, initial_teams: 1 });
   let o = S.overview();
   assert.equal(dept(o, 'sport').capacity, 2);
-  assert.equal(o.totals.members, 8); // 2 đội x 4 người biên chế (support trực không tính)
+  assert.equal(o.totals.members, 12); // 2 đội x 6 người biên chế (ideator_a/b/c/d, planner, producer; support trực không tính)
 
   const r = S.setDailyTarget({ slug: 'sport', target: 4 });
   assert.equal(r.gap_videos, 2);
@@ -97,6 +97,18 @@ test('đóng/mở phòng do giám đốc quyết định', () => {
   assert.equal(dept(o, 'it').teams.length, 1);
   const f = S.closeDepartment({ slug: 'sport', force: true });
   assert.ok(f.cancelled_videos.length > 0);
+});
+
+test('xoá sạch phòng: chặn khi đang mở, xoá hết dữ liệu khi đã đóng', () => {
+  const t = S.submitTopic({ dept: 'it', text: 'Chủ đề thử để xoá' }).topic_id;
+  assert.throws(() => S.purgeDepartment({ slug: 'it' }), /đang mở/);
+  S.closeDepartment({ slug: 'it', force: true });
+  const r = S.purgeDepartment({ slug: 'it' });
+  assert.equal(r.deleted.topics, 1);
+  assert.equal(S.listTopics({ dept: 'it' }).length, 0);
+  assert.equal(S.overview().departments.some((d) => d.slug === 'it'), false);
+  assert.throws(() => S.purgeDepartment({ slug: 'it' }), /Không có phòng/);
+  void t;
 });
 
 test('seedDemo dùng được trên DB sạch', async () => {

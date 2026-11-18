@@ -7,6 +7,50 @@ import { fileURLToPath } from 'node:url';
 import * as S from './db.mjs';
 import * as P from './pool.mjs';
 import * as O from './office.mjs';
+import * as R from './runners.mjs';
+import { memberActivity } from './transcript.mjs';
+
+// ---------- nút "Kiểm tra lại" ở khung "Cần giám đốc chú ý" ----------
+/** Kiểm lại 1 tài khoản ngay: đăng nhập thật (claude auth status / codex login status) và, nếu probe, gọi thử 1 câu cực ngắn
+ *  (tốn rất ít hạn mức) để biết đã hồi limit chưa. Cập nhật trạng thái trong kho → worker tự chạy tiếp việc đang chờ. */
+async function recheckAccount(a, { probe = false } = {}) {
+  const st = R.checkAuth(a);
+  if (!st.loggedIn) {
+    P.markAuthError(a.id, st.detail);
+    return `✖ ${a.person}: chưa đăng nhập — ${a.login}`;
+  }
+  if (a.status === 'auth_error') P.clearLimit(a.id);
+  if (!probe || a.status !== 'limited') return `✔ ${a.person}: đã đăng nhập${a.status === 'auth_error' ? ' — đã đánh dấu sẵn sàng, việc đang chờ sẽ tự chạy' : ''}`;
+  const pr = await R.probeAccount(a);
+  if (pr.ok) {
+    P.clearLimit(a.id);
+    P.markSuccess(a.id);
+    return `✔ ${a.person}: đã hồi limit — việc đang chờ sẽ tự chạy`;
+  }
+  if (pr.type === 'limit') return `⏳ ${a.person}: vẫn hết limit, hồi lúc ${P.markLimited(a.id, { until: pr.resetAt, raw: pr.raw }).toLocaleString('vi-VN')}`;
+  return `✖ ${a.person}: gọi thử thất bại — ${String(pr.raw || '').slice(0, 160)}`;
+}
+
+/** Kiểm lại theo loại mục; mục chỉ là số liệu (thiếu năng lực, im lặng, cần hỗ trợ, đề xuất…) thì tính lại ngay khi tải lại. */
+async function recheckAttention(item = {}) {
+  const accounts = P.listAccounts().filter((a) => a.enabled);
+  const lines = [];
+  if (item.kind === 'auth') {
+    const a = accounts.find((x) => x.id === Number(item.account_id));
+    if (!a) return { lines: ['Tài khoản không còn trong kho hoặc đã tắt'] };
+    lines.push(await recheckAccount(a));
+  } else if (item.kind === 'no_account' || item.kind === 'limit_wait') {
+    const list = accounts.filter((a) => a.provider === item.provider && a.status !== 'ready');
+    for (const a of list) lines.push(await recheckAccount(a, { probe: true }));
+    if (!list.length) lines.push(`Mọi tài khoản ${item.provider} đang bật đều sẵn sàng`);
+    P.wakeJobs(item.provider);
+  } else if (item.kind === 'worker') {
+    const w = P.ensureWorker();
+    lines.push(w.alive || w.started ? '✔ Worker đang chạy' : '✖ Chưa bật được worker — chạy: npm run start --prefix studio');
+  } else lines.push('Đã tính lại số liệu');
+  S.logEvent({ actor: 'director', kind: 'recheck', message: `Kiểm tra lại "${item.kind || 'tất cả'}": ${lines.join(' · ').slice(0, 300)}` });
+  return { lines };
+}
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.STUDIO_PORT || 4747);
@@ -40,7 +84,7 @@ function toggleChecklist(line) {
 function fullOverview() {
   const o = S.overview();
   const pool = P.poolOverview();
-  return { ...o, attention: [...pool.attention, ...o.attention], pool };
+  return { ...o, attention: [...pool.attention, ...o.attention], pool, office: O.officeDirectory() };
 }
 
 const send = (res, code, body, type = 'application/json; charset=utf-8') => {
@@ -89,12 +133,27 @@ async function route(req, res) {
   if (req.method === 'GET' && p === '/api/overview') return send(res, 200, fullOverview());
   if (req.method === 'GET' && p === '/api/checklist') return send(res, 200, readChecklist());
   if (req.method === 'GET' && p === '/api/health') return send(res, 200, { ok: true });
+  const activity = req.method === 'GET' && p.match(/^\/api\/members\/(\d+)\/activity$/);
+  if (activity) {
+    try {
+      return send(res, 200, memberActivity(Number(activity[1])));
+    } catch (e) {
+      if (e instanceof S.StudioError && e.message === 'Không tìm thấy vị trí') return send(res, 404, { error: e.message });
+      throw e;
+    }
+  }
   if (req.method !== 'POST') return send(res, 404, { error: 'Không tìm thấy' });
 
   const body = await readJson(req);
   let m;
   if ((m = p.match(/^\/api\/proposals\/(\d+)\/(approve|reject)$/))) return send(res, 200, S.decideProposal({ id: Number(m[1]), approve: m[2] === 'approve', by: 'director', note: body.note || '' }));
   if (p === '/api/departments') return send(res, 200, S.createDepartment({ ...body, by: 'director' }));
+  if ((m = p.match(/^\/api\/departments\/([a-z0-9-]+)\/auto-topics$/))) return send(res, 200, S.setAutoTopics({ dept: m[1], on: !!body.on, by: 'director' }));
+  if ((m = p.match(/^\/api\/topics\/(\d+)\/(approve|reject)$/))) {
+    const r = S.decideTopic({ topic_id: Number(m[1]), approve: m[2] === 'approve', note: body.note || '', by: 'director' });
+    // Duyệt = đội làm luôn: xếp việc kế hoạch (Ý tưởng → Kịch bản → Đạo diễn hình ảnh), dừng chờ giám đốc duyệt sản xuất như thường.
+    return send(res, 200, m[2] === 'approve' ? { ...r, job: P.enqueueJob({ kind: 'plan', topic_id: r.topic_id, by: 'director' }), worker: P.ensureWorker() } : r);
+  }
   if ((m = p.match(/^\/api\/departments\/([a-z0-9-]+)\/(target|close|reopen)$/))) {
     if (m[2] === 'target') return send(res, 200, S.setDailyTarget({ slug: m[1], target: body.target, by: 'director' }));
     if (m[2] === 'close') return send(res, 200, S.closeDepartment({ slug: m[1], force: !!body.force, by: 'director' }));
@@ -102,6 +161,7 @@ async function route(req, res) {
   }
   if (p === '/api/topics') return send(res, 200, S.submitTopic({ ...body, by: 'director' }));
   if (p === '/api/accounts') return send(res, 200, P.addAccount({ provider: body.provider, label: body.label, owner: body.owner || '', kind: body.kind || 'subscription', useDefault: !!body.useDefault, secret_file: body.secret_file || null, by: 'director' }));
+  if ((m = p.match(/^\/api\/accounts\/(\d+)\/assign$/))) return send(res, 200, P.assignAccount(Number(m[1]), body.dept || null));
   if ((m = p.match(/^\/api\/accounts\/(\d+)\/(enable|disable|unlimit|remove)$/))) {
     const id = Number(m[1]);
     if (m[2] === 'unlimit') return send(res, 200, P.clearLimit(id));
@@ -112,6 +172,21 @@ async function route(req, res) {
   if ((m = p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/produce$/))) return send(res, 200, { ...P.enqueueJob({ kind: 'produce', video_id: m[1], by: 'director' }), worker: P.ensureWorker() });
   if (p === '/api/settings') return send(res, 200, P.setSetting(body.key, body.value));
   if (p === '/api/worker/start') return send(res, 200, P.ensureWorker());
+  if (p === '/api/attention/recheck') {
+    if (body.all) {
+      const items = fullOverview().attention;
+      const seen = new Set();
+      const lines = [];
+      for (const it of items) {
+        const key = `${it.kind}|${it.account_id || ''}|${it.provider || ''}`; // gộp mục trùng (vd no_account + auth cùng tài khoản)
+        if (seen.has(key)) continue;
+        seen.add(key);
+        if (['auth', 'no_account', 'limit_wait', 'worker'].includes(it.kind)) lines.push(...(await recheckAttention(it)).lines);
+      }
+      return send(res, 200, { lines: lines.length ? lines : ['Đã tính lại số liệu'] });
+    }
+    return send(res, 200, await recheckAttention(body));
+  }
   if (p === '/api/office/start') return send(res, 200, await O.startOffice({ private: !!body.private, open: false }));
   if (p === '/api/checklist/toggle') return send(res, 200, toggleChecklist(Number(body.line)));
   return send(res, 404, { error: 'Không tìm thấy' });

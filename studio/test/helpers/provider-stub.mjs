@@ -21,13 +21,20 @@ if (isClaude) {
     process.exit(1);
   }
   const m = /^\/(make-plan|qc|rescue|dept-review)\s*(\S*)/.exec(prompt.trim());
+  if (mode === 'codexwait' && m?.[1] === 'make-plan') {
+    out({ result: ['Kịch bản cần Codex viết nhưng Codex đang bận.', 'CODEX_WAIT: Codex đang sản xuất video khác'].join('\n') });
+    process.exit(0);
+  }
   if (m?.[1] === 'make-plan') {
     const t = S.sql.get('SELECT folder FROM topics WHERE id=?', Number(m[2]));
     fs.writeFileSync(path.resolve(S.ROOT, t.folder, 'concept.md'), '# concept');
     fs.writeFileSync(path.resolve(S.ROOT, t.folder, 'plan.md'), '# plan');
     for (const v of S.sql.all("SELECT id FROM videos WHERE topic_id=? AND stage='ideation'", Number(m[2]))) S.setVideoStage({ video_id: v.id, stage: 'planning', by: 'stub' });
   }
-  if (m?.[1] === 'qc') S.setVideoStage({ video_id: m[2], stage: 'ready', by: 'stub' });
+  if (m?.[1] === 'qc') {
+    if (mode === 'qc-design') S.escalate({ video_id: m[2], role: 'qc', reason: 'QC-THIẾT-KẾ: hook thiếu tình huống', by: 'stub' });
+    else if (mode !== 'qc-no-verdict') S.setVideoStage({ video_id: m[2], stage: 'ready', by: 'stub' });
+  }
   if (m?.[1] === 'rescue') S.resolveEscalation({ video_id: m[2], note: 'stub đã gỡ', by: 'stub' });
   out({ result: `OK ${prompt.trim()}` });
 } else {

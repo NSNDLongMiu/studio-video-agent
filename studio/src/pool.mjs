@@ -1,6 +1,7 @@
 // Kho tài khoản (Claude / Codex) + hàng đợi việc + trạng thái worker.
 // Nguyên tắc: tài khoản được KHAI BÁO rõ (ai sở hữu), khoá/token KHÔNG nằm trong DB.
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -21,16 +22,50 @@ export const JOB_KINDS = {
   qc: { provider: 'claude', label: 'QC' },
   rescue: { provider: 'claude', label: 'Gỡ vướng' },
   dept_review: { provider: 'claude', label: 'Rà soát phòng' },
+  scout: { provider: 'claude', label: 'Tìm chủ đề' },
   produce: { provider: 'codex', label: 'Sản xuất' },
 };
 
+// ---------- email đăng nhập (để giám đốc biết ghế nào gắn với tài khoản thật nào) ----------
+// Đọc từ file đăng nhập mà Claude/Codex tự ghi (không gọi mạng, không tốn hạn mức); cache theo mtime nên rẻ.
+//  - Claude: <thư mục ghế>/.claude.json (ghế mặc định: ~/.claude.json) → oauthAccount.emailAddress
+//  - Codex:  <thư mục ghế hoặc ~/.codex>/auth.json → tokens.id_token (JWT) → email
+const emailCache = new Map();
+function cachedRead(file, parse) {
+  try {
+    const m = fs.statSync(file).mtimeMs;
+    const c = emailCache.get(file);
+    if (c && c.m === m) return c.v;
+    let v = null;
+    try {
+      v = parse(fs.readFileSync(file, 'utf8')) || null;
+    } catch {
+      v = null;
+    }
+    emailCache.set(file, { m, v });
+    return v;
+  } catch {
+    return null;
+  }
+}
+export function accountEmail(a) {
+  if (a.kind === 'api_key') return null;
+  if (a.provider === 'claude') return cachedRead(a.home ? path.join(a.home, '.claude.json') : path.join(os.homedir(), '.claude.json'), (t) => JSON.parse(t).oauthAccount?.emailAddress);
+  return cachedRead(path.join(a.home || path.join(os.homedir(), '.codex'), 'auth.json'), (t) => {
+    const part = JSON.parse(t).tokens?.id_token?.split('.')[1];
+    return part ? JSON.parse(Buffer.from(part, 'base64url').toString('utf8')).email : null;
+  });
+}
+/** Tên cho người đọc: "Claude <email> [ghế b]". Nhãn ghế chỉ để phân biệt 2 ghế cùng email. */
+export const accountPerson = (a) => `${a.provider === 'claude' ? 'Claude' : 'Codex'} ${accountEmail(a) || '(chưa đăng nhập)'} [ghế ${a.label}]`;
+
 // ---------- cài đặt ----------
-const DEFAULTS = { paid_fallback: 'off', concurrency_claude: '1', concurrency_codex: '1', autostart_worker: 'on', max_rescues_per_video: '2', max_produce_per_video: '4' };
+const DEFAULTS = { paid_fallback: 'off', concurrency_claude: '1', concurrency_codex: '1', autostart_worker: 'on', auto_produce: 'on', max_rescues_per_video: '4', max_produce_per_video: '9' };
 export const getSetting = (key, def) => get('SELECT value FROM settings WHERE key=?', key)?.value ?? def ?? DEFAULTS[key];
 export function setSetting(key, value) {
   if (!(key in DEFAULTS)) fail(`Cài đặt không hợp lệ: ${key}. Hợp lệ: ${Object.keys(DEFAULTS).join(', ')}`);
   value = String(value);
-  if (key === 'paid_fallback' || key === 'autostart_worker') if (!['on', 'off'].includes(value)) fail(`${key} chỉ nhận on/off`);
+  if (key === 'paid_fallback' || key === 'autostart_worker' || key === 'auto_produce') if (!['on', 'off'].includes(value)) fail(`${key} chỉ nhận on/off`);
   if (/^(concurrency_|max_)/.test(key) && !/^\d{1,2}$/.test(value)) fail(`${key} phải là số nguyên nhỏ`);
   run('INSERT INTO settings(key,value) VALUES(?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value', key, value);
   S.logEvent({ actor: 'director', kind: 'setting', message: `Cài đặt ${key} = ${value}` });
@@ -87,6 +122,13 @@ export function addAccount({ provider, label, owner = '', kind = 'subscription',
 export function resolveAccount(ref) {
   const byId = /^\d+$/.test(String(ref)) ? get('SELECT * FROM accounts WHERE id=?', Number(ref)) : null;
   if (byId) return byId;
+  if (String(ref).includes('@')) {
+    // Gọi bằng email: "anh@x.vn" hoặc "claude/anh@x.vn" (nhiều ghế cùng email thì phải dùng nhãn ghế/id)
+    const [pp, em] = /^(claude|codex)\//.test(String(ref)) ? String(ref).split(/\/(.*)/s) : [null, String(ref)];
+    const hits = all('SELECT * FROM accounts WHERE (? IS NULL OR provider=?)', pp, pp).filter((a) => (accountEmail(a) || '').toLowerCase() === em.toLowerCase());
+    if (hits.length === 1) return hits[0];
+    fail(hits.length ? `Email "${em}" đang đăng nhập ở ${hits.length} ghế (${hits.map((a) => `${a.provider}/${a.label}`).join(', ')}) — dùng <provider>/<nhãn ghế> hoặc id` : `Không có ghế nào đăng nhập bằng "${em}"`);
+  }
   const [p, l] = String(ref).includes('/') ? String(ref).split('/') : [null, String(ref)];
   const rows = all('SELECT * FROM accounts WHERE label=? AND (? IS NULL OR provider=?)', l, p, p);
   if (rows.length === 1) return rows[0];
@@ -97,7 +139,7 @@ export function reviveAccounts() {
   const due = all("SELECT id,provider,label FROM accounts WHERE status='limited' AND limited_until IS NOT NULL AND limited_until<=?", now());
   for (const a of due) {
     run("UPDATE accounts SET status='ready', limited_until=NULL WHERE id=?", a.id);
-    S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${a.provider}/${a.label} đã hồi limit — sẵn sàng chạy lại` });
+    S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${accountPerson(a)} đã hồi limit — sẵn sàng chạy lại` });
   }
   return due.length;
 }
@@ -108,7 +150,7 @@ const capped = (a) => a.max_runs_per_day != null && todayRuns(a) >= a.max_runs_p
 export function listAccounts() {
   reviveAccounts();
   return all('SELECT * FROM accounts ORDER BY provider, priority, id').map((a) => ({
-    id: a.id, provider: a.provider, label: a.label, owner: a.owner, kind: a.kind, home: a.home, secret_file: a.secret_file, priority: a.priority,
+    id: a.id, provider: a.provider, label: a.label, email: accountEmail(a), person: accountPerson(a), owner: a.owner, dept: a.dept || null, kind: a.kind, home: a.home, secret_file: a.secret_file, priority: a.priority,
     enabled: !!a.enabled, status: !a.enabled ? 'disabled' : a.status, limited_until: a.limited_until, last_limit_raw: a.last_limit_raw, last_error: a.last_error,
     limit_hits: a.limit_hits, runs: a.runs, runs_today: todayRuns(a), max_runs_per_day: a.max_runs_per_day, capped: capped(a), last_used_at: a.last_used_at, last_success_at: a.last_success_at,
     login: loginCommand(a),
@@ -116,17 +158,26 @@ export function listAccounts() {
 }
 
 /** Chọn tài khoản để chạy: gói (subscription) trước, ưu tiên số nhỏ, rồi cái vừa chạy thành công gần nhất ("dính" cho tới khi hết limit). */
-export function pickAccount(provider, { allowPaid = getSetting('paid_fallback') === 'on' } = {}) {
+/** Luật cấp tài khoản theo phòng (giám đốc chốt 18/11/2026):
+ *  - phòng đã được cấp ≥1 tài khoản <provider> (kể cả đang tắt/hết limit) → việc của phòng CHỈ chạy bằng tài khoản của phòng;
+ *  - phòng chưa được cấp (hoặc việc không thuộc phòng nào) → chỉ dùng tài khoản dùng chung (chưa cấp cho ai);
+ *  - tài khoản đã cấp cho phòng này không bao giờ bị phòng khác mượn. */
+export function eligibleFor(rows, provider, dept) {
+  const own = dept && get('SELECT 1 FROM accounts WHERE provider=? AND dept=?', provider, dept);
+  return rows.filter((a) => (own ? a.dept === dept : !a.dept));
+}
+
+export function pickAccount(provider, { allowPaid = getSetting('paid_fallback') === 'on', dept = null } = {}) {
   reviveAccounts();
-  const rows = all("SELECT * FROM accounts WHERE provider=? AND enabled=1 AND status='ready'", provider).filter((a) => (a.kind === 'subscription' || allowPaid) && !capped(a));
+  const rows = eligibleFor(all("SELECT * FROM accounts WHERE provider=? AND enabled=1 AND status='ready'", provider), provider, dept).filter((a) => (a.kind === 'subscription' || allowPaid) && !capped(a));
   rows.sort((a, b) => (a.kind === 'subscription' ? 0 : 1) - (b.kind === 'subscription' ? 0 : 1) || a.priority - b.priority || String(b.last_success_at || '').localeCompare(String(a.last_success_at || '')) || a.id - b.id);
   return rows[0] || null;
 }
 
 /** Khi nào sớm nhất có tài khoản dùng được? null = không có cách nào tự hồi (cần người đăng nhập/bật lại). */
-export function nextAvailableAt(provider, { allowPaid = getSetting('paid_fallback') === 'on' } = {}) {
+export function nextAvailableAt(provider, { allowPaid = getSetting('paid_fallback') === 'on', dept = null } = {}) {
   reviveAccounts();
-  const rows = all('SELECT * FROM accounts WHERE provider=? AND enabled=1', provider).filter((a) => a.kind === 'subscription' || allowPaid);
+  const rows = eligibleFor(all('SELECT * FROM accounts WHERE provider=? AND enabled=1', provider), provider, dept).filter((a) => a.kind === 'subscription' || allowPaid);
   const times = [];
   for (const a of rows) {
     if (a.status === 'limited' && a.limited_until) times.push(Date.parse(a.limited_until));
@@ -154,25 +205,45 @@ export function markLimited(id, { until = null, raw = '' } = {}) {
   if (until && n >= 3) t = Math.max(t, Date.now() + backoffMs(n)); // hết limit mà thử lại vẫn hết: không tin giờ hồi
   const when = new Date(Math.max(t, Date.now() + Number(process.env.STUDIO_MIN_LIMIT_MS ?? 5000)));
   run("UPDATE accounts SET status='limited', limited_until=?, consecutive_limits=?, limit_hits=limit_hits+1, last_limit_raw=? WHERE id=?", when.toISOString(), n, String(raw).slice(0, 400), id);
-  S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${a.provider}/${a.label} HẾT LIMIT — ${until ? 'hồi lúc' : 'chưa rõ giờ hồi, thử lại lúc'} ${when.toLocaleString('vi-VN')}${raw ? ` · "${String(raw).slice(0, 140)}"` : ''}` });
+  S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${accountPerson(a)} HẾT LIMIT — ${until ? 'hồi lúc' : 'chưa rõ giờ hồi, thử lại lúc'} ${when.toLocaleString('vi-VN')}${raw ? ` · "${String(raw).slice(0, 140)}"` : ''}` });
   return when;
 }
 export function markAuthError(id, msg) {
   const a = get('SELECT provider,label FROM accounts WHERE id=?', id);
   run("UPDATE accounts SET status='auth_error', last_error=? WHERE id=?", String(msg).slice(0, 400), id);
-  S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${a.provider}/${a.label} LỖI ĐĂNG NHẬP — cần đăng nhập lại (${String(msg).slice(0, 120)})` });
+  S.logEvent({ actor: 'system', kind: 'account', message: `Tài khoản ${accountPerson(a)} LỖI ĐĂNG NHẬP — cần đăng nhập lại (${String(msg).slice(0, 120)})` });
 }
+/** Đổi tên chủ tài khoản (chỉ là nhãn khai báo "ghế của ai"; không đụng tới đăng nhập). Chỉ theo lệnh giám đốc. */
+export function setAccountOwner(ref, owner, by = 'director') {
+  const a = resolveAccount(ref);
+  const name = String(owner || '').trim();
+  if (!name) fail('Cần nhập tên chủ tài khoản');
+  run('UPDATE accounts SET owner=? WHERE id=?', name, a.id);
+  S.logEvent({ actor: by, kind: 'account', message: `Đặt chủ tài khoản ${accountPerson(a)}: "${a.owner || '(chưa có)'}" → "${name}"` });
+  return { id: a.id, owner: name };
+}
+/** Cấp tài khoản cho 1 phòng (dept = null/'none' → trả về dùng chung). Chỉ theo lệnh giám đốc. */
+export function assignAccount(ref, dept, by = 'director') {
+  const a = resolveAccount(ref);
+  const slug = dept && dept !== 'none' ? String(dept) : null;
+  if (slug && !get('SELECT 1 FROM departments WHERE slug=?', slug)) fail(`Không có phòng "${slug}"`);
+  run('UPDATE accounts SET dept=? WHERE id=?', slug, a.id);
+  S.logEvent({ actor: by, dept: slug, kind: 'account', message: slug ? `Cấp tài khoản ${a.provider}/${a.label} cho phòng "${slug}" (chỉ phòng này dùng, có Văn phòng 2D riêng)` : `Trả tài khoản ${a.provider}/${a.label} về dùng chung (không theo dõi trên Văn phòng 2D)` });
+  wakeJobs(a.provider);
+  return { id: a.id, account: `${a.provider}/${a.label}`, person: accountPerson(a), dept: slug };
+}
+
 export function setAccountEnabled(ref, enabled) {
   const a = resolveAccount(ref);
   run('UPDATE accounts SET enabled=? WHERE id=?', enabled ? 1 : 0, a.id);
-  S.logEvent({ actor: 'director', kind: 'account', message: `${enabled ? 'Bật' : 'Tắt'} tài khoản ${a.provider}/${a.label}` });
+  S.logEvent({ actor: 'director', kind: 'account', message: `${enabled ? 'Bật' : 'Tắt'} tài khoản ${accountPerson(a)}` });
   if (enabled) wakeJobs(a.provider);
   return { id: a.id, enabled };
 }
 export function clearLimit(ref) {
   const a = resolveAccount(ref);
   run("UPDATE accounts SET status='ready', limited_until=NULL, consecutive_limits=0, last_error='' WHERE id=?", a.id);
-  S.logEvent({ actor: 'director', kind: 'account', message: `Đánh dấu tài khoản ${a.provider}/${a.label} đã hồi limit / đăng nhập lại (thủ công)` });
+  S.logEvent({ actor: 'director', kind: 'account', message: `Đánh dấu tài khoản ${accountPerson(a)} đã hồi limit / đăng nhập lại (thủ công)` });
   wakeJobs(a.provider);
   return { id: a.id, status: 'ready' };
 }
@@ -181,13 +252,13 @@ export function removeAccount(ref) {
   if (get("SELECT 1 FROM jobs WHERE account_id=? AND status='running'", a.id)) fail('Tài khoản đang chạy việc — chờ xong hoặc huỷ việc trước');
   run('UPDATE jobs SET account_id=NULL WHERE account_id=?', a.id);
   run('DELETE FROM accounts WHERE id=?', a.id);
-  S.logEvent({ actor: 'director', kind: 'account', message: `Gỡ tài khoản ${a.provider}/${a.label} khỏi kho${a.home ? ` (thư mục đăng nhập còn nguyên: ${a.home})` : ''}` });
+  S.logEvent({ actor: 'director', kind: 'account', message: `Gỡ tài khoản ${accountPerson(a)} khỏi kho${a.home ? ` (thư mục đăng nhập còn nguyên: ${a.home})` : ''}` });
   return { removed: a.id, home: a.home };
 }
 
 // ---------- hàng đợi việc ----------
 const PLANNING_LOCK = (k, v) => `${k}:${v}`;
-export function enqueueJob({ kind, topic_id, video_id, dept, episodes, rounds, force = false, auto_produce = false, by = 'director' }) {
+export function enqueueJob({ kind, topic_id, video_id, dept, team_id, episodes, rounds, force = false, auto_produce, by = 'director' }) {
   return tx(() => {
     const def = JOB_KINDS[kind];
     if (!def) fail(`kind phải là: ${Object.keys(JOB_KINDS).join(' | ')}`);
@@ -206,7 +277,16 @@ export function enqueueJob({ kind, topic_id, video_id, dept, episodes, rounds, f
       d = topic.dept;
       title = `Ý tưởng → kế hoạch: ${topic.text.slice(0, 70)}`;
       lock = PLANNING_LOCK('topic', t);
-      payload = { episodes: Number(episodes) || 1, rounds: Math.min(4, Number(rounds) || 2), auto_produce: !!auto_produce };
+      payload = { episodes: Number(episodes) || 1, rounds: Math.min(4, Number(rounds) || 2), auto_produce: auto_produce == null ? getSetting('auto_produce') === 'on' : !!auto_produce };
+    } else if (kind === 'scout') {
+      const team = get("SELECT t.*, d.auto_topics, d.status dstatus FROM teams t JOIN departments d ON d.slug=t.dept WHERE t.id=?", Number(team_id));
+      if (!team || team.status !== 'active') fail(`Không có đội #${team_id} đang hoạt động`);
+      if (team.dstatus !== 'active') fail(`Phòng "${team.dept}" đang đóng`);
+      if (!team.auto_topics) fail(`Phòng "${team.dept}" đang TẮT tự tìm chủ đề`);
+      d = team.dept;
+      title = `Tìm chủ đề cho ${team.name}`;
+      lock = PLANNING_LOCK(`team${team.id}`, 'scout');
+      payload = { team_id: team.id };
     } else if (kind === 'dept_review') {
       if (!get('SELECT 1 FROM departments WHERE slug=?', dept)) fail(`Không có phòng "${dept}"`);
       title = `Rà soát năng lực phòng ${dept}`;
@@ -221,7 +301,7 @@ export function enqueueJob({ kind, topic_id, video_id, dept, episodes, rounds, f
       payload = kind === 'produce' ? { force: !!force } : {};
     }
     // Chống trùng: cùng loại việc + cùng đối tượng đang chờ/chạy thì không xếp thêm.
-    const [col, val] = kind === 'plan' ? ['topic_id', t] : kind === 'dept_review' ? ['dept', d] : ['video_id', v];
+    const [col, val] = kind === 'plan' ? ['topic_id', t] : kind === 'dept_review' ? ['dept', d] : kind === 'scout' ? ['lock_key', lock] : ['video_id', v];
     const dup = get(`SELECT id,status FROM jobs WHERE kind=? AND ${col}=? AND status IN ('queued','running','waiting_limit')`, kind, val);
     if (dup) return { job_id: dup.id, deduped: true, status: dup.status };
     const r = run('INSERT INTO jobs(kind,provider,title,dept,topic_id,video_id,payload,lock_key,next_run_at,created_by,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', kind, def.provider, title, d, t, v, JSON.stringify(payload), lock, now(), by, now(), now());
@@ -232,6 +312,23 @@ export function enqueueJob({ kind, topic_id, video_id, dept, episodes, rounds, f
 }
 
 const parseJob = (j) => (j ? { ...j, payload: JSON.parse(j.payload || '{}'), cancel_requested: !!j.cancel_requested } : j);
+/** Worker gọi mỗi vòng: phòng BẬT tự tìm chủ đề → mỗi đội còn chỗ (suất trống − chủ đề đang chờ) được xếp TỐI ĐA 1 việc
+ *  "Tìm chủ đề"/ngày. Phòng TẮT → không bao giờ xếp (đội chờ giám đốc đưa chủ đề). */
+export function autoScout({ since } = {}) {
+  const out = [];
+  const midnight = new Date();
+  midnight.setHours(0, 0, 0, 0); // "hôm nay" theo giờ máy (created_at lưu giờ UTC)
+  since = since || midnight.toISOString();
+  const teams = all("SELECT t.id FROM teams t JOIN departments d ON d.slug=t.dept WHERE t.status='active' AND d.status='active' AND d.auto_topics=1");
+  for (const { id } of teams) {
+    const lock = PLANNING_LOCK(`team${id}`, 'scout');
+    if (get("SELECT 1 FROM jobs WHERE kind='scout' AND lock_key=? AND (status IN ('queued','running','waiting_limit','needs_human') OR created_at>=?)", lock, since)) continue;
+    if (S.scoutRoom(id) <= 0) continue;
+    out.push(enqueueJob({ kind: 'scout', team_id: id, by: 'system' }));
+  }
+  return out;
+}
+
 export const getJob = (id) => parseJob(get('SELECT * FROM jobs WHERE id=?', Number(id)));
 export function listJobs({ status, kind, video_id, limit = 60 } = {}) {
   const w = [];
@@ -268,7 +365,7 @@ export function retryJob(id, by = 'director') {
 }
 /** Có tài khoản mới/được bật/được gỡ limit => cho các việc đang chờ chạy ngay. */
 export function wakeJobs(provider) {
-  run("UPDATE jobs SET status='queued', wait_reason='', next_run_at=?, updated_at=? WHERE status='waiting_limit' AND provider=?", now(), now(), provider);
+  run("UPDATE jobs SET status='queued', wait_reason='', next_run_at=?, updated_at=? WHERE status='waiting_limit' AND (provider=? OR (?='codex' AND wait_reason='codex'))", now(), now(), provider, provider);
 }
 
 // ---------- worker ----------
@@ -308,15 +405,17 @@ export function poolOverview() {
     const w = waiting.filter((j) => j.provider === p);
     if (!w.length) continue;
     const noAcc = w.filter((j) => j.wait_reason === 'no_account');
-    const lim = w.filter((j) => j.wait_reason !== 'no_account');
+    const lim = w.filter((j) => j.wait_reason !== 'no_account' && j.wait_reason !== 'codex');
     if (noAcc.length) attention.push({ kind: 'no_account', provider: p, message: `${noAcc.length} việc ${p} đang chờ vì KHÔNG có tài khoản ${p} dùng được — thêm/đăng nhập/bật tài khoản (bảng "Tài khoản")` });
     if (lim.length) {
       const until = lim.map((j) => j.next_run_at).sort()[0];
       attention.push({ kind: 'limit_wait', provider: p, until, message: `${lim.length} việc ${p} đang chờ hồi limit (tất cả tài khoản ${p} đều hết)` });
     }
   }
+  const codexWait = waiting.filter((j) => j.wait_reason === 'codex');
+  if (codexWait.length) attention.push({ kind: 'limit_wait', provider: 'codex', until: codexWait.map((j) => j.next_run_at).sort()[0], message: `${codexWait.length} việc kế hoạch đang chờ Codex (viết kịch bản/storyboard) vì Codex của phòng bận hoặc hết limit` });
   for (const j of jobs.filter((x) => x.status === 'needs_human')) attention.push({ kind: 'job_human', job_id: j.id, message: `Việc #${j.id} "${j.title}" cần người xử lý: ${j.last_error}` });
-  for (const a of accounts.filter((x) => x.enabled && x.status === 'auth_error')) attention.push({ kind: 'auth', message: `Tài khoản ${a.provider}/${a.label} lỗi đăng nhập — chạy: ${a.login}` });
+  for (const a of accounts.filter((x) => x.enabled && x.status === 'auth_error')) attention.push({ kind: 'auth', account_id: a.id, provider: a.provider, message: `Tài khoản ${accountPerson(a)} lỗi đăng nhập — chạy: ${a.login}` });
 
   // Kế hoạch đã xong, chờ giám đốc duyệt để sản xuất (không có việc produce đang chờ/chạy).
   const planning = all("SELECT v.id, v.dept, v.title, t.folder FROM videos v JOIN topics t ON t.id=v.topic_id WHERE v.stage='planning'");

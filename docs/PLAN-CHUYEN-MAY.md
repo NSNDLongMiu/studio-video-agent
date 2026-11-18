@@ -9,14 +9,14 @@
 | 1 | Cấu hình PC mới: HĐH, **GPU (tên, VRAM)**, RAM, đã có Node/Python/ffmpeg chưa | **Đã kiểm (T0 chạy rồi):** Windows 11 Pro · CPU Intel i5-13400F (10 lõi/16 luồng) · GPU **AMD Radeon RX 6600** (không phải NVIDIA) · RAM ~32 GB · Node 24.12 ✓ · Git ✓ · **Python, ffmpeg, uv: chưa cài** | GPU AMD → không dùng được đường CUDA của VieNeu; giọng đọc chạy CPU/ONNX, xem `docs/voice.md` | **Đã chốt (16/11/2026): giọng đọc chạy CPU, không cần GPU** — lý do: đây là bước dựng âm thanh chạy nền/hàng đợi (không phải tương tác thời gian thực), số đo của tác giả cho RTF < 1 (nhanh hơn thời gian thực) trên CPU yếu hơn máy này; với nhịp 2 video/ngày/đội, CPU chỉ bận vài chục giây mỗi lần, không đáng lo "lag" máy. Số đo thật trên máy này sẽ có khi chạy T6 |
 | 2 | Cách mang dự án sang | **Đã chốt: dùng GitHub.** Đã đẩy ngày 16/11/2026 (commit `30fe8bb`), 221 tệp, đã kiểm bằng clone mới. Máy mới chỉ cần: `git clone https://github.com/NSNDLongMiu/studio-video-agent.git`. **Repo đang CÔNG KHAI** (giám đốc đã xác nhận). Tuyệt đối không commit token/khoá/`studio/accounts` (đã nằm trong `.gitignore`) | Muốn riêng tư thì đổi chế độ repo trên GitHub; không ảnh hưởng chức năng | Đã chốt |
 | 3 | Đường dẫn dự án trên PC mới | Giữ `E:\Tiktoker` nếu có ổ E. Không thì chọn đường dẫn không dấu, không khoảng trắng | Phải sửa đúng 1 dòng: `.codex\config.toml` (đường dẫn tuyệt đối tới `studio/src/mcp.mjs`). Đã quét: không còn đường dẫn cứng nào khác | Chờ giám đốc |
-| 4 | Tài khoản đăng nhập đầu tiên: chủ tài khoản Claude/Codex là ai; dùng đăng nhập mặc định hay thư mục riêng; có bật API trả phí dự phòng không | Mỗi tài khoản là ghế của 1 người thật; mặc định dùng `accounts init`; API trả phí **tắt** | Thêm tài khoản của người khác sau, không cần làm tối nay. Chi tiết điều khoản: `docs/accounts.md` | Chờ giám đốc |
-| 5 | Giọng đọc: nghe thử 4 giọng Bắc + 4 giọng Nam của VieNeu; có đối chiếu ElevenLabs/Vbee không | Nghe VieNeu trước (miễn phí, Apache-2.0). Chỉ xét dịch vụ trả phí nếu chưa đủ tự nhiên | Dịch vụ trả phí cần xác minh điều khoản thương mại (Vbee/Viettel chưa xác minh) | Chờ nghe thử (`docs/voice.md`) |
-| 6 | Bộ câu chào của Cáo: A Họp nhanh / B Đi làm / C Báo cáo sếp / D Check-in | **Bộ A** (ngắn, hook mạnh) | Đổi bộ chỉ là đổi câu chữ, không đụng kỹ thuật | Chờ chọn (`docs/mascot.md`) |
-| 7 | Phòng ban đầu tiên: tên, mã, chỉ tiêu video/ngày, số đội ban đầu; **chủ đề chạy thử** đầu tiên | 1 phòng, chỉ tiêu 2/ngày, 1 đội, 1 chủ đề đơn giản | Chỉ tiêu cao hơn năng lực đội thì trưởng phòng sẽ đề xuất thêm đội | Chờ giám đốc |
-| 8 | Quyền cho agent: (a) cho Claude ghi `.claude\settings.json` (cho phép trước các công cụ đọc/báo cáo; công cụ duyệt vẫn bắt hỏi)? (b) cho Claude **tự chạy** lệnh cài gói từ nguồn ngoài (VieNeu, thư viện Python) hay bạn tự chạy? | (a) Có. (b) Bạn tự chạy các lệnh cài, Claude chạy các bước còn lại | Việc cài gói từ nguồn ngoài đã bị chặn một lần ở phiên này; Claude **không vòng qua** | Chờ giám đốc |
-| 9 | Văn phòng 2D: bật ngay không, và dùng `--private` khi chia sẻ màn hình | Bật; dùng `--private` (vẫn lộ tên dự án, xem `docs/office.md`) | — | Chờ giám đốc |
-| 10 | Worker tự bật cùng Windows (`studio\scripts\install-worker-task.ps1`) | **Không** tối nay (làm sau khi chạy thử ổn) | Bật thì việc nền chạy cả khi bạn chưa mở dashboard | Chờ giám đốc |
-| 11 | Nhép miệng: giao agent nào, khi nào | Giao sau khi chọn giọng, **trên PC mạnh** để thử cả mô hình dùng GPU. Dùng `docs/prompts/lipsync-cao.md` | Làm trước khi có giọng thì chỉ thử được bằng giọng tạm | Chờ giao |
+| 4 | Tài khoản đăng nhập đầu tiên: chủ tài khoản Claude/Codex là ai; dùng đăng nhập mặc định hay thư mục riêng; có bật API trả phí dự phòng không | Mỗi tài khoản là ghế của 1 người thật; mặc định dùng `accounts init`; API trả phí **tắt** | Thêm tài khoản của người khác sau, không cần làm tối nay. Chi tiết điều khoản: `docs/accounts.md` | **Đã chốt 18/11/2026:** KHÔNG dùng API/AI trả phí; chủ tài khoản đã khai báo (xem `docs/CHECKLIST.md` mục 2) |
+| 5 | Giọng đọc: nghe thử 4 giọng Bắc + 4 giọng Nam của VieNeu; có đối chiếu ElevenLabs/Vbee không | Nghe VieNeu trước (miễn phí, Apache-2.0). Chỉ xét dịch vụ trả phí nếu chưa đủ tự nhiên | Dịch vụ trả phí cần xác minh điều khoản thương mại (Vbee/Viettel chưa xác minh) | **Đã chốt 17/11/2026:** toàn giọng Bắc (`docs/voice.md`) |
+| 6 | Bộ câu chào của Cáo: A Họp nhanh / B Đi làm / C Báo cáo sếp / D Check-in | **Bộ A** (ngắn, hook mạnh) | Đổi bộ chỉ là đổi câu chữ, không đụng kỹ thuật | **Đã chốt 18/11/2026:** bỏ bộ câu chào cố định; mở đầu bằng hook theo chủ đề (`docs/mascot.md`) |
+| 7 | Phòng ban đầu tiên: tên, mã, chỉ tiêu video/ngày, số đội ban đầu; **chủ đề chạy thử** đầu tiên | 1 phòng, chỉ tiêu 2/ngày, 1 đội, 1 chủ đề đơn giản | Chỉ tiêu cao hơn năng lực đội thì trưởng phòng sẽ đề xuất thêm đội | Chỉ tiêu: giám đốc đặt ngay lúc tạo phòng. **Phòng IT đã mở** (chỉ tiêu 1/ngày, xác nhận 18/11/2026); chủ đề demo: giám đốc giao trên dashboard |
+| 8 | Quyền cho agent: (a) cho Claude ghi `.claude\settings.json` (cho phép trước các công cụ đọc/báo cáo; công cụ duyệt vẫn bắt hỏi)? (b) cho Claude **tự chạy** lệnh cài gói từ nguồn ngoài (VieNeu, thư viện Python) hay bạn tự chạy? | (a) Có. (b) Bạn tự chạy các lệnh cài, Claude chạy các bước còn lại | Việc cài gói từ nguồn ngoài đã bị chặn một lần ở phiên này; Claude **không vòng qua** | (a) **đã ghi** 18/11/2026 sau khi giám đốc xác nhận; (b) chưa quyết |
+| 9 | Văn phòng 2D: bật ngay không, và dùng `--private` khi chia sẻ màn hình | Bật; dùng `--private` (vẫn lộ tên dự án, xem `docs/office.md`) | — | Đã bật (giám đốc xác nhận 18/11/2026) |
+| 10 | Worker tự bật cùng Windows (`studio\scripts\install-worker-task.ps1`) | **Không** tối nay (làm sau khi chạy thử ổn) | Bật thì việc nền chạy cả khi bạn chưa mở dashboard | Giám đốc đồng ý làm **sau demo** (18/11/2026) |
+| 11 | Nhép miệng: giao agent nào, khi nào | Giao sau khi chọn giọng, **trên PC mạnh** để thử cả mô hình dùng GPU. Dùng `docs/prompts/lipsync-cao.md` | Làm trước khi có giọng thì chỉ thử được bằng giọng tạm | Giám đốc giao cho AI 18/11/2026 — `docs/viec-cho-agent.md` T2 |
 | 12 | Nhãn AI | **Đã chốt:** luôn gắn (`qc-publish` kiểm tự động) | — | Đã chốt |
 
 ## 2. Mang gì, không mang gì
@@ -66,15 +66,15 @@ Gõ một trong các câu sau (tôi chỉ làm đúng bước được nêu, r�
 
 ## 7. Ý tưởng để cân nhắc (chưa phải quyết định)
 1. **Hai phiên bản giọng Bắc và Nam cho cùng nội dung:** đăng 2 kênh hoặc thử A/B để xem vùng miền nào giữ chân người xem tốt hơn (cần đo thật mới biết).
-2. **Series cố định theo bộ chào A:** "Họp nhanh 30 giây" — mỗi video một mẹo, cấu trúc cố định (mở → 1 ý → chốt), dễ sản xuất hàng loạt và dễ nhận diện.
+2. **(Hết hiệu lực — giám đốc bỏ câu chào cố định 18/11/2026)** Series cố định theo bộ chào A: "Họp nhanh 30 giây" — mỗi video một mẹo, cấu trúc cố định (mở → 1 ý → chốt), dễ sản xuất hàng loạt và dễ nhận diện.
 3. **Nội dung "hậu trường":** quay màn hình **Văn phòng 2D** bằng chế độ `--demo` (đội giả, không lộ dự án thật) để làm video "Cáo văn phòng và xưởng AI". Không dùng chế độ thật khi quay vì lộ tên dự án khác.
-4. **Cáo đổi trang phục theo phòng ban** (áo thể thao, tai nghe IT): cần thêm ảnh từ giám đốc, mỗi bộ cần cùng kiểu ánh sáng và độ phân giải cao hơn (≥ 1000px cao).
+4. **Cáo đổi trang phục theo cụm chủ đề** (ví dụ sa mạc; tạm dùng chung 1 bộ, agent hoạ sĩ linh vật lo về sau — `docs/viec-cho-agent.md` T1): có thể cần thêm ảnh tham chiếu từ giám đốc, mỗi bộ cần cùng kiểu ánh sáng và độ phân giải cao hơn (≥ 1000px cao).
 5. **Mẫu ảnh bìa cố định:** một dáng Cáo + chữ lớn, dựng bằng cùng công cụ để mọi video đồng nhất.
-6. **Thư viện nhạc có giấy phép:** chốt nguồn và ghi `library/music/LICENSES.md` trước khi dựng hàng loạt, tránh bị gỡ video vì bản quyền.
+6. **(Không cần — giám đốc chốt không dùng nhạc nền 18/11/2026)** Thư viện nhạc có giấy phép: chốt nguồn và ghi `library/music/LICENSES.md` trước khi dựng hàng loạt, tránh bị gỡ video vì bản quyền.
 
 ## 8. Tiêu chí "chuyển máy xong"
 - Ba bộ test đạt trên PC mới; `accounts check --probe` OK cho cả Claude và Codex.
 - Dashboard + worker chạy; Văn phòng 2D thấy các phiên.
 - Có **1 video đầu–cuối** qua `qc-video` và `qc-publish`, đã xem khung hình thật.
-- Đã chọn giọng Bắc + Nam và ghi vào `docs/voice.md`; đã chọn bộ câu chào.
+- Đã chọn giọng (toàn giọng Bắc) và ghi vào `docs/voice.md`; đã chốt hướng mở đầu (hook theo chủ đề, không câu chào cố định).
 - Đã giao prompt nhép miệng cho agent khác.

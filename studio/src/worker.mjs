@@ -33,7 +33,7 @@ function verify(job) {
   }
   if (job.kind === 'qc') {
     const v = S.getVideo(job.video_id);
-    if (v.stage === 'review') return `QC kết thúc nhưng ${v.id} vẫn ở "review" — Claude chưa đưa ra phán quyết. Ghi chú: ${job.__summary || '(trống)'}`;
+    if (v.stage === 'review' && !v.needs_help) return `QC kết thúc nhưng ${v.id} vẫn ở "review" — Claude chưa đưa ra phán quyết. Ghi chú: ${job.__summary || '(trống)'}`;
   }
   if (job.kind === 'rescue') {
     const v = S.getVideo(job.video_id);
@@ -103,13 +103,13 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
   };
 
   function park(job) {
-    const next = P.nextAvailableAt(job.provider);
+    const next = P.nextAvailableAt(job.provider, { dept: job.dept });
     const reason = next ? 'limit' : 'no_account';
     const at = next ? new Date(next.getTime() + Number(process.env.STUDIO_PARK_PAD_MS ?? 3000)) : new Date(Date.now() + Number(process.env.STUDIO_NOACC_POLL_MS ?? 60_000));
     const news = job.wait_reason !== reason;
     P.setJob(job.id, { status: 'waiting_limit', wait_reason: reason, next_run_at: at.toISOString() });
     if (news) {
-      const msg = next ? `Việc #${job.id} (${job.title}) CHỜ: mọi tài khoản ${job.provider} đang hết limit — tự chạy tiếp lúc ${next.toLocaleString('vi-VN')}` : `Việc #${job.id} (${job.title}) CHỜ: chưa có tài khoản ${job.provider} nào dùng được (thêm/đăng nhập/bật tài khoản là tự chạy tiếp)`;
+      const msg = next ? `Việc #${job.id} (${job.title}) CHỜ: mọi tài khoản ${job.provider}${job.dept ? ` dùng được cho phòng ${job.dept}` : ' dùng chung'} đang hết limit — tự chạy tiếp lúc ${next.toLocaleString('vi-VN')}` : `Việc #${job.id} (${job.title}) CHỜ: chưa có tài khoản ${job.provider}${job.dept ? ` dùng được cho phòng ${job.dept}` : ' dùng chung'} nào dùng được (cấp/thêm/đăng nhập/bật tài khoản là tự chạy tiếp)`;
       S.logEvent({ actor: 'system', dept: job.dept, video_id: job.video_id, kind: 'job', message: msg });
       say(msg);
     }
@@ -165,6 +165,16 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
         ev(`Việc #${job.id}: tài khoản ${account.provider}/${account.label} lỗi đăng nhập → thử tài khoản khác`);
         break;
       }
+      case 'wait_codex': {
+        // Việc kế hoạch cần Codex (viết kịch bản/storyboard) nhưng Codex của phòng đang bận/hết limit: không phải lỗi
+        // của tài khoản Claude — tạm dừng, chạy lại (tiếp từ chỗ dở) khi Codex rảnh.
+        P.markSuccess(account.id);
+        const next = P.nextAvailableAt('codex', { dept: job.dept });
+        const at = next && next.getTime() > Date.now() ? new Date(next.getTime() + 3000) : new Date(Date.now() + Number(process.env.STUDIO_CODEX_WAIT_MS ?? 10 * 60_000));
+        P.setJob(job.id, { status: 'waiting_limit', wait_reason: 'codex', next_run_at: at.toISOString(), last_error: `Chờ Codex: ${res.reason}`, ...common });
+        ev(`Việc #${job.id} tạm dừng chờ Codex (${res.reason}) — tự chạy tiếp lúc ${at.toLocaleString('vi-VN')}`);
+        break;
+      }
       case 'needs_help': {
         P.markSuccess(account.id);
         const st = job.kind === 'produce' ? produceStuck(fresh, res.reason) : 'needs_human';
@@ -218,6 +228,11 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
     run('UPDATE worker SET heartbeat_at=?, running=?, tick_ms=? WHERE id=1', now(), running.size, tickMs);
     if (get('SELECT stop_requested s FROM worker WHERE id=1')?.s) return stop();
     P.reviveAccounts();
+    try {
+      P.autoScout();
+    } catch (e) {
+      console.error('[worker] tự tìm chủ đề:', e.message);
+    }
     run("UPDATE jobs SET status='queued', updated_at=? WHERE status='waiting_limit' AND next_run_at<=?", now(), now());
     for (const [id, r] of running) {
       if (get('SELECT cancel_requested c FROM jobs WHERE id=?', id)?.c && r.child) {
@@ -229,7 +244,7 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
       while (providerBusy(provider) < slots) {
         const job = nextRunnable(provider);
         if (!job) break;
-        const account = P.pickAccount(provider);
+        const account = P.pickAccount(provider, { dept: job.dept });
         if (!account) park(job);
         else start(job, account);
       }

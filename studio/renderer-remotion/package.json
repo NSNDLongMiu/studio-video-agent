@@ -1,0 +1,17 @@
+{
+  "name": "renderer-remotion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Multi-renderer scene engine (Visual Director -> Producer). Tach rieng khoi studio/ chinh de khong dung pipeline Pillow+FFmpeg cu.",
+  "scripts": {
+    "render": "remotion render",
+    "studio": "remotion studio"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "ajv": "^8.20.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.529"
+  }
+}

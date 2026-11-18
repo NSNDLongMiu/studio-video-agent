@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "storyboard.schema.json",
+  "title": "Storyboard cảnh (Visual Director -> Producer)",
+  "description": "Mỗi video sản xuất (epNN) có đúng 1 file storyboard.json theo schema này, do Visual Director viết sau khi Planner chốt script.md. Producer (Codex) phải dựng đúng theo đây, không được tự ý quay lại kiểu 'nền + Cáo đứng + chữ'.",
+  "type": "object",
+  "required": ["video_id", "status", "scenes"],
+  "properties": {
+    "video_id": { "type": "string", "description": "Khớp video_id trong studio (vd IT-T1-E01)" },
+    "renderer": {
+      "type": "string",
+      "enum": ["remotion", "pillow-ffmpeg"],
+      "description": "Renderer được chọn theo khả năng biểu đạt thật của từng cảnh."
+    },
+    "renderer_reason": { "type": "string", "description": "Lý do chọn renderer theo khả năng minh hoạ thực tế." },
+    "status": {
+      "type": "string",
+      "enum": ["DRAFT", "APPROVED", "NEEDS_REDESIGN"],
+      "description": "DRAFT = bản Codex vừa làm, chờ Claude review. APPROVED = Claude (vị trí Đạo diễn hình ảnh) duyệt cuối, Producer được dựng. NEEDS_REDESIGN = trả về Kịch bản; xem needs_redesign_reason."
+    },
+    "needs_redesign_reason": {
+      "type": "string",
+      "description": "Bắt buộc có khi status=NEEDS_REDESIGN: cảnh nào thiếu minh hoạ thật, vì sao, planner cần sửa gì ở script.md."
+    },
+    "visual_style_note": {
+      "type": "string",
+      "description": "Ghi chú phong cách chung cho cả video (bảng màu, ánh sáng, mật độ chữ) để các cảnh nhất quán."
+    },
+    "talking_head_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Tỉ lệ thời lượng mà cảnh chỉ có Cáo đứng nói (không đạo cụ/hành động/bối cảnh khác). Phải <= 0.3 trừ khi plan.md nói khác."
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "scene_id", "narrative_purpose", "visual_concept", "scene_type", "environment",
+          "character_action", "props", "camera", "animation_timeline", "voice_over",
+          "text_overlay", "sound_effects", "transition", "duration_s", "quality_check"
+        ],
+        "properties": {
+          "scene_id": { "type": "string", "description": "Khớp số dòng/cảnh trong script.md (vd 'C1-5' hoặc '5')" },
+          "main_change": { "type": "string", "description": "Vật hoặc quan hệ đổi thế nào, thấy ở 360×640 không cần đọc chữ." },
+          "text_groups": { "type": "integer", "minimum": 0, "description": "Số nhóm chữ tối đa cùng lúc, không tính phụ đề và nhãn AI." },
+          "hold_reason": { "type": "string", "description": "Lý do giữ hình tĩnh khi có đoạn tĩnh trên 2 giây." },
+          "narrative_purpose": { "type": "string", "description": "Cảnh này tồn tại để làm gì trong câu chuyện (không phải mô tả hình ảnh)" },
+          "visual_concept": { "type": "string", "description": "Ý tưởng minh hoạ cụ thể cho lời thoại của cảnh này - chủ thể/hành động/đối tượng/nguyên nhân-kết quả, không chép lại lời thoại" },
+          "scene_type": {
+            "type": "string",
+            "enum": [
+              "character_acting", "environment_scene", "ui_simulation", "process_animation",
+              "data_visualization", "metaphor_animation", "object_interaction",
+              "cinematic_close_up", "comparison_scene"
+            ],
+            "description": "Hình thức minh hoạ - quyết định renderer nào trong Producer sẽ dựng cảnh này"
+          },
+          "environment": { "type": "string", "description": "Bối cảnh: nơi chốn, lớp near/mid/background, ánh sáng" },
+          "character_action": {
+            "type": "string",
+            "description": "Cáo (nếu xuất hiện) đang làm gì - hành động cụ thể, không chỉ 'đứng nói'. Để rỗng/'không xuất hiện' nếu cảnh không cần Cáo."
+          },
+          "props": { "type": "array", "items": { "type": "string" }, "description": "Đạo cụ/đối tượng xuất hiện trong cảnh" },
+          "camera": {
+            "type": "object",
+            "required": ["shot", "movement"],
+            "properties": {
+              "shot": { "type": "string", "enum": ["wide", "medium", "close_up", "extreme_close_up", "over_the_shoulder", "pov"] },
+              "movement": { "type": "string", "enum": ["static", "push_in", "pull_out", "pan_left", "pan_right", "tilt_up", "tilt_down", "tracking"] }
+            }
+          },
+          "animation_timeline": {
+            "type": "array",
+            "description": "Mốc giây -> việc xảy ra (đổi dáng, vật thể xuất hiện/di chuyển, highlight...)",
+            "items": {
+              "type": "object",
+              "required": ["t", "event"],
+              "properties": { "t": { "type": "number" }, "event": { "type": "string" } }
+            }
+          },
+          "voice_over": { "type": "string", "description": "Lời dẫn của cảnh (copy từ script.md, không bịa thêm)" },
+          "text_overlay": { "type": "string", "description": "Chữ nhấn (từ khoá/số/câu hỏi/kết luận) - để rỗng nếu không cần chữ trên màn hình" },
+          "sound_effects": { "type": "array", "items": { "type": "string" } },
+          "transition": {
+            "type": "string",
+            "enum": ["cut", "fade", "wipeleft", "wiperight", "wipeup", "wipedown", "slideup", "slidedown", "circleopen", "match_cut"],
+            "description": "Cách nối sang cảnh tiếp theo - không phải lúc nào cũng là fade"
+          },
+          "duration_s": { "type": "number", "exclusiveMinimum": 0 },
+          "quality_check": {
+            "type": "object",
+            "description": "Visual Director tự chấm trước khi duyệt cảnh (mục XI của bộ prompt nâng cấp)",
+            "required": ["has_real_illustration", "repeats_previous_layout", "silent_comprehensible"],
+            "properties": {
+              "text_repeats_voiceover": { "type": "boolean", "description": "Chữ có chép lời đọc không; mong muốn false." },
+              "change_visible_at_360": { "type": "boolean", "description": "Đổi hình nhìn rõ ở 360×640; mong muốn true." },
+              "has_real_illustration": { "type": "boolean", "description": "false nếu cảnh chỉ là nền + Cáo đứng + chữ" },
+              "repeats_previous_layout": { "type": "boolean", "description": "true nếu bố cục giống hệt cảnh ngay trước - cảnh thứ 3 liên tiếp giống nhau phải thiết kế lại" },
+              "silent_comprehensible": { "type": "boolean", "description": "tắt tiếng vẫn hiểu được ý chính của cảnh" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

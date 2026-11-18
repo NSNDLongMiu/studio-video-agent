@@ -21,7 +21,7 @@ export function formatPool(pool, { only } = {}) {
     if (!pool.accounts.length) L.push('  (chưa có — thêm bằng: node studio/src/cli.mjs accounts add <claude|codex> <nhãn> --owner "Tên")');
     for (const a of pool.accounts) {
       const st = a.status === 'ready' ? (a.capped ? 'đủ số lượt/ngày' : 'sẵn sàng') : a.status === 'limited' ? `HẾT LIMIT — hồi ${when(a.limited_until)} (còn ${left(a.limited_until)})` : a.status === 'auth_error' ? 'LỖI ĐĂNG NHẬP' : 'tắt';
-      L.push(`  ${a.status === 'ready' ? '●' : a.status === 'limited' ? '⏳' : a.status === 'disabled' ? '·' : '✖'} ${a.provider}/${a.label}${a.owner ? ` (${a.owner})` : ''} [${a.kind === 'api_key' ? 'API trả phí' : 'gói'}] ${st} · hôm nay ${a.runs_today} lượt${a.last_limit_raw && a.status === 'limited' ? ` · "${a.last_limit_raw.slice(0, 90)}"` : ''}`);
+      L.push(`  ${a.status === 'ready' ? '●' : a.status === 'limited' ? '⏳' : a.status === 'disabled' ? '·' : '✖'} ${a.person}${a.owner ? ` (chủ: ${a.owner})` : ''} ${a.dept ? `→ phòng ${a.dept}` : '(dùng chung)'} [${a.kind === 'api_key' ? 'API trả phí' : 'gói'}] ${st} · hôm nay ${a.runs_today} lượt${a.last_limit_raw && a.status === 'limited' ? ` · "${a.last_limit_raw.slice(0, 90)}"` : ''}`);
     }
   }
   if (only === 'accounts') return L.join('\n');
@@ -38,6 +38,11 @@ export function formatPool(pool, { only } = {}) {
   return L.join('\n');
 }
 
+const deptAccounts = (pool, slug) => {
+  const xs = (pool.accounts || []).filter((a) => a.dept === slug);
+  return xs.length ? xs.map((a) => `${a.person}${a.status === 'ready' || (a.status === 'auth_error' && !a.email) ? '' : ` (${a.status === 'auth_error' ? 'lỗi đăng nhập' : a.status === 'limited' ? 'hết limit' : 'tắt'})`}`).join(' + ') : 'chưa cấp — dùng tài khoản dùng chung, không theo dõi trên Văn phòng 2D';
+};
+
 export function formatOverview(o, pool) {
   const t = o.totals;
   const L = [];
@@ -52,15 +57,18 @@ export function formatOverview(o, pool) {
     L.push('');
     if (d.status === 'closed') {
       L.push(`■ ${d.name} [${d.slug}] — ĐÃ ĐÓNG`);
+      if (pool) L.push(`  Tài khoản được cấp: ${deptAccounts(pool, d.slug)}`);
       continue;
     }
     const flag = d.gap_videos > 0 ? `THIẾU ${d.gap_videos}` : d.surplus_teams > 0 ? `dư ${d.surplus_teams} đội` : 'đủ';
     L.push(`■ ${d.name} [${d.slug}] — chỉ tiêu ${d.daily_target}/ngày · ${d.teams.length} đội · năng lực ${d.capacity} (${flag}) · hôm nay ${d.done_today}/${d.planned_today} xong · ${d.members_working}/${d.members_total} người đang làm`);
+    if (pool) L.push(`  Tài khoản được cấp: ${deptAccounts(pool, d.slug)}`);
+    L.push(`  Chủ đề chung: ${d.description || '(chưa ghi mô tả phòng)'} · Tự tìm chủ đề: ${d.auto_topics ? `BẬT (đội đề xuất, giám đốc duyệt)${d.topics_proposed ? ` — ${d.topics_proposed} chủ đề chờ duyệt` : ''}` : 'TẮT (chỉ giám đốc đưa chủ đề)'}`);
     if (!d.teams.length) L.push('    (chưa có đội nào)');
     for (const tm of d.teams) {
       L.push(`  ▸ #${tm.id} ${tm.name} — hôm nay ${tm.used_today}/${tm.capacity_per_day} suất`);
       for (const m of tm.members) {
-        if (m.on_call && m.status === 'idle') continue;
+        if (m.role === 'scout' && !d.auto_topics && m.status === 'idle') continue; // chỉ hiện khi phòng bật tự tìm chủ đề
         const age = m.status === 'working' ? ` (${m.minutes_since_update}p trước${m.stale ? ' ⚠ im lặng' : ''})` : '';
         L.push(`      ${ICON[m.status]} ${m.label} [${m.engine}] ${STATUS_VI[m.status]}${m.task ? `: ${m.task}` : ''}${m.video_id ? ` {${m.video_id}}` : ''}${age}`);
       }

@@ -20,7 +20,7 @@ Giám đốc (bạn)
 3. Mở Claude Code ở thư mục này. Lần đầu nó hỏi cho phép MCP `studio` — đồng ý.
 4. **Mở phòng ban** bằng nút trên dashboard (hoặc nói với Claude: "mở phòng Thể thao, chỉ tiêu 2 video/ngày, 1 đội").
 5. **Giao chủ đề**: `/new-topic sport | 3 sai lầm khi chạy bộ | giọng vui, 30 giây | số-tập=2`
-   → đội nhận việc → 2 agent Claude tranh luận → Planner viết kế hoạch (`content/sport/T1-…/plan.md`).
+   → đội nhận việc → bộ core: Ý tưởng (Claude + Codex) → Kịch bản → Đạo diễn hình ảnh (Codex làm, Claude duyệt) (`content/sport/T1-…/plan.md`).
 6. Bạn đọc kế hoạch → `/produce SPORT-T1-E01 SPORT-T1-E02` → Codex dựng, Claude QC.
 
 ## Lệnh (trong Claude Code)

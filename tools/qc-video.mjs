@@ -60,6 +60,23 @@ else {
     else if (Number(mean) < -30) warns.push(`Âm lượng thấp (mean ${mean} dB) — nên chuẩn hoá về ~ -14 LUFS`);
     if (Number(max) > -0.1) warns.push(`Âm thanh chạm trần (max ${max} dB) — nguy cơ vỡ tiếng`);
   }
+  // Chỉ lấy số đo đầu vào; âm thanh chuẩn hoá của loudnorm bị bỏ ở null output.
+  const ln = spawnSync('ffmpeg', ['-hide_banner', '-nostats', '-i', file, '-vn', '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-'], { encoding: 'utf8' });
+  const report = /\{\s*"input_i"[\s\S]*?\}/.exec(ln.stderr || '')?.[0];
+  if (report) {
+    try {
+      const measured = JSON.parse(report);
+      for (const [key, field] of [['lufs_i', 'input_i'], ['lra', 'input_lra'], ['true_peak_dbtp', 'input_tp']]) {
+        const value = measured[field];
+        if (value !== undefined && value !== null && String(value).trim() !== '' && Number.isFinite(Number(value))) info[key] = Number(value);
+      }
+    } catch {
+      // Không có số đo hợp lệ thì giữ các kiểm tra hiện có.
+    }
+  }
+  if (info.lufs_i < -16 || info.lufs_i > -12) warns.push(`Loudness ${info.lufs_i} LUFS ngoài khoảng -16…-12 — nên chuẩn hoá về ~ -14 LUFS`);
+  if (info.true_peak_dbtp > 0) fails.push(`True peak ${info.true_peak_dbtp} dBTP > 0 dBTP — vỡ tiếng`);
+  else if (info.true_peak_dbtp > -1.5) warns.push(`True peak ${info.true_peak_dbtp} dBTP > -1.5 dBTP`);
 }
 if (dur < MIN) fails.push(`Dài ${dur.toFixed(1)}s < tối thiểu ${MIN}s`);
 if (dur > MAX) fails.push(`Dài ${dur.toFixed(1)}s > tối đa ${MAX}s`);

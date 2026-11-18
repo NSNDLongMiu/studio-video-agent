@@ -8,3 +8,12 @@ command = "node"
 args = ["--disable-warning=ExperimentalWarning", "d:/Agent Video Studio/studio/src/mcp.mjs"]
 env = { STUDIO_ROLE = "agent" }
 startup_timeout_sec = 30
+
+[mcp_servers.studio.tools.list_jobs]
+approval_mode = "approve"
+
+[mcp_servers.studio.tools.list_videos]
+approval_mode = "approve"
+
+[mcp_servers.studio.tools.report_status]
+approval_mode = "approve"
