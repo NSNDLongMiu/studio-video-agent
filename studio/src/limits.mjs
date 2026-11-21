@@ -64,10 +64,11 @@ export function parseResetTime(text, now = new Date()) {
 
   // 2) tương đối: "try again in 3 days 4 hours 12 minutes", "in 2 seconds"
   if (!found) {
-    m = /\b(?:in|after)\s+((?:\d+(?:\.\d+)?\s*(?:days?|d|hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)\b[\s,]*(?:and\s+)?)+)/i.exec(t);
+    // `(?![a-z])` thay cho `\b` sau đơn vị để đọc được dạng viết liền "4h8m57s" (agy/Gemini: "Resets in 4h8m57s"); "3 more" vẫn không bị nhầm là 3 phút.
+    m = /\b(?:in|after)\s+((?:\d+(?:\.\d+)?\s*(?:days?|d|hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)(?![a-z])[\s,]*(?:and\s+)?)+)/i.exec(t);
     if (m) {
       let ms = 0;
-      for (const u of m[1].matchAll(/(\d+(?:\.\d+)?)\s*(days?|d|hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)\b/gi)) {
+      for (const u of m[1].matchAll(/(\d+(?:\.\d+)?)\s*(days?|d|hours?|hrs?|h|minutes?|mins?|m|seconds?|secs?|s)(?![a-z])/gi)) {
         const n = Number(u[1]);
         const k = u[2].toLowerCase()[0];
         ms += n * (k === 'd' ? DAY : k === 'h' ? HOUR : k === 'm' ? MIN : 1000);
@@ -132,6 +133,11 @@ const LIMIT_PATTERNS = [
   /credit balance is too low/i,
   /out of (?:extra )?usage/i,
   /try again (?:at|after|in|later)/i,
+  // agy (Gemini, gói Google AI Pro): định dạng thông báo chưa được công bố; mẫu theo thông báo gRPC/Google thường gặp.
+  // Gặp mẫu mới thì nguyên văn đã nằm ở khung Tài khoản để bổ sung vào đây.
+  /RESOURCE_EXHAUSTED/,
+  /(?:weekly|5[- ]?hour) (?:quota|limit)/i,
+  /(?:quota|credits?) (?:has |have |is |are )?(?:been )?(?:exhausted|depleted|used up)/i,
 ];
 const AUTH_PATTERNS = [
   /not logged in/i,
@@ -144,6 +150,7 @@ const AUTH_PATTERNS = [
   /\b401\b|unauthori[sz]ed/i,
   /could not (?:find|load|read) (?:your )?credentials/i,
   /refresh token/i,
+  /authentication required/i, // agy chạy nền khi chưa đăng nhập
 ];
 const STRONG_LIMIT = LIMIT_PATTERNS.slice(0, 5);
 

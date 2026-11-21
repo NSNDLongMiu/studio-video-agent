@@ -29,15 +29,15 @@
 ## 3. Nguyên liệu sản xuất (xem docs/asset-sources.md)
 - [x] Xem `brand/cao/catalog.png` (46 dáng, đặt tên theo ý nghĩa) và đổi tên dáng nào chưa hợp (`tools/fox/names.json`) — giám đốc giao AI (18/11/2026); Claude đã đối chiếu 46 dáng + 10 mặt + 12 miệng trên ảnh tổng hợp: tên khớp hình, không cần đổi (xem bằng mắt trên ảnh tổng hợp, chưa soi từng dáng phóng to)
 - [x] Văn phong: trẻ trung, câu chữ văn phòng (đã chốt, quy tắc ở `docs/mascot.md`)
-- [x] Câu chào của Cáo — **đổi hướng 18/11/2026:** không dùng bộ câu chào cố định; mở đầu bằng hook theo chủ đề, vào thẳng vấn đề, kích thích người xem (`docs/mascot.md` mục "Mở đầu: vào thẳng vấn đề"; planner đã cập nhật)
+- [x] Câu chào của Cáo — **đổi hướng 18/11/2026:** không dùng bộ câu chào cố định; mở thẳng vào tình huống bằng opening ba pha theo R26, có thể có lời hook (`docs/mascot.md` mục "Mở đầu: vào thẳng vấn đề"; planner đã cập nhật)
 - [ ] Bản ảnh Cáo độ phân giải cao hơn (sticker hiện cao ~330px, khi dựng bị phóng ~2,2 lần nên mềm) — giám đốc xác nhận **cần**, giao agent hoạ sĩ linh vật: `docs/viec-cho-agent.md` T1
 - [x] Luôn gắn nhãn AI cho mọi video (đã chốt)
 - [x] Ảnh Cáo tạo bằng công cụ nào — giám đốc báo: **imagegen trong Codex** (18/11/2026). Điều khoản OpenAI: các nguồn thứ cấp nói người dùng sở hữu output và được dùng thương mại, nhưng **chưa đọc được bản gốc** (openai.com chặn truy cập tự động) → giám đốc nên đối chiếu tại openai.com/policies. Ảnh AI thuần có thể không được bảo hộ bản quyền (luật Mỹ cần tác giả là người)
-- [x] Nghe thử và chọn giọng — **đã chốt 17/11/2026: toàn giọng Bắc** (Minh Đức nam chính, Quỳnh Anh nữ phụ), không cần giọng Nam; chi tiết `docs/voice.md`
+- [x] Nghe thử và chọn giọng — **đã chốt 17/11/2026: toàn giọng Bắc**, không cần giọng Nam; **bộ giọng chốt lại 19/11/2026** (Hải Đăng nam chính, Trúc Ly nữ chính, Quốc Tuấn nam phụ, Ngọc Huyền nữ phụ); chi tiết `docs/voice.md`
 - [ ] Giao `docs/prompts/lipsync-cao.md` cho một agent khác để làm nhép miệng cho Cáo — giám đốc đã giao cho AI (18/11/2026); chờ agent nhận: `docs/viec-cho-agent.md` T2
 - [ ] (Tuỳ chọn) Trang phục/phụ kiện Cáo — giám đốc: **tạm dùng chung 1 bộ đồ**, sau này đổi theo cụm chủ đề (ví dụ sa mạc → đồ sa mạc), do agent hoạ sĩ linh vật lo: `docs/viec-cho-agent.md` T1
 - [x] Chọn nguồn ảnh/clip — **T4 xong 18/11/2026:** danh sách nguồn được dùng / có điều kiện / cấm, quy tắc logo hãng khác và hình AI ở `docs/asset-sources.md`; sổ giấy phép mẫu `library/LICENSES.md`; QC đã thêm bước đối chiếu sổ. Còn 3 câu cho giám đốc (ở mục 4)
-- [x] Nhạc nền — **giám đốc quyết (18/11/2026): KHÔNG dùng nhạc nền.** Âm thanh video chỉ có giọng đọc; Producer không trộn nhạc; không cần `library/music/` và `LICENSES.md` cho nhạc
+- [x] Chính sách nhạc nền ngày 20/11/2026 — nhạc mặc định tắt theo `layers.music.enabled` trong `tools/audio/sound-design.json`. Chỉ dùng nhạc tự tổng hợp bằng `tools/audio/music_synth.py` sau khi giám đốc nghe và bật. Luôn ducking dưới giọng, không để nhạc che lời. Cấm nhạc bên ngoài. Xem R25 và `tools/audio/README.md`.
 - [x] Quyết định có dùng ảnh/clip do AI tạo không — **có, dùng ở mọi nơi**, luôn gắn nhãn AI; chỉ qua công cụ trong tài khoản đã cấp, không phát sinh phí (18/11/2026)
 - [x] Quyết định khi nào làm đăng bài tự động — **sau khi giám đốc duyệt file demo** thì triển khai tự động làm và đăng bài (18/11/2026); trước đó giám đốc tự đăng, luật cứng #9 giữ nguyên
 

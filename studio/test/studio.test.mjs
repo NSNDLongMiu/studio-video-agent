@@ -41,18 +41,31 @@ test('kịch bản: Thể thao tăng lên 4 video/ngày -> trưởng phòng đ�
   assert.throws(() => S.decideProposal({ id: p.proposal_id, approve: true }), /đã được xử lý/);
 });
 
-test('giao chủ đề, giới hạn suất/ngày, báo cáo trạng thái, vướng & hỗ trợ', () => {
+test('giao chủ đề giám đốc vượt suất/ngày, báo cáo trạng thái, vướng & hỗ trợ', () => {
   const t1 = S.submitTopic({ dept: 'sport', text: '3 sai lầm khi chạy bộ' }).topic_id;
   const a = S.assignTopic({ topic_id: t1, episodes: 2 });
   assert.equal(a.videos.length, 2);
+  assert.equal(a.over_capacity, 0);
   assert.match(a.videos[0], /^SPORT-T\d+-E01$/);
   assert.ok(fs.existsSync(path.resolve(S.ROOT, a.topic_folder, 'brief.md')));
   const t2 = S.submitTopic({ dept: 'sport', text: 'Highlight cuối tuần' }).topic_id;
   const b = S.assignTopic({ topic_id: t2, episodes: 2 });
   assert.notEqual(a.team_id, b.team_id, 'tự chọn đội còn suất');
+  assert.doesNotMatch(formatOverview(S.overview()), /VƯỢT SUẤT/);
   const t3 = S.submitTopic({ dept: 'sport', text: 'Quá tải' }).topic_id;
-  assert.throws(() => S.assignTopic({ topic_id: t3, episodes: 1 }), /hết|chỉ còn 0/i);
-  assert.equal(S.assignTopic({ topic_id: t3, episodes: 1, planned_for: '2099-01-01' }).planned_for, '2099-01-01');
+  const c = S.assignTopic({ topic_id: t3, episodes: 1 });
+  assert.equal(c.videos.length, 1);
+  assert.equal(c.over_capacity, 1);
+  const [event] = S.recentEvents(1);
+  assert.equal(event.kind, 'assign');
+  assert.ok(event.message.includes(`VƯỢT SUẤT 1 video (3/2 ngày ${c.planned_for}) theo yêu cầu của giám đốc`));
+  const formatted = formatOverview(S.overview());
+  assert.match(formatted, /hôm nay 3\/2 suất · VƯỢT SUẤT theo yêu cầu giám đốc/);
+  assert.match(formatted, /hôm nay 2\/2 suất\n/);
+
+  const future = S.assignTopic({ topic_id: t3, episodes: 1, planned_for: '2099-01-01' });
+  assert.equal(future.planned_for, '2099-01-01');
+  assert.equal(future.over_capacity, 0);
 
   S.reportStatus({ team_id: a.team_id, role: 'producer', status: 'working', task: 'Dựng tập 1', video_id: a.videos[0] });
   S.reportStatus({ team_id: a.team_id, role: 'planner', status: 'working', task: 'Viết kịch bản', video_id: a.videos[1] });
@@ -109,6 +122,37 @@ test('xoá sạch phòng: chặn khi đang mở, xoá hết dữ liệu khi đã
   assert.equal(S.overview().departments.some((d) => d.slug === 'it'), false);
   assert.throws(() => S.purgeDepartment({ slug: 'it' }), /Không có phòng/);
   void t;
+});
+
+test('đề xuất cần giám đốc duyệt mới giao được, suất vẫn giới hạn việc tìm chủ đề', () => {
+  const slug = 'scout';
+  S.createDepartment({ slug, name: 'Tìm chủ đề', daily_target: 2, initial_teams: 1 });
+  S.setAutoTopics({ dept: slug, on: true });
+  const [{ id: team_id }] = dept(S.overview(), slug).teams;
+  const approved = S.proposeTopic({ team_id, text: 'Mẹo tổng hợp báo cáo', reason: 'Mùa chốt sổ' });
+  const rejected = S.proposeTopic({ team_id, text: 'Lưu trữ báo cáo cũ', reason: 'Dọn cuối năm' });
+  assert.throws(() => S.assignTopic({ topic_id: approved.topic_id, team_id }), /đang chờ giám đốc duyệt/);
+  S.decideTopic({ topic_id: rejected.topic_id, approve: false });
+  assert.throws(() => S.assignTopic({ topic_id: rejected.topic_id, team_id }), /đã bị từ chối/);
+
+  const { topic_id } = S.submitTopic({ dept: slug, text: 'Kế hoạch tổng kết' });
+  assert.equal(S.assignTopic({ topic_id, team_id }).over_capacity, 0);
+  assert.equal(S.assignTopic({ topic_id, team_id, episodes: 2 }).over_capacity, 1);
+  S.decideTopic({ topic_id: approved.topic_id, approve: true });
+  const assignment = S.assignTopic({ topic_id: approved.topic_id, team_id });
+  assert.equal(assignment.videos.length, 1);
+  assert.equal(assignment.over_capacity, 1);
+  assert.ok(S.proposeTopic({ team_id, text: 'Lịch làm việc năm mới', reason: 'Chuẩn bị đầu năm' }).topic_id, 'đề xuất không còn bị chặn bởi suất trống (giám đốc 21/11/2026); trần là max_pending_topics');
+});
+
+test('nhật ký giữ ghi chú vượt suất khi nội dung giao chủ đề dài', () => {
+  const slug = 'tonghop';
+  S.createDepartment({ slug, name: 'Tổng hợp '.repeat(120), daily_target: 2, initial_teams: 1 });
+  const { topic_id } = S.submitTopic({ dept: slug, text: 'Tổng hợp cuối năm' });
+  const assignment = S.assignTopic({ topic_id, episodes: 3 });
+  const [event] = S.recentEvents(1);
+  assert.equal(event.kind, 'assign');
+  assert.ok(event.message.endsWith(` — VƯỢT SUẤT 1 video (3/2 ngày ${assignment.planned_for}) theo yêu cầu của giám đốc`));
 });
 
 test('seedDemo dùng được trên DB sạch', async () => {

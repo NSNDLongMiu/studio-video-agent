@@ -40,13 +40,14 @@ const slugify = (x) => String(x).toLowerCase().normalize('NFD').replace(/[̀-ͯ]
  *  Tên (VP-it, VP-sport…) cố định theo phòng; cổng chỉ là chỗ đang mở. */
 export function planInstances(accounts, departments = [], { defaultDirs = DEFAULT_DIRS(), emptyDirs = EMPTY_DIRS() } = {}) {
   const out = [];
-  const on = accounts.filter((a) => a.enabled && a.dept);
-  const slugs = [...new Set(on.map((a) => a.dept))].sort();
+  const dsOf = (a) => a.depts ?? (a.dept ? [a.dept] : []); // một tài khoản có thể thuộc nhiều phòng (21/11/2026)
+  const on = accounts.filter((a) => a.enabled && dsOf(a).length);
+  const slugs = [...new Set(on.flatMap(dsOf))].sort();
   for (const slug of slugs) {
     const d = departments.find((x) => x.slug === slug);
     const deptName = d?.name || slug;
-    const cl = on.filter((a) => a.dept === slug && a.provider === 'claude');
-    const cx = on.filter((a) => a.dept === slug && a.provider === 'codex');
+    const cl = on.filter((a) => dsOf(a).includes(slug) && a.provider === 'claude');
+    const cx = on.filter((a) => dsOf(a).includes(slug) && a.provider === 'codex');
     for (let i = 0; i < Math.max(cl.length, cx.length); i++) {
       const pair = [cl[i], cx[i]].filter(Boolean);
       const accts = pair.map(acctKey);

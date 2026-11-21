@@ -70,11 +70,11 @@ Gõ một trong các câu sau (tôi chỉ làm đúng bước được nêu, r�
 3. **Nội dung "hậu trường":** quay màn hình **Văn phòng 2D** bằng chế độ `--demo` (đội giả, không lộ dự án thật) để làm video "Cáo văn phòng và xưởng AI". Không dùng chế độ thật khi quay vì lộ tên dự án khác.
 4. **Cáo đổi trang phục theo cụm chủ đề** (ví dụ sa mạc; tạm dùng chung 1 bộ, agent hoạ sĩ linh vật lo về sau — `docs/viec-cho-agent.md` T1): có thể cần thêm ảnh tham chiếu từ giám đốc, mỗi bộ cần cùng kiểu ánh sáng và độ phân giải cao hơn (≥ 1000px cao).
 5. **Mẫu ảnh bìa cố định:** một dáng Cáo + chữ lớn, dựng bằng cùng công cụ để mọi video đồng nhất.
-6. **(Không cần — giám đốc chốt không dùng nhạc nền 18/11/2026)** Thư viện nhạc có giấy phép: chốt nguồn và ghi `library/music/LICENSES.md` trước khi dựng hàng loạt, tránh bị gỡ video vì bản quyền.
+6. Kiểm cấu hình nhạc và kho SFX tự tổng hợp theo `docs/asset-sources.md`.
 
 ## 8. Tiêu chí "chuyển máy xong"
 - Ba bộ test đạt trên PC mới; `accounts check --probe` OK cho cả Claude và Codex.
 - Dashboard + worker chạy; Văn phòng 2D thấy các phiên.
 - Có **1 video đầu–cuối** qua `qc-video` và `qc-publish`, đã xem khung hình thật.
-- Đã chọn giọng (toàn giọng Bắc) và ghi vào `docs/voice.md`; đã chốt hướng mở đầu (hook theo chủ đề, không câu chào cố định).
+- Đã chọn giọng (toàn giọng Bắc) và ghi vào `docs/voice.md`; đã chốt opening ba pha theo R26, bám tình huống của chủ đề và có thể có lời hook.
 - Đã giao prompt nhép miệng cho agent khác.

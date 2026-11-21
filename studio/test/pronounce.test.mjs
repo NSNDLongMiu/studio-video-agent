@@ -23,6 +23,23 @@ function fixture(t, name, text) {
   return file;
 }
 
+// Từ điển thử cơ chế `apply` (viết hoa đầu câu, cụm dài, bí danh): giá trị cố ý KHÁC chữ gốc nên kiểm được việc thay chữ.
+// Không phải dữ liệu thật: từ điển thật giữ chữ tiếng Anh để VieNeu tự đọc âm Anh (xem test cuối tệp).
+const mechanics = { entries: [
+  { term: 'Database', kind: 'word', tts: 'đây-ta-bết' },
+  { term: 'API', kind: 'letters', tts: 'ây pi ai' },
+  { term: 'SQL', kind: 'letters', tts: 'ét kiu eo' },
+  { term: 'SQL Server', kind: 'mixed', tts: 'ét kiu eo sơ-vờ' },
+  { term: 'Primary key', kind: 'word', tts: 'prai-mơ-ri ki' },
+  { term: 'Foreign key', kind: 'word', tts: 'pho-rần ki' },
+  { term: 'Backend', aliases: ['back end'], kind: 'word', tts: 'béc-en' },
+  { term: 'Frontend', aliases: ['front end'], kind: 'word', tts: 'phờ-rân-en' },
+  { term: 'Query', kind: 'word', tts: 'kwi-ri' },
+  { term: 'Index', kind: 'word', tts: 'in-đếch' },
+  { term: 'CPU', kind: 'letters', tts: 'xi pi diu' },
+] };
+const mechanicsDict = (t) => fixture(t, 'cơ chế.json', JSON.stringify(mechanics));
+
 const script = [
   '# Ghi chú FPS', '',
   '```md', '| Kỹ thuật | Lời đọc |', '| --- | --- |', '| LAYOUT | __ZEBRA8__ |', '```', '',
@@ -34,22 +51,22 @@ const script = [
   '| Kỹ thuật | Ghi chú |', '| --- | --- |', '| SILENT | STATIC |',
 ].join('\r\n');
 
-test('apply thay từ, chữ cái và cụm dài trước, có phân biệt cách viết hoa đầu câu', () => {
-  const r = run('apply', '--text', 'Database dùng API. “SQL SERVER” có Primary key và FOREIGN KEY! Backend, front end.');
+test('apply thay từ, chữ cái và cụm dài trước, có phân biệt cách viết hoa đầu câu', (t) => {
+  const r = run('apply', '--dict', mechanicsDict(t), '--text', 'Database dùng API. “SQL SERVER” có Primary key và FOREIGN KEY! Backend, front end.');
   assert.equal(r.status, 0, r.stderr);
   assert.equal(r.stdout, 'Đây-ta-bết dùng ây pi ai. “Ét kiu eo sơ-vờ” có prai-mơ-ri ki và pho-rần ki! Béc-en, phờ-rân-en.');
 });
 
-test('apply giữ nguyên dấu câu, chữ tiếng Việt liền kề và từ dài hơn', () => {
+test('apply giữ nguyên dấu câu, chữ tiếng Việt liền kề và từ dài hơn', (t) => {
   const input = 'Bảng Database chạy Query và Index qua API. Ai dùng indexing, reindex, ỨngIndex, Indexơ, a\u0301Index, Index\u0301, my_Index; [Query]?!';
-  const r = run('apply', '--text', input);
+  const r = run('apply', '--dict', mechanicsDict(t), '--text', input);
   assert.equal(r.status, 0, r.stderr);
   assert.equal(r.stdout, 'Bảng đây-ta-bết chạy kwi-ri và in-đếch qua ây pi ai. Ai dùng indexing, reindex, ỨngIndex, Indexơ, a\u0301Index, Index\u0301, my_Index; [kwi-ri]?!');
 });
 
 test('apply đọc tệp UTF-8 và giữ xuống dòng, list xuất JSON khi có --json', (t) => {
   const file = fixture(t, 'lời đọc.txt', '\uFEFFIndex!\r\n  API, Query.\r\n');
-  const r = run('apply', '--file', file, '--json');
+  const r = run('apply', '--dict', mechanicsDict(t), '--file', file, '--json');
   assert.equal(r.status, 0, r.stderr);
   assert.equal(JSON.parse(r.stdout), 'In-đếch!\r\n  Ây pi ai, kwi-ri.\r\n');
   const list = run('list', '--json');
@@ -84,7 +101,7 @@ test('check chỉ có thuật ngữ đã định nghĩa thì mã 0 dù vẫn c�
   assert.equal(r.status, 0, r.stderr);
   const { found, unknown } = JSON.parse(r.stdout);
   assert.deepEqual(unknown, []);
-  assert.deepEqual(found[0], { term: 'CPU', kind: 'letters', tts: 'xi pi diu', verified: false, source: 'chung', count: 1 });
+  assert.deepEqual(found[0], { term: 'CPU', kind: 'letters', tts: 'CPU', verified: false, source: 'chung', count: 1 });
   assert.match(r.stderr, /chưa nghe kiểm.*CPU/);
 });
 
@@ -124,7 +141,7 @@ test('check --column trả mã 0 khi lời đọc không có ứng viên', (t) =
 
 test('apply --column tách dòng, lấy nhãn và giữ dấu câu qua nhiều bảng', (t) => {
   const file = fixture(t, 'kịch bản.md', script);
-  const args = ['apply', '--file', file, '--column', 'Lời đọc'];
+  const args = ['apply', '--dict', mechanicsDict(t), '--file', file, '--column', 'Lời đọc'];
   const result = run(...args, '--json');
   assert.equal(result.status, 0, result.stderr);
   const records = [
@@ -197,7 +214,7 @@ test('--extra thêm cách đọc và nguồn cho apply, check, terms và list', 
 
   const applied = run('apply', '--file', file, '--extra', extra);
   assert.equal(applied.status, 0, applied.stderr);
-  assert.equal(applied.stdout, 'Bảng có dê-ti, ây pi ai, video và moc.');
+  assert.equal(applied.stdout, 'Bảng có dê-ti, API, video và moc.');
 
   const checked = run('check', '--file', file, '--extra', extra);
   assert.equal(checked.status, 0, checked.stderr);
@@ -326,12 +343,12 @@ test('init-extra từ chối --term rỗng hoặc trùng trước khi tạo tệ
   }
 });
 
-test('từ điển mặc định đủ trường, không trùng và giữ mọi mục chưa nghe kiểm', () => {
+test('từ điển mặc định đủ trường, không trùng, giữ chữ tiếng Anh và giữ mọi mục chưa nghe kiểm', () => {
   const required = [
     'Database', 'Deadlock', 'Transaction', 'Query', 'Index', 'API', 'Backend', 'Frontend', 'SQL', 'Partition', 'Archive',
     'Server', 'Cache', 'Lock', 'Table', 'Row', 'Column', 'Primary key', 'Foreign key', 'JOIN', 'SELECT', 'INSERT',
     'UPDATE', 'DELETE', 'CPU', 'RAM', 'ID', 'UI', 'UX', 'HTTP', 'HTTPS', 'URL', 'JSON', 'IDE', 'Terminal', 'Log',
-    'Dashboard', 'Token', 'Thread', 'Rollback', 'Commit',
+    'Dashboard', 'Token', 'Thread', 'Rollback', 'Commit', 'AI',
   ];
   const names = new Set();
   const byTerm = new Map();
@@ -345,11 +362,18 @@ test('từ điển mặc định đủ trường, không trùng và giữ mọi 
     assert.ok(['letters', 'word', 'mixed'].includes(kind), term);
     assert.equal(typeof verified, 'boolean', term);
     assert.equal(verified, false, term);
-    assert.match(note, /gợi ý chưa nghe kiểm — giám đốc nghe và chỉnh/u);
+    // Mục `lang: "vi"` là tên nền tảng theo luật chung 21/11/2026 (CLAUDE.md luật 10): đọc bằng tiếng Việt, không phải thuật ngữ tiếng Anh.
+    if (entry.lang === 'vi') {
+      assert.match(note, /Luật chung 21\/11\/2026.*CHƯA KIỂM — giám đốc nghe/u, term);
+      byTerm.set(term, entry);
+      continue;
+    }
+    assert.match(note, /Giữ chữ tiếng Anh.*CHƯA KIỂM — giám đốc nghe và chỉnh/u);
+    // Giám đốc nghe T5 (19/11/2026): phiên âm kiểu Việt ("pa-ti-sần") bị đọc như tiếng Việt. Dữ liệu thật chỉ được
+    // dùng chính tả tiếng Anh (chữ gốc hoặc chữ đánh vần tiếng Anh như "you eye"): ASCII, không gạch nối. Kiểm âm vị
+    // thật bằng `python tools/voice/phonemes.py --check-dictionary` (xem phonemes.test.mjs).
     for (const reading of [tts, ...alternates]) {
-      for (const syllable of reading.trim().split(/[\s-]+/u)) {
-        assert.match(syllable.normalize('NFD'), /[aeiouy]/iu, `${term} có âm tiết thiếu nguyên âm: ${syllable}`);
-      }
+      assert.match(reading, /^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/u, `${term}: tts phải là chính tả tiếng Anh, không phiên âm Việt: ${reading}`);
     }
     for (const name of [term, ...aliases]) {
       const key = name.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -359,10 +383,13 @@ test('từ điển mặc định đủ trường, không trùng và giữ mọi 
     byTerm.set(term, entry);
   }
   for (const term of required) assert.ok(byTerm.has(term), 'Thiếu ' + term);
-  assert.equal(byTerm.get('Partition').tts, 'pa-ti-sần');
-  assert.ok(byTerm.get('Partition').alternates.includes('pờ-ti-sần'));
-  assert.equal(byTerm.get('Archive').tts, 'ác-kaiv');
-  assert.ok(byTerm.get('Archive').alternates.includes('a-kaiv'));
-  assert.equal(byTerm.get('SQL').tts, 'ét kiu eo');
+  for (const term of ['Partition', 'Archive', 'Query', 'SQL']) assert.equal(byTerm.get(term).tts, term);
+  assert.equal(byTerm.get('AI').tts, 'eigh eye');
   assert.notEqual(byTerm.get('Log').tts, byTerm.get('Lock').tts);
+  // luật tên nền tảng (21/11/2026): dạng viết → dạng đọc
+  const spoken = { 'phở bò': 'phở bò', ytb: 'y tê bê', 'zép lào': 'dép lào', 'tóp tóp': 'tóp tóp' };
+  for (const [written, say] of Object.entries(spoken)) {
+    assert.equal(byTerm.get(written)?.tts, say, written);
+    assert.equal(byTerm.get(written).lang, 'vi', written);
+  }
 });

@@ -57,12 +57,12 @@ test('planInstances: chỗ ngồi cố định chỉ có ở bản chính của 
   const depts = [{ slug: 'it', name: 'IT', status: 'active', auto_topics: 0 }, { slug: 'sport', name: 'Thể thao', status: 'active', auto_topics: 1 }, { slug: 'zz', name: 'Đã đóng', status: 'closed', auto_topics: 0 }];
   const plan = O.planInstances(accounts, depts, DEF);
   assert.deepEqual(plan.map((i) => i.name), ['VP-it', 'VP-it-2', 'VP-sport', 'VP-zz']);
-  assert.equal(plan[0].seats, 'Ý tưởng:claude,Kịch bản:codex,Đạo diễn hình ảnh:codex,Sản xuất:codex,QC:claude,Gỡ vướng:claude', '6 vị trí core, tắt tự tìm chủ đề thì không có Tìm chủ đề');
+  assert.equal(plan[0].seats, 'Ý tưởng:claude,Kịch bản:claude,Đạo diễn hình ảnh:codex,Sản xuất:codex,QC:claude,Gỡ vướng:claude', '6 vị trí core, tắt tự tìm chủ đề thì không có Tìm chủ đề');
   assert.equal(plan[1].seats, '', 'bản phụ chỉ hiện phiên có thật');
   assert.ok(plan[2].seats.endsWith(',Tìm chủ đề:claude'), 'phòng bật tự tìm chủ đề -> thêm chỗ Tìm chủ đề');
-  assert.equal(plan[2].seats, 'Ý tưởng:claude,Kịch bản:codex:x,Đạo diễn hình ảnh:codex:x,Sản xuất:codex:x,QC:claude,Gỡ vướng:claude,Tìm chủ đề:claude', 'phòng chưa được cấp Codex -> vị trí của Codex ghi "chưa theo dõi" (:x), không giả vờ rảnh');
+  assert.equal(plan[2].seats, 'Ý tưởng:claude,Kịch bản:claude,Đạo diễn hình ảnh:codex:x,Sản xuất:codex:x,QC:claude,Gỡ vướng:claude,Tìm chủ đề:claude', 'phòng chưa được cấp Codex -> vị trí của Codex ghi "chưa theo dõi" (:x), không giả vờ rảnh');
   const claudeOnlyIdea = O.planInstances([{ ...acc('codex', 'm', null), dept: 'it' }], depts, DEF)[0].seats;
-  assert.equal(claudeOnlyIdea, 'Ý tưởng:claude,Kịch bản:codex,Đạo diễn hình ảnh:codex,Sản xuất:codex,QC:claude:x,Gỡ vướng:claude:x', 'chỉ có Codex: Ý tưởng vẫn thấy được (giọng Codex), QC/Gỡ vướng không');
+  assert.equal(claudeOnlyIdea, 'Ý tưởng:claude,Kịch bản:claude,Đạo diễn hình ảnh:codex,Sản xuất:codex,QC:claude:x,Gỡ vướng:claude:x', 'chỉ có Codex: Ý tưởng vẫn thấy được (giọng Codex), QC/Gỡ vướng không');
   assert.equal(plan[3].seats, '', 'phòng đã đóng không có chỗ ngồi');
 });
 

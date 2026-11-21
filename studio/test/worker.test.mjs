@@ -68,9 +68,12 @@ test('1) hết limit ở tài khoản a → tự chuyển sang b, việc vẫn x
   const { job_id } = P.enqueueJob({ kind: 'plan', topic_id: globalThis.ctx.topic });
   await waitFor(() => job(job_id).status === 'succeeded', 'plan xong');
   assert.deepEqual(calls().map((c) => c.split(' ').slice(0, 3).join(' ')), ['claude a limit', 'claude b ok']);
-  assert.equal(acct('claude/a').status, 'limited');
+  // Không khẳng định status === 'limited': stub báo "try again in 2 seconds", nên khi máy bận (bộ test chạy song song)
+  // trạng thái đã tự về 'ready' trước khi dòng này chạy. Dùng bộ đếm lưu bền, không phụ thuộc đồng hồ.
+  assert.equal(acct('claude/a').limit_hits, 1);
   assert.match(acct('claude/a').last_limit_raw, /hit your limit/);
-  assert.ok(acct('claude/a').limited_until, 'có giờ hồi limit');
+  // `limited_until` cũng là giá trị tính theo đồng hồ (về null khi hết hạn); giờ hồi limit đã có test riêng
+  // ở limits.test.mjs và test 2 bên dưới kiểm việc tự chạy tiếp sau khi hồi.
   assert.equal(job(job_id).account_id, acct('claude/b').id);
   assert.ok(fs.existsSync(path.resolve(S.ROOT, globalThis.ctx.folder, 'plan.md')));
   assert.equal(S.getVideo(globalThis.ctx.video).stage, 'planning');
@@ -164,6 +167,27 @@ test('6) hết limit không đọc được giờ hồi → lùi dần, không q
   delete process.env.STUB_LIMIT_MSG;
 });
 
+test('6b) việc kế hoạch bị hoãn vì hết limit → thẻ đội hiện "⏳ Chờ" đúng đội/đúng vị trí, chạy lại thì gỡ dấu (không kẹt "vướng")', async () => {
+  for (const l of ['a', 'b']) (P.clearLimit(`claude/${l}`), P.setAccountEnabled(`claude/${l}`, true), mode(l, 'limit'));
+  const t = S.submitTopic({ dept: 'sport', text: 'Khởi động trước khi chạy' }).topic_id;
+  const asg = S.assignTopic({ topic_id: t, episodes: 1 });
+  // Đội này đã xong kịch bản (idle) và đang ở bước dựng storyboard: vị trí hoạt động gần nhất là "script"
+  S.reportStatus({ team_id: asg.team_id, role: 'script', status: 'working', task: 'Claude viết: kịch bản bản 1', by: 'test' });
+  S.reportStatus({ team_id: asg.team_id, role: 'script', status: 'idle', task: '', by: 'test' });
+  const { job_id } = P.enqueueJob({ kind: 'plan', topic_id: t });
+  await waitFor(() => job(job_id).status === 'waiting_limit' && job(job_id).wait_reason === 'limit', 'việc plan chuyển sang chờ hồi limit');
+  const member = (team, role) => S.sql.get('SELECT status,task FROM members WHERE team_id=? AND role=?', team, role);
+  await waitFor(() => member(asg.team_id, 'script').status === 'blocked', 'thẻ đội hiện chờ');
+  assert.match(member(asg.team_id, 'script').task, /^⏳ Chờ hồi limit Claude lúc \d{2}:\d{2} — việc #\d+$/);
+  assert.ok(['idea', 'visual'].every((r) => member(asg.team_id, r).status !== 'blocked'), 'chỉ đánh dấu vị trí việc đang dừng');
+  const ev = S.recentEvents(60).filter((e) => /Chờ hồi limit Claude/.test(e.message)).length;
+  await sleep(500); // worker quét lại vài vòng: không ghi lại / không spam nhật ký
+  assert.equal(S.recentEvents(60).filter((e) => /Chờ hồi limit Claude/.test(e.message)).length, ev, 'không spam nhật ký');
+  mode('a', 'ok');
+  await waitFor(() => job(job_id).status === 'succeeded', 'tự chạy tiếp sau khi hồi limit', 20000);
+  assert.notEqual(member(asg.team_id, 'script').status, 'blocked', 'chạy lại thì gỡ dấu chờ');
+});
+
 test('7) việc kế hoạch cần Codex viết mà Codex bận → tạm dừng CHỜ CODEX (không phạt tài khoản Claude), Codex rảnh thì chạy tiếp', async () => {
   delete process.env.STUB_LIMIT_MSG;
   process.env.STUDIO_CODEX_WAIT_MS = '60000';
@@ -201,7 +225,8 @@ test('8) QC lỗi thiết kế: review + needs_help là phán quyết, không x�
   assert.match(S.getVideo(video).help_reason, /^QC-THIẾT-KẾ:/);
   assert.deepEqual(P.listJobs({ video_id: video }).filter((j) => !before.includes(j.id)).map((j) => j.kind), ['qc']);
   const dashboard = S.overview();
-  assert.ok(dashboard.attention.some((a) => a.kind === 'help' && a.dept === 'sport'));
+  assert.ok(dashboard.attention.some((a) => a.kind === 'qc_design' && a.handler === 'director' && a.video_id === video), 'lỗi thiết kế là việc của giám đốc, từng video một');
+  assert.ok(!dashboard.attention.some((a) => a.kind === 'help' && a.dept === 'sport'), 'không còn bị gộp thành "vướng cần Claude hỗ trợ"');
   assert.ok(dashboard.departments.flatMap((d) => d.teams).flatMap((t) => t.videos).some((v) => v.id === video && v.stage === 'review' && v.needs_help));
 });
 
@@ -216,4 +241,22 @@ test('9) QC chưa phán quyết: review không needs_help vẫn bị đánh lỗ
   await waitFor(() => job(job_id).status === 'needs_human', 'QC thiếu phán quyết vẫn lỗi');
   assert.match(job(job_id).last_error, /Claude chưa đưa ra phán quyết/);
   assert.deepEqual(P.listJobs({ video_id: video }).filter((j) => !before.includes(j.id)).map((j) => j.kind), ['qc']);
+});
+
+
+test('10) QC kết luận giữ review chờ giám đốc nghe mà quên đánh cờ: worker tự đánh QC-CHỜ-NGHE, việc XONG, không sang "cần người"', async () => {
+  for (const label of ['a', 'b']) mode(label, 'qc-hold');
+  const video = globalThis.ctx.video;
+  assert.equal(S.getVideo(video).stage, 'review');
+  assert.equal(S.getVideo(video).needs_help, 0);
+  const { job_id } = P.enqueueJob({ kind: 'qc', video_id: video });
+  await waitFor(() => job(job_id).status === 'succeeded', 'QC chờ nghe xong, không thành needs_human');
+  assert.equal(job(job_id).last_error, '');
+  assert.equal(S.getVideo(video).stage, 'review');
+  assert.equal(S.getVideo(video).needs_help, 1);
+  assert.match(S.getVideo(video).help_reason, /^QC-CHỜ-NGHE: .*chờ giám đốc nghe/);
+  const att = S.overview().attention;
+  assert.ok(att.some((x) => x.kind === 'qc_listen' && x.handler === 'director' && x.video_id === video), 'hiện cho giám đốc đúng là việc nghe/xem');
+  assert.ok(!P.poolOverview().attention.some((x) => x.kind === 'job_human' && x.job_id === job_id));
+  for (const label of ['a', 'b']) mode(label, 'ok');
 });

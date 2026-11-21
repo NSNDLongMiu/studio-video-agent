@@ -21,7 +21,9 @@ if (isClaude) {
     process.exit(1);
   }
   const m = /^\/(make-plan|qc|rescue|dept-review)\s*(\S*)/.exec(prompt.trim());
-  if (mode === 'codexwait' && m?.[1] === 'make-plan') {
+  // 'codexwait' = kẹt chờ Codex TRỪ KHI việc đã được giám đốc duyệt Claude làm thay (prompt có "thay-codex");
+  // 'codexwait-ignore' = vẫn đòi chờ Codex dù đã duyệt (kiểm tra phòng thủ của runner).
+  if (((mode === 'codexwait' && !/thay-codex/.test(prompt)) || mode === 'codexwait-ignore') && m?.[1] === 'make-plan') {
     out({ result: ['Kịch bản cần Codex viết nhưng Codex đang bận.', 'CODEX_WAIT: Codex đang sản xuất video khác'].join('\n') });
     process.exit(0);
   }
@@ -33,10 +35,10 @@ if (isClaude) {
   }
   if (m?.[1] === 'qc') {
     if (mode === 'qc-design') S.escalate({ video_id: m[2], role: 'qc', reason: 'QC-THIẾT-KẾ: hook thiếu tình huống', by: 'stub' });
-    else if (mode !== 'qc-no-verdict') S.setVideoStage({ video_id: m[2], stage: 'ready', by: 'stub' });
+    else if (mode !== 'qc-no-verdict' && mode !== 'qc-hold') S.setVideoStage({ video_id: m[2], stage: 'ready', by: 'stub' });
   }
   if (m?.[1] === 'rescue') S.resolveEscalation({ video_id: m[2], note: 'stub đã gỡ', by: 'stub' });
-  out({ result: `OK ${prompt.trim()}` });
+  out({ result: m?.[1] === 'qc' && mode === 'qc-hold' ? 'Không thấy lỗi dựng hay lỗi thiết kế. Phần nghe Y6–Y8 phải chờ giám đốc nghe, nên giữ review.' : `OK ${prompt.trim()}` });
 } else {
   const lastMsg = args[args.indexOf('-o') + 1];
   if (mode === 'limit') {

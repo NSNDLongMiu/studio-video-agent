@@ -1,0 +1,113 @@
+{
+  "_readme": "Nguồn cho gói tín hiệu (tools/signals/collect.mjs). Chỉ nguồn công khai, miễn phí, KHÔNG khoá API. Từ khoá chỉ để lọc/gợi ý, giám đốc và Claude chỉnh theo dữ liệu thật. Thêm phòng mới = thêm một khối trong depts. Phòng IT trộn từ khoá đời thường và kỹ thuật chuyên sâu (kubernetes, docker, postgresql…) và blog kỹ thuật toàn cầu, vì giám đốc muốn thử cả đề xuất chuyên sâu cho dev/SA (21/11/2026).",
+  "geo": "VN",
+  "hl": "vi",
+  "max_seeds": 10,
+  "depts": {
+    "it": {
+      "seeds": [
+        "iphone",
+        "android",
+        "lừa đảo online",
+        "chatgpt",
+        "wifi",
+        "kubernetes",
+        "docker",
+        "postgresql",
+        "microservices",
+        "lập trình"
+      ],
+      "keywords": [
+        "ai ",
+        "android",
+        "api",
+        "bảo mật",
+        "chatgpt",
+        "cloud",
+        "công nghệ",
+        "cơ sở dữ liệu",
+        "developer",
+        "devops",
+        "docker",
+        "dữ liệu",
+        "google",
+        "hack",
+        "iphone",
+        "kubernetes",
+        "linux",
+        "lập trình",
+        "lập trình viên",
+        "lừa đảo",
+        "máy chủ",
+        "máy tính",
+        "mã độc",
+        "mạng",
+        "phần mềm",
+        "robot",
+        "server",
+        "trí tuệ nhân tạo",
+        "tài khoản",
+        "wifi",
+        "windows",
+        "điện thoại",
+        "đám mây",
+        "ứng dụng"
+      ],
+      "news_queries": [
+        "công nghệ",
+        "bảo mật mạng",
+        "trí tuệ nhân tạo",
+        "lập trình viên",
+        "hạ tầng đám mây"
+      ],
+      "rss": [
+        "https://vnexpress.net/rss/khoa-hoc-cong-nghe.rss",
+        "https://blog.cloudflare.com/rss/",
+        "https://aws.amazon.com/blogs/architecture/feed/",
+        "https://lobste.rs/rss",
+        "https://netflixtechblog.com/feed",
+        "https://martinfowler.com/feed.atom",
+        "https://thenewstack.io/feed/"
+      ],
+      "hn": true
+    },
+    "bong-da": {
+      "seeds": [
+        "bóng đá",
+        "v-league",
+        "ngoại hạng anh",
+        "đội tuyển việt nam",
+        "champions league",
+        "luật việt vị"
+      ],
+      "keywords": [
+        "bóng đá",
+        "v-league",
+        "u17",
+        "u19",
+        "u22",
+        "u23",
+        "ngoại hạng",
+        "champions",
+        "world cup",
+        "asian cup",
+        "đội tuyển",
+        "var",
+        "việt vị",
+        "cầu thủ",
+        "huấn luyện viên",
+        "premier league",
+        "la liga",
+        "serie a"
+      ],
+      "news_queries": [
+        "bóng đá",
+        "đội tuyển Việt Nam"
+      ],
+      "rss": [
+        "https://vnexpress.net/rss/the-thao.rss"
+      ],
+      "hn": false
+    }
+  }
+}

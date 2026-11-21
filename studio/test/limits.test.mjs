@@ -10,6 +10,14 @@ test('epoch sau dấu | (định dạng cũ của Claude)', () => {
   assert.equal(iso(parseResetTime(`Claude AI usage limit reached|${epoch}`, NOW)), '2026-11-16T09:00:00.000Z');
 });
 
+test('tương đối dạng viết liền của agy/Gemini: "Resets in 4h8m57s"; không nhầm "3 more" thành 3 phút', () => {
+  const c = classifyFailure('Individual quota reached. Please upgrade your subscription to increase your limits. Resets in 4h8m57s.', NOW);
+  assert.equal(c.type, 'limit');
+  assert.equal(iso(c.resetAt), '2026-11-16T12:08:57.000Z');
+  assert.equal(iso(parseResetTime('try again in 1d2h', NOW)), '2026-11-17T10:00:00.000Z');
+  assert.equal(parseResetTime('in 3 more attempts you will be limited', NOW), null);
+});
+
 test('tương đối: "try again in 3 days 4 hours 12 minutes" / giây', () => {
   assert.equal(iso(parseResetTime('You\'ve hit your usage limit. Try again in 3 days 4 hours 12 minutes.', NOW)), '2026-11-19T12:12:00.000Z');
   assert.equal(iso(parseResetTime('try again in 2 seconds', NOW)), '2026-11-16T08:00:02.000Z');

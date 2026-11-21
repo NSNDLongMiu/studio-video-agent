@@ -1,0 +1,3099 @@
+{
+  "threshold_version": "I-2026-11-19",
+  "measured_at": "2026-11-19T07:41:42.531Z",
+  "video": {
+    "id": "IT-T8-E01",
+    "file": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\final\\IT-T8-E01_9x16.mp4"
+  },
+  "profile": "short",
+  "thresholds": {
+    "silence_db": -40,
+    "silence_min_s": 0.12,
+    "long_pause_s": 0.8,
+    "tail_s": 0.7,
+    "pause_warn_s": 3,
+    "speech_min_syll_s": 3.6,
+    "speech_max_syll_s": 5.6,
+    "cue_lines": 2,
+    "cue_chars": 28,
+    "cue_min_s": 0.8,
+    "sentence_pause_s": 0.2,
+    "sync_s": 0.15,
+    "caption_min_px": 52,
+    "caption_max_px": 64,
+    "caption_band": [
+      1250,
+      1500
+    ],
+    "long_video_s": 30,
+    "layout_diff": 6,
+    "min_layouts": 3,
+    "opening_min_s": 1,
+    "opening_max_s": 3,
+    "voice_sync_s": 0.25,
+    "scene_min_s": 1.5,
+    "scene_max_s": 25,
+    "board_step_s": 2,
+    "scene_image_limit": 12,
+    "min_duration_s": 15,
+    "max_duration_s": 45,
+    "mean_scene_s": 3.5,
+    "theme_pct": 40,
+    "max_theme_run": 4,
+    "shot_run": 3,
+    "min_themes": 3,
+    "min_themes_from_s": 30,
+    "max_scenes": 12,
+    "information_pacing": {
+      "complexity": {
+        "low": {
+          "min_scene_s": 3,
+          "min_hold_s": 0.5
+        },
+        "medium": {
+          "min_scene_s": 5,
+          "min_hold_s": 1,
+          "max_concepts": 2
+        },
+        "high": {
+          "min_scene_s": 8,
+          "min_hold_s": 2,
+          "max_concepts": 1,
+          "max_scene_s": 20
+        }
+      },
+      "cut_margin_s": 0.15,
+      "window_s": 10,
+      "max_window_concepts": 2
+    },
+    "text_audit": {
+      "similarity_min_words": 4,
+      "verbatim_similarity": 0.6,
+      "weak_similarity": 0.5,
+      "short_message_words": 6,
+      "simultaneous_words": 8,
+      "simultaneous_groups": 3,
+      "kinetic_per_scene": 1,
+      "kinetic_per_min": 6,
+      "weak_max_events": 1,
+      "image_limit": 8
+    }
+  },
+  "technical": {
+    "ffprobe": {
+      "status": "đã đo",
+      "duration_s": 41.9,
+      "size_bytes": 4209776,
+      "container_start_s": 0,
+      "fps": 30,
+      "width": 1080,
+      "height": 1920,
+      "video_codec": "h264",
+      "pixel_format": "yuv420p",
+      "audio_codec": "aac",
+      "audio_end_s": 41.9
+    },
+    "qc_video": {
+      "status": "đã đo",
+      "exit_code": 0,
+      "result": {
+        "file": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\final\\IT-T8-E01_9x16.mp4",
+        "pass": true,
+        "info": {
+          "duration_s": 41.9,
+          "size_mb": 4,
+          "video": "h264 1080x1920 yuv420p",
+          "audio": "aac 48000Hz",
+          "fps": 30,
+          "mean_volume_db": -14.3,
+          "max_volume_db": -1.7,
+          "lufs_i": -14.4,
+          "lra": 1.6,
+          "true_peak_dbtp": -1.74,
+          "motion": {
+            "static_pct": 22.727272727272727,
+            "longest_static_s": 1,
+            "static_runs": [
+              {
+                "start_s": 22.6,
+                "length_s": 1
+              },
+              {
+                "start_s": 35.6,
+                "length_s": 1
+              }
+            ],
+            "grid": "9x16 khối 12px, bước 0,1 s"
+          },
+          "scenes": [
+            {
+              "id": "01",
+              "start": 0,
+              "end": 4,
+              "local_median": 8.743055555555555,
+              "active_median": 3,
+              "static_pct": 23.076923076923077,
+              "longest_static_s": 0.5,
+              "layout_diff_next": 63.953462577160494
+            },
+            {
+              "id": "02",
+              "start": 4,
+              "end": 8.033333,
+              "local_median": 23.614583333333336,
+              "active_median": 9,
+              "static_pct": 17.5,
+              "longest_static_s": 0.3,
+              "layout_diff_next": 57.81891396604938
+            },
+            {
+              "id": "03",
+              "start": 8.033333,
+              "end": 12.133333,
+              "local_median": 19.93402777777778,
+              "active_median": 10,
+              "static_pct": 7.5,
+              "longest_static_s": 0.2,
+              "layout_diff_next": 36.39679783950617
+            },
+            {
+              "id": "04",
+              "start": 12.133333,
+              "end": 16.033333,
+              "local_median": 18.40972222222222,
+              "active_median": 5,
+              "static_pct": 28.94736842105263,
+              "longest_static_s": 0.9,
+              "layout_diff_next": 36.10942322530864
+            },
+            {
+              "id": "05",
+              "start": 16.033333,
+              "end": 19.033333,
+              "local_median": 24.75,
+              "active_median": 4,
+              "static_pct": 20.689655172413794,
+              "longest_static_s": 0.6,
+              "layout_diff_next": 18.129484953703702
+            },
+            {
+              "id": "06",
+              "start": 19.033333,
+              "end": 24.5,
+              "local_median": 6.701388888888889,
+              "active_median": 1,
+              "static_pct": 24.528301886792452,
+              "longest_static_s": 1,
+              "layout_diff_next": 55.51007908950617
+            },
+            {
+              "id": "07",
+              "start": 24.5,
+              "end": 28.5,
+              "local_median": 17.354166666666668,
+              "active_median": 6,
+              "static_pct": 0,
+              "longest_static_s": 0,
+              "layout_diff_next": 57.18402777777778
+            },
+            {
+              "id": "08",
+              "start": 28.5,
+              "end": 32.4,
+              "local_median": 6.763888888888889,
+              "active_median": 1.5,
+              "static_pct": 34.21052631578947,
+              "longest_static_s": 0.7,
+              "layout_diff_next": 89.60730131172839
+            },
+            {
+              "id": "09",
+              "start": 32.4,
+              "end": 35.633333,
+              "local_median": 41.78125,
+              "active_median": 6,
+              "static_pct": 6.25,
+              "longest_static_s": 0.2,
+              "layout_diff_next": 40.79740547839506
+            },
+            {
+              "id": "10",
+              "start": 35.633333,
+              "end": 41.9,
+              "local_median": 11.07638888888889,
+              "active_median": 4,
+              "static_pct": 45.90163934426229,
+              "longest_static_s": 0.9,
+              "layout_diff_next": null
+            }
+          ],
+          "scene_stats": {
+            "count": 10,
+            "mean_s": 4.1899999999999995,
+            "min_s": 3,
+            "max_s": 6.266666999999998,
+            "under_2s": 0,
+            "cuts_per_10s": 2.1479713603818618
+          },
+          "layouts": {
+            "distinct": 10,
+            "groups": [
+              {
+                "rep": "01",
+                "scenes": [
+                  "01"
+                ]
+              },
+              {
+                "rep": "02",
+                "scenes": [
+                  "02"
+                ]
+              },
+              {
+                "rep": "03",
+                "scenes": [
+                  "03"
+                ]
+              },
+              {
+                "rep": "04",
+                "scenes": [
+                  "04"
+                ]
+              },
+              {
+                "rep": "05",
+                "scenes": [
+                  "05"
+                ]
+              },
+              {
+                "rep": "06",
+                "scenes": [
+                  "06"
+                ]
+              },
+              {
+                "rep": "07",
+                "scenes": [
+                  "07"
+                ]
+              },
+              {
+                "rep": "08",
+                "scenes": [
+                  "08"
+                ]
+              },
+              {
+                "rep": "09",
+                "scenes": [
+                  "09"
+                ]
+              },
+              {
+                "rep": "10",
+                "scenes": [
+                  "10"
+                ]
+              }
+            ],
+            "longest_run": 1
+          }
+        },
+        "fails": [],
+        "warns": []
+      }
+    }
+  },
+  "timeline": {
+    "status": "đã đo",
+    "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\scenes.json",
+    "scenes": [
+      {
+        "id": "01",
+        "start": 0,
+        "end": 4
+      },
+      {
+        "id": "02",
+        "start": 4,
+        "end": 8.033333
+      },
+      {
+        "id": "03",
+        "start": 8.033333,
+        "end": 12.133333
+      },
+      {
+        "id": "04",
+        "start": 12.133333,
+        "end": 16.033333
+      },
+      {
+        "id": "05",
+        "start": 16.033333,
+        "end": 19.033333
+      },
+      {
+        "id": "06",
+        "start": 19.033333,
+        "end": 24.5
+      },
+      {
+        "id": "07",
+        "start": 24.5,
+        "end": 28.5
+      },
+      {
+        "id": "08",
+        "start": 28.5,
+        "end": 32.4
+      },
+      {
+        "id": "09",
+        "start": 32.4,
+        "end": 35.633333
+      },
+      {
+        "id": "10",
+        "start": 35.633333,
+        "end": 41.9
+      }
+    ],
+    "normalized": false,
+    "invalid_fields": [],
+    "has_metadata": false
+  },
+  "motion": {
+    "status": "đã đo",
+    "result": {
+      "static_pct": 22.727272727272727,
+      "longest_static_s": 1,
+      "static_runs": [
+        {
+          "start_s": 22.6,
+          "length_s": 1
+        },
+        {
+          "start_s": 35.6,
+          "length_s": 1
+        }
+      ],
+      "grid": "9x16 khối 12px, bước 0,1 s"
+    },
+    "scene_stats": {
+      "count": 10,
+      "mean_s": 4.1899999999999995,
+      "min_s": 3,
+      "max_s": 6.266666999999998,
+      "under_2s": 0,
+      "cuts_per_10s": 2.1479713603818618
+    },
+    "layouts": {
+      "distinct": 10,
+      "groups": [
+        {
+          "rep": "01",
+          "scenes": [
+            "01"
+          ]
+        },
+        {
+          "rep": "02",
+          "scenes": [
+            "02"
+          ]
+        },
+        {
+          "rep": "03",
+          "scenes": [
+            "03"
+          ]
+        },
+        {
+          "rep": "04",
+          "scenes": [
+            "04"
+          ]
+        },
+        {
+          "rep": "05",
+          "scenes": [
+            "05"
+          ]
+        },
+        {
+          "rep": "06",
+          "scenes": [
+            "06"
+          ]
+        },
+        {
+          "rep": "07",
+          "scenes": [
+            "07"
+          ]
+        },
+        {
+          "rep": "08",
+          "scenes": [
+            "08"
+          ]
+        },
+        {
+          "rep": "09",
+          "scenes": [
+            "09"
+          ]
+        },
+        {
+          "rep": "10",
+          "scenes": [
+            "10"
+          ]
+        }
+      ],
+      "longest_run": 1
+    },
+    "longest_static": {
+      "start_s": 22.6,
+      "length_s": 1
+    }
+  },
+  "audio": {
+    "status": "đã đo",
+    "silences": [
+      {
+        "start": 1.212063,
+        "end": 1.371146,
+        "length": 0.15908300000000009
+      },
+      {
+        "start": 2.574417,
+        "end": 3.109833,
+        "length": 0.5354160000000001
+      },
+      {
+        "start": 4.698708,
+        "end": 5.516188,
+        "length": 0.8174799999999998
+      },
+      {
+        "start": 7.060125,
+        "end": 8.044667,
+        "length": 0.9845420000000003
+      },
+      {
+        "start": 9.780938,
+        "end": 10.258875,
+        "length": 0.47793699999999895
+      },
+      {
+        "start": 11.424437,
+        "end": 12.163521,
+        "length": 0.7390840000000001
+      },
+      {
+        "start": 13.513354,
+        "end": 13.821875,
+        "length": 0.3085210000000007
+      },
+      {
+        "start": 14.423937,
+        "end": 14.573417,
+        "length": 0.14947999999999873
+      },
+      {
+        "start": 15.208542,
+        "end": 16.06325,
+        "length": 0.8547080000000005
+      },
+      {
+        "start": 17.373917,
+        "end": 17.513208,
+        "length": 0.13929100000000005
+      },
+      {
+        "start": 18.265146,
+        "end": 19.063125,
+        "length": 0.797978999999998
+      },
+      {
+        "start": 20.178042,
+        "end": 20.475562,
+        "length": 0.2975199999999987
+      },
+      {
+        "start": 21.786333,
+        "end": 22.471521,
+        "length": 0.6851880000000001
+      },
+      {
+        "start": 23.749,
+        "end": 24.525833,
+        "length": 0.7768329999999999
+      },
+      {
+        "start": 25.392375,
+        "end": 25.525458,
+        "length": 0.13308299999999917
+      },
+      {
+        "start": 26.166542,
+        "end": 26.626104,
+        "length": 0.4595620000000018
+      },
+      {
+        "start": 27.977875,
+        "end": 28.530833,
+        "length": 0.5529580000000003
+      },
+      {
+        "start": 29.521167,
+        "end": 29.969938,
+        "length": 0.4487710000000007
+      },
+      {
+        "start": 31.863042,
+        "end": 32.428,
+        "length": 0.5649579999999972
+      },
+      {
+        "start": 33.373708,
+        "end": 33.667708,
+        "length": 0.29399999999999693
+      },
+      {
+        "start": 35.049813,
+        "end": 35.659646,
+        "length": 0.6098330000000018
+      },
+      {
+        "start": 36.186667,
+        "end": 36.416979,
+        "length": 0.23031199999999785
+      },
+      {
+        "start": 37.085792,
+        "end": 37.532479,
+        "length": 0.4466870000000043
+      },
+      {
+        "start": 39.49825,
+        "end": 40.246354,
+        "length": 0.7481039999999979
+      },
+      {
+        "start": 41.363687,
+        "end": 41.9,
+        "length": 0.5363129999999998
+      }
+    ],
+    "long_pauses": [
+      {
+        "start": 4.698708,
+        "end": 5.516188,
+        "length": 0.8174799999999998
+      },
+      {
+        "start": 7.060125,
+        "end": 8.044667,
+        "length": 0.9845420000000003
+      },
+      {
+        "start": 15.208542,
+        "end": 16.06325,
+        "length": 0.8547080000000005
+      }
+    ],
+    "tail_s": 0.5363129999999998,
+    "tail": {
+      "start": 41.363687,
+      "end": 41.9,
+      "length": 0.5363129999999998
+    },
+    "audio_end_s": 41.9,
+    "voiced_intervals": [
+      {
+        "start": 0,
+        "end": 1.212063
+      },
+      {
+        "start": 1.371146,
+        "end": 2.574417
+      },
+      {
+        "start": 3.109833,
+        "end": 4.698708
+      },
+      {
+        "start": 5.516188,
+        "end": 7.060125
+      },
+      {
+        "start": 8.044667,
+        "end": 9.780938
+      },
+      {
+        "start": 10.258875,
+        "end": 11.424437
+      },
+      {
+        "start": 12.163521,
+        "end": 13.513354
+      },
+      {
+        "start": 13.821875,
+        "end": 14.423937
+      },
+      {
+        "start": 14.573417,
+        "end": 15.208542
+      },
+      {
+        "start": 16.06325,
+        "end": 17.373917
+      },
+      {
+        "start": 17.513208,
+        "end": 18.265146
+      },
+      {
+        "start": 19.063125,
+        "end": 20.178042
+      },
+      {
+        "start": 20.475562,
+        "end": 21.786333
+      },
+      {
+        "start": 22.471521,
+        "end": 23.749
+      },
+      {
+        "start": 24.525833,
+        "end": 25.392375
+      },
+      {
+        "start": 25.525458,
+        "end": 26.166542
+      },
+      {
+        "start": 26.626104,
+        "end": 27.977875
+      },
+      {
+        "start": 28.530833,
+        "end": 29.521167
+      },
+      {
+        "start": 29.969938,
+        "end": 31.863042
+      },
+      {
+        "start": 32.428,
+        "end": 33.373708
+      },
+      {
+        "start": 33.667708,
+        "end": 35.049813
+      },
+      {
+        "start": 35.659646,
+        "end": 36.186667
+      },
+      {
+        "start": 36.416979,
+        "end": 37.085792
+      },
+      {
+        "start": 37.532479,
+        "end": 39.49825
+      },
+      {
+        "start": 40.246354,
+        "end": 41.363687
+      }
+    ],
+    "voiced_s": 29.152356999999995,
+    "pause_ratio": 0.3042396897374703,
+    "longest_pause": {
+      "start": 7.060125,
+      "end": 8.044667,
+      "length": 0.9845420000000003
+    },
+    "speech": {
+      "status": "đã đo",
+      "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\voice\\apply.json",
+      "syllables": 122,
+      "speech_pace_syll_s": 4.18491033160715
+    },
+    "speech_pace_syll_s": 4.18491033160715
+  },
+  "subtitles": {
+    "srt": {
+      "status": "đã đo",
+      "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\final\\captions.srt",
+      "cue_count": 20,
+      "max_lines": 2,
+      "max_chars": 24,
+      "cues": [
+        {
+          "number": 1,
+          "start": 0,
+          "end": 2.61,
+          "duration_s": 2.61,
+          "lines": [
+            "Hồ sơ khách vừa dán,",
+            "bản sao đã ra ngoài."
+          ],
+          "line_chars": [
+            20,
+            20
+          ]
+        },
+        {
+          "number": 2,
+          "start": 3.08,
+          "end": 4.715,
+          "duration_s": 1.6349999999999998,
+          "lines": [
+            "Chat lọt ra",
+            "bằng cách nào?"
+          ],
+          "line_chars": [
+            11,
+            14
+          ]
+        },
+        {
+          "number": 3,
+          "start": 5.49,
+          "end": 7.086,
+          "duration_s": 1.596,
+          "lines": [
+            "Có vụ hàng trăm",
+            "nghìn người cài."
+          ],
+          "line_chars": [
+            15,
+            16
+          ]
+        },
+        {
+          "number": 4,
+          "start": 8.033,
+          "end": 9.818999999999999,
+          "duration_s": 1.7859999999999996,
+          "lines": [
+            "Hai tiện ích",
+            "đội lốt trợ lý."
+          ],
+          "line_chars": [
+            12,
+            15
+          ]
+        },
+        {
+          "number": 5,
+          "start": 10.23,
+          "end": 11.436,
+          "duration_s": 1.2059999999999995,
+          "lines": [
+            "Một bản có huy hiệu."
+          ],
+          "line_chars": [
+            20
+          ]
+        },
+        {
+          "number": 6,
+          "start": 12.133,
+          "end": 13.673,
+          "duration_s": 1.540000000000001,
+          "lines": [
+            "Tiện ích đọc được",
+            "mọi trang"
+          ],
+          "line_chars": [
+            17,
+            9
+          ]
+        },
+        {
+          "number": 7,
+          "start": 13.673,
+          "end": 15.243,
+          "duration_s": 1.5700000000000003,
+          "lines": [
+            "thì đọc được cả",
+            "khung chat."
+          ],
+          "line_chars": [
+            15,
+            11
+          ]
+        },
+        {
+          "number": 8,
+          "start": 16.033,
+          "end": 18.302,
+          "duration_s": 2.2689999999999984,
+          "lines": [
+            "Tiện ích xấu có thể",
+            "chép và gửi đi."
+          ],
+          "line_chars": [
+            19,
+            15
+          ]
+        },
+        {
+          "number": 9,
+          "start": 19.033,
+          "end": 20.343,
+          "duration_s": 1.3099999999999987,
+          "lines": [
+            "Theo các nhà nghiên cứu,"
+          ],
+          "line_chars": [
+            24
+          ]
+        },
+        {
+          "number": 10,
+          "start": 20.343,
+          "end": 21.821,
+          "duration_s": 1.4780000000000015,
+          "lines": [
+            "khoảng ba mươi phút",
+            "một đợt."
+          ],
+          "line_chars": [
+            19,
+            8
+          ]
+        },
+        {
+          "number": 11,
+          "start": 22.45,
+          "end": 23.781,
+          "duration_s": 1.3309999999999995,
+          "lines": [
+            "Gửi cả địa chỉ trang."
+          ],
+          "line_chars": [
+            21
+          ]
+        },
+        {
+          "number": 12,
+          "start": 24.5,
+          "end": 26.2,
+          "duration_s": 1.6999999999999993,
+          "lines": [
+            "Kiểm nhà phát hành",
+            "và quyền."
+          ],
+          "line_chars": [
+            18,
+            9
+          ]
+        },
+        {
+          "number": 13,
+          "start": 26.6,
+          "end": 28.01,
+          "duration_s": 1.4100000000000001,
+          "lines": [
+            "Gỡ tiện ích không dùng."
+          ],
+          "line_chars": [
+            23
+          ]
+        },
+        {
+          "number": 14,
+          "start": 28.5,
+          "end": 29.557,
+          "duration_s": 1.0569999999999986,
+          "lines": [
+            "Lần gửi sau dừng."
+          ],
+          "line_chars": [
+            17
+          ]
+        },
+        {
+          "number": 15,
+          "start": 29.94,
+          "end": 31.891,
+          "duration_s": 1.950999999999997,
+          "lines": [
+            "Bản cũ có thể",
+            "còn bên ngoài."
+          ],
+          "line_chars": [
+            13,
+            14
+          ]
+        },
+        {
+          "number": 16,
+          "start": 32.4,
+          "end": 33.52,
+          "duration_s": 1.1200000000000045,
+          "lines": [
+            "Đừng dán mật khẩu,"
+          ],
+          "line_chars": [
+            18
+          ]
+        },
+        {
+          "number": 17,
+          "start": 33.52,
+          "end": 35.08,
+          "duration_s": 1.5599999999999952,
+          "lines": [
+            "khóa hay dữ liệu",
+            "khách hàng."
+          ],
+          "line_chars": [
+            16,
+            11
+          ]
+        },
+        {
+          "number": 18,
+          "start": 35.633,
+          "end": 37.119,
+          "duration_s": 1.485999999999997,
+          "lines": [
+            "Kiểm quyền",
+            "trước khi cài."
+          ],
+          "line_chars": [
+            10,
+            14
+          ]
+        },
+        {
+          "number": 19,
+          "start": 37.519,
+          "end": 39.535,
+          "duration_s": 2.0159999999999982,
+          "lines": [
+            "Bạn xem quyền hay",
+            "nhà phát hành trước?"
+          ],
+          "line_chars": [
+            17,
+            20
+          ]
+        },
+        {
+          "number": 20,
+          "start": 40.219,
+          "end": 41.4,
+          "duration_s": 1.1809999999999974,
+          "lines": [
+            "Bình luận cho Cáo nhé."
+          ],
+          "line_chars": [
+            22
+          ]
+        }
+      ],
+      "sync": {
+        "status": "đã đo",
+        "matches": [
+          {
+            "cue": 2,
+            "start": 3.08,
+            "end": 4.715,
+            "speech_start_s": 3.109833,
+            "offset_s": -0.029833,
+            "silence_start_s": 2.574417,
+            "silence_length_s": 0.5354160000000001,
+            "warning": false
+          },
+          {
+            "cue": 3,
+            "start": 5.49,
+            "end": 7.086,
+            "speech_start_s": 5.516188,
+            "offset_s": -0.026187999999999434,
+            "silence_start_s": 4.698708,
+            "silence_length_s": 0.8174799999999998,
+            "warning": false
+          },
+          {
+            "cue": 4,
+            "start": 8.033,
+            "end": 9.818999999999999,
+            "speech_start_s": 8.044667,
+            "offset_s": -0.011667000000000982,
+            "silence_start_s": 7.060125,
+            "silence_length_s": 0.9845420000000003,
+            "warning": false
+          },
+          {
+            "cue": 5,
+            "start": 10.23,
+            "end": 11.436,
+            "speech_start_s": 10.258875,
+            "offset_s": -0.028874999999999318,
+            "silence_start_s": 9.780938,
+            "silence_length_s": 0.47793699999999895,
+            "warning": false
+          },
+          {
+            "cue": 6,
+            "start": 12.133,
+            "end": 13.673,
+            "speech_start_s": 12.163521,
+            "offset_s": -0.030521000000000242,
+            "silence_start_s": 11.424437,
+            "silence_length_s": 0.7390840000000001,
+            "warning": false
+          },
+          {
+            "cue": 7,
+            "start": 13.673,
+            "end": 15.243,
+            "speech_start_s": 13.821875,
+            "offset_s": -0.1488750000000003,
+            "silence_start_s": 13.513354,
+            "silence_length_s": 0.3085210000000007,
+            "warning": false
+          },
+          {
+            "cue": 8,
+            "start": 16.033,
+            "end": 18.302,
+            "speech_start_s": 16.06325,
+            "offset_s": -0.030249999999998778,
+            "silence_start_s": 15.208542,
+            "silence_length_s": 0.8547080000000005,
+            "warning": false
+          },
+          {
+            "cue": 9,
+            "start": 19.033,
+            "end": 20.343,
+            "speech_start_s": 19.063125,
+            "offset_s": -0.03012499999999818,
+            "silence_start_s": 18.265146,
+            "silence_length_s": 0.797978999999998,
+            "warning": false
+          },
+          {
+            "cue": 10,
+            "start": 20.343,
+            "end": 21.821,
+            "speech_start_s": 20.475562,
+            "offset_s": -0.13256200000000007,
+            "silence_start_s": 20.178042,
+            "silence_length_s": 0.2975199999999987,
+            "warning": false
+          },
+          {
+            "cue": 11,
+            "start": 22.45,
+            "end": 23.781,
+            "speech_start_s": 22.471521,
+            "offset_s": -0.0215209999999999,
+            "silence_start_s": 21.786333,
+            "silence_length_s": 0.6851880000000001,
+            "warning": false
+          },
+          {
+            "cue": 12,
+            "start": 24.5,
+            "end": 26.2,
+            "speech_start_s": 24.525833,
+            "offset_s": -0.025832999999998663,
+            "silence_start_s": 23.749,
+            "silence_length_s": 0.7768329999999999,
+            "warning": false
+          },
+          {
+            "cue": 13,
+            "start": 26.6,
+            "end": 28.01,
+            "speech_start_s": 26.626104,
+            "offset_s": -0.026104000000000127,
+            "silence_start_s": 26.166542,
+            "silence_length_s": 0.4595620000000018,
+            "warning": false
+          },
+          {
+            "cue": 14,
+            "start": 28.5,
+            "end": 29.557,
+            "speech_start_s": 28.530833,
+            "offset_s": -0.03083300000000122,
+            "silence_start_s": 27.977875,
+            "silence_length_s": 0.5529580000000003,
+            "warning": false
+          },
+          {
+            "cue": 15,
+            "start": 29.94,
+            "end": 31.891,
+            "speech_start_s": 29.969938,
+            "offset_s": -0.0299379999999978,
+            "silence_start_s": 29.521167,
+            "silence_length_s": 0.4487710000000007,
+            "warning": false
+          },
+          {
+            "cue": 16,
+            "start": 32.4,
+            "end": 33.52,
+            "speech_start_s": 32.428,
+            "offset_s": -0.027999999999998693,
+            "silence_start_s": 31.863042,
+            "silence_length_s": 0.5649579999999972,
+            "warning": false
+          },
+          {
+            "cue": 17,
+            "start": 33.52,
+            "end": 35.08,
+            "speech_start_s": 33.667708,
+            "offset_s": -0.1477079999999944,
+            "silence_start_s": 33.373708,
+            "silence_length_s": 0.29399999999999693,
+            "warning": false
+          },
+          {
+            "cue": 18,
+            "start": 35.633,
+            "end": 37.119,
+            "speech_start_s": 35.659646,
+            "offset_s": -0.026645999999999503,
+            "silence_start_s": 35.049813,
+            "silence_length_s": 0.6098330000000018,
+            "warning": false
+          },
+          {
+            "cue": 19,
+            "start": 37.519,
+            "end": 39.535,
+            "speech_start_s": 37.532479,
+            "offset_s": -0.013479000000003794,
+            "silence_start_s": 37.085792,
+            "silence_length_s": 0.4466870000000043,
+            "warning": false
+          },
+          {
+            "cue": 20,
+            "start": 40.219,
+            "end": 41.4,
+            "speech_start_s": 40.246354,
+            "offset_s": -0.027353999999995438,
+            "silence_start_s": 39.49825,
+            "silence_length_s": 0.7481039999999979,
+            "warning": false
+          }
+        ]
+      }
+    },
+    "ass": {
+      "status": "đã đo",
+      "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\_scratch\\captions.ass",
+      "play_res_y": 1920,
+      "styles": [
+        {
+          "name": "Upper",
+          "fontsize": 70,
+          "px": 70,
+          "alignment": 8,
+          "margin_v": 258,
+          "band_ok": false,
+          "dialogue_count": 7,
+          "first": {
+            "start": 0,
+            "end": 2.61,
+            "alignment": 8,
+            "margin_v": 258,
+            "y_center": 328,
+            "band_ok": false
+          },
+          "outside": {
+            "start": 0,
+            "end": 2.61,
+            "alignment": 8,
+            "margin_v": 258,
+            "y_center": 328,
+            "band_ok": false
+          }
+        },
+        {
+          "name": "Lower",
+          "fontsize": 70,
+          "px": 70,
+          "alignment": 2,
+          "margin_v": 436,
+          "band_ok": true,
+          "dialogue_count": 14,
+          "first": {
+            "start": 4,
+            "end": 4.71,
+            "alignment": 2,
+            "margin_v": 436,
+            "y_center": 1414,
+            "band_ok": true
+          },
+          "outside": null
+        }
+      ],
+      "style": "Upper",
+      "fontsize": 70,
+      "caption_px": 70,
+      "caption_band_ok": false
+    }
+  },
+  "storyboard": {
+    "status": "đã đo",
+    "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\storyboard.json",
+    "declarations": [
+      {
+        "id": "01",
+        "theme": "office",
+        "shot": "medium",
+        "movement": "static",
+        "scene_type": "object_interaction"
+      },
+      {
+        "id": "02",
+        "theme": "incident",
+        "shot": "close_up",
+        "movement": "static",
+        "scene_type": "cinematic_close_up"
+      },
+      {
+        "id": "03",
+        "theme": "security",
+        "shot": "wide",
+        "movement": "static",
+        "scene_type": "ui_simulation"
+      },
+      {
+        "id": "04",
+        "theme": "security",
+        "shot": "close_up",
+        "movement": "static",
+        "scene_type": "ui_simulation"
+      },
+      {
+        "id": "05",
+        "theme": "code",
+        "shot": "wide",
+        "movement": "static",
+        "scene_type": "comparison_scene"
+      },
+      {
+        "id": "06",
+        "theme": "code",
+        "shot": "medium",
+        "movement": "static",
+        "scene_type": "process_animation"
+      },
+      {
+        "id": "07",
+        "theme": "security",
+        "shot": "wide",
+        "movement": "static",
+        "scene_type": "ui_simulation"
+      },
+      {
+        "id": "08",
+        "theme": "incident",
+        "shot": "close_up",
+        "movement": "push_in",
+        "scene_type": "cinematic_close_up"
+      },
+      {
+        "id": "09",
+        "theme": "office",
+        "shot": "wide",
+        "movement": "static",
+        "scene_type": "object_interaction"
+      },
+      {
+        "id": "10",
+        "theme": "office",
+        "shot": "medium",
+        "movement": "static",
+        "scene_type": "object_interaction"
+      }
+    ],
+    "cameras": [
+      {
+        "id": "08",
+        "movement": "push_in",
+        "start": 28.5,
+        "end": 32.4,
+        "status": "đã đo",
+        "first_s": 28.5,
+        "last_s": 32.366667,
+        "mean_diff": 12.82433304398148
+      }
+    ],
+    "themes": [
+      {
+        "theme": "office",
+        "duration_s": 13.5,
+        "pct": 32.21957040572792,
+        "count": 3,
+        "scene_ids": [
+          "01",
+          "09",
+          "10"
+        ]
+      },
+      {
+        "theme": "security",
+        "duration_s": 12,
+        "pct": 28.639618138424822,
+        "count": 3,
+        "scene_ids": [
+          "03",
+          "04",
+          "07"
+        ]
+      },
+      {
+        "theme": "code",
+        "duration_s": 8.466667000000001,
+        "pct": 20.206842482100242,
+        "count": 2,
+        "scene_ids": [
+          "05",
+          "06"
+        ]
+      },
+      {
+        "theme": "incident",
+        "duration_s": 7.9333329999999975,
+        "pct": 18.933968973747014,
+        "count": 2,
+        "scene_ids": [
+          "02",
+          "08"
+        ]
+      }
+    ],
+    "timeline_duration_s": 41.9,
+    "theme_runs": [
+      {
+        "value": "office",
+        "start": 0,
+        "end": 4,
+        "first_id": "01",
+        "last_id": "01",
+        "scene_ids": [
+          "01"
+        ],
+        "count": 1
+      },
+      {
+        "value": "incident",
+        "start": 4,
+        "end": 8.033333,
+        "first_id": "02",
+        "last_id": "02",
+        "scene_ids": [
+          "02"
+        ],
+        "count": 1
+      },
+      {
+        "value": "security",
+        "start": 8.033333,
+        "end": 16.033333,
+        "first_id": "03",
+        "last_id": "04",
+        "scene_ids": [
+          "03",
+          "04"
+        ],
+        "count": 2
+      },
+      {
+        "value": "code",
+        "start": 16.033333,
+        "end": 24.5,
+        "first_id": "05",
+        "last_id": "06",
+        "scene_ids": [
+          "05",
+          "06"
+        ],
+        "count": 2
+      },
+      {
+        "value": "security",
+        "start": 24.5,
+        "end": 28.5,
+        "first_id": "07",
+        "last_id": "07",
+        "scene_ids": [
+          "07"
+        ],
+        "count": 1
+      },
+      {
+        "value": "incident",
+        "start": 28.5,
+        "end": 32.4,
+        "first_id": "08",
+        "last_id": "08",
+        "scene_ids": [
+          "08"
+        ],
+        "count": 1
+      },
+      {
+        "value": "office",
+        "start": 32.4,
+        "end": 41.9,
+        "first_id": "09",
+        "last_id": "10",
+        "scene_ids": [
+          "09",
+          "10"
+        ],
+        "count": 2
+      }
+    ],
+    "shot_runs": [
+      {
+        "value": "medium",
+        "start": 0,
+        "end": 4,
+        "first_id": "01",
+        "last_id": "01",
+        "scene_ids": [
+          "01"
+        ],
+        "count": 1
+      },
+      {
+        "value": "close_up",
+        "start": 4,
+        "end": 8.033333,
+        "first_id": "02",
+        "last_id": "02",
+        "scene_ids": [
+          "02"
+        ],
+        "count": 1
+      },
+      {
+        "value": "wide",
+        "start": 8.033333,
+        "end": 12.133333,
+        "first_id": "03",
+        "last_id": "03",
+        "scene_ids": [
+          "03"
+        ],
+        "count": 1
+      },
+      {
+        "value": "close_up",
+        "start": 12.133333,
+        "end": 16.033333,
+        "first_id": "04",
+        "last_id": "04",
+        "scene_ids": [
+          "04"
+        ],
+        "count": 1
+      },
+      {
+        "value": "wide",
+        "start": 16.033333,
+        "end": 19.033333,
+        "first_id": "05",
+        "last_id": "05",
+        "scene_ids": [
+          "05"
+        ],
+        "count": 1
+      },
+      {
+        "value": "medium",
+        "start": 19.033333,
+        "end": 24.5,
+        "first_id": "06",
+        "last_id": "06",
+        "scene_ids": [
+          "06"
+        ],
+        "count": 1
+      },
+      {
+        "value": "wide",
+        "start": 24.5,
+        "end": 28.5,
+        "first_id": "07",
+        "last_id": "07",
+        "scene_ids": [
+          "07"
+        ],
+        "count": 1
+      },
+      {
+        "value": "close_up",
+        "start": 28.5,
+        "end": 32.4,
+        "first_id": "08",
+        "last_id": "08",
+        "scene_ids": [
+          "08"
+        ],
+        "count": 1
+      },
+      {
+        "value": "wide",
+        "start": 32.4,
+        "end": 35.633333,
+        "first_id": "09",
+        "last_id": "09",
+        "scene_ids": [
+          "09"
+        ],
+        "count": 1
+      },
+      {
+        "value": "medium",
+        "start": 35.633333,
+        "end": 41.9,
+        "first_id": "10",
+        "last_id": "10",
+        "scene_ids": [
+          "10"
+        ],
+        "count": 1
+      }
+    ],
+    "distinct_shots": 3,
+    "longest_theme_run": {
+      "value": "security",
+      "start": 8.033333,
+      "end": 16.033333,
+      "first_id": "03",
+      "last_id": "04",
+      "scene_ids": [
+        "03",
+        "04"
+      ],
+      "count": 2
+    },
+    "longest_shot_run": {
+      "value": "medium",
+      "start": 0,
+      "end": 4,
+      "first_id": "01",
+      "last_id": "01",
+      "scene_ids": [
+        "01"
+      ],
+      "count": 1
+    },
+    "unmatched_scene_ids": []
+  },
+  "compliance": {
+    "status": "đã đo",
+    "exit_code": 0,
+    "result": {
+      "file": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\final\\publish.json",
+      "pass": true,
+      "fails": [],
+      "warns": []
+    }
+  },
+  "pronunciation": {
+    "status": "đã đo",
+    "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\voice\\apply.json",
+    "exit_code": 0,
+    "line_count": 17,
+    "errors": []
+  },
+  "evidence": {
+    "samples": {
+      "status": "đã đo"
+    },
+    "images": [
+      {
+        "kind": "board",
+        "file": "board-01.png",
+        "start": 0,
+        "end": 14,
+        "tiles": [
+          {
+            "row": 1,
+            "col": 1,
+            "time_s": 0,
+            "frame_s": 0
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "time_s": 2,
+            "frame_s": 2
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "time_s": 4,
+            "frame_s": 4
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "time_s": 6,
+            "frame_s": 6
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "time_s": 8,
+            "frame_s": 8
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "time_s": 10,
+            "frame_s": 10
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "time_s": 12,
+            "frame_s": 12
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "time_s": 14,
+            "frame_s": 14
+          }
+        ],
+        "status": "đã đo"
+      },
+      {
+        "kind": "board",
+        "file": "board-02.png",
+        "start": 16,
+        "end": 30,
+        "tiles": [
+          {
+            "row": 1,
+            "col": 1,
+            "time_s": 16,
+            "frame_s": 16
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "time_s": 18,
+            "frame_s": 18
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "time_s": 20,
+            "frame_s": 20
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "time_s": 22,
+            "frame_s": 22
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "time_s": 24,
+            "frame_s": 24
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "time_s": 26,
+            "frame_s": 26
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "time_s": 28,
+            "frame_s": 28
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "time_s": 30,
+            "frame_s": 30
+          }
+        ],
+        "status": "đã đo"
+      },
+      {
+        "kind": "board",
+        "file": "board-03.png",
+        "start": 32,
+        "end": 40,
+        "tiles": [
+          {
+            "row": 1,
+            "col": 1,
+            "time_s": 32,
+            "frame_s": 32
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "time_s": 34,
+            "frame_s": 34
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "time_s": 36,
+            "frame_s": 36
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "time_s": 38,
+            "frame_s": 38
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "time_s": 40,
+            "frame_s": 40
+          }
+        ],
+        "status": "đã đo"
+      },
+      {
+        "kind": "camera",
+        "file": "camera-08.png",
+        "scene_id": "08",
+        "start": 28.5,
+        "end": 32.366667,
+        "status": "đã đo"
+      },
+      {
+        "kind": "textheavy",
+        "file": "textheavy-04.png",
+        "scene_id": "04",
+        "start": 14.1,
+        "end": 14.1,
+        "status": "đã đo"
+      },
+      {
+        "kind": "textheavy",
+        "file": "textheavy-06.png",
+        "scene_id": "06",
+        "start": 21.766667,
+        "end": 21.766667,
+        "status": "đã đo"
+      },
+      {
+        "kind": "textheavy",
+        "file": "textheavy-07.png",
+        "scene_id": "07",
+        "start": 26.5,
+        "end": 26.5,
+        "status": "đã đo"
+      },
+      {
+        "kind": "textheavy",
+        "file": "textheavy-03.png",
+        "scene_id": "03",
+        "start": 10.1,
+        "end": 10.1,
+        "status": "đã đo"
+      },
+      {
+        "kind": "textheavy",
+        "file": "textheavy-05.png",
+        "scene_id": "05",
+        "start": 17.533333,
+        "end": 17.533333,
+        "status": "đã đo"
+      },
+      {
+        "kind": "thumbnail",
+        "file": "thumb-180x320.png",
+        "status": "đã đo"
+      },
+      {
+        "status": "đã đo",
+        "frame_s": 0.2,
+        "kind": "opening",
+        "file": "frame-open-start.png",
+        "time_s": 0.2,
+        "start": 0.2,
+        "end": 0.2
+      },
+      {
+        "status": "đã đo",
+        "frame_s": 1,
+        "kind": "opening",
+        "file": "frame-open-mid.png",
+        "time_s": 1,
+        "start": 1,
+        "end": 1
+      },
+      {
+        "status": "đã đo",
+        "frame_s": 2.5,
+        "kind": "opening",
+        "file": "frame-open-end.png",
+        "time_s": 2.5,
+        "start": 2.5,
+        "end": 2.5
+      },
+      {
+        "kind": "header",
+        "file": "header-zones.png",
+        "status": "đã đo",
+        "tiles": [
+          {
+            "scene_id": "01",
+            "header": null,
+            "time_s": 2,
+            "row": 1,
+            "col": 1,
+            "frame_s": 2
+          },
+          {
+            "scene_id": "02",
+            "header": null,
+            "time_s": 6.0166665,
+            "row": 1,
+            "col": 2,
+            "frame_s": 6.033333
+          },
+          {
+            "scene_id": "03",
+            "header": null,
+            "time_s": 10.083333,
+            "row": 1,
+            "col": 3,
+            "frame_s": 10.1
+          },
+          {
+            "scene_id": "04",
+            "header": null,
+            "time_s": 14.083333,
+            "row": 1,
+            "col": 4,
+            "frame_s": 14.1
+          },
+          {
+            "scene_id": "05",
+            "header": null,
+            "time_s": 17.533333,
+            "row": 2,
+            "col": 1,
+            "frame_s": 17.533333
+          },
+          {
+            "scene_id": "06",
+            "header": null,
+            "time_s": 21.7666665,
+            "row": 2,
+            "col": 2,
+            "frame_s": 21.766667
+          },
+          {
+            "scene_id": "07",
+            "header": null,
+            "time_s": 26.5,
+            "row": 2,
+            "col": 3,
+            "frame_s": 26.5
+          },
+          {
+            "scene_id": "08",
+            "header": null,
+            "time_s": 30.45,
+            "row": 2,
+            "col": 4,
+            "frame_s": 30.466667
+          },
+          {
+            "scene_id": "09",
+            "header": null,
+            "time_s": 34.0166665,
+            "row": 3,
+            "col": 1,
+            "frame_s": 34.033333
+          },
+          {
+            "scene_id": "10",
+            "header": null,
+            "time_s": 38.7666665,
+            "row": 3,
+            "col": 2,
+            "frame_s": 38.766667
+          }
+        ],
+        "start": 2,
+        "end": 38.766667
+      },
+      {
+        "kind": "nocaption_board",
+        "file": "nocaption-board.png",
+        "status": "đã đo",
+        "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\_scratch\\picture.mp4",
+        "start": 2.633333,
+        "end": 39.299674,
+        "tiles": [
+          {
+            "row": 1,
+            "col": 1,
+            "frame_s": 2.633333
+          },
+          {
+            "row": 1,
+            "col": 2,
+            "frame_s": 7.866667
+          },
+          {
+            "row": 1,
+            "col": 3,
+            "frame_s": 13.1
+          },
+          {
+            "row": 1,
+            "col": 4,
+            "frame_s": 18.333333
+          },
+          {
+            "row": 2,
+            "col": 1,
+            "frame_s": 23.6
+          },
+          {
+            "row": 2,
+            "col": 2,
+            "frame_s": 28.833333
+          },
+          {
+            "row": 2,
+            "col": 3,
+            "frame_s": 34.066667
+          },
+          {
+            "row": 2,
+            "col": 4,
+            "frame_s": 39.299674
+          }
+        ]
+      }
+    ],
+    "nocaption_board": {
+      "kind": "nocaption_board",
+      "file": "nocaption-board.png",
+      "status": "đã đo",
+      "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\_scratch\\picture.mp4",
+      "start": 2.633333,
+      "end": 39.299674,
+      "tiles": [
+        {
+          "row": 1,
+          "col": 1,
+          "frame_s": 2.633333
+        },
+        {
+          "row": 1,
+          "col": 2,
+          "frame_s": 7.866667
+        },
+        {
+          "row": 1,
+          "col": 3,
+          "frame_s": 13.1
+        },
+        {
+          "row": 1,
+          "col": 4,
+          "frame_s": 18.333333
+        },
+        {
+          "row": 2,
+          "col": 1,
+          "frame_s": 23.6
+        },
+        {
+          "row": 2,
+          "col": 2,
+          "frame_s": 28.833333
+        },
+        {
+          "row": 2,
+          "col": 3,
+          "frame_s": 34.066667
+        },
+        {
+          "row": 2,
+          "col": 4,
+          "frame_s": 39.299674
+        }
+      ]
+    },
+    "omitted_scene_images": 0
+  },
+  "information_pace": {
+    "status": "đã đo",
+    "scenes": [
+      {
+        "id": "01",
+        "start": 0,
+        "end": 4,
+        "duration_s": 4,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 4.698708,
+        "hold_after_voice_s": -0.6987079999999999,
+        "cut_during_speech": true
+      },
+      {
+        "id": "02",
+        "start": 4,
+        "end": 8.033333,
+        "duration_s": 4.033333000000001,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 7.060125,
+        "hold_after_voice_s": 0.9732080000000005,
+        "cut_during_speech": false
+      },
+      {
+        "id": "03",
+        "start": 8.033333,
+        "end": 12.133333,
+        "duration_s": 4.1,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 11.424437,
+        "hold_after_voice_s": 0.7088960000000011,
+        "cut_during_speech": false
+      },
+      {
+        "id": "04",
+        "start": 12.133333,
+        "end": 16.033333,
+        "duration_s": 3.8999999999999986,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 15.208542,
+        "hold_after_voice_s": 0.8247909999999994,
+        "cut_during_speech": false
+      },
+      {
+        "id": "05",
+        "start": 16.033333,
+        "end": 19.033333,
+        "duration_s": 3,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 18.265146,
+        "hold_after_voice_s": 0.7681869999999975,
+        "cut_during_speech": false
+      },
+      {
+        "id": "06",
+        "start": 19.033333,
+        "end": 24.5,
+        "duration_s": 5.466667000000001,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 23.749,
+        "hold_after_voice_s": 0.7510000000000012,
+        "cut_during_speech": false
+      },
+      {
+        "id": "07",
+        "start": 24.5,
+        "end": 28.5,
+        "duration_s": 4,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 27.977875,
+        "hold_after_voice_s": 0.5221249999999991,
+        "cut_during_speech": false
+      },
+      {
+        "id": "08",
+        "start": 28.5,
+        "end": 32.4,
+        "duration_s": 3.8999999999999986,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 31.863042,
+        "hold_after_voice_s": 0.5369579999999985,
+        "cut_during_speech": false
+      },
+      {
+        "id": "09",
+        "start": 32.4,
+        "end": 35.633333,
+        "duration_s": 3.233333000000002,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 35.049813,
+        "hold_after_voice_s": 0.58352,
+        "cut_during_speech": false
+      },
+      {
+        "id": "10",
+        "start": 35.633333,
+        "end": 41.9,
+        "duration_s": 6.266666999999998,
+        "complexity": null,
+        "concepts": null,
+        "last_voice_end": 41.363687,
+        "hold_after_voice_s": 0.5363129999999998,
+        "cut_during_speech": false
+      }
+    ],
+    "complexity": {
+      "low": {
+        "count": 0,
+        "mean_scene_s": null,
+        "min_hold_after_voice_s": null
+      },
+      "medium": {
+        "count": 0,
+        "mean_scene_s": null,
+        "min_hold_after_voice_s": null
+      },
+      "high": {
+        "count": 0,
+        "mean_scene_s": null,
+        "min_hold_after_voice_s": null
+      }
+    },
+    "concepts": null,
+    "concepts_per_min": null,
+    "concept_windows": [],
+    "missing_scene_ids": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "10"
+    ]
+  },
+  "opening": {
+    "images": [
+      {
+        "status": "đã đo",
+        "frame_s": 0.2,
+        "kind": "opening",
+        "file": "frame-open-start.png",
+        "time_s": 0.2,
+        "start": 0.2,
+        "end": 0.2
+      },
+      {
+        "status": "đã đo",
+        "frame_s": 1,
+        "kind": "opening",
+        "file": "frame-open-mid.png",
+        "time_s": 1,
+        "start": 1,
+        "end": 1
+      },
+      {
+        "status": "đã đo",
+        "frame_s": 2.5,
+        "kind": "opening",
+        "file": "frame-open-end.png",
+        "time_s": 2.5,
+        "start": 2.5,
+        "end": 2.5
+      }
+    ],
+    "status": "đã đo",
+    "scenes": [],
+    "fallback": true
+  },
+  "header": {
+    "image": {
+      "kind": "header",
+      "file": "header-zones.png",
+      "status": "đã đo",
+      "tiles": [
+        {
+          "scene_id": "01",
+          "header": null,
+          "time_s": 2,
+          "row": 1,
+          "col": 1,
+          "frame_s": 2
+        },
+        {
+          "scene_id": "02",
+          "header": null,
+          "time_s": 6.0166665,
+          "row": 1,
+          "col": 2,
+          "frame_s": 6.033333
+        },
+        {
+          "scene_id": "03",
+          "header": null,
+          "time_s": 10.083333,
+          "row": 1,
+          "col": 3,
+          "frame_s": 10.1
+        },
+        {
+          "scene_id": "04",
+          "header": null,
+          "time_s": 14.083333,
+          "row": 1,
+          "col": 4,
+          "frame_s": 14.1
+        },
+        {
+          "scene_id": "05",
+          "header": null,
+          "time_s": 17.533333,
+          "row": 2,
+          "col": 1,
+          "frame_s": 17.533333
+        },
+        {
+          "scene_id": "06",
+          "header": null,
+          "time_s": 21.7666665,
+          "row": 2,
+          "col": 2,
+          "frame_s": 21.766667
+        },
+        {
+          "scene_id": "07",
+          "header": null,
+          "time_s": 26.5,
+          "row": 2,
+          "col": 3,
+          "frame_s": 26.5
+        },
+        {
+          "scene_id": "08",
+          "header": null,
+          "time_s": 30.45,
+          "row": 2,
+          "col": 4,
+          "frame_s": 30.466667
+        },
+        {
+          "scene_id": "09",
+          "header": null,
+          "time_s": 34.0166665,
+          "row": 3,
+          "col": 1,
+          "frame_s": 34.033333
+        },
+        {
+          "scene_id": "10",
+          "header": null,
+          "time_s": 38.7666665,
+          "row": 3,
+          "col": 2,
+          "frame_s": 38.766667
+        }
+      ],
+      "start": 2,
+      "end": 38.766667
+    },
+    "status": "đã đo",
+    "duration_s": 0,
+    "pct": 0,
+    "scene_ids": []
+  },
+  "sync": {
+    "status": "không đo được",
+    "reason": "Chưa khai báo khoảng voice trong assets/scenes.json."
+  },
+  "text_audit": {
+    "status": "đã đo",
+    "scenes": [
+      {
+        "id": "01",
+        "start": 0,
+        "end": 4,
+        "has_plan": false,
+        "text_words": 0,
+        "peaks": {
+          "words": {
+            "count": 0
+          },
+          "groups": {
+            "count": 0
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "02",
+        "start": 4,
+        "end": 8.033333,
+        "has_plan": false,
+        "text_words": 0,
+        "peaks": {
+          "words": {
+            "count": 0
+          },
+          "groups": {
+            "count": 0
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "03",
+        "start": 8.033333,
+        "end": 12.133333,
+        "has_plan": false,
+        "text_words": 4,
+        "peaks": {
+          "words": {
+            "count": 4,
+            "start": 8.033333,
+            "end": 12.133333
+          },
+          "groups": {
+            "count": 2,
+            "start": 8.033333,
+            "end": 12.133333
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "04",
+        "start": 12.133333,
+        "end": 16.033333,
+        "has_plan": false,
+        "text_words": 9,
+        "peaks": {
+          "words": {
+            "count": 9,
+            "start": 12.133333,
+            "end": 16.033333
+          },
+          "groups": {
+            "count": 2,
+            "start": 12.133333,
+            "end": 16.033333
+          }
+        },
+        "max_similarity": 0.3333333333333333,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "05",
+        "start": 16.033333,
+        "end": 19.033333,
+        "has_plan": false,
+        "text_words": 3,
+        "peaks": {
+          "words": {
+            "count": 3,
+            "start": 16.033333,
+            "end": 19.033333
+          },
+          "groups": {
+            "count": 2,
+            "start": 16.033333,
+            "end": 19.033333
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "06",
+        "start": 19.033333,
+        "end": 24.5,
+        "has_plan": false,
+        "text_words": 8,
+        "peaks": {
+          "words": {
+            "count": 8,
+            "start": 19.033333,
+            "end": 24.5
+          },
+          "groups": {
+            "count": 3,
+            "start": 19.033333,
+            "end": 24.5
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "07",
+        "start": 24.5,
+        "end": 28.5,
+        "has_plan": false,
+        "text_words": 5,
+        "peaks": {
+          "words": {
+            "count": 5,
+            "start": 24.5,
+            "end": 28.5
+          },
+          "groups": {
+            "count": 3,
+            "start": 24.5,
+            "end": 28.5
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "08",
+        "start": 28.5,
+        "end": 32.4,
+        "has_plan": false,
+        "text_words": 0,
+        "peaks": {
+          "words": {
+            "count": 0
+          },
+          "groups": {
+            "count": 0
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "09",
+        "start": 32.4,
+        "end": 35.633333,
+        "has_plan": false,
+        "text_words": 0,
+        "peaks": {
+          "words": {
+            "count": 0
+          },
+          "groups": {
+            "count": 0
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      },
+      {
+        "id": "10",
+        "start": 35.633333,
+        "end": 41.9,
+        "has_plan": false,
+        "text_words": 0,
+        "peaks": {
+          "words": {
+            "count": 0
+          },
+          "groups": {
+            "count": 0
+          }
+        },
+        "max_similarity": null,
+        "matches": [],
+        "kinetic": 0,
+        "keyword_count": 0,
+        "keyword_visual_count": 0,
+        "keyword_visual_pct": null,
+        "weak_reasons": []
+      }
+    ],
+    "invalid_fields": [],
+    "missing_text_timing": false,
+    "text_words_total": 29,
+    "text_words_per_min": 41.527446300715994,
+    "text_coverage_pct": 48.846460620525065,
+    "max_similarity": 0.3333333333333333,
+    "verbatim_texts": 0,
+    "keyword_visual_pct": null,
+    "kinetic_per_min": 0,
+    "weak_visual_scenes": [],
+    "voice": {
+      "status": "đã đo",
+      "source": "D:\\Agent Video Studio\\content\\it\\T8-tien-ich-chrome-ai-co-the-doc-len-cuoc-t\\ep01\\assets\\voice\\apply.json"
+    },
+    "invalid_voice_fields": [],
+    "caption_words_total": 122,
+    "caption_coverage_pct": 75.92362768496417,
+    "caption_to_label_ratio": 4.206896551724138,
+    "caption_px": 70,
+    "caption_band_ok": false
+  },
+  "manual_checks": [
+    {
+      "key": "voice_natural",
+      "label": "Giọng tự nhiên, không kéo chữ hoặc nuốt chữ",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Nghe lời đọc và đối chiếu các khoảng lặng trong mục Audio."
+    },
+    {
+      "key": "pronunciation",
+      "label": "Phát âm thuật ngữ",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Nghe các thuật ngữ, đối chiếu apply.json và mục Phát âm Y8."
+    },
+    {
+      "key": "emphasis",
+      "label": "Nhấn mạnh đúng ý",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Nghe lời tại các câu chốt, đối chiếu script.md."
+    },
+    {
+      "key": "header_safe_zone",
+      "label": "Header trong vùng an toàn và không che Cáo, phụ đề hoặc sơ đồ",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu các ô header-zones.png với khung đầy đủ và video."
+    },
+    {
+      "key": "diagram_reveal",
+      "label": "Sơ đồ hiện từng bước đúng lúc lời nhắc",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem video tại các mốc trong bảng đồng bộ lời–hình."
+    },
+    {
+      "key": "diagram_hold",
+      "label": "Sơ đồ phức tạp giữ đủ lâu để quan sát",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem các cảnh và đối chiếu cột Giữ sau lời trong Information Pacing."
+    },
+    {
+      "key": "example",
+      "label": "Có ví dụ cụ thể cho phần khó",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu ví dụ trong script.md với hình trên video."
+    },
+    {
+      "key": "explanation_order",
+      "label": "Thứ tự giải thích logic",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem video theo thứ tự cảnh và đối chiếu script.md."
+    },
+    {
+      "key": "theory_only",
+      "label": "Xác định đoạn đọc lý thuyết thiếu minh hoạ",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "So lời với sự kiện hình ở từng đoạn giải thích."
+    },
+    {
+      "key": "camera_purpose",
+      "label": "Chuyển động camera phục vụ nội dung",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem video và đối chiếu các cặp khung camera hoặc storyboard.json."
+    },
+    {
+      "key": "visual_illustration",
+      "label": "Hình có thật sự minh hoạ nội dung không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu lời giải thích với hình trong từng cảnh."
+    },
+    {
+      "key": "visual_keywords",
+      "label": "Keyword được chọn có đúng trọng tâm không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu keyword trong storyboard.json với ý chính của cảnh."
+    },
+    {
+      "key": "visual_accuracy",
+      "label": "Đối tượng và quan hệ có chính xác về kỹ thuật không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Kiểm tra đối tượng và quan hệ thể hiện trong cảnh."
+    },
+    {
+      "key": "visual_without_captions",
+      "label": "Có hiểu được ý chính qua hình ảnh khi không đọc phụ đề không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem nocaption-board.png và bản picture.mp4 khi tắt tiếng."
+    },
+    {
+      "key": "visual_animation",
+      "label": "Animation có phục vụ việc giải thích không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu từng chuyển động với bước đang được giải thích."
+    },
+    {
+      "key": "visual_observation_time",
+      "label": "Có đủ thời gian quan sát từng bước không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem thời điểm xuất hiện và khoảng giữ của từng trạng thái."
+    },
+    {
+      "key": "visual_text_attachment",
+      "label": "Chữ có gắn trực tiếp vào đối tượng đang minh hoạ không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Đối chiếu vị trí chữ với đối tượng và trường attach_to."
+    },
+    {
+      "key": "visual_text_effect",
+      "label": "Hiệu ứng chữ có gây mất tập trung không",
+      "status": "CHƯA KIỂM",
+      "start": 0,
+      "end": 41.9,
+      "evidence": "Xem các cảnh có kinetic và hiệu ứng chữ khác."
+    }
+  ],
+  "findings": [
+    {
+      "code": "M-01",
+      "kind": "longest_static",
+      "group": "R4",
+      "level": "thông tin",
+      "message": "Đoạn tĩnh dài nhất 1 s theo mẫu chuyển động 10 Hz.",
+      "start": 22.6,
+      "end": 23.6,
+      "images": [
+        "board-02.png"
+      ]
+    },
+    {
+      "code": "M-02",
+      "kind": "long_pause",
+      "group": "Y7",
+      "level": "thông tin",
+      "message": "Im dưới -40 dB trong 0,817 s. Đối chiếu hình trong khoảng này.",
+      "start": 4.698708,
+      "end": 5.516188,
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-03",
+      "kind": "long_pause",
+      "group": "Y7",
+      "level": "thông tin",
+      "message": "Im dưới -40 dB trong 0,985 s. Đối chiếu hình trong khoảng này.",
+      "start": 7.060125,
+      "end": 8.044667,
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-04",
+      "kind": "long_pause",
+      "group": "Y7",
+      "level": "thông tin",
+      "message": "Im dưới -40 dB trong 0,855 s. Đối chiếu hình trong khoảng này.",
+      "start": 15.208542,
+      "end": 16.06325,
+      "images": [
+        "board-02.png"
+      ]
+    },
+    {
+      "code": "M-05",
+      "kind": "caption_fontsize",
+      "group": "Y1",
+      "level": "cảnh báo",
+      "message": "Style Upper trong captions.ass có cỡ 70 px (Fontsize 70, PlayResY 1920). Ngưỡng thử 52–64 px.",
+      "start": 0,
+      "end": 2.61,
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-06",
+      "kind": "caption_band",
+      "group": "Y1",
+      "level": "cảnh báo",
+      "message": "Phụ đề không nằm ở dải dưới (đang là visual chính?) Style Upper, Alignment 8, MarginV 258, tâm y ≈ 328 px. Ngưỡng thử y = 1250–1500 px và Alignment 1, 2 hoặc 3.",
+      "start": 0,
+      "end": 2.61,
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-07",
+      "kind": "caption_fontsize",
+      "group": "Y1",
+      "level": "cảnh báo",
+      "message": "Style Lower trong captions.ass có cỡ 70 px (Fontsize 70, PlayResY 1920). Ngưỡng thử 52–64 px.",
+      "start": 4,
+      "end": 4.71,
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-08",
+      "kind": "camera_difference",
+      "group": "R12",
+      "level": "thông tin",
+      "message": "Storyboard khai push_in. Hiệu RGB trung bình 12,824/255 giữa khung 28,5 s và 32,367 s.",
+      "start": 28.5,
+      "end": 32.366667,
+      "scene_ids": [
+        "08"
+      ],
+      "images": [
+        "camera-08.png"
+      ]
+    },
+    {
+      "code": "M-09",
+      "kind": "cut_during_speech",
+      "group": "Information Pacing",
+      "level": "thông tin",
+      "message": "Tiếng chạy qua cú cắt tại 4 s theo silencedetect, đối chiếu cửa sổ ±0,15 s.",
+      "start": 4,
+      "end": 4,
+      "scene_ids": [
+        "01"
+      ],
+      "images": [
+        "board-01.png"
+      ]
+    },
+    {
+      "code": "M-10",
+      "kind": "simultaneous_text_words",
+      "group": "Visual-first",
+      "level": "cảnh báo",
+      "message": "Cảnh 04 quá nhiều chữ cùng lúc (9 từ, ngưỡng thử 8).",
+      "start": 12.133333,
+      "end": 16.033333,
+      "scene_ids": [
+        "04"
+      ],
+      "images": [
+        "textheavy-04.png"
+      ]
+    },
+    {
+      "code": "M-11",
+      "kind": "caption_layer",
+      "group": "Visual-first",
+      "level": "thông tin",
+      "message": "Phụ đề SRT phủ 75,924% thời lượng với 122 từ. Tỉ lệ từ phụ đề / từ chữ minh hoạ là 4,207.",
+      "start": 0,
+      "end": 41.9,
+      "images": [
+        "board-01.png",
+        "board-02.png",
+        "board-03.png"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "01",
+      "start": 0,
+      "end": 4,
+      "shot": "medium",
+      "movement": "static",
+      "theme": "office",
+      "scene_type": "object_interaction",
+      "active_median": 3,
+      "local_median": 8.743055555555555,
+      "static_pct": 23.076923076923077,
+      "longest_static_s": 0.5,
+      "layout_diff_next": 63.953462577160494,
+      "layout_group": "01",
+      "flags": []
+    },
+    {
+      "id": "02",
+      "start": 4,
+      "end": 8.033333,
+      "shot": "close_up",
+      "movement": "static",
+      "theme": "incident",
+      "scene_type": "cinematic_close_up",
+      "active_median": 9,
+      "local_median": 23.614583333333336,
+      "static_pct": 17.5,
+      "longest_static_s": 0.3,
+      "layout_diff_next": 57.81891396604938,
+      "layout_group": "02",
+      "flags": []
+    },
+    {
+      "id": "03",
+      "start": 8.033333,
+      "end": 12.133333,
+      "shot": "wide",
+      "movement": "static",
+      "theme": "security",
+      "scene_type": "ui_simulation",
+      "active_median": 10,
+      "local_median": 19.93402777777778,
+      "static_pct": 7.5,
+      "longest_static_s": 0.2,
+      "layout_diff_next": 36.39679783950617,
+      "layout_group": "03",
+      "flags": []
+    },
+    {
+      "id": "04",
+      "start": 12.133333,
+      "end": 16.033333,
+      "shot": "close_up",
+      "movement": "static",
+      "theme": "security",
+      "scene_type": "ui_simulation",
+      "active_median": 5,
+      "local_median": 18.40972222222222,
+      "static_pct": 28.94736842105263,
+      "longest_static_s": 0.9,
+      "layout_diff_next": 36.10942322530864,
+      "layout_group": "04",
+      "flags": [
+        "M-10"
+      ]
+    },
+    {
+      "id": "05",
+      "start": 16.033333,
+      "end": 19.033333,
+      "shot": "wide",
+      "movement": "static",
+      "theme": "code",
+      "scene_type": "comparison_scene",
+      "active_median": 4,
+      "local_median": 24.75,
+      "static_pct": 20.689655172413794,
+      "longest_static_s": 0.6,
+      "layout_diff_next": 18.129484953703702,
+      "layout_group": "05",
+      "flags": []
+    },
+    {
+      "id": "06",
+      "start": 19.033333,
+      "end": 24.5,
+      "shot": "medium",
+      "movement": "static",
+      "theme": "code",
+      "scene_type": "process_animation",
+      "active_median": 1,
+      "local_median": 6.701388888888889,
+      "static_pct": 24.528301886792452,
+      "longest_static_s": 1,
+      "layout_diff_next": 55.51007908950617,
+      "layout_group": "06",
+      "flags": []
+    },
+    {
+      "id": "07",
+      "start": 24.5,
+      "end": 28.5,
+      "shot": "wide",
+      "movement": "static",
+      "theme": "security",
+      "scene_type": "ui_simulation",
+      "active_median": 6,
+      "local_median": 17.354166666666668,
+      "static_pct": 0,
+      "longest_static_s": 0,
+      "layout_diff_next": 57.18402777777778,
+      "layout_group": "07",
+      "flags": []
+    },
+    {
+      "id": "08",
+      "start": 28.5,
+      "end": 32.4,
+      "shot": "close_up",
+      "movement": "push_in",
+      "theme": "incident",
+      "scene_type": "cinematic_close_up",
+      "active_median": 1.5,
+      "local_median": 6.763888888888889,
+      "static_pct": 34.21052631578947,
+      "longest_static_s": 0.7,
+      "layout_diff_next": 89.60730131172839,
+      "layout_group": "08",
+      "flags": []
+    },
+    {
+      "id": "09",
+      "start": 32.4,
+      "end": 35.633333,
+      "shot": "wide",
+      "movement": "static",
+      "theme": "office",
+      "scene_type": "object_interaction",
+      "active_median": 6,
+      "local_median": 41.78125,
+      "static_pct": 6.25,
+      "longest_static_s": 0.2,
+      "layout_diff_next": 40.79740547839506,
+      "layout_group": "09",
+      "flags": []
+    },
+    {
+      "id": "10",
+      "start": 35.633333,
+      "end": 41.9,
+      "shot": "medium",
+      "movement": "static",
+      "theme": "office",
+      "scene_type": "object_interaction",
+      "active_median": 4,
+      "local_median": 11.07638888888889,
+      "static_pct": 45.90163934426229,
+      "longest_static_s": 0.9,
+      "layout_diff_next": null,
+      "layout_group": "10",
+      "flags": []
+    }
+  ],
+  "metrics": {
+    "duration_s": 41.9,
+    "scene_count": 10,
+    "mean_scene_s": 4.1899999999999995,
+    "scenes_under_2s": 0,
+    "cuts_per_10s": 2.1479713603818618,
+    "static_pct": 22.727272727272727,
+    "longest_static_s": 1,
+    "layout_count": 10,
+    "max_theme_pct": 32.21957040572792,
+    "longest_theme_run": 2,
+    "warning_count": 4,
+    "lufs_i": -14.4,
+    "tail_s": 0.5363129999999998,
+    "caption_fontsize": 70,
+    "speech_pace_syll_s": 4.18491033160715,
+    "voiced_s": 29.152356999999995,
+    "pause_ratio": 0.3042396897374703,
+    "concepts_per_min": null,
+    "header_pct": 0,
+    "voice_sync_max_s": null,
+    "voice_sync_mean_s": null,
+    "low_scene_count": 0,
+    "low_mean_scene_s": null,
+    "low_min_hold_after_voice_s": null,
+    "medium_scene_count": 0,
+    "medium_mean_scene_s": null,
+    "medium_min_hold_after_voice_s": null,
+    "high_scene_count": 0,
+    "high_mean_scene_s": null,
+    "high_min_hold_after_voice_s": null,
+    "verbatim_texts": 0,
+    "text_words_per_min": 41.527446300715994,
+    "text_coverage_pct": 48.846460620525065,
+    "keyword_visual_pct": null,
+    "caption_coverage_pct": 75.92362768496417,
+    "caption_px": 70
+  },
+  "baseline": null
+}

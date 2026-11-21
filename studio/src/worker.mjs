@@ -23,6 +23,31 @@ const stamp = () => new Date().toLocaleTimeString('vi-VN');
 const say = (m) => console.log(`[${stamp()}] ${m}`);
 const countJobs = (kind, video_id) => get('SELECT COUNT(*) c FROM jobs WHERE kind=? AND video_id=?', kind, video_id).c;
 
+// ---------- QC kết luận "giữ review chờ giám đốc nghe" nhưng không tự escalate (giám đốc chốt 21/11/2026: việc còn lại Claude tự xử lý) ----------
+// Kết luận hợp lệ của QC khi chỉ còn mục CHƯA KIỂM (giọng/nhịp/phát âm cần người nghe) là giữ `review` và đánh cờ QC-CHỜ-NGHE. Nếu QC quên đánh cờ,
+// worker đánh thay từ chính lời kết luận của QC thay vì đẩy việc sang "cần người". QC bị chặn/không chạy được thì KHÔNG phải ca này (vẫn cần người).
+const QC_BLOCKED = /couldn'?t|could not|không (thể|chạy được|xem được)|bị (chặn|từ chối)|chặn quyền|permission|refused|denied/i;
+const QC_LISTEN = /chờ[^.\n]{0,80}nghe|phải (chờ|nghe)|giám đốc nghe|người (nghe|duyệt)|CHƯA KIỂM/i;
+export const qcWaitsForListening = (summary) => {
+  const t = String(summary || '');
+  return QC_LISTEN.test(t) && !QC_BLOCKED.test(t);
+};
+
+/** Video vướng ở sản xuất mà không ai đang xử lý → tự xếp việc gỡ vướng cho Claude (tối đa max_rescues_per_video lần/video; quá số lần thì để giám đốc).
+ *  Cờ QC-CHỜ-NGHE/QC-THIẾT-KẾ là việc của giám đốc nên không bao giờ tự gỡ. Trả về số việc đã xếp. */
+export function autoRescue() {
+  let n = 0;
+  for (const v of all("SELECT id,dept,stage,needs_help,help_reason FROM videos WHERE needs_help=1 AND stage='production'")) {
+    if (!S.rescueState(v).auto) continue;
+    if (get("SELECT 1 FROM jobs WHERE video_id=? AND kind IN ('rescue','produce','qc') AND status IN ('queued','running','waiting_limit')", v.id)) continue;
+    const r = P.enqueueJob({ kind: 'rescue', video_id: v.id, by: 'worker' });
+    if (r.deduped) continue;
+    n++;
+    S.logEvent({ actor: 'worker', dept: v.dept, video_id: v.id, kind: 'job', message: `${v.id} đang vướng → tự xếp việc gỡ vướng #${r.job_id} cho Claude (lần ${countJobs('rescue', v.id)}/${P.getSetting('max_rescues_per_video')})` });
+  }
+  return n;
+}
+
 // ---------- kiểm tra kết quả sau khi Claude chạy xong ----------
 function verify(job) {
   if (job.kind === 'plan') {
@@ -102,6 +127,52 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
     return all("SELECT * FROM jobs WHERE provider=? AND status='queued' AND next_run_at<=? ORDER BY id", provider, now()).find((j) => !locked.has(j.lock_key));
   };
 
+  /** Vị trí của đội mà việc nền này đại diện (để thẻ đội trên dashboard hiện đúng "đang chờ", không để trống hay "đang làm" cũ). */
+  function jobMembers(job) {
+    let teamId = null;
+    let roles = [];
+    if (job.kind === 'plan') {
+      teamId = get('SELECT team_id t FROM videos WHERE topic_id=? ORDER BY id LIMIT 1', job.topic_id)?.t;
+      roles = ['idea', 'script', 'visual'];
+    } else if ((job.kind === 'qc' || job.kind === 'rescue') && job.video_id) {
+      teamId = S.getVideo(job.video_id).team_id;
+      roles = [job.kind];
+    } else if (job.kind === 'scout') {
+      teamId = JSON.parse(job.payload || '{}').team_id;
+      roles = ['scout'];
+    }
+    if (!teamId) return [];
+    return all(`SELECT team_id,role,status,video_id FROM members WHERE team_id=? AND role IN (${roles.map(() => '?').join(',')}) ORDER BY updated_at DESC, id DESC`, teamId, ...roles);
+  }
+  const WAIT_MARK = '⏳ Chờ';
+  /** Việc Claude bị hoãn vì hết limit/không có tài khoản: đánh dấu `blocked` các vị trí đang làm dở (không có vị trí nào đang làm thì lấy vị trí vừa hoạt động gần nhất = chỗ việc dừng). */
+  function markWaiting(job, next) {
+    try {
+      const ms = jobMembers(job);
+      const targets = ms.some((m) => m.status === 'working') ? ms.filter((m) => m.status === 'working') : ms.slice(0, 1);
+      const why = next ? `hồi limit ${job.provider === 'claude' ? 'Claude' : job.provider} lúc ${next.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}` : `tài khoản ${job.provider}`;
+      for (const m of targets) {
+        const task = `${WAIT_MARK} ${why} — việc #${job.id}`;
+        const cur = get('SELECT status,task FROM members WHERE team_id=? AND role=?', m.team_id, m.role);
+        if (cur?.status === 'blocked' && cur.task === task) continue; // đã đánh dấu đúng, khỏi ghi lại (tránh spam nhật ký)
+        S.reportStatus({ team_id: m.team_id, role: m.role, status: 'blocked', task, video_id: m.video_id || job.video_id || null, by: 'worker' });
+      }
+    } catch {
+      /* đội đã giải thể hoặc video không còn */
+    }
+  }
+  /** Việc chạy lại: gỡ dấu chờ do chính worker đặt (để vị trí không kẹt "vướng" khi lần chạy tiếp không đụng tới nó). */
+  function clearWaiting(job) {
+    try {
+      for (const m of jobMembers(job)) {
+        const row = get('SELECT status,task FROM members WHERE team_id=? AND role=?', m.team_id, m.role);
+        if (row?.status === 'blocked' && String(row.task).startsWith(WAIT_MARK)) S.reportStatus({ team_id: m.team_id, role: m.role, status: 'idle', task: '', by: 'worker' });
+      }
+    } catch {
+      /* bỏ qua */
+    }
+  }
+
   function park(job) {
     const next = P.nextAvailableAt(job.provider, { dept: job.dept });
     const reason = next ? 'limit' : 'no_account';
@@ -120,7 +191,7 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
       } catch {
         /* đội đã giải thể */
       }
-    }
+    } else markWaiting(job, next); // việc của Claude: kế hoạch, QC, gỡ vướng, tìm chủ đề (idempotent)
   }
 
   function settle(job, account, res) {
@@ -141,14 +212,23 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
     };
     switch (res.outcome) {
       case 'success': {
-        const problem = verify({ ...job, __summary: res.summary });
+        let problem = verify({ ...job, __summary: res.summary });
         P.markSuccess(account.id);
+        let heldAuto = false;
+        if (problem && job.kind === 'qc' && qcWaitsForListening(res.summary)) {
+          const v = S.getVideo(job.video_id);
+          if (v.stage === 'review' && !v.needs_help) {
+            S.escalate({ video_id: v.id, role: 'qc', reason: `QC-CHỜ-NGHE: ${String(res.summary || '').replace(/\s+/g, ' ').trim().slice(0, 420)}`, by: 'worker' });
+            problem = null;
+            heldAuto = true;
+          }
+        }
         if (problem) {
           P.setJob(job.id, { status: 'needs_human', finished_at: now(), last_error: problem, ...common });
           ev(`Việc #${job.id} chạy xong nhưng chưa đạt: ${problem}`);
         } else {
           P.setJob(job.id, { status: 'succeeded', finished_at: now(), last_error: '', ...common });
-          ev(`Việc #${job.id} XONG (${job.title}) bằng tài khoản ${account.provider}/${account.label}`);
+          ev(`Việc #${job.id} XONG (${job.title}) bằng tài khoản ${account.provider}/${account.label}${heldAuto ? ' — QC giữ review chờ giám đốc nghe, worker đã tự đánh cờ QC-CHỜ-NGHE' : ''}`);
           afterSuccess(fresh);
         }
         break;
@@ -170,9 +250,18 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
         // của tài khoản Claude — tạm dừng, chạy lại (tiếp từ chỗ dở) khi Codex rảnh.
         P.markSuccess(account.id);
         const next = P.nextAvailableAt('codex', { dept: job.dept });
-        const at = next && next.getTime() > Date.now() ? new Date(next.getTime() + 3000) : new Date(Date.now() + Number(process.env.STUDIO_CODEX_WAIT_MS ?? 10 * 60_000));
-        P.setJob(job.id, { status: 'waiting_limit', wait_reason: 'codex', next_run_at: at.toISOString(), last_error: `Chờ Codex: ${res.reason}`, ...common });
-        ev(`Việc #${job.id} tạm dừng chờ Codex (${res.reason}) — tự chạy tiếp lúc ${at.toLocaleString('vi-VN')}`);
+        const known = !!next && next.getTime() > Date.now(); // biết giờ Codex hồi → chờ đúng giờ đó, không phải vòng lặp mù
+        // Codex "dùng được" mà vẫn không làm được (không có giờ hồi để chờ): mỗi lần chạy lại tốn 1 phiên Claude để hỏng lại đúng chỗ cũ.
+        // Quá ngưỡng thì dừng hẳn và đưa giám đốc quyết (duyệt Claude làm thay, hoặc sửa Codex).
+        const waits = known ? Number(fresh.payload.codex_waits || 0) : Number(fresh.payload.codex_waits || 0) + 1;
+        if (!known && waits >= P.codexWaitMax()) {
+          P.setJob(job.id, { status: 'needs_human', finished_at: now(), payload: JSON.stringify({ ...fresh.payload, codex_waits: waits }), last_error: `CODEX-KẸT: Codex dùng được nhưng không làm được ${waits} lần liên tiếp (${res.reason}) — đã dừng tự chạy lại để khỏi đốt hạn mức Claude. Giám đốc: duyệt cho Claude làm thay (cli takeover ${job.id} claude) hoặc sửa Codex rồi chạy lại`, ...common });
+          ev(`Việc #${job.id} DỪNG: Codex kẹt ${waits} lần liên tiếp (${res.reason}) → chờ giám đốc duyệt cho Claude làm thay`);
+          break;
+        }
+        const at = known ? new Date(next.getTime() + 3000) : new Date(Date.now() + Number(process.env.STUDIO_CODEX_WAIT_MS ?? 10 * 60_000));
+        P.setJob(job.id, { status: 'waiting_limit', wait_reason: 'codex', next_run_at: at.toISOString(), payload: JSON.stringify({ ...fresh.payload, codex_waits: waits }), last_error: `Chờ Codex: ${res.reason}`, ...common });
+        ev(`Việc #${job.id} tạm dừng chờ Codex (${res.reason}) — tự chạy tiếp lúc ${at.toLocaleString('vi-VN')}${known ? '' : ` (lần ${waits}/${P.codexWaitMax()} liên tiếp)`}`);
         break;
       }
       case 'needs_help': {
@@ -203,6 +292,7 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
 
   function start(job, account) {
     const resumed = !!job.started_at;
+    if (job.provider === 'claude') clearWaiting(job);
     P.markUsed(account.id);
     P.setJob(job.id, { status: 'running', account_id: account.id, started_at: job.started_at || now(), wait_reason: '', cancel_requested: false, last_error: '' });
     const entry = { job, child: null };
@@ -233,7 +323,22 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
     } catch (e) {
       console.error('[worker] tự tìm chủ đề:', e.message);
     }
+    // Việc còn lại để Claude tự xử lý (giám đốc chốt 21/11/2026): video vướng ở sản xuất → tự xếp gỡ vướng; thành viên treo "đang làm" khi phòng hết việc → về rảnh.
+    try {
+      autoRescue();
+    } catch (e) {
+      console.error('[worker] tự gỡ vướng:', e.message);
+    }
+    try {
+      S.sweepStaleMembers();
+    } catch (e) {
+      console.error('[worker] dọn thành viên treo:', e.message);
+    }
     run("UPDATE jobs SET status='queued', updated_at=? WHERE status='waiting_limit' AND next_run_at<=?", now(), now());
+    // Việc Claude đang chờ hồi limit/tài khoản: giữ dấu "⏳ Chờ" trên thẻ đội (cũng đúng sau khi worker khởi động lại, khi việc đã chờ từ trước).
+    for (const j of all("SELECT * FROM jobs WHERE status='waiting_limit' AND provider='claude' AND wait_reason IN ('limit','no_account') AND kind IN ('plan','qc','rescue','scout')")) {
+      markWaiting(j, j.wait_reason === 'limit' ? new Date(j.next_run_at) : null);
+    }
     for (const [id, r] of running) {
       if (get('SELECT cancel_requested c FROM jobs WHERE id=?', id)?.c && r.child) {
         killTree(r.child);

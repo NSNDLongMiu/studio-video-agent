@@ -1,0 +1,89 @@
+{
+  "version": "audio-2026-11-20.2",
+  "sample_rate": 48000,
+  "layers": {
+    "voice": {"priority": 1, "target_lufs": -16, "target_tolerance_lu": 1, "limiter": {"ceiling_dbfs": -1, "attack_ms": 5, "release_ms": 45, "max_gain_reduction_db": 6}, "normalize_true_peak_dbtp": -1, "edge_floor_db": -55, "edge_ms": 10, "max_edge_jump_db": 30, "edge_jump_window_ms": 2},
+    "music": {"enabled": false, "base_gain_db": -30, "bed_rel_voice_db": -20, "duck_depth_db": -9, "duck_attack_s": 0.08, "duck_release_s": 0.28, "duck_lookahead_s": 0.12, "min_voice_margin_db": 15, "mood": "tech_explainer", "tension_boost_db": 2, "fade_out_s": 1.2},
+    "sfx": {"max_per_min": 8, "min_gap_same_effect_s": 12, "min_gap_any_s": 0.45, "under_voice_max_rel_db": -14},
+    "impact": {"max_per_video": 6, "duck_voice": false}
+  },
+  "final": {"target_lufs": -14, "true_peak_dbtp": -1.5, "true_peak_margin_db": 0.3, "lra_max": 11, "peak_guard_db": 0.12, "soft_knee_db": 1.25, "loudness_tolerance_lu": 0.3, "gain_passes": 3},
+  "analysis": {"voice_floor_db": -48, "window_s": 0.02},
+  "intents": {
+    "ui_appear": {"effect_family": "ui_pop", "layer": "sfx", "priority": 40, "gain_db_by_intensity": {"low": -24, "medium": -20, "high": -16}, "default_dur_s": 0.19},
+    "transition": {"effect_family": "whoosh", "layer": "sfx", "priority": 50, "gain_db_by_intensity": {"low": -25, "medium": -21, "high": -17}, "default_dur_s": 0.33},
+    "alert": {"effect_family": "warning_tone", "layer": "sfx", "priority": 80, "gain_db_by_intensity": {"low": -24, "medium": -19, "high": -15}, "default_dur_s": 0.32},
+    "data_move": {"effect_family": "digital_sweep", "layer": "sfx", "priority": 35, "gain_db_by_intensity": {"low": -25, "medium": -21, "high": -17}, "default_dur_s": 0.28},
+    "highlight": {"effect_family": "accent", "layer": "sfx", "priority": 20, "gain_db_by_intensity": {"low": -26, "medium": -22, "high": -18}, "default_dur_s": 0.25},
+    "interaction": {"effect_family": "click", "layer": "sfx", "priority": 30, "gain_db_by_intensity": {"low": -23, "medium": -19, "high": -15}, "default_dur_s": 0.11},
+    "impact_hook": {"effect_family": "impact_hook", "layer": "impact", "priority": 100, "gain_db_by_intensity": {"low": -22, "medium": -17, "high": -13}, "default_dur_s": 0.43},
+    "impact_reveal": {"effect_family": "impact_reveal", "layer": "impact", "priority": 90, "gain_db_by_intensity": {"low": -23, "medium": -18, "high": -14}, "default_dur_s": 0.49},
+    "impact_risk": {"effect_family": "impact_risk", "layer": "impact", "priority": 95, "gain_db_by_intensity": {"low": -23, "medium": -18, "high": -14}, "default_dur_s": 0.45},
+    "silence": {"effect_family": null, "layer": null, "priority": 110, "gain_db_by_intensity": {}, "default_dur_s": null}
+  },
+  "derive": {
+    "density_window_s": 60,
+    "minimum_render_weight": "medium",
+    "weights": ["low", "medium", "high"],
+    "snap": true,
+    "snap_window_s": 0.2,
+    "cut_intensity": "low",
+    "ignored_transitions": ["match_cut"],
+    "intent_by_voice": {"warning": "impact_risk", "reveal": "impact_reveal"},
+    "voice_intensity": "low",
+    "legacy_intensity": "low",
+    "legacy_intents": {
+      "alert": ["âm báo", "cảnh báo"],
+      "interaction": ["chạm", "nhấp", "bấm", "click"],
+      "transition": ["âm ngắt", "chuyển cảnh", "whoosh"],
+      "data_move": ["dữ liệu", "luồng", "sweep"],
+      "highlight": ["xác nhận", "nhấn", "accent"]
+    }
+  },
+  "sfx_synthesis": {
+    "seed": "cao-van-phong-sfx-v1",
+    "edge_fade_s": 0.008,
+    "filter_order": 2,
+    "families": {
+      "ui_pop": {"peak_dbfs": -3, "noise_hz": [400, 2800], "variants": [[410, 810, 0.9, 0.05, 0.26], [530, 940, 1.5, 0.03, 0.31], [670, 490, 1.1, 0.07, 0.37]]},
+      "whoosh": {"peak_dbfs": -5, "noise_hz": [180, 2400], "variants": [[230, 480, 1.8, 0.76, 0.78], [470, 190, 1.4, 0.92, 0.51], [310, 630, 2.2, 1.0, 0.35]]},
+      "warning_tone": {"peak_dbfs": -4, "noise_hz": [350, 2100], "variants": [[510, 650, 1.2, 0.035, 0.32], [625, 545, 1.7, 0.05, 0.28], [455, 565, 1.4, 0.08, 0.43]]},
+      "digital_sweep": {"peak_dbfs": -4, "noise_hz": [480, 3100], "variants": [[420, 980, 1.65, 0.14, 0.49], [750, 365, 1.2, 0.19, 0.68], [550, 1230, 2.1, 0.10, 0.59]]},
+      "accent": {"peak_dbfs": -4, "noise_hz": [600, 2100], "variants": [[620, 760, 1.7, 0.045, 0.29], [710, 880, 2.1, 0.03, 0.38], [850, 635, 1.35, 0.06, 0.47]]},
+      "click": {"peak_dbfs": -5, "noise_hz": [650, 3700], "variants": [[1230, 370, 2.5, 0.25, 0.57], [950, 540, 3.4, 0.37, 0.30], [1570, 690, 3.0, 0.19, 0.42]]},
+      "impact_hook": {"peak_dbfs": -2, "noise_hz": [120, 1000], "variants": [[153, 59, 1.55, 0.23, 0.35], [190, 68, 1.95, 0.17, 0.37], [129, 51, 1.28, 0.29, 0.46]]},
+      "impact_reveal": {"peak_dbfs": -3, "noise_hz": [190, 1750], "variants": [[178, 302, 1.28, 0.13, 0.50], [212, 405, 1.65, 0.16, 0.61], [239, 327, 1.4, 0.10, 0.42]]},
+      "impact_risk": {"peak_dbfs": -2, "noise_hz": [100, 930], "variants": [[135, 57, 1.62, 0.25, 0.42], [179, 62, 2.12, 0.31, 0.31], [116, 49, 1.32, 0.21, 0.54]]}
+    }
+  },
+  "music_synthesis": {
+    "target_rms_dbfs": -17,
+    "peak_dbfs": -2,
+    "a4_hz": 440,
+    "a4_midi": 69,
+    "filter_order": 2,
+    "voice_notch_hz": [1000, 4000],
+    "lowpass_hz": 950,
+    "fade_in_s": 0.65,
+    "segment_ramp_s": 0.18,
+    "silence_gain_db": -58,
+    "level_gain_offsets_db": {"low": -6, "medium": 0, "high": 3},
+    "level_by_role": {"opening": "medium", "hook": "medium", "body": "low", "outro": "low", "conclusion": "low"},
+    "role_releases": ["outro", "conclusion"],
+    "risk_intents": ["warning", "alert", "impact_risk"]
+  },
+  "music_moods": {
+    "tech_explainer": {
+      "scale": [0, 2, 4, 7, 9], "tonic_midi": 50, "tempo_bpm": 66, "beats_per_chord": 8,
+      "progressions": [[[0, 4, 7, 14], [-3, 0, 4, 9], [-5, 2, 7, 11], [-1, 4, 7, 11]], [[0, 4, 7, 9], [-5, 2, 7, 12], [-3, 4, 9, 12], [-1, 2, 7, 14]]],
+      "pad_crossfade_s": 1.2, "pad_detune_hz": 0.37, "pad_harmonic": 0.17, "bass_gain": 0.32,
+      "texture": "arpeggio", "texture_every_beats": 4, "texture_duration_s": 0.55, "texture_gain": 0.13
+    },
+    "security_tension": {
+      "scale": [0, 2, 3, 5, 7, 8, 10], "tonic_midi": 49, "tempo_bpm": 74, "beats_per_chord": 8,
+      "progressions": [[[0, 3, 7, 14], [-4, 3, 7, 12], [-2, 5, 8, 14], [-5, 2, 7, 10]], [[0, 3, 7, 10], [-5, 2, 7, 15], [-4, 3, 8, 12], [-2, 3, 10, 14]]],
+      "pad_crossfade_s": 1.4, "pad_detune_hz": 0.64, "pad_harmonic": 0.20, "bass_gain": 0.42,
+      "texture": "pulse", "texture_every_beats": 2, "texture_duration_s": 0.34, "texture_gain": 0.22
+    }
+  }
+}

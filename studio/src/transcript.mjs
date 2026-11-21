@@ -8,7 +8,8 @@ const LOG_DIR = path.join(path.dirname(S.DB_PATH), 'logs');
 const TAIL_BYTES = 512 * 1024;
 const HEAD_BYTES = 64 * 1024;
 const MAX_MESSAGES = 200;
-const MAX_TRANSCRIPTS = 3;
+const MAX_PER_FAMILY = 3;
+const MAX_JOB_LOGS = 6;
 const LEGACY_NOTE = 'Log cũ của Claude chỉ có kết quả cuối (chạy trước khi bật stream-json)';
 const EXIT_LINE = /^\[thoát mã (-?\d+|null)(?:, [^\]]*)?\]$/;
 const TOKEN_COUNT = /^\d+(?:,\d{3})*$/;
@@ -269,7 +270,13 @@ function readHead(file) {
 const JOB_KIND = { idea: 'plan', script: 'plan', visual: 'plan', producer: 'produce', qc: 'qc', rescue: 'rescue', scout: 'scout' };
 const AGENT_ROLE = { planner: 'script', 'visual-director': 'visual', 'ideator-a': 'idea', 'ideator-b': 'idea' };
 const CODEX_FILENAME = /^codex-(?:write-(script|storyboard)|ideate)-(.+)\.log$/;
-const newestFirst = (a, b) => Number(b.running) - Number(a.running) || Date.parse(b.updated_at) - Date.parse(a.updated_at);
+
+function compareTranscripts(a, b, prioritizeNonLegacy = false) {
+  const byRunning = Number(b.running) - Number(a.running);
+  const byLegacy = Number(a.legacy) - Number(b.legacy);
+  const priority = prioritizeNonLegacy ? byLegacy || byRunning : byRunning || byLegacy;
+  return priority || Date.parse(b.updated_at) - Date.parse(a.updated_at);
+}
 
 function memberJobs(member) {
   if (!Object.hasOwn(JOB_KIND, member.role)) return [];
@@ -307,7 +314,7 @@ function jobTranscripts(jobs, role) {
     }
   }
   candidates.sort((a, b) => Number(b.running) - Number(a.running) || b.mtimeMs - a.mtimeMs);
-  for (const { job, file, running } of candidates) {
+  for (const { job, file, running } of candidates.slice(0, MAX_JOB_LOGS)) {
     try {
       const tail = readTail(file);
       if (!tail) continue;
@@ -336,7 +343,6 @@ function jobTranscripts(jobs, role) {
           if (root.length) entries.push(transcript({ ...info, id: `${info.id}:make-plan`, title: 'Phiên điều phối (make-plan)' }, tail, root, legacy));
         }
       }
-      if (entries.length >= MAX_TRANSCRIPTS) break;
     } catch {
       // Log đang ghi dở hoặc đã biến mất: vẫn trả hoạt động từ DB.
     }
@@ -435,7 +441,15 @@ export function memberActivity(memberId) {
   const jobs = memberJobs(member);
   const entries = jobTranscripts(jobs, member.role);
   if (JOB_KIND[member.role] === 'plan') entries.push(...codexTranscripts(member, now));
-  const transcripts = entries.sort(newestFirst).slice(0, MAX_TRANSCRIPTS);
+  const families = { claude: [], codex: [] };
+  for (const entry of entries) {
+    const family = entry.source === 'claude-job' ? 'claude' : 'codex';
+    families[family].push(entry);
+  }
+  // Lấy tối đa 3 transcript mỗi nhóm nguồn (tối đa 6), rồi đưa các mục đang chạy lên đầu.
+  const transcripts = Object.values(families)
+    .flatMap((family) => family.sort((a, b) => compareTranscripts(a, b, true)).slice(0, MAX_PER_FAMILY))
+    .sort(compareTranscripts);
   const onlyClaude = ['qc', 'rescue', 'scout'].includes(member.role);
   const note = transcripts.some((item) => item.legacy) ? LEGACY_NOTE
     : onlyClaude && !transcripts.length ? 'Chưa có log cho vị trí này' : null;

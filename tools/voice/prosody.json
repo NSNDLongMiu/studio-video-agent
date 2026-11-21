@@ -1,0 +1,91 @@
+{
+  "version": "1.0.0",
+  "engine": {
+    "name": "VieNeu-TTS v3 Turbo",
+    "capabilities": {
+      "speed": "Hậu kỳ bằng FFmpeg atempo, trong khoảng 0,8–1,2.",
+      "pause": "Chèn phần lặng còn thiếu giữa các đoạn tổng hợp riêng.",
+      "emphasis": "Xấp xỉ bằng tách cụm, nghỉ ngắn và tempo cục bộ. Engine không có tham số nhấn.",
+      "intonation": "Chỉ ghi nhận. Engine tự tạo ngữ điệu từ văn bản và dấu câu.",
+      "emotion": "Chỉ ghi nhận. Ý định đọc định hướng temperature, tempo và khoảng nghỉ. Thẻ cảm xúc trong lời chưa kiểm, mặc định không chèn.",
+      "ssml": "Không hỗ trợ.",
+      "pitch": "Không hỗ trợ điều khiển cao độ."
+    }
+  },
+  "intents": {
+    "hook":        { "emotion": "curious",     "intonation": "rise_fall",     "pace": "brisk",    "tempo_factor": 1.02, "temperature": 0.66, "pause_before_range_s": [0.18, 0.50], "pause_after_range_s": [0.35, 0.75] },
+    "explanation": { "emotion": "neutral",     "intonation": "falling",       "pace": "normal",   "tempo_factor": 1.00, "temperature": 0.60, "pause_before_range_s": [0.25, 0.50], "pause_after_range_s": [0.25, 0.50] },
+    "warning":     { "emotion": "alert",       "intonation": "emphatic_fall", "pace": "measured", "tempo_factor": 0.94, "temperature": 0.65, "pause_before_range_s": [0.65, 1.20], "pause_after_range_s": [0.60, 1.00] },
+    "question":    { "emotion": "curious",     "intonation": "rising",        "pace": "measured", "tempo_factor": 0.95, "temperature": 0.65, "pause_before_range_s": [0.80, 1.30], "pause_after_range_s": [0.50, 0.95] },
+    "reveal":      { "emotion": "surprised",   "intonation": "rise_fall",     "pace": "measured", "tempo_factor": 0.95, "temperature": 0.67, "pause_before_range_s": [0.80, 1.30], "pause_after_range_s": [0.60, 1.00] },
+    "conclusion":  { "emotion": "reassuring",  "intonation": "falling",       "pace": "measured", "tempo_factor": 0.96, "temperature": 0.60, "pause_before_range_s": [0.35, 0.70], "pause_after_range_s": [0.60, 1.00] }
+  },
+  "inference": {
+    "intents": [
+      { "id": "question-mark", "intent": "question", "pattern": "[?？]\\s*[”’\"]?\\s*$" },
+      { "id": "question-opening", "intent": "question", "prefixes": ["vì sao", "tại sao", "làm sao", "thế nào", "ai có thể", "liệu", "có phải", "chuyện gì"] },
+      { "id": "reveal-phrase", "intent": "reveal", "terms": ["hoá ra", "hóa ra", "thực ra", "thật ra", "điều đáng nói", "bí mật", "sự thật", "bất ngờ là"] },
+      { "id": "warning-phrase", "intent": "warning", "terms": ["cảnh báo", "nguy hiểm", "rủi ro", "đừng", "coi chừng", "mất", "lộ", "bị", "bỏ qua phần quyền"] },
+      { "id": "conclusion-phrase", "intent": "conclusion", "prefixes": ["tóm lại", "vì vậy", "nên", "cách", "cuối cùng", "nhớ là"] },
+      { "id": "final-line", "intent": "conclusion", "position": "last" },
+      { "id": "opening-lines", "intent": "hook", "position": "first", "line_count": 4 },
+      { "id": "default-explanation", "intent": "explanation" }
+    ],
+    "transitions": [
+      { "id": "contrast", "prefixes": ["nhưng", "tuy vậy", "tuy nhiên", "ngược lại", "trái lại"] },
+      { "id": "cause_effect", "prefixes": ["vì", "vì thế", "do đó", "nên", "thế nên", "kết quả là"] },
+      { "id": "new_topic", "prefixes": ["chuyển sang", "tiếp theo", "giờ đến", "một chuyện khác"] },
+      { "id": "callback", "prefixes": ["quay lại", "trở lại", "nhớ lại", "lúc nãy"] },
+      { "id": "elaboration", "prefixes": ["cụ thể", "chẳng hạn", "ví dụ", "nói cách khác", "thêm nữa"] }
+    ],
+    "default_transition": "continuous",
+    "major_scene_transition": { "id": "new_topic", "scene_kinds": ["opening", "outro"] },
+    "metadata": {
+      "emotions": ["curious", "neutral", "concerned", "alert", "surprised", "reassuring", "resolute"],
+      "intonations": ["rising", "falling", "flat", "emphatic_fall", "rise_fall"]
+    }
+  },
+  "tempo": {
+    "min": 0.8, "max": 1.2, "base": 1.12,
+    "speed_classes": { "dan": 1.15, "ky_thuat": 1.09 },
+    "pace_factors": { "slow": 0.91, "measured": 0.97, "normal": 1.0, "brisk": 1.04 }
+  },
+  "pause_model": {
+    "weights": { "after": 0.55, "before": 0.45 },
+    "range_position": { "after": 0.31, "before": 0.35 },
+    "transition_s": { "continuous": 0, "contrast": 0.14, "cause_effect": 0.12, "elaboration": 0.06, "new_topic": 0.61, "callback": 0.52 },
+    "major_transition_range_s": [0.80, 1.50],
+    "scene_boundary_s": 0.14,
+    "information": { "words_free": 6, "word_s": 0.007, "number_s": 0.055, "concept_s": 0.025, "cap_s": 0.24 },
+    "opening_share": 0.50,
+    "ending_cap_s": 0.70,
+    "precision_s": 5
+  },
+  "emphasis": {
+    "max_per_line": 2,
+    "min_chunk_chars": 20,
+    "micro_pause_range_s": [0.10, 0.25],
+    "micro_pause_position": 0.45,
+    "local_tempo_factor": 0.95,
+    "clause_break_pattern": "[,;:—–]",
+    "number_pattern": "\\p{N}+(?:[.,]\\p{N}+)*(?:[%‰])?"
+  },
+  "emphasis_sources": ["voice_direction", "semantic_plan.keywords", "pronunciation", "numbers"],
+  "fit": { "max_tempo": 1.2, "epsilon_s": 0.00005 },
+  "audio": {
+    "sample_rate": 48000, "assembly_tolerance_s": 0.04, "assembly_tempo_attempts": 4,
+    "voice": "Hải Đăng",
+    "lead_ms": 60, "tail_ms": 140, "fade_ms": 10, "floor_db": -60,
+    "chunk_lead_ms": 20, "chunk_tail_ms": 30,
+    "min_lead_ms": 40, "min_tail_ms": 120
+  },
+  "metrics": {
+    "speech_floor_db": -40, "min_gap_s": 0.12,
+    "pitch_window_ms": 40, "pitch_hop_ms": 10, "pitch_sample_rate": 8000,
+    "pitch_min_hz": 70, "pitch_max_hz": 450, "pitch_min_correlation": 0.62,
+    "pitch_tail_fraction": 0.30, "pitch_min_frames": 5, "pitch_flat_semitones": 0.75,
+    "pause_histogram_edges_s": [0, 0.25, 0.50, 0.80, 1, 1.30, 1.50, 2],
+    "comparison_min_lines": 2,
+    "comparison_thresholds": { "syllables_per_s": 0.35, "f0_range_semitones": 1, "f0_delta_semitones": 1, "relative_rms_db": 2 }
+  }
+}

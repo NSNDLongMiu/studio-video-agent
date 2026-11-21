@@ -14,7 +14,7 @@ import os from 'node:os';
 import path from 'node:path';
 import * as S from './db.mjs';
 import * as P from './pool.mjs';
-import { findCodex, accountEnv, execProcess, writeLogMeta } from './runners.mjs';
+import { findCodex, accountEnv, execProcess, writeLogMeta, callOutcome } from './runners.mjs';
 import { classifyFailure } from './limits.mjs';
 
 const MIN = 60_000;
@@ -69,6 +69,7 @@ ${fs.readFileSync(promptPath, 'utf8')}`; // dòng đánh dấu cho Văn phòng 2
   });
   const cx = findCodex();
   const args = [...cx.pre, 'exec', '--cd', scratch, '--sandbox', 'read-only', '--skip-git-repo-check', '-'];
+  const t0 = Date.now();
   const res = await execProcess({
     cmd: cx.cmd,
     args,
@@ -80,6 +81,7 @@ ${fs.readFileSync(promptPath, 'utf8')}`; // dòng đánh dấu cho Văn phòng 2
     shell: cx.shell,
     label: `codex-ideate ${role} · tài khoản ${account.label}`,
   });
+  S.recordCall({ provider: 'codex', mode: `ideate-${role}`, dept: process.env.STUDIO_DEPT || null, job_id: Number(process.env.STUDIO_JOB_ID) || null, started_ms: t0, outcome: callOutcome(res) });
 
   if (res.timedOut) {
     console.error(`FAILED: Codex quá 5 phút nên bị dừng (${role}).`);

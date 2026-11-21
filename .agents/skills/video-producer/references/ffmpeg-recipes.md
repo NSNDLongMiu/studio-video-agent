@@ -31,9 +31,15 @@ subtitles=captions.srt:force_style='FontName=Segoe UI,Bold=1,FontSize=9,Outline=
 
 Sai thường gặp: đặt `FontSize=60`/`MarginV=400` → chữ khổng lồ hoặc văng ngoài khung và **ffmpeg không báo lỗi**. Chạy lệnh trong thư mục chứa `.srt` (đường dẫn tương đối). Muốn kiểm soát pixel tuyệt đối: viết trực tiếp file `.ass` (PlayResX=1080, PlayResY=1920) rồi dùng `ass=captions.ass`.
 
-## 4. Chuẩn hoá âm lượng  ✅ đã kiểm
-`-af loudnorm=I=-14:TP=-1.5:LRA=11`
-(Hiện KHÔNG dùng nhạc nền — giám đốc chốt 18/11/2026; công thức giữ để tham khảo.) Trộn nhạc nền + lời: `[0:a]volume=1[v];[1:a]volume=0.2[m];[v][m]amix=inputs=2:duration=first:dropout_transition=0,loudnorm=I=-14:TP=-1.5:LRA=11` (⚠ chưa kiểm — thử rồi xem `qc-video`).
+## 4. Trộn và chuẩn hoá âm thanh
+Chuẩn hoá theo cấu hình của mixer.
+Dùng Sound Cue Sheet từ `tools/audio/cuesheet.py build` và trộn bằng `tools/audio/mix.py` theo `tools/audio/README.md`. Mux `assets/audio/mix.wav`; giữ bốn stem trong `assets/audio/stems/`. Nhạc mặc định tắt theo `layers.music.enabled` trong `tools/audio/sound-design.json`. Chỉ dùng nhạc tự tổng hợp bằng `tools/audio/music_synth.py` sau khi giám đốc nghe và bật. Luôn ducking dưới giọng, không để nhạc che lời. Cấm nhạc bên ngoài.
+
+Khi bản dựng đã có hình và phụ đề, dùng mux riêng để giữ mức của mixer. Đặt bản trung gian trong `assets/_scratch/` và dùng đường dẫn đầu ra khác đầu vào.
+
+```powershell
+ffmpeg -i "$pictureWithCaptions" -i "$mixWav" -map 0:v:0 -map 1:a:0 -c:v copy -c:a aac -b:a 160k -ar 48000 -movflags +faststart "$finalMp4"
+```
 
 ## 5. Nền màu / thẻ chữ không cần nguyên liệu  ✅ đã kiểm
 ```
@@ -54,9 +60,9 @@ node tools/fox/narrate.mjs --audio vo.wav --timeline timeline.json --out assets/
 ```
 Bước 2 — ghép (chạy trong thư mục chứa `captions.srt`, `title.txt` UTF-8):
 ```
-ffmpeg -y -f lavfi -i "color=c=0x1b2a49:s=1080x1920:r=30:d=<thời lượng>" -i assets/cao.mov -i vo.wav \
+ffmpeg -y -f lavfi -i "color=c=0x1b2a49:s=1080x1920:r=30:d=<thời lượng>" -i assets/cao.mov -i assets/audio/mix.wav \
  -filter_complex "[0:v]drawtext=fontfile='C\:/Windows/Fonts/segoeuib.ttf':textfile=title.txt:fontcolor=white:fontsize=96:x=(w-text_w)/2:y=300,subtitles=captions.srt:force_style='FontName=Segoe UI,Bold=1,FontSize=9,Outline=1,Shadow=0,Alignment=2,MarginV=190,MarginL=14,MarginR=14'[bg];[1:v]format=rgba[m];[bg][m]overlay=x=(W-w)/2:y=H-h-420:format=auto,format=yuv420p[v]" \
- -map "[v]" -map 2:a -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -r 30 -c:a aac -b:a 160k -ar 48000 -movflags +faststart -shortest final/<id>_9x16.mp4
+ -map "[v]" -map 2:a -c:v libx264 -preset medium -crf 20 -pix_fmt yuv420p -r 30 -c:a aac -b:a 160k -ar 48000 -movflags +faststart -shortest final/<id>_9x16.mp4
 ```
 **Bố cục đã đo (khung 1080×1920, Cáo cao 760px):**
 | Vùng | y (từ trên xuống) | Ghi chú |

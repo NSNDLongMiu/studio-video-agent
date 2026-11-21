@@ -1,0 +1,20 @@
+{
+  "version": "R-2026-11-20",
+  "frame": { "width": 1080, "height": 1920, "fps": 30, "safe_bbox": [90, 250, 990, 1500] },
+  "opening": {
+    "min_s": 1.0,
+    "max_s": 8.0,
+    "target_s": [5.0, 8.0],
+    "title_px_min": 84,
+    "voice_allowed": true,
+    "voice_start_min_s": 0.6,
+    "voice_start_max_s": 3.0,
+    "phases": ["visual_hook", "conflict", "topic_reveal"],
+    "styles": ["question", "hypothetical", "warning", "incident", "surprise"]
+  },
+  "camera": { "max_zoom": 1.3, "keep_in_frame": true },
+  "scene_kinds": [
+    "ui_simulation", "data_flow", "before_after", "problem_cause_consequence",
+    "detail_focus", "step_by_step", "character_explanation", "animated_diagram"
+  ]
+}

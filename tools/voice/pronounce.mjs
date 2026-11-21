@@ -273,7 +273,7 @@ function initExtra(args) {
   if (new Set(terms.map(key)).size !== terms.length) throw new Error('Trùng thuật ngữ trong --term.');
 
   const dictionary = {
-    _readme: 'Từ điển riêng của video. Sửa tts thành cách đọc đề xuất và chỉ đặt verified thành true sau khi giám đốc nghe và xác nhận.',
+    _readme: 'Từ điển riêng của video. Giữ tts là chữ tiếng Anh gốc (không phiên âm kiểu Việt); chỉ sửa tts khi python tools/voice/phonemes.py báo lỗi (dùng chữ đánh vần tiếng Anh) và chỉ đặt verified thành true sau khi giám đốc nghe và xác nhận.',
     ignore: [],
     entries: terms.map((term) => ({
       term,

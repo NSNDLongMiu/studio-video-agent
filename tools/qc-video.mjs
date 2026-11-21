@@ -1,17 +1,22 @@
-// QC tự động cho video dọc: node tools/qc-video.mjs <file.mp4> [--min 8] [--max 60]
+// QC tự động cho video dọc: node tools/qc-video.mjs <file.mp4> [--min 8] [--max 60] [--scenes <tệp.json>] [--no-motion]
 // Kiểm: 9:16, ≥1080x1920, H.264/yuv420p, AAC có tiếng, fps 24-60, thời lượng, dung lượng.
 // Thoát mã 0 = đạt, 1 = có lỗi (FAIL). Cảnh báo (WARN) không làm rớt.
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
+import { measureVideo } from './scene-metrics.mjs';
+import qc from './qc-thresholds.json' with { type: 'json' };
+
+const loudness = qc.final_audio;
 
 const args = process.argv.slice(2);
-const file = args.find((a) => !a.startsWith('--'));
+const scenesIndex = args.indexOf('--scenes');
+const file = args.find((arg, i) => !arg.startsWith('--') && args[i - 1] !== '--scenes');
 const num = (name, def) => {
   const i = args.indexOf(name);
   return i >= 0 ? Number(args[i + 1]) : def;
 };
 if (!file) {
-  console.error('Cú pháp: node tools/qc-video.mjs <file.mp4> [--min 8] [--max 60]');
+  console.error('Cú pháp: node tools/qc-video.mjs <file.mp4> [--min 8] [--max 60] [--scenes <tệp.json>] [--no-motion]');
   process.exit(2);
 }
 const MIN = num('--min', 8);
@@ -47,7 +52,7 @@ else {
   info.fps = +fps.toFixed(2);
   if (fps < 24 || fps > 60.5) fails.push(`FPS ${fps.toFixed(1)} ngoài khoảng 24-60`);
 }
-if (!a) fails.push('Không có luồng âm thanh (cần có, kể cả nhạc nền)');
+if (!a) fails.push('Không có luồng âm thanh (cần có luồng giọng đọc hoặc bản trộn âm thanh)');
 else {
   if (a.codec_name !== 'aac') fails.push(`Codec audio là ${a.codec_name}, cần aac`);
   const vd = spawnSync('ffmpeg', ['-hide_banner', '-nostats', '-i', file, '-vn', '-af', 'volumedetect', '-f', 'null', '-'], { encoding: 'utf8' });
@@ -74,13 +79,24 @@ else {
       // Không có số đo hợp lệ thì giữ các kiểm tra hiện có.
     }
   }
-  if (info.lufs_i < -16 || info.lufs_i > -12) warns.push(`Loudness ${info.lufs_i} LUFS ngoài khoảng -16…-12 — nên chuẩn hoá về ~ -14 LUFS`);
+  if (info.lufs_i < loudness.lufs_min || info.lufs_i > loudness.lufs_max) warns.push(`Loudness ${info.lufs_i} LUFS ngoài khoảng ${loudness.lufs_min}…${loudness.lufs_max} — nên chuẩn hoá về ~ ${loudness.target_lufs} LUFS`);
   if (info.true_peak_dbtp > 0) fails.push(`True peak ${info.true_peak_dbtp} dBTP > 0 dBTP — vỡ tiếng`);
-  else if (info.true_peak_dbtp > -1.5) warns.push(`True peak ${info.true_peak_dbtp} dBTP > -1.5 dBTP`);
+  else if (info.true_peak_dbtp > loudness.true_peak_max_dbtp) warns.push(`True peak ${info.true_peak_dbtp} dBTP > ${loudness.true_peak_max_dbtp} dBTP`);
 }
 if (dur < MIN) fails.push(`Dài ${dur.toFixed(1)}s < tối thiểu ${MIN}s`);
 if (dur > MAX) fails.push(`Dài ${dur.toFixed(1)}s > tối đa ${MAX}s`);
 if (size > 250 * 1048576) fails.push(`Nặng ${info.size_mb}MB (> 250MB)`);
+
+if (!args.includes('--no-motion')) {
+  let scenesFile;
+  if (scenesIndex >= 0) {
+    const arg = args[scenesIndex + 1] ?? '';
+    scenesFile = arg.startsWith('--') ? '' : arg;
+  }
+  const measured = measureVideo(file, scenesFile);
+  Object.assign(info, measured.info);
+  warns.push(...measured.warns);
+}
 
 const pass = fails.length === 0;
 console.log(JSON.stringify({ file, pass, info, fails, warns }, null, 2));

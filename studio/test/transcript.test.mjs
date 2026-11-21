@@ -243,7 +243,8 @@ test('Kế hoạch tách agent theo vai và nối log Codex qua sidecar hoặc t
     ['codex-write', false, 'Storyboard qua mã việc'], ['claude-job', false, 'Tin từ visual-director'], ['claude-job', false, 'Điều phối'],
   ]);
   assert.deepEqual(activity(topic, 'idea').transcripts.map(({ source, running, messages }) => [source, running, messages[0].text]), [
-    ['codex-ideate', false, 'Ý tưởng từ log cũ'], ['claude-job', false, 'Tin từ ideator-a'], ['claude-job', false, 'Tin từ ideator-b'],
+    ['codex-ideate', false, 'Ý tưởng từ log cũ'], ['claude-job', false, 'Tin từ ideator-a'],
+    ['claude-job', false, 'Tin từ ideator-b'], ['claude-job', false, 'Điều phối'],
   ]);
   assert.equal(activity(other, 'script').transcripts.some(({ id }) => id === 'codex-write-script-vong-hai'), false);
 });
@@ -254,12 +255,53 @@ test('Phiên điều phối đang chạy được chọn trước các log riên
   const plan = enqueue('plan', { topic_id: topic.topic_id }, ndjson(reply('Điều phối đang chạy')), {
     status: 'running', mtimeMs: now - 120_000,
   });
-  for (let index = 1; index <= 3; index++) {
+  for (let index = 1; index <= 4; index++) {
     const file = writeLog(path.join(logs, `codex-write-script-thu-tu-${index}.log`), codexReply(`Bản ${index}`), now - 100_000 - 1000 * index);
     assert.equal(writeLogMeta(file, { role: 'script', topic_id: topic.topic_id }), true);
   }
   assert.deepEqual(activity(topic, 'script').transcripts.map(({ id }) => id), [
-    `job-${plan.id}:make-plan`, 'codex-write-script-thu-tu-1', 'codex-write-script-thu-tu-2',
+    `job-${plan.id}:make-plan`, 'codex-write-script-thu-tu-1', 'codex-write-script-thu-tu-2', 'codex-write-script-thu-tu-3',
+  ]);
+});
+
+test('Kịch bản giữ log Codex và ưu tiên log có luồng tin trong sáu log việc gần nhất', () => {
+  const [topic] = assignment('plan-legacy');
+  const time = Date.now() - 300_000;
+  const targets = { topic_id: topic.topic_id };
+  enqueue('plan', targets, ndjson(reply('Log việc thứ bảy')), { mtimeMs: time });
+  const streamed = enqueue('plan', targets, ndjson(reply('Điều phối có luồng tin')), { mtimeMs: time + 1000 });
+  const legacy = [];
+  for (let index = 2; index <= 6; index++) {
+    legacy.push(enqueue('plan', targets, JSON.stringify({ result: `Điều phối cũ ${index}` }), { mtimeMs: time + index * 1000 }));
+  }
+  for (const index of [4, 5]) {
+    const file = writeLog(path.join(logs, `codex-write-script-moi-${index}.log`), codexReply(`Bản ${index}`), time + index * 1000);
+    assert.equal(writeLogMeta(file, { role: 'script', topic_id: topic.topic_id }), true);
+  }
+
+  const { transcripts } = activity(topic, 'script');
+  assert.deepEqual(transcripts.map(({ id, source, legacy }) => [id, source, legacy]), [
+    ['codex-write-script-moi-5', 'codex-write', false],
+    ['codex-write-script-moi-4', 'codex-write', false],
+    [`job-${streamed.id}:make-plan`, 'claude-job', false],
+    [`job-${legacy.at(-1).id}:make-plan`, 'claude-job', true],
+    [`job-${legacy.at(-2).id}:make-plan`, 'claude-job', true],
+  ]);
+});
+
+test('Phiên điều phối cũ đang chạy đứng trước các log đã xong', () => {
+  const [topic] = assignment('plan-running-legacy');
+  const time = Date.now() - 300_000;
+  const targets = { topic_id: topic.topic_id };
+  const completed = enqueue('plan', targets, ndjson(reply('Điều phối đã xong')), { mtimeMs: time + 1000 });
+  const running = enqueue('plan', targets, '{"result":"Điều phối cũ đang chạy"}', { status: 'running', mtimeMs: time });
+  const file = writeLog(path.join(logs, 'codex-write-script-da-xong.log'), codexReply('Kịch bản đã xong'), time + 2000);
+  assert.equal(writeLogMeta(file, { role: 'script', topic_id: topic.topic_id }), true);
+
+  assert.deepEqual(activity(topic, 'script').transcripts.map(({ id, running, legacy }) => [id, running, legacy]), [
+    [`job-${running.id}:make-plan`, true, true],
+    ['codex-write-script-da-xong', false, false],
+    [`job-${completed.id}:make-plan`, false, false],
   ]);
 });
 

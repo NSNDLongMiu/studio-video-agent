@@ -20,7 +20,7 @@ Giám đốc (bạn)
 3. Mở Claude Code ở thư mục này. Lần đầu nó hỏi cho phép MCP `studio` — đồng ý.
 4. **Mở phòng ban** bằng nút trên dashboard (hoặc nói với Claude: "mở phòng Thể thao, chỉ tiêu 2 video/ngày, 1 đội").
 5. **Giao chủ đề**: `/new-topic sport | 3 sai lầm khi chạy bộ | giọng vui, 30 giây | số-tập=2`
-   → đội nhận việc → bộ core: Ý tưởng (Claude + Codex) → Kịch bản → Đạo diễn hình ảnh (Codex làm, Claude duyệt) (`content/sport/T1-…/plan.md`).
+   → đội nhận việc → bộ core, ba agent Claude (trưởng nhóm) / Codex / Gemini: Ý tưởng (cả ba, Claude chốt) → Kịch bản (Claude viết, Codex cùng viết, Gemini kiểm chứng sự thật, Claude chốt) → Đạo diễn hình ảnh (Codex làm storyboard, Gemini sinh ảnh nền/đạo cụ, Claude duyệt) (`content/sport/T1-…/plan.md`).
 6. Bạn đọc kế hoạch → `/produce SPORT-T1-E01 SPORT-T1-E02` → Codex dựng, Claude QC.
 
 ## Lệnh (trong Claude Code)
@@ -37,11 +37,11 @@ Giám đốc (bạn)
 Terminal: `node studio/src/cli.mjs status | accounts … | jobs [cancel|retry|log <id>] | enqueue … | approve <id> | reject <id>`.
 
 ## Kiểm soát
-- **Dashboard** (tự làm mới 3 giây): từng phòng → đội → từng người (Claude/Codex) đang làm gì, bao lâu chưa cập nhật (⚠ nếu im lặng > 30 phút), video theo giai đoạn, nhật ký, và khung **"Cần giám đốc chú ý"** (đề xuất chờ duyệt có nút Duyệt/Từ chối, video vướng, thiếu năng lực).
+- **Dashboard** (giao diện v2 từ 21/11/2026: 4 tab **Hôm nay** — việc chờ bạn, chủ đề chờ duyệt dạng thẻ có điểm /30, video sẵn sàng đăng —, **Phòng ban**, **Hệ thống** — tài khoản, hàng đợi, Văn phòng 2D —, **Nhật ký**; sáng/tối tự động hoặc bấm nút đổi, `?theme=light|dark` cho lần xem; làm mới 3 giây): từng phòng → đội → từng người (Claude/Codex) đang làm gì, bao lâu chưa cập nhật (⚠ nếu im lặng > 30 phút), video theo giai đoạn, nhật ký, và khung **"Cần giám đốc chú ý"** (đề xuất chờ duyệt có nút Duyệt/Từ chối, video vướng, thiếu năng lực).
 - **Phân quyền thật sự:** MCP `studio` có 2 vai. Codex và các subagent chạy vai `agent` — *không tồn tại* công cụ duyệt/mở-đóng phòng/đặt chỉ tiêu với họ. Phiên Claude của bạn có các công cụ đó, và Claude Code hỏi xác nhận trước khi chạy chúng. Dashboard chỉ nghe ở `127.0.0.1`, chặn Host/Origin lạ.
 - **Tự động & kiểm tra bất kỳ lúc nào:** dashboard có khung **Tài khoản** (còn dùng được / hết limit đến HH:mm / lỗi đăng nhập), **Hàng đợi việc nền** (đang chạy / chờ hồi limit tự chạy lại lúc nào / cần người), và **worker** còn sống không. `status` trong terminal cho cùng thông tin.
 - **Văn phòng 2D** (`npm run office --prefix studio` hoặc nút 🏢 trên dashboard): thấy các agent Claude/Codex như đang ngồi trong văn phòng, không tốn token. Nhóm theo dự án chứ không theo phòng ban (phần đó xem ở dashboard). Hiện mọi dự án trên máy — xem mục Riêng tư trong `docs/office.md`.
-- **Hạn mức:** đội không nhận quá `capacity_per_day` video/ngày; muốn thêm phải qua đề xuất → bạn duyệt.
+- **Hạn mức:** `capacity_per_day` (video/ngày của đội) chỉ giới hạn việc **tự động** (đội tự tìm chủ đề, cảnh báo thiếu năng lực). Chủ đề do bạn yêu cầu hoặc bạn duyệt **không bị chặn**: vượt suất thì hệ thống ghi rõ "VƯỢT SUẤT" trong nhật ký. Muốn tăng năng lực thường xuyên thì qua đề xuất thêm đội → bạn duyệt.
 - Đóng phòng bị từ chối nếu còn video đang làm (trừ khi bạn chọn "huỷ và đóng").
 
 ## Cấu trúc
@@ -64,4 +64,4 @@ docs/                          checklist, tài khoản & limit, chuẩn nền t�
 ```
 
 ## Việc bạn cần quyết (đang để trống có chủ ý)
-Xem `docs/asset-sources.md`: giọng đọc (TTS), kho ảnh/clip, nhạc nền, ảnh AI, đăng bài tự động. Chưa có thì xưởng làm video chữ động/infographic + nhạc/phụ đề từ `library/`.
+Xem `docs/asset-sources.md` về nguồn giọng, hình và SFX. Dùng Voice Director, Sound Cue Sheet và QC Audio / Visual / Narrative theo R24–R28 trong `docs/chat-luong-xem.md`. nhạc mặc định tắt theo `layers.music.enabled` trong `tools/audio/sound-design.json`. Chỉ dùng nhạc tự tổng hợp bằng `tools/audio/music_synth.py` sau khi giám đốc nghe và bật. Luôn ducking dưới giọng, không để nhạc che lời. Cấm nhạc bên ngoài.

@@ -14,17 +14,38 @@ export const DB_PATH = process.env.STUDIO_DB || path.join(ROOT, 'studio', 'data'
 export const DEFAULT_TEAM_CAPACITY = 2; // video/ngày của 1 đội mới
 export const STALE_MINUTES = 30; // "đang làm" mà không cập nhật quá lâu => nghi treo
 
+// ---------- ai xử lý cờ vướng (giám đốc chốt 21/11/2026: việc còn lại để Claude tự xử lý triệt để) ----------
+/** Cờ vướng mang tiền tố này là việc của GIÁM ĐỐC: QC-CHỜ-NGHE (chỉ người nghe/xem mới duyệt ready) và QC-THIẾT-KẾ (giám đốc quyết chấp nhận hay làm lại). Claude không tự gỡ. */
+export const HELP_DIRECTOR_PREFIXES = ['QC-THIẾT-KẾ', 'QC-CHỜ-NGHE'];
+export const helpOwner = (reason) => (HELP_DIRECTOR_PREFIXES.some((p) => String(reason || '').startsWith(p)) ? 'director' : 'claude');
+const settingNum = (key, def) => {
+  const n = Number(get('SELECT value FROM settings WHERE key=?', key)?.value);
+  return Number.isFinite(n) && n > 0 ? n : def;
+};
+/** Video đang vướng này có được Claude tự gỡ (việc `gỡ vướng` do worker tự xếp) không? Chỉ khi: lý do không thuộc giám đốc, video đang ở sản xuất
+ *  (nơi Codex kẹt và Claude gỡ được), và chưa hết số lần gỡ vướng tối đa mỗi video. `video` cần id, stage, needs_help, help_reason. */
+export function rescueState(video) {
+  if (!video?.needs_help) return { auto: false, why: 'không vướng' };
+  if (helpOwner(video.help_reason) === 'director') return { auto: false, why: 'director' };
+  if (video.stage !== 'production') return { auto: false, why: `video đang ở "${video.stage}", Claude chỉ tự gỡ vướng ở sản xuất` };
+  const used = get("SELECT COUNT(*) c FROM jobs WHERE kind='rescue' AND video_id=?", video.id).c;
+  const max = settingNum('max_rescues_per_video', 4);
+  if (used >= max) return { auto: false, why: `đã gỡ vướng ${used}/${max} lần mà vẫn vướng` };
+  return { auto: true, why: '' };
+}
+const EVENT_MESSAGE_LIMIT = 1000;
+
 // Biên chế chuẩn của 1 đội. "on_call" = trực hỗ trợ, chỉ tính là đang làm khi được gọi ra.
 /** BỘ CORE của mỗi đội (giám đốc duyệt 18/11/2026). Dashboard/Văn phòng 2D chỉ hiện các vị trí này.
  *  'scout' (Tìm chủ đề) chỉ hiện/hoạt động khi phòng bật tự tìm chủ đề (departments.auto_topics). */
 export const ROSTER = [
-  { role: 'idea', label: 'Ý tưởng', engine: 'claude', on_call: 0, duty: 'Claude và Codex phản biện ý tưởng để Claude chốt concept mở bằng tình huống gợi tò mò theo Storytelling–Problem–Explanation–Solution.' },
-  { role: 'script', label: 'Kịch bản', engine: 'codex', on_call: 0, duty: 'Codex viết concept, plan và script có tình huống mở, kết quay lại vấn đề, bảng thuật ngữ và ngân sách thời lượng để Claude review và duyệt.' },
-  { role: 'visual', label: 'Đạo diễn hình ảnh', engine: 'codex', on_call: 0, duty: 'Codex viết storyboard với nền theo ngữ cảnh, chữ lấy từ kịch bản và Cáo cỡ nhỏ chỉ ở mở, giữa và kết để Claude duyệt APPROVED.' },
-  { role: 'producer', label: 'Sản xuất', engine: 'codex', on_call: 0, duty: 'Codex dựng video, dùng từ điển để chuẩn hoá phát âm và chốt tốc độ cùng khoảng nghỉ trước khi tổng hợp giọng, nếu kẹt thì escalate.' },
-  { role: 'qc', label: 'QC', engine: 'claude', on_call: 0, duty: 'Claude kiểm ba trục kỹ thuật, tuân thủ và trải nghiệm cùng tám nhóm yêu cầu của giám đốc, chuyển ready nếu đạt, gửi sản xuất lại nếu lỗi dựng hoặc báo giám đốc và giữ review nếu lỗi thiết kế.' },
+  { role: 'idea', label: 'Ý tưởng', engine: 'claude', on_call: 0, duty: 'Claude, Codex và Gemini mỗi bên đề xuất concept độc lập rồi phản biện chéo để Claude chốt concept mở bằng tình huống gợi tò mò theo Storytelling–Problem–Explanation–Solution.' },
+  { role: 'script', label: 'Kịch bản', engine: 'claude', on_call: 0, duty: 'Claude lên plan và viết concept, plan, script có tình huống mở, kết quay lại vấn đề, bảng thuật ngữ, ngân sách thời lượng, dự kiến nhịp và voice_direction; Codex cùng viết phần lời kỹ thuật; Gemini kiểm chứng sự thật và nguồn bằng tìm kiếm web; Claude chốt.' },
+  { role: 'visual', label: 'Đạo diễn hình ảnh', engine: 'codex', on_call: 0, duty: 'Codex viết storyboard với nền theo ngữ cảnh, scene_kind, sound_cues, opening ba pha và chữ lấy từ kịch bản và Cáo cỡ nhỏ chỉ ở mở, giữa và kết; Gemini sinh ảnh nền và đạo cụ cho từng cảnh theo brief; Claude duyệt APPROVED và kiểm ảnh (chữ lạ, logo, tỉ lệ).' },
+  { role: 'producer', label: 'Sản xuất', engine: 'codex', on_call: 0, duty: 'Codex dựng video, dùng từ điển để chuẩn hoá phát âm và Voice Director trước khi tổng hợp giọng, lập Sound Cue Sheet và trộn bốn lớp âm thanh, nếu kẹt thì escalate.' },
+  { role: 'qc', label: 'QC', engine: 'claude', on_call: 0, duty: 'Gemini xem trước khung hình và báo chỗ nghi ngờ; Claude kiểm ba trục kỹ thuật, tuân thủ và trải nghiệm cùng tám nhóm yêu cầu của giám đốc, rà Audio / Visual / Narrative và ghi CHƯA KIỂM cho mục cần người duyệt, chuyển ready nếu đạt, gửi sản xuất lại nếu lỗi dựng hoặc báo giám đốc và giữ review nếu lỗi thiết kế.' },
   { role: 'rescue', label: 'Gỡ vướng', engine: 'claude', on_call: 0, duty: 'Claude chẩn đoán và gỡ khi Sản xuất kẹt (tối đa 4 lần/video), vượt ngưỡng báo giám đốc' },
-  { role: 'scout', label: 'Tìm chủ đề', engine: 'claude', on_call: 1, duty: 'Chỉ khi phòng bật tự tìm chủ đề: tìm chủ đề trong chủ đề chung của phòng, kèm nguồn + lý do, ĐỀ XUẤT chờ giám đốc duyệt' },
+  { role: 'scout', label: 'Tìm chủ đề', engine: 'claude', on_call: 1, duty: 'Chỉ khi phòng bật tự tìm chủ đề: Gemini tìm ứng viên trong chủ đề chung của phòng bằng tìm kiếm web, Claude duyệt nguồn rồi ĐỀ XUẤT kèm nguồn + lý do, chờ giám đốc duyệt' },
 ];
 /** Tên vai cũ (agent/skill cũ còn gọi) → vị trí core tương ứng. */
 export const ROLE_ALIAS = { ideator_a: 'idea', ideator_b: 'idea', ideator_c: 'idea', ideator_d: 'idea', planner: 'script', visual_director: 'visual', support: 'qc' };
@@ -90,9 +111,17 @@ CREATE TABLE IF NOT EXISTS jobs(
   created_at TEXT NOT NULL, updated_at TEXT NOT NULL);
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status, next_run_at);
 CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT NOT NULL);
+-- Tài khoản cấp được cho NHIỀU phòng (giám đốc chốt 21/11/2026). Cột accounts.dept cũ chỉ còn là bản sao của phòng đầu tiên (tương thích ngược).
+CREATE TABLE IF NOT EXISTS account_depts(account_id INTEGER NOT NULL, dept TEXT NOT NULL, PRIMARY KEY(account_id, dept));
 CREATE TABLE IF NOT EXISTS worker(
   id INTEGER PRIMARY KEY CHECK(id=1), pid INTEGER, started_at TEXT, heartbeat_at TEXT, tick_ms INTEGER,
   stop_requested INTEGER NOT NULL DEFAULT 0, running INTEGER NOT NULL DEFAULT 0);
+-- Mỗi lượt gọi Codex/Gemini bên trong việc của Claude (ý tưởng, kịch bản, storyboard, ảnh, kiểm chứng, xem khung hình, tìm chủ đề)
+-- không phải là "việc" trong bảng jobs; ghi riêng ở đây để đo tải từng bên (giám đốc chốt 20/11/2026: ba agent cơ bản cân bằng).
+CREATE TABLE IF NOT EXISTS agent_calls(
+  id INTEGER PRIMARY KEY AUTOINCREMENT, provider TEXT NOT NULL, mode TEXT NOT NULL, dept TEXT, job_id INTEGER,
+  started_at TEXT NOT NULL, ended_at TEXT NOT NULL, ms INTEGER NOT NULL, outcome TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_agent_calls_started ON agent_calls(started_at);
 CREATE INDEX IF NOT EXISTS idx_videos_team_day ON videos(team_id, planned_for);
 CREATE INDEX IF NOT EXISTS idx_events_id ON events(id DESC);
 `;
@@ -111,6 +140,8 @@ function db() {
     if (!_db.prepare(`PRAGMA table_info(${table})`).all().some((c) => c.name === col)) _db.exec(`ALTER TABLE ${table} ADD COLUMN ${col} ${def}`);
   };
   addCol('accounts', 'dept', 'TEXT');
+  // Chuyển một lần từ cột dept đơn sang bảng nhiều-nhiều (chỉ khi bảng mới còn trống).
+  if (!_db.prepare('SELECT 1 FROM account_depts LIMIT 1').get()) _db.exec("INSERT OR IGNORE INTO account_depts(account_id, dept) SELECT id, dept FROM accounts WHERE dept IS NOT NULL AND dept != ''");
   addCol('departments', 'auto_topics', 'INTEGER NOT NULL DEFAULT 0'); // tự tìm chủ đề (mặc định TẮT: chỉ giám đốc đưa chủ đề)
   addCol('topics', 'source', "TEXT NOT NULL DEFAULT 'director'"); // director | agent (đội tự tìm, phải được giám đốc duyệt)
   addCol('topics', 'reason', "TEXT NOT NULL DEFAULT ''"); // lý do + nguồn khi đội đề xuất
@@ -197,7 +228,17 @@ function mustVideo(id) {
 }
 export function logEvent({ actor = 'system', dept = null, team_id = null, video_id = null, kind = 'note', message }) {
   if (!message) fail('Thiếu nội dung sự kiện');
-  run('INSERT INTO events(ts,actor,dept,team_id,video_id,kind,message) VALUES(?,?,?,?,?,?,?)', now(), actor, dept, team_id, video_id, kind, String(message).slice(0, 1000));
+  run('INSERT INTO events(ts,actor,dept,team_id,video_id,kind,message) VALUES(?,?,?,?,?,?,?)', now(), actor, dept, team_id, video_id, kind, String(message).slice(0, EVENT_MESSAGE_LIMIT));
+}
+
+/** Ghi 1 lượt gọi Codex/Gemini (ms epoch bắt đầu/kết thúc). outcome: ok | limit | auth | timeout | fail | no_image. Không bao giờ làm hỏng việc chính. */
+export function recordCall({ provider, mode, dept = null, job_id = null, started_ms, ended_ms = Date.now(), outcome = 'ok' }) {
+  try {
+    const s = Number(started_ms) || ended_ms;
+    run('INSERT INTO agent_calls(provider,mode,dept,job_id,started_at,ended_at,ms,outcome) VALUES(?,?,?,?,?,?,?,?)', provider, mode, dept, job_id || null, new Date(s).toISOString(), new Date(ended_ms).toISOString(), Math.max(0, ended_ms - s), outcome);
+  } catch {
+    /* sổ tải chỉ để thống kê */
+  }
 }
 
 // ---------- phòng ban ----------
@@ -394,34 +435,52 @@ export function setAutoTopics({ dept, on, by = 'director' }) {
   return tx(() => {
     const d = mustDept(dept);
     run('UPDATE departments SET auto_topics=? WHERE slug=?', on ? 1 : 0, d.slug);
-    logEvent({ actor: by, dept: d.slug, kind: 'topic', message: `${on ? 'BẬT' : 'TẮT'} tự tìm chủ đề cho phòng "${d.name}"${on ? ' — đội đề xuất, giám đốc duyệt mới làm' : ' — chỉ giám đốc đưa chủ đề'}` });
+    logEvent({ actor: by, dept: d.slug, kind: 'topic', message: `${on ? 'BẬT' : 'TẮT'} tự tìm chủ đề cho phòng "${d.name}"${on ? ' — tự tìm và đề xuất theo giờ đã cài (mặc định 08:00 và 13:00), giám đốc duyệt mới làm' : ' — chỉ giám đốc đưa chủ đề'}` });
     return { dept: d.slug, auto_topics: !!on };
   });
 }
 
 /** Số chủ đề đội còn được đề xuất thêm: suất trống hôm nay − chủ đề đã có chờ đội này (đề xuất chưa duyệt + đã duyệt chưa làm). */
-export function scoutRoom(team_id) {
-  const t = mustTeam(team_id);
-  const free = t.capacity_per_day - usedOn(t.id, today());
-  const pending = get("SELECT COUNT(*) c FROM topics WHERE team_id=? AND status IN ('proposed','open')", t.id).c;
-  return Math.max(0, free - pending);
+/** Số đề xuất đang chờ giám đốc duyệt của 1 phòng. Từ 21/11/2026 đây là thứ giới hạn đề xuất (trần `max_pending_topics`, mặc định 15), KHÔNG còn là suất trống của đội:
+ *  đề xuất chưa phải việc làm (giám đốc duyệt mới làm, và việc giám đốc duyệt không bị chặn bởi suất — luật 4). */
+export const pendingTopics = (dept) => get("SELECT COUNT(*) c FROM topics WHERE dept=? AND status='proposed'", dept).c;
+export const maxPendingTopics = () => settingNum('max_pending_topics', 15);
+/** Đội nhận chủ đề vừa được giám đốc duyệt (giám đốc chốt 21/11/2026): đề xuất là của CHUNG PHÒNG, khi duyệt giao lần lượt cho các đội, ưu tiên đội chưa có việc.
+ *  "Có việc" = đang có video ở ý tưởng/kế hoạch/sản xuất (video chờ giám đốc nghe ở review hay đã ready thì đội coi như rảnh). Sắp xếp: ít việc nhất,
+ *  rồi đội được giao video lâu nhất (xoay vòng), rồi mã nhỏ. Suất/ngày không chặn (luật 4: việc giám đốc duyệt không bị chặn bởi suất). */
+export function pickTeamForTopic(dept) {
+  const stats = all("SELECT * FROM teams WHERE dept=? AND status='active' ORDER BY id", dept).map((t) => ({
+    t,
+    busy: get("SELECT COUNT(*) c FROM videos WHERE team_id=? AND stage IN ('ideation','planning','production')", t.id).c,
+    last: get('SELECT MAX(created_at) m FROM videos WHERE team_id=?', t.id).m || '',
+  }));
+  stats.sort((a, b) => a.busy - b.busy || a.last.localeCompare(b.last) || a.t.id - b.t.id);
+  return stats[0]?.t ?? null;
+}
+/** Đội đứng tên đề xuất của việc tìm chủ đề theo giờ của phòng: đội còn nhiều suất trống nhất hôm nay (bằng nhau thì đội có mã nhỏ). */
+export function pickScoutTeam(dept) {
+  const teams = all("SELECT * FROM teams WHERE dept=? AND status='active' ORDER BY id", dept).map((t) => ({ t, free: t.capacity_per_day - usedOn(t.id, today()) }));
+  teams.sort((a, b) => b.free - a.free || a.t.id - b.t.id);
+  return teams[0]?.t ?? null;
 }
 
-export function proposeTopic({ team_id, text, brief = '', reason = '', by = 'agent' }) {
+export function proposeTopic({ team_id, dept, text, brief = '', reason = '', by = 'agent' }) {
   return tx(() => {
-    const t = mustTeam(team_id);
-    if (t.status !== 'active') fail(`Đội #${team_id} đã giải thể`);
-    const d = mustDept(t.dept, { active: true });
+    // Đề xuất là của CHUNG PHÒNG (giám đốc chốt 21/11/2026): team_id (nếu có) chỉ để xác định phòng, không gắn chủ đề vào đội nào; đội nhận do lúc duyệt.
+    if (!team_id && !dept) fail('Cần team_id hoặc dept để biết đề xuất của phòng nào');
+    const t = team_id ? mustTeam(team_id) : null;
+    if (t && t.status !== 'active') fail(`Đội #${team_id} đã giải thể`);
+    const d = mustDept(t ? t.dept : dept, { active: true });
     if (!d.auto_topics) fail(`Phòng "${d.name}" đang TẮT tự tìm chủ đề — chỉ giám đốc đưa chủ đề`);
     const clean = String(text || '').trim();
     if (!clean) fail('Thiếu nội dung chủ đề');
     if (!String(reason).trim()) fail('Thiếu lý do/nguồn — giám đốc cần biết vì sao nên làm chủ đề này');
     if (get('SELECT 1 FROM topics WHERE dept=? AND lower(text)=lower(?)', d.slug, clean)) fail('Chủ đề này đã có trong phòng (trùng)');
-    if (scoutRoom(t.id) <= 0) fail(`${t.name} đã đủ chủ đề cho số suất còn trống hôm nay — chờ giám đốc duyệt/đội làm bớt`);
-    const r = run("INSERT INTO topics(dept,text,brief,status,team_id,source,reason,created_at) VALUES(?,?,?,'proposed',?,'agent',?,?)", d.slug, clean, brief, t.id, String(reason).trim(), now());
+    if (pendingTopics(d.slug) >= maxPendingTopics()) fail(`Phòng "${d.name}" đã có ${pendingTopics(d.slug)} đề xuất chờ duyệt (trần ${maxPendingTopics()}) — chờ giám đốc duyệt hoặc từ chối bớt`);
+    const r = run("INSERT INTO topics(dept,text,brief,status,team_id,source,reason,created_at) VALUES(?,?,?,'proposed',NULL,'agent',?,?)", d.slug, clean, brief, String(reason).trim(), now());
     const id = Number(r.lastInsertRowid);
-    logEvent({ actor: by, dept: d.slug, team_id: t.id, kind: 'topic', message: `${t.name} ĐỀ XUẤT chủ đề #${id} (chờ giám đốc duyệt): ${clean.slice(0, 120)}` });
-    return { topic_id: id, status: 'proposed', team_id: t.id };
+    logEvent({ actor: by, dept: d.slug, team_id: t?.id ?? null, kind: 'topic', message: `Phòng "${d.name}" ĐỀ XUẤT chủ đề #${id} (chờ giám đốc duyệt): ${clean.slice(0, 120)}` });
+    return { topic_id: id, status: 'proposed', dept: d.slug, team_id: null };
   });
 }
 
@@ -431,7 +490,7 @@ export function decideTopic({ topic_id, approve, note = '', by = 'director' }) {
     if (!tp) fail(`Không có chủ đề #${topic_id}`);
     if (tp.status !== 'proposed') fail(`Chủ đề #${tp.id} không ở trạng thái chờ duyệt (đang: ${tp.status})`);
     run('UPDATE topics SET status=? WHERE id=?', approve ? 'open' : 'rejected', tp.id);
-    logEvent({ actor: by, dept: tp.dept, team_id: tp.team_id, kind: 'topic', message: `${approve ? 'DUYỆT' : 'TỪ CHỐI'} chủ đề #${tp.id} do đội đề xuất: ${tp.text.slice(0, 100)}${note ? ` — ${note}` : ''}` });
+    logEvent({ actor: by, dept: tp.dept, team_id: tp.team_id, kind: 'topic', message: `${approve ? 'DUYỆT' : 'TỪ CHỐI'} chủ đề #${tp.id} do phòng đề xuất: ${tp.text.slice(0, 100)}${note ? ` — ${note}` : ''}` });
     return { topic_id: tp.id, status: approve ? 'open' : 'rejected', dept: tp.dept };
   });
 }
@@ -442,6 +501,8 @@ export function assignTopic({ topic_id, team_id, episodes = 1, planned_for, by =
   return tx(() => {
     const topic = get('SELECT * FROM topics WHERE id=?', Number(topic_id));
     if (!topic) fail(`Không có chủ đề #${topic_id}`);
+    if (topic.status === 'proposed') fail(`Chủ đề #${topic.id} đang chờ giám đốc duyệt, chưa thể giao`);
+    if (topic.status === 'rejected') fail(`Chủ đề #${topic.id} đã bị từ chối`);
     const dept = mustDept(topic.dept, { active: true });
     const n = int(episodes, 1, 20, 'Số tập');
     const date = planned_for || today();
@@ -449,17 +510,15 @@ export function assignTopic({ topic_id, team_id, episodes = 1, planned_for, by =
 
     let team;
     if (team_id) team = mustTeam(team_id);
-    else if (topic.team_id && mustTeam(topic.team_id).status === 'active') team = mustTeam(topic.team_id);
+    else if (topic.status === 'assigned' && topic.team_id && mustTeam(topic.team_id).status === 'active') team = mustTeam(topic.team_id); // thêm tập: giữ đội đã nhận
     else {
-      const cands = all("SELECT * FROM teams WHERE dept=? AND status='active'", topic.dept)
-        .map((t) => ({ t, free: t.capacity_per_day - usedOn(t.id, date) }))
-        .sort((a, b) => b.free - a.free);
-      if (!cands.length) fail(`Phòng "${topic.dept}" chưa có đội nào đang hoạt động — trưởng phòng cần đề xuất thêm đội (propose_change) để giám đốc duyệt`);
-      team = cands[0].t;
+      team = pickTeamForTopic(topic.dept); // đề xuất là của chung phòng: giao lần lượt, ưu tiên đội chưa có việc
+      if (!team) fail(`Phòng "${topic.dept}" chưa có đội nào đang hoạt động — trưởng phòng cần đề xuất thêm đội (propose_change) để giám đốc duyệt`);
     }
     if (team.dept !== topic.dept || team.status !== 'active') fail(`Đội #${team.id} không thuộc phòng "${topic.dept}" hoặc đã giải thể`);
-    const free = team.capacity_per_day - usedOn(team.id, date);
-    if (n > free) fail(`${team.name} chỉ còn ${Math.max(free, 0)}/${team.capacity_per_day} suất video ngày ${date}, không nhận nổi ${n} tập. Giảm số tập, đổi ngày, chọn đội khác hoặc đề xuất thêm đội.`);
+    const usedBefore = usedOn(team.id, date);
+    const free = team.capacity_per_day - usedBefore;
+    const over = Math.max(0, n - Math.max(free, 0));
 
     const folderAbs = topic.folder ? path.resolve(ROOT, topic.folder) : path.join(CONTENT_DIR, topic.dept, `T${topic.id}-${slugify(topic.text, 40) || 'chu-de'}`);
     fs.mkdirSync(folderAbs, { recursive: true });
@@ -478,8 +537,10 @@ export function assignTopic({ topic_id, team_id, episodes = 1, planned_for, by =
       videos.push(id);
     }
     run("UPDATE topics SET status='assigned', team_id=?, folder=? WHERE id=?", team.id, rel(folderAbs), topic.id);
-    logEvent({ actor: by, dept: topic.dept, team_id: team.id, kind: 'assign', message: `Giao chủ đề #${topic.id} cho ${team.name}: ${n} video (${videos.join(', ')}) ngày ${date}` });
-    return { topic_id: topic.id, team_id: team.id, team: team.name, topic_folder: rel(folderAbs), videos, planned_for: date };
+    const overNote = over > 0 ? ` — VƯỢT SUẤT ${over} video (${usedBefore + n}/${team.capacity_per_day} ngày ${date}) theo yêu cầu của giám đốc` : '';
+    const message = `Giao chủ đề #${topic.id} cho ${team.name}: ${n} video (${videos.join(', ')}) ngày ${date}`;
+    logEvent({ actor: by, dept: topic.dept, team_id: team.id, kind: 'assign', message: message.slice(0, EVENT_MESSAGE_LIMIT - overNote.length) + overNote });
+    return { topic_id: topic.id, team_id: team.id, team: team.name, topic_folder: rel(folderAbs), videos, planned_for: date, over_capacity: over };
   });
 }
 
@@ -573,6 +634,25 @@ export function resolveEscalation({ video_id, note = '', by = 'support' }) {
   });
 }
 
+/** Worker gọi mỗi vòng (giám đốc chốt 21/11/2026): thành viên báo "đang làm" nhưng im lặng quá STALE_MINUTES trong khi phòng KHÔNG còn việc nền nào
+ *  (đang chạy/chờ/chờ limit) là treo thật → tự đặt về rảnh và ghi nhật ký. Phòng còn việc nền thì giữ nguyên (việc dài vài chục phút im lặng là bình thường). Trả về số người đã dọn. */
+export function sweepStaleMembers() {
+  let n = 0;
+  const rows = all("SELECT m.id, m.role, m.label, m.team_id, m.updated_at, t.dept FROM members m JOIN teams t ON t.id=m.team_id WHERE m.status='working' AND t.status='active'");
+  for (const m of rows) {
+    const mins = Math.round((Date.now() - Date.parse(m.updated_at)) / 60000);
+    if (!(mins >= STALE_MINUTES)) continue;
+    if (get("SELECT 1 FROM jobs WHERE dept=? AND status IN ('running','queued','waiting_limit') LIMIT 1", m.dept)) continue;
+    run("UPDATE members SET status='idle', task='', video_id=NULL, updated_at=? WHERE id=?", now(), m.id);
+    logEvent({ actor: 'worker', dept: m.dept, team_id: m.team_id, kind: 'status', message: `${m.label}: tự đặt về rảnh (báo "đang làm" nhưng im lặng ${mins} phút và phòng không còn việc nền nào)` });
+    n++;
+  }
+  return n;
+}
+
+/** Video đã `ready` (chờ giám đốc đăng tay): cho khung "Sẵn sàng đăng" của dashboard. */
+export const readyVideos = (limit = 30) => all("SELECT id, dept, title, finished_at FROM videos WHERE stage='ready' ORDER BY COALESCE(finished_at, updated_at) DESC, id DESC LIMIT ?", limit);
+
 export const recentEvents = (limit = 40) => all('SELECT * FROM events ORDER BY id DESC LIMIT ?', limit);
 
 /** Tài khoản (claude/codex) đang hoặc nhiều khả năng sẽ chạy việc của 1 phòng — để dashboard trỏ đúng tab Văn phòng 2D.
@@ -581,11 +661,12 @@ export const recentEvents = (limit = 40) => all('SELECT * FROM events ORDER BY i
 function officeAccountHint(dept, provider) {
   const running = get("SELECT account_id aid FROM jobs WHERE dept=? AND provider=? AND status='running' ORDER BY id DESC LIMIT 1", dept, provider);
   // Cùng luật với pool.eligibleFor: phòng đã được cấp tài khoản → chỉ tài khoản của phòng; chưa → tài khoản dùng chung.
-  const own = get('SELECT 1 FROM accounts WHERE provider=? AND dept=?', provider, dept);
+  const own = get('SELECT 1 FROM accounts a JOIN account_depts d ON d.account_id=a.id WHERE a.provider=? AND d.dept=?', provider, dept);
   const row = running?.aid
-    ? get('SELECT provider,label,home,dept FROM accounts WHERE id=?', running.aid)
-    : get(`SELECT provider,label,home,dept FROM accounts WHERE provider=? AND enabled=1 AND status='ready' AND ${own ? 'dept=?' : 'dept IS NULL'} ORDER BY priority,id LIMIT 1`, provider, ...(own ? [dept] : []));
-  return row ? { provider: row.provider, label: row.label, is_default: !row.home, dept: row.dept || null, live: !!running?.aid } : null;
+    ? get('SELECT id,provider,label,home FROM accounts WHERE id=?', running.aid)
+    : get(`SELECT id,provider,label,home FROM accounts WHERE provider=? AND enabled=1 AND status='ready' AND ${own ? 'id IN (SELECT account_id FROM account_depts WHERE dept=?)' : 'id NOT IN (SELECT account_id FROM account_depts)'} ORDER BY priority,id LIMIT 1`, provider, ...(own ? [dept] : []));
+  const depts = row ? all('SELECT dept FROM account_depts WHERE account_id=? ORDER BY dept', row.id).map((r) => r.dept) : [];
+  return row ? { provider: row.provider, label: row.label, is_default: !row.home, dept: depts[0] || null, depts, live: !!running?.aid } : null;
 }
 
 // ---------- tổng quan cho dashboard / Claude ----------
@@ -619,7 +700,7 @@ export function overview({ dept: only } = {}) {
     const active = get(`SELECT COUNT(*) c FROM videos WHERE dept=? AND stage IN (${ACTIVE_STAGES.map((s) => `'${s}'`).join(',')})`, d.slug).c;
     const help = get('SELECT COUNT(*) c FROM videos WHERE dept=? AND needs_help=1', d.slug).c;
     const open = get("SELECT COUNT(*) c FROM topics WHERE dept=? AND status='open'", d.slug).c;
-    const proposedTopics = d.status === 'active' ? all("SELECT t.id,t.text,t.reason,t.team_id,tm.name team_name FROM topics t LEFT JOIN teams tm ON tm.id=t.team_id WHERE t.dept=? AND t.status='proposed' ORDER BY t.id", d.slug) : [];
+    const proposedTopics = d.status === 'active' ? all("SELECT t.id,t.text,t.brief,t.reason,t.team_id,tm.name team_name FROM topics t LEFT JOIN teams tm ON tm.id=t.team_id WHERE t.dept=? AND t.status='proposed' ORDER BY t.id", d.slug) : [];
     const surplus = d.status === 'active' ? Math.max(0, Math.floor((capacity - d.daily_target) / DEFAULT_TEAM_CAPACITY)) : 0;
 
     if (d.status === 'active') {
@@ -637,12 +718,25 @@ export function overview({ dept: only } = {}) {
       totals.topics_open += open;
       totals.pending_proposals += pend.length;
       totals.needs_help += help;
-      if (gap > 0 && !pend.length) attention.push({ kind: 'capacity', dept: d.slug, message: `Phòng "${d.name}" thiếu năng lực ${gap} video/ngày (chỉ tiêu ${d.daily_target}, năng lực ${capacity})${d.review_requested ? ' — đang chờ trưởng phòng đề xuất' : ''}` });
-      if (help) attention.push({ kind: 'help', dept: d.slug, message: `${help} video của "${d.name}" đang vướng, cần Claude hỗ trợ` });
-      if (stale) attention.push({ kind: 'stale', dept: d.slug, message: `${stale} thành viên của "${d.name}" báo "đang làm" nhưng im lặng > ${STALE_MINUTES} phút` });
+      if (gap > 0 && !pend.length) attention.push({ kind: 'capacity', handler: 'director', dept: d.slug, message: `Phòng "${d.name}" thiếu năng lực ${gap} video/ngày (chỉ tiêu ${d.daily_target}, năng lực ${capacity})${d.review_requested ? ' — đang chờ trưởng phòng đề xuất' : ''}` });
+      // Cờ vướng: mỗi video theo ĐÚNG người xử lý (giám đốc chốt 21/11/2026).
+      //  - QC-CHỜ-NGHE / QC-THIẾT-KẾ: việc của giám đốc (nghe/xem rồi duyệt, hoặc quyết chấp nhận/làm lại), từng video một;
+      //  - còn lại: Claude tự gỡ (worker tự xếp việc "gỡ vướng", `by: 'claude'`), chỉ báo giám đốc khi Claude không tự gỡ được (vượt số lần, sai giai đoạn).
+      let claudeFixing = 0;
+      for (const v of all('SELECT id,stage,needs_help,help_reason FROM videos WHERE dept=? AND needs_help=1 ORDER BY id', d.slug)) {
+        const reason = String(v.help_reason || '');
+        if (reason.startsWith('QC-CHỜ-NGHE')) attention.push({ kind: 'qc_listen', handler: 'director', dept: d.slug, video_id: v.id, message: `${v.id} chờ bạn nghe/xem rồi duyệt "ready": ${reason.replace(/^QC-CHỜ-NGHE\s*[:：]?\s*/, '').slice(0, 260)}` });
+        else if (reason.startsWith('QC-THIẾT-KẾ')) attention.push({ kind: 'qc_design', handler: 'director', dept: d.slug, video_id: v.id, message: `${v.id}: QC báo lỗi thiết kế, bạn quyết chấp nhận hay làm lại — ${reason.replace(/^QC-THIẾT-KẾ\s*[:：]?\s*/, '').slice(0, 260)}` });
+        else if (rescueState(v).auto) claudeFixing++;
+        else attention.push({ kind: 'help', handler: 'director', dept: d.slug, video_id: v.id, message: `${v.id} đang vướng mà Claude không tự gỡ được (${rescueState(v).why}): ${reason.slice(0, 220)}` });
+      }
+      if (claudeFixing) attention.push({ kind: 'help', handler: 'claude', dept: d.slug, message: `${claudeFixing} video của "${d.name}" đang vướng — Claude tự gỡ (việc gỡ vướng do worker tự xếp)` });
+      // "Đang làm mà im lặng" chỉ đáng ngờ khi phòng không còn việc nền nào (việc Codex dài vài chục phút vẫn im lặng bình thường); worker tự đặt về rảnh.
+      const deptBusy = !!get("SELECT 1 FROM jobs WHERE dept=? AND status IN ('running','queued','waiting_limit') LIMIT 1", d.slug);
+      if (stale && !deptBusy) attention.push({ kind: 'stale', handler: 'claude', dept: d.slug, message: `${stale} thành viên của "${d.name}" báo "đang làm" nhưng im lặng > ${STALE_MINUTES} phút và phòng không còn việc nền — worker tự đặt về rảnh` });
     } else totals.departments_closed++;
-    for (const tp of proposedTopics) attention.push({ kind: 'topic_proposal', dept: d.slug, topic_id: tp.id, message: `${tp.team_name || 'Đội'} (${d.name}) đề xuất chủ đề #${tp.id}: "${tp.text}" — ${tp.reason.slice(0, 200)}` });
-    for (const p of pend) attention.push({ kind: 'proposal', dept: d.slug, proposal_id: p.id, message: `Chờ duyệt #${p.id} (${d.name}): ${p.type === 'add_team' ? `thêm ${p.payload.count} đội` : `giải thể đội #${p.payload.team_id}`} — ${p.reason}` });
+    for (const tp of proposedTopics) attention.push({ kind: 'topic_proposal', handler: 'director', dept: d.slug, dept_name: d.name, topic_id: tp.id, topic_text: tp.text, topic_reason: tp.reason, topic_brief: tp.brief || '', message: `Phòng "${d.name}" đề xuất chủ đề #${tp.id}: "${tp.text}" — ${tp.reason.slice(0, 200)}` });
+    for (const p of pend) attention.push({ kind: 'proposal', handler: 'director', dept: d.slug, proposal_id: p.id, message: `Chờ duyệt #${p.id} (${d.name}): ${p.type === 'add_team' ? `thêm ${p.payload.count} đội` : `giải thể đội #${p.payload.team_id}`} — ${p.reason}` });
 
     return {
       slug: d.slug, name: d.name, description: d.description, status: d.status, daily_target: d.daily_target, review_requested: !!d.review_requested, auto_topics: !!d.auto_topics, topics_proposed: proposedTopics.length,

@@ -1,0 +1,268 @@
+{
+  "version": 1,
+  "phase_ratios": [
+    0.3333333333333333,
+    0.5,
+    0.16666666666666666
+  ],
+  "match_fraction": 0.5,
+  "max_static_s": 0.9,
+  "motion_probe": {
+    "size": [
+      180,
+      320
+    ],
+    "min_mean_delta": 0.045
+  },
+  "scene": {
+    "stage_fraction": 0.76,
+    "edge_fraction": 0.16,
+    "focus_zoom": 1.2,
+    "focus_blur": 8,
+    "focus_shade": 135,
+    "request_rate": 14,
+    "request_travel": 0.8,
+    "header_gap": 24,
+    "layouts": {
+      "center_stage": [
+        0.08,
+        0.2,
+        0.92,
+        0.8
+      ],
+      "left_right_split": [
+        0.02,
+        0.29,
+        0.98,
+        0.71
+      ],
+      "diagonal_flow": [
+        0.02,
+        0.09,
+        0.98,
+        0.9
+      ],
+      "stacked_chain": [
+        0.16,
+        0.04,
+        0.84,
+        0.96
+      ],
+      "focus_corner": [
+        0.04,
+        0.1,
+        0.7,
+        0.68
+      ],
+      "radial": [
+        0.07,
+        0.08,
+        0.93,
+        0.87
+      ]
+    }
+  },
+  "selection": {
+    "incident": [
+      "sự cố",
+      "gián đoạn",
+      "outage"
+    ],
+    "warning": [
+      "rủi ro",
+      "cảnh báo",
+      "bảo mật"
+    ],
+    "hypothetical": [
+      "giả sử",
+      "nếu"
+    ]
+  },
+  "styles": {
+    "question": {
+      "keyword": "Vì sao?",
+      "accent": "blue",
+      "phases": [
+        [
+          "scan",
+          "key",
+          1.08,
+          [
+            0.5,
+            0
+          ],
+          "impact_hook"
+        ],
+        [
+          "fork",
+          "lock",
+          1.12,
+          [
+            -0.4,
+            0
+          ],
+          "highlight"
+        ],
+        [
+          "reveal",
+          "key",
+          1.05,
+          [
+            0,
+            0
+          ],
+          "transition"
+        ]
+      ],
+      "kinetic": "type"
+    },
+    "hypothetical": {
+      "keyword": "Nếu mở?",
+      "accent": "blue",
+      "phases": [
+        [
+          "fork",
+          "document",
+          1.09,
+          [
+            -0.5,
+            0
+          ],
+          "impact_hook"
+        ],
+        [
+          "transfer",
+          "document",
+          1.14,
+          [
+            0.5,
+            0
+          ],
+          "data_move"
+        ],
+        [
+          "reveal",
+          "document",
+          1.055,
+          [
+            0,
+            0
+          ],
+          "highlight"
+        ]
+      ],
+      "kinetic": "slide"
+    },
+    "warning": {
+      "keyword": "Rủi ro",
+      "accent": "red",
+      "phases": [
+        [
+          "barrier",
+          "shield",
+          1.14,
+          [
+            0,
+            -0.5
+          ],
+          "impact_risk"
+        ],
+        [
+          "fork",
+          "lock",
+          1.06,
+          [
+            0,
+            0.5
+          ],
+          "alert"
+        ],
+        [
+          "reveal",
+          "shield",
+          1.06,
+          [
+            0,
+            0
+          ],
+          "highlight"
+        ]
+      ],
+      "kinetic": "highlight"
+    },
+    "incident": {
+      "keyword": "Gián đoạn",
+      "accent": "red",
+      "phases": [
+        [
+          "transfer",
+          "server",
+          1.12,
+          [
+            -0.6,
+            0
+          ],
+          "impact_hook"
+        ],
+        [
+          "barrier",
+          "clock",
+          1.15,
+          [
+            0,
+            0.5
+          ],
+          "impact_risk"
+        ],
+        [
+          "reveal",
+          "clock",
+          1.065,
+          [
+            0,
+            0
+          ],
+          "transition"
+        ]
+      ],
+      "kinetic": "slide"
+    },
+    "surprise": {
+      "keyword": "Đảo chiều",
+      "accent": "blue",
+      "phases": [
+        [
+          "reverse",
+          "check",
+          1.1,
+          [
+            0.6,
+            0
+          ],
+          "impact_hook"
+        ],
+        [
+          "scan",
+          "document",
+          1.15,
+          [
+            -0.4,
+            0
+          ],
+          "impact_reveal"
+        ],
+        [
+          "reveal",
+          "check",
+          1.07,
+          [
+            0,
+            0
+          ],
+          "highlight"
+        ]
+      ],
+      "kinetic": "pop"
+    }
+  }
+}

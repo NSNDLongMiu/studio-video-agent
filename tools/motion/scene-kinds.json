@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "reason": "Giữ sân khấu đủ lớn cho hình minh họa ở 360×640, chừa header và phụ đề, giữ nhãn rõ và chỉ báo giao đáng kể.",
+  "min_label_px": 56,
+  "min_contrast": 4.5,
+  "max_center_offset": 0.13,
+  "min_width_fraction": 0.75,
+  "min_height_fraction": 0.68,
+  "max_empty_fraction": 0.34,
+  "max_overlap_fraction": 0.08,
+  "header_gap": 24,
+  "gutter": 40,
+  "stage_fraction": 0.78,
+  "edge_fraction": 0.16,
+  "packet_period_s": 1.2,
+  "focus_zoom": 1.2,
+  "inactive_strength": 0.49,
+  "fox_max_width_fraction": 0.18,
+  "three_node_slots": {
+    "diagonal_flow": [[0, 0, 0.44, 0.34], [0.59, 0.31, 1, 0.69], [0, 0.66, 0.44, 1]],
+    "radial": [[0, 0, 0.45, 0.43], [0.55, 0, 1, 0.43], [0.24, 0.55, 0.76, 1]]
+  },
+  "layouts": {
+    "center_stage": [0.05, 0.05, 0.95, 0.95],
+    "left_right_split": [0.02, 0.09, 0.98, 0.91],
+    "diagonal_flow": [0.02, 0.03, 0.98, 0.97],
+    "stacked_chain": [0.08, 0.02, 0.92, 0.98],
+    "focus_corner": [0.04, 0.06, 0.96, 0.94],
+    "radial": [0.03, 0.025, 0.97, 0.975]
+  }
+}

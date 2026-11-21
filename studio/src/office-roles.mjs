@@ -1,5 +1,5 @@
 // Văn phòng 2D chỉ hiện BỘ CORE của đội (giám đốc duyệt 18/11/2026). Mỗi phiên Claude/Codex được nhận vai rồi
-//  - phiên thuộc 1 vị trí core -> hiện, tên nhân vật = "<vị trí> · <ai làm>" (vd "Kịch bản · Codex viết", "Kịch bản · Claude duyệt");
+//  - phiên thuộc 1 vị trí core -> hiện, tên nhân vật = "<vị trí> · <ai làm>" (vd "Kịch bản · Codex cùng viết", "Kịch bản · Claude viết & chốt");
 //  - phiên điều phối (/make-plan), agent phụ (tra cứu, gọi thử tài khoản…) -> đánh dấu "agent con" nên bị ẩn mặc định
 //    (công tắc "agent con" sẵn có trên trang vẫn bật xem được);
 //  - phiên không thuộc xưởng (giám đốc tự dùng tài khoản) -> giữ nguyên; riêng bản có chỗ ngồi cố định (seats) thì ẩn như agent con.
@@ -17,7 +17,7 @@ export const CORE_LABELS = ['Ý tưởng', 'Kịch bản', 'Đạo diễn hình 
 const SUBAGENT_ROLE = {
   'ideator-a': 'Ý tưởng · Claude',
   'ideator-b': 'Ý tưởng · Claude chốt',
-  planner: 'Kịch bản · Claude duyệt',
+  planner: 'Kịch bản · Claude viết & chốt',
   'visual-director': 'Đạo diễn hình ảnh · Claude duyệt',
   'dept-head': 'Trưởng phòng',
   support: null, // phiên chính /qc hoặc /rescue đã hiện vị trí rồi
@@ -31,7 +31,7 @@ const COMMAND_ROLE = [
   [/^\/dept-review\b/, 'Trưởng phòng'],
 ];
 // dòng đánh dấu [[STUDIO-ROLE:x]] mà xưởng chèn đầu prompt Codex (codex-ideate/codex-write/producer)
-const CODEX_ROLE = { idea: 'Ý tưởng · Codex', script: 'Kịch bản · Codex viết', storyboard: 'Đạo diễn hình ảnh · Codex làm', producer: 'Sản xuất · Codex' };
+const CODEX_ROLE = { idea: 'Ý tưởng · Codex', script: 'Kịch bản · Codex cùng viết', storyboard: 'Đạo diễn hình ảnh · Codex làm', producer: 'Sản xuất · Codex' };
 
 /** Hàm thuần. info: { agentType, firstPrompt, marker }. Trả { role, hide, label? } (role null + hide false = không thuộc xưởng, giữ nguyên).
  *  label = tên hiện trong ngăn "Đã gọi" cho agent bị ẩn. */
@@ -184,12 +184,12 @@ function historyEntry(s, r) {
 // ---- Chỗ ngồi cố định của đội (giám đốc yêu cầu 18/11/2026): luôn thấy đủ các vị trí core; rảnh thì ngồi chờ ----
 // Công cụ gốc chỉ vẽ phiên có thật, nên vị trí đang rảnh được thêm 1 phiên "ảo" trạng thái idle (nhân vật đi lại/ngủ gật ở
 // sàn, không ngồi bàn); vị trí có phiên thật (đang làm hoặc vừa xong) thì không thêm. `agent` chỉ chọn màu áo/biểu tượng:
-// bên làm chính của vị trí (Kịch bản/Đạo diễn/Sản xuất: Codex làm; Ý tưởng, QC, Gỡ vướng, Tìm chủ đề: Claude).
+// bên làm chính của vị trí (Đạo diễn/Sản xuất: Codex làm; Ý tưởng, Kịch bản, QC, Gỡ vướng, Tìm chủ đề: Claude; Kịch bản đổi 20/11/2026).
 // `by` = tài khoản nào làm việc của vị trí đó (chỉ cần 1 trong danh sách được theo dõi là thấy được). Bản văn phòng của phòng
 // chưa được cấp tài khoản đó thì KHÔNG thấy việc của vị trí → chỗ ngồi ghi "chưa theo dõi", không giả vờ "rảnh" (luật 7: nói thật).
 export const SEATS_CORE = [
   { pos: 'Ý tưởng', agent: 'claude', by: ['claude', 'codex'] },
-  { pos: 'Kịch bản', agent: 'codex', by: ['codex'] },
+  { pos: 'Kịch bản', agent: 'claude', by: ['claude', 'codex'] },
   { pos: 'Đạo diễn hình ảnh', agent: 'codex', by: ['codex'] },
   { pos: 'Sản xuất', agent: 'codex', by: ['codex'] },
   { pos: 'QC', agent: 'claude', by: ['claude'] },

@@ -5,7 +5,7 @@
 
 ## 1. Mục tiêu
 Một xưởng làm video ngắn dọc (TikTok · Facebook Reels · YouTube Shorts) mà giám đốc kiểm soát được:
-- Giám đốc đưa **chủ đề**; đội làm theo **bộ core** (18/11/2026): Ý tưởng (Claude + Codex, Claude chốt) → Kịch bản và Đạo diễn hình ảnh (Codex làm, Claude review & duyệt cuối); **Codex (ChatGPT Plus)** làm chi tiết và dựng; Claude hỗ trợ khi Codex kẹt.
+- Giám đốc đưa **chủ đề**; đội làm theo **bộ core** (18/11/2026): Ý tưởng (Claude + Codex + Gemini, Claude chốt) → Kịch bản (Claude lên plan và viết, Codex cùng viết phần lời kỹ thuật, Gemini kiểm chứng sự thật, Claude chốt; đổi 20/11/2026) và Đạo diễn hình ảnh (Codex làm, Gemini sinh ảnh nền/đạo cụ, Claude review & duyệt cuối); **Codex (ChatGPT Plus)** làm storyboard và dựng; **Gemini (`agy`, Google AI Pro)** sinh ảnh, kiểm chứng, xem trước QC, tìm chủ đề (thêm 20/11/2026); Claude là trưởng nhóm, hỗ trợ khi Codex kẹt.
 - Tổ chức: phòng ban → đội (1 đội = 1 bộ video / 1 nhóm ý tưởng). **Chỉ giám đốc** mở/đóng phòng, đặt chỉ tiêu, duyệt tăng/giảm đội.
 - Xem được bất kỳ lúc nào: đội nào, bao nhiêu người, đang làm gì.
 - Nhiều tài khoản Claude/Codex: hết limit thì tự chuyển, hết sạch thì tự chờ hồi rồi chạy tiếp.
@@ -38,7 +38,7 @@ Không làm xong thì các giai đoạn sau không chạy được.
 
 ### Giai đoạn 2 — Chạy thử 1 video đầu–cuối
 - Giám đốc giao 1 chủ đề: `/new-topic <phòng> | <chủ đề> | <yêu cầu>`.
-- Bộ core: Ý tưởng (Claude + Codex, Claude chốt) → Kịch bản (Codex viết `concept.md`, `plan.md`, `script.md`; Claude duyệt) → Đạo diễn hình ảnh (Codex làm `storyboard.json`; Claude duyệt).
+- Bộ core: Ý tưởng (Claude + Codex + Gemini, Claude chốt) → Kịch bản (Claude viết `concept.md`, `plan.md`, `script.md` và chốt; Codex cùng viết phần lời kỹ thuật ở `review/script-codex-rN.md`; Gemini kiểm chứng sự thật ở `review/script-gemini-rN.md`; đổi 20/11/2026) → Đạo diễn hình ảnh (Codex làm `storyboard.json`; Gemini sinh ảnh nền/đạo cụ vào `assets/gen/`; Claude duyệt).
 - Kế hoạch xong tự sản xuất (không cần giám đốc duyệt kế hoạch, quyết 18/11/2026); giám đốc duyệt thành phẩm.
 - Codex dựng → Claude QC → thành phẩm ở `final/`.
 - Ghi lại: tổng thời gian, hạn mức tốn của từng tài khoản, lỗi gặp phải, nguyên văn thông báo hết limit (nếu gặp).
@@ -55,7 +55,7 @@ Không làm xong thì các giai đoạn sau không chạy được.
 ### Giai đoạn 4 — Mở rộng (làm từng việc, không làm dồn)
 1. Đăng ký tài khoản của từng thành viên (mỗi tài khoản là ghế của 1 người thật).
 2. Chọn giọng đọc tiếng Việt (Windows hiện chỉ có giọng tiếng Anh).
-3. Chọn nguồn ảnh/clip có giấy phép (không dùng nhạc nền — giám đốc chốt 18/11/2026).
+3. Chọn nguồn ảnh/clip có giấy phép và áp dụng chính sách âm thanh trong `docs/asset-sources.md`.
 4. Thêm phòng/đội theo chỉ tiêu (qua quy trình đề xuất → duyệt).
 5. Trang phục/phụ kiện Cáo theo cụm chủ đề (tạm dùng chung 1 bộ; agent hoạ sĩ linh vật lo về sau — `docs/viec-cho-agent.md` T1).
 6. Đăng bài tự động — làm sau khi giám đốc duyệt file demo (quyết 18/11/2026); hiện giám đốc tự đăng.
@@ -83,14 +83,14 @@ Không làm xong thì các giai đoạn sau không chạy được.
 | 5 | Giới hạn tự thử lại | **Đã chốt 18/11/2026:** gỡ vướng tối đa 4 lần/video, sản xuất dưới 10 lần/video (tối đa 9) | Đã chốt |
 | 6 | Cho dùng API trả phí khi mọi tài khoản gói hết limit | Tắt | **Đã chốt 18/11/2026: KHÔNG dùng** API/AI trả phí; hết limit → chuyển tài khoản, hết sạch → chờ hồi |
 | 7 | Số video/ngày | **Bỏ khỏi danh sách (18/11/2026):** theo cấu hình phòng/đội (chỉ tiêu đặt lúc tạo phòng), không có mặc định riêng cần chốt | Bỏ |
-| 8 | Chuẩn đầu ra | 9:16, 1080×1920, 15–45 giây | **Đã chốt 18/11/2026** |
+| 8 | Chuẩn đầu ra | 9:16, 1080×1920, **45–75 giây** (đổi 20/11/2026; trước đó 15–45 giây, rồi 150–190 giây từ 19/11/2026) | **Đã chốt 18/11/2026, đổi 20/11/2026** |
 | 9 | Công cụ xem "văn phòng" | **Đã chốt:** whatsmyagentdoing, chỉ 2D | Đã chốt |
 | 10 | Nhãn AI | **Đã chốt:** luôn gắn nhãn AI cho mọi video | Đã chốt |
-| 11 | Văn phong của Cáo | **Đã chốt:** trẻ trung, câu chữ văn phòng. Câu chào: **đã chốt 18/11/2026 — không có câu chào cố định**, mở đầu bằng hook theo chủ đề (`docs/mascot.md`) | Đã chốt |
-| 12 | Giọng đọc tiếng Việt | **Đã chốt 17/11/2026:** toàn giọng Bắc (Minh Đức nam, Quỳnh Anh nữ), VieNeu-TTS (`docs/voice.md`) | Đã chốt |
+| 11 | Văn phong của Cáo | **Đã chốt:** trẻ trung, câu chữ văn phòng. Câu chào: **đã chốt 18/11/2026 — không có câu chào cố định**, mở thẳng vào tình huống bằng opening ba pha, có thể có lời hook (R26) | Đã chốt |
+| 12 | Giọng đọc tiếng Việt | **Đã chốt 17/11/2026:** toàn giọng Bắc; **bộ giọng chốt lại 19/11/2026:** Hải Đăng nam chính, Trúc Ly nữ chính, Quốc Tuấn nam phụ, Ngọc Huyền nữ phụ, VieNeu-TTS (`docs/voice.md`) | Đã chốt |
 | 13 | Nhép miệng cho Cáo | Giao agent khác theo `docs/prompts/lipsync-cao.md` | Giám đốc đã giao cho AI (18/11/2026); chờ agent nhận — `docs/viec-cho-agent.md` T2 |
 
 ## 6. Cách theo dõi tiến độ
-- Dashboard http://localhost:4747: mục "Cần giám đốc chú ý", Tài khoản, Hàng đợi việc, Checklist.
+- Dashboard http://localhost:4747: mục "Cần giám đốc chú ý", "Chủ đề chờ duyệt", "Claude đang tự xử lý", Tài khoản, Hàng đợi việc, Checklist.
 - Terminal: `node studio/src/cli.mjs status`.
 - Mỗi giai đoạn chỉ coi là xong khi đạt mục "Xong khi" ở trên và có bằng chứng (file, số đo, ảnh khung hình), không phải chỉ vì lệnh chạy không báo lỗi.

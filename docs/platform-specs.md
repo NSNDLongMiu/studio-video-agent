@@ -4,7 +4,7 @@
 
 ## Chuẩn kỹ thuật chung (1 file dùng cho cả 3 nền tảng) — chuẩn của xưởng
 - **Tỉ lệ 9:16, 1080×1920**, MP4, H.264 (yuv420p) + AAC, 24–60 fps (khuyến nghị 30), `faststart`.
-- **Thời lượng mặc định 15–45 giây** (giám đốc chốt 18/11/2026). **60 giây là mức riêng của xưởng, không phải giới hạn của nền tảng** (xem bảng dưới). Hook trong 2 giây đầu.
+- **Thời lượng mặc định theo định dạng của plan:** chuẩn **45–75 s** (mục tiêu ≈ 60 s, giám đốc chốt 20/11/2026); video giải thích sâu 150–190 s (mục tiêu ≈ 180 s) và định dạng ngắn 15–45 s chỉ khi giám đốc yêu cầu. **YouTube Shorts tối đa 3 phút (180 s): trên 180 s video không còn là Shorts** (QC cảnh báo; trên 190 s là lỗi với hồ sơ giải thích sâu). TikTok và Facebook Reels trong ứng dụng cho dài hơn (nguồn thứ cấp, chưa đối chiếu trang chính thức); Facebook hẹn giờ qua API giới hạn 3–90 s (xưởng chưa đăng tự động). Opening 1–8 s (mục tiêu 5–8 s, nguồn: `tools/config/pipeline-rules.json`) có thể có lời hook theo R20/R26.
 - Âm lượng ~ −14 LUFS, đỉnh ≤ −1,5 dBTP. Luôn có luồng audio.
 - Dung lượng ≤ 250 MB (xưởng tự giới hạn; QC sẽ báo).
 - Có `captions.srt` (đa số người xem tắt tiếng) và bản phụ đề đốt cứng nếu plan yêu cầu.
@@ -15,7 +15,7 @@
 | Độ dài tối đa | 3 phút (một số tài khoản 5–10 phút) | Trong app: không giới hạn độ dài/định dạng. Qua API: 3–90 giây | 3 phút, vuông hoặc dọc ✔✔ |
 | Định dạng | MP4/WebM/MOV (MP4 khuyến nghị), 23–60 fps, mỗi cạnh 360–4096 px, ≤ 4 GB | API: MP4, 9:16, 1080×1920 (tối thiểu 540×960), 24–60 fps; H.264/H.265, 4:2:0, closed GOP 2–5 giây, fps cố định, progressive; âm thanh AAC-LC stereo ≥ 128 kbps, 48 kHz | Tối đa 1080p; API nhận tệp tới 256 GB |
 | Nguồn | developers.tiktok.com/doc/content-posting-api-media-transfer-guide | developers.facebook.com/docs/video-api/guides/reels-publishing; about.fb.com/news/2025/06/making-it-easier-create-videos-facebook/ | support.google.com/youtube/answer/15424877; …/answer/10059070 |
-- Chuẩn xưởng (15–45 giây, 1080×1920, H.264 + AAC) nằm trong mọi giới hạn trên.
+- Chuẩn xưởng (45–75 s mặc định; định dạng giải thích sâu ≤ 180 s để còn là Shorts; 1080×1920, H.264 + AAC) nằm trong giới hạn đăng trực tiếp trên cả ba nền tảng. Hẹn giờ Reels qua API (≤ 90 s) chứa được cả chuẩn 45–75 s; chỉ định dạng giải thích sâu mới cần xét lại khi làm đăng tự động.
 - Khi làm đăng tự động qua Meta API cần xuất thêm: closed GOP 2–5 giây, fps cố định, âm thanh 48 kHz ≥ 128 kbps (chuẩn xưởng hiện chưa ghi các mục này).
 - TikTok Creator Rewards (bản Mỹ) yêu cầu video từ 1 phút; chưa kiểm có áp dụng ở Việt Nam không.
 
@@ -43,7 +43,7 @@ Quy định chính thức (chỉ **bắt buộc** với nội dung trông như t
 | YouTube ✔✔ | Nút "AI use" (mục Attributes lúc upload). Bắt buộc với nội dung giống thật: người thật như nói/làm điều chưa từng làm, sửa cảnh/địa điểm thật, tạo cảnh giống thật chưa từng xảy ra, nhạc là trọng tâm. **Không cần** với nội dung phi thực tế (ví dụ hoạt hình kỳ ảo). Giọng đọc AI không nằm trong danh sách bắt buộc. Không khai báo thường xuyên: có thể bị gắn nhãn tay hoặc phạt, kể cả gỡ nội dung hay đình chỉ YPP. API: `status.containsSyntheticMedia` (theo T3, chưa đối chiếu lần hai). Nguồn: support.google.com/youtube/answer/14328491 | — |
 | TikTok | Phải gắn nhãn nội dung AI hoặc chỉnh sửa nhiều "shows realistic-looking scenes or people"; không gắn có thể bị gỡ, hạn chế hoặc gắn nhãn. Tự gắn nhãn qua C2PA. API Direct Post: `is_aigc`. Nguồn: tiktok.com/safety/en/policies-and-engagement/integrity-authenticity | Tên nút trong app (chỉ có tóm tắt tìm kiếm thứ cấp: More options → "AI-generated content"); giọng tổng hợp và hoạt hình có bắt buộc không |
 | Facebook/Meta | Nhãn "AI info". Bắt buộc dùng công cụ khai báo với video "photorealistic" hoặc âm thanh "realistic-sounding" tạo/sửa bằng kỹ thuật số, có thể bị phạt. API Reels: `is_ai_generated`. Nguồn: about.fb.com/news/2026/02/meta-prepares-for-2026-us-midterms/ | Tên nút trong luồng Reels; giọng TTS và hoạt hình |
-- Hệ quả: video của xưởng (hoạt hình + giọng TTS) có thể **không** thuộc diện bắt buộc ở YouTube; TikTok và Meta chưa rõ. **Giữ luật "luôn gắn"** là phương án an toàn. Khi làm T5 cần thêm các cờ API trên vào `publish.json` và `qc-publish`.
+- Hệ quả: video của xưởng (hoạt hình + giọng TTS) có thể **không** thuộc diện bắt buộc ở YouTube; TikTok và Meta chưa rõ. **Giữ luật "luôn gắn"** là phương án an toàn; cách gắn của xưởng (19/11/2026): không đốt nhãn lên hình, gắn bằng `ai_disclosure` ở cuối mô tả cả 3 nền tảng và bật công tắc khai báo AI của nền tảng khi đăng. Khi làm T5 cần thêm các cờ API trên vào `publish.json` và `qc-publish`.
 
 ## Nội dung nên tránh (rủi ro bị gỡ/giới hạn/mất kiếm tiền)
 Nhạc/hình/clip có bản quyền chưa được cấp phép; tuyên bố y tế/tài chính gây hiểu lầm; thông tin chưa kiểm chứng trình bày như sự thật; nội dung bạo lực/nhạy cảm; spam hashtag.

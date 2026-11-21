@@ -19,5 +19,18 @@
       "mcp__studio__close_department",
       "mcp__studio__reopen_department"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/tools/hooks/guard-commit.mjs\""
+          }
+        ]
+      }
+    ]
   }
 }

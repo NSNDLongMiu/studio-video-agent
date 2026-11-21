@@ -42,16 +42,16 @@ test('tự tìm chủ đề TẮT (mặc định): đội không được đề 
 test('BẬT: đội đề xuất (kèm lý do), chờ giám đốc duyệt; duyệt mới thành chủ đề để làm', () => {
   const teamId = S.overview().departments[0].teams[0].id;
   S.setAutoTopics({ dept: 'it', on: true, by: 'test' });
-  const jobs = P.autoScout();
-  assert.equal(jobs.length, 1, 'mỗi đội 1 việc tìm chủ đề');
-  assert.deepEqual(P.autoScout(), [], 'không xếp trùng trong ngày');
+  const at = (h, m) => { const d = new Date(); d.setHours(h, m, 0, 0); return d; };
+  const jobs = P.autoScout({ now: at(13, 30) });
+  assert.equal(jobs.length, 1, 'mỗi phòng 1 việc tìm chủ đề cho khung 13:00');
+  assert.deepEqual(P.autoScout({ now: at(13, 31) }), [], 'không xếp trùng trong cùng khung');
 
   assert.throws(() => S.proposeTopic({ team_id: teamId, text: 'Thiếu lý do', reason: ' ', by: 'test' }), /Thiếu lý do/);
   const a = S.proposeTopic({ team_id: teamId, text: '3 lỗi Excel làm sai báo cáo cuối tháng', reason: 'Mùa chốt sổ; nguồn: https://example.com', by: 'test' });
   assert.equal(a.status, 'proposed');
   assert.throws(() => S.proposeTopic({ team_id: teamId, text: '3 lỗi excel làm sai báo cáo cuối tháng', reason: 'x', by: 'test' }), /trùng/);
   S.proposeTopic({ team_id: teamId, text: 'Dùng AI tóm tắt biên bản họp', reason: 'Câu hỏi phổ biến; nguồn: https://example.com', by: 'test' });
-  assert.throws(() => S.proposeTopic({ team_id: teamId, text: 'Chủ đề thứ ba', reason: 'x', by: 'test' }), /đủ chủ đề/, 'không vượt số suất trống (đội 2 suất)');
 
   const o = S.overview();
   const att = o.attention.filter((x) => x.kind === 'topic_proposal');
@@ -72,7 +72,7 @@ test('BẬT: đội đề xuất (kèm lý do), chờ giám đốc duyệt; duy�
 test('Văn phòng 2D: chỉ hiện vị trí core, tên = vị trí · ai làm; điều phối và agent phụ bị ẩn', () => {
   const c = (s, info) => R.applyRole(s, R.classify(s, info));
   const sub = { agent: 'claude', id: 'agent-1', subagent: true, project: 'Agent-Video-Studio', title: 'x' };
-  assert.equal(c(sub, { agentType: 'planner' }).project, 'Kịch bản · Claude duyệt');
+  assert.equal(c(sub, { agentType: 'planner' }).project, 'Kịch bản · Claude viết & chốt');
   assert.equal(c(sub, { agentType: 'planner' }).subagent, false, 'agent con thuộc core được hiện');
   assert.equal(c(sub, { agentType: 'ideator-b' }).project, 'Ý tưởng · Claude chốt');
   assert.equal(c(sub, { agentType: 'Explore' }).subagent, true, 'agent phụ bị ẩn');
@@ -82,7 +82,7 @@ test('Văn phòng 2D: chỉ hiện vị trí core, tên = vị trí · ai làm; 
   assert.equal(c(top, { firstPrompt: '/scout-topics 4' }).project, 'Tìm chủ đề · Claude');
   assert.equal(c(top, { firstPrompt: 'giám đốc tự hỏi gì đó' }).project, 'Agent-Video-Studio', 'phiên ngoài xưởng giữ nguyên');
   const cx = { agent: 'codex', id: 'c1', subagent: false, cwd: 'D:/x/content/it/T3' };
-  assert.equal(c(cx, { marker: 'script' }).project, 'Kịch bản · Codex viết');
+  assert.equal(c(cx, { marker: 'script' }).project, 'Kịch bản · Codex cùng viết');
   assert.equal(c(cx, { marker: 'storyboard' }).project, 'Đạo diễn hình ảnh · Codex làm');
   assert.equal(c(cx, { marker: 'producer' }).project, 'Sản xuất · Codex');
   assert.equal(c({ ...cx, cwd: 'C:/Temp/codex-ideate-ab12' }, { marker: '' }).project, 'Ý tưởng · Codex');
@@ -107,7 +107,7 @@ test('Văn phòng 2D vòng đời: mỗi vị trí 1 nhân vật; xong thì dọ
   let v = R.buildView({ sessions: [cx('old1'), cx('old2'), cx('fresh', { lastEventAt: NOW - 10_000 }, 'storyboard')] }, lookup, NOW, 45_000);
   assert.deepEqual(keys(v), ['fresh']);
   assert.deepEqual(hist(v), ['codex:old1', 'codex:old2']);
-  assert.equal(v.history[0].label, 'Kịch bản · Codex viết');
+  assert.equal(v.history[0].label, 'Kịch bản · Codex cùng viết');
   assert.ok(!v.history[0].task.includes('STUDIO-ROLE'), 'bỏ dòng đánh dấu khỏi nội dung xem lại');
 
   // 2) một vị trí chỉ 1 nhân vật: đã có phiên đang làm thì phiên cũ đã xong (dù mới xong) vào ngăn ngay

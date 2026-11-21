@@ -8,12 +8,15 @@
 //   dept purge <mã-phòng> [--force]        xoá sạch phòng đã đóng + chủ đề/video/job/đề xuất liên quan (không hoàn tác)
 //   topic submit <mã-phòng> "<chủ đề>" [--brief "..."]            ghi chủ đề cho phòng (-> dùng topic-id ở "enqueue plan")
 //   jobs [list] | jobs cancel <id> | jobs retry <id> | jobs log <id>
+//   takeover <job-id> <claude|off> [--note "..."]   GIÁM ĐỐC duyệt cho AI khác làm thay việc đang kẹt ở AI bị limit/hỏng (hiện: Claude thay Codex ở việc plan); off = thu hồi
 //   enqueue plan <topic-id> [--episodes N] [--rounds N] [--auto-produce | --no-auto-produce]   (không ghi cờ → theo cài đặt auto_produce, mặc định bật)
 //   enqueue produce|qc|rescue <video-id> [--force]   |   enqueue dept_review <phòng>
 //   produce <video-id…>                    = enqueue produce
 //   approve <id> | reject <id>             duyệt/từ chối đề xuất nhân sự
+//   scout <mã-phòng>                       chạy NGAY lượt tìm chủ đề của phòng (~5 đề xuất, gửi "Chủ đề chờ duyệt"); tự động thì chạy 08:00 và 13:00 hằng ngày khi phòng BẬT tự tìm chủ đề (cài đặt scout_slots, scout_per_run, max_pending_topics)
+//   pack <video-id> [--json]               GÓI ĐĂNG TIKTOK: nội dung dán vào ô mô tả, đường dẫn video/bìa, nhắc nhãn AI (không đăng gì; giám đốc tự đăng, luật 9)
 //   settings [khoá giá-trị]                cài đặt (vd paid_fallback on)
-//   accounts assign <provider/nhãn> <mã-phòng|none>   cấp tài khoản cho phòng (none = trả về dùng chung)
+//   accounts assign <provider/nhãn | email> <mã-phòng[,mã-phòng…]|+mã|-mã|none>   cấp tài khoản cho MỘT HOẶC NHIỀU phòng (danh sách = đặt đúng; +mã/-mã = thêm/bớt; none = trả về dùng chung)
 //   office [stop|status] [--private] [--hours N] [--no-open]   Văn phòng 2D (whatsmyagentdoing) — mỗi phòng 1 bản
 //   seed-demo                              dữ liệu mẫu (chỉ khi DB trống)
 import fs from 'node:fs';
@@ -23,13 +26,15 @@ import { fileURLToPath } from 'node:url';
 import * as S from './db.mjs';
 import * as P from './pool.mjs';
 import * as R from './runners.mjs';
+import { findAgy } from './agy.mjs';
 import { runWorker, requestStop } from './worker.mjs';
 import { formatOverview, formatPool } from './format.mjs';
 import * as O from './office.mjs';
+import { buildTikTokPack, formatPack } from './publish-pack.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const [cmd, ...rest] = process.argv.slice(2);
-const BOOL = new Set(['--force', '--auto-produce', '--no-auto-produce', '--default', '--probe', '--private', '--no-open', '--default-only']);
+const BOOL = new Set(['--force', '--auto-produce', '--no-auto-produce', '--default', '--probe', '--json', '--private', '--no-open', '--default-only']);
 const flags = {};
 const args = [];
 for (let i = 0; i < rest.length; i++) {
@@ -47,14 +52,15 @@ async function accountsCmd() {
   switch (sub) {
     case 'list': {
       const accs = P.listAccounts();
-      say(accs.length ? formatPool({ accounts: accs, jobs: [], worker: P.workerState(), summary: {}, attention: [] }, { only: 'accounts' }) : 'Chưa có tài khoản nào. Thêm: node studio/src/cli.mjs accounts add <claude|codex> <nhãn> --owner "Tên"  (hoặc: accounts init)');
+      say(accs.length ? formatPool({ accounts: accs, jobs: [], worker: P.workerState(), summary: {}, attention: [] }, { only: 'accounts' }) : 'Chưa có tài khoản nào. Thêm: node studio/src/cli.mjs accounts add <claude|codex|gemini> <nhãn> --owner "Tên"  (hoặc: accounts init)');
       break;
     }
     case 'add': {
       const [, provider, label] = args;
       const r = P.addAccount({ provider, label, owner: flags.owner || '', kind: flags['api-key'] || flags['secret-file'] ? 'api_key' : 'subscription', useDefault: !!flags.default, secret_file: flags['secret-file'] || null, priority: flags.priority ? Number(flags.priority) : 100, max_runs_per_day: flags['max-runs-per-day'] ? Number(flags['max-runs-per-day']) : null });
       say(`✔ Đã thêm ${provider}/${label} (id ${r.id}).`);
-      if (!flags.default) say(`  Bước tiếp theo — đăng nhập tài khoản này (mở trình duyệt, đăng nhập đúng tài khoản của ${flags.owner || 'người dùng nó'}):\n    node studio/src/cli.mjs accounts login ${provider}/${label}\n  (hoặc tự chạy: ${r.login})`);
+      if (provider === 'gemini') say('  Gemini (agy) dùng đăng nhập mặc định của máy, không có bước đăng nhập riêng. Kiểm: node studio/src/cli.mjs accounts check gemini/' + label + ' --probe');
+      else if (!flags.default) say(`  Bước tiếp theo — đăng nhập tài khoản này (mở trình duyệt, đăng nhập đúng tài khoản của ${flags.owner || 'người dùng nó'}):\n    node studio/src/cli.mjs accounts login ${provider}/${label}\n  (hoặc tự chạy: ${r.login})`);
       break;
     }
     case 'init': {
@@ -76,8 +82,9 @@ async function accountsCmd() {
     case 'login': {
       const a = P.resolveAccount(ref);
       if (a.kind === 'api_key') throw new S.StudioError('Tài khoản kiểu api_key không cần đăng nhập bằng trình duyệt');
-      const cx = a.provider === 'claude' ? R.findClaude() : R.findCodex();
-      const loginArgs = a.provider === 'claude' ? ['auth', 'login'] : ['login'];
+      const cx = a.provider === 'claude' ? R.findClaude() : a.provider === 'gemini' ? findAgy() : R.findCodex();
+      // agy không có lệnh login riêng: mở agy, chọn "1. Google OAuth", đăng nhập bằng trình duyệt rồi dán mã.
+      const loginArgs = a.provider === 'claude' ? ['auth', 'login'] : a.provider === 'gemini' ? [] : ['login'];
       say(`Mở đăng nhập cho ${a.provider}/${a.label}${a.owner ? ` (của ${a.owner})` : ''} — hãy đăng nhập ĐÚNG tài khoản của người này trong trình duyệt…`);
       await new Promise((res) => spawn(cx.cmd, [...cx.pre, ...loginArgs], { stdio: 'inherit', env: R.accountEnv(a.provider, a), shell: cx.shell }).on('close', res));
       const st = R.checkAuth(a);
@@ -86,9 +93,9 @@ async function accountsCmd() {
       break;
     }
     case 'assign': {
-      if (!ref || !args[2]) throw new S.StudioError('Cú pháp: accounts assign <provider/nhãn | email> <mã-phòng|none>');
-      const r = P.assignAccount(ref, args[2]);
-      say(r.dept ? `✔ ${r.person} → phòng "${r.dept}": chỉ việc của phòng này dùng; có Văn phòng 2D riêng (bật lại: npm run office --prefix studio).` : `✔ ${r.person} → dùng chung (không theo dõi trên Văn phòng 2D).`);
+      if (!ref || !args[2]) throw new S.StudioError('Cú pháp: accounts assign <provider/nhãn | email> <mã-phòng[,mã-phòng…]|+mã|-mã|none>');
+      const r = P.assignAccount(ref, args.slice(2));
+      say(r.depts.length ? `✔ ${r.person} → phòng ${r.depts.join(', ')}: ${r.depts.length > 1 ? 'các phòng này cùng dùng chung hạn mức của nó' : 'chỉ việc của phòng này dùng'}; có Văn phòng 2D theo phòng (bật lại: npm run office --prefix studio).` : `✔ ${r.person} → dùng chung (không theo dõi trên Văn phòng 2D).`);
       break;
     }
     case 'check': {
@@ -132,7 +139,7 @@ async function accountsCmd() {
       break;
     }
     default:
-      say('accounts: list | add <claude|codex> <nhãn> [--owner Tên] [--default] [--secret-file path] [--priority N] [--max-runs-per-day N] | login <tk> | check [tk] [--probe] | enable|disable|unlimit|remove <tk> | owner <tk> <tên chủ> | init');
+      say('accounts: list | add <claude|codex|gemini> <nhãn> [--owner Tên] [--default] [--secret-file path] [--priority N] [--max-runs-per-day N] | login <tk> | check [tk] [--probe] | enable|disable|unlimit|remove <tk> | owner <tk> <tên chủ> | init');
   }
 }
 
@@ -153,6 +160,22 @@ async function main() {
     case 'status':
       say(formatOverview(S.overview({ dept: args[0] }), P.poolOverview()));
       break;
+    case 'load': {
+      // Cân bằng tải ba agent (số phút chạy thật, mặc định 7 ngày): node studio/src/cli.mjs load [--days N]
+      if (flags.backfill) {
+        const b = P.backfillCalls();
+        say(`Dựng lại sổ lượt gọi từ log cũ: quét ${b.scanned} log, thêm ${b.added}, bỏ qua ${b.skipped} (đã có hoặc không hợp lệ).`);
+      }
+      const r = P.loadReport({ days: Number(flags.days) || 7 });
+      say(`Cân bằng tải ${r.days} ngày gần nhất (số phút chạy thật; mỗi bên nên ≈ 1/3, chấp nhận ${P.LOAD_BAND.min * 100}–${P.LOAD_BAND.max * 100}%):`);
+      for (const p of P.PROVIDERS) {
+        const x = r.providers[p];
+        say(`  ${P.PROVIDER_NAME[p].padEnd(7)} ${String(x.share_pct).padStart(5)}%  ${String(x.minutes).padStart(7)} phút · ${x.jobs} việc nền + ${x.calls} lượt gọi · hết limit ${x.limits} lần · lỗi ${x.failed}`);
+      }
+      say(`  → ${r.status === 'balanced' ? 'CÂN BẰNG' : r.status === 'skewed' ? 'LỆCH: ' + r.notes.join('; ') : r.notes.join(' ')}`);
+      say(`  (${r.caveat})`);
+      break;
+    }
     case 'approve':
     case 'reject':
       say(JSON.stringify(S.decideProposal({ id: Number(args[0]), approve: cmd === 'approve', by: 'director', note: args.slice(1).join(' ') }), null, 2));
@@ -180,6 +203,18 @@ async function main() {
     case 'enqueue':
       enqueue(args[0], args[1]);
       break;
+    case 'scout': {
+      if (!args[0]) throw new S.StudioError('Cú pháp: scout <mã-phòng>');
+      const r = P.enqueueScoutNow(args[0]);
+      say(r.deduped ? `· Phòng "${args[0]}" đã có việc tìm chủ đề #${r.job_id} (${r.status}) — không xếp thêm.` : `✔ Đã xếp việc tìm chủ đề #${r.job_id} cho phòng "${args[0]}"; worker tự chạy, đề xuất hiện ở "Chủ đề chờ duyệt".`);
+      break;
+    }
+    case 'pack': {
+      if (!args[0]) throw new S.StudioError('Cú pháp: pack <video-id> [--json]');
+      const pack = buildTikTokPack(args[0]);
+      say(flags.json ? JSON.stringify(pack, null, 2) : formatPack(pack));
+      break;
+    }
     case 'produce':
       for (const v of args) enqueue('produce', v);
       if (!args.length) throw new S.StudioError('Cú pháp: produce <video-id…> [--force]');
@@ -193,6 +228,14 @@ async function main() {
         const f = j?.log_file;
         say(f && fs.existsSync(f) ? fs.readFileSync(f, 'utf8').slice(-6000) : `Chưa có log cho việc #${args[1]}`);
       } else say(formatPool({ ...P.poolOverview() }, { only: 'jobs' }));
+      break;
+    }
+    case 'takeover': {
+      const id = Number(args[0]);
+      const by = String(args[1] || '').toLowerCase();
+      if (!id || !by) throw new S.StudioError('Cú pháp: takeover <job-id> <claude|off> [--note "lý do"]');
+      say(JSON.stringify(by === 'off' ? P.revokeTakeover(id) : P.approveTakeover({ job_id: id, by, note: flags.note || '' }), null, 2));
+      say('Việc đã được xếp chạy lại. Worker đang chạy sẽ nhận ngay; chưa bật thì: npm run start --prefix studio');
       break;
     }
     case 'settings':
@@ -252,7 +295,7 @@ async function main() {
       say('Đã nạp dữ liệu mẫu (Thể thao 2 đội, IT 1 đội). Chạy: npm run start --prefix studio');
       break;
     default:
-      say('Lệnh: status | start | worker [stop] | dashboard | accounts … | jobs … | enqueue … | produce <video-id> | approve <id> | reject <id> | settings | seed-demo');
+      say('Lệnh: status | start | worker [stop] | dashboard | accounts … | jobs … | enqueue … | produce <video-id> | pack <video-id> | scout <phòng> | approve <id> | reject <id> | settings | seed-demo');
   }
 }
 

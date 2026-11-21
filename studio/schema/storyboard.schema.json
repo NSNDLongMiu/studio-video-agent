@@ -13,6 +13,59 @@
       "description": "Renderer được chọn theo khả năng biểu đạt thật của từng cảnh."
     },
     "renderer_reason": { "type": "string", "description": "Lý do chọn renderer theo khả năng minh hoạ thực tế." },
+    "opening": {
+      "type": "object",
+      "description": "Cảnh opening riêng dài 1–8 giây, có thể có lời hook. Mục tiêu 5–8 giây theo opening.target_s trong tools/config/pipeline-rules.json. Chữ do text engine của pipeline vẽ.",
+      "properties": {
+        "title": { "type": "string", "description": "Tiêu đề ngắn, rõ, gây tò mò (nguyên văn, khớp cột 'Chữ trên màn hình' của script)." },
+        "duration_s": { "type": "number", "minimum": 1, "maximum": 8, "description": "Thời lượng opening hợp lệ từ 1 đến 8 giây. Mục tiêu 5–8 giây theo opening.target_s trong tools/config/pipeline-rules.json." },
+        "animation": { "type": "string", "description": "Hiệu ứng xuất hiện/camera/âm báo ngắn." },
+        "scene_id": { "type": "string", "description": "Mã cảnh opening trong scenes.json (mặc định S00); là cảnh riêng, `role: opening`." },
+        "topic": { "type": "string", "description": "Nhãn chủ đề hiện cùng tiêu đề trong opening (vd SECURITY / PLUGIN AI)." },
+        "voice": { "type": "boolean", "description": "Khi true, opening có thể có lời hook và tiếng đầu tiên tính từ đầu opening theo opening.voice_start_min_s và opening.voice_start_max_s trong tools/config/pipeline-rules.json. Khi false, tiếng đầu tiên vào từ mốc hết opening trừ 0,3 giây trở đi." },
+        "style": { "type": "string", "enum": ["question", "hypothetical", "warning", "incident", "surprise"] },
+        "style_params": { "type": "object" },
+        "voice_line": { "type": "string", "description": "Mã dòng lời hook phát trong opening." },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["phase", "start_s", "end_s"],
+            "properties": {
+              "phase": { "type": "string", "enum": ["visual_hook", "conflict", "topic_reveal"] },
+              "start_s": { "type": "number", "minimum": 0 },
+              "end_s": { "type": "number", "exclusiveMinimum": 0 },
+              "visual": { "type": "string" },
+              "sfx_intent": { "$ref": "#/definitions/audible_sound_intent" },
+              "voice_line": { "type": "string", "description": "Mã dòng lời phát trong giai đoạn này." }
+            }
+          }
+        }
+      },
+      "required": ["title", "duration_s"]
+    },
+    "captions": {
+      "type": "object",
+      "description": "Lớp phụ đề/caption accessibility (riêng, không phải visual chính): 52–60 px, tối đa 2 dòng, dải dưới.",
+      "properties": {
+        "layer": { "type": "string", "enum": ["accessibility"] },
+        "burn_in": { "type": "boolean" },
+        "position": { "type": "string", "enum": ["bottom"] },
+        "font_px": { "type": "number", "minimum": 52, "maximum": 64 },
+        "max_lines": { "type": "integer", "minimum": 1, "maximum": 2 }
+      }
+    },
+    "header": {
+      "type": "object",
+      "description": "Header = page header của video (R14, D8/R21): có ở MỌI cảnh sau opening, đủ lớn (≥ 52 px, ≤ 9% khung), đổi ô theo cảnh (`header_slot` từng cảnh) để không đè sơ đồ/nhãn/Cáo/phụ đề.",
+      "properties": {
+        "text": { "type": "string", "description": "Dòng chủ đề nguyên văn, vd DATABASE / DEADLOCK." },
+        "title": { "type": "string", "description": "Tiêu đề rút gọn của video (≤ 6 từ) hiện dưới dòng chủ đề." },
+        "slots": { "type": "array", "items": { "type": "string", "enum": ["top", "top_left", "top_right", "above_captions"] }, "description": "Các ô header được dùng trong video (thứ tự ưu tiên)." },
+        "hidden_scenes": { "type": "array", "items": { "type": "string" }, "description": "ĐÃ BỎ từ D8 (19/11/2026): không được ẩn header sau opening; chỉ còn để đọc storyboard cũ." }
+      },
+      "required": ["text"]
+    },
     "status": {
       "type": "string",
       "enum": ["DRAFT", "APPROVED", "NEEDS_REDESIGN"],
@@ -42,11 +95,121 @@
           "character_action", "props", "camera", "animation_timeline", "voice_over",
           "text_overlay", "sound_effects", "transition", "duration_s", "quality_check"
         ],
+        "allOf": [
+          {
+            "if": { "required": ["scene_kind"], "properties": { "scene_kind": { "const": "before_after" } } },
+            "then": {
+              "required": ["kind_params"],
+              "properties": {
+                "kind_params": {
+                  "required": ["before", "after"],
+                  "properties": {
+                    "before": { "$ref": "#/definitions/comparison_side" },
+                    "after": { "$ref": "#/definitions/comparison_side" }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": { "required": ["scene_kind"], "properties": { "scene_kind": { "const": "problem_cause_consequence" } } },
+            "then": {
+              "required": ["kind_params"],
+              "properties": {
+                "kind_params": {
+                  "required": ["problem", "cause", "consequence"],
+                  "properties": {
+                    "problem": { "$ref": "#/definitions/cause_chain_part" },
+                    "cause": { "$ref": "#/definitions/cause_chain_part" },
+                    "consequence": { "$ref": "#/definitions/cause_chain_part" }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": { "required": ["scene_kind"], "properties": { "scene_kind": { "const": "step_by_step" } } },
+            "then": {
+              "required": ["kind_params"],
+              "properties": {
+                "kind_params": {
+                  "required": ["steps"],
+                  "properties": {
+                    "steps": {
+                      "type": "array",
+                      "minItems": 2,
+                      "items": {
+                        "type": "object",
+                        "required": ["label", "object"],
+                        "properties": {
+                          "label": { "type": "string" },
+                          "object": { "type": "string" },
+                          "t": { "type": "number", "minimum": 0, "description": "Giây tính từ đầu cảnh." }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "properties": {
           "scene_id": { "type": "string", "description": "Khớp số dòng/cảnh trong script.md (vd 'C1-5' hoặc '5')" },
           "main_change": { "type": "string", "description": "Vật hoặc quan hệ đổi thế nào, thấy ở 360×640 không cần đọc chữ." },
-          "text_groups": { "type": "integer", "minimum": 0, "description": "Số nhóm chữ tối đa cùng lúc, không tính phụ đề và nhãn AI." },
+          "text_groups": { "type": "integer", "minimum": 0, "description": "Số nhóm chữ tối đa cùng lúc, không tính phụ đề." },
           "hold_reason": { "type": "string", "description": "Lý do giữ hình tĩnh khi có đoạn tĩnh trên 2 giây." },
+          "main_idea": { "type": "string", "description": "Ý chính duy nhất của cảnh (R13): mỗi cảnh một ý." },
+          "complexity": { "type": "string", "enum": ["low", "medium", "high"], "description": "Độ phức tạp thông tin (R13): low = khái niệm đơn giản; medium = có thuật ngữ/quan hệ cần giải thích; high = sơ đồ, nhiều thành phần, luồng xử lý." },
+          "concepts": { "type": "integer", "minimum": 0, "description": "Số khái niệm mới cảnh giới thiệu (high tối đa 1; tối đa ≈ 2 mỗi 10 s)." },
+          "hold_after_voice_s": { "type": "number", "minimum": 0, "description": "Giữ trạng thái hoàn chỉnh sau khi dứt lời trước cú cắt (gợi ý: low ≥ 0,5, medium ≥ 1,0, high ≥ 2,0–3,0 giây)." },
+          "header_slot": { "type": "string", "enum": ["top", "top_left", "top_right", "above_captions"], "description": "Ô đặt header trong cảnh (D8/R21), chọn để không đè sơ đồ/nhãn/Cáo/phụ đề." },
+          "semantic_plan": {
+            "type": "object",
+            "description": "Kế hoạch ngữ nghĩa → hình của cảnh (Visual-first, D7/R17–R18): voice-over giải thích, hình minh hoạ, chữ chỉ nhấn mạnh. Không dùng nguyên văn lời thoại làm chữ chính.",
+            "properties": {
+              "keywords": {
+                "type": "array",
+                "description": "Keyword được chọn (hiểu ngữ nghĩa, không regex/cắt câu).",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "term": { "type": "string" },
+                    "type": { "type": "string", "enum": ["concept", "term", "entity", "relation", "action", "result"], "description": "Khái niệm chính / thuật ngữ / đối tượng-thành phần / quan hệ / hành động-cơ chế / kết quả-hậu quả." },
+                    "form": { "type": "string", "enum": ["icon", "illustration", "animation", "flow", "connection", "comparison", "chart", "status", "metaphor", "text_only"], "description": "Hình thức minh hoạ: đối tượng→icon/illustration, hành động→animation, quy trình→flow, quan hệ→connection, so sánh→comparison, số liệu→chart, trạng thái→status, trừu tượng→metaphor." },
+                    "object": { "type": "string", "description": "Hình cụ thể sẽ thấy." },
+                    "motion": { "type": "string", "description": "Chuyển động cần thực hiện." }
+                  },
+                  "required": ["term", "type", "form"]
+                }
+              },
+              "relations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": { "from": { "type": "string" }, "to": { "type": "string" }, "type": { "type": "string" } },
+                  "required": ["from", "to"]
+                }
+              },
+              "texts": {
+                "type": "array",
+                "description": "Chữ thật sự cần hiện (keyword/nhãn/số liệu/thông điệp ngắn). Thời gian tính từ đầu cảnh.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": { "type": "string" },
+                    "kind": { "type": "string", "enum": ["keyword", "label", "number", "message"] },
+                    "attach_to": { "type": "string", "description": "Thành phần/đối tượng mang nhãn." },
+                    "appear_s": { "type": "number", "minimum": 0 },
+                    "disappear_s": { "type": "number", "minimum": 0 },
+                    "effect": { "type": "string", "description": "none | fade | pop | highlight | kinetic (kinetic tối đa 1 mỗi cảnh)." }
+                  },
+                  "required": ["text", "kind"]
+                }
+              },
+              "hold_s": { "type": "number", "minimum": 0, "description": "Thời gian giữ để người xem hiểu." }
+            }
+          },
           "narrative_purpose": { "type": "string", "description": "Cảnh này tồn tại để làm gì trong câu chuyện (không phải mô tả hình ảnh)" },
           "visual_concept": { "type": "string", "description": "Ý tưởng minh hoạ cụ thể cho lời thoại của cảnh này - chủ thể/hành động/đối tượng/nguyên nhân-kết quả, không chép lại lời thoại" },
           "scene_type": {
@@ -58,6 +221,15 @@
             ],
             "description": "Hình thức minh hoạ - quyết định renderer nào trong Producer sẽ dựng cảnh này"
           },
+          "scene_kind": {
+            "type": "string",
+            "enum": [
+              "ui_simulation", "data_flow", "before_after", "problem_cause_consequence",
+              "detail_focus", "step_by_step", "character_explanation", "animated_diagram"
+            ],
+            "description": "Cách tổ chức minh hoạ trong cảnh. Renderer tiếp tục dùng scene_type."
+          },
+          "kind_params": { "type": "object", "description": "Tham số minh hoạ theo scene_kind." },
           "environment": { "type": "string", "description": "Bối cảnh: nơi chốn, lớp near/mid/background, ánh sáng" },
           "character_action": {
             "type": "string",
@@ -82,8 +254,50 @@
             }
           },
           "voice_over": { "type": "string", "description": "Lời dẫn của cảnh (copy từ script.md, không bịa thêm)" },
+          "voice_direction": {
+            "type": "array",
+            "description": "Chỉ đạo theo từng dòng lời của cảnh. Bộ lập kế hoạch giọng dùng giá trị đã khai và suy ra các trường còn thiếu.",
+            "items": {
+              "type": "object",
+              "required": ["line_id"],
+              "properties": {
+                "line_id": { "type": "string", "pattern": "^[0-9]{2}$", "description": "Mã hai chữ số khớp với nhãn dòng lời trong script.md." },
+                "intent": { "type": "string", "enum": ["hook", "explanation", "warning", "question", "reveal", "conclusion"] },
+                "emotion": { "type": "string", "enum": ["curious", "neutral", "concerned", "alert", "surprised", "reassuring", "resolute"] },
+                "emphasis": { "type": "array", "items": { "type": "string" }, "maxItems": 2, "description": "Cụm từ nguyên văn trong lời đọc." },
+                "pace": { "type": "string", "enum": ["slow", "measured", "normal", "brisk"] },
+                "pause_before_s": { "type": "number", "minimum": 0 },
+                "pause_after_s": { "type": "number", "minimum": 0 },
+                "intonation": { "type": "string", "enum": ["rising", "falling", "flat", "emphatic_fall", "rise_fall"] },
+                "transition": {
+                  "type": "object",
+                  "properties": {
+                    "from_prev": { "$ref": "#/definitions/voice_transition" },
+                    "to_next": { "$ref": "#/definitions/voice_transition" }
+                  }
+                }
+              }
+            }
+          },
           "text_overlay": { "type": "string", "description": "Chữ nhấn (từ khoá/số/câu hỏi/kết luận) - để rỗng nếu không cần chữ trên màn hình" },
-          "sound_effects": { "type": "array", "items": { "type": "string" } },
+          "sound_effects": { "type": "array", "items": { "type": "string" }, "description": "Giữ để đọc bản cũ. Bản mới dùng sound_cues." },
+          "sound_cues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["t", "intent", "intensity", "reason"],
+              "properties": {
+                "t": { "type": "number", "minimum": 0, "description": "Giây tính từ đầu cảnh." },
+                "intent": { "anyOf": [{ "$ref": "#/definitions/audible_sound_intent" }, { "const": "silence" }] },
+                "target": { "type": "string", "description": "Đối tượng hoặc nhãn gây ra tiếng." },
+                "intensity": { "type": "string", "enum": ["low", "medium", "high"] },
+                "duration_s": { "type": "number", "exclusiveMinimum": 0 },
+                "reason": { "type": "string", "description": "Lý do có hiệu ứng âm thanh hoặc khoảng lặng chủ đích." }
+              },
+              "if": { "properties": { "intent": { "const": "silence" } } },
+              "then": { "required": ["duration_s"] }
+            }
+          },
           "transition": {
             "type": "string",
             "enum": ["cut", "fade", "wipeleft", "wiperight", "wipeup", "wipedown", "slideup", "slidedown", "circleopen", "match_cut"],
@@ -99,10 +313,38 @@
               "change_visible_at_360": { "type": "boolean", "description": "Đổi hình nhìn rõ ở 360×640; mong muốn true." },
               "has_real_illustration": { "type": "boolean", "description": "false nếu cảnh chỉ là nền + Cáo đứng + chữ" },
               "repeats_previous_layout": { "type": "boolean", "description": "true nếu bố cục giống hệt cảnh ngay trước - cảnh thứ 3 liên tiếp giống nhau phải thiết kế lại" },
+              "repeats_previous_kind": { "type": "boolean", "description": "Cảnh dùng cùng scene_kind với cảnh ngay trước." },
               "silent_comprehensible": { "type": "boolean", "description": "tắt tiếng vẫn hiểu được ý chính của cảnh" }
             }
           }
         }
+      }
+    }
+  },
+  "definitions": {
+    "audible_sound_intent": {
+      "type": "string",
+      "enum": ["ui_appear", "transition", "alert", "data_move", "highlight", "interaction", "impact_hook", "impact_reveal", "impact_risk"]
+    },
+    "voice_transition": {
+      "type": "string",
+      "enum": ["continuous", "contrast", "cause_effect", "elaboration", "new_topic", "callback"]
+    },
+    "comparison_side": {
+      "type": "object",
+      "required": ["label", "state", "object"],
+      "properties": {
+        "label": { "type": "string" },
+        "state": { "type": "string", "enum": ["ok", "warn", "bad"] },
+        "object": { "type": "string" }
+      }
+    },
+    "cause_chain_part": {
+      "type": "object",
+      "required": ["label", "object"],
+      "properties": {
+        "label": { "type": "string" },
+        "object": { "type": "string" }
       }
     }
   }

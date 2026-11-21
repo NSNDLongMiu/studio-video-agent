@@ -9,6 +9,8 @@ import * as P from './pool.mjs';
 import * as O from './office.mjs';
 import * as R from './runners.mjs';
 import { memberActivity } from './transcript.mjs';
+import { buildTikTokPack } from './publish-pack.mjs';
+import { spawn } from 'node:child_process';
 
 // ---------- nút "Kiểm tra lại" ở khung "Cần giám đốc chú ý" ----------
 /** Kiểm lại 1 tài khoản ngay: đăng nhập thật (claude auth status / codex login status) và, nếu probe, gọi thử 1 câu cực ngắn
@@ -84,7 +86,7 @@ function toggleChecklist(line) {
 function fullOverview() {
   const o = S.overview();
   const pool = P.poolOverview();
-  return { ...o, attention: [...pool.attention, ...o.attention], pool, office: O.officeDirectory() };
+  return { ...o, attention: [...pool.attention, ...o.attention], pool, office: O.officeDirectory(), ready_videos: S.readyVideos() };
 }
 
 const send = (res, code, body, type = 'application/json; charset=utf-8') => {
@@ -133,6 +135,8 @@ async function route(req, res) {
   if (req.method === 'GET' && p === '/api/overview') return send(res, 200, fullOverview());
   if (req.method === 'GET' && p === '/api/checklist') return send(res, 200, readChecklist());
   if (req.method === 'GET' && p === '/api/health') return send(res, 200, { ok: true });
+  const packReq = req.method === 'GET' && p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/pack\/tiktok$/);
+  if (packReq) return send(res, 200, buildTikTokPack(packReq[1])); // chỉ đọc: dựng gói đăng, không đăng gì
   const activity = req.method === 'GET' && p.match(/^\/api\/members\/(\d+)\/activity$/);
   if (activity) {
     try {
@@ -150,9 +154,9 @@ async function route(req, res) {
   if (p === '/api/departments') return send(res, 200, S.createDepartment({ ...body, by: 'director' }));
   if ((m = p.match(/^\/api\/departments\/([a-z0-9-]+)\/auto-topics$/))) return send(res, 200, S.setAutoTopics({ dept: m[1], on: !!body.on, by: 'director' }));
   if ((m = p.match(/^\/api\/topics\/(\d+)\/(approve|reject)$/))) {
-    const r = S.decideTopic({ topic_id: Number(m[1]), approve: m[2] === 'approve', note: body.note || '', by: 'director' });
-    // Duyệt = đội làm luôn: xếp việc kế hoạch (Ý tưởng → Kịch bản → Đạo diễn hình ảnh), dừng chờ giám đốc duyệt sản xuất như thường.
-    return send(res, 200, m[2] === 'approve' ? { ...r, job: P.enqueueJob({ kind: 'plan', topic_id: r.topic_id, by: 'director' }), worker: P.ensureWorker() } : r);
+    // Duyệt = giao NGAY cho đội đang rảnh nhất (lần lượt, ưu tiên đội chưa có việc) và xếp việc kế hoạch (Ý tưởng → Kịch bản → Đạo diễn hình ảnh); từ chối thì chỉ đổi trạng thái.
+    if (m[2] === 'approve') return send(res, 200, { ...P.approveTopic({ topic_id: Number(m[1]), note: body.note || '', by: 'director' }), worker: P.ensureWorker() });
+    return send(res, 200, S.decideTopic({ topic_id: Number(m[1]), approve: false, note: body.note || '', by: 'director' }));
   }
   if ((m = p.match(/^\/api\/departments\/([a-z0-9-]+)\/(target|close|reopen)$/))) {
     if (m[2] === 'target') return send(res, 200, S.setDailyTarget({ slug: m[1], target: body.target, by: 'director' }));
@@ -161,7 +165,7 @@ async function route(req, res) {
   }
   if (p === '/api/topics') return send(res, 200, S.submitTopic({ ...body, by: 'director' }));
   if (p === '/api/accounts') return send(res, 200, P.addAccount({ provider: body.provider, label: body.label, owner: body.owner || '', kind: body.kind || 'subscription', useDefault: !!body.useDefault, secret_file: body.secret_file || null, by: 'director' }));
-  if ((m = p.match(/^\/api\/accounts\/(\d+)\/assign$/))) return send(res, 200, P.assignAccount(Number(m[1]), body.dept || null));
+  if ((m = p.match(/^\/api\/accounts\/(\d+)\/assign$/))) return send(res, 200, P.assignAccount(Number(m[1]), body.depts ?? body.dept ?? null));
   if ((m = p.match(/^\/api\/accounts\/(\d+)\/(enable|disable|unlimit|remove)$/))) {
     const id = Number(m[1]);
     if (m[2] === 'unlimit') return send(res, 200, P.clearLimit(id));
@@ -169,6 +173,28 @@ async function route(req, res) {
     return send(res, 200, P.setAccountEnabled(id, m[2] === 'enable'));
   }
   if ((m = p.match(/^\/api\/jobs\/(\d+)\/(cancel|retry)$/))) return send(res, 200, m[2] === 'cancel' ? P.cancelJob(Number(m[1])) : P.retryJob(Number(m[1])));
+  if ((m = p.match(/^\/api\/jobs\/(\d+)\/takeover$/))) return send(res, 200, { ...(body.by === 'off' ? P.revokeTakeover(Number(m[1])) : P.approveTakeover({ job_id: Number(m[1]), by: body.by || 'claude', note: body.note || '' })), worker: P.ensureWorker() });
+  if ((m = p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/published$/))) {
+    // Giám đốc ĐÃ TỰ ĐĂNG video lên nền tảng (luật 9) và báo lại bằng nút này → published. Hệ thống không đăng bài.
+    const v = S.getVideo(m[1]);
+    if (v.stage !== 'ready') throw new S.StudioError(`${v.id} đang ở "${v.stage}", chỉ video "ready" mới đổi sang published được`);
+    return send(res, 200, S.setVideoStage({ video_id: v.id, stage: 'published', note: 'giám đốc đã tự đăng (bấm trên dashboard)', by: 'director' }));
+  }
+  if ((m = p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/open-folder$/))) {
+    // Mở thư mục final/ của video trong Explorer (chỉ Windows, chỉ thư mục final của chính video này) để kéo file vào trang tải lên của TikTok.
+    const pack = buildTikTokPack(m[1]);
+    const target = pack.files.video?.path || pack.files.cover?.path;
+    if (!target) throw new S.StudioError(`${pack.video_id} chưa có file nào trong final/`);
+    if (process.platform !== 'win32') throw new S.StudioError('Nút mở thư mục chỉ chạy trên Windows; dùng đường dẫn đã hiện');
+    spawn('explorer.exe', [`/select,${target}`], { detached: true, stdio: 'ignore', windowsHide: false }).unref();
+    return send(res, 200, { opened: path.dirname(target) });
+  }
+  if ((m = p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/accept$/))) {
+    // Giám đốc đã nghe/xem xong video QC giữ ở "review" (QC-CHỜ-NGHE hoặc chấp nhận lỗi thiết kế) → sẵn sàng đăng. Chỉ giám đốc bấm; không đăng bài (luật 9).
+    const v = S.getVideo(m[1]);
+    if (v.stage !== 'review') throw new S.StudioError(`${v.id} đang ở "${v.stage}", chỉ video đang ở "review" mới duyệt sang sẵn sàng đăng được`);
+    return send(res, 200, S.setVideoStage({ video_id: v.id, stage: 'ready', note: 'giám đốc đã nghe/xem và duyệt (bấm trên dashboard)', by: 'director' }));
+  }
   if ((m = p.match(/^\/api\/videos\/([A-Za-z0-9-]+)\/produce$/))) return send(res, 200, { ...P.enqueueJob({ kind: 'produce', video_id: m[1], by: 'director' }), worker: P.ensureWorker() });
   if (p === '/api/settings') return send(res, 200, P.setSetting(body.key, body.value));
   if (p === '/api/worker/start') return send(res, 200, P.ensureWorker());

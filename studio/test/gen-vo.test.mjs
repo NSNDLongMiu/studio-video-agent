@@ -79,20 +79,22 @@ test('Giọng đọc Remotion theo Y6–Y8', {
 
   await t.test('Áp từ điển, giữ nguyên text_tts và đo thời lượng kể cả nghỉ', () => {
     const { entries } = JSON.parse(fs.readFileSync(dictionary, 'utf8'));
-    const { tts } = entries.find(({ term }) => term === 'Database');
+    // Từ điển thật giữ chữ tiếng Anh; chọn mục có chữ đưa TTS khác chữ gốc (vd AI → “eigh eye”) để chứng tỏ từ điển được áp.
+    const { term, tts } = entries.find((entry) => entry.tts.toLowerCase() !== entry.term.toLowerCase());
+    const original = `Dùng ${term}?`;
     const override = '  Database theo cách đọc riêng  ';
     const report = success('defaults', { lines: [
-      { text: 'Dùng Database?' },
+      { text: original },
       { text: 'Tiếp tục.', text_tts: override },
       { text: 'Chuyển ý', new_topic: true },
       { text: 'Chờ.', pause_after_s: 0.2 },
       { text: 'Kết thúc?', pause_after_s: 1.1 },
     ] });
-    assert.notEqual(report.tts_text[0], 'Dùng Database?');
+    assert.notEqual(report.tts_text[0], original);
     assert.equal(report.tts_text[0], `Dùng ${tts}?`);
     assert.equal(report.tts_text[1], override);
-    assert.deepEqual(report.tempo, [1, 1, 1, 1, 1]);
-    report.speech_s.forEach((speech) => near(speech, 2, 0.05));
+    assert.deepEqual(report.tempo, [1.12, 1.12, 1.12, 1.12, 1.12]);
+    report.speech_s.forEach((speech) => near(speech, 2 / 1.12, 0.05));
     const expectedPauses = [0.95, 0.55, 1.10, 0.20, 0];
     assert.equal(report.pause_s.length, expectedPauses.length);
     expectedPauses.forEach((pause, i) => near(report.pause_s[i], pause));
@@ -114,9 +116,10 @@ test('Giọng đọc Remotion theo Y6–Y8', {
       { text: 'Giải thích.', speed_class: 'ky_thuat' },
       { text: 'Mở đầu.', speed_class: 'dan' },
     ] });
-    assert.deepEqual(report.tempo, [0.97, 1.03]);
-    assert.ok(report.speech_s[0] > 2, String(report.speech_s[0]));
-    assert.ok(report.speech_s[1] < 2, String(report.speech_s[1]));
+    assert.deepEqual(report.tempo, [1.09, 1.15]);
+    near(report.speech_s[0], 2 / 1.09, 0.05);
+    near(report.speech_s[1], 2 / 1.15, 0.05);
+    assert.ok(report.speech_s[0] > report.speech_s[1], 'kỹ thuật phải chậm hơn dẫn');
   });
 
   await t.test('Nạp từ điển riêng và báo lỗi rõ nếu thiếu tệp', () => {
@@ -159,12 +162,74 @@ test('Giọng đọc Remotion theo Y6–Y8', {
   await t.test('Báo lỗi khi tempo ngoài khoảng', () => {
     for (const [name, spec] of [
       ['too-slow', { lines: [{ text: 'Thử.', tempo: 0.79 }] }],
-      ['too-fast', { lines: [{ text: 'Thử.' }], tempo: 1.31 }],
+      ['too-fast', { lines: [{ text: 'Thử.' }], tempo: 1.21 }],
     ]) {
       const { result, log } = run(name, spec);
       assert.notEqual(result.status, 0);
-      assert.match(result.stderr, /Dòng 1 cần tempo là số trong khoảng \[0\.8, 1\.3\]/u);
+      assert.match(result.stderr, /Dòng 1 cần tempo là số trong khoảng \[0\.8, 1\.2\]/u);
       assert.ok(!fs.existsSync(log));
     }
   });
+});
+
+test('FakeTTS tạo năm dòng, chạy --only một dòng và tái dùng bốn clip', {
+  skip: missing.length ? missing.join(', ') : false,
+}, t => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'studio-prosody-cache-'));
+  t.after(() => fs.rmSync(temp, { recursive: true, force: true }));
+  fs.writeFileSync(path.join(temp, 'vieneu.py'), stub);
+  const spec = path.join(temp, 'spec.json');
+  const plan = path.join(temp, 'prosody-plan.json');
+  const log = path.join(temp, 'tts.jsonl');
+  const lines = Array.from({ length: 5 }, (_, i) => ({
+    line_id: String(i + 1).padStart(2, '0'), scene_id: 'S01', text: 'Dòng thử số ' + (i + 1),
+    tts: 'Dòng thử số ' + (i + 1), intent: 'explanation', tempo: 1, temperature: 0.6,
+    pause_before_s: 0.3, pause_after_s: 0.4,
+  }));
+  const chunks = (head, tail) => [
+    { text: head, role: 'normal', tempo: 1, pause_before_s: 0 },
+    { text: tail, role: 'emphasis', tempo: 0.96, pause_before_s: 0.2 },
+  ];
+  lines[2].chunks = chunks('Đoạn đầu của câu thử số ba', 'đoạn sau cần nhấn trong câu thử.');
+  const [exe, ...args] = python;
+  const env = { ...process.env, PYTHONPATH: temp, PYTHONIOENCODING: 'utf-8', PYTHONDONTWRITEBYTECODE: '1', STUDIO_GEN_VO_LOG: log };
+  const run = (file, extra) => {
+    const result = spawnSync(exe, [...args, '-X', 'utf8', file, ...extra], {
+      cwd: temp, encoding: 'utf8', env,
+    });
+    assert.equal(result.status, 0, result.stderr);
+    return result.stdout;
+  };
+  fs.writeFileSync(spec, JSON.stringify({ lines }));
+  fs.writeFileSync(plan, JSON.stringify({ lines }));
+  const first = JSON.parse(run(script, [spec, '--plan', plan]));
+  assert.deepEqual(first.cache, { hit: 0, miss: 5 });
+  assert.equal(first.lines[2].chunks.length, 2);
+  assert.ok(Math.abs(first.lines[2].chunks[1].start - first.lines[2].chunks[0].end - 0.2) < 0.002);
+  assert.equal(fs.readFileSync(log, 'utf8').trim().split('\n').length, 6);
+  lines[1].text = lines[1].tts = 'Dòng thử số hai đã sửa';
+  fs.writeFileSync(plan, JSON.stringify({ lines }));
+  const second = JSON.parse(run(script, [spec, '--plan', plan, '--only', '02']));
+  assert.deepEqual(second.cache, { hit: 4, miss: 1 });
+  assert.equal(second.lines[1].cache, 'miss');
+  assert.equal(fs.readFileSync(log, 'utf8').trim().split('\n').length, 7);
+  const cli = fileURLToPath(new URL('../../tools/voice/prosody.mjs', import.meta.url));
+  const assemble = fileURLToPath(new URL('../../tools/voice/assemble.py', import.meta.url));
+  const metrics = fileURLToPath(new URL('../../tools/voice/prosody_metrics.py', import.meta.url));
+  const timeline = path.join(temp, 'voice-timeline.json');
+  const generation = path.join(temp, 'generation.json');
+  const track = path.join(temp, 'voice-track.wav');
+  const scenes = path.join(temp, 'scenes.json');
+  const cliRun = spawnSync(process.execPath, [cli, 'timeline', '--plan', plan, '--durations', generation, '--out', timeline], { encoding: 'utf8' });
+  assert.equal(cliRun.status, 0, cliRun.stderr);
+  run(assemble, ['--clips', generation, '--timeline', timeline, '--out', track,
+    '--cues-out', path.join(temp, 'cues.json'), '--scenes-out', scenes]);
+  const measured = path.join(temp, 'metrics.json');
+  run(metrics, ['--track', track, '--timeline', timeline, '--plan', plan, '--out', measured,
+    '--generation', generation, '--scenes', scenes]);
+  const report = JSON.parse(fs.readFileSync(measured, 'utf8'));
+  assert.equal(report.status, 'proxy');
+  assert.equal(report.pauses.n, 4);
+  assert.equal(report.voice_edges.windows, 5);
+  assert.equal(typeof report.lines[2].emphasis_rms_delta_db, 'number');
 });
