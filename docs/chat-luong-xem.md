@@ -193,7 +193,7 @@ Mục tiêu cao nhất: **người xem thực sự hiểu kiến thức.** Thứ
 - Cáo dùng dáng có sẵn, không nhép miệng, đổi dáng là “cắt”, giữ giới hạn trong `docs/mascot.md`. Tần suất và kích thước theo Y2–Y3.
 - Không bịa số liệu; giữ tiêu chí “Chính xác”, “Làm được & an toàn” và kiểm nguồn. Tình huống mở là **ví dụ dựng**, không giả làm sự kiện/người thật; giờ/số lần minh hoạ phải ghi rõ là ví dụ.
 - Mở bằng tình huống trong chủ đề đã giao, không dùng câu chào cố định. Không sao chép nội dung/cảnh/kịch bản hay khung hình video tham chiếu vào repo; chỉ học kỹ thuật làm phim.
-- Kịch bản: Claude viết và chốt, Codex cùng viết lời kỹ thuật (Codex vắng thì Claude chốt luôn). Storyboard: Codex làm, Claude review/duyệt; chỉ Claude đặt storyboard `APPROVED`, không tự viết thay Codex (trừ khi giám đốc duyệt thay thế cho đúng việc đó, 21/11/2026: khi đó người đặt `APPROVED` phải khác người viết); tối đa 2 vòng sửa. Giữ cơ cấu core.
+- Kịch bản: Claude viết và chốt, Codex cùng viết lời kỹ thuật (Codex vắng thì Claude chốt luôn). Storyboard: Codex làm, Claude review/duyệt; chỉ Claude đặt storyboard `APPROVED`, không tự viết thay Codex (trừ khi giám đốc duyệt thay thế cho đúng việc đó, 21/11/2026: Claude hoặc Gemini viết nháp; người đặt `APPROVED` luôn là Claude `visual-director` và phải khác người viết); tối đa 2 vòng sửa. Giữ cơ cấu core.
 - Nói thật: chưa kiểm thì không nói đạt; phát âm/giọng không nghe được là **CHƯA KIỂM**. Không cài công cụ nhận dạng giọng. Không agent nào được đưa file âm thanh vào mô hình để "nghe thử" (Codex trả `400 Audio input is not available`): chỉ đo bằng số (`ffprobe`/`silencedetect`/`loudnorm`/`qc-video`), giám đốc nghe kiểm trước khi xuất bản.
 
 ## Nguồn gốc

@@ -127,3 +127,30 @@ test('5) việc đã duyệt mà vẫn kết thúc bằng CODEX_WAIT → needs_h
   assert.equal(job(id).payload.takeover, undefined);
   assert.throws(() => P.revokeTakeover(id), /không có duyệt thay thế/);
 });
+
+test('6) duyệt Gemini làm thay: prompt có "thay-codex=gemini", chạy xong, payload ghi by=gemini', async () => {
+  mode('a', 'codexwait');
+  const t = newTopic('Bài tập cổ vai');
+  const id = P.enqueueJob({ kind: 'plan', topic_id: t }).job_id;
+  await waitFor(() => job(id).status === 'needs_human', 'kẹt Codex');
+  const before = calls().length;
+  const r = P.approveTakeover({ job_id: id, by: 'gemini', note: 'Codex bận sản xuất' });
+  assert.equal(r.takeover.by, 'gemini');
+  await waitFor(() => job(id).status === 'succeeded', 'chạy xong khi Gemini làm thay');
+  assert.match(calls().slice(before).join('\n'), /\/make-plan \d+ 1 2 thay-codex=gemini/);
+  assert.equal(job(id).payload.takeover.by, 'gemini');
+});
+
+test('7) đã duyệt Gemini mà Gemini cũng không làm được (TAKEOVER_WAIT) → needs_human nói rõ, không rơi lại vòng chờ Codex, không tự đổi sang Claude', async () => {
+  mode('a', 'codexwait');
+  const t = newTopic('Giãn cơ cổ chân');
+  const id = P.enqueueJob({ kind: 'plan', topic_id: t }).job_id;
+  await waitFor(() => job(id).status === 'needs_human', 'kẹt Codex');
+  mode('a', 'takeoverwait');
+  P.approveTakeover({ job_id: id, by: 'gemini' });
+  await waitFor(() => job(id).status === 'needs_human' && /Đã duyệt Gemini làm thay Codex nhưng Gemini cũng không làm được: Gemini BUSY/.test(job(id).last_error), 'dừng chờ giám đốc quyết');
+  assert.equal(job(id).payload.takeover.by, 'gemini', 'vẫn giữ duyệt Gemini, không tự đổi AI');
+  const offer = P.poolOverview().attention.find((x) => x.job_id === id);
+  assert.ok(offer, 'hiện ở "Cần giám đốc chú ý" để quyết');
+  mode('a', 'ok');
+});

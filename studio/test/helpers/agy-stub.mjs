@@ -1,4 +1,6 @@
 // agy giả cho test (STUDIO_AGY_JS trỏ tới file này). Hành vi theo STUB_AGY_MODE: ok | noimage | limit | auth
+// Chế độ storyboard (gemini-run.mjs storyboard): sb-ok (ghi storyboard.json hợp lệ nhưng cố tình đặt APPROVED + storyboard.md) | sb-otherid (video_id khác)
+//   | sb-badjson | sb-badschema | sb-nofile | sb-reply (không ghi file, trả khối ```json trong câu trả lời).
 // Ghi dòng lệnh và biến môi trường quan trọng vào <STUB_DIR>/agy-calls.jsonl để test kiểm "không dùng đường trả phí".
 import fs from 'node:fs';
 import path from 'node:path';
@@ -31,6 +33,29 @@ if (mode === 'auth') {
   process.exit(1);
 }
 
+// ---- storyboard (Gemini viết thay Codex) ----
+const sbBoard = (videoId) => ({
+  video_id: videoId, status: 'APPROVED', scenes: [{
+    scene_id: '1', narrative_purpose: 'Thấy kết quả phân loại', visual_concept: 'Thẻ chuyển vào hai khay',
+    scene_type: 'process_animation', environment: 'Bàn làm việc', character_action: 'không xuất hiện',
+    props: ['thẻ', 'hai khay'], camera: { shot: 'wide', movement: 'static' },
+    animation_timeline: [{ t: 0, event: 'Thẻ trượt vào khay' }], voice_over: 'Tách dữ liệu theo nhóm.',
+    text_overlay: '', sound_effects: [], transition: 'cut', duration_s: 3,
+    quality_check: { has_real_illustration: true, repeats_previous_layout: false, silent_comprehensible: true },
+  }],
+});
+let response = `Xong (${mode}).`;
+if (mode.startsWith('sb-')) {
+  const w = (n, t) => fs.writeFileSync(path.join(process.cwd(), n), t);
+  const vid = mode === 'sb-otherid' ? 'KHAC-T9-E01' : 'TEST-T1-E01';
+  if (mode === 'sb-ok' || mode === 'sb-otherid') {
+    w('storyboard.json', JSON.stringify(sbBoard(vid)));
+    if (mode === 'sb-ok') w('storyboard.md', '| Cảnh | Hình |\n|---|---|\n| 1 | Thẻ vào khay |');
+  } else if (mode === 'sb-badjson') w('storyboard.json', '{"video_id": "TEST-T1-E01", "scenes": [');
+  else if (mode === 'sb-badschema') w('storyboard.json', JSON.stringify({ video_id: 'TEST-T1-E01', status: 'DRAFT', scenes: [{ scene_id: '1' }] }));
+  else if (mode === 'sb-reply') response = `Đây là bản nháp:\n\`\`\`json\n${JSON.stringify(sbBoard(vid), null, 2)}\n\`\`\`\nXong.`;
+}
+
 const id = crypto.randomUUID();
 if (mode !== 'noimage') {
   const dir = path.join(process.env.STUDIO_AGY_HOME, 'brain', id);
@@ -44,4 +69,4 @@ if (mode !== 'noimage') {
   fs.writeFileSync(path.join(dir, 'nen_van_phong_1795178202752.png'), png);
   fs.writeFileSync(path.join(dir, 'ghi-chu.txt'), 'không phải ảnh');
 }
-console.log(JSON.stringify({ conversation_id: id, status: 'SUCCESS', response: `Xong (${mode}).`, duration_seconds: 0.1, num_turns: 1, usage: { total_tokens: 1 } }));
+console.log(JSON.stringify({ conversation_id: id, status: 'SUCCESS', response, duration_seconds: 0.1, num_turns: 1, usage: { total_tokens: 1 } }));

@@ -414,7 +414,7 @@ function attnRow(x, i) {
   if (x.kind === 'topic_proposal_plain') return `<li><span>💡 ${esc(x.message)}</span><button class="primary sm" onclick="decideTopic(${x.topic_id},'approve')">Duyệt & giao làm</button><button class="danger sm" onclick="decideTopic(${x.topic_id},'reject')">Từ chối</button>${rc(i)}</li>`;
   if (x.kind === 'proposal') return `<li><span>⏳ ${esc(x.message)}</span><button class="primary sm" onclick="decide(${x.proposal_id},'approve')">Duyệt</button><button class="danger sm" onclick="decide(${x.proposal_id},'reject')">Từ chối</button>${rc(i)}</li>`;
   if (x.kind === 'approve_produce') return `<li><span>📝 ${esc(x.message)}</span><button class="primary sm" onclick="prodVideo('${esc(x.video_id)}')">Duyệt & sản xuất</button>${rc(i)}</li>`;
-  if (x.kind === 'takeover_offer') return `<li><span>🔁 ${esc(x.message)}</span><button class="primary sm" onclick="takeover(${x.job_id})" title="Việc chạy lại ngay, ${x.by === 'claude' ? 'Claude tự làm bước Codex không làm được (storyboard/đồng viết) và ghi rõ là làm thay; quyền duyệt cuối vẫn của Claude duyệt độc lập' : 'AI khác làm thay'}">Cho ${x.by === 'claude' ? 'Claude' : esc(x.by)} làm thay</button><button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button>${rc(i)}</li>`;
+  if (x.kind === 'takeover_offer') return `<li><span>🔁 ${esc(x.message)}</span>${(x.options || [x.by]).map((o) => `<button class="${o === 'claude' ? 'primary ' : ''}sm" onclick="takeover(${x.job_id},'${esc(o)}')" title="${o === 'gemini' ? 'Gemini viết bản nháp storyboard (bước Codex không làm được); Claude review và duyệt, Gemini không tự duyệt' : o === 'claude' ? 'Claude tự làm bước Codex không làm được (storyboard/đồng viết) và ghi rõ là làm thay; quyền duyệt cuối vẫn của visual-director duyệt độc lập' : 'AI khác làm thay'}">Cho ${o === 'claude' ? 'Claude' : o === 'gemini' ? 'Gemini làm thay, Claude duyệt' : esc(o)}${o === 'claude' ? ' làm thay' : ''}</button>`).join('')}<button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button>${rc(i)}</li>`;
   if (x.kind === 'job_human') return `<li><span>🙋 ${esc(x.message)}</span><button class="sm" onclick="job(${x.job_id},'retry')">Chạy lại</button><button class="danger sm" onclick="job(${x.job_id},'cancel')">Huỷ</button>${rc(i)}</li>`;
   if (x.kind === 'qc_listen' || x.kind === 'qc_design') return `<li><span>${x.kind === 'qc_listen' ? '🎧' : '🎨'} ${esc(x.message)}</span><button class="primary sm" onclick="acceptVideo('${esc(x.video_id)}')" title="Chỉ bấm khi bạn đã nghe/xem xong và đồng ý. Video sang sẵn sàng đăng; hệ thống không tự đăng bài.">${x.kind === 'qc_listen' ? 'Đã nghe/xem — duyệt ready' : 'Chấp nhận — duyệt ready'}</button>${rc(i)}</li>`;
   if (x.kind === 'limit_wait') return `<li><span>⏳ ${esc(x.message)} — tự chạy tiếp lúc <b>${fmtT(x.until)}</b> (còn ${left(x.until)})</span>${rc(i)}</li>`;
@@ -845,6 +845,13 @@ function initRole() {
   if (match) openRole(match[1]);
 }
 
+// Một khối "Cân bằng tải" (chip trạng thái + 3 thanh Claude/Codex/Gemini + ghi chú). Hàm thuần: không chạm DOM, để test nạp bằng vm.
+function loadBlockHtml(L, title) {
+  if (!L) return '';
+  return `<b>${esc(title)}</b> <span class="chip ${L.status==='balanced'?'ok':L.status==='skewed'?'bad':''}" title="${esc(L.caveat)}">${L.status==='balanced'?'cân bằng':L.status==='skewed'?'LỆCH':'chưa đủ số liệu'}</span>`
+    + ['claude','codex','gemini'].map((p) => { const x = L.providers[p]; return `<div class="row"><b style="min-width:64px">${PROV[p]}</b><div class="grow"><div style="height:8px;border-radius:4px;background:var(--chip);overflow:hidden"><div style="width:${x.share_pct}%;height:100%;background:var(--accent)"></div></div><div class="sub">${x.share_pct}% · ${x.minutes} phút · ${x.jobs} việc + ${x.calls} lượt gọi · hết limit ${x.limits} lần</div></div></div>`; }).join('')
+    + `<div class="sub" title="${esc(L.caveat)}">${esc(L.notes.join('; '))}</div>`;
+}
 function renderPool(pool) {
   const w = pool.worker;
   $('wkDot').className = 'dot ' + (w.alive ? 'working' : 'blocked');
@@ -861,10 +868,9 @@ function renderPool(pool) {
       <button class="sm" onclick="acct(${a.id},'${a.enabled?'disable':'enable'}','${a.enabled?'Đã tắt':'Đã bật'}')">${a.enabled?'Tắt':'Bật'}</button>
       <button class="sm danger" onclick="rmAcct(${a.id},'${esc(a.person)}')">Gỡ</button></div>`;
   }).join('') || '<div class="sub">Chưa có tài khoản nào. Bấm “+ Thêm” (hoặc chạy <code>accounts init</code> để dùng đăng nhập mặc định của máy).</div>';
-  const L = pool.load;
-  $('loadbal').innerHTML = !L ? '' : `<b>Cân bằng tải ${L.days} ngày</b> <span class="chip ${L.status==='balanced'?'ok':L.status==='skewed'?'bad':''}" title="${esc(L.caveat)}">${L.status==='balanced'?'cân bằng':L.status==='skewed'?'LỆCH':'chưa đủ số liệu'}</span>`
-    + ['claude','codex','gemini'].map((p) => { const x = L.providers[p]; return `<div class="row"><b style="min-width:64px">${PROV[p]}</b><div class="grow"><div style="height:8px;border-radius:4px;background:var(--chip);overflow:hidden"><div style="width:${x.share_pct}%;height:100%;background:var(--accent)"></div></div><div class="sub">${x.share_pct}% · ${x.minutes} phút · ${x.jobs} việc + ${x.calls} lượt gọi · hết limit ${x.limits} lần</div></div></div>`; }).join('')
-    + `<div class="sub" title="${esc(L.caveat)}">${esc(L.notes.join('; '))}</div>`;
+  // Hai khối cùng kiểu: 7 ngày (thước theo dõi) và 24h (chỉ tham khảo). Máy chủ cũ chưa có load_24h thì chỉ vẽ 7 ngày.
+  $('loadbal').innerHTML = loadBlockHtml(pool.load, 'Cân bằng tải 7 ngày')
+    + (pool.load_24h ? `<div style="margin-top:14px">${loadBlockHtml(pool.load_24h, 'Cân bằng tải 24h')}<div class="sub">24h chỉ để tham khảo (một ngày rất nhiễu); số 7 ngày mới là thước theo dõi.</div></div>` : '');
 
   lastJobs = pool.jobs || [];
   drawJobs(false);
@@ -872,7 +878,12 @@ function renderPool(pool) {
 const acct = (id, what, msg) => act(() => api(`/api/accounts/${id}/${what}`, {}), msg);
 const job = (id, what) => act(() => api(`/api/jobs/${id}/${what}`, {}), what==='cancel'?'Đã yêu cầu huỷ':'Đã xếp chạy lại');
 // Giám đốc duyệt cho AI khác làm thay việc đang kẹt ở AI bị limit/hỏng (hiện: Claude thay Codex ở việc kế hoạch).
-const takeover = (id) => { if (confirm('Duyệt cho Claude làm thay Codex ở việc #' + id + '?\n\nViệc chạy lại ngay; Claude tự viết bước Codex không làm được (storyboard/đồng viết) và ghi rõ "Claude làm thay Codex (giám đốc duyệt)". Người duyệt storyboard phải khác người viết.')) act(() => api(`/api/jobs/${id}/takeover`, { by: 'claude' }), 'Đã duyệt: Claude làm thay'); };
+const takeover = (id, by = 'claude') => {
+  const msg = by === 'gemini'
+    ? 'Duyệt cho GEMINI làm thay Codex ở việc #' + id + '?\n\nGemini viết bản nháp storyboard (bước Codex không làm được); Claude (visual-director) review và là người duy nhất duyệt. Việc vẫn cần một phiên Claude điều phối: nếu Claude đang hết limit thì việc chờ Claude hồi rồi tự chạy theo đường này.'
+    : 'Duyệt cho Claude làm thay Codex ở việc #' + id + '?\n\nViệc chạy lại ngay; Claude tự viết bước Codex không làm được (storyboard/đồng viết) và ghi rõ "Claude làm thay Codex (giám đốc duyệt)". Người duyệt storyboard phải khác người viết.';
+  if (confirm(msg)) act(() => api(`/api/jobs/${id}/takeover`, { by }), 'Đã duyệt: ' + (by === 'gemini' ? 'Gemini' : 'Claude') + ' làm thay');
+};
 const rmAcct = (id, name) => { if (confirm(`Gỡ tài khoản ${name} khỏi kho? (thư mục đăng nhập trên đĩa vẫn còn)`)) acct(id, 'remove', 'Đã gỡ'); };
 const setSetting = (key, value) => act(() => api('/api/settings', {key, value}), 'Đã lưu cài đặt');
 async function openOffice() {

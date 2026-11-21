@@ -141,3 +141,17 @@ test('poolOverview mang theo bảng tải cho dashboard', () => {
   const o = P.poolOverview();
   assert.ok(o.load && o.load.providers.gemini && typeof o.load.status === 'string');
 });
+
+test('poolOverview mang cả bảng 7 ngày (load) lẫn 24h (load_24h)', () => {
+  const o = P.poolOverview();
+  assert.equal(o.load.days, 7);
+  assert.ok(o.load_24h && o.load_24h.days === 1 && o.load_24h.providers.codex && typeof o.load_24h.status === 'string');
+});
+
+test('cửa sổ 24h không thấy việc cách đây 4 ngày, cửa sổ 7 ngày thì thấy', () => {
+  addJob('codex', 'produce', 4 * 24 * 60, 10);
+  const day = P.loadReport({ nowMs: NOW, days: 1 });
+  const week = P.loadReport({ nowMs: NOW, days: 7 });
+  assert.equal(Math.round((week.providers.codex.minutes - day.providers.codex.minutes) * 10) / 10, 10, 'cửa sổ 7 ngày hơn đúng 10 phút');
+  assert.equal(week.providers.codex.jobs - day.providers.codex.jobs, 1);
+});

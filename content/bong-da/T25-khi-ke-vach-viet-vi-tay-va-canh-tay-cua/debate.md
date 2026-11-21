@@ -215,3 +215,210 @@ Nguồn: [theifab.com — Laws of the Game](https://www.theifab.com/laws/latest/
 
 **Ghi chú điều phối:** lời kêu gọi cuối nhẹ (mời gõ/chọn đáp án) được kỷ luật của vị trí cho phép; nhận xét (c) của Claude là ý kiến về mức cần thiết, không phải vi phạm luật kênh. `ideator-b` tự cân.
 
+### Giọng Gemini phản biện concept của Claude — nguyên văn
+*(Lượt này chạy bằng MÔ HÌNH DỰ PHÒNG `gemini-3.8-flash-high`: `gemini-run.mjs` báo claude-opus-4-6-thinking hết hạn mức, hồi khoảng 21:14 ngày 21/11/2026. Giọng độc lập với Claude hơn, lập luận có thể nông hơn.)*
+
+#### 1. Concept 1 — "Cái vạch cắt ở nách"
+- **Chấm điểm:**
+  - Hook & giữ chân: **7/10** (Tình huống thực tế nhưng hứa hẹn "giây ~50 mới trả lời" là trì hoãn thụ động, dễ rớt view sớm trên tóp tóp).
+  - Khớp chủ đề/brief: **9/10** (Bám đúng cơ chế mốc đáy nách và câu hỏi trọng tâm).
+  - Khả thi sản xuất: **9/10** (Sơ đồ khối và vạch kẻ dựng bằng Remotion rất nhẹ tải, an toàn).
+  - An toàn: **9/10** (Minh bạch ví dụ dựng, không dính logo/cầu thủ thật).
+  - Độc đáo: **6/10** (Mô-típ quá quen thuộc, bám sát nguyên văn gợi ý của brief nên thiếu đột phá).
+- **Điểm yếu cụ thể:** Nhịp 3–5 giây câu giờ hứa hẹn đáp án vi phạm kỷ luật giữ chân bằng giá trị sớm; 3 tình huống kiểm tra lặp lại cùng một vạch ở thân bài dễ gây nhàm chán từ giây 25.
+- **Cách sửa:** Bỏ lời hứa hẹn giây 50; đưa ngay quy tắc vàng trước giây 10: *"Chỉ phần cơ thể được phép ghi bàn mới tính việt vị (theo Luật 11 IFAB)"*. Biến 3 tình huống thành thử thách nhanh 3 giây/tình huống, hiện ngay nhãn "ĐÚNG / SAI" để khán giả tự đối chiếu tức thì.
+
+#### 2. Concept 2 — "Phán quyết trọng tài ngồi nhà"
+- **Chấm điểm:**
+  - Hook & giữ chân: **6/10** (Bong bóng chat tĩnh ở 2 giây đầu thiếu chuyển động thị giác; khán giả lướt nhanh khó đọc kịp chữ).
+  - Khớp chủ đề/brief: **7/10** (Bị loãng khi lôi thêm luật "chạm bóng bằng tay" vào phân tích).
+  - Khả thi sản xuất: **6/10** (Dạng hội thoại chat nhiều chữ, nguy cơ phạm quy tắc R3: chữ khoá > 3 từ, vượt quá 3 nhóm chữ trên khung 360×640).
+  - An toàn: **8/10** (Dễ gây nhầm lẫn chuyên môn giữa vị trí việt vị (Luật 11) và lỗi chạm tay (Luật 12)).
+  - Độc đáo: **7/10** (Góc nhìn khai thác tâm lý tranh cãi của người xem khá chân thực).
+- **Điểm yếu cụ thể:** Thiết kế quá nặng về chữ (text-heavy), đi ngược tiêu chí visual-first; đưa luật chạm tay vào giải thích làm rối vấn đề chính là mốc nách.
+- **Cách sửa:** Bỏ khung chat; thay bằng 2 mô hình Cáo đối lập biểu cảm (một bên quả quyết, một bên nghi ngờ); gạt bỏ hoàn toàn nhánh "chạm bóng bằng tay", tập trung duy nhất vào nguyên lý: *"Phần cơ thể nào được phép đưa bóng vào lưới hợp lệ?"*.
+
+#### 3. Concept 3 — "Một pixel của cái vai"
+- **Chấm điểm:**
+  - Hook & giữ chân: **8/10** (Nghịch lý hình ảnh kích thích tò mò cực mạnh ngay giây đầu).
+  - Khớp chủ đề/brief: **8/10** (Làm bật rõ sự tương phản giữa cánh tay và khớp vai).
+  - Khả thi sản xuất: **8/10** (Zoom cận cảnh chi tiết vai/nách rất hợp với chuyển động camera của Remotion).
+  - An toàn: **7/10** (Cách ví von "1 cm / 1 m" dù ghi ví dụ dựng vẫn dễ kích động tranh cãi ngoài lề về độ chính xác của vạch kẻ).
+  - Độc đáo: **8/10** (Khai thác góc nhìn hình học/giải phẫu học sắc nét).
+- **Điểm yếu cụ thể:** **Ai đang tìm điều này?** Concept ghi nhận không có tín hiệu tìm kiếm trực tiếp; người xem tìm "việt vị tay có tính không" chứ không ai tìm kiếm độ lệch 1 cm của vai. Số đo phóng đại dễ bị bắt bẻ là ngụy tạo số liệu.
+- **Cách sửa:** Kéo về đúng nhu cầu bằng tín hiệu tìm kiếm `[gợi ý tìm kiếm google] việt vị có tính cánh tay không`; thay số đo "1 cm / 1 m" bằng thế đối lập hành động: *"Vươn cả sải tay xin bóng: KHÔNG VIỆT VỊ — Chỉ rướn chỏm vai: VIỆT VỊ"*. Kẻ đường gióng ngang đáy nách rõ ràng theo chuẩn văn bản IFAB để minh định.
+
+#### Đánh giá lựa chọn (trong 6 concept)
+
+**Bản lai mạnh nhất: Kết hợp Hook của "Một pixel của cái vai" (Claude) + Thị giác của "Bản Đồ Cơ Thể Việt Vị" (Gemini).**
+
+**Lý do:** Hook nghịch lý tương phản của Claude (sải tay vươn dài hợp lệ nhưng chỏm vai nhô ra là việt vị) giữ chân cực tốt trong 2 giây đầu mà không cần câu giờ. Khi vào thân bài, dùng giải pháp "Bản đồ cơ thể" của Gemini (tô màu xanh phần ghi bàn hợp lệ, màu xám phần cánh tay bị loại trừ từ đáy nách) giúp giải thích cơ chế Luật 11 IFAB trực quan, dễ hiểu trong 60 giây, vừa trúng tín hiệu tìm kiếm vừa tối ưu năng lực dựng hình khối Remotion.
+
+**Tóm tắt vòng 1 — phản biện (điều phối):** Hai bên đều bỏ nhánh Luật 12 và khung chat nhiều chữ; cùng muốn hình "bản đồ cơ thể" tô hai vùng với đường đáy nách. Còn bất đồng ở hook: Claude giữ "bàn bị gạt vì cái tay" (trúng tín hiệu tìm kiếm, đáp án ~giây 50) còn Gemini chọn nghịch lý "sải tay hợp lệ, chỏm vai việt vị" và đòi đưa quy tắc trước giây 10. Claude chỉ ra khung "cấm chạm bóng thì cấm tính việt vị" sai logic (thủ môn) và "tay không ghi bàn" là cách nhớ, không phải lời luật. Codex vắng.
+
+## Vòng 2 — Đáp phê bình và bản cải tiến
+
+**Codex vắng ở vòng 2:** lượt phản biện vòng 2 (`debate/codex-round2-phan-bien.prompt.md`) trả `BUSY` (việc sản xuất đang chạy) ngày 21/11/2026, lần vắng thứ tư trong việc này. Ý tưởng chốt không có giọng Codex.
+
+### Giọng Claude (`ideator-a`) — nguyên văn
+
+#### 1. Đáp phê bình của Gemini về concept của tôi
+
+- **"Hứa đáp án ở giây ~50 là trì hoãn thụ động": NHẬN một nửa.**
+  - Tôi nhận lỗi chỗ này: lời hứa suông ở 3–5 s chỉ câu giờ, không đem lại gì cho người xem.
+  - Tôi phản bác phần còn lại: nếu đưa toàn bộ đáp án trước giây 10 thì thân bài chỉ còn là giáo khoa.
+  - Cách xử lý là chia đôi. Ích lợi sớm (giây 8–10) là một quy tắc dùng được ngay: "tay thì bỏ, vai thì tính". Đáp án đầy đủ (giây ~52) là phán quyết cho tình huống ở hook cộng với mốc đáy nách. Giữa hai mốc người xem luôn có việc để làm: tự đoán rồi đối chiếu.
+- **"Quy tắc 'chỉ phần được phép ghi bàn' trước giây 10": NHẬN, kèm sửa chữ.**
+  - Không dẫn "theo Luật 11" như thể đó là lời luật. Luật 11 chỉ nêu đầu, thân, chân.
+  - "Phần ghi bàn được" chỉ là cách nhớ, nên viết "cách nhớ", không viết "luật ghi".
+- **"Ba tình huống lặp, nhàm từ giây 25": NHẬN.**
+  - Tôi đổi thành thử thách nhanh, mỗi tình huống khoảng 6–8 s.
+  - Mỗi tình huống đổi cách nhìn: nhìn trên xuống, rồi nhìn ngang, rồi nhìn cắt ngang.
+  - Nhãn ĐÚNG/SAI là kết quả của lần đoán, không phải thông tin thêm.
+- **"Thử thách nhanh ĐÚNG/SAI": NHẬN.** Nhãn chỉ là một chữ, nên không phạm Y1.
+- **Hook nghịch lý "sải tay: không việt vị — chỏm vai: việt vị": NHẬN một phần.**
+  - Tôi dùng làm câu hỏi chốt ở giây 5, không làm hook. Hook cần nhân vật và hệ quả gần người xem.
+  - Hook vẫn phải giữ "bàn bị gạt" vì tín hiệu tìm kiếm là câu hỏi về cái tay.
+
+#### 2. Bản cải tiến cuối: "Bàn bị gạt vì cái tay?"
+
+- **Hook (0–2 s):** sơ đồ khối nhìn từ trên, tiền đạo ở sau vạch, một cánh tay thò qua vạch. Còn lại là phần ở bên kia. Hai khối người xem cãi nhau, bàn thắng bị gạt. Lời: "Bàn bị gạt, vì cái tay này?" Chữ tối đa 3 từ. Ví dụ dựng, ghi rõ là minh hoạ.
+- **Nhịp:**
+  - 2–5 s: hai bên cãi nhau trước màn hình. Hệ quả gần người xem: cuộc cãi nhau khi xem chiếu chậm. Câu hỏi mở: "Việt vị thật không?"
+  - 5–10 s: tẩy hai tay, dừng đúng đáy nách. **Ích lợi sớm ở giây ~8:** "Tay bỏ đi, vai thì giữ lại." Có thêm cách nhớ "chỉ đếm phần ghi bàn được".
+  - 10–18 s: cơ chế bằng bản đồ cơ thể, tô xanh đầu/thân/chân và xám hai tay. Đường gióng ngang đáy nách, hình cắt ngang.
+  - 18–44 s: ba thử thách, mỗi cái ~8 s, người xem đoán rồi nhãn ĐÚNG/SAI hiện ra.
+    - A: tay thò xa → không việt vị.
+    - B: chỏm vai nhô → việt vị.
+    - C: tay giơ cao, vai chưa qua → không việt vị. Sai lầm: nhìn đường tay áo thay vì đáy nách.
+  - 44–52 s: sai lầm thường gặp "cứ thò ra là việt vị", và vai thuộc thân nên tính.
+  - **52–60 s: trả lời đầy đủ:** tay và cánh tay (từ đáy nách xuống) không tính; vai tính. Quay về cảnh hook: tay thò ra không làm tiền đạo việt vị.
+  - Câu chốt: "Cãi nhau lần sau: hỏi vai hay tay, đừng hỏi có qua vạch không."
+- **Một cơ chế:** vạch xét đầu, thân, chân; mốc cắt là đáy nách. Không Luật 12, không nói "cùng logic", không năm hay "luật mới", không nói độ chính xác của công nghệ.
+- **Tín hiệu:** [gợi ý tìm kiếm google] "việt vị có tính cánh tay không", "việt vị tay có tính không".
+- **Rủi ro:** vẫn hơi giáo khoa, nên cảnh phải đổi mỗi 3–4 s. Kịch bản phải mở bản gốc Luật 11 trước khi chốt. Không clip, ảnh cầu thủ hay logo.
+
+#### 3. Phản biện ngắn hướng lai của Gemini
+
+- **Điểm yếu 1:** hướng lai lấy hook nghịch lý làm hook, nên không có tình huống hay hệ quả gần người xem trước giây 5 (lệch Y5).
+  - Sửa: để nghịch lý ở giây 5, sau hook "bàn bị gạt".
+- **Điểm yếu 2:** hướng lai bỏ qua rằng "chỉ phần được phép ghi bàn" không phải lời luật.
+  - Sửa: đặt nhãn "cách nhớ" cho câu đó.
+
+### Giọng Gemini (`gemini-run.mjs ideate`, không báo mô hình dự phòng) — nguyên văn
+*(Gemini nhận bản tóm tắt phê bình của Claude ở vòng 1 và bản lai vòng 1 của Claude; chưa thấy bản cải tiến vòng 2 của Claude ở trên vì hai lượt chạy song song.)*
+
+#### 1. Trả lời Claude phê bình các concept Vòng 1 của Gemini
+
+- **Về điểm (a) — Dẫn Luật 12 và quy tắc ghi bàn:**
+  - **Nhận:** Đồng ý bỏ việc đối chiếu Luật 12 thành một cơ chế độc lập để tuyệt đối tuân thủ yêu cầu "chỉ một cơ chế" trong brief. Việc lập luận "cấm chạm thì cấm việt vị" cũng sơ hở vì thủ môn dùng tay trong vòng cấm nhưng tay vẫn không bị tính việt vị.
+  - **Làm rõ căn cứ luật:** Việc gắn vạch việt vị với "bộ phận được phép ghi bàn" là cách diễn giải trực quan chuẩn xác theo tinh thần của IFAB. Theo điều 11.1 của [IFAB Law 11 - Offside](https://www.theifab.com/laws/latest/offside/), tay và cánh tay của mọi cầu thủ (kể cả thủ môn) đều bị loại bỏ khi xét việt vị; vạch chỉ xét đầu, thân mình và bàn chân (*"head, body or feet"*). Ranh giới trên của cánh tay được chốt giải phẫu đúng bằng đáy nách (*"the upper boundary of the arm is in line with the bottom of the armpit"*). Ta giữ một cơ chế duy nhất này.
+
+- **Về điểm (b) — Số liệu tìm kiếm và visual tẩy tay:**
+  - **Nhận:** Nhận khuyết điểm đã dùng cụm từ "hàng nghìn người đang gõ" khi gói tín hiệu chỉ cung cấp từ khóa gợi ý chứ không có số liệu lượt tìm. Nhận điểm visual tẩy cả cánh tay dễ gây hiểu nhầm tẩy mất cả vai.
+  - **Phản bác:** Thủ pháp visual "làm mờ/tách phần dưới đáy nách" là ngôn ngữ hình ảnh đắt giá nhất trên video dọc (tóp tóp, ytb, phở bò) để người xem hiểu ngay luật "bỏ qua" phần nào. Chỉ cần neo hình này vào tình huống tranh cãi cụ thể (bàn thắng bị từ chối) thay vì để đứng hình trừu tượng.
+
+- **Về điểm (c) & (d) — Lời kêu gọi và ranh giới giải phẫu:**
+  - **Nhận:** Tiếp thu toàn bộ. Sửa lời kêu gọi thành tương tác trắc nghiệm tình huống gắn với câu nhớ; chuẩn hóa cách gọi giải phẫu: cánh tay kết thúc ở đáy nách, vai thuộc thân mình nên được tính; đưa "đáy nách chứ không phải mép tay áo" vào làm sai lầm kinh điển.
+
+#### 2. Phản biện "bản lai của Claude"
+
+Bản lai của Claude đã bám sát brief, nhưng còn **2 điểm yếu chí mạng về nhịp giữ chân video ngắn**:
+
+1. **Trì hoãn đáp án quá lâu (giây ~50 mới trả lời chốt):**
+   - *Điểm yếu:* Video 60 giây mà để người xem thụ động chờ đến giây 50 mới biết nguyên tắc cốt lõi sẽ khiến tỷ lệ rớt (drop-off) ở giây 15–20 tăng vọt.
+   - *Cách sửa:* Bật mí nguyên tắc nền tảng (vạch không xét tay, mốc đáy nách) ngay trước giây 10. Sau đó, biến các tình huống (A, B) thành thử thách đối chiếu để người xem vận dụng nguyên tắc và tự thấy "bẫy thị giác", thay vì bắt họ chờ giải mã ở cuối.
+
+2. **Dàn trải 3 tình huống (A, B, C) gây loãng thời lượng:**
+   - *Điểm yếu:* Tình huống C (tay giơ cao, vai chưa qua) thực chất trùng lặp bản chất với tình huống A (tay qua vạch, vai ở sau). Dồn cả 3 tình huống vào 40 giây thân bài sẽ khiến mỗi cảnh chỉ lướt qua được 10 giây, không đủ sâu để giải thích sơ đồ khối.
+   - *Cách sửa:* Gom lại thành đúng **1 cặp nghịch lý đối lập mạnh nhất**: *Vươn cả cánh tay qua vạch → Không việt vị* đối đầu với *Chỉ rướn chỏm vai 2 cm → Việt vị*. Dành thời lượng còn lại phân tích bẫy mép tay áo.
+
+#### 3. Bản cải tiến cuối cùng: "Vạch Việt Vị: Nhìn Vai Hay Nhìn Tay?"
+
+- **Tín hiệu trích dẫn:** Trích từ [gợi ý tìm kiếm google]: *"việt vị tay có tính không"* và *"việt vị có tính cánh tay không"*.
+- **Hook (0–2 s):** Sơ đồ khối 3D phẳng (ví dụ dựng). Tiền đạo vươn hẳn cả cánh tay qua người hậu vệ cuối cùng, chân vẫn ở sau. Lời hook (dưới 2 giây): *"Vươn cả sải tay qua vạch: có việt vị không?"*. Chữ nhấn trên màn hình (3 từ): **TAY QUA VẠCH?**
+- **Nhịp video (tổng 58 giây, chuẩn 9:16):**
+  - **0–3 s (Opening pha 1 & 2):** Trọng tài phất cờ gạt bàn thắng, hai cầu thủ cãi cọ nảy lửa. Cáo văn phòng ôm đầu hoang mang.
+  - **3–10 s (Opening pha 3 & Trao nguyên lý sớm):** Hiện câu hỏi mở: *"Bàn thắng bị từ chối oan hay đúng luật?"*. Ngay giây 7, một vệt cắt ngang đỏ chạy qua nách cầu thủ: phần cánh tay từ đáy nách trở xuống lập tức chuyển xám trong suốt. Lời dẫn: Luật 11 quy định vạch chỉ xét phần cơ thể được phép ghi bàn (đầu, thân, chân). Cánh tay hoàn toàn vô hình với vạch kẻ!
+  - **10–30 s (Cặp nghịch lý thị giác):**
+    - *Ví dụ 1 (10–20 s):* Tiền đạo vươn cả cánh tay 50 cm qua vạch, nhưng vai ở sau → **KHÔNG VIỆT VỊ** (cánh tay dù dài bao nhiêu cũng không bị tính).
+    - *Ví dụ 2 (20–30 s):* Tiền đạo khép tay sát sườn, nhưng chỉ rướn chỏm vai qua vạch 2 cm → **VIỆT VỊ** (vai thuộc thân mình, được phép ghi bàn nên bị tính vạch).
+  - **30–45 s (Sai lầm thường gặp — Bẫy mép tay áo):** Phóng to vùng vai-nách. Sai lầm phổ biến khi người xem cãi nhau: nhìn mép tay áo đấu. Chỉ rõ: áo cộc hay áo dài tay là do trang phục; mốc tính của trọng tài và công nghệ bắt buộc là **đáy nách giải phẫu**, không phải đường chỉ may áo.
+  - **45–58 s (Chốt câu hỏi mở & Kết):** Trả lời dứt điểm ở **giây 48**: Trong tình huống mở đầu, nếu chỉ có cánh tay thò qua, bàn thắng hoàn toàn hợp lệ!
+    - *Câu nhớ đời:* **"Bắt việt vị: nhìn vai, đừng nhìn tay!"**
+    - *Kêu gọi tương tác:* Cáo giơ bảng biểu quyết: *"Bạn từng cãi thắng hay thua quả việt vị kiểu này? Thả bình luận bên dưới."*
+- **Một cơ chế chính:** Vạch việt vị chỉ áp dụng cho bộ phận cơ thể hợp lệ để ghi bàn (đầu, thân, chân); cánh tay được tính từ ranh giới đáy nách trở xuống và hoàn toàn không bị xét vị trí việt vị (theo IFAB Law 11).
+- **Ví dụ cụ thể:** Đối chiếu trực diện giữa tình huống sải cả cánh tay qua vạch (hợp lệ) và rướn chỏm vai 2 cm qua vạch (việt vị).
+- **Sai lầm thường gặp:** Căn vạch theo mép ống tay áo thay vì ranh giới giải phẫu đáy nách.
+- **Câu chốt:** *"Bắt việt vị: nhìn vai, đừng nhìn tay!"*
+- **Rủi ro thừa nhận:** Người xem thực tế khi xem truyền hình phát lại góc chéo vẫn khó tự xác định đáy nách nếu cầu thủ mặc áo rộng hoặc vung tay che khuất thân; video cần nhấn mạnh đây là nguyên lý dựng chuẩn để người xem hiểu bản chất chiếu chậm chứ không thay thế hoàn toàn máy đo đa góc của trọng tài.
+
+**Ghi chú điều phối (kiểm nhanh trước khi chốt, không phải phán quyết):** bản Gemini vẫn còn (1) câu "Luật 11 quy định vạch chỉ xét phần cơ thể được phép ghi bàn" — lời luật chỉ nêu "head, body or feet", "phần ghi bàn được" là cách nhớ; (2) số "50 cm", "2 cm" là ví dụ dựng, phải ghi rõ hoặc bỏ số; (3) "mốc tính của trọng tài và công nghệ" chạm vùng brief cấm (không nói về công nghệ đo); (4) "cầu thủ cãi cọ" + "trọng tài phất cờ" cần là hình khối, không người thật. Codex vắng cả hai vòng.
+
+**Tóm tắt vòng 2 (điều phối):** Hai giọng hội tụ: hook là tình huống tay thò qua vạch + bàn bị gạt, ích lợi sớm trước giây 10 (tẩy/xám cánh tay từ đáy nách), "đáy nách chứ không phải mép tay áo" là sai lầm thường gặp, câu nhớ "nhìn vai, đừng nhìn tay". Còn khác: Claude giữ ba thử thách ĐÚNG/SAI (A tay, B vai, C tay giơ cao) và trả lời đầy đủ ở giây ~52; Gemini gom thành một cặp nghịch lý (tay xa / chỏm vai) và dành 15 s cho bẫy mép tay áo, trả lời ở giây 48, giữ lời mời bình luận. Đồng thuận đủ để chốt sau vòng 2.
+
+## Phán quyết cuối
+*(`ideator-b`, 21/11/2026)*
+
+**Chọn: bản lai, lấy khung của Claude (vòng 2) cộng hai thứ của Gemini.** Tên tạm: "Bàn bị gạt vì cái tay?". Codex vắng cả hai vòng nên không có ý kiến của Codex để cân. Đây **không** phải bế tắc. Các điểm Gemini đúng thì lấy theo Gemini.
+
+**Kiểm nguồn (tôi tự mở):** Luật 11 IFAB tại theifab.com/laws/latest/offside có đúng ba câu sau.
+- "The hands and arms of all players, including the goalkeepers, are not considered."
+- "the upper boundary of the arm is in line with the bottom of the armpit."
+- Phần xét vị trí là "head, body or feet".
+
+Câu "chỉ phần được phép ghi bàn" **không có** trong luật, chỉ là cách nhớ. Luật 12 tôi chưa mở được bản gốc nên bỏ hẳn.
+
+**Lý do chọn khung Claude.** Hook "bàn bị gạt, vì cái tay này?" có hệ quả gần người xem trước giây 5 (Y5), và trúng đúng câu người ta gõ ("việt vị có tính cánh tay không"). Hook nghịch lý của Gemini ("vươn sải tay: không việt vị") không có hệ quả cho người xem nên tôi dời thành câu hỏi ở giây 5.
+
+**Lấy của Gemini:**
+- Đưa ích lợi sớm lên trước giây 10.
+- Biến ba thử thách thành thử thách nhanh có nhãn ĐÚNG/SAI.
+- Gom thành hai ví dụ chính (tay xa: không việt vị; vai nhô: việt vị) và dành nhịp dài cho bẫy "đáy nách chứ không phải mép tay áo".
+
+**Bác của Gemini:** cảnh trọng tài hay cầu thủ cãi nhau cụ thể, câu "Luật 11 quy định phần được ghi bàn", nhắc "công nghệ", số "50 cm / 2 cm" không ghi là ví dụ dựng.
+
+**Chấm Thước (1–5):**
+
+| Tiêu chí | Điểm | Ghi chú |
+|---|---|---|
+| Nhu cầu thật | 3 | Có gợi ý tìm kiếm google về việt vị tay/cánh tay, chưa có tín hiệu độc lập thứ hai |
+| Mới | 4 | Chưa thấy trùng cơ chế |
+| Kiểm chứng | 5 | Nguyên văn Luật 11 mở được |
+| Minh hoạ | 5 | Sơ đồ khối, tô màu, đường đáy nách |
+| Hook (WOW + cãi) | 4 | WOW: tay thò xa mà không việt vị, vai nhô vài phân thì việt vị. Cãi: hai phe "tay ra rồi" và "tay không tính" |
+| An toàn | 4 | Còn rủi ro nếu lỡ nhắc công nghệ hoặc năm |
+
+**Tổng: 25/30.**
+
+**Hook (2 giây đầu).** Sơ đồ khối nhìn từ trên: tiền đạo ở sau vạch, một cánh tay thò qua vạch, bàn bị gạt. Lời: "Bàn bị gạt, vì cái tay này?" Chữ tối đa 3 từ. Đây là ví dụ dựng.
+
+**Cấu trúc:**
+- 1 tập, mục tiêu ≈ 60 s, trong 45–75 s. Ước 12 cảnh trở xuống. Không câu chào, mở bằng opening ba pha (R26).
+- **Ích lợi đầu tiên ở giây ~8:** "tay bỏ, vai giữ". Hình tẩy hai tay phải **dừng đúng đáy nách**.
+- **Câu hỏi mở "việt vị thật không?" trả ở giây ~50.**
+- Cơ chế chính: một, là vạch xét đầu, thân, chân; mốc cắt là đáy nách.
+- Ví dụ: hai thử thách (tay xa, chỏm vai).
+- Sai lầm thường gặp: đáy nách, không phải mép tay áo.
+- **R15:** bỏ phần so sánh với khái niệm khác vì brief chỉ cho một cơ chế.
+
+**Cáo, câu thoại:** Cáo chỉ vào mốc nách. Chốt: "Cãi nhau lần sau: hỏi vai hay tay, đừng hỏi có qua vạch không." Câu nhớ: "Nhìn vai, đừng nhìn tay."
+
+**Kịch bản bắt buộc tuân:**
+- Tách rõ lời luật ("đầu, thân, chân; tay và cánh tay không xét; đáy nách") và cách nhớ ("phần ghi bàn được", ghi nhãn "cách nhớ").
+- Nói "vai thuộc thân nên tính".
+- Không năm, không "luật mới", không công nghệ hay độ chính xác đo.
+- Mọi số đo là ví dụ dựng (hoặc bỏ số).
+- Chỉ hình khối, không người thật, clip hay logo.
+- Không nhắc Luật 12.
+- Không bịa lượt tìm.
+- Chữ chỉ nhấn từ khoá (Y1).
+- Không kêu gọi bình luận chung chung. Chỉ giữ câu chốt trả lời.
+- Đổi hình mỗi 3–4 s để tránh giáo khoa.
+
+**Điều kiện thành công:** hình đáy nách đọc rõ trên điện thoại nhỏ (giữ hình tẩy ≥ 0,8 s).
+
+**Điểm bất đồng còn lại:** số thử thách (Claude 3, Gemini 2). Tôi chốt 2 cộng bẫy mép tay áo. Hình tẩy tay giữ làm khoảnh khắc giây ~8, không làm hook.
+
+Đối tượng: người xem bóng đá phổ thông hay cãi khi xem chiếu chậm. Thông điệp: tay không tính, vai tính, mốc là đáy nách.
+

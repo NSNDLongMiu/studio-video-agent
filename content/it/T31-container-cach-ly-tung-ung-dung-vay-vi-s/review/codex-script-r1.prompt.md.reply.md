@@ -1,0 +1,1 @@
+Đã ghi 3 đoạn đề xuất viết lại và 5 điểm về độ chính xác kỹ thuật trong [script-codex-r1.md](<D:/Agent Video Studio/content/it/T31-container-cach-ly-tung-ung-dung-vay-vi-s/review/script-codex-r1.md>). Điểm quan trọng nhất là chỉ đánh dấu ô `NHÂN` sau khi xác nhận đã vá. `uname -r` chỉ cho biết bản phát hành của nhân đang chạy.

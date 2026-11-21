@@ -1,0 +1,1769 @@
+{
+  "video_id": "IT-T31-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "ExplainerScene hiện dàn hàng bước và chấm chạy ngang, thiếu dầm chung và vách dựng theo lớp. DataVizScene chỉ có thanh số và UiSimulationScene chỉ có khung gõ lệnh với banner; không diễn được chip đỏ riêng trong vỏ hay cửa sổ độc lập với tick. CharacterScene, QASequenceScene và PromptReviewScene không có những chuyển trạng thái hình học trên. Tái dùng tools/motion cho thẻ, icon, tick, thanh, opening và render-log; vẽ dầm, vách, rạn và bảng trực bằng lớp Pillow có bbox ổn định. S04 crop khung raster quá mẫu 1,00→1,09 vào nút dầm–vách, ghép chữ sau crop; cảnh còn lại dùng góc bố cục và cắt. Ghép trên timeline 30 fps với overlay eval=frame khi vị trí phụ thuộc thời điểm; nếu dùng zoompan cho plate tĩnh, d khớp số khung của plate. Tất cả chuyển nối trong phần đuôi cảnh, không trừ overlap khỏi 58 giây.",
+  "opening": {
+    "title": "Lớp nào chưa vá?",
+    "duration_s": 6,
+    "scene_id": "S01",
+    "voice": true,
+    "voice_line": "01",
+    "style": "incident",
+    "style_params": {
+      "has_incident": true,
+      "keyword": "NHÂN"
+    },
+    "animation": "Tiêu đề Bahnschrift ≥ 84 px do text engine vẽ, y300–425, kinetic nhẹ ở 4,6 s rồi giữ tới 6 s.",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 2,
+        "visual": "Cáo và hai hộp vào ngay; lời bắt đầu ở 0,6 s, hộp web xanh và bật tick theo “xong rồi” khoảng 1,5 s.",
+        "sfx_intent": "interaction",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 2,
+        "end_s": 4.6,
+        "visual": "Công tắc nghiêng ở 2,2 s; ngay sau “Khoan”, hộp thanh toán bật tam giác vàng, công tắc nhả và ô NHÂN trống lộ ở 3,1 s.",
+        "sfx_intent": "alert",
+        "voice_line": "01"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 4.6,
+        "end_s": 6,
+        "visual": "Tiêu đề vào ở 4,6 s, hiện trọn chậm nhất 4,8 s và giữ đến 6,0 s; trạng thái hộp vẫn đọc được.",
+        "sfx_intent": "transition"
+      }
+    ]
+  },
+  "header": {
+    "text": "IT · CONTAINER",
+    "title": "Lớp nào chưa vá?",
+    "slots": [
+      "top_left",
+      "top_right",
+      "top"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "1080×1920, 30 fps, 58 s. Nội dung x90–990, y250–1320; phụ đề riêng y1340–1500, ≤28 ký tự/dòng, viền 4–5 px. Header Bahnschrift 52 px, hai dòng trong y250–372, dòng dưới dùng tên chương đúng cột script. Ba chip tiến độ dạng dấu tick không chữ phụ trong cùng dải, tick lần lượt tại S02, S03, S09. Không nhân đôi nhãn chương. Tách nhãn ít nhất 24 px. Keyword nhấn 72 px, nhãn đối tượng và mã 56 px; tự co bố cục khi cần, giữ cỡ chữ. Chữ trắng ngà #F4F6FA, xanh lá #2BB673 đã vá/an toàn, #E5484D đỏ sai/bị chiếm, #F5B301 vàng cảnh báo, #3FA7FF dầm/vách, #6B7A90 chưa rõ, #FF8A3D nhấn. Cáo ghép ảnh tĩnh theo dáng có sẵn, cắt theo nhịp, không nhép, không biến hình; hình phẳng và crop 2D thay camera không gian. Không thêm logo, UI thật hoặc đồ hoạ mô tả khai thác. Bảng trực là tình huống dựng; nhãn AI và ghi chú ví dụ ở mô tả phát hành. Nhạc tắt, SFX nội bộ tự tổng hợp dưới giọng theo R25. Mốc nhắc từ và khoảng nghỉ xác nhận sau đo TTS; giữ nguyên lời và tổng 58 s.",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "narrative_purpose": "Mở bằng việc quen thuộc rồi đưa ra hệ quả sớm.",
+      "visual_concept": "Bảng ca trực hai hộp và công tắc. Trái có cửa sổ web viền tròn, phải có icon thẻ thanh toán, bên dưới là ô nhân trống. Hộp web xanh có tick còn hộp cạnh vàng có tam giác, phân biệt được bằng hình dáng.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "stage": "office",
+        "props": {
+          "hộp web": "browser"
+        },
+        "states": [
+          "web đã vá",
+          "hộp cạnh cảnh báo",
+          "ô nhân trống"
+        ]
+      },
+      "environment": "office · Xa là vệt sáng đèn bàn trên nền #0F1B2D, giữa là bảng y450–1120, gần là gờ bàn và công tắc. Đèn phản chiếu theo trạng thái.",
+      "character_action": "point_right, rộng 184 px, bbox mép trái x100 đáy y1270. Chỉ hộp bên cạnh khi nó vàng. Hiện 0–3,5 s.",
+      "props": [
+        "hộp web",
+        "hộp thanh toán",
+        "ô nhân trống",
+        "công tắc ca"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Vào ngay bảng trực với Cáo và hai hộp."
+        },
+        {
+          "t": 1.5,
+          "event": "Hộp web đổi xanh và bật tick, nhãn đi cùng ô."
+        },
+        {
+          "t": 2.2,
+          "event": "Cần công tắc nghiêng về phía đóng ca."
+        },
+        {
+          "t": 3.1,
+          "event": "Hộp cạnh đổi vàng và bật tam giác, công tắc nhả lại, ô rỗng lộ dưới hai hộp."
+        },
+        {
+          "t": 3.5,
+          "event": "Cáo cắt ra, ô nhân nới khung nét đứt và nháy thêm một nhịp."
+        },
+        {
+          "t": 4.6,
+          "event": "Text engine đưa tiêu đề vào vùng y300–425, giữ trọn đến hết cảnh. Hai hộp và ô rỗng giữ trạng thái."
+        }
+      ],
+      "voice_over": "Vá nginx xong rồi, đóng ca nhé?\nKhoan. Hộp bên cạnh sao đổi màu?",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "surprised",
+          "emphasis": [
+            "xong rồi",
+            "đổi màu"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.6,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.5,
+          "intent": "interaction",
+          "target": "hộp web",
+          "intensity": "low",
+          "reason": "Tick theo lần vá xong."
+        },
+        {
+          "t": 3.1,
+          "intent": "alert",
+          "target": "hộp thanh toán",
+          "intensity": "low",
+          "reason": "Chuông nhỏ theo lúc bật tam giác."
+        },
+        {
+          "t": 4.6,
+          "intent": "transition",
+          "target": "vùng tiêu đề opening",
+          "intensity": "low",
+          "reason": "Whoosh nhẹ khi tiêu đề vào."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "main_idea": "Vá một ứng dụng chưa đủ để đóng ca",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.4,
+      "main_change": "Hộp web vàng thành xanh có tick, hộp cạnh đổi vàng có tam giác, công tắc gạt dở rồi bật lại.",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nginx",
+            "type": "entity",
+            "form": "icon",
+            "object": "hộp web",
+            "motion": "Tick bật, vỏ thành xanh"
+          },
+          {
+            "term": "đóng ca",
+            "type": "action",
+            "form": "animation",
+            "object": "công tắc ca",
+            "motion": "Gạt dở rồi nhả"
+          },
+          {
+            "term": "hộp bên cạnh",
+            "type": "entity",
+            "form": "status",
+            "object": "hộp thanh toán",
+            "motion": "Tam giác bật cùng màu vàng"
+          },
+          {
+            "term": "nhân",
+            "type": "term",
+            "form": "metaphor",
+            "object": "ô nhân trống",
+            "motion": "Khung nét đứt nới ra"
+          }
+        ],
+        "relations": [
+          {
+            "from": "hộp web",
+            "to": "công tắc ca",
+            "type": "Cáo định đóng ca sau tick web"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ĐÃ VÁ",
+            "kind": "label",
+            "attach_to": "hộp web",
+            "appear_s": 1.5,
+            "disappear_s": 6,
+            "effect": "fade"
+          },
+          {
+            "text": "NHÂN",
+            "kind": "label",
+            "attach_to": "ô nhân trống",
+            "appear_s": 3.1,
+            "disappear_s": 6,
+            "effect": "fade"
+          },
+          {
+            "text": "Lớp nào chưa vá?",
+            "kind": "message",
+            "attach_to": "vùng tiêu đề opening",
+            "appear_s": 4.6,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.4
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02",
+      "narrative_purpose": "Đặt câu hỏi mà cơ chế kế tiếp sẽ trả lời.",
+      "visual_concept": "Ba hộp dạng cửa sổ web, thẻ thanh toán, biểu đồ giấy đặt trên một đế xám. Bong bóng chứa hai khoá xanh biểu diễn suy nghĩ, nứt để lộ cảnh báo vàng. Header top_left: IT · CONTAINER / NIỀM TIN SAI.",
+      "scene_type": "metaphor_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "stage": "office",
+        "props": {
+          "hộp web": "browser",
+          "bong bóng suy nghĩ": "bubble"
+        }
+      },
+      "environment": "office · Xa là vách phòng trực #0F1B2D ánh lạnh, giữa là cụm hộp so le y485–1120, gần là bong bóng trong suốt phía phải.",
+      "character_action": "think rộng 151 px, x810 đáy y1270, hiện 1,0–2,5 s. Hướng mắt về hộp đỏ và bong bóng.",
+      "props": [
+        "hộp web",
+        "hộp thanh toán",
+        "hộp báo cáo",
+        "bong bóng suy nghĩ",
+        "đế xám"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp biểu tượng web sang góc toàn ba hộp."
+        },
+        {
+          "t": 0.3,
+          "event": "Hộp web đỏ theo nhịp bị chiếm."
+        },
+        {
+          "t": 1.2,
+          "event": "Bong bóng phồng thành viền quanh hai hộp bên cạnh, hai khóa đóng ở 2,0."
+        },
+        {
+          "t": 3.2,
+          "event": "Bong bóng nứt, thẻ thanh toán bật tam giác vàng."
+        },
+        {
+          "t": 4.55,
+          "event": "Hai mảnh viền bong bóng tách sang hai bên, lộ đế nằm dưới cả ba hộp."
+        }
+      ],
+      "voice_over": "Nhiều bạn nghĩ: bị chiếm thì chỉ mất cái hộp đó thôi.\nCâu này sai ở đâu?",
+      "voice_direction": [
+        {
+          "line_id": "02",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "chỉ mất cái hộp",
+            "sai ở đâu"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.2,
+          "pause_after_s": 0.9,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 3.2,
+          "intent": "highlight",
+          "target": "bong bóng suy nghĩ",
+          "intensity": "low",
+          "reason": "Đánh dấu lúc giả định bị đặt lại."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 5.5,
+      "main_idea": "Thử niềm tin sự cố chỉ nằm trong một hộp",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.2,
+      "main_change": "Web đỏ, hai hộp kia được bọc trong bong bóng khoá rồi bong bóng nứt và lộ cảnh báo.",
+      "text_groups": 3,
+      "header_slot": "top_left",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bị chiếm",
+            "type": "result",
+            "form": "status",
+            "object": "hộp web",
+            "motion": "Đổi đỏ"
+          },
+          {
+            "term": "ứng dụng bên cạnh",
+            "type": "entity",
+            "form": "illustration",
+            "object": "hộp thanh toán và hộp báo cáo",
+            "motion": "Khoá xanh đóng trong bong bóng"
+          },
+          {
+            "term": "chỉ mất một hộp",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "bong bóng suy nghĩ",
+            "motion": "Nứt và tách mảnh"
+          }
+        ],
+        "relations": [
+          {
+            "from": "bong bóng suy nghĩ",
+            "to": "hộp thanh toán",
+            "type": "Niềm tin cách ly bị đặt lại"
+          }
+        ],
+        "texts": [
+          {
+            "text": "WEB",
+            "kind": "label",
+            "attach_to": "hộp web",
+            "appear_s": 0.3,
+            "disappear_s": 2.25,
+            "effect": "fade"
+          },
+          {
+            "text": "THANH TOÁN",
+            "kind": "label",
+            "attach_to": "hộp thanh toán",
+            "appear_s": 0.3,
+            "disappear_s": 3.2,
+            "effect": "fade"
+          },
+          {
+            "text": "BÁO CÁO",
+            "kind": "label",
+            "attach_to": "hộp báo cáo",
+            "appear_s": 2.25,
+            "disappear_s": 4.55,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.2
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "narrative_purpose": "Trả lời câu hỏi mở bằng một cơ chế duy nhất.",
+      "visual_concept": "Mặt cắt trực diện x130–950 y460–1120. Ba hộp icon đứng riêng, cùng hạ ba chân đỡ thẳng xuống một dầm xanh duy nhất. Vách liền mọc lên giữa hộp từ dầm. Header top_right: IT · CONTAINER / NHÂN CHUNG.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "stage": "server",
+        "nodes": [
+          "ba hộp ứng dụng",
+          "tấm nền xanh",
+          "hai vách xanh"
+        ]
+      },
+      "environment": "security · Xa là bản vẽ #16263F có lưới thưa, giữa là hộp và dầm, gần là hai vách nổi; ánh xanh dọc mép dầm.",
+      "character_action": "",
+      "props": [
+        "ba hộp ứng dụng",
+        "tấm nền xanh",
+        "ba chân đỡ",
+        "hai vách xanh"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Đặt ba hộp phía trên khoảng sàn trống."
+        },
+        {
+          "t": 1.05,
+          "event": "Khi nhắc container, ba hộp hạ về cùng cao độ."
+        },
+        {
+          "t": 1.9,
+          "event": "Theo cụm chạy trên cùng, chân đỡ trái duỗi xuống từ hộp trái."
+        },
+        {
+          "t": 2.5,
+          "event": "Chân đỡ giữa duỗi xuống, ngang đáy chân trái."
+        },
+        {
+          "t": 3.1,
+          "event": "Chân đỡ phải duỗi xuống, cả ba chân cùng chờ một mặt tựa."
+        },
+        {
+          "t": 3.6,
+          "event": "Dầm xanh trồi vào dưới ba chân khi nhắc nhân Linux, căn lại theo TTS. Nhãn NHÂN LINUX bật cùng dầm và giữ tới hết cảnh."
+        },
+        {
+          "t": 4.2,
+          "event": "Nhãn nhấn bật ở mép dưới bên phải dầm, cách nhãn NHÂN LINUX ít nhất 24 px."
+        },
+        {
+          "t": 4.7,
+          "event": "Vách mọc từ dầm khi lời nhắc nhân dựng, hoàn thành trước 6,1."
+        },
+        {
+          "t": 5.3,
+          "event": "Đưa nhãn lên mặt vách khi nghe bức tường."
+        },
+        {
+          "t": 6.1,
+          "event": "Giữ trọn sơ đồ hoàn chỉnh."
+        },
+        {
+          "t": 7.35,
+          "event": "Quét sáng theo chân hai vách rồi dừng, giữ toàn bộ quan hệ."
+        }
+      ],
+      "voice_over": "Sai ở chỗ này: các container chạy trên cùng một nhân Linux.\nNhân dựng bức tường giữa chúng.",
+      "voice_direction": [
+        {
+          "line_id": "03",
+          "intent": "reveal",
+          "emotion": "resolute",
+          "emphasis": [
+            "cùng một nhân",
+            "bức tường"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 2.4,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 4.2,
+          "intent": "impact_reveal",
+          "target": "tấm nền xanh",
+          "intensity": "low",
+          "reason": "Xác lập điểm tựa chung."
+        },
+        {
+          "t": 4.7,
+          "intent": "data_move",
+          "target": "hai vách xanh",
+          "intensity": "low",
+          "reason": "Theo vách trồi từ mặt dầm."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 8.5,
+      "main_idea": "Các container chung một nhân, chính nhân dựng tường",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.4,
+      "main_change": "Ba chân cùng chạm một dầm, hai vách mọc lên từ ngay dầm ấy.",
+      "text_groups": 3,
+      "header_slot": "top_right",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "container",
+            "type": "term",
+            "form": "illustration",
+            "object": "ba hộp ứng dụng",
+            "motion": "Hạ về cùng cao độ"
+          },
+          {
+            "term": "nhân Linux",
+            "type": "term",
+            "form": "connection",
+            "object": "tấm nền xanh",
+            "motion": "Trồi để đỡ cả ba chân"
+          },
+          {
+            "term": "tường",
+            "type": "entity",
+            "form": "animation",
+            "object": "hai vách xanh",
+            "motion": "Mọc lên từ dầm"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ba hộp ứng dụng",
+            "to": "tấm nền xanh",
+            "type": "Cùng một điểm tựa"
+          },
+          {
+            "from": "tấm nền xanh",
+            "to": "hai vách xanh",
+            "type": "Vách mọc từ dầm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHÂN LINUX",
+            "kind": "label",
+            "attach_to": "tấm nền xanh",
+            "appear_s": 3.6,
+            "disappear_s": 8.5,
+            "effect": "fade"
+          },
+          {
+            "text": "MỘT NHÂN CHUNG",
+            "kind": "keyword",
+            "attach_to": "mép dưới bên phải của tấm nền xanh, tách nhãn NHÂN LINUX",
+            "appear_s": 4.2,
+            "disappear_s": 5.1,
+            "effect": "kinetic"
+          },
+          {
+            "text": "TƯỜNG",
+            "kind": "label",
+            "attach_to": "vách phải",
+            "appear_s": 5.3,
+            "disappear_s": 8.5,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 2.4
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "narrative_purpose": "Cho thấy hệ quả có điều kiện của cơ chế chung.",
+      "visual_concept": "Giữ quan hệ từ S03 nhưng cắt sát chân vách, đẩy crop 1,00→1,09 ở 0,0–1,6 s vào nút giao để người xem thấy vết rạn cùng chân vách. Vết rạn trên dầm dày tối thiểu 12 px; vách thành nét đứt dài dễ đọc, hộp cạnh lên viền vàng. Header top_left: IT · CONTAINER / LỖI NHÂN.",
+      "scene_type": "cinematic_close_up",
+      "scene_kind": "problem_cause_consequence",
+      "kind_params": {
+        "stage": "warning",
+        "problem": {
+          "label": "",
+          "object": "vách cách ly"
+        },
+        "cause": {
+          "label": "",
+          "object": "vết rạn trên dầm"
+        },
+        "consequence": {
+          "label": "TƯỜNG",
+          "object": "vách nét đứt và hộp viền vàng"
+        }
+      },
+      "environment": "security · Xa là bản vẽ #16263F tối hơn ở rìa, giữa là tiết diện dầm y740–1160, gần là chân vách và gờ hộp y480–835. Ánh sáng tập trung ở nút giao.",
+      "character_action": "",
+      "props": [
+        "dầm chung",
+        "vết rạn",
+        "vách liền",
+        "viền cảnh báo"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cận chân vách, giữ đủ ba gờ hộp trong khung khi crop."
+        },
+        {
+          "t": 0.4,
+          "event": "Vết rạn mở trên mặt dầm."
+        },
+        {
+          "t": 1.6,
+          "event": "Vách từ liền thành đứt theo lời yếu đi."
+        },
+        {
+          "t": 2,
+          "event": "Hai hộp cạnh thêm viền vàng và khuyết tam giác, giữ mặt hộp nguyên."
+        },
+        {
+          "t": 3.25,
+          "event": "Viền cảnh báo quét một nhịp từ chân vách ra mép hai hộp."
+        },
+        {
+          "t": 4.45,
+          "event": "Viền hạ về vàng ổn định, vết rạn và nét đứt giữ rõ."
+        }
+      ],
+      "voice_over": "Lỗi nhân có thể làm tường yếu đi.",
+      "voice_direction": [
+        {
+          "line_id": "04",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "có thể",
+            "yếu đi"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 2.7,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.4,
+          "intent": "impact_risk",
+          "target": "vết rạn",
+          "intensity": "low",
+          "reason": "Crack mảnh dưới giọng, đúng lúc dầm rạn."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 5,
+      "main_idea": "Lỗi ở nhân có thể làm vách cách ly yếu đi",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 2.7,
+      "main_change": "Dầm rạn tại chân vách, vách liền đứt quãng và hai hộp cạnh bật viền vàng.",
+      "text_groups": 2,
+      "header_slot": "top_left",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "lỗi nhân",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "vết rạn trên dầm",
+            "motion": "Mở một vết rạn"
+          },
+          {
+            "term": "tường yếu đi",
+            "type": "result",
+            "form": "status",
+            "object": "vách tại vết rạn",
+            "motion": "Nét liền thành nét đứt"
+          },
+          {
+            "term": "ảnh hưởng lân cận",
+            "type": "result",
+            "form": "status",
+            "object": "hai hộp cạnh",
+            "motion": "Viền vàng và tam giác bật"
+          }
+        ],
+        "relations": [
+          {
+            "from": "vết rạn trên dầm",
+            "to": "vách tại vết rạn",
+            "type": "Vách có thể yếu đi nếu dầm lỗi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TƯỜNG",
+            "kind": "label",
+            "attach_to": "vách tại vết rạn",
+            "appear_s": 0,
+            "disappear_s": 5,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 2.7
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "narrative_purpose": "Đối chiếu nhân riêng để người xem nhớ quan hệ một–nhiều.",
+      "visual_concept": "Hai cột x108–521 và 559–972, y455–1150. Ba hộp xếp bậc ở mỗi bên, cột trái chạm một đế liền dạng bậc, cột phải mỗi hộp đứng trên một đế ngang có khe sáng. Cùng biểu tượng rạn xuất hiện trên một đế khách, chỉ hộp trên đế đó lên viền vàng trong ví dụ. Header top: IT · CONTAINER / NHÂN RIÊNG.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "stage": "server",
+        "before": {
+          "label": "CONTAINER",
+          "state": "warn",
+          "object": "ba hộp trên đế liền"
+        },
+        "after": {
+          "label": "MÁY ẢO",
+          "state": "ok",
+          "object": "ba hộp trên ba đế rời"
+        },
+        "switch_t": 2.4
+      },
+      "environment": "security · Xa là bản vẽ #16263F với rãnh chia dọc, giữa là hai mô hình xếp bậc, gần là các đế xanh, sáng ngang nhau.",
+      "character_action": "",
+      "props": [
+        "cột container",
+        "cột máy ảo",
+        "ba đế rời",
+        "vết rạn"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở hai cột, phía container mang dấu rạn và viền vàng đã thấy."
+        },
+        {
+          "t": 0.6,
+          "event": "Mô hình máy ảo hiện khi được gọi tên, các đế tách thành ba theo cụm nhân riêng, căn nhịp TTS."
+        },
+        {
+          "t": 1.6,
+          "event": "Đường bao riêng khép quanh mỗi cặp hộp–đế, cùng độ dày nét với vách trái."
+        },
+        {
+          "t": 2.4,
+          "event": "Một đế khách rạn, riêng hộp trên đế đó bật viền vàng."
+        },
+        {
+          "t": 3.65,
+          "event": "Viền ở hộp đó chạy ngang một nhịp; các khe giữa đế vẫn lộ."
+        },
+        {
+          "t": 4.85,
+          "event": "Hạ nhấn để cả hai mô hình cùng sáng trước cú cắt."
+        }
+      ],
+      "voice_over": "Với máy ảo, mỗi hộp có một nhân riêng.",
+      "voice_direction": [
+        {
+          "line_id": "05",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "nhân riêng"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 2.5,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.4,
+          "intent": "highlight",
+          "target": "cột máy ảo",
+          "intensity": "low",
+          "reason": "Đánh dấu đúng vị trí đế khách trong phép đối chiếu."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 5.15,
+      "main_idea": "Máy ảo cho thấy mỗi hộp có một nền riêng",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 2.5,
+      "main_change": "Một dầm liền đối chiếu ba đế rời, bên có đế rời chỉ một hộp bật viền vàng.",
+      "text_groups": 3,
+      "header_slot": "top",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "container",
+            "type": "term",
+            "form": "comparison",
+            "object": "cột container",
+            "motion": "Giữ ba hộp cùng một đế"
+          },
+          {
+            "term": "máy ảo",
+            "type": "term",
+            "form": "illustration",
+            "object": "cột máy ảo",
+            "motion": "Ba cặp hộp–đế tách nhẹ"
+          },
+          {
+            "term": "nhân riêng",
+            "type": "concept",
+            "form": "comparison",
+            "object": "ba đế rời",
+            "motion": "Một đế khách rạn trong ví dụ"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ba đế rời",
+            "to": "cột máy ảo",
+            "type": "Mỗi hộp đứng trên một đế"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CONTAINER",
+            "kind": "label",
+            "attach_to": "cột container",
+            "appear_s": 0,
+            "disappear_s": 5.15,
+            "effect": "fade"
+          },
+          {
+            "text": "MÁY ẢO",
+            "kind": "label",
+            "attach_to": "cột máy ảo",
+            "appear_s": 0.6,
+            "disappear_s": 5.15,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 2.5
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "narrative_purpose": "Neo cơ chế chung vào ví dụ thời sự đã duyệt.",
+      "visual_concept": "Thẻ tin ở trên trái và vỏ web lớn bên phải thấp hơn. Trong vỏ còn nguyên có đúng một chip dịch vụ dùng icon bánh răng. Chỉ chip đỏ, đồng thời xuất hiện cờ điều kiện nhỏ. Thẻ tin dừng cách vỏ 36 px, không đè nhãn và không vẽ liên kết đến nền hay máy chủ. Header top_right: IT · CONTAINER / VÍ DỤ.",
+      "scene_type": "object_interaction",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "stage": "warning",
+        "props": {
+          "thẻ tin": "document",
+          "hộp web": "browser"
+        },
+        "target": "chip nginx"
+      },
+      "environment": "incident · Xa là chồng giấy mờ trên nền bảng #0F1B2D, giữa là vỏ web y590–1150, gần là thẻ tin y465–660 và chip trong hộp. Hắt sáng trắng ở thẻ.",
+      "character_action": "",
+      "props": [
+        "thẻ tin",
+        "hộp web",
+        "chip nginx",
+        "cờ điều kiện"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hộp web đang chạy, chip xanh bên trong."
+        },
+        {
+          "t": 0.2,
+          "event": "Thẻ tin trượt vào ô riêng."
+        },
+        {
+          "t": 0.5,
+          "event": "Tên ví dụ hiện trên thẻ tin."
+        },
+        {
+          "t": 1.85,
+          "event": "Thẻ gài vào khe bảng, mở dấu ghim."
+        },
+        {
+          "t": 3.4,
+          "event": "Cờ điều kiện bung cạnh hộp theo câu thứ hai."
+        },
+        {
+          "t": 5,
+          "event": "Chỉ chip nginx chuyển đỏ, vỏ và các hộp còn lại giữ trạng thái."
+        },
+        {
+          "t": 5.5,
+          "event": "Vạch nhấn bao quanh riêng chip rồi hạ, giữ hình đến hết cảnh."
+        }
+      ],
+      "voice_over": "Ví dụ: vừa có bộ lỗi nginx mới công bố.\nTuỳ cấu hình, nginx có thể bị chiếm.",
+      "voice_direction": [
+        {
+          "line_id": "06",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "Tuỳ cấu hình",
+            "có thể"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 0.6,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.2,
+          "intent": "ui_appear",
+          "target": "thẻ tin",
+          "intensity": "low",
+          "reason": "Theo thẻ tin vào bảng."
+        },
+        {
+          "t": 5,
+          "intent": "alert",
+          "target": "chip nginx",
+          "intensity": "low",
+          "reason": "Chuông ngắn nhẹ, khoanh đúng chip."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6.85,
+      "main_idea": "Ví dụ công bố về một lỗi ứng dụng có điều kiện",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.1,
+      "main_change": "Thẻ tin trượt vào và ghim, cờ hiện, riêng chip bên trong web xanh sang đỏ.",
+      "text_groups": 3,
+      "header_slot": "top_right",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bộ lỗi nginx",
+            "type": "term",
+            "form": "illustration",
+            "object": "thẻ tin",
+            "motion": "Trượt vào và ghim"
+          },
+          {
+            "term": "tuỳ cấu hình",
+            "type": "concept",
+            "form": "icon",
+            "object": "cờ điều kiện",
+            "motion": "Bung trước lúc chip đổi màu"
+          },
+          {
+            "term": "nginx",
+            "type": "entity",
+            "form": "status",
+            "object": "chip nginx",
+            "motion": "Riêng chip chuyển đỏ"
+          }
+        ],
+        "relations": [
+          {
+            "from": "cờ điều kiện",
+            "to": "chip nginx",
+            "type": "Trạng thái đỏ có điều kiện"
+          }
+        ],
+        "texts": [
+          {
+            "text": "WEB",
+            "kind": "label",
+            "attach_to": "hộp web",
+            "appear_s": 0,
+            "disappear_s": 6.85,
+            "effect": "fade"
+          },
+          {
+            "text": "nginx2root",
+            "kind": "label",
+            "attach_to": "thẻ tin",
+            "appear_s": 0.5,
+            "disappear_s": 6.85,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "narrative_purpose": "Giữ đúng mức chắc chắn của ví dụ.",
+      "visual_concept": "Bố cục hai tầng, chip đỏ trong web ở tầng trên, vách xanh liền ở giữa, nền và thẻ rời đóng khung nét đứt ở dưới phải. Dấu hỏi trắng lớn trên thẻ mờ. Không có cạnh nối hoặc dịch chuyển từ web đến vùng nhân. Header top_left: IT · CONTAINER / CHƯA RÕ.",
+      "scene_type": "metaphor_animation",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "stage": "warning",
+        "props": {
+          "thẻ lỗi nhân riêng": "document"
+        },
+        "target": "thẻ lỗi nhân riêng"
+      },
+      "environment": "incident · Xa là mặt bảng kiểm #223049 với ánh xám dịu, giữa là lát cắt web và vách, gần là thẻ nghi vấn riêng x615–950 y840–1170.",
+      "character_action": "",
+      "props": [
+        "chip nginx",
+        "vách nguyên",
+        "tấm nền",
+        "thẻ lỗi nhân riêng"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Đặt hai vùng tách nhau và giữ vách xanh liền."
+        },
+        {
+          "t": 0.8,
+          "event": "Thẻ xám nét đứt bật vào ô độc lập."
+        },
+        {
+          "t": 1.6,
+          "event": "Nền dịu về xám khi nghe nhân, căn TTS cho nhãn."
+        },
+        {
+          "t": 2.6,
+          "event": "Dấu hỏi lớn vào thẻ khi nói chi tiết chưa công bố."
+        },
+        {
+          "t": 3.85,
+          "event": "Viền nét đứt nổi rõ một lượt cùng dấu hỏi, không làm vách biến dạng."
+        }
+      ],
+      "voice_over": "Còn bước tiếp theo liên quan tới nhân. Chi tiết chưa công bố đầy đủ.",
+      "voice_direction": [
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "liên quan tới nhân",
+            "chưa công bố đầy đủ"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 1,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.6,
+          "intent": "highlight",
+          "target": "thẻ lỗi nhân riêng",
+          "intensity": "low",
+          "reason": "Nhấn câu hỏi còn mở, không dùng âm báo sự cố máy chủ."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 4.8,
+      "main_idea": "Một lỗi nhân riêng còn thiếu chi tiết",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.3,
+      "main_change": "Thẻ rời xuất hiện và bật dấu hỏi, vùng nền mờ đi, vách liền và chip đỏ giữ nguyên.",
+      "text_groups": 2,
+      "header_slot": "top_left",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nhân",
+            "type": "term",
+            "form": "metaphor",
+            "object": "tấm nền",
+            "motion": "Dịu xám"
+          },
+          {
+            "term": "chưa công bố đầy đủ",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ lỗi nhân riêng",
+            "motion": "Bật dấu hỏi"
+          },
+          {
+            "term": "nginx",
+            "type": "entity",
+            "form": "status",
+            "object": "chip nginx",
+            "motion": "Giữ đỏ"
+          }
+        ],
+        "relations": [
+          {
+            "from": "thẻ lỗi nhân riêng",
+            "to": "tấm nền",
+            "type": "Thẻ ghi mức độ chưa rõ về nhân"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHÂN",
+            "kind": "label",
+            "attach_to": "tấm nền",
+            "appear_s": 1.6,
+            "disappear_s": 4.8,
+            "effect": "fade"
+          },
+          {
+            "text": "?",
+            "kind": "label",
+            "attach_to": "thẻ lỗi nhân riêng",
+            "appear_s": 2.6,
+            "disappear_s": 4.8,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.3
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "narrative_purpose": "Cân bằng lợi ích và rủi ro trước khi nêu việc làm.",
+      "visual_concept": "Chia trên dưới, mỗi mô hình có thanh tiến độ không số. Nửa trên ba hộp gọn nằm trên dầm chung, nửa dưới ba đế riêng. Ở nhịp chốt, cân thấp ở mép dầm trên nghiêng, dầm lộ vết rạn giả định. Chiều dài thanh chỉ là ký hiệu đối chiếu. Header top: IT · CONTAINER / ĐÁNH ĐỔI.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "stage": "server",
+        "before": {
+          "label": "NHẸ · NHANH",
+          "state": "ok",
+          "object": "thanh trên của mô hình chung"
+        },
+        "after": {
+          "label": "GIÁ: NHÂN CHUNG",
+          "state": "warn",
+          "object": "cân nghiêng về dầm"
+        },
+        "switch_t": 3.4
+      },
+      "environment": "performance · Xa là bàn thử vận hành #16263F ánh sáng hai dải với rãnh thanh khởi động chìm, giữa là hai mô hình y435–1120, gần là cân và hai thanh bo tròn.",
+      "character_action": "",
+      "props": [
+        "mô hình chung",
+        "mô hình riêng",
+        "hai thanh khởi động",
+        "cân"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hai mô hình đã có hình khối, thanh trên trống."
+        },
+        {
+          "t": 0.6,
+          "event": "Thanh trên chạy và đầy nhanh ở nhịp nhẹ, nhanh."
+        },
+        {
+          "t": 1.4,
+          "event": "Thanh dưới bắt đầu đầy chậm hơn, không hiển thị giá trị."
+        },
+        {
+          "t": 2.65,
+          "event": "Thanh dưới đầy và ba cửa sổ dưới sáng lần lượt."
+        },
+        {
+          "t": 3.4,
+          "event": "Giảm sáng thanh, cân nghiêng về dầm chung khi nhắc cái giá, dầm hiện rạn nhỏ."
+        },
+        {
+          "t": 4.7,
+          "event": "Cân ổn định; ánh xanh chạy theo mặt dầm chung để giữ tiêu điểm."
+        }
+      ],
+      "voice_over": "Container vẫn đáng dùng: nhẹ, nhanh vì chung nhân.\nĐó cũng là cái giá.",
+      "voice_direction": [
+        {
+          "line_id": "08",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "vẫn đáng dùng",
+            "cái giá"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 1,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.6,
+          "intent": "data_move",
+          "target": "mô hình chung",
+          "intensity": "low",
+          "reason": "Một tiếng chạy nhẹ theo thanh khởi động."
+        },
+        {
+          "t": 3.4,
+          "intent": "highlight",
+          "target": "cân",
+          "intensity": "low",
+          "reason": "Theo lúc đổi từ tốc độ sang đánh đổi."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 5.15,
+      "main_idea": "Nhẹ và nhanh đi cùng đánh đổi dùng chung nhân",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "main_change": "Thanh của mô hình gọn đầy trước, sau đó cân nghiêng và dầm chung lộ vết rạn nhỏ.",
+      "text_groups": 2,
+      "header_slot": "top",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "container",
+            "type": "term",
+            "form": "illustration",
+            "object": "mô hình chung",
+            "motion": "Thắp sáng khi thanh đầy"
+          },
+          {
+            "term": "nhẹ, nhanh",
+            "type": "result",
+            "form": "comparison",
+            "object": "hai thanh khởi động",
+            "motion": "Thanh trên đầy trước"
+          },
+          {
+            "term": "giá của nhân chung",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "cân",
+            "motion": "Nghiêng về dầm chung"
+          }
+        ],
+        "relations": [
+          {
+            "from": "mô hình chung",
+            "to": "cân",
+            "type": "Lợi ích và đánh đổi cùng từ một đế"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHẸ · NHANH",
+            "kind": "label",
+            "attach_to": "mô hình chung",
+            "appear_s": 0.6,
+            "disappear_s": 3.4,
+            "effect": "fade"
+          },
+          {
+            "text": "GIÁ: NHÂN CHUNG",
+            "kind": "label",
+            "attach_to": "cân",
+            "appear_s": 3.4,
+            "disappear_s": 5.15,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "narrative_purpose": "Trả động tác đóng ca bỏ dở ở mở đầu.",
+      "visual_concept": "Khung bảng công việc với hai ô tick và một terminal giả lập x180–900 y455–875. Trong terminal chỉ có dòng lệnh xem nhân đang chạy ($ uname -r, vẽ trong đạo cụ terminal) và nhãn máy chủ. Terminal rời trước khi thẻ xác nhận xuất hiện thành sự kiện độc lập. Sau hai tick, hộp cạnh xanh rồi công tắc mới gạt. Header top_left: IT · CONTAINER / VIỆC LÀM.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "stage": "office",
+        "steps": [
+          {
+            "label": "NGINX",
+            "object": "ô nginx",
+            "t": 1.1
+          },
+          {
+            "label": "NHÂN MÁY CHỦ",
+            "object": "terminal máy chủ",
+            "t": 1.9
+          },
+          {
+            "label": "ĐÃ VÁ",
+            "object": "chip xác nhận",
+            "t": 2.9
+          },
+          {
+            "label": "NHÂN",
+            "object": "ô nhân",
+            "t": 3.2
+          },
+          {
+            "label": "",
+            "object": "công tắc ca",
+            "t": 4
+          }
+        ]
+      },
+      "environment": "code · Xa là vách phòng trực, giữa là cửa sổ terminal #0A0F18 ánh xanh lạnh và ô theo dõi y530–1040, gần là công tắc y1150–1280. Ánh sáng quay về bảng trực lúc terminal đóng.",
+      "character_action": "",
+      "props": [
+        "ô nginx",
+        "ô nhân",
+        "terminal máy chủ",
+        "chip xác nhận",
+        "hộp thanh toán",
+        "công tắc ca"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Trả về công tắc còn mở, hai ô công việc đang chờ."
+        },
+        {
+          "t": 1.1,
+          "event": "Tick nginx, hộp web xanh."
+        },
+        {
+          "t": 1.9,
+          "event": "Terminal hiện dòng kiểm tra và nhãn máy chủ. Ô nhân trống hình vuông, không kết quả."
+        },
+        {
+          "t": 2.9,
+          "event": "Terminal đóng, chip ĐÃ VÁ cạnh ô nhân xuất hiện như xác nhận riêng trong ví dụ dựng."
+        },
+        {
+          "t": 3.2,
+          "event": "Chỉ lúc này ô nhân tick xanh."
+        },
+        {
+          "t": 3.5,
+          "event": "Hộp bên cạnh vàng sang xanh, tam giác rút đi."
+        },
+        {
+          "t": 4,
+          "event": "Công tắc gạt đóng ca theo hết câu."
+        },
+        {
+          "t": 5,
+          "event": "Gờ công tắc hạ xuống vị trí chốt, vệt xanh ổn định để cắt khớp S10."
+        }
+      ],
+      "voice_over": "Vá nginx, rồi vá cả nhân máy chủ khi có bản.\nXong hết hãy đóng ca.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "emphasis": [
+            "vá cả nhân",
+            "đóng ca"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.2,
+          "pause_after_s": 1.5,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.1,
+          "intent": "interaction",
+          "target": "ô nginx",
+          "intensity": "low",
+          "reason": "Tick bước ứng dụng."
+        },
+        {
+          "t": 2.9,
+          "intent": "ui_appear",
+          "target": "chip xác nhận",
+          "intensity": "low",
+          "reason": "Tín hiệu xác nhận riêng, sau khi terminal rời."
+        },
+        {
+          "t": 3.2,
+          "intent": "interaction",
+          "target": "ô nhân",
+          "intensity": "low",
+          "reason": "Tick sau xác nhận."
+        },
+        {
+          "t": 4,
+          "intent": "interaction",
+          "target": "công tắc ca",
+          "intensity": "low",
+          "reason": "Tiếng chốt trả động tác bỏ dở ở opening."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 6.05,
+      "main_idea": "Vá hai lớp rồi mới đóng ca",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.5,
+      "main_change": "Tick nginx, terminal hiện rồi đóng, chip xác nhận bật trước tick nhân, hộp cạnh xanh rồi công tắc gạt.",
+      "text_groups": 3,
+      "header_slot": "top_left",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nginx",
+            "type": "entity",
+            "form": "status",
+            "object": "ô nginx",
+            "motion": "Tick xanh"
+          },
+          {
+            "term": "nhân máy chủ",
+            "type": "term",
+            "form": "illustration",
+            "object": "terminal máy chủ",
+            "motion": "Mở rồi đóng sau dòng kiểm tra"
+          },
+          {
+            "term": "vá nhân khi có bản",
+            "type": "action",
+            "form": "animation",
+            "object": "chip xác nhận",
+            "motion": "Xác nhận rồi mới tick ô nhân"
+          },
+          {
+            "term": "đóng ca",
+            "type": "action",
+            "form": "animation",
+            "object": "công tắc ca",
+            "motion": "Gạt sau hai tick"
+          }
+        ],
+        "relations": [
+          {
+            "from": "chip xác nhận",
+            "to": "ô nhân",
+            "type": "Xác nhận trước khi tick"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGINX",
+            "kind": "label",
+            "attach_to": "ô nginx",
+            "appear_s": 1.1,
+            "disappear_s": 2.2,
+            "effect": "fade"
+          },
+          {
+            "text": "NHÂN MÁY CHỦ",
+            "kind": "label",
+            "attach_to": "khung terminal",
+            "appear_s": 1.9,
+            "disappear_s": 2.9,
+            "effect": "fade"
+          },
+          {
+            "text": "ĐÃ VÁ",
+            "kind": "label",
+            "attach_to": "chip xác nhận",
+            "appear_s": 2.9,
+            "disappear_s": 4.0,
+            "effect": "fade"
+          },
+          {
+            "text": "NHÂN",
+            "kind": "label",
+            "attach_to": "ô nhân",
+            "appear_s": 3.2,
+            "disappear_s": 6.05,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.5
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "narrative_purpose": "Kết thúc câu chuyện và gợi người xem tự kiểm.",
+      "visual_concept": "Bảng trực nhìn chính diện, tick kép lớn, thẻ lịch bật khỏi ô nhân và icon bong bóng góp ý mở ở nhịp cuối. Cáo xuất hiện cạnh bảng để đáp lại trạng thái đã hoàn tất. Header top_right: IT · CONTAINER / KẾT.",
+      "scene_type": "object_interaction",
+      "scene_kind": "character_explanation",
+      "kind_params": {
+        "stage": "office",
+        "pose": "thumbs_up",
+        "object": "bảng trực"
+      },
+      "environment": "office · Xa là vách phòng trực #0F1B2D sáng ấm ở rìa, giữa là bảng x155–950 y455–1080, gần là thẻ lịch và Cáo dưới bảng.",
+      "character_action": "thumbs_up rộng 173 px, chính giữa dưới, đáy y1270, hiện 1,5–5,0 s. Cắt vào khi hai tick cùng xanh, hướng người xem về thẻ lịch trên bảng.",
+      "props": [
+        "bảng trực",
+        "hai tick",
+        "thẻ lịch",
+        "bong bóng góp ý"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp công tắc sang toàn bảng xanh."
+        },
+        {
+          "t": 0.7,
+          "event": "Ô nhân nảy một lần, thẻ lịch không số mở khỏi mép ô."
+        },
+        {
+          "t": 1.95,
+          "event": "Thẻ lịch lật một tờ, vẫn neo vào ô nhân."
+        },
+        {
+          "t": 2.8,
+          "event": "Bong bóng góp ý mở bên phải và chữ chốt bật trên bảng."
+        },
+        {
+          "t": 3.95,
+          "event": "Hai tick cùng sáng một lượt rồi giữ đến fade cuối cảnh."
+        },
+        {
+          "t": 4.8,
+          "event": "Chữ chốt rời; bảng và Cáo còn đến hết cảnh."
+        }
+      ],
+      "voice_over": "Nhân máy chủ của bạn, vá lần cuối khi nào?\nGõ xuống bình luận nhé.",
+      "voice_direction": [
+        {
+          "line_id": "10",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "lần cuối",
+            "bình luận"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.2,
+          "pause_after_s": 0.4,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "callback"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.7,
+          "intent": "highlight",
+          "target": "thẻ lịch",
+          "intensity": "low",
+          "reason": "Đưa mắt về lần vá gần nhất."
+        },
+        {
+          "t": 2.8,
+          "intent": "ui_appear",
+          "target": "bong bóng góp ý",
+          "intensity": "low",
+          "reason": "Âm nhẹ khi xuất hiện lời mời trên hình."
+        },
+        {
+          "t": 3.95,
+          "intent": "highlight",
+          "target": "hai tick",
+          "intensity": "low",
+          "reason": "Accent nhẹ khớp hai tick cùng sáng; đuôi âm tới ~4,3 s để đuôi im còn 0,7 s.",
+          "duration_s": 0.35
+        },
+        {
+          "t": 4.3,
+          "intent": "silence",
+          "target": "bảng trực",
+          "intensity": "low",
+          "reason": "Chừa đuôi yên cho hình kết.",
+          "duration_s": 0.7
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 5,
+      "main_idea": "Quay lại bảng đã xanh và gợi người xem nhớ lần vá nhân gần nhất",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.1,
+      "main_change": "Từ công tắc đã chốt mở rộng ra bảng xanh, thẻ lịch bật ra rồi bong bóng góp ý mở cạnh bảng.",
+      "text_groups": 2,
+      "header_slot": "top_right",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nhân máy chủ",
+            "type": "term",
+            "form": "icon",
+            "object": "ô nhân trên bảng",
+            "motion": "Thẻ lịch bung và lật"
+          },
+          {
+            "term": "lần vá cuối",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "thẻ lịch",
+            "motion": "Lật một tờ"
+          },
+          {
+            "term": "bình luận",
+            "type": "action",
+            "form": "icon",
+            "object": "bong bóng góp ý",
+            "motion": "Bật mở"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ô nhân trên bảng",
+            "to": "thẻ lịch",
+            "type": "Gợi nhớ lần vá cuối"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGINX + NHÂN",
+            "kind": "keyword",
+            "attach_to": "bảng trực",
+            "appear_s": 2.8,
+            "disappear_s": 4.8,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

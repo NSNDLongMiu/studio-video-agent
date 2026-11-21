@@ -27,6 +27,11 @@ if (isClaude) {
     out({ result: ['Kịch bản cần Codex viết nhưng Codex đang bận.', 'CODEX_WAIT: Codex đang sản xuất video khác'].join('\n') });
     process.exit(0);
   }
+  // 'takeoverwait' = Gemini được duyệt làm thay (prompt có "thay-codex=gemini") nhưng cũng không làm được: phiên kết thúc bằng TAKEOVER_WAIT.
+  if (mode === 'takeoverwait' && m?.[1] === 'make-plan' && /thay-codex=gemini/.test(prompt)) {
+    out({ result: ['Gemini làm thay nhưng BUSY hai lần, không tự viết thay.', 'TAKEOVER_WAIT: Gemini BUSY sau 1 lần thử lại'].join('\n') });
+    process.exit(0);
+  }
   if (m?.[1] === 'make-plan') {
     const t = S.sql.get('SELECT folder FROM topics WHERE id=?', Number(m[2]));
     fs.writeFileSync(path.resolve(S.ROOT, t.folder, 'concept.md'), '# concept');

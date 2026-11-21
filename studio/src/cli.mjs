@@ -8,7 +8,7 @@
 //   dept purge <mã-phòng> [--force]        xoá sạch phòng đã đóng + chủ đề/video/job/đề xuất liên quan (không hoàn tác)
 //   topic submit <mã-phòng> "<chủ đề>" [--brief "..."]            ghi chủ đề cho phòng (-> dùng topic-id ở "enqueue plan")
 //   jobs [list] | jobs cancel <id> | jobs retry <id> | jobs log <id>
-//   takeover <job-id> <claude|off> [--note "..."]   GIÁM ĐỐC duyệt cho AI khác làm thay việc đang kẹt ở AI bị limit/hỏng (hiện: Claude thay Codex ở việc plan); off = thu hồi
+//   takeover <job-id> <claude|gemini|off> [--note "..."]   GIÁM ĐỐC duyệt cho AI khác làm thay việc đang kẹt ở AI bị limit/hỏng (hiện: Claude hoặc Gemini thay Codex ở việc plan; Gemini viết storyboard, Claude duyệt); off = thu hồi
 //   enqueue plan <topic-id> [--episodes N] [--rounds N] [--auto-produce | --no-auto-produce]   (không ghi cờ → theo cài đặt auto_produce, mặc định bật)
 //   enqueue produce|qc|rescue <video-id> [--force]   |   enqueue dept_review <phòng>
 //   produce <video-id…>                    = enqueue produce
@@ -161,19 +161,29 @@ async function main() {
       say(formatOverview(S.overview({ dept: args[0] }), P.poolOverview()));
       break;
     case 'load': {
-      // Cân bằng tải ba agent (số phút chạy thật, mặc định 7 ngày): node studio/src/cli.mjs load [--days N]
+      // Cân bằng tải ba agent (số phút chạy thật): node studio/src/cli.mjs load [--days N] [--backfill]
+      // Không có --days: in cả bảng 7 ngày (thước theo dõi) và bảng 24h (chỉ tham khảo, một ngày rất nhiễu); có --days N: chỉ một bảng N ngày.
       if (flags.backfill) {
         const b = P.backfillCalls();
         say(`Dựng lại sổ lượt gọi từ log cũ: quét ${b.scanned} log, thêm ${b.added}, bỏ qua ${b.skipped} (đã có hoặc không hợp lệ).`);
       }
-      const r = P.loadReport({ days: Number(flags.days) || 7 });
-      say(`Cân bằng tải ${r.days} ngày gần nhất (số phút chạy thật; mỗi bên nên ≈ 1/3, chấp nhận ${P.LOAD_BAND.min * 100}–${P.LOAD_BAND.max * 100}%):`);
-      for (const p of P.PROVIDERS) {
-        const x = r.providers[p];
-        say(`  ${P.PROVIDER_NAME[p].padEnd(7)} ${String(x.share_pct).padStart(5)}%  ${String(x.minutes).padStart(7)} phút · ${x.jobs} việc nền + ${x.calls} lượt gọi · hết limit ${x.limits} lần · lỗi ${x.failed}`);
+      const printLoad = (r, label) => {
+        say(`Cân bằng tải ${label} gần nhất (số phút chạy thật; mỗi bên nên ≈ 1/3, chấp nhận ${P.LOAD_BAND.min * 100}–${P.LOAD_BAND.max * 100}%):`);
+        for (const p of P.PROVIDERS) {
+          const x = r.providers[p];
+          say(`  ${P.PROVIDER_NAME[p].padEnd(7)} ${String(x.share_pct).padStart(5)}%  ${String(x.minutes).padStart(7)} phút · ${x.jobs} việc nền + ${x.calls} lượt gọi · hết limit ${x.limits} lần · lỗi ${x.failed}`);
+        }
+        say(`  → ${r.status === 'balanced' ? 'CÂN BẰNG' : r.status === 'skewed' ? 'LỆCH: ' + r.notes.join('; ') : r.notes.join(' ')}`);
+        say(`  (${r.caveat})`);
+      };
+      const days = Number(flags.days);
+      if (days) printLoad(P.loadReport({ days }), `${days} ngày`);
+      else {
+        printLoad(P.loadReport({ days: 7 }), '7 ngày');
+        say('');
+        printLoad(P.loadReport({ days: 1 }), '24h');
+        say('  (24h chỉ để tham khảo: một ngày rất nhiễu; số 7 ngày mới là thước theo dõi.)');
       }
-      say(`  → ${r.status === 'balanced' ? 'CÂN BẰNG' : r.status === 'skewed' ? 'LỆCH: ' + r.notes.join('; ') : r.notes.join(' ')}`);
-      say(`  (${r.caveat})`);
       break;
     }
     case 'approve':
@@ -233,9 +243,11 @@ async function main() {
     case 'takeover': {
       const id = Number(args[0]);
       const by = String(args[1] || '').toLowerCase();
-      if (!id || !by) throw new S.StudioError('Cú pháp: takeover <job-id> <claude|off> [--note "lý do"]');
-      say(JSON.stringify(by === 'off' ? P.revokeTakeover(id) : P.approveTakeover({ job_id: id, by, note: flags.note || '' }), null, 2));
-      say('Việc đã được xếp chạy lại. Worker đang chạy sẽ nhận ngay; chưa bật thì: npm run start --prefix studio');
+      if (!id || !by) throw new S.StudioError('Cú pháp: takeover <job-id> <claude|gemini|off> [--note "lý do"]');
+      const r = by === 'off' ? P.revokeTakeover(id) : P.approveTakeover({ job_id: id, by, note: flags.note || '' });
+      say(JSON.stringify(r, null, 2));
+      if (r.status === 'waiting_limit') say('Đã ghi duyệt. Việc vẫn đang chờ CLAUDE hồi limit (phiên điều phối vẫn cần Claude), tới giờ hồi sẽ tự chạy theo đường làm thay.');
+      else say('Việc đã được xếp chạy lại. Worker đang chạy sẽ nhận ngay; chưa bật thì: npm run start --prefix studio');
       break;
     }
     case 'settings':

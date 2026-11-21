@@ -1,0 +1,1 @@
+Đã ghi [script-codex-r1.md](<D:/Agent Video Studio/content/bong-da/T25-khi-ke-vach-viet-vi-tay-va-canh-tay-cua/review/script-codex-r1.md>) với 3 đoạn đề xuất viết lại, 2 lỗi kỹ thuật và 1 rủi ro thiếu nguồn. Điểm quan trọng nhất là dừng hình lúc đồng đội chạm bóng và bỏ động tác giơ cờ ở phép thử vai, vì cảnh này chỉ chứng minh vị trí việt vị.

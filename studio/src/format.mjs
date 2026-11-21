@@ -53,7 +53,7 @@ export function formatOverview(o, pool) {
   const topics = attention.filter((a) => a.kind === 'topic_proposal');
   const auto = attention.filter((a) => a.kind !== 'topic_proposal' && a.handler === 'claude');
   const mine = attention.filter((a) => a.kind !== 'topic_proposal' && a.handler !== 'claude');
-  const tail = (a) => `${a.until ? ` (tự chạy tiếp ${when(a.until)}, còn ${left(a.until)})` : ''}${a.kind === 'takeover_offer' ? ` → duyệt: node studio/src/cli.mjs takeover ${a.job_id} ${a.by}` : ''}`;
+  const tail = (a) => `${a.until ? ` (tự chạy tiếp ${when(a.until)}, còn ${left(a.until)})` : ''}${a.kind === 'takeover_offer' ? ` → duyệt: ${(a.options || [a.by]).map((o) => `node studio/src/cli.mjs takeover ${a.job_id} ${o}`).join(' | ')}` : ''}`;
   if (mine.length) {
     L.push('', 'CẦN GIÁM ĐỐC CHÚ Ý:');
     for (const a of mine) L.push(`  ! ${a.message}${tail(a)}`);

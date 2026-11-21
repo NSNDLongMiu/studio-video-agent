@@ -5,6 +5,9 @@
 //   scout  — Tìm chủ đề: tìm web và lọc ứng viên (Claude duyệt rồi mới `propose_topic`).
 //   look   — QC: xem trước khung hình/ảnh trong thư mục làm việc và báo chỗ nghi ngờ (Claude chốt).
 //   images — Đạo diễn hình ảnh: sinh ảnh nền/đạo cụ; ảnh được chép từ thư mục của agy vào <thư mục>/assets/gen/ kèm sổ gen-ledger.jsonl.
+//   storyboard — Đạo diễn hình ảnh: viết storyboard THAY Codex, CHỈ khi giám đốc đã duyệt việc đó (pool.approveTakeover, đối số make-plan `thay-codex=gemini`).
+//     <thư mục> = epNN của video. Đầu vào được chép vào thư mục tạm; bản nháp được kiểm JSON + schema, ép status DRAFT rồi ghi vào epNN/storyboard.json (storyboard-takeover.mjs).
+//     Không bao giờ ghi đè storyboard đã APPROVED; chỉ Claude (visual-director) duyệt.
 // Ràng buộc (cùng tinh thần codex-write.mjs; pattern Bash cố định, không cấp "agy*" tuỳ ý):
 //  - <thư-mục-làm-việc> PHẢI nằm trong content/ nhưng chỉ là nơi NHẬN ảnh (assets/gen/) và nguồn ảnh cho `look`; agy KHÔNG chạy ở đó mà chạy trong thư mục tạm
 //    dùng một lần `.local/gemini-work/<id>/`. Lý do (thử thật 20/11/2026): `--sandbox` KHÔNG chặn ghi file; agy ghi tự do trong thư mục làm việc, và cả bên ngoài nếu
@@ -13,8 +16,8 @@
 //  - luật 8: ép useG1Credits=false cho từng lượt, gỡ mọi biến khoá API/ADC (xem agy.mjs); mô hình mặc định Claude Opus 4.6 (Thinking) theo lựa chọn của giám đốc 20/11/2026;
 //    hết hạn mức mô hình này thì CÙNG lượt chạy lại bằng Gemini 3.8 Flash (High) (giám đốc chốt 21/11/2026, xem agy.mjs), chỉ khi cả hai đều hết mới đánh dấu cả ghế hết limit;
 //  - agy chỉ có MỘT đăng nhập nên chỉ chạy một lượt một lúc (khoá file) — bận thì thoát mã 2, Claude làm tiếp không chờ.
-// Dùng: node studio/src/gemini-run.mjs <ideate|facts|scout|look|images> <file-prompt> <thư-mục-làm-việc>
-// Mã thoát: 0 xong · 2 BUSY · 3 NO_ACCOUNT · 4 quá giờ · 5 LIMIT · 6 AUTH_ERROR · 7 FAILED · 8 KHÔNG RA ẢNH · 1 sai cú pháp
+// Dùng: node studio/src/gemini-run.mjs <ideate|facts|scout|look|images|storyboard> <file-prompt> <thư-mục-làm-việc>
+// Mã thoát: 0 xong · 2 BUSY · 3 NO_ACCOUNT · 4 quá giờ · 5 LIMIT · 6 AUTH_ERROR · 7 FAILED · 8 KHÔNG RA ẢNH/FILE · 9 storyboard SAI JSON/schema · 1 sai cú pháp
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -23,6 +26,7 @@ import * as S from './db.mjs';
 import * as P from './pool.mjs';
 import { execProcess, accountEnv, writeLogMeta, callOutcome } from './runners.mjs';
 import { classifyFailure } from './limits.mjs';
+import * as SB from './storyboard-takeover.mjs';
 import { findAgy, agyHome, AGY_MODEL_CHAIN, AGY_SETTINGS, parseAgyJson, conversationImages, imageSize, trustedWorkspaces, insideAny } from './agy.mjs';
 
 const MIN = 60_000;
@@ -32,6 +36,7 @@ export const MODES = {
   scout: { role: 'Tìm chủ đề', limitMin: 10 },
   look: { role: 'QC (xem trước khung hình)', limitMin: 15 },
   images: { role: 'Đạo diễn hình ảnh (sinh ảnh)', limitMin: 30 },
+  storyboard: { role: 'Đạo diễn hình ảnh (viết storyboard thay Codex)', limitMin: 40 },
 };
 const MAX_PROMPT_CHARS = 24_000; // lời nhắc đi qua dòng lệnh Windows (giới hạn ≈ 32 K ký tự cho cả dòng)
 const PREAMBLE = [
@@ -215,14 +220,29 @@ export function collectImages({ conversationId, dir, promptPath, mode, model }) 
 
 async function main() {
   const [mode, promptFile, workdir] = process.argv.slice(2);
-  if (!MODES[mode] || !promptFile || !workdir) die(1, 'Dùng: node studio/src/gemini-run.mjs <ideate|facts|scout|look|images> <file-prompt> <thư-mục-làm-việc>');
+  if (!MODES[mode] || !promptFile || !workdir) die(1, 'Dùng: node studio/src/gemini-run.mjs <ideate|facts|scout|look|images|storyboard> <file-prompt> <thư-mục-làm-việc>');
   const promptPath = path.resolve(promptFile);
   if (!fs.existsSync(promptPath)) die(1, `KHONG_THAY_FILE: ${promptPath}`);
   const dir = path.resolve(workdir);
   const content = path.resolve(S.CONTENT_DIR);
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) die(1, `KHONG_THAY_THU_MUC: ${dir}`);
   if (!(dir + path.sep).startsWith(content + path.sep)) die(1, `TU_CHOI: thư mục làm việc phải nằm trong ${content}`);
-  const body = fs.readFileSync(promptPath, 'utf8');
+  let body = fs.readFileSync(promptPath, 'utf8');
+  // storyboard: kiểm trước khi tốn lượt agy (thư mục là epNN, chưa APPROVED, có kịch bản); lời nhiệm vụ ghép trước NGỮ CẢNH của người điều phối.
+  let sbVideoId = null;
+  if (mode === 'storyboard') {
+    if (!/^ep\d+$/i.test(path.basename(dir))) die(1, `TU_CHOI: storyboard cần thư mục epNN của video (nhận ${dir}).`);
+    if (!fs.existsSync(path.join(dir, 'script.md'))) die(1, `KHONG_THAY_FILE: ${path.join(dir, 'script.md')} — chưa có kịch bản để dựng storyboard.`);
+    let curStatus = null;
+    try {
+      curStatus = JSON.parse(fs.readFileSync(path.join(dir, 'storyboard.json'), 'utf8')).status;
+    } catch {
+      /* chưa có hoặc hỏng: viết mới */
+    }
+    if (curStatus === 'APPROVED') die(1, 'TU_CHOI: storyboard đã APPROVED, không ghi đè (chỉ Claude đổi trạng thái).');
+    sbVideoId = SB.videoIdForDir(dir);
+    body = `${SB.storyboardTask({ videoId: sbVideoId, ep: path.basename(dir), reviewRound: SB.latestReview(dir)?.round ?? null, hasCurrent: fs.existsSync(path.join(dir, 'storyboard.json')), hasInvalid: fs.existsSync(path.join(dir, 'review', 'gemini-storyboard-invalid.json')) })}\n\n${body}`;
+  }
   const prompt = `${PREAMBLE}\n\n${body}`;
   if (prompt.length > MAX_PROMPT_CHARS) die(1, `LOI_PROMPT: lời nhắc ${prompt.length} ký tự, quá ${MAX_PROMPT_CHARS} (đi qua dòng lệnh). Rút gọn file ${promptPath}.`);
 
@@ -248,7 +268,12 @@ async function main() {
   });
   const trusted = insideAny(scratch, trustedWorkspaces());
   if (trusted) die(7, `AN_TOAN: thư mục tạm của Gemini (${scratch}) nằm trong vùng agy tin cậy "${trusted}", nơi agy được ghi tự do cả bên ngoài thư mục làm việc. Bỏ mục này khỏi trustedWorkspaces trong ${path.join(agyHome(), 'settings.json')} hoặc đặt dự án ở ổ khác.`);
-  const inputs = mode === 'look' ? copyImages(dir, scratch) : []; // chỉ chế độ look cần xem ảnh của tập video
+  let sbInputs = null;
+  if (mode === 'storyboard') {
+    sbInputs = SB.prepareStoryboardInputs({ epDir: dir, scratch });
+    if (sbInputs.missing.length) die(1, `THIEU_DAU_VAO: thiếu ${sbInputs.missing.join(', ')} trong ${dir} — Kịch bản/kế hoạch chưa xong.`);
+  }
+  const inputs = mode === 'look' ? copyImages(dir, scratch) : sbInputs ? sbInputs.copied : []; // look xem ảnh của tập video; storyboard đọc kịch bản/schema/tài liệu
   P.markUsed(account.id);
 
   const logFile = path.join(path.dirname(S.DB_PATH), 'logs', `gemini-run-${mode}-${Date.now()}.log`);
@@ -259,7 +284,7 @@ async function main() {
     v: 1,
     source: 'gemini-run',
     mode,
-    role: mode === 'images' || mode === 'look' ? 'visual' : mode === 'facts' ? 'script' : mode === 'scout' ? 'scout' : 'idea',
+    role: mode === 'images' || mode === 'look' || mode === 'storyboard' ? 'visual' : mode === 'facts' ? 'script' : mode === 'scout' ? 'scout' : 'idea',
     job_id: Number(process.env.STUDIO_JOB_ID) || null,
     topic_id: Number(process.env.STUDIO_TOPIC_ID) || null,
     dept,
@@ -332,9 +357,31 @@ async function main() {
     }
     tail += `\n\nẢNH ĐÃ CHÉP (${copied.length}) vào ${path.relative(S.ROOT, path.join(dir, 'assets', 'gen'))}:\n${copied.map((r) => `- ${r.file} · ${r.w ?? '?'}×${r.h ?? '?'} · ${Math.round(r.bytes / 1024)} KB`).join('\n')}\n(Claude kiểm chữ lạ/logo/tỉ lệ và ghi library/LICENSES.md trước khi dùng; sổ nguồn: assets/gen/gen-ledger.jsonl)`;
   }
+  if (mode === 'storyboard') {
+    const cand = SB.loadCandidate(scratch, reply);
+    const invalidFile = path.join(dir, 'review', 'gemini-storyboard-invalid.json');
+    const invalidRel = path.relative(S.ROOT, invalidFile).split(path.sep).join('/');
+    const reject = (code, why, text) => {
+      if (text) {
+        fs.mkdirSync(path.dirname(invalidFile), { recursive: true });
+        fs.writeFileSync(invalidFile, text);
+      }
+      call(code === 8 ? 'no_output' : 'failed');
+      S.logEvent({ actor: `gemini/${mode}`, dept, kind: 'job', message: `${MODES[mode].role}: Gemini (tài khoản ${account.label}) trả lời nhưng bản nháp KHÔNG dùng được: ${why.split('\n')[0].slice(0, 160)}` });
+      die(code, why);
+    };
+    if (!cand.ok && cand.reason === 'no_file') reject(8, `KHONG_RA_FILE: Gemini báo xong nhưng không ghi storyboard.json trong thư mục làm việc và câu trả lời không có khối JSON. Phản hồi:\n${reply.slice(0, 800)}`);
+    if (!cand.ok) reject(9, `SAI_JSON: storyboard.json không phải JSON hợp lệ (${cand.detail}). Bản lỗi lưu ở ${invalidRel}; chạy lại một lần kèm lỗi này vào NGỮ CẢNH.`, cand.text);
+    const errs = SB.schemaErrors(cand.board);
+    if (errs && errs.length) reject(9, `SAI_SCHEMA: storyboard.json vi phạm schema (${errs.length} lỗi), bản lỗi lưu ở ${invalidRel}. Chạy lại MỘT lần, dán danh sách lỗi sau vào NGỮ CẢNH:\n${errs.slice(0, 25).map((e) => `- ${e}`).join('\n')}${errs.length > 25 ? `\n… còn ${errs.length - 25} lỗi` : ''}`, JSON.stringify(cand.board, null, 2));
+    if (sbVideoId && cand.board.video_id && cand.board.video_id !== sbVideoId) reject(9, `SAI_VIDEO: video_id trong bản nháp là "${cand.board.video_id}", đúng phải là "${sbVideoId}".`, JSON.stringify(cand.board, null, 2));
+    const done = SB.finalizeStoryboard({ epDir: dir, board: sbVideoId && !cand.board.video_id ? { ...cand.board, video_id: sbVideoId } : cand.board, md: cand.md, model: used });
+    if (fs.existsSync(invalidFile)) fs.rmSync(invalidFile, { force: true });
+    tail += `\n\nSTORYBOARD ĐÃ GHI (${done.scenes} cảnh, tổng ${done.total_s} s) vào ${path.relative(S.ROOT, path.join(dir, 'storyboard.json')).split(path.sep).join('/')} ở trạng thái DRAFT${done.forced_draft ? ' (Gemini đặt status khác DRAFT; đã ép về DRAFT)' : ''}${errs === null ? '\nCHƯA KIỂM schema: không nạp được Ajv của renderer-remotion — visual-director chạy kiểm schema trước khi duyệt.' : ''}${done.backup ? `\nBản cũ sao lưu ở ${done.backup}` : ''}\nClaude (visual-director) review và duyệt; Gemini không tự duyệt.`;
+  }
   // File agy tự tạo thêm trong thư mục tạm (ví dụ ảnh nó tự phóng) bị bỏ đi cùng thư mục tạm; ghi lại để biết nó có làm việc ngoài nhiệm vụ.
   const extra = [];
-  const seen = new Set(inputs);
+  const seen = new Set([...inputs, ...(mode === 'storyboard' ? ['storyboard.json', 'storyboard.md'] : [])]);
   (function walk(d, rel) {
     for (const e of fs.readdirSync(d, { withFileTypes: true })) {
       const r = rel ? `${rel}/${e.name}` : e.name;

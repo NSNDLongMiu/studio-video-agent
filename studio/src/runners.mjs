@@ -133,8 +133,9 @@ const QC_TOOLS = ['Bash(node tools/qc-measure.mjs *)', 'Bash(node tools/qc-video
 // Pattern CO DINH, khong phai "Bash(codex exec*)" - xem chu thich dau file codex-ideate.mjs ly do.
 // + codex-write.mjs: Codex làm storyboard và CÙNG VIẾT kịch bản (ghi file, chỉ trong thư mục chủ đề) để Claude review/chốt (giám đốc chốt 18/11/2026; kịch bản do Claude viết từ 20/11/2026).
 const CODEX_IDEATE_TOOLS = ['Bash(node --disable-warning=ExperimentalWarning studio/src/codex-ideate.mjs *)', 'Bash(node --disable-warning=ExperimentalWarning studio/src/codex-write.mjs *)'];
-// Gemini (agy) cũng chỉ được gọi qua 1 mẫu lệnh cố định: gemini-run.mjs <ideate|facts|images|look|scout> <file-prompt> <thư-mục-trong-content>.
+// Gemini (agy) cũng chỉ được gọi qua 1 mẫu lệnh cố định: gemini-run.mjs <ideate|facts|images|look|scout|storyboard> <file-prompt> <thư-mục-trong-content>.
 // Claude điều phối và chốt; Gemini chỉ sinh ảnh/nhận xét/kiểm chứng, kết quả vào file riêng để Claude kiểm (giám đốc chốt 20/11/2026).
+const PROVIDER_LABEL = { claude: 'Claude', codex: 'Codex', gemini: 'Gemini' };
 const GEMINI_TOOLS = ['Bash(node --disable-warning=ExperimentalWarning studio/src/gemini-run.mjs *)'];
 // Tìm chủ đề theo giờ (21/11/2026): Codex chỉ được gọi ở chế độ CHỈ-ĐỌC (codex-ideate.mjs) để đề xuất độc lập và phản biện, không có codex-write.mjs.
 const CODEX_SCOUT_TOOLS = [CODEX_IDEATE_TOOLS[0]];
@@ -142,15 +143,23 @@ const CODEX_SCOUT_TOOLS = [CODEX_IDEATE_TOOLS[0]];
 const SIGNALS_TOOLS = ['Bash(node tools/signals/collect.mjs *)'];
 const DENY = ['Edit(.claude/**)', 'Edit(studio/**)', 'Edit(.codex/**)', 'Edit(.agents/**)', 'Edit(tools/**)', 'Edit(CLAUDE.md)', 'Edit(AGENTS.md)', 'Edit(.mcp.json)'];
 const SKILL_PROMPT = {
-  plan: (j) => `/make-plan ${j.topic_id} ${j.payload.episodes || 1} ${j.payload.rounds || 2}${j.payload.takeover?.for === 'codex' ? ' thay-codex' : ''}`,
+  plan: (j) => `/make-plan ${j.topic_id} ${j.payload.episodes || 1} ${j.payload.rounds || 2}${j.payload.takeover?.for === 'codex' ? (String(j.payload.takeover.by).toLowerCase() === 'gemini' ? ' thay-codex=gemini' : ' thay-codex') : ''}`,
   qc: (j) => `/qc ${j.video_id}`,
   rescue: (j) => `/rescue ${j.video_id}`,
   dept_review: (j) => `/dept-review ${j.dept}`,
   scout: (j) => `/scout-topics ${j.payload.team_id} ${j.payload.slot || 'chạy-tay'} ${j.payload.per_run || 5}`,
 };
-// takeover = payload.takeover của việc (giám đốc đã duyệt cho Claude làm thay Codex, xem pool.approveTakeover).
+// Lời dặn thêm cho phiên điều phối khi giám đốc đã duyệt AI khác làm thay Codex (payload.takeover, xem pool.approveTakeover).
+export function takeoverNote(takeover) {
+  const day = String(takeover.approved_at || '').slice(0, 10);
+  const note = takeover.note ? ` Ghi chú của giám đốc: ${takeover.note}` : '';
+  if (String(takeover.by).toLowerCase() === 'gemini') {
+    return ` GIÁM ĐỐC ĐÃ DUYỆT (${day}): Gemini làm THAY Codex trong việc này vì Codex không làm được; Claude (bạn) chỉ điều phối, review và duyệt. Ở mọi bước cần Codex (storyboard, đồng viết kịch bản): KHÔNG kết thúc bằng CODEX_WAIT và KHÔNG gọi codex-write.mjs / codex-ideate.mjs; storyboard do Gemini viết bằng gemini-run.mjs storyboard theo mục "Giám đốc duyệt thay thế" (bản Gemini) trong skill make-plan, ghi rõ "Gemini làm thay Codex (giám đốc duyệt)" ở file đầu ra. Quyền duyệt không đổi: CHỈ visual-director (Claude) đặt APPROVED, không bao giờ Gemini. Gemini không làm được sau khi đã thử lại theo skill (BUSY, hết limit, lỗi, sai schema hai lần): KHÔNG tự viết storyboard thay (giám đốc chưa duyệt Claude làm thay) và KHÔNG CODEX_WAIT; kết thúc bằng dòng cuối cùng "TAKEOVER_WAIT: <lý do ngắn>".${note}`;
+  }
+  return ` GIÁM ĐỐC ĐÃ DUYỆT (${day}): Claude làm THAY Codex trong việc này vì Codex không làm được. Ở mọi bước cần Codex (storyboard, đồng viết kịch bản): KHÔNG kết thúc bằng CODEX_WAIT và KHÔNG gọi codex-write.mjs / codex-ideate.mjs; làm theo mục "Giám đốc duyệt thay thế" trong skill make-plan và ghi rõ "Claude làm thay Codex (giám đốc duyệt)" ở file đầu ra. Quyền duyệt không đổi: người đặt APPROVED phải khác agent đã viết storyboard.${note}`;
+}
 const SYS = (retry, takeover) =>
-  `Bạn đang chạy NỀN theo hàng đợi của xưởng video, không có người trả lời câu hỏi. Đừng hỏi lại: nếu thiếu thông tin mà giám đốc phải quyết, hãy dừng và nêu rõ cần gì ở kết quả cuối. Chỉ có công cụ vai "agent" (không có quyền duyệt/mở-đóng phòng). Tuân thủ CLAUDE.md.${retry ? ' ĐÂY LÀ LẦN CHẠY LẠI (lần trước bị ngắt do hết limit hoặc lỗi): kiểm tra file đã có trong thư mục chủ đề/video (debate.md, concept.md, plan.md, script.md, notes.md, final/) và TIẾP TỤC từ chỗ dở, không làm lại phần đã xong, không tạo trùng.' : ''}${takeover ? ` GIÁM ĐỐC ĐÃ DUYỆT (${String(takeover.approved_at || '').slice(0, 10)}): Claude làm THAY Codex trong việc này vì Codex không làm được. Ở mọi bước cần Codex (storyboard, đồng viết kịch bản): KHÔNG kết thúc bằng CODEX_WAIT và KHÔNG gọi codex-write.mjs / codex-ideate.mjs; làm theo mục "Giám đốc duyệt thay thế" trong skill make-plan và ghi rõ "Claude làm thay Codex (giám đốc duyệt)" ở file đầu ra. Quyền duyệt không đổi: người đặt APPROVED phải khác agent đã viết storyboard.${takeover.note ? ` Ghi chú của giám đốc: ${takeover.note}` : ''}` : ''}`;
+  `Bạn đang chạy NỀN theo hàng đợi của xưởng video, không có người trả lời câu hỏi. Đừng hỏi lại: nếu thiếu thông tin mà giám đốc phải quyết, hãy dừng và nêu rõ cần gì ở kết quả cuối. Chỉ có công cụ vai "agent" (không có quyền duyệt/mở-đóng phòng). Tuân thủ CLAUDE.md.${retry ? ' ĐÂY LÀ LẦN CHẠY LẠI (lần trước bị ngắt do hết limit hoặc lỗi): kiểm tra file đã có trong thư mục chủ đề/video (debate.md, concept.md, plan.md, script.md, notes.md, final/) và TIẾP TỤC từ chỗ dở, không làm lại phần đã xong, không tạo trùng.' : ''}${takeover ? takeoverNote(takeover) : ''}`;
 
 function writeMcpConfig() {
   const dir = path.dirname(S.DB_PATH); // cạnh file DB đang dùng
@@ -218,8 +227,12 @@ export async function runClaudeJob(job, account, { onChild } = {}) {
   if (res.timedOut) return { ...base, outcome: 'failed', reason: `Quá ${timeoutMs(job.kind) / MIN} phút nên bị dừng` };
   if (res.code === 0 && obj && !obj.is_error) {
     const wait = /^CODEX_WAIT:\s*(.+)$/m.exec(String(obj.result || ''));
-    // Đã duyệt Claude làm thay Codex mà vẫn đòi chờ Codex = làm sai chỉ dẫn; không cho vòng lặp chờ Codex, đưa giám đốc xem.
-    if (wait && job.payload.takeover) return { ...base, outcome: 'needs_human', reason: `Đã duyệt Claude làm thay Codex nhưng việc vẫn kết thúc bằng CODEX_WAIT: ${wait[1].trim().slice(0, 160)}` };
+    const takeWait = /^TAKEOVER_WAIT:\s*(.+)$/m.exec(String(obj.result || ''));
+    const byName = PROVIDER_LABEL[String(job.payload?.takeover?.by).toLowerCase()] || 'Claude';
+    // Đã duyệt AI khác làm thay Codex mà vẫn đòi chờ Codex = làm sai chỉ dẫn; không cho vòng lặp chờ Codex, đưa giám đốc xem.
+    if (wait && job.payload.takeover) return { ...base, outcome: 'needs_human', reason: `Đã duyệt ${byName} làm thay Codex nhưng việc vẫn kết thúc bằng CODEX_WAIT: ${wait[1].trim().slice(0, 160)}` };
+    // AI được duyệt làm thay cũng không làm được (vd Gemini BUSY/hết limit/sai schema 2 lần): đưa giám đốc quyết, không tự đổi sang người chưa được duyệt.
+    if (takeWait && job.payload.takeover) return { ...base, outcome: 'needs_human', reason: `Đã duyệt ${byName} làm thay Codex nhưng ${byName} cũng không làm được: ${takeWait[1].trim().slice(0, 200)} — giám đốc chọn: chạy lại, duyệt AI khác làm thay, hoặc chờ`, };
     if (wait) return { ...base, outcome: 'wait_codex', reason: wait[1].trim().slice(0, 200) };
     return { ...base, outcome: 'success' };
   }

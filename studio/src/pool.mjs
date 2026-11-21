@@ -252,7 +252,8 @@ export function setAccountOwner(ref, owner, by = 'director') {
 }
 /** Đọc yêu cầu cấp phòng: "it,bong-da" (đặt đúng danh sách này), "+bong-da" / "-it" (thêm/bớt từ danh sách hiện tại), "none"/rỗng/null (trả về dùng chung). Nhận cả mảng. */
 export function parseDeptSpec(spec, current = []) {
-  const tokens = (Array.isArray(spec) ? spec : String(spec ?? '').split(/[\s,;]+/)).map((t) => String(t).trim()).filter(Boolean);
+  // Cả chuỗi lẫn mảng đối số dòng lệnh đều tách theo dấu phẩy/chấm phẩy/khoảng trắng (CLI truyền ["it,bong-da"]).
+  const tokens = (Array.isArray(spec) ? spec : [spec ?? '']).flatMap((t) => String(t).split(/[\s,;]+/)).map((t) => t.trim()).filter(Boolean);
   if (!tokens.length || (tokens.length === 1 && tokens[0].toLowerCase() === 'none')) return [];
   if (tokens.some((t) => t.toLowerCase() === 'none')) fail('"none" không đi cùng mã phòng khác');
   const incremental = tokens.some((t) => /^[+-]/.test(t));
@@ -464,7 +465,8 @@ export function wakeJobs(provider) {
 // Luật 6 cấm Claude viết thay Codex ở Đạo diễn hình ảnh (việc dừng chờ Codex). Khi Codex hỏng/hết limit lâu thì giám đốc có thể
 // DUYỆT từng việc cho AI khác làm thay; mặc định không có ngoại lệ nào, và việc nền không tự duyệt cho chính nó.
 // Chỉ xây những ca đã kiểm được; ca khác từ chối rõ ràng (không hứa suông).
-export const TAKEOVER_SUPPORTED = { plan: { for: 'codex', by: 'claude' } };
+// `by` = AI mặc định/đầu tiên được đề nghị; `options` = mọi AI giám đốc được chọn. Gemini làm thay (21/11/2026): Gemini VIẾT storyboard (gemini-run.mjs storyboard), Claude review và duyệt.
+export const TAKEOVER_SUPPORTED = { plan: { for: 'codex', by: 'claude', options: ['claude', 'gemini'] } };
 /** Số lần liên tiếp việc kế hoạch dừng chờ Codex mà Codex vẫn "dùng được" (nên hồi giờ không có) thì thôi tự chạy lại:
  *  mỗi lần chạy lại là một phiên Claude đọc lại cả thư mục chủ đề rồi lại hỏng cùng chỗ (đã đốt hạn mức Claude 20–21/11/2026). */
 export const codexWaitMax = () => Number(process.env.STUDIO_CODEX_WAIT_MAX ?? 3);
@@ -480,16 +482,22 @@ export function approveTakeover({ job_id, by = 'claude', note = '', actor = 'dir
   const j = getJob(job_id);
   if (!j) fail(`Không có việc #${job_id}`);
   const sup = TAKEOVER_SUPPORTED[j.kind];
-  if (!sup) fail(`Chưa có cách cho AI khác làm thay việc loại "${j.kind}" (việc #${j.id}). Hiện chỉ hỗ trợ: Claude làm thay Codex ở việc kế hoạch ("plan": storyboard, đồng viết kịch bản). Sản xuất thay Codex cần cho Claude nền quyền chạy lệnh rộng hơn (ffmpeg, python, remotion) — chưa được duyệt; muốn thì nhờ Claude làm trực tiếp trong phiên làm việc.`);
-  if (String(by).toLowerCase() !== sup.by) fail(`Chưa hỗ trợ ${by} làm thay: ở việc "${j.kind}" chỉ ${sup.by} làm thay ${sup.for} (Codex làm thay Claude cần quyền duyệt/chốt mà luật dành cho Claude).`);
+  if (!sup) fail(`Chưa có cách cho AI khác làm thay việc loại "${j.kind}" (việc #${j.id}). Hiện chỉ hỗ trợ: Claude hoặc Gemini làm thay Codex ở việc kế hoạch ("plan": storyboard, đồng viết kịch bản). Sản xuất thay Codex cần cho Claude nền quyền chạy lệnh rộng hơn (ffmpeg, python, remotion) — chưa được duyệt; muốn thì nhờ Claude làm trực tiếp trong phiên làm việc.`);
+  const who = String(by).toLowerCase();
+  if (!sup.options.includes(who)) fail(`Chưa hỗ trợ ${by} làm thay: ở việc "${j.kind}" chỉ ${sup.options.join(' hoặc ')} làm thay ${sup.for} (Codex làm thay Claude cần quyền duyệt/chốt mà luật dành cho Claude).`);
   if (!['waiting_limit', 'needs_human', 'failed', 'cancelled', 'queued'].includes(j.status)) fail(`Việc #${j.id} đang ${j.status} — chờ nó dừng (hoặc huỷ) rồi duyệt.`);
-  if (j.status === 'waiting_limit' && j.wait_reason !== 'codex') fail(`Việc #${j.id} đang chờ CLAUDE (${j.wait_reason === 'no_account' ? 'chưa có tài khoản' : 'hết limit'}), không phải chờ Codex — Claude không làm thay Codex được khi chính Claude đang hết.`);
-  const takeover = { by: sup.by, for: sup.for, approved_by: 'director', approved_at: now(), note: String(note || '').slice(0, 300) };
+  // Việc plan luôn do một phiên Claude điều phối. Đang chờ CLAUDE (hết limit/chưa có tài khoản):
+  //  - Claude làm thay Codex: không được (chính Claude đang hết);
+  //  - Gemini làm thay Codex: ghi duyệt ngay nhưng GIỮ trạng thái chờ — hồi limit Claude là việc chạy tiếp theo đường làm thay (Gemini vẫn cần một phiên Claude điều phối và review).
+  const waitingClaude = j.status === 'waiting_limit' && j.wait_reason !== 'codex';
+  if (waitingClaude && who === 'claude') fail(`Việc #${j.id} đang chờ CLAUDE (${j.wait_reason === 'no_account' ? 'chưa có tài khoản' : 'hết limit'}), không phải chờ Codex — Claude không làm thay Codex được khi chính Claude đang hết. Chọn Gemini làm thay (Claude chỉ cần review) hoặc chờ Claude hồi limit.`);
+  const takeover = { by: who, for: sup.for, approved_by: 'director', approved_at: now(), note: String(note || '').slice(0, 300) };
   const payload = { ...j.payload, takeover };
   delete payload.codex_waits;
-  setJob(j.id, { payload: JSON.stringify(payload), status: 'queued', wait_reason: '', attempts: 0, next_run_at: now(), last_error: '', finished_at: null, cancel_requested: false });
-  S.logEvent({ actor, dept: j.dept, video_id: j.video_id, kind: 'job', message: `GIÁM ĐỐC DUYỆT: ${PROVIDER_NAME[sup.by]} làm thay ${PROVIDER_NAME[sup.for]} ở việc #${j.id} (${j.title})${takeover.note ? ` — ${takeover.note}` : ''}` });
-  return { job_id: j.id, status: 'queued', takeover };
+  if (waitingClaude) setJob(j.id, { payload: JSON.stringify(payload) });
+  else setJob(j.id, { payload: JSON.stringify(payload), status: 'queued', wait_reason: '', attempts: 0, next_run_at: now(), last_error: '', finished_at: null, cancel_requested: false });
+  S.logEvent({ actor, dept: j.dept, video_id: j.video_id, kind: 'job', message: `GIÁM ĐỐC DUYỆT: ${PROVIDER_NAME[who]} làm thay ${PROVIDER_NAME[sup.for]} ở việc #${j.id} (${j.title})${waitingClaude ? ' — việc đang chờ Claude hồi limit, sẽ chạy theo đường làm thay khi Claude sẵn sàng' : ''}${takeover.note ? ` — ${takeover.note}` : ''}` });
+  return { job_id: j.id, status: waitingClaude ? 'waiting_limit' : 'queued', takeover };
 }
 /** Thu hồi cho việc #job_id (vd Codex đã chạy lại được): các lần chạy sau lại để Codex làm. */
 export function revokeTakeover(job_id, actor = 'director') {
@@ -640,7 +648,7 @@ export function poolOverview() {
   // Mỗi việc kẹt ở Codex: cho giám đốc duyệt AI khác làm thay (nút "Cho Claude làm thay" / `cli takeover <id> claude` / công cụ approve_takeover).
   for (const j of jobs) {
     const offer = takeoverOffer(j);
-    if (offer) attention.push({ kind: 'takeover_offer', handler: 'director', job_id: j.id, dept: j.dept, for: offer.for, by: offer.by, message: `Việc #${j.id} "${j.title}" đang kẹt ở ${PROVIDER_NAME[offer.for]}${j.last_error ? ` (${j.last_error.slice(0, 160)})` : ''} — bạn có thể duyệt cho ${PROVIDER_NAME[offer.by]} làm thay` });
+    if (offer) attention.push({ kind: 'takeover_offer', handler: 'director', job_id: j.id, dept: j.dept, for: offer.for, by: offer.by, options: offer.options, message: `Việc #${j.id} "${j.title}" đang kẹt ở ${PROVIDER_NAME[offer.for]}${j.last_error ? ` (${j.last_error.slice(0, 160)})` : ''} — bạn có thể duyệt cho ${offer.options.map((o) => PROVIDER_NAME[o]).join(' hoặc ')} làm thay` });
   }
   for (const j of jobs.filter((x) => x.status === 'needs_human' && !takeoverOffer(x))) {
     // Việc gỡ vướng vừa hỏng mà video còn trong quyền Claude tự gỡ (còn lượt, đúng giai đoạn): worker tự xếp lượt gỡ vướng kế tiếp, không cần người.
@@ -660,7 +668,7 @@ export function poolOverview() {
 
   const sum = (p) => ({ total: accounts.filter((a) => a.provider === p).length, ready: accounts.filter((a) => a.provider === p && a.enabled && a.status === 'ready' && !a.capped).length, limited: accounts.filter((a) => a.provider === p && a.status === 'limited').length });
   return {
-    accounts, jobs, worker, settings: allSettings(), attention, load: loadReport(),
+    accounts, jobs, worker, settings: allSettings(), attention, load: loadReport(), load_24h: loadReport({ days: 1 }),
     summary: { claude: sum('claude'), codex: sum('codex'), gemini: sum('gemini'), jobs_running: jobs.filter((j) => j.status === 'running').length, jobs_waiting: waiting.length, jobs_queued: jobs.filter((j) => j.status === 'queued').length, jobs_human: jobs.filter((j) => j.status === 'needs_human').length },
   };
 }

@@ -75,3 +75,33 @@ test('giao diện chạy được khi trình duyệt chặn localStorage và khi
   vm.runInContext("showTab('khong-co');", ctx);
   assert.equal(els[0].hidden, false, 'tên tab lạ thì về "Hôm nay"');
 });
+
+test('đề nghị duyệt thay thế: mỗi AI một nút (Claude, Gemini làm thay Claude duyệt); máy chủ cũ chưa gửi options vẫn ra nút Claude', () => {
+  const { attnSplit } = vm.runInNewContext(`${definitions}\n({ attnSplit })`);
+  const both = attnSplit([{ kind: 'takeover_offer', handler: 'director', job_id: 106, by: 'claude', for: 'codex', options: ['claude', 'gemini'], message: 'Việc #106 kẹt ở Codex' }]).mine[0];
+  assert.match(both, /takeover\(106,'claude'\)/);
+  assert.match(both, /takeover\(106,'gemini'\)/);
+  assert.match(both, /Cho Claude làm thay/);
+  assert.match(both, /Cho Gemini làm thay, Claude duyệt/);
+  assert.match(both, /job\(106,'cancel'\)/, 'vẫn có nút Huỷ');
+  const old = attnSplit([{ kind: 'takeover_offer', handler: 'director', job_id: 5, by: 'claude', message: 'cũ' }]).mine[0];
+  assert.match(old, /takeover\(5,'claude'\)/);
+  assert.doesNotMatch(old, /gemini/);
+});
+
+test('khối cân bằng tải: tiêu đề, ba bên, trạng thái, thoát HTML; không có báo cáo thì rỗng; hai khối 7 ngày và 24h cùng có trong trang', () => {
+  const { loadBlockHtml } = vm.runInNewContext(`${definitions}\n({ loadBlockHtml })`);
+  const row = { share_pct: 33.3, minutes: 30, jobs: 1, calls: 2, limits: 0 };
+  const report = (status) => ({ days: 1, status, caveat: 'c', notes: [payload], providers: { claude: row, codex: row, gemini: row } });
+  const out = loadBlockHtml(report('balanced'), 'Cân bằng tải 24h');
+  assert.match(out, /Cân bằng tải 24h/);
+  for (const name of ['Claude', 'Codex', 'Gemini']) assert.match(out, new RegExp(name));
+  assert.match(out, /cân bằng/);
+  assert.ok(out.includes('&lt;img src=x onerror=alert(1)&gt;') && !out.includes(payload), 'ghi chú được thoát HTML');
+  assert.match(loadBlockHtml(report('skewed'), 'x'), /LỆCH/);
+  assert.match(loadBlockHtml(report('no_data'), 'x'), /chưa đủ số liệu/);
+  assert.equal(loadBlockHtml(null, 'x'), '');
+  assert.match(src, /loadBlockHtml\(pool\.load, 'Cân bằng tải 7 ngày'\)/);
+  assert.match(src, /pool\.load_24h \?/, 'máy chủ cũ chưa có load_24h thì chỉ vẽ khối 7 ngày');
+  assert.match(src, /loadBlockHtml\(pool\.load_24h, 'Cân bằng tải 24h'\)/);
+});

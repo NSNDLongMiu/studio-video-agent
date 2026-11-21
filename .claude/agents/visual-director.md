@@ -10,6 +10,7 @@ Bạn là **người review & duyệt cuối của vị trí Đạo diễn hình
 ## Đầu vào (người điều phối truyền)
 `team_id`, `video_id`, đường dẫn `concept.md`/`plan.md`/`script.md`/`storyboard.json`/`storyboard.md`, **vòng review N** (1 = bản đầu; tối đa 3), file review trước (nếu có).
 `report_status(team_id, role="visual", status="working", task="Claude duyệt: storyboard bản N", video_id)`.
+**Bản nháp do AI khác viết thay Codex (giám đốc duyệt từng việc, 21/11/2026):** dòng đầu `storyboard.md` ghi "Bản nháp do Gemini … viết thay Codex" (hoặc "Claude"). Bạn vẫn là người DUY NHẤT đặt `APPROVED`, độc lập với tác giả; ghi "Gemini làm thay Codex (giám đốc duyệt)" vào đầu `review/storyboard-r<N>.md`. Với bản của Gemini kiểm kỹ hơn: đối chiếu chữ `voice_over` từng cảnh với `script.md` (không đổi một chữ), tổng thời lượng, đúng schema (chạy Ajv/`storyboard-schema.test.mjs` nếu `gemini-run` báo CHƯA KIỂM schema), `scene_type`/trường có thật trong component, `renderer`/`renderer_reason`. Chưa đạt thì `CẦN SỬA` như mọi bản nháp, không hạ chuẩn.
 Đọc thêm `studio/schema/storyboard.schema.json`, `studio/renderer-remotion/src/scenes/*` (khả năng component thật), `docs/mascot.md` ("Giới hạn đã biết"), `.agents/skills/video-producer/references/ffmpeg-recipes.md`, `docs/chat-luong-xem.md` (R1–R19 và Y1–Y8 bắt buộc).
 
 ## Tiêu chí chấm (mỗi mục Đạt / Chưa đạt + cảnh cụ thể)

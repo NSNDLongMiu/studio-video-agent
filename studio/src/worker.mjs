@@ -255,7 +255,7 @@ export async function runWorker({ tickMs = Number(process.env.STUDIO_TICK_MS || 
         // Quá ngưỡng thì dừng hẳn và đưa giám đốc quyết (duyệt Claude làm thay, hoặc sửa Codex).
         const waits = known ? Number(fresh.payload.codex_waits || 0) : Number(fresh.payload.codex_waits || 0) + 1;
         if (!known && waits >= P.codexWaitMax()) {
-          P.setJob(job.id, { status: 'needs_human', finished_at: now(), payload: JSON.stringify({ ...fresh.payload, codex_waits: waits }), last_error: `CODEX-KẸT: Codex dùng được nhưng không làm được ${waits} lần liên tiếp (${res.reason}) — đã dừng tự chạy lại để khỏi đốt hạn mức Claude. Giám đốc: duyệt cho Claude làm thay (cli takeover ${job.id} claude) hoặc sửa Codex rồi chạy lại`, ...common });
+          P.setJob(job.id, { status: 'needs_human', finished_at: now(), payload: JSON.stringify({ ...fresh.payload, codex_waits: waits }), last_error: `CODEX-KẸT: Codex dùng được nhưng không làm được ${waits} lần liên tiếp (${res.reason}) — đã dừng tự chạy lại để khỏi đốt hạn mức Claude. Giám đốc: duyệt cho Claude hoặc Gemini làm thay (cli takeover ${job.id} claude | cli takeover ${job.id} gemini) hoặc sửa Codex rồi chạy lại`, ...common });
           ev(`Việc #${job.id} DỪNG: Codex kẹt ${waits} lần liên tiếp (${res.reason}) → chờ giám đốc duyệt cho Claude làm thay`);
           break;
         }

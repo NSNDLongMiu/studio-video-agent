@@ -1,0 +1,2079 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "video_id": "BONG-DA-T29-E01",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "Minh hoạ chính của video là sa bàn chiến thuật bóng đá nhìn từ trên (lưới 6x6 ô 150px, chấm tròn hai đội di chuyển, mũi tên đe doạ, ô đổi màu đỏ chớp sang xanh lá, ba sợi cyan nối tam giác, dải sau bóng tô mờ). Các component Remotion có sẵn (ExplainerScene, DataVizScene, UiSimulationScene) chỉ hỗ trợ sơ đồ khối/cột số liệu/giao diện IDE trên nền tối cố định, không vẽ được sa bàn bóng đá động theo Y4 và R9. Do đó chọn renderer Pillow+FFmpeg để dùng tools/motion/ và Pillow vẽ trực tiếp các thành phần đồ hoạ chuyên biệt.",
+  "opening": {
+    "title": "AI LẤP Ô TRỐNG?",
+    "duration_s": 7.6,
+    "animation": "kinetic_pop",
+    "scene_id": "S01-S02",
+    "topic": "BÓNG ĐÁ / TỔNG LỰC",
+    "voice": true,
+    "style": "incident",
+    "style_params": {
+      "incident_type": "tactical_vulnerability",
+      "trigger": "defender_overlap",
+      "threat": "counter_attack_space"
+    },
+    "voice_line": "01, 02",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 3.3,
+        "visual": "Hậu vệ dâng cao sát vòng cấm đối phương, ô sau lưng (cột 6 hàng 4) viền đỏ chớp 2 nhịp/giây",
+        "sfx_intent": "alert",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 3.3,
+        "end_s": 4.85,
+        "visual": "Bóng mất sang đối phương, mũi tên tím lao xuống nhắm thẳng ô đỏ, ô nhấp mạnh báo động",
+        "sfx_intent": "impact_risk",
+        "voice_line": "02"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 4.85,
+        "end_s": 7.6,
+        "visual": "Tiêu đề AI LẤP Ô TRỐNG? đập vào kinetic ở y≈260–380, mũi tên tím dừng ở mép ô, nghỉ câu hỏi 1.00s",
+        "sfx_intent": "impact_reveal",
+        "voice_line": "02"
+      }
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "header": {
+    "text": "BÓNG ĐÁ / TỔNG LỰC",
+    "title": "Ai lấp ô hậu vệ?",
+    "slots": [
+      "top_left",
+      "top",
+      "top_right",
+      "above_captions"
+    ]
+  },
+  "status": "APPROVED",
+  "visual_style_note": "Phong cách đồ hoạ phẳng 9:16 (1080x1920), sa bàn nhìn từ trên với chấm tròn hai đội, ô lưới bo tròn 150px, mũi tên và vạch sân mờ. Bảng nghĩa màu: Đỏ #E5484D (ô hở nguy hiểm), Xanh lá #2ECC71 (ô đã lấp an toàn), Vàng #F4B400 (đang xét / dấu hỏi), Cam Cáo #F28C28 (đường chạy đúng, Cáo), Xám xanh #8E9BAA (đường chạy sai/chậm nét đứt, nhãn tên mờ), Trắng-cyan #7DF9FF (ba sợi tam giác căng/chùng), Tím xám #7C6FA8 (đối phương, mũi tên đe doạ), Xanh dương #3B82F6 (đội ta), Navy lam #0E1E36 (nền tối N2), Xanh rêu tối #152A1E (nền N3), Trắng #FFFFFF (chữ chính). Mỗi lúc chỉ một ô sáng mạnh, ô đã lấp chuyển xanh dịu. Typography: Segoe UI Bold, chữ khoá ≥ 72px, nhãn ≥ 56px, header ≥ 52px. Chữ trên hình lấy đúng cột 'Chữ trên màn hình' của script.md. Phân bổ nền theo R12: N1 sân cỏ xanh đậm (#183827, S01, S02, S05, S09 = 21.6s ≈ 37.4% ≤ 40%), N2 sa bàn tối navy lam (#0E1E36, zoom cận cột 4–6, S03, S04, S07 = 17.0s ≈ 29.5% ≤ 40%), N3: Sa bàn toàn cảnh phân tích cấu trúc trên nền xanh rêu tối (#152A1E), vạch chia 3 dải hành lang chiến thuật mờ, tương phản cao tách biệt hoàn toàn với N2 navy lam (#0E1E36) và N1 xanh cỏ (#183827), nhìn rõ cấu trúc đội hình ở 360×640 (S06, S08 = 13.3s ≈ 23.1% ≤ 40%), N4 sa bàn thu nhỏ trên nền gradient ấm tối (#2A1810 -> #120A06, S10 = 5.8s ≈ 10.1% ≤ 40%). Mỗi nền ≤ 2 cảnh liền kề.",
+  "talking_head_ratio": 0,
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "narrative_purpose": "Storytelling · Opening: tình huống hậu vệ dâng cao sát vòng cấm đối phương, đặt vấn đề ai giữ khoảng trống phía sau.",
+      "visual_concept": "Toàn cảnh sa bàn nhìn từ trên (y≈420–1320); hậu vệ (chấm xanh dương) ở (765, 645) sát vòng cấm, vệt mờ từ vị trí cũ (915, 945); ô sau lưng hậu vệ (915, 945) viền đỏ chớp 2 nhịp/giây; nhãn HẬU VỆ và Ô TRỐNG lần lượt xuất hiện.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "type": "tactical_board",
+        "focus": "overlap_vulnerability"
+      },
+      "environment": "Nền N1: Mặt sân cỏ nhìn thẳng từ trên xuống, màu xanh đậm phẳng (#183827), vạch sân và vòng cấm đối phương mờ ở hàng trên, lưới 6x6 ô mờ kích thước 150px.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn 6x6",
+        "vòng cấm mờ",
+        "chấm hậu vệ xanh dương (765, 645)",
+        "vệt mờ di chuyển",
+        "ô đỏ chớp (915, 945)",
+        "tiền vệ cánh (765, 795)",
+        "tiền vệ giữa (465, 795)",
+        "hai trung vệ (315, 1095), (615, 1095)",
+        "chấm tím đối phương (915, 645)"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Sa bàn toàn cảnh hiện; ô trống sau lưng hậu vệ (915, 945) viền đỏ chớp 2 nhịp/giây; hậu vệ đã ở sát vòng cấm có bóng ở chân với vệt mờ từ vị trí cũ"
+        },
+        {
+          "t": 0.6,
+          "event": "Nhãn HẬU VỆ xuất hiện gắn vào chấm hậu vệ khi lời đọc nhắc 'Hậu vệ lên tận đây'"
+        },
+        {
+          "t": 1.96,
+          "event": "Nhãn Ô TRỐNG xuất hiện gắn vào ô đỏ; ô đỏ chớp sáng mạnh hơn khi lời đọc hỏi 'Ai giữ nhà?'"
+        },
+        {
+          "t": 2.66,
+          "event": "Dứt lời đọc; ô đỏ tiếp tục chớp duy trì trạng thái cảnh báo nguy hiểm trong 0.64s trước khi chuyển cảnh"
+        }
+      ],
+      "voice_over": "Hậu vệ lên tận đây. Ai giữ nhà?",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "curious",
+          "emphasis": [
+            "lên tận đây",
+            "Ai giữ nhà"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.64,
+          "intonation": "rising",
+          "transition": {
+            "to_next": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "HẬU VỆ\nÔ TRỐNG",
+      "sound_effects": [
+        "tiếng sân rất nhỏ",
+        "tick nhãn hiện"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.6,
+          "intent": "ui_appear",
+          "target": "nhãn HẬU VỆ",
+          "intensity": "low",
+          "reason": "Nhãn HẬU VỆ xuất hiện gắn vào chấm hậu vệ khi lời nhắc tới"
+        },
+        {
+          "t": 1.96,
+          "intent": "alert",
+          "target": "ô đỏ chớp nhãn Ô TRỐNG",
+          "intensity": "medium",
+          "reason": "Nhãn Ô TRỐNG bật lên và ô đỏ chớp mạnh khi đặt câu hỏi ai giữ nhà"
+        },
+        {
+          "t": 2.66,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 0.64,
+          "reason": "Khoảng giữ 0.64s sau lời để người xem quan sát ô đỏ chớp trước khi chuyển cảnh"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 3.3,
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.64,
+      "main_idea": "Hậu vệ dâng cao sát vòng cấm đối phương khiến ô sau lưng bị hở",
+      "main_change": "Hậu vệ ở sát vòng cấm đối phương, ô sau lưng (cột 6 hàng 4) viền đỏ chớp cảnh báo khoảng trống không người",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "hậu vệ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "chấm xanh dương sát vòng cấm",
+            "motion": "đứng có bóng kèm vệt mờ"
+          },
+          {
+            "term": "ô trống",
+            "type": "concept",
+            "form": "status",
+            "object": "ô lưới (915, 945) viền đỏ",
+            "motion": "chớp đỏ 2 nhịp/giây"
+          },
+          {
+            "term": "nhà hở",
+            "type": "result",
+            "form": "metaphor",
+            "object": "ô đỏ trống không có chấm đội nhà",
+            "motion": "chớp sáng mạnh"
+          }
+        ],
+        "relations": [
+          {
+            "from": "hậu vệ",
+            "to": "ô trống",
+            "type": "để lại sau lưng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "HẬU VỆ",
+            "kind": "label",
+            "attach_to": "chấm hậu vệ",
+            "appear_s": 0.6,
+            "disappear_s": 3.3,
+            "effect": "fade"
+          },
+          {
+            "text": "Ô TRỐNG",
+            "kind": "keyword",
+            "attach_to": "ô đỏ",
+            "appear_s": 1.96,
+            "disappear_s": 3.3,
+            "effect": "pop"
+          }
+        ],
+        "hold_s": 0.64
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02",
+      "narrative_purpose": "Problem · Opening: hệ quả bóng mất, mũi tên đối phương lao vào ô trống đe doạ trực tiếp, mở ra câu hỏi chính và tiêu đề.",
+      "visual_concept": "Bóng chuyển sang đối phương, mũi tên tím lao thẳng xuống ô trống đỏ chớp; camera push_in (zoompan từ 1.0x lên 1.15x từ t=0.65s với điểm neo zoom neo ở giữa-phải x_anchor≈600, y_anchor≈945, x dịch tối đa ≤ 70px) nhằm nhấn mạnh nguy cơ ô trống bị đe doạ trực tiếp mà không làm cắt Cáo ở góc trái (Cáo dời vào x≈165–335, cách mép crop ≥ 95px); tiêu đề opening AI LẤP Ô TRỐNG? ở y≈260–380 vẫn nằm trọn trong vùng an toàn sau zoom; phụ đề được vẽ SAU bước zoompan nên cố định ở dải dưới, không bị phóng theo; Cáo ngạc nhiên ở góc trái; tiêu đề đập vào kinetic giải thích mâu thuẫn cốt lõi.",
+      "scene_type": "process_animation",
+      "scene_kind": "problem_cause_consequence",
+      "kind_params": {
+        "problem": {
+          "label": "Ô TRỐNG",
+          "object": "ô đỏ sau lưng hậu vệ bị hở nguy hiểm"
+        },
+        "cause": {
+          "label": "Bóng mất (mô tả nội bộ, không vẽ chữ)",
+          "object": "đối phương đoạt bóng viền tím"
+        },
+        "consequence": {
+          "label": "AI LẤP Ô TRỐNG?",
+          "object": "tiêu đề opening kinetic đập vào khi mũi tên tím lao sát mép ô"
+        }
+      },
+      "environment": "Nền N1: Mặt sân cỏ nhìn thẳng từ trên xuống, màu xanh đậm phẳng (#183827), lưới 6x6 ô; góc dưới trái có Cáo surprised (x≈165, đáy y≈1290, an toàn sau zoom). Cáo đứng đè lên ô của trung vệ trái (315, 1095) nên trong S02 chấm trung vệ trái này vẽ mờ 40% (chỉ là nền, không phải tiêu điểm), tiêu điểm duy nhất vẫn là ô đỏ (915, 945).",
+      "character_action": "Cáo xuất hiện ở góc dưới trái sa bàn (cột 2 hàng 5-6, x≈165–335, đáy y≈1290, dời vào trong để an toàn tuyệt đối khi camera push_in 1.15x), dáng surprised, nhìn chăm chú vào ô đỏ đang bị đe doạ từ 3.45 đến 6.45s (0.15-3.15s tính từ đầu cảnh).",
+      "props": [
+        "sa bàn 6x6",
+        "ô đỏ chớp nhấp mạnh (915, 945)",
+        "chấm tím đối phương (915, 645) có bóng viền tím",
+        "mũi tên tím lao xuống",
+        "Cáo surprised (x≈165, y≈1290)",
+        "tiêu đề AI LẤP Ô TRỐNG?"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Chuyển tiếp từ S01; ô trống tiếp tục đỏ; lời đọc 'Bóng mất' vào lúc 0.15s (3.45s tổng)"
+        },
+        {
+          "t": 0.3,
+          "event": "Bóng chuyển sang chấm đối phương, đổi viền tím; Cáo surprised xuất hiện góc dưới trái (x≈165) nhìn ô đỏ"
+        },
+        {
+          "t": 0.65,
+          "event": "Mũi tên tím từ đối phương (915, 645) lao xuống nhắm thẳng ô đỏ (915, 945) ('vút' mềm); camera bắt đầu push_in (zoompan 1.0x -> 1.15x, điểm neo zoom x_anchor≈600, y_anchor≈945, x dịch ≤ 70px giữ Cáo ở x≈165 nguyên vẹn; tiêu đề y≈260–380 trong vùng an toàn; phụ đề vẽ sau zoom không bị phóng)"
+        },
+        {
+          "t": 1.25,
+          "event": "Mũi tên tím chạm sát mép ô đỏ; ô đỏ viền dày nhấp mạnh; hệ quả hiện rõ trước giây 5; camera đạt 1.15x dừng lại"
+        },
+        {
+          "t": 1.55,
+          "event": "Tiêu đề AI LẤP Ô TRỐNG? đập vào vùng y≈260–380 phía trên sa bàn (kinetic pop, 4.85s tổng = 1.55s cảnh) khi lời đọc hỏi 'Ai lấp?' [Claude Gỡ vướng chốt 1.55s cảnh = 4.85s tổng, trước khi L02 dứt 5.132s; trước đó 1.94 rồi 1.40, chỉnh mốc không đổi thiết kế]"
+        },
+        {
+          "t": 1.83,
+          "event": "Nghỉ câu hỏi 1.00s: mũi tên tím dừng đúng mép ô, ô đỏ nhấp, tiêu đề giữ nguyên"
+        },
+        {
+          "t": 2.83,
+          "event": "Giữ trạng thái hoàn chỉnh 0.89s cho người xem ngẫm câu hỏi trước khi chuyển cảnh giải thích"
+        }
+      ],
+      "voice_over": "Bóng mất. Ô này đang hở. Ai lấp?",
+      "voice_direction": [
+        {
+          "line_id": "02",
+          "intent": "question",
+          "emotion": "alert",
+          "emphasis": [
+            "Bóng mất",
+            "Ai lấp"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "AI LẤP Ô TRỐNG?\nÔ TRỐNG",
+      "sound_effects": [
+        "vút mềm mũi tên lao",
+        "pop tiêu đề hiện",
+        "tick nghỉ câu hỏi"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.65,
+          "intent": "data_move",
+          "target": "mũi tên tím lao",
+          "intensity": "medium",
+          "reason": "Mũi tên đối phương lao thẳng vào ô hở tạo nguy cơ phản công"
+        },
+        {
+          "t": 1.25,
+          "intent": "alert",
+          "target": "ô đỏ nhấp mạnh",
+          "intensity": "high",
+          "reason": "Mũi tên chạm mép ô hở, ô nhấp mạnh báo động"
+        },
+        {
+          "t": 1.55,
+          "intent": "impact_reveal",
+          "target": "tiêu đề AI LẤP Ô TRỐNG?",
+          "intensity": "high",
+          "reason": "Tiêu đề opening đập vào kinetic pop đồng bộ câu hỏi Ai lấp"
+        },
+        {
+          "t": 1.83,
+          "intent": "silence",
+          "target": "khoảng lặng câu hỏi",
+          "intensity": "low",
+          "duration_s": 1,
+          "reason": "Nghỉ câu hỏi 1.00s để người xem suy nghĩ câu trả lời khi mũi tên dừng ở mép ô"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 4.3,
+      "complexity": "low",
+      "concepts": 1,
+      "hold_after_voice_s": 0.89,
+      "main_idea": "Bóng mất và đối phương lập tức tấn công vào khoảng trống sau lưng hậu vệ",
+      "main_change": "Bóng mất sang đối phương, mũi tên tím lao xuống nhắm vào ô đỏ hở, Cáo giật mình, tiêu đề đập vào",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bóng mất",
+            "type": "action",
+            "form": "animation",
+            "object": "bóng chuyển sang đối phương viền tím",
+            "motion": "chuyển bóng sang đối phương"
+          },
+          {
+            "term": "ô hở bị đe doạ",
+            "type": "concept",
+            "form": "status",
+            "object": "ô đỏ viền dày nhấp mạnh",
+            "motion": "nhấp mạnh khi mũi tên tới mép"
+          },
+          {
+            "term": "mũi tên phản công",
+            "type": "action",
+            "form": "flow",
+            "object": "mũi tên tím xám lao từ đối phương",
+            "motion": "lao xuống ô trống"
+          },
+          {
+            "term": "ai lấp ô trống",
+            "type": "concept",
+            "form": "text_only",
+            "object": "tiêu đề opening kinetic",
+            "motion": "đập vào trên sa bàn"
+          }
+        ],
+        "relations": [
+          {
+            "from": "đối phương",
+            "to": "ô trống",
+            "type": "tấn công mũi tên tím"
+          }
+        ],
+        "texts": [
+          {
+            "text": "AI LẤP Ô TRỐNG?",
+            "kind": "keyword",
+            "attach_to": "vùng y≈260-380",
+            "appear_s": 1.55,
+            "disappear_s": 4.3,
+            "effect": "kinetic"
+          },
+          {
+            "text": "Ô TRỐNG",
+            "kind": "label",
+            "attach_to": "ô đỏ",
+            "appear_s": 0,
+            "disappear_s": 4.3,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 0.89
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "narrative_purpose": "Explanation · Ích lợi đầu tiên: giải quyết câu hỏi mở sớm bằng cơ chế người gần ô nhất lùi xuống lấp.",
+      "visual_concept": "Trung cảnh zoom 1.15x về cột 4-6 trên nền navy lam N2; tiền vệ cánh gần ô nhất được nối ba sợi cyan căng, chạy lùi xuống ô đỏ theo đường cam; ô chuyển đỏ → xanh, mũi tên tím mất đường vào.",
+      "scene_type": "process_animation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "t": 1.05,
+            "label": "TIỀN VỆ",
+            "object": "chấm tiền vệ cánh viền cam nối ba sợi cyan, nhãn TIỀN VỆ hiện"
+          },
+          {
+            "t": 2.7,
+            "label": "Lùi lấp ô (mô tả nội bộ, không vẽ chữ; chỉ vẽ nhãn TIỀN VỆ và chip TRONG PHA NÀY)",
+            "object": "chấm chạy đường cam vào ô, ô đổi xanh an toàn"
+          }
+        ]
+      },
+      "environment": "Nền N2: Sa bàn tối, trung cảnh zoom ≈ 1,15× tập trung vào cột 4–6 và hàng 2–5, nền navy lam tối (#0E1E36), ô lưới nổi sáng tinh tế, ba sợi cyan nối tam giác.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn N2 zoom 1.15x cột 4-6",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "chip TRONG PHA NÀY",
+        "chấm tiền vệ cánh (765, 795)",
+        "ô trống (915, 945)",
+        "ba sợi cyan nối ô - TVC - trung vệ",
+        "đường chạy cam",
+        "mũi tên tím mờ 30%"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang nền N2 trung cảnh zoom 1.15x; header BÓNG ĐÁ / TỔNG LỰC hiện ở ô trên trái (top_left); mũi tên tím vẫn dừng ở mép ô"
+        },
+        {
+          "t": 0.15,
+          "event": "Chip TRONG PHA NÀY hiện cạnh góc sa bàn dưới header (7.75s tổng) khi lời đọc nói 'Trong pha này'"
+        },
+        {
+          "t": 1.05,
+          "event": "Tiền vệ cánh (765, 795) viền cam, nhãn TIỀN VỆ hiện; ba sợi cyan căng nối ô - tiền vệ cánh - trung vệ (615, 1095); sợi TVC-ô ngắn nhất sáng cam"
+        },
+        {
+          "t": 2.7,
+          "event": "Tiền vệ cánh chạy theo đường cam vào ô (915, 945) (10.30–11.00s tổng)"
+        },
+        {
+          "t": 3.5,
+          "event": "Ô chuyển sang xanh lá (11.10s tổng, 'ting' nhẹ); ba sợi cyan chùng và mờ dần; mũi tên tím mờ còn 30% mất lối vào"
+        },
+        {
+          "t": 3.57,
+          "event": "Dứt lời đọc; giữ trạng thái hoàn chỉnh 1.43s: ô xanh nhấp nhẹ, tiền vệ cánh đứng trong ô"
+        }
+      ],
+      "voice_over": "Trong pha này, tiền vệ cánh gần ô nhất, nên lùi xuống lấp.",
+      "voice_direction": [
+        {
+          "line_id": "03",
+          "intent": "explanation",
+          "emotion": "resolute",
+          "emphasis": [
+            "Trong pha này",
+            "gần ô nhất"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.43,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "TRONG PHA NÀY\nTIỀN VỆ",
+      "header_slot": "top_left",
+      "sound_effects": [
+        "tick nhãn hiện",
+        "ting ô chuyển xanh"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.15,
+          "intent": "ui_appear",
+          "target": "chip TRONG PHA NÀY",
+          "intensity": "low",
+          "reason": "Chip ràng buộc xuất hiện xác định đây là ví dụ một pha cụ thể"
+        },
+        {
+          "t": 1.05,
+          "intent": "highlight",
+          "target": "tiền vệ cánh ba sợi cyan",
+          "intensity": "medium",
+          "reason": "Ba sợi cyan căng sáng cam sợi ngắn nhất chỉ ra người gần ô nhất"
+        },
+        {
+          "t": 2.7,
+          "intent": "data_move",
+          "target": "đường chạy cam vào ô",
+          "intensity": "medium",
+          "reason": "Tiền vệ cánh di chuyển theo đường cam lùi xuống lấp ô"
+        },
+        {
+          "t": 3.5,
+          "intent": "impact_reveal",
+          "target": "ô chuyển xanh",
+          "intensity": "medium",
+          "reason": "Ting nhẹ khi ô chuyển từ đỏ sang xanh an toàn, mũi tên tím bị chặn"
+        },
+        {
+          "t": 3.57,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 1.43,
+          "reason": "Giữ 1.43s trạng thái hoàn chỉnh ô xanh để người xem quan sát kết quả xử lý"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 5,
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.43,
+      "main_idea": "Trong một pha cụ thể, người gần ô nhất (tiền vệ cánh) chủ động lùi xuống lấp chỗ trống",
+      "main_change": "Tiền vệ cánh chạy theo đường cam vào ô, ô đổi từ đỏ sang xanh lá, mũi tên đối phương mờ đi bị chặn",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "trong pha này",
+            "type": "term",
+            "form": "text_only",
+            "object": "chip TRONG PHA NÀY",
+            "motion": "hiện dưới header"
+          },
+          {
+            "term": "gần ô nhất",
+            "type": "relation",
+            "form": "connection",
+            "object": "ba sợi cyan tam giác",
+            "motion": "sợi ngắn nhất sáng cam"
+          },
+          {
+            "term": "tiền vệ cánh",
+            "type": "entity",
+            "form": "illustration",
+            "object": "chấm xanh dương (765, 795)",
+            "motion": "viền cam rồi chạy lùi"
+          },
+          {
+            "term": "lùi lấp ô",
+            "type": "action",
+            "form": "animation",
+            "object": "đường chạy cam vào ô",
+            "motion": "chạy vào ô đổi đỏ thành xanh"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tiền vệ cánh",
+            "to": "ô trống",
+            "type": "chạy đường cam lấp ô"
+          },
+          {
+            "from": "ba sợi cyan",
+            "to": "ô trống",
+            "type": "so sánh cự ly ai gần nhất"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TRONG PHA NÀY",
+            "kind": "message",
+            "attach_to": "góc trên trái sa bàn",
+            "appear_s": 0.15,
+            "disappear_s": 5,
+            "effect": "fade"
+          },
+          {
+            "text": "TIỀN VỆ",
+            "kind": "label",
+            "attach_to": "chấm tiền vệ cánh",
+            "appear_s": 1.05,
+            "disappear_s": 5,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.43
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "narrative_purpose": "Explanation · Cơ chế chính: định nghĩa vị trí như nhiệm vụ và nguyên tắc ai gần ô nhất thì làm.",
+      "visual_concept": "Cận cảnh zoom 1.3x trên nền navy lam N2; tên vị trí HẬU VỆ/TIỀN VỆ mờ và bị gạch chéo trong khi ô nổi nhãn NHIỆM VỤ phồng nhẹ; hai đường nối so sánh độ dài (cam ngắn vs xám dài).",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "type": "role_as_task_diagram",
+        "elements": [
+          "ô xanh nổi bật",
+          "nhãn tên bị gạch",
+          "đường nối cam ngắn",
+          "đường nối xám dài"
+        ]
+      },
+      "environment": "Nền N2: Sa bàn tối, cận cảnh (zoom ≈ 1,3x cột 4–6, hàng 2–5), nền navy lam tối (#0E1E36), ô lưới nổi sáng tinh tế.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn N2 zoom 1.3x",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "chấm hậu vệ và tiền vệ cánh",
+        "nhãn tên HẬU VỆ, TIỀN VỆ",
+        "ô xanh phồng nhẹ",
+        "nhãn NHIỆM VỤ kinetic",
+        "đường nối cam ngắn",
+        "đường nối xám xanh dài"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang nền N2 cận cảnh; header chuyển sang ô trên giữa (top); ô xanh và tiền vệ cánh trong ô; nhãn HẬU VỆ và TIỀN VỆ hiện trắng cạnh hai chấm"
+        },
+        {
+          "t": 1.35,
+          "event": "Hai nhãn tên mờ dần và bị gạch chéo xám ('tụp' nhẹ) khi lời đọc nói 'nhìn vị trí...'"
+        },
+        {
+          "t": 1.9,
+          "event": "Ô xanh nổi lên viền dày, nhãn NHIỆM VỤ bật lên (kinetic phồng nhẹ 1.0 -> 1.06, 'ting') khi lời đọc nói 'như nhiệm vụ'"
+        },
+        {
+          "t": 2.48,
+          "event": "Nghỉ 0.40s: ô xanh nhấp nhẹ, hai chấm giữ nguyên vị trí"
+        },
+        {
+          "t": 2.88,
+          "event": "Đường nối cam ngắn từ ô tới tiền vệ cánh vẽ ra ('tick'); tiền vệ cánh sáng cam khi lời đọc 'Ai gần ô nhất...'"
+        },
+        {
+          "t": 3.4,
+          "event": "Đường nối dài hơn màu xám xanh từ ô tới tiền vệ giữa vẽ ra ('tick') khi dứt câu '...thì làm'"
+        },
+        {
+          "t": 4.28,
+          "event": "Dứt lời đọc; giữ sơ đồ hoàn chỉnh 1.72s (hai đường nối đối chiếu ngắn/dài, ô xanh nhấp nhẹ)"
+        }
+      ],
+      "voice_over": "Bóng đá tổng lực nhìn vị trí như nhiệm vụ. Ai gần ô nhất thì làm.",
+      "voice_direction": [
+        {
+          "line_id": "04",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "nhiệm vụ",
+            "gần ô nhất"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.72,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NHIỆM VỤ\nHẬU VỆ\nTIỀN VỆ",
+      "header_slot": "top",
+      "sound_effects": [
+        "tụp nhãn tên mờ",
+        "ting nhãn NHIỆM VỤ bật",
+        "tick đường nối ngắn",
+        "tick đường nối dài"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.35,
+          "intent": "interaction",
+          "target": "nhãn tên bị gạch",
+          "intensity": "low",
+          "reason": "Tụp nhẹ khi tên vị trí mờ đi biểu thị vị trí không cố định theo tên"
+        },
+        {
+          "t": 1.9,
+          "intent": "impact_reveal",
+          "target": "nhãn NHIỆM VỤ bật kinetic",
+          "intensity": "medium",
+          "reason": "Ting khi nhãn NHIỆM VỤ bật và ô phồng nhẹ làm rõ trọng tâm cơ chế"
+        },
+        {
+          "t": 2.88,
+          "intent": "data_move",
+          "target": "đường nối cam ngắn",
+          "intensity": "low",
+          "reason": "Đường nối cam ngắn xuất hiện thể hiện khoảng cách gần nhất tới ô"
+        },
+        {
+          "t": 3.4,
+          "intent": "data_move",
+          "target": "đường nối xám dài",
+          "intensity": "low",
+          "reason": "Đường nối xám dài hơn xuất hiện tạo đối chiếu khoảng cách"
+        },
+        {
+          "t": 4.28,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 1.72,
+          "reason": "Giữ 1.72s sơ đồ hoàn chỉnh hai đường nối để người xem thẩm thấu nguyên tắc"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6,
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.72,
+      "main_idea": "Vị trí trong bóng đá tổng lực là nhiệm vụ cần hoàn thành, ai ở gần ô nhất sẽ đảm nhận",
+      "main_change": "Nhãn tên vị trí mờ và bị gạch chéo, ô xanh nổi nhãn NHIỆM VỤ, hai đường nối thể hiện cự ly ngắn (cam) và dài (xám)",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "vị trí",
+            "type": "term",
+            "form": "illustration",
+            "object": "nhãn tên HẬU VỆ, TIỀN VỆ",
+            "motion": "mờ đi và bị gạch chéo"
+          },
+          {
+            "term": "nhiệm vụ",
+            "type": "concept",
+            "form": "status",
+            "object": "ô xanh viền dày nổi bật",
+            "motion": "phồng nhẹ kèm nhãn kinetic"
+          },
+          {
+            "term": "ai gần ô nhất thì làm",
+            "type": "relation",
+            "form": "comparison",
+            "object": "hai đường nối cự ly",
+            "motion": "đường ngắn cam sáng, đường dài xám"
+          }
+        ],
+        "relations": [
+          {
+            "from": "nhãn tên",
+            "to": "nhiệm vụ",
+            "type": "chuyển từ tên cố định sang nhiệm vụ linh hoạt"
+          },
+          {
+            "from": "ô xanh",
+            "to": "tiền vệ cánh",
+            "type": "đo khoảng cách ngắn nhất"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHIỆM VỤ",
+            "kind": "keyword",
+            "attach_to": "ô xanh",
+            "appear_s": 1.9,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          },
+          {
+            "text": "HẬU VỆ",
+            "kind": "label",
+            "attach_to": "chấm hậu vệ",
+            "appear_s": 0,
+            "disappear_s": 1.85,
+            "effect": "fade"
+          },
+          {
+            "text": "TIỀN VỆ",
+            "kind": "label",
+            "attach_to": "chấm tiền vệ cánh",
+            "appear_s": 0,
+            "disappear_s": 1.85,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.72
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "narrative_purpose": "Explanation · Lỗi thứ hai và chuỗi bù ô: tiền vệ lùi để lại ô mới hở, đồng đội ở giữa trượt sang bù.",
+      "visual_concept": "Trung cảnh N1 (zoom 1.15x); ô thứ nhất xanh dịu; ô thứ hai chớp đỏ (mỗi lúc chỉ một ô sáng mạnh); camera pan_right (crop dịch chuyển ngang từ cột 3-5 sang cột 4-6, x dịch 80px từ t=3.21s theo bước di chuyển của tiền vệ giữa) nhằm bám theo hành động trượt ngang bù ô của tiền vệ giữa từ ô (465, 795) sang ô thứ hai (765, 795), dựng bằng crop mượt mà trên khung 1080x1920 với độ phóng zoom 1.15x (biên dịch tối đa 141px, x dịch 80px an toàn trong biên); tiền vệ giữa trượt ngang bù ô; hai ô cùng xanh dịu.",
+      "scene_type": "process_animation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "t": 1.51,
+            "label": "Ô THỨ HAI",
+            "object": "ô thứ hai (765, 795) viền đỏ chớp, nhãn Ô THỨ HAI hiện"
+          },
+          {
+            "t": 3.7,
+            "label": "Đồng đội bù ô (mô tả nội bộ, không vẽ chữ; chỉ vẽ nhãn Ô THỨ HAI)",
+            "object": "tiền vệ giữa chạy đường cam vào ô thứ hai, ô chuyển xanh"
+          }
+        ]
+      },
+      "environment": "Nền N1: Trung cảnh sa bàn (zoom ≈ 1,15×), mặt sân cỏ xanh đậm phẳng (#183827), góc nhìn bao quát từ cột 3–6 và hàng 2–5 nơi diễn ra chuỗi bù ô liên hoàn.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn zoom 1.15x",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "ô thứ nhất (915, 945) xanh dịu",
+        "tiền vệ cánh trong ô 1",
+        "ô thứ hai (765, 795) đỏ chớp rồi xanh",
+        "tiền vệ giữa (465, 795)",
+        "đường cam trượt ngang",
+        "nhãn Ô THỨ HAI"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pan_right"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Chuyển về N1 trung cảnh zoom 1.15x; header chuyển sang ô trên phải (top_right); ô 1 xanh dịu với tiền vệ cánh bên trong"
+        },
+        {
+          "t": 0.15,
+          "event": "Lời đọc 05 vào: tiền vệ cánh viền cam nhấp nhẹ, vệt đường chạy cũ mờ đi"
+        },
+        {
+          "t": 1.51,
+          "event": "Ô thứ hai (765, 795) viền đỏ chớp mạnh (20.11s tổng); nhãn Ô THỨ HAI hiện; ô 1 vẫn xanh dịu (chỉ 1 ô sáng mạnh)"
+        },
+        {
+          "t": 2.91,
+          "event": "Nghỉ 0.30s giữa hai câu: ô thứ hai nhấp nháy, tiền vệ giữa chuẩn bị phản ứng"
+        },
+        {
+          "t": 3.21,
+          "event": "Lời đọc 06 vào: tiền vệ giữa (465, 795) viền cam (21.90s tổng) rồi trượt ngang theo đường cam sang ô 2; camera pan_right mượt mà theo tiền vệ giữa (crop dịch ngang 80px sang phải, an toàn trong biên 141px ở zoom 1.15x)"
+        },
+        {
+          "t": 5.04,
+          "event": "Ô thứ hai chuyển sang xanh lá (23.64s tổng, 'tick'); hai ô đều xanh dịu, hai đường cam nối tiếp hiển thị trọn vẹn; camera dừng ở khung căn giữa hai ô"
+        },
+        {
+          "t": 5.97,
+          "event": "Dứt lời đọc; giữ sơ đồ hoàn chỉnh 2.03s (hai ô xanh dịu, trung vệ nhích nhẹ hỗ trợ cự ly đội hình)"
+        }
+      ],
+      "voice_over": "Nhưng tiền vệ vừa lùi, để lại một ô mới hở. Đồng đội ở giữa trượt sang bù, ô này hết hở.",
+      "voice_direction": [
+        {
+          "line_id": "05",
+          "intent": "warning",
+          "emotion": "curious",
+          "emphasis": [
+            "vừa lùi",
+            "mới hở"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.3,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "06",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "trượt sang bù",
+            "hết hở"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.3,
+          "pause_after_s": 2.03,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "Ô THỨ HAI",
+      "header_slot": "top_right",
+      "sound_effects": [
+        "tick ô thứ hai chớp đỏ",
+        "tick ô thứ hai chuyển xanh"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.51,
+          "intent": "alert",
+          "target": "ô thứ hai chớp đỏ",
+          "intensity": "medium",
+          "reason": "Ô thứ hai chớp đỏ báo động khoảng trống mới vừa xuất hiện"
+        },
+        {
+          "t": 3.7,
+          "intent": "data_move",
+          "target": "tiền vệ giữa trượt sang bù",
+          "intensity": "medium",
+          "reason": "Tiền vệ giữa di chuyển trượt ngang theo đường cam sang ô thứ hai"
+        },
+        {
+          "t": 5.04,
+          "intent": "impact_reveal",
+          "target": "ô thứ hai chuyển xanh",
+          "intensity": "medium",
+          "reason": "Ô thứ hai chuyển xanh hoàn tất chuỗi bọc lót hai nấc"
+        },
+        {
+          "t": 5.97,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời High",
+          "intensity": "low",
+          "duration_s": 2.03,
+          "reason": "Giữ 2.03s sau cảnh phức tạp High để người xem nhìn rõ chuỗi bù hai ô liên hoàn"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 8,
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.03,
+      "hold_reason": "Giữ 2.03s sơ đồ hoàn chỉnh hai ô xanh dịu sau khi tiền vệ giữa trượt sang bù để người xem kịp quan sát chuỗi liên hoàn hai nấc.",
+      "main_idea": "Lấp một khoảng trống sẽ làm hở khoảng trống tiếp theo, đòi hỏi đồng đội kế tiếp phải di chuyển bù đắp theo chuỗi",
+      "main_change": "Ô thứ hai đỏ chớp sau khi tiền vệ lùi, tiền vệ giữa trượt sang bù làm ô thứ hai chuyển xanh, hai ô cùng xanh dịu",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "chuỗi bù ô",
+            "type": "concept",
+            "form": "flow",
+            "object": "hai ô nối tiếp đường cam",
+            "motion": "lần lượt chuyển đỏ sang xanh"
+          },
+          {
+            "term": "ô thứ hai",
+            "type": "entity",
+            "form": "status",
+            "object": "ô lưới (765, 795)",
+            "motion": "chớp đỏ rồi xanh"
+          },
+          {
+            "term": "trượt sang bù",
+            "type": "action",
+            "form": "animation",
+            "object": "tiền vệ giữa trượt ngang",
+            "motion": "chạy đường cam sang phải"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tiền vệ cánh",
+            "to": "ô thứ hai",
+            "type": "rời đi để lại ô trống"
+          },
+          {
+            "from": "tiền vệ giữa",
+            "to": "ô thứ hai",
+            "type": "trượt ngang lấp ô"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Ô THỨ HAI",
+            "kind": "label",
+            "attach_to": "ô thứ hai",
+            "appear_s": 1.51,
+            "disappear_s": 8,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 2.03
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "narrative_purpose": "Problem · Sai lầm thường gặp: cả hai cùng lao ra theo bóng hoặc ai cũng tưởng người kia lấp, khiến ô lại hở.",
+      "visual_concept": "Toàn cảnh N3 trên nền xanh rêu tối tương phản cao cắt về trạng thái đầu pha; hai tiền vệ cùng lao lên theo hai đường nét đứt xám xanh khiến ô đỏ chớp lại, mũi tên tím lao vào; sau đó hai người đứng nhìn nhau với dấu hỏi vàng.",
+      "scene_type": "process_animation",
+      "scene_kind": "problem_cause_consequence",
+      "kind_params": {
+        "problem": {
+          "label": "Ô lại hở (mô tả nội bộ, không vẽ chữ; chỉ vẽ CÙNG LAO RA và KHÔNG AI LẤP)",
+          "object": "ô thứ nhất chớp đỏ dữ dội khi mũi tên tím lao vào"
+        },
+        "cause": {
+          "label": "CÙNG LAO RA",
+          "object": "hai tiền vệ cùng chạy theo bóng theo hai đường nét đứt xám xanh"
+        },
+        "consequence": {
+          "label": "KHÔNG AI LẤP",
+          "object": "hai chấm dừng lại hiện dấu hỏi vàng, ô đỏ vẫn hở"
+        }
+      },
+      "environment": "Nền N3: Sa bàn toàn cảnh phân tích cấu trúc trên nền xanh rêu tối (#152A1E), vạch chia 3 dải hành lang chiến thuật mờ, tương phản cao tách biệt hoàn toàn với N2 navy lam (#0E1E36) và N1 xanh cỏ (#183827), nhìn rõ cấu trúc đội hình ở 360×640.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn N3 toàn cảnh xanh rêu tối",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "hai tiền vệ",
+        "hai đường xám xanh nét đứt",
+        "ô đỏ chớp mạnh",
+        "mũi tên tím lao lại",
+        "bong bóng dấu hỏi vàng",
+        "nhãn CÙNG LAO RA",
+        "nhãn KHÔNG AI LẤP"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt 'tick' sang nền N3 xanh rêu tối phân tích sai lầm; header chuyển sang ô trên trái (top_left); ô đỏ chớp nhẹ"
+        },
+        {
+          "t": 0.15,
+          "event": "Lời đọc 07 'Sai lầm' bắt đầu"
+        },
+        {
+          "t": 0.81,
+          "event": "Hai tiền vệ cùng chạy lên phía bóng theo hai đường xám xanh nét đứt; nhãn CÙNG LAO RA hiện (27.60s tổng)"
+        },
+        {
+          "t": 2.49,
+          "event": "Ô thứ nhất đỏ chớp mạnh (29.24s tổng); mũi tên tím lao xuống ô lần thứ hai ('vút' mềm 29.30–29.90s tổng)"
+        },
+        {
+          "t": 3.19,
+          "event": "Nghỉ 0.30s: hai chấm dừng lại, mũi tên tím dừng sát mép ô đỏ"
+        },
+        {
+          "t": 3.49,
+          "event": "Lời đọc 08 'Hoặc ai cũng tưởng người kia lấp': hai chấm đứng yên, xuất hiện bong bóng dấu hỏi vàng quay nhìn nhau; nhãn KHÔNG AI LẤP hiện"
+        },
+        {
+          "t": 5.27,
+          "event": "Dứt lời đọc; giữ 1.13s trạng thái sai lầm (ô vẫn đỏ, mũi tên đe doạ, hai chấm ngơ ngác dấu hỏi)"
+        }
+      ],
+      "voice_over": "Sai lầm: cả hai cùng lao ra theo bóng, ô lại hở. Hoặc ai cũng tưởng người kia lấp.",
+      "voice_direction": [
+        {
+          "line_id": "07",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "cùng lao ra",
+            "ô lại hở"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.3,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "08",
+          "intent": "warning",
+          "emotion": "curious",
+          "emphasis": [
+            "ai cũng tưởng",
+            "người kia lấp"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.3,
+          "pause_after_s": 1.13,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "CÙNG LAO RA\nKHÔNG AI LẤP",
+      "header_slot": "top_left",
+      "sound_effects": [
+        "tick cắt đầu pha",
+        "vút mềm mũi tên lao lại",
+        "tick nhãn hiện"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.81,
+          "intent": "data_move",
+          "target": "hai đường xám nét đứt",
+          "intensity": "low",
+          "reason": "Hai tiền vệ cùng chạy lên phía bóng theo hai đường nét đứt sai lầm"
+        },
+        {
+          "t": 2.49,
+          "intent": "alert",
+          "target": "ô đỏ chớp mạnh mũi tên tím lao",
+          "intensity": "high",
+          "reason": "Mũi tên tím lao vào ô đỏ chớp mạnh báo hiệu lỗ hổng nghiêm trọng tái diễn"
+        },
+        {
+          "t": 3.49,
+          "intent": "highlight",
+          "target": "bong bóng dấu hỏi vàng",
+          "intensity": "medium",
+          "reason": "Dấu hỏi vàng bật lên trên đầu hai cầu thủ thể hiện sự thiếu ăn ý"
+        },
+        {
+          "t": 5.27,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 1.13,
+          "reason": "Giữ 1.13s để người xem thấy rõ hậu quả của hai sai lầm phổ biến"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6.4,
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.13,
+      "main_idea": "Hai sai lầm kinh điển: cùng lao ra tranh chấp bóng làm hở khoảng trống, hoặc ỷ lại không ai chịu lùi",
+      "main_change": "Hai tiền vệ cùng lao lên theo đường nét đứt xám, ô lại chớp đỏ và mũi tên tím lao vào; sau đó hiện dấu hỏi vàng đứng nhìn nhau",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "sai lầm",
+            "type": "concept",
+            "form": "comparison",
+            "object": "hai phương án chạy sai",
+            "motion": "đường nét đứt xám xanh"
+          },
+          {
+            "term": "cùng lao ra",
+            "type": "action",
+            "form": "flow",
+            "object": "hai đường nét đứt chạy lên bóng",
+            "motion": "cùng chạy theo bóng bỏ ô"
+          },
+          {
+            "term": "không ai lấp",
+            "type": "action",
+            "form": "status",
+            "object": "dấu hỏi vàng trên hai chấm",
+            "motion": "đứng yên nhìn nhau"
+          },
+          {
+            "term": "ô lại hở",
+            "type": "result",
+            "form": "status",
+            "object": "ô đỏ chớp mạnh",
+            "motion": "mũi tên tím lao xuống"
+          }
+        ],
+        "relations": [
+          {
+            "from": "hai tiền vệ",
+            "to": "bóng",
+            "type": "cùng lao theo bóng sai vị trí"
+          },
+          {
+            "from": "đối phương",
+            "to": "ô đỏ",
+            "type": "mũi tên tím đe doạ lần 2"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CÙNG LAO RA",
+            "kind": "label",
+            "attach_to": "hai đường xám",
+            "appear_s": 0.81,
+            "disappear_s": 3.19,
+            "effect": "fade"
+          },
+          {
+            "text": "KHÔNG AI LẤP",
+            "kind": "label",
+            "attach_to": "ô đỏ",
+            "appear_s": 3.49,
+            "disappear_s": 6.4,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.13
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "narrative_purpose": "Explanation · Phân biệt cự ly: người gần bóng phải vòng, người gần ô lùi thẳng; chốt nguyên tắc chọn người lấp ô.",
+      "visual_concept": "Cận cảnh N2 (zoom 1.3x); người A (gần bóng) phải chạy đường vòng xám qua chấm tím cản; người B (gần ô) chạy thẳng đường cam vào ô đỏ → xanh; Cáo idea xuất hiện chốt ý.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "GẦN BÓNG",
+          "state": "warn",
+          "object": "người A chạy đường vòng nét đứt xám xanh quanh chấm tím chưa tới ô"
+        },
+        "after": {
+          "label": "GẦN Ô",
+          "state": "ok",
+          "object": "người B chạy đường thẳng cam tới ô trước, ô chuyển xanh"
+        }
+      },
+      "environment": "Nền N2: Sa bàn tối cận cảnh (zoom ≈ 1,3x cột 4–6, hàng 2–5), nền navy lam tối (#0E1E36), ô lưới nổi sáng, hai đường chạy tương phản rõ nét (đường vòng xám xanh vs đường thẳng cam).",
+      "character_action": "Cáo xuất hiện ở góc dưới trái (x≈90, đáy y≈1290), dáng idea, chỉ nhẹ vào ô xanh từ 36.55 đến 38.75s (3.55-5.75s tính từ đầu cảnh), minh hoạ nhịp chuyển ý mà không che hai chấm A, B.",
+      "props": [
+        "sa bàn N2 zoom 1.3x",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "người A (765, 645)",
+        "người B (765, 945)",
+        "chấm tím cản (840, 800)",
+        "ô (915, 945) đỏ sang xanh",
+        "ba sợi cyan",
+        "đường vòng nét đứt xám",
+        "đường thẳng cam",
+        "nhãn GẦN BÓNG",
+        "nhãn GẦN Ô kinetic",
+        "Cáo idea"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang nền N2 cận cảnh; header chuyển sang ô trên giữa (top); ba sợi cyan nối ô - A - B căng; ô đỏ"
+        },
+        {
+          "t": 0.15,
+          "event": "Lời đọc 09 vào: A viền xám xanh, nhãn GẦN BÓNG hiện; đường vòng nét đứt xám xanh vẽ quanh chấm tím cản"
+        },
+        {
+          "t": 1.75,
+          "event": "B viền cam, nhãn GẦN Ô bật kinetic ('ting'); đường thẳng cam từ B tới ô vẽ ra và hoàn tất đúng lúc B tới ô (1.75–2.20s cảnh = 34.75–35.20s tổng, không vẽ tiếp sau 35.20s) [Claude Gỡ vướng chốt nét cam hoàn tất cùng B/ô xanh/SFX, chỉnh mốc không đổi thiết kế]"
+        },
+        {
+          "t": 1.9,
+          "event": "Cả hai chạy cùng lúc: B tới ô lúc 2.2s (35.20s tổng), ô chuyển xanh; A mới đi được nửa đường vòng; ba sợi chùng mờ [Claude duyệt mốc sau TTS (rescue): dời từ 2.3/3.0 để xong trước khi L09 dứt 35.27s]"
+        },
+        {
+          "t": 2.27,
+          "event": "Nghỉ 0.40s (35.27–35.67s tổng): B trong ô xanh, A dừng giữa chừng đường vòng"
+        },
+        {
+          "t": 2.67,
+          "event": "Lời đọc 10 vào lúc 35.67s tổng 'Lấp ô: gần ô, đừng gần bóng': Cáo idea xuất hiện góc dưới trái; nhãn GẦN Ô nhấp sáng ở 3.4 (36.40s tổng, theo từ 'gần ô'), nhãn GẦN BÓNG mờ đi ở 3.8 [Claude duyệt mốc sau TTS (rescue): nhịp dời từ 3.55 về cue giọng, lệch ≤0.5s]"
+        },
+        {
+          "t": 4.47,
+          "event": "Dứt lời đọc; giữ 0.82s (B đứng vững trong ô xanh, Cáo idea hướng về người xem)"
+        }
+      ],
+      "voice_over": "Người gần bóng phải vòng, người gần ô lùi thẳng. Lấp ô: gần ô, đừng gần bóng.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "curious",
+          "emphasis": [
+            "gần bóng phải vòng",
+            "gần ô lùi thẳng"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "10",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "emphasis": [
+            "Lấp ô",
+            "gần ô"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.4,
+          "pause_after_s": 0.82,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "GẦN Ô\nGẦN BÓNG",
+      "header_slot": "top",
+      "sound_effects": [
+        "ting nhãn GẦN Ô bật",
+        "ting B tới ô chuyển xanh",
+        "tick nhãn GẦN BÓNG mờ"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.2,
+          "intent": "ui_appear",
+          "target": "nhãn GẦN BÓNG",
+          "intensity": "low",
+          "reason": "Nhãn GẦN BÓNG xuất hiện gắn vào người A"
+        },
+        {
+          "t": 1.75,
+          "intent": "impact_reveal",
+          "target": "nhãn GẦN Ô bật kinetic",
+          "intensity": "medium",
+          "reason": "Ting khi nhãn GẦN Ô bật lên với đường thẳng cam dứt khoát"
+        },
+        {
+          "t": 2.2,
+          "intent": "highlight",
+          "target": "B tới ô chuyển xanh",
+          "intensity": "medium",
+          "reason": "B chạm ô, ô đổi xanh lá an toàn, ba sợi chùng"
+        },
+        {
+          "t": 2.27,
+          "intent": "silence",
+          "target": "khoảng lặng chuyển ý",
+          "intensity": "low",
+          "duration_s": 0.4,
+          "reason": "Nghỉ 0.40s để nhìn rõ B tới ô trước A còn kẹt đường vòng"
+        },
+        {
+          "t": 4.47,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 0.82,
+          "reason": "Giữ 0.82s chốt thông điệp giữa video"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6,
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 0.82,
+      "main_idea": "Phân biệt cự ly: người gần bóng có thể bị vướng cản phải chạy vòng, chỉ người gần ô mới lùi thẳng và tới ô nhanh nhất",
+      "main_change": "Đường thẳng cam của B tới ô xanh trước trong khi đường vòng xám của A chưa tới một nửa, nhãn GẦN Ô sáng rực",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "gần bóng phải vòng",
+            "type": "action",
+            "form": "flow",
+            "object": "đường nét đứt xám quanh chấm tím",
+            "motion": "chạy vòng chậm chạp"
+          },
+          {
+            "term": "gần ô lùi thẳng",
+            "type": "action",
+            "form": "flow",
+            "object": "đường thẳng cam ngắn",
+            "motion": "chạy thẳng vào ô nhanh"
+          },
+          {
+            "term": "lấp ô đừng gần bóng",
+            "type": "concept",
+            "form": "comparison",
+            "object": "so sánh cự ly hai người",
+            "motion": "B tới trước, A tới sau"
+          }
+        ],
+        "relations": [
+          {
+            "from": "người A",
+            "to": "người B",
+            "type": "đối chiếu tốc độ tới ô hở"
+          }
+        ],
+        "texts": [
+          {
+            "text": "GẦN BÓNG",
+            "kind": "label",
+            "attach_to": "người A",
+            "appear_s": 0.2,
+            "disappear_s": 4,
+            "effect": "fade"
+          },
+          {
+            "text": "GẦN Ô",
+            "kind": "keyword",
+            "attach_to": "người B",
+            "appear_s": 1.75,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 0.82
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "narrative_purpose": "Explanation · Bổ trợ cơ chế: đội thường chủ động để sẵn người phía sau bóng khi tấn công, lấp ô trước khi mất bóng.",
+      "visual_concept": "Toàn cảnh N3 ở thế đang tấn công trên nền xanh rêu tối; bóng ở chân hậu vệ dâng cao; camera pull_out (zoompan từ cận 1.2x lùi ra toàn cảnh 1.0x từ t=0.15s đến t=1.2s) nhằm mở rộng khung nhìn từ hậu vệ có bóng lùi dần ra để lộ toàn bộ dải xanh bọc lót phía sau bóng với bốn cầu thủ sẵn sàng, dựng bằng zoompan ≤ 1.2x trên khung 1080x1920; ô đã xanh từ trước khi bóng mất.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "type": "rest_defense_structure",
+        "elements": [
+          "dải sau bóng xanh nhạt",
+          "bốn chấm bọc lót",
+          "ô đã xanh trước khi mất bóng"
+        ]
+      },
+      "environment": "Nền N3: Sa bàn toàn cảnh phân tích cấu trúc trên nền xanh rêu tối (#152A1E), vạch chia 3 dải hành lang chiến thuật mờ, tương phản cao tách biệt hoàn toàn với N2 navy lam (#0E1E36) và N1 xanh cỏ (#183827), nhìn rõ cấu trúc đội hình ở 360×640.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn N3 toàn cảnh xanh rêu tối",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "hậu vệ dâng cao có bóng",
+        "dải xanh dương nhạt SAU BÓNG",
+        "bốn chấm đội ta phía sau bóng",
+        "ô xanh lá từ đầu",
+        "mũi tên tím nhú ra bị chặn",
+        "nhãn SAU BÓNG"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt 'tụp' nhẹ sang nền N3 toàn cảnh xanh rêu tối thế đang tấn công; header chuyển sang ô trên phải (top_right); hậu vệ đang dâng có bóng; tiền vệ cánh đã đứng trong ô (ô xanh ngay từ đầu cảnh)"
+        },
+        {
+          "t": 0.15,
+          "event": "Lời đọc 11 vào: dải sau bóng tô xanh dương nhạt từ 0.5s; camera pull_out từ 1.2x lùi ra 1.0x để lộ cấu trúc bọc lót sau bóng; nhãn SAU BÓNG hiện (39.60s tổng)"
+        },
+        {
+          "t": 1.2,
+          "event": "Bốn chấm (hai trung vệ, tiền vệ giữa, tiền vệ cánh) lần lượt viền sáng xanh dương (40.20–41.00s tổng); camera đạt khung toàn cảnh 1.0x"
+        },
+        {
+          "t": 2.44,
+          "event": "Hậu vệ cùng bóng tiến sát vòng cấm đối phương; dải xanh dịch theo, 4 chấm giữ vững vị trí"
+        },
+        {
+          "t": 3.37,
+          "event": "Nghỉ 0.40s: ô xanh nhấp nhẹ khẳng định sự chuẩn bị trước"
+        },
+        {
+          "t": 3.77,
+          "event": "Lời đọc 12 'Nên ô thường được lấp trước khi bóng mất': ô xanh nổi bật; bóng đổi viền tím (mất bóng); mũi tên tím vừa nhú ra thì thấy ô đã xanh nên dừng lại"
+        },
+        {
+          "t": 5.86,
+          "event": "Dứt lời đọc; giữ sơ đồ 1.04s (4 chấm vững vàng sau bóng, ô xanh ngăn chặn mũi tên tím)"
+        }
+      ],
+      "voice_over": "Đội thường để sẵn vài người phía sau bóng khi đang tấn công. Nên ô thường được lấp trước khi bóng mất.",
+      "voice_direction": [
+        {
+          "line_id": "11",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "thường",
+            "phía sau bóng"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "12",
+          "intent": "explanation",
+          "emotion": "resolute",
+          "emphasis": [
+            "thường",
+            "lấp trước"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.4,
+          "pause_after_s": 1.04,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "SAU BÓNG",
+      "header_slot": "top_right",
+      "sound_effects": [
+        "tụp tua lại thế tấn công",
+        "tick các chấm sáng",
+        "ting ô xanh nổi bật"
+      ],
+      "sound_cues": [
+        {
+          "t": 0,
+          "intent": "transition",
+          "target": "cắt sang thế tấn công",
+          "intensity": "low",
+          "reason": "Tụp nhẹ khi tua lại trạng thái đang tấn công"
+        },
+        {
+          "t": 1.2,
+          "intent": "highlight",
+          "target": "bốn chấm sau bóng sáng lần lượt",
+          "intensity": "low",
+          "reason": "Bốn chấm sáng lần lượt thể hiện cấu trúc bọc lót có sẵn"
+        },
+        {
+          "t": 3.77,
+          "intent": "impact_reveal",
+          "target": "ô xanh nổi bật trước khi mất bóng",
+          "intensity": "medium",
+          "reason": "Ting khi khẳng định ô đã có người lấp trước khi đối phương cướp bóng"
+        },
+        {
+          "t": 5.86,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 1.04,
+          "reason": "Giữ 1.04s để người xem đối chiếu thế chủ động với sự hoảng loạn ở S01"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6.9,
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.04,
+      "main_idea": "Đội bóng chủ động bố trí quân số phòng ngự từ xa phía sau bóng ngay khi đang tấn công, lấp ô trước khi bóng rơi vào chân đối phương",
+      "main_change": "Dải xanh sau bóng bao trọn 4 cầu thủ, ô đã xanh ngay từ khi bóng còn trong chân đội ta; mũi tên tím vừa nhú đã bị chặn",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "để sẵn người sau bóng",
+            "type": "concept",
+            "form": "flow",
+            "object": "dải xanh nhạt và 4 chấm",
+            "motion": "di chuyển đồng bộ theo bóng"
+          },
+          {
+            "term": "sau bóng",
+            "type": "term",
+            "form": "text_only",
+            "object": "nhãn SAU BÓNG",
+            "motion": "gắn dải xanh"
+          },
+          {
+            "term": "lấp trước khi mất bóng",
+            "type": "action",
+            "form": "status",
+            "object": "ô xanh lá chủ động",
+            "motion": "xanh sẵn trước khi mũi tên tím nhú"
+          }
+        ],
+        "relations": [
+          {
+            "from": "bốn chấm sau bóng",
+            "to": "ô trống",
+            "type": "phân công lấp ô chủ động"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SAU BÓNG",
+            "kind": "label",
+            "attach_to": "dải xanh dương nhạt",
+            "appear_s": 0.6,
+            "disappear_s": 6.9,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.04
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "narrative_purpose": "Solution · Trả lời đúng tình huống mở đầu: chiếu lại pha ban đầu nhưng ô đã đầy, đối phương bị chặn đứng.",
+      "visual_concept": "Quay về đúng bố cục toàn cảnh S01; đối phương lao xuống ô nhưng tiền vệ cánh đã vào ô, ô chuyển xanh; mũi tên tím chạm mép ô khựng lại và mờ đi; nhãn ĐÃ LẤP hiện.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "Ô trống bị đe doạ (mô tả nội bộ, không vẽ chữ; chiếu lại tình huống ban đầu)",
+          "state": "bad",
+          "object": "ô trống chớp đỏ, mũi tên tím lao vào ô trống"
+        },
+        "after": {
+          "label": "ĐÃ LẤP",
+          "state": "ok",
+          "object": "tiền vệ cánh trong ô xanh, mũi tên tím khựng mờ, nhãn ĐÃ LẤP hiện"
+        }
+      },
+      "environment": "Nền N1: Quay về đúng bố cục toàn cảnh S01, mặt sân cỏ xanh đậm nhìn từ trên bao quát (#183827), tái hiện tình huống ban đầu nhưng ô đã được lấp an toàn.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "sa bàn toàn cảnh N1",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "hậu vệ dâng cao",
+        "đối phương đoạt bóng",
+        "mũi tên tím lao xuống rồi khựng",
+        "tiền vệ cánh chạy vào ô",
+        "ô đỏ chuyển xanh",
+        "nhãn ĐÃ LẤP"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt 'tick' về bố cục S01; header chuyển sang ô trên trái (top_left); ô đỏ chớp; lời đọc 13 'Quay lại pha ban đầu'"
+        },
+        {
+          "t": 1.51,
+          "event": "Lời đọc 14 'Đối phương chạy vào': bóng đổi viền tím, mũi tên tím lao xuống ('vút'); cùng lúc tiền vệ cánh chạy đường cam vào ô"
+        },
+        {
+          "t": 2.5,
+          "event": "Tiền vệ cánh chạm ô, ô chuyển xanh lá an toàn (48.40s tổng)"
+        },
+        {
+          "t": 2.67,
+          "event": "Nghỉ 0.70s trước 'nhưng ô đã đầy': mũi tên tím chạm mép ô xanh và khựng lại ('tick')"
+        },
+        {
+          "t": 3.37,
+          "event": "Lời đọc 'nhưng ô đã đầy': mũi tên tím mờ xám còn 20%, ô xanh nhấp ('ting'); nhãn ĐÃ LẤP bật lên"
+        },
+        {
+          "t": 4.53,
+          "event": "Dứt lời đọc; giữ trạng thái giải quyết trọn vẹn 1.47s"
+        }
+      ],
+      "voice_over": "Quay lại pha ban đầu. Đối phương chạy vào, nhưng ô đã đầy.",
+      "voice_direction": [
+        {
+          "line_id": "13",
+          "intent": "hook",
+          "emotion": "curious",
+          "emphasis": [
+            "pha ban đầu"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.2,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "14",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "emphasis": [
+            "Đối phương chạy vào",
+            "ô đã đầy"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.2,
+          "pause_after_s": 1.47,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "ĐÃ LẤP",
+      "header_slot": "top_left",
+      "sound_effects": [
+        "tick cắt về đầu",
+        "vút mũi tên lao",
+        "tick mũi tên khựng mép ô",
+        "ting ô xanh nhấp"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.51,
+          "intent": "data_move",
+          "target": "mũi tên tím và tiền vệ cánh chạy",
+          "intensity": "medium",
+          "reason": "Mũi tên đối phương lao xuống cùng lúc tiền vệ cánh lùi vào ô"
+        },
+        {
+          "t": 2.67,
+          "intent": "interaction",
+          "target": "mũi tên tím chạm mép ô khựng",
+          "intensity": "medium",
+          "reason": "Tick khi mũi tên tím chạm mép ô xanh bị chặn đứng hoàn toàn"
+        },
+        {
+          "t": 3.37,
+          "intent": "impact_reveal",
+          "target": "ô xanh nhấp nhãn ĐÃ LẤP",
+          "intensity": "medium",
+          "reason": "Ting nhẹ khẳng định ô đã đầy, giải quyết triệt để vấn đề mở đầu"
+        },
+        {
+          "t": 4.53,
+          "intent": "silence",
+          "target": "khoảng giữ sau lời",
+          "intensity": "low",
+          "duration_s": 1.47,
+          "reason": "Giữ 1.47s để người xem thoả mãn với giải pháp trọn vẹn"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6,
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.47,
+      "main_idea": "Áp dụng cơ chế vào đúng pha mở đầu: khi đối phương phản công, ô đã có người lấp an toàn",
+      "main_change": "Cùng tình huống mở đầu nhưng mũi tên tím chạm ô xanh khựng lại và mờ đi, nhãn ĐÃ LẤP hiện",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "quay lại pha ban đầu",
+            "type": "action",
+            "form": "comparison",
+            "object": "khung hình S01",
+            "motion": "cắt về góc nhìn mở đầu"
+          },
+          {
+            "term": "đối phương chạy vào",
+            "type": "action",
+            "form": "flow",
+            "object": "mũi tên tím lao xuống",
+            "motion": "lao rồi khựng mép ô"
+          },
+          {
+            "term": "ô đã đầy",
+            "type": "result",
+            "form": "status",
+            "object": "ô xanh có tiền vệ cánh",
+            "motion": "nhấp xanh, nhãn ĐÃ LẤP hiện"
+          }
+        ],
+        "relations": [
+          {
+            "from": "mũi tên tím",
+            "to": "ô đã đầy",
+            "type": "bị chặn đứng khựng lại"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ĐÃ LẤP",
+            "kind": "label",
+            "attach_to": "ô xanh",
+            "appear_s": 3.4,
+            "disappear_s": 6,
+            "effect": "pop"
+          }
+        ],
+        "hold_s": 1.47
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "narrative_purpose": "Solution · Kết luận & Kêu gọi tự nhiên: tóm gọn thông điệp nhìn ô đừng nhìn tên vị trí; câu dùng được trên sân phủi.",
+      "visual_concept": "Sa bàn thu nhỏ N4 (cao 620px, y≈650–1270); dải trên hiện chữ chốt NHÌN Ô TRƯỚC (kinetic); nhãn tên bị gạch; Cáo thumbs_up hào hứng phát sóng cam 'tôi lấp'.",
+      "scene_type": "character_acting",
+      "scene_kind": "character_explanation",
+      "kind_params": {
+        "stage": "sa_ban_thu_nho",
+        "props": [
+          "chu_chot_nhin_o_truoc",
+          "song_cam_ho",
+          "cao_thumbs_up"
+        ]
+      },
+      "environment": "Nền N4: Sa bàn thu nhỏ trên nền gradient ấm tối (#2A1810 -> #120A06), sa bàn chiếm y≈650–1270, dải trên y≈390–600 trống thoáng dành cho chữ chốt NHÌN Ô TRƯỚC, góc dưới trái có Cáo thumbs_up.",
+      "character_action": "Cáo xuất hiện ở góc dưới trái (x≈90, đáy y≈1290), dáng thumbs_up hào hứng từ 54.64 đến 57.04s (2.74-5.14s tính từ đầu cảnh), hướng về người xem cổ vũ.",
+      "props": [
+        "sa bàn N4 thu nhỏ (cao 620px)",
+        "header BÓNG ĐÁ / TỔNG LỰC",
+        "chữ chốt NHÌN Ô TRƯỚC kinetic",
+        "nhãn tên HẬU VỆ, TIỀN VỆ bị gạch",
+        "tiền vệ cánh trong ô xanh phát sóng cam",
+        "Cáo thumbs_up"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang nền N4 sa bàn thu nhỏ; header ở ô trên giữa (top); ô xanh và tiền vệ cánh trong ô"
+        },
+        {
+          "t": 0.15,
+          "event": "Lời đọc 15 'Lần sau, nhìn ô': ô viền cam nhấp nhẹ"
+        },
+        {
+          "t": 0.85,
+          "event": "Chữ chốt NHÌN Ô TRƯỚC đập vào vùng y≈390–600 ('pop' kinetic, 52.90s tổng)"
+        },
+        {
+          "t": 1.4,
+          "event": "Hai nhãn tên HẬU VỆ, TIỀN VỆ hiện xám nhỏ rồi bị gạch chéo mờ (53.80–54.30s tổng) khi lời đọc 'đừng nhìn tên vị trí'"
+        },
+        {
+          "t": 2.44,
+          "event": "Nghỉ 0.30s: tên bị gạch hoàn toàn"
+        },
+        {
+          "t": 2.52,
+          "event": "Lời đọc 16 vào lúc 54.42s tổng 'Đá phủi thì hô: tôi lấp!': Cáo thumbs_up xuất hiện; tiền vệ cánh phát 2 vòng sóng cam hình 'hô' rồi nhích sâu vào ô xanh ('ting') [Claude duyệt mốc sau TTS (rescue): dời từ 2.74]"
+        },
+        {
+          "t": 3.96,
+          "event": "Dứt lời đọc 16 (55.86s tổng); giữ hình Cáo thumbs_up và ô xanh hoàn chỉnh"
+        },
+        {
+          "t": 4.66,
+          "event": "Cắt video (56.56s tổng): đuôi im 0.70s theo chuẩn, bỏ 1.14s hold thừa [Claude duyệt mốc sau TTS (rescue)]"
+        }
+      ],
+      "voice_over": "Lần sau, nhìn ô, đừng nhìn tên vị trí. Đá phủi thì hô: tôi lấp!",
+      "voice_direction": [
+        {
+          "line_id": "15",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "emphasis": [
+            "nhìn ô",
+            "đừng nhìn tên vị trí"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.3,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "16",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "emphasis": [
+            "Đá phủi",
+            "tôi lấp"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.3,
+          "pause_after_s": 1.4,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "NHÌN Ô TRƯỚC\nHẬU VỆ\nTIỀN VỆ",
+      "header_slot": "top",
+      "sound_effects": [
+        "pop chữ chốt hiện",
+        "tick tên bị gạch",
+        "ting sóng cam hô và ô xanh nhấp"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.85,
+          "intent": "impact_reveal",
+          "target": "chữ chốt NHÌN Ô TRƯỚC",
+          "intensity": "high",
+          "reason": "Pop khi chữ chốt xuất hiện kinetic truyền đạt thông điệp cốt lõi"
+        },
+        {
+          "t": 1.4,
+          "intent": "interaction",
+          "target": "nhãn tên bị gạch",
+          "intensity": "low",
+          "reason": "Tick khi nhãn tên vị trí bị gạch chéo nhắc lại kết luận"
+        },
+        {
+          "t": 2.52,
+          "intent": "highlight",
+          "target": "vòng sóng cam hô tôi lấp",
+          "intensity": "medium",
+          "reason": "Ting nhẹ khi tiền vệ phát sóng cam hô to kêu gọi hành động thực tế trên sân"
+        },
+        {
+          "t": 3.96,
+          "intent": "silence",
+          "target": "đuôi kết thúc video",
+          "intensity": "low",
+          "duration_s": 0.7,
+          "reason": "Đuôi im 0.70s (giữ hình = đuôi im) kết thúc video êm ái"
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 4.66,
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.7,
+      "main_idea": "Thông điệp chốt: quan sát ô trống trước thay vì câu nệ tên vị trí, và hô rõ ràng để đồng đội phối hợp",
+      "main_change": "Chữ chốt NHÌN Ô TRƯỚC bật lên, tên vị trí bị gạch, tiền vệ phát sóng cam hô 'tôi lấp' cùng Cáo thumbs_up",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nhìn ô trước",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "chữ chốt NHÌN Ô TRƯỚC",
+            "motion": "kinetic pop ở vùng trên"
+          },
+          {
+            "term": "đừng nhìn tên vị trí",
+            "type": "term",
+            "form": "illustration",
+            "object": "nhãn tên bị gạch",
+            "motion": "mờ dần và gạch chéo"
+          },
+          {
+            "term": "đá phủi hô tôi lấp",
+            "type": "action",
+            "form": "animation",
+            "object": "vòng sóng cam toả ra",
+            "motion": "sóng âm thanh toả từ chấm"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tiền vệ cánh",
+            "to": "ô xanh",
+            "type": "giao tiếp hô lấp ô"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHÌN Ô TRƯỚC",
+            "kind": "message",
+            "attach_to": "vùng y≈390–600",
+            "appear_s": 0.85,
+            "disappear_s": 4.66,
+            "effect": "kinetic"
+          },
+          {
+            "text": "HẬU VỆ",
+            "kind": "label",
+            "attach_to": "chấm hậu vệ",
+            "appear_s": 1.4,
+            "disappear_s": 2.4,
+            "effect": "fade"
+          },
+          {
+            "text": "TIỀN VỆ",
+            "kind": "label",
+            "attach_to": "chấm tiền vệ cánh",
+            "appear_s": 1.4,
+            "disappear_s": 2.4,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 0.8
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

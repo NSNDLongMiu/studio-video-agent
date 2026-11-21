@@ -29,6 +29,8 @@ const usable = (dept) => P.eligibleFor(P.listAccounts().filter((a) => a.provider
 test('parseDeptSpec: danh sách đặt đúng, +/- thêm bớt, none trả về dùng chung, từ chối kiểu trộn', () => {
   assert.deepEqual(P.parseDeptSpec('it,bong-da'), ['bong-da', 'it']);
   assert.deepEqual(P.parseDeptSpec(['it', 'bong-da', 'it']), ['bong-da', 'it'], 'bỏ trùng');
+  assert.deepEqual(P.parseDeptSpec(['it,bong-da']), ['bong-da', 'it'], 'dòng lệnh truyền mảng một phần tử có dấu phẩy (accounts assign <tk> it,bong-da)');
+  assert.deepEqual(P.parseDeptSpec(['+bong-da,-it'], ['it']), ['bong-da'], 'tách dấu phẩy cả ở kiểu thêm/bớt');
   assert.deepEqual(P.parseDeptSpec('it bong-da'), ['bong-da', 'it'], 'cho phép cách bằng dấu cách');
   for (const none of ['none', 'NONE', '', null, undefined, [], '  ']) assert.deepEqual(P.parseDeptSpec(none, ['it']), [], String(none));
   assert.deepEqual(P.parseDeptSpec('+bong-da', ['it']), ['bong-da', 'it']);
