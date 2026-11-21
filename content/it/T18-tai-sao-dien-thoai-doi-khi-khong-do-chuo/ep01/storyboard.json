@@ -1,0 +1,2000 @@
+{
+  "video_id": "IT-T18-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene hiện vẽ IDE/terminal, không có máy với chốt cạnh, danh sách cuộn và thanh trượt độc lập. ExplainerScene xếp các khối theo hàng, không có luồng rẽ từ hàng nằm trong thẻ hay nhánh bị che có điều kiện; DataVizScene vẽ thanh số liệu, không phải điều khiển có liên kết động. CharacterScene hỗ trợ ghép pose; PromptReviewScene và QASequenceScene phục vụ thẻ nhắc/hỏi đáp. Dùng Pillow vẽ điện thoại, tay silhouette, phòng ngủ và lớp phủ; tái dùng tools.motion components, flow, text, kinetic, sequence.camera, HeaderTrack và RenderLog. Match cut bằng điểm neo; wipe/fade diễn ra trong biên cảnh, giữ 1884 frame ở 30 fps. Crop/pan chỉ tác động lớp hình; nếu dùng FFmpeg, zoompan d theo số frame và overlay động eval=frame.",
+  "opening": {
+    "scene_id": "S00",
+    "title": "ĐÚNG GIỜ, CHỈ RUNG",
+    "topic": "BÁO THỨC / ÂM BÁO",
+    "duration_s": 8,
+    "voice": true,
+    "voice_line": "01",
+    "style": "question",
+    "style_params": {
+      "scene_id": "S00",
+      "keyword": "ĐÚNG GIỜ, CHỈ RUNG",
+      "phases": [
+        {
+          "phase": "visual_hook",
+          "start_s": 0,
+          "end_s": 3.2
+        },
+        {
+          "phase": "conflict",
+          "start_s": 3.2,
+          "end_s": 5.6
+        },
+        {
+          "phase": "topic_reveal",
+          "start_s": 5.6,
+          "end_s": 8
+        }
+      ]
+    },
+    "animation": "Tiêu đề 84 px bật một lần ở pha S01, giữ 0,10–3,15 s. Dùng ba pha tự vẽ bằng Pillow với đạo cụ thực của tập, ghép chữ qua text engine; chủ đề chạy ô trên trái → phải → trái, vẽ một lần mỗi khung.",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 3.2,
+        "visual": "S01 · Máy rung, loa gạch và Cáo ngủ; ô họp đã chạy bật lên.",
+        "voice_line": "01",
+        "sfx_intent": "interaction"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 3.2,
+        "end_s": 5.6,
+        "visual": "S02 · Cận hông máy, silhouette gạt công tắc và đường cyan vòng qua.",
+        "voice_line": "03",
+        "sfx_intent": "interaction"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 5.6,
+        "end_s": 8,
+        "visual": "S03 · Chính diện máy: luồng bị chặn ở giá trị đỏ.",
+        "voice_line": "04",
+        "sfx_intent": "impact_reveal"
+      }
+    ]
+  },
+  "header": {
+    "text": "BÁO THỨC / ÂM BÁO",
+    "title": "ĐÚNG GIỜ, CHỈ RUNG",
+    "slots": [
+      "top_left",
+      "top_right"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "9:16 · 1080×1920 · 30 fps. Phẳng có đổ bóng nhẹ. Xanh navy #14192B, giao diện #F4F6FA, đỏ #E74C3C = mất âm, xanh lá #2ECC71 = đã kiểm hoặc phát tiếng, vàng #F5B731 = điều kiện, cyan #38BDF8 = đường âm/mức, cam #F28C28 = Cáo. Vật chính ≥560 px. Vùng x=90–990, y=250–1500; header 52 px y≈265, đổi ô theo bố cục. Header chỉ vẽ dòng chủ đề; title là tên rút gọn dùng cho opening, không lặp dưới header. Nội dung đến y=1320, chữ đính vật 56+ px, chữ nhấn 72+ px, tiêu đề 84+ px; phụ đề ASS y=1340–1500, 56 px, ≤28 ký tự/dòng. Giao diện tự vẽ, nhãn nền tảng chỉ đặt cạnh đối tượng theo cột chữ của script. Dùng PNG Cáo gốc, cắt dáng, không nhép miệng; ngón là lớp silhouette độc lập. Nền tự vẽ bằng Pillow, có thể dùng lớp không chữ từ make_background.py. Camera 2D dưới 1,3×. Không nhạc; SFX tự tổng hợp dưới giọng. Ví dụ họp, giờ thử và khai báo AI ghi ở phần đăng, không đốt nhãn. Thumbnail lấy pha đầu khoảng 1,6 s, điện thoại loa gạch đỏ cạnh Cáo, kiểm 180×320. Mốc tiếng theo bản duyệt, rà lại sau TTS; giữ đầu và đuôi câu theo R23.\n\nR12 | Chủ đề nền | Cảnh/pha | Thời lượng | Tỉ lệ |\n| Phòng ngủ tối/sáng | S00 pha S01–S02, S12 | 13,4 s | 21,3% |\n| Lưới navy | S04, S06 | 11,0 s | 17,5% |\n| Tím đậm | S07–S09 | 20,5 s | 32,6% |\n| Xám sáng giao diện | S00 pha S03, S05, S10–S11 | 17,9 s | 28,5% |\nMỗi chủ đề dưới 40%; chuỗi dài nhất 3 cảnh (S07–S09). Cáo 11,0/62,8 s (17,5%) ở S00 (3,2 s), S05 (2,4 s), S11 (2,4 s), S12 (3,0 s); đứng nói 0%. Claude rescue sửa: thêm pose idea ở S11 theo plan; pha mở S00 sleep→surprised giữ, surprised dừng ở 3,2 s do cắt hông máy.",
+  "scenes": [
+    {
+      "scene_id": "S00",
+      "scene_type": "object_interaction",
+      "scene_kind": "problem_cause_consequence",
+      "kind_params": {
+        "problem": {
+          "label": "",
+          "object": "Điện thoại rung với loa gạch đỏ"
+        },
+        "cause": {
+          "label": "KHÔNG CÓ",
+          "object": "Hàng Âm báo chặn luồng cyan"
+        },
+        "consequence": {
+          "label": "",
+          "object": "Ô họp đã chạy thanh tiến độ"
+        }
+      },
+      "duration_s": 8,
+      "narrative_purpose": "Mở bằng nghịch lý, cho thấy lỡ họp, loại nút Im lặng rồi chỉ đúng chỗ chặn âm.",
+      "main_idea": "Tìm chỗ làm báo thức chỉ rung",
+      "complexity": "medium",
+      "concepts": 2,
+      "hold_after_voice_s": 0.44,
+      "visual_concept": "Máy rung cạnh Cáo ngủ → ô họp đã có tiến độ → nút gạt mà luồng đi vòng → luồng dừng ở hàng đỏ trước loa gạch. Pha đầu khung tủ yên. Cắt lên hông máy ở 3,20, crop 1,14× về phía công tắc để thấy hành trình nút; cắt chính diện ở 5,60, khóa khung vào hàng cài đặt. Header, tiêu đề và phụ đề ghép sau crop.",
+      "main_change": "Máy rung cạnh Cáo ngủ → ô họp đã có tiến độ → nút gạt mà luồng đi vòng → luồng dừng ở hàng đỏ trước loa gạch.",
+      "environment": "S01–S02: xa là cửa sổ xanh đêm và rèm, giữa là tủ đầu giường gỗ nhạt, gần là điện thoại sáng lệch phải; Cáo chỉ có ở S01, ngón silhouette vào ở S02. S03: xa là bóng viền máy trên nền xám sáng #F4F6FA, giữa là màn sửa báo thức, gần là ngón chạm và đường cyan. Mép máy/cao độ loa khớp qua hai cú cắt.",
+      "character_action": "0–2 s sleep, cắt sang surprised ở 2 s; đặt pose có sẵn hướng về máy, x≈100, đáy y=1290, tối đa 1,5× cỡ nguồn. Cáo rời hình khi cắt hông máy ở 3,20 s. Ngón tay là silhouette độc lập.",
+      "props": [
+        "Cáo cạnh tủ ở pha đầu (0–3,20 s)",
+        "điện thoại bo góc cao 620 px, thẻ chuông",
+        "hai vạch rung hai bên và loa gạch đỏ",
+        "ô lịch có lưới và ba silhouette, thanh tiến độ",
+        "rãnh gạt cam bên hông máy",
+        "hàng có nốt nhạc trong màn chỉnh và mép chặn đỏ",
+        "giá trị đỏ cạnh nốt nhạc gạch",
+        "ngón tay silhouette độc lập để gạt nút và mở thẻ"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Máy sáng và rung, loa gạch đỏ. Cáo ngủ cạnh tủ."
+        },
+        {
+          "t": 0.1,
+          "event": "Tiêu đề vào một lần. Vạch rung mở theo nhịp đến 2 s."
+        },
+        {
+          "t": 1.35,
+          "event": "Vạch rung bung rộng khỏi thân máy rồi thu."
+        },
+        {
+          "t": 2,
+          "event": "Cắt sang surprised."
+        },
+        {
+          "t": 2.05,
+          "event": "Ô lịch họp trượt lên với thanh đã chạy; thanh tiến thêm tới 3,1."
+        },
+        {
+          "t": 3.2,
+          "event": "Cắt hông điện thoại, Cáo đã rời khung. Ngón silhouette gạt xuống ở 3,4 rồi trở lên ở 4,55; màn hình vẫn sáng."
+        },
+        {
+          "t": 4,
+          "event": "Vẽ đường cyan đi vòng công tắc tới đầu đường còn bỏ ngỏ."
+        },
+        {
+          "t": 5.6,
+          "event": "Cắt chính diện. Ngón chạm mở thẻ, đường cyan bám đúng điểm từ pha trước."
+        },
+        {
+          "t": 5.8,
+          "event": "Hàng Âm báo sáng; luồng chạy vào hàng."
+        },
+        {
+          "t": 6.9,
+          "event": "Giá trị đỏ hiện, đầu luồng đụng hàng rồi co lại; loa vẫn gạch."
+        },
+        {
+          "t": 7.56,
+          "event": "Giữ hàng và loa trong bố cục hoàn chỉnh, viền thở nhẹ tới cắt."
+        }
+      ],
+      "voice_over": "Đúng giờ, mà chỉ rung?\nHọp bắt đầu rồi!\nNút Im lặng không tắt báo thức.\nThủ phạm: âm báo đang để Không có.",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "curious",
+          "pace": "brisk",
+          "intonation": "rising",
+          "emphasis": [
+            "chỉ rung"
+          ],
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.2,
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "02",
+          "intent": "warning",
+          "emotion": "surprised",
+          "pace": "brisk",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "Họp"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 0.22,
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "03",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "Im lặng",
+            "không"
+          ],
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.67,
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "04",
+          "intent": "reveal",
+          "emotion": "neutral",
+          "pace": "measured",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "âm báo",
+            "Không có"
+          ],
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.44,
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Cáo",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Cáo cạnh tủ ở pha đầu (0–3,20 s)",
+            "motion": "Cắt sleep → surprised ở 2 s; rời hình khi cắt hông máy ở 3,20 s."
+          },
+          {
+            "term": "báo thức",
+            "type": "entity",
+            "form": "illustration",
+            "object": "điện thoại bo góc cao 620 px, thẻ chuông",
+            "motion": "Bật màn hình và lệch ngang theo nhịp"
+          },
+          {
+            "term": "chỉ rung",
+            "type": "result",
+            "form": "status",
+            "object": "hai vạch rung hai bên và loa gạch đỏ",
+            "motion": "Vạch tách khỏi thân máy, loa không có cung âm"
+          },
+          {
+            "term": "họp",
+            "type": "entity",
+            "form": "status",
+            "object": "ô lịch có lưới và ba silhouette, thanh tiến độ",
+            "motion": "Trượt lên, thanh đã qua vạch đầu"
+          },
+          {
+            "term": "Nút Im lặng",
+            "type": "entity",
+            "form": "animation",
+            "object": "rãnh gạt cam bên hông máy",
+            "motion": "Ngón gạt hai nấc"
+          },
+          {
+            "term": "Âm báo",
+            "type": "term",
+            "form": "connection",
+            "object": "hàng có nốt nhạc trong màn chỉnh và mép chặn đỏ",
+            "motion": "Đường cyan vòng qua nút nhưng dừng ở hàng"
+          },
+          {
+            "term": "Không có",
+            "type": "result",
+            "form": "status",
+            "object": "giá trị đỏ cạnh nốt nhạc gạch",
+            "motion": "Viền sáng một nhịp khi đường chạm"
+          }
+        ],
+        "relations": [
+          {
+            "from": "báo thức",
+            "to": "họp",
+            "type": "rung nhẹ dẫn tới bỏ lỡ cuộc họp"
+          },
+          {
+            "from": "Nút Im lặng",
+            "to": "báo thức",
+            "type": "luồng không đi qua nút"
+          },
+          {
+            "from": "Âm báo",
+            "to": "Không có",
+            "type": "giá trị chặn âm tại hàng cài đặt"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ĐÚNG GIỜ, CHỈ RUNG",
+            "kind": "message",
+            "attach_to": "mép trên tủ đầu giường, y=390–620, 84 px, hai dòng",
+            "appear_s": 0.1,
+            "disappear_s": 3.15,
+            "effect": "kinetic"
+          },
+          {
+            "text": "IM LẶNG ≠ TẮT",
+            "kind": "label",
+            "attach_to": "rãnh gạt cam",
+            "appear_s": 4,
+            "disappear_s": 5.55,
+            "effect": "none"
+          },
+          {
+            "text": "ÂM BÁO",
+            "kind": "label",
+            "attach_to": "hàng nốt nhạc",
+            "appear_s": 5.8,
+            "disappear_s": 7.95,
+            "effect": "none"
+          },
+          {
+            "text": "KHÔNG CÓ",
+            "kind": "keyword",
+            "attach_to": "giá trị đỏ",
+            "appear_s": 6.9,
+            "disappear_s": 7.95,
+            "effect": "highlight"
+          }
+        ],
+        "hold_s": 0.44
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0,
+          "intent": "interaction",
+          "target": "máy rung",
+          "duration_s": 2,
+          "intensity": "low",
+          "reason": "Tiếng rung cơ học nhỏ, giữ phân biệt với chuông."
+        },
+        {
+          "t": 2.1,
+          "intent": "ui_appear",
+          "target": "ô lịch",
+          "duration_s": 0.11,
+          "intensity": "low",
+          "reason": "Tick xác nhận lịch bật."
+        },
+        {
+          "t": 3.4,
+          "intent": "interaction",
+          "target": "chốt Im lặng",
+          "duration_s": 0.1,
+          "intensity": "low",
+          "reason": "Tick nhẹ trùng nấc gạt."
+        },
+        {
+          "t": 6.9,
+          "intent": "impact_reveal",
+          "target": "giá trị đỏ",
+          "duration_s": 0.15,
+          "intensity": "low",
+          "reason": "Tick trầm đánh dấu luồng bị chặn."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "layout": "diagonal_flow",
+        "focus": "hai thẻ đồng hồ xếp trái"
+      },
+      "duration_s": 6,
+      "narrative_purpose": "Chứng minh cơ chế bằng hai thẻ và hai đầu ra.",
+      "main_idea": "Âm báo nằm trong từng báo thức và rung là điều kiện riêng",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.4,
+      "visual_concept": "Thẻ thứ hai xuất hiện với hàng âm độc lập; một đường tách thành đầu loa phát sóng và đầu máy chỉ rung khi công tắc bật. Khóa khung để người xem theo dõi cả hai đầu ra cùng tọa độ; ráp hàng cuối opening vào thẻ bên trái.",
+      "main_change": "Thẻ thứ hai xuất hiện với hàng âm độc lập; một đường tách thành đầu loa phát sóng và đầu máy chỉ rung khi công tắc bật. Cửa đỏ dùng lại nốt gạch và màu của giá trị KHÔNG CÓ đã hiện ở S00.",
+      "environment": "Xa là lưới xanh navy mờ, giữa là hai thẻ xếp chéo bên trái và cụm nhánh bên phải cao tổng 630 px, gần là chấm cyan chạy trên dây. Nguồn sáng cyan sau cụm trái, đỏ/xanh chỉ ở đầu ra.",
+      "character_action": "",
+      "props": [
+        "hai thẻ đồng hồ xếp trái",
+        "hàng nốt nhạc nằm trong mỗi thẻ",
+        "chạc cyan, cửa đỏ và nốt gạch",
+        "công tắc có icon rung",
+        "loa xanh ở nhánh trên",
+        "điện thoại cạnh loa đỏ"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "header_slot": "top_right",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ điểm neo từ hàng Âm báo của opening."
+        },
+        {
+          "t": 0.15,
+          "event": "Dựng thẻ thứ nhất và hàng nốt nhạc bên trong."
+        },
+        {
+          "t": 1,
+          "event": "Thẻ thứ hai trượt vào với hàng nốt nhạc riêng."
+        },
+        {
+          "t": 2.28,
+          "event": "Chạc tách hai đường; nhánh trên phát một cung âm, nhánh dưới gặp cửa đỏ."
+        },
+        {
+          "t": 3.1,
+          "event": "Đưa mắt sang vạch rung cạnh điện thoại."
+        },
+        {
+          "t": 3.5,
+          "event": "Nấc rung gạt sang bật, vạch rung bung hết; loa vẫn gạch."
+        },
+        {
+          "t": 4.6,
+          "event": "Giữ đầy đủ hai nhánh, lặp cung âm/vạch rung nhẹ lệch pha đến cuối."
+        }
+      ],
+      "voice_over": "Mỗi báo thức có âm báo riêng.\nChọn Không có thì không có tiếng, chỉ rung nếu bật rung.",
+      "voice_direction": [
+        {
+          "line_id": "05",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "intonation": "flat",
+          "emphasis": [
+            "riêng"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "06",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "measured",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "Không có",
+            "chỉ rung"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 1.4,
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "báo thức",
+            "type": "entity",
+            "form": "illustration",
+            "object": "hai thẻ đồng hồ xếp trái",
+            "motion": "Thẻ thứ hai trượt dưới thẻ đầu"
+          },
+          {
+            "term": "âm báo riêng",
+            "type": "relation",
+            "form": "connection",
+            "object": "hàng nốt nhạc nằm trong mỗi thẻ",
+            "motion": "Hai hàng sáng riêng"
+          },
+          {
+            "term": "Không có",
+            "type": "action",
+            "form": "flow",
+            "object": "chạc cyan, cửa đỏ và nốt gạch",
+            "motion": "Luồng dưới dừng trước loa"
+          },
+          {
+            "term": "bật rung",
+            "type": "action",
+            "form": "animation",
+            "object": "công tắc có icon rung",
+            "motion": "Nấc trượt sang bật"
+          },
+          {
+            "term": "có tiếng",
+            "type": "result",
+            "form": "status",
+            "object": "loa xanh ở nhánh trên",
+            "motion": "Bung cung âm"
+          },
+          {
+            "term": "chỉ rung",
+            "type": "result",
+            "form": "status",
+            "object": "điện thoại cạnh loa đỏ",
+            "motion": "Vạch rung mở sau khi nấc bật"
+          }
+        ],
+        "relations": [
+          {
+            "from": "báo thức",
+            "to": "âm báo riêng",
+            "type": "mỗi thẻ chứa một hàng"
+          },
+          {
+            "from": "Không có",
+            "to": "chỉ rung",
+            "type": "chặn loa; chỉ rung nếu bật rung"
+          },
+          {
+            "from": "bật rung",
+            "to": "chỉ rung",
+            "type": "cấp nhánh cơ học"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CÓ ÂM",
+            "kind": "label",
+            "attach_to": "nhánh trên",
+            "appear_s": 2.3,
+            "disappear_s": 5.9,
+            "effect": "none"
+          },
+          {
+            "text": "CHỈ RUNG",
+            "kind": "keyword",
+            "attach_to": "đầu ra nhánh dưới",
+            "appear_s": 3.1,
+            "disappear_s": 5.9,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.4
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.3,
+          "intent": "interaction",
+          "target": "chạc tín hiệu",
+          "duration_s": 0.12,
+          "intensity": "low",
+          "reason": "Tick đánh dấu đường rẽ."
+        },
+        {
+          "t": 3.5,
+          "intent": "interaction",
+          "target": "máy ở nhánh rung",
+          "duration_s": 0.42,
+          "intensity": "low",
+          "reason": "Tiếng rung trùng lúc nấc bật."
+        }
+      ],
+      "transition": "wipeup",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "scene_type": "ui_simulation",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "layout": "focus_corner",
+        "focus": "silhouette đầu ngón"
+      },
+      "duration_s": 5,
+      "narrative_purpose": "Cho thấy một cách mục cài đặt đổi trạng thái trong ví dụ dựng.",
+      "main_idea": "Cuộn danh sách có thể chọn nhầm giá trị im",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Các hàng trượt qua đầu ngón rồi dừng ở hàng đỏ; dấu chọn theo hàng sang màn sửa. Theo hàng được chọn bằng crop dọc trên lớp UI 1,12×; tại cú cắt đưa hàng chọn về cùng vị trí trên màn sửa. Giữ header/Cáo ngoài crop.",
+      "main_change": "Các hàng trượt qua đầu ngón rồi dừng ở hàng đỏ; dấu chọn theo hàng sang màn sửa.",
+      "environment": "Xa là vệt bóng chéo trên nền xám sáng, giữa là danh sách cao 660 px lệch phải, gần là silhouette đầu ngón và Cáo phía trái. Ánh màn hình trắng mát.",
+      "character_action": "0,10–2,50 s, shrug rộng 165 px, x≈105, đáy y≈1270, mặt hướng vào hàng bị chọn.",
+      "props": [
+        "silhouette đầu ngón",
+        "hàng có nốt và dải sóng không chữ",
+        "hàng nốt gạch, dấu chọn đỏ"
+      ],
+      "camera": {
+        "shot": "over_the_shoulder",
+        "movement": "tracking"
+      },
+      "header_slot": "top_left",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở danh sách dọc; ngón trượt kéo."
+        },
+        {
+          "t": 0.1,
+          "event": "Ghép Cáo nhìn danh sách."
+        },
+        {
+          "t": 1.1,
+          "event": "Ngón thắng đà và chạm hàng nốt gạch; dấu chọn đỏ bật."
+        },
+        {
+          "t": 2,
+          "event": "Cắt khớp hàng về màn báo thức."
+        },
+        {
+          "t": 2.5,
+          "event": "Cáo rời hình; hàng đổi từ nốt xanh nhạt sang nốt gạch đỏ, loa mất cung."
+        },
+        {
+          "t": 3.65,
+          "event": "Tín hiệu tiến tới hàng đỏ rồi dừng; giữ kết quả tới cắt."
+        }
+      ],
+      "voice_over": "Có khi chỉ là lỡ tay khi cuộn danh sách âm.",
+      "voice_direction": [
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "falling",
+          "emphasis": [
+            "lỡ tay"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.6,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "lỡ tay",
+            "type": "action",
+            "form": "animation",
+            "object": "silhouette đầu ngón",
+            "motion": "Kéo quá một hàng rồi chạm nhầm"
+          },
+          {
+            "term": "danh sách âm",
+            "type": "entity",
+            "form": "illustration",
+            "object": "hàng có nốt và dải sóng không chữ",
+            "motion": "Trượt dọc dưới ngón"
+          },
+          {
+            "term": "Không có",
+            "type": "result",
+            "form": "status",
+            "object": "hàng nốt gạch, dấu chọn đỏ",
+            "motion": "Dấu chọn theo hàng sang màn chỉnh"
+          }
+        ],
+        "relations": [
+          {
+            "from": "lỡ tay",
+            "to": "Không có",
+            "type": "cuộn rồi chọn nhầm"
+          },
+          {
+            "from": "Không có",
+            "to": "danh sách âm",
+            "type": "giá trị nằm trong danh sách"
+          }
+        ],
+        "texts": [
+          {
+            "text": "KHÔNG CÓ",
+            "kind": "label",
+            "attach_to": "hàng chọn, chuyển nguyên nhãn sang hàng cài đặt",
+            "appear_s": 1.1,
+            "disappear_s": 4.9,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.9,
+          "intent": "interaction",
+          "target": "danh sách",
+          "duration_s": 0.16,
+          "intensity": "low",
+          "reason": "Tick nhỏ theo nhịp dừng."
+        },
+        {
+          "t": 1.1,
+          "intent": "highlight",
+          "target": "hàng chọn",
+          "duration_s": 0.14,
+          "intensity": "low",
+          "reason": "Bụp nhẹ báo chọn nhầm."
+        }
+      ],
+      "transition": "cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "VIDEO",
+          "state": "ok",
+          "object": "Thanh video lên đầy"
+        },
+        "after": {
+          "label": "BÁO THỨC",
+          "state": "warn",
+          "object": "Thanh báo thức giữ thấp"
+        }
+      },
+      "duration_s": 5,
+      "narrative_purpose": "Bác thao tác kiểm nhầm bằng hai thanh độc lập.",
+      "main_idea": "Kéo âm lượng video không làm thanh báo thức tăng",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Nút video lên đỉnh và loa phát nhiều cung; nút báo thức vẫn sát đáy, chỉ có một cung ngắn. Khóa hai đế thanh trên cùng cao độ để mức thấp đứng yên có mốc đối chiếu.",
+      "main_change": "Nút video lên đỉnh và loa phát nhiều cung; nút báo thức vẫn sát đáy, chỉ có một cung ngắn.",
+      "environment": "Xa là lưới navy theo trục dọc, giữa là hai thanh dọc cao 600 px đặt cạnh nhau trên sơ đồ toàn khung, gần là ngón và sóng tách hai loa. Cyan chỉ mức âm, vàng viền đầu báo thức yếu.",
+      "character_action": "",
+      "props": [
+        "nút play trên thanh trái",
+        "hai thanh cyan với chốt tròn",
+        "đồng hồ và loa bên phải"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "header_slot": "top_right",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Trục trái vào khung."
+        },
+        {
+          "t": 0.3,
+          "event": "Ngón nắm chốt trái kéo liên tục lên đỉnh."
+        },
+        {
+          "t": 1.3,
+          "event": "Trục báo thức vào bên phải ở mức thấp."
+        },
+        {
+          "t": 1.72,
+          "event": "So cặp loa: nhiều cung trái và một cung ngắn phải."
+        },
+        {
+          "t": 2.9,
+          "event": "Ngón buông, bên trái phát đợt sóng cuối."
+        },
+        {
+          "t": 4,
+          "event": "Tách nhịp bằng một cung yếu bên phải; giữ cả hai mức."
+        }
+      ],
+      "voice_over": "Vặn to video chưa chắc làm to báo thức.",
+      "voice_direction": [
+        {
+          "line_id": "08",
+          "intent": "warning",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "video",
+            "chưa chắc"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "video",
+            "type": "entity",
+            "form": "icon",
+            "object": "nút play trên thanh trái",
+            "motion": "Sáng khi tay chạm"
+          },
+          {
+            "term": "âm lượng",
+            "type": "action",
+            "form": "comparison",
+            "object": "hai thanh cyan với chốt tròn",
+            "motion": "Chốt trái lên đỉnh, chốt phải đứng thấp"
+          },
+          {
+            "term": "báo thức",
+            "type": "entity",
+            "form": "status",
+            "object": "đồng hồ và loa bên phải",
+            "motion": "Phát một cung ngắn"
+          }
+        ],
+        "relations": [
+          {
+            "from": "video",
+            "to": "báo thức",
+            "type": "hai mức âm tách biệt"
+          }
+        ],
+        "texts": [
+          {
+            "text": "VIDEO",
+            "kind": "label",
+            "attach_to": "thanh trái",
+            "appear_s": 0.3,
+            "disappear_s": 4.9,
+            "effect": "none"
+          },
+          {
+            "text": "BÁO THỨC",
+            "kind": "label",
+            "attach_to": "thanh phải",
+            "appear_s": 1.3,
+            "disappear_s": 4.9,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.35,
+          "intent": "data_move",
+          "target": "thanh video",
+          "duration_s": 0.9,
+          "intensity": "low",
+          "reason": "Âm video tổng hợp tăng nhẹ cùng hành trình."
+        },
+        {
+          "t": 1.74,
+          "intent": "alert",
+          "target": "loa báo thức",
+          "duration_s": 0.18,
+          "intensity": "low",
+          "reason": "Cho nghe một tiếng yếu để đối chiếu."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "scene_type": "comparison_scene",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "layout": "center_stage",
+        "focus": "viền máy có chốt cạnh giống opening"
+      },
+      "duration_s": 8.5,
+      "narrative_purpose": "Cho thấy liên kết âm lượng và phiên bản cho phép tách.",
+      "main_idea": "Một thanh dùng chung có thể tách thành hai ở iOS 27",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.5,
+      "visual_concept": "Một lần kéo làm hai biểu tượng hạ cùng lúc; sau tách, kéo thanh báo thức và thanh chuông đứng nguyên. Crop đầu 1,15× quanh thanh chung, lùi về 1× khi thanh thứ hai tách để thấy cả quan hệ cũ và mới; chữ ghép sau crop. Xếp hai thanh ngang theo hai tầng, giữ đồng thời cả hai chốt trong khung cuối.",
+      "main_change": "Một lần kéo làm hai biểu tượng hạ cùng lúc; sau tách, kéo thanh báo thức và thanh chuông đứng nguyên.",
+      "environment": "Xa là ô tím đậm chia đôi, giữa là thanh ngang ở tầng trên và khoảng trống bên dưới để nhận thanh thứ hai, cụm cao 620 px; gần là biểu tượng chuông, đồng hồ báo thức và đồng hồ cát. Liên kết cyan, viền vàng ở trạng thái theo phiên bản.",
+      "character_action": "",
+      "props": [
+        "viền máy có chốt cạnh giống opening",
+        "thanh ngang với icon chuông và đường nối tới báo thức",
+        "thanh mới có đồng hồ báo thức và đồng hồ cát",
+        "hai chốt điều khiển độc lập"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "header_slot": "top_left",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut chốt thấp thành chốt chung."
+        },
+        {
+          "t": 0.15,
+          "event": "Nối hai đầu báo hiệu vào một thanh ngang."
+        },
+        {
+          "t": 1.15,
+          "event": "Kéo xuống, hai chỉ mức cùng thấp."
+        },
+        {
+          "t": 2.3,
+          "event": "Nhãn thanh gốc hiện; chấm đi qua hai dây cùng lúc."
+        },
+        {
+          "t": 3.9,
+          "event": "Bật nhãn vàng khi bố cục chừa chỗ cho thanh thứ hai."
+        },
+        {
+          "t": 4.5,
+          "event": "Tách biểu tượng báo thức và đồng hồ cát về thanh mới."
+        },
+        {
+          "t": 5.45,
+          "event": "Kéo thanh mới, giữ nguyên chốt chuông."
+        },
+        {
+          "t": 6,
+          "event": "Bắt đầu giữ bố cục hoàn chỉnh: hai chốt cố định ở hai mức khác nhau; cung âm ở thanh báo thức nở theo mức vừa kéo."
+        },
+        {
+          "t": 7.15,
+          "event": "Cung âm nhỏ bật ở chuông, đối chiếu với cung lớn ở báo thức; giữ nguyên vị trí hai chốt."
+        },
+        {
+          "t": 8.15,
+          "event": "Cung âm lớn nở thêm một nhịp ở báo thức; cả hai thanh vẫn hiện rõ đến lúc cắt."
+        }
+      ],
+      "voice_over": "iPhone mặc định dùng chung thanh Nhạc chuông và Cảnh báo.\niOS twenty seven cho tách riêng.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "measured",
+          "intonation": "flat",
+          "emphasis": [
+            "dùng chung"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "10",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "tách riêng"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 2.5,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "iPhone",
+            "type": "entity",
+            "form": "illustration",
+            "object": "viền máy có chốt cạnh giống opening",
+            "motion": "Mở rộng để lộ vị trí thanh thứ hai"
+          },
+          {
+            "term": "Nhạc chuông và Cảnh báo",
+            "type": "term",
+            "form": "connection",
+            "object": "thanh ngang với icon chuông và đường nối tới báo thức",
+            "motion": "Kéo chốt, hai mức hạ đồng thời"
+          },
+          {
+            "term": "iOS 27",
+            "type": "term",
+            "form": "comparison",
+            "object": "thanh mới có đồng hồ báo thức và đồng hồ cát",
+            "motion": "Cặp icon rời thanh chung sang thanh mới"
+          },
+          {
+            "term": "tách riêng",
+            "type": "action",
+            "form": "animation",
+            "object": "hai chốt điều khiển độc lập",
+            "motion": "Kéo chốt báo thức, chốt chuông đứng yên"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nhạc chuông và Cảnh báo",
+            "to": "iPhone",
+            "type": "mặc định dùng chung"
+          },
+          {
+            "from": "iOS 27",
+            "to": "tách riêng",
+            "type": "cho phép thanh riêng cho báo thức và hẹn giờ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CHUÔNG",
+            "kind": "label",
+            "attach_to": "thanh gốc",
+            "appear_s": 2.3,
+            "disappear_s": 8.4,
+            "effect": "none"
+          },
+          {
+            "text": "iOS 27: TÁCH ĐƯỢC",
+            "kind": "label",
+            "attach_to": "thanh thứ hai",
+            "appear_s": 3.9,
+            "disappear_s": 8.4,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 2.5
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 4.5,
+          "intent": "interaction",
+          "target": "điểm tách hai dây",
+          "duration_s": 0.14,
+          "intensity": "low",
+          "reason": "Tick mềm đúng lúc hai cụm rời nhau."
+        }
+      ],
+      "transition": "wiperight",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "scene_type": "comparison_scene",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "layout": "center_stage",
+        "focus": "khung máy trung tính với hai thanh dọc"
+      },
+      "duration_s": 7,
+      "narrative_purpose": "Đối chiếu thanh riêng và tác động của chế độ qua hành vi chặn rồi mở.",
+      "main_idea": "Không làm phiền có thể chặn báo thức Android nếu chưa cho phép",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.24,
+      "visual_concept": "Thanh báo thức kéo riêng; lớp trăng che chuông và cắt cung âm; gạt cho phép thì lớp phủ rút, cung xanh trở lại. Pan ngang tối đa 60 px trong crop 1,10× từ thanh riêng sang cụm trăng ở 3,60 s tính từ đầu cảnh. Giữ cả loa lẫn vùng điều khiển khi dừng.",
+      "main_change": "Thanh báo thức kéo riêng; lớp trăng che chuông và cắt cung âm; gạt cho phép thì lớp phủ rút, cung xanh trở lại.",
+      "environment": "Xa là mặt tím với trục chia lệch trái, giữa là màn máy đứng cao 640 px, hai thanh dọc thu trong nửa trái màn máy, chừa nửa phải cho lớp phủ trăng, gần là lớp phủ trăng vàng trượt từ phải vào. Loa xanh chỉ khi đường thông.",
+      "character_action": "",
+      "props": [
+        "khung máy trung tính với hai thanh dọc",
+        "đồng hồ và nốt nhạc trên hai thanh",
+        "trăng lưỡi liềm, tấm phủ và loa",
+        "công tắc với icon chuông"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "pan_right"
+      },
+      "header_slot": "top_right",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khung thiết bị sang bố cục hai thanh dọc."
+        },
+        {
+          "t": 1,
+          "event": "Kéo chốt đồng hồ; chốt nhạc đứng yên."
+        },
+        {
+          "t": 2.15,
+          "event": "Loa thử phát một cung xanh."
+        },
+        {
+          "t": 2.8,
+          "event": "Hiện điều kiện màu vàng trên cụm sắp bật."
+        },
+        {
+          "t": 3.6,
+          "event": "Trăng sáng, lớp phủ vào khung."
+        },
+        {
+          "t": 4.8,
+          "event": "Lớp phủ che chuông; loa thành gạch vàng."
+        },
+        {
+          "t": 5.7,
+          "event": "Gạt công tắc có icon chuông, tấm phủ rút; trăng vẫn bật."
+        },
+        {
+          "t": 6.1,
+          "event": "Loa xanh hồi cung âm, giữ kết quả đến cắt."
+        }
+      ],
+      "voice_over": "Android có thanh Báo thức riêng.\nTuỳ máy, Không làm phiền có thể làm im báo thức nếu chưa cho phép.",
+      "voice_direction": [
+        {
+          "line_id": "11",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "intonation": "flat",
+          "emphasis": [
+            "Android",
+            "riêng"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "12",
+          "intent": "warning",
+          "emotion": "concerned",
+          "pace": "measured",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "Tuỳ máy",
+            "làm im"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 1.24,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Android",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khung máy trung tính với hai thanh dọc",
+            "motion": "Thanh báo thức kéo độc lập"
+          },
+          {
+            "term": "Báo thức riêng",
+            "type": "term",
+            "form": "comparison",
+            "object": "đồng hồ và nốt nhạc trên hai thanh",
+            "motion": "Chốt đồng hồ đi lên, chốt nhạc đứng"
+          },
+          {
+            "term": "Không làm phiền",
+            "type": "term",
+            "form": "status",
+            "object": "trăng lưỡi liềm, tấm phủ và loa",
+            "motion": "Trăng bật, tấm phủ che chuông"
+          },
+          {
+            "term": "cho phép",
+            "type": "action",
+            "form": "animation",
+            "object": "công tắc với icon chuông",
+            "motion": "Gạt bật, tấm phủ rút khỏi chuông"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Android",
+            "to": "Báo thức riêng",
+            "type": "điều khiển riêng"
+          },
+          {
+            "from": "Không làm phiền",
+            "to": "cho phép",
+            "type": "có thể chặn khi công tắc báo thức tắt"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ANDROID",
+            "kind": "label",
+            "attach_to": "đầu cột thiết bị",
+            "appear_s": 0.2,
+            "disappear_s": 2.8,
+            "effect": "none"
+          },
+          {
+            "text": "TUỲ MÁY",
+            "kind": "label",
+            "attach_to": "thẻ trăng",
+            "appear_s": 2.8,
+            "disappear_s": 6.9,
+            "effect": "none"
+          },
+          {
+            "text": "KHÔNG LÀM PHIỀN",
+            "kind": "label",
+            "attach_to": "biểu tượng trăng",
+            "appear_s": 3.7,
+            "disappear_s": 6.9,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.24
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 3.9,
+          "intent": "alert",
+          "target": "loa báo thức",
+          "duration_s": 0.95,
+          "intensity": "low",
+          "reason": "Chuông mềm rồi làm nghẹt khi lớp phủ che ở 4,8."
+        },
+        {
+          "t": 5.7,
+          "intent": "interaction",
+          "target": "công tắc cho phép",
+          "duration_s": 0.13,
+          "intensity": "low",
+          "reason": "Tick khi mở đường cho chuông."
+        }
+      ],
+      "transition": "cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "scene_type": "ui_simulation",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "layout": "focus_corner",
+        "focus": "tile app chuông, mũi tải, chìa khóa vàng"
+      },
+      "duration_s": 5,
+      "narrative_purpose": "Chỉ đúng mục kiểm và giữ tính điều kiện theo thiết bị, ứng dụng.",
+      "main_idea": "App cần quyền thì kiểm quyền của chính app đó",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.83,
+      "visual_concept": "Ô app tải về trượt vào danh sách; hàng của nó bung công tắc riêng ở trạng thái tắt và tín hiệu vàng. Crop 1,12× về hàng được hỏi quyền ở 1,8–2,6 s; chừa lề nhãn dài và giữ header ngoài crop.",
+      "main_change": "Ô app tải về trượt vào danh sách; hàng của nó bung công tắc riêng ở trạng thái tắt và tín hiệu vàng.",
+      "environment": "Xa là tím đậm với cột app khác mờ, giữa là bảng quyền cao 640 px, gần là ô app chuông và công tắc viền vàng. Phần ngoại vi giảm sáng khi lấy nét công tắc.",
+      "character_action": "",
+      "props": [
+        "tile app chuông, mũi tải, chìa khóa vàng",
+        "mục quyền chứa công tắc cạnh hàng app",
+        "loa gạch vàng của hàng đang soi"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "header_slot": "top_left",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Đưa khay danh sách vào nền tím."
+        },
+        {
+          "t": 0.15,
+          "event": "Tile app tải về trượt vào giữa; icon chìa khóa xuất hiện trên tile."
+        },
+        {
+          "t": 1.7,
+          "event": "Hàng bung thành mục quyền ở đúng app."
+        },
+        {
+          "t": 2.3,
+          "event": "Công tắc riêng lộ nấc tắt, đèn vàng hiện."
+        },
+        {
+          "t": 3.16,
+          "event": "Giữ nhãn mục và bảng mở; đường vàng nối công tắc với loa gạch của cùng app."
+        },
+        {
+          "t": 4.35,
+          "event": "Đèn viền vàng thở nhẹ ở hàng đang xét."
+        }
+      ],
+      "voice_over": "Nếu app cần quyền, bạn xem Báo thức và lời nhắc.",
+      "voice_direction": [
+        {
+          "line_id": "13",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "falling",
+          "emphasis": [
+            "xem"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.83,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "app cần quyền",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tile app chuông, mũi tải, chìa khóa vàng",
+            "motion": "Tile vào khay, chìa khóa xuất hiện"
+          },
+          {
+            "term": "Báo thức và lời nhắc",
+            "type": "term",
+            "form": "status",
+            "object": "mục quyền chứa công tắc cạnh hàng app",
+            "motion": "Mục mở, nấc tắt xuất hiện"
+          },
+          {
+            "term": "tuỳ máy, tuỳ app",
+            "type": "relation",
+            "form": "status",
+            "object": "loa gạch vàng của hàng đang soi",
+            "motion": "Đèn vàng sáng nhẹ, các hàng khác giữ nguyên"
+          }
+        ],
+        "relations": [
+          {
+            "from": "app cần quyền",
+            "to": "Báo thức và lời nhắc",
+            "type": "quyền áp theo từng app"
+          },
+          {
+            "from": "tuỳ máy, tuỳ app",
+            "to": "app cần quyền",
+            "type": "chỉ minh họa trường hợp có yêu cầu quyền"
+          }
+        ],
+        "texts": [
+          {
+            "text": "BÁO THỨC VÀ LỜI NHẮC",
+            "kind": "label",
+            "attach_to": "đầu bảng quyền",
+            "appear_s": 1.7,
+            "disappear_s": 4.9,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.83
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.9,
+          "intent": "ui_appear",
+          "target": "công tắc quyền",
+          "duration_s": 0.12,
+          "intensity": "low",
+          "reason": "Tick đánh dấu mục mở."
+        }
+      ],
+      "transition": "wipeleft",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "scene_type": "ui_simulation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "label": "ÂM BÁO",
+            "object": "Mở hàng và chọn nốt âm",
+            "t": 1
+          },
+          {
+            "label": "ÂM LƯỢNG",
+            "object": "Kéo thanh rồi loa xanh",
+            "t": 3.34
+          }
+        ]
+      },
+      "duration_s": 6,
+      "narrative_purpose": "Đưa người xem qua hai thao tác theo thứ tự.",
+      "main_idea": "Kiểm âm báo đã chọn rồi tăng âm lượng báo thức",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.5,
+      "visual_concept": "Hàng nốt gạch đỏ đổi thành nốt có dấu chọn xanh; chốt âm lượng lên cao thì loa hiện xanh. Dịch crop y≈50 px tại bước chuyển từ hàng trên xuống thanh dưới, zoom 1,08×. Giữ hàng trên trong tầm nhìn để so hai trạng thái.",
+      "main_change": "Hàng nốt gạch đỏ đổi thành nốt có dấu chọn xanh; chốt âm lượng lên cao thì loa hiện xanh.",
+      "environment": "Xa là nền xám sáng và bóng máy nghiêng, giữa là điện thoại chính diện 740 px và hai vùng thao tác theo chiều dọc, gần là đầu ngón. Đỏ → xanh ở ô âm báo, cyan ở thanh âm lượng.",
+      "character_action": "",
+      "props": [
+        "hai vùng thao tác xếp dọc trong máy",
+        "hàng nốt nhạc và ký hiệu chọn",
+        "thanh cyan và loa"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "tilt_down"
+      },
+      "header_slot": "top_right",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Thẻ báo thức trượt vào màn, ngón tiến tới."
+        },
+        {
+          "t": 1,
+          "event": "Mở thẻ và lộ vùng Âm báo viền đỏ."
+        },
+        {
+          "t": 2.1,
+          "event": "Chọn hàng có nốt, dấu chọn xanh hiện ở 2,30."
+        },
+        {
+          "t": 3.2,
+          "event": "Chuyển chú ý xuống thanh âm lượng."
+        },
+        {
+          "t": 3.34,
+          "event": "Kéo thanh cyan lên cao; loa đổi sang xanh khi ngón buông."
+        },
+        {
+          "t": 4.5,
+          "event": "Giữ cả dấu chọn và mức cao, loa xanh sáng nhẹ."
+        }
+      ],
+      "voice_over": "Kiểm trong mười giây. Mở báo thức, xem mục Âm báo.\nRồi kéo âm lượng lên.",
+      "voice_direction": [
+        {
+          "line_id": "14",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "rising",
+          "emphasis": [
+            "mười giây",
+            "Âm báo"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "15",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "intonation": "falling",
+          "emphasis": [
+            "âm lượng"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 1.5,
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "kiểm trong mười giây",
+            "type": "action",
+            "form": "flow",
+            "object": "hai vùng thao tác xếp dọc trong máy",
+            "motion": "Lần lượt mở, chọn rồi kéo"
+          },
+          {
+            "term": "Âm báo",
+            "type": "term",
+            "form": "status",
+            "object": "hàng nốt nhạc và ký hiệu chọn",
+            "motion": "Đổi đỏ gạch thành dấu chọn xanh"
+          },
+          {
+            "term": "âm lượng",
+            "type": "term",
+            "form": "animation",
+            "object": "thanh cyan và loa",
+            "motion": "Ngón kéo, loa thôi gạch khi mức tăng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Âm báo",
+            "to": "âm lượng",
+            "type": "kiểm âm trước rồi mới kéo"
+          },
+          {
+            "from": "âm lượng",
+            "to": "kiểm trong mười giây",
+            "type": "cho thấy trạng thái sẵn sàng thử"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ÂM BÁO",
+            "kind": "label",
+            "attach_to": "hàng nốt nhạc",
+            "appear_s": 1,
+            "disappear_s": 5.9,
+            "effect": "none"
+          },
+          {
+            "text": "ÂM LƯỢNG",
+            "kind": "label",
+            "attach_to": "thanh trượt",
+            "appear_s": 3.2,
+            "disappear_s": 5.9,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.5
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.3,
+          "intent": "interaction",
+          "target": "dấu chọn âm",
+          "duration_s": 0.14,
+          "intensity": "low",
+          "reason": "Tick sáng khi chọn thành công."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S11",
+      "scene_type": "object_interaction",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "layout": "center_stage",
+        "focus": "đồng hồ kim, cữ xanh"
+      },
+      "duration_s": 4.5,
+      "narrative_purpose": "Đổi lời khuyên thành hành động có tín hiệu kiểm lại.",
+      "main_idea": "Đặt báo thức thử sau một phút để xác nhận có tiếng",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.79,
+      "visual_concept": "Kim tua tới cữ đặt trước; máy sáng và rung, loa xanh bung cung lớn đồng thời mới có chuông. Crop 1,12× về mặt đồng hồ đúng lúc tua để nhìn được kim và cữ đích, khoá khung khi kim tới cữ; ghép chữ sau crop.",
+      "main_change": "Kim tua tới cữ đặt trước; máy sáng và rung, loa xanh bung cung lớn đồng thời mới có chuông.",
+      "environment": "Xa là mặt sáng với bóng tròn phía trái, giữa là máy lệch phải với mặt đồng hồ lớn ≥560 px và vạch giờ, gần là vòng báo giờ và loa. Ánh cyan đổi sang xanh khi kim tới đích.",
+      "character_action": "Cục bộ 0,40–2,80 s (≈ toàn tập 50,9–53,3 s, căn lại theo mốc lời 16 sau TTS) pose idea có sẵn, rộng ≈170 px, x≈100, đáy y=1290, nằm ngoài mặt đồng hồ (máy lệch phải), mặt hướng vào đồng hồ, không nhép miệng; Cáo rời hình khi cắt về phòng ngủ.",
+      "props": [
+        "pose idea của Cáo cạnh đồng hồ (ngoài mặt đồng hồ)",
+        "đồng hồ kim, cữ xanh",
+        "khoảng giữa hai vạch trên mặt đồng hồ",
+        "loa xanh và hai vạch rung cơ học"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "header_slot": "top_left",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut chốt tròn sang tâm kim."
+        },
+        {
+          "t": 0.4,
+          "event": "Cáo (pose idea, ≈170 px, đáy y=1290) hiện bên trái, nhìn về đồng hồ; rời ở 2,8."
+        },
+        {
+          "t": 0.5,
+          "event": "Ngón chạm cạnh đồng hồ và chọn vị trí thử."
+        },
+        {
+          "t": 1.5,
+          "event": "Kim nhích, cữ phút đích xuất hiện khi tới từ khóa."
+        },
+        {
+          "t": 2.1,
+          "event": "Nhãn vào theo cung, kim tua nhanh theo chiều kim đồng hồ."
+        },
+        {
+          "t": 2.8,
+          "event": "Kim vào đúng cữ, loa xanh bung cung; máy rung sau một nhịp."
+        },
+        {
+          "t": 4.1,
+          "event": "Giữ cữ và loa xanh, phát đợt cung thứ hai trước khi về phòng ngủ."
+        }
+      ],
+      "voice_over": "Đừng đoán, thử đi: đặt báo thức một phút nữa.",
+      "voice_direction": [
+        {
+          "line_id": "16",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "pace": "brisk",
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "Đừng đoán",
+            "thử đi"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Cáo",
+            "type": "entity",
+            "form": "illustration",
+            "object": "pose idea của Cáo cạnh đồng hồ (ngoài mặt đồng hồ)",
+            "motion": "Hiện ở 0,4 s, nhìn đồng hồ, rời ở 2,8 s"
+          },
+          {
+            "term": "báo thức thử",
+            "type": "action",
+            "form": "animation",
+            "object": "đồng hồ kim, cữ xanh",
+            "motion": "Ngón đặt cữ rồi kim quét nhanh"
+          },
+          {
+            "term": "một phút nữa",
+            "type": "term",
+            "form": "icon",
+            "object": "khoảng giữa hai vạch trên mặt đồng hồ",
+            "motion": "Vạch đích nổi lên khi đặt"
+          },
+          {
+            "term": "chuông vang",
+            "type": "result",
+            "form": "status",
+            "object": "loa xanh và hai vạch rung cơ học",
+            "motion": "Cung âm mở sau khi tới cữ"
+          }
+        ],
+        "relations": [
+          {
+            "from": "một phút nữa",
+            "to": "báo thức thử",
+            "type": "đặt đích trên mặt kim"
+          },
+          {
+            "from": "báo thức thử",
+            "to": "chuông vang",
+            "type": "kim tới cữ thì phát âm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "+1 PHÚT",
+            "kind": "number",
+            "attach_to": "mặt đồng hồ",
+            "appear_s": 2.1,
+            "disappear_s": 4.4,
+            "effect": "highlight"
+          }
+        ],
+        "hold_s": 1.79
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.1,
+          "intent": "interaction",
+          "target": "kim đồng hồ",
+          "duration_s": 0.65,
+          "intensity": "low",
+          "reason": "Tích tắc nhanh theo chuyển động kim."
+        },
+        {
+          "t": 3,
+          "intent": "alert",
+          "target": "loa xanh",
+          "duration_s": 1.2,
+          "intensity": "low",
+          "reason": "Chuông tổng hợp nhỏ phát sau lúc hình đã báo đúng."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S12",
+      "scene_type": "environment_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "",
+          "state": "bad",
+          "object": "Ký ức opening: loa gạch, thanh họp chạy"
+        },
+        "after": {
+          "label": "",
+          "state": "ok",
+          "object": "Loa xanh, lịch họp chưa tiến"
+        }
+      },
+      "duration_s": 7.8,
+      "narrative_purpose": "Trả hệ quả đầu tập và mời người xem kiểm báo thức ngày mai.",
+      "main_idea": "Trở lại đầu giường với chuông có tiếng và buổi họp chưa bắt đầu",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.87,
+      "visual_concept": "Cùng điện thoại và ô họp như mở, nhưng có cung loa xanh, thanh họp chưa chạy; cuối cùng bong bóng rỗng mở cạnh Cáo. Vào bằng match cut vòng loa xanh ở 1,10×, lùi về đúng góc đầu giường pha S01 để đọc được thanh họp rỗng, rồi khóa máy.",
+      "main_change": "Cùng điện thoại và ô họp như mở, nhưng có cung loa xanh, thanh họp chưa chạy; cuối cùng bong bóng rỗng mở cạnh Cáo.",
+      "environment": "Giữ góc tủ đầu giường của pha S01, xa là cửa sổ hắt nắng vàng, giữa là tủ cùng tọa độ và điện thoại cao 620 px, gần là bóng của Cáo và bong bóng rỗng. Sáng dần quanh khung, sạch chữ nền.",
+      "character_action": "4,80–7,80 s thumbs_up rộng 180 px, x≈105, đáy 1290, hướng người xem, bong bóng mở theo hướng Cáo.",
+      "props": [
+        "điện thoại và loa xanh",
+        "ô lịch y hệt pha mở, thanh chưa chạy",
+        "nốt nhạc trên thẻ chuông",
+        "pose thumbs_up",
+        "bong bóng trả lời rỗng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "header_slot": "top_right",
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut loa xanh về điện thoại trong phòng ban mai; cung tàn dần."
+        },
+        {
+          "t": 0.15,
+          "event": "Ô lịch họp trượt vào, thanh còn rỗng."
+        },
+        {
+          "t": 1.4,
+          "event": "Lùi hết về góc hook, nắng kéo qua mép tủ."
+        },
+        {
+          "t": 2.9,
+          "event": "Đặt chữ chốt trên máy, thu vệt nắng khỏi chữ."
+        },
+        {
+          "t": 4,
+          "event": "Thẻ nốt nhạc cạnh máy nở khi tới ý kiểm Âm báo."
+        },
+        {
+          "t": 4.8,
+          "event": "Cáo hiện cạnh máy."
+        },
+        {
+          "t": 5.6,
+          "event": "Bong bóng rỗng bật lên bên Cáo."
+        },
+        {
+          "t": 6.9,
+          "event": "Bong bóng dừng sau một nhịp nảy; giữ khung trả bài."
+        }
+      ],
+      "voice_over": "Báo thức không hỏng, chỉ đang rung mà bạn không biết.\nSáng mai mở báo thức, xem Âm báo đang để gì. Gõ cho Cáo biết nhé!",
+      "voice_direction": [
+        {
+          "line_id": "17",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "pace": "measured",
+          "intonation": "falling",
+          "emphasis": [
+            "không hỏng",
+            "đang rung"
+          ],
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "18",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "intonation": "rise_fall",
+          "emphasis": [
+            "Âm báo",
+            "Gõ cho Cáo"
+          ],
+          "pause_before_s": 0,
+          "pause_after_s": 0.27,
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "báo thức",
+            "type": "entity",
+            "form": "status",
+            "object": "điện thoại và loa xanh",
+            "motion": "Cung nở rồi tắt theo đuôi chuông"
+          },
+          {
+            "term": "họp",
+            "type": "result",
+            "form": "status",
+            "object": "ô lịch y hệt pha mở, thanh chưa chạy",
+            "motion": "Lịch vào cạnh máy và giữ thanh rỗng"
+          },
+          {
+            "term": "Âm báo",
+            "type": "term",
+            "form": "icon",
+            "object": "nốt nhạc trên thẻ chuông",
+            "motion": "Thẻ nở nhẹ cạnh máy"
+          },
+          {
+            "term": "Cáo",
+            "type": "entity",
+            "form": "illustration",
+            "object": "pose thumbs_up",
+            "motion": "Hiện cạnh điện thoại"
+          },
+          {
+            "term": "gõ",
+            "type": "action",
+            "form": "animation",
+            "object": "bong bóng trả lời rỗng",
+            "motion": "Bung cạnh Cáo"
+          }
+        ],
+        "relations": [
+          {
+            "from": "báo thức",
+            "to": "họp",
+            "type": "lần này tỉnh trước cuộc họp"
+          },
+          {
+            "from": "Âm báo",
+            "to": "gõ",
+            "type": "mời báo lại thiết lập"
+          }
+        ],
+        "texts": [
+          {
+            "text": "THỬ ĐI, ĐỪNG ĐOÁN",
+            "kind": "message",
+            "attach_to": "khoảng sáng trên điện thoại",
+            "appear_s": 2.9,
+            "disappear_s": 7.7,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.87
+      },
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0,
+          "intent": "alert",
+          "target": "loa máy",
+          "duration_s": 1,
+          "intensity": "low",
+          "reason": "Đuôi chuông tổng hợp nhỏ nối cảm giác đã sửa."
+        },
+        {
+          "t": 7.2,
+          "intent": "silence",
+          "target": "khung kết",
+          "duration_s": 0.6,
+          "intensity": "low",
+          "reason": "Đuôi im 0,60 s cho bong bóng và hình kết lắng."
+        }
+      ],
+      "transition": "fade",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

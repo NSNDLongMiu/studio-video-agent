@@ -1,0 +1,3 @@
+# Storyboard về DRAFT — áp dụng D8 cho T14 (19/11/2026 chiều)
+
+Giám đốc trả T9 bản đầu và bổ sung luật D8 (R20–R23: opening riêng; header xuyên suốt, đủ lớn, đổi ô; keyword thật sự có chữ + kinetic có chủ ý; toàn vẹn giọng đọc). T14 (bản T8 cập nhật) dùng cùng quy trình nên storyboard hiện tại (APPROVED theo luật cũ) cần sửa trước khi dựng: opening hiện gộp trong S01 (không có cảnh riêng); `header.hidden_scenes` còn 6 cảnh; nhiều cảnh không có chữ (S02, S10, S11 = 0) và chưa có kế hoạch kinetic theo nhịp 25 s. Sửa theo `docs/chat-luong-xem.md` D8 và `docs/audit-T9.md`; giữ mạch/hook/ví dụ đã duyệt. Dựng (produce) chỉ sau khi storyboard APPROVED lại.

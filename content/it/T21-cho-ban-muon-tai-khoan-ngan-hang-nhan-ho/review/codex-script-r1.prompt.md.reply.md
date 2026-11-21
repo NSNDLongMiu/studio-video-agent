@@ -1,0 +1,1 @@
+Đã ghi [script-codex-r1.md](<D:/Agent Video Studio/content/it/T21-cho-ban-muon-tai-khoan-ngan-hang-nhan-ho/review/script-codex-r1.md>) với 4 đoạn lời đọc đề xuất và 5 lỗi hoặc rủi ro chính xác. Điểm quan trọng nhất là nêu rõ tài khoản có thể bị phong toả theo văn bản của cơ quan có thẩm quyền. Đề xuất đổi thứ tự cảnh để dải phạt xuất hiện khoảng giây 20,5, chờ đo lại sau TTS.

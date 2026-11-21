@@ -1,0 +1,2589 @@
+{
+  "video_id": "IT-T16-E01",
+  "status": "APPROVED",
+  "authored_by": "Codex sửa vòng 2 trên bản nháp Claude viết thay",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "Remotion (ExplainerScene, DataVizScene, UiSimulationScene, CharacterScene) có nền tối cố định và chỉ dựng khối–mũi tên, thanh số liệu, IDE/terminal; không có điện thoại, ô QR, quầy cơm với khay cơm, ba cánh cổng đóng mở, cuốn sổ ghi từng dòng, hai ô so sánh đúng/sai hay thẻ lựa chọn, và không đổi nền theo ngữ cảnh (Y4: office, database, incident, security). Vì vậy chọn pillow-ffmpeg với tools/motion. Tái dùng thư viện: core (Canvas, Palette), text (attach_label, fit_text), components (panel, card, icon user/clock/check/cross/warning/shield/lock/database/server, status_indicator, badge, cursor, sticker cho Cáo), flow (FlowDiagram, connection, request_stream, comparison), charts.counter, kinetic.kinetic_text, header (opening_plate, HeaderTrack), sequence (camera, render_scene, write_render_log), props (server_rack, packet, badge, document_card). Nền ảnh dưới đồ họa lấy từ tools/backgrounds/make_background.py theo chủ đề trong environment (office, database, incident, security). kind_params.stage.backdrop chỉ dùng khóa hợp lệ của tools/motion/backdrops.py cho nền dự phòng: office ở S01–S03/S10–S11, server ở S04–S06, warning ở S07/S09 và neutral ở S08. Phải tự vẽ trong mã của tập (assets/_scratch/visual.py, ghi đề nghị đưa vào thư viện ở notes.md): điện thoại và các trạng thái màn hình (quét, vòng quay, vàng, lỗi đỏ, danh sách lịch sử, nút Gửi, tab lịch sử), ô QR hình học, quầy cơm với khay cơm, hơi nóng và đồng hồ cát, ví, hình khối người và thu ngân (silhouette), ba cổng trượt có đèn, vòng đồng hồ 24 giờ có kim, cuốn sổ ghi số dư (mở, dòng kẻ, bút), khối lõi có sổ bên trong, hộp thông báo có khiên, khối chính/dự phòng và đường chung, thẻ lựa chọn có icon. scene_kinds của thư viện chỉ có app dialog/browser/terminal/ide và đạo cụ browser/server/document/packet; ở các cảnh có điện thoại, sổ, cổng, scene_kind là nhãn dàn dựng, kind_params khai theo schema nhưng Producer vẽ đạo cụ riêng thay vì gọi nguyên render_scene_kind (không gọi app=\"phone\" vì thư viện không có). Các object gate, phone, ledger và card trong kind_params chỉ là nhãn mô tả. Dựng chúng trong mã của tập và tránh truyền các nhãn này vào render_scene_kind nguyên bản. Camera chỉ khai ở hai cảnh: S01 push_in 1,00→1,10 (0,30–3,40 s) trên lớp hình dư biên để nhấn màn hình điện thoại, S04 push_in 1,00→1,15 (5,00–6,65 s) về khối lõi giữa để nối match cut sang S05; mọi cảnh khác dựng cố định, gồm S08 với vòng lấy nét và giảm sáng. Chữ, header, Cáo và phụ đề đặt sau crop. FFmpeg: overlay có tọa độ động dùng eval=frame; zoompan từ ảnh tĩnh phải có d bằng số khung của đoạn. R21 dùng HeaderTrack với bbox thật theo cảnh (header một dòng, không title); R22 dùng text.attach_label và kinetic.kinetic_text; ghi RenderLog để QC đo trên chữ vẽ thật.",
+  "opening": {
+    "scene_id": "S01",
+    "title": "NGÂN HÀNG NGỪNG 24 GIỜ?",
+    "duration_s": 5,
+    "voice": true,
+    "voice_line": "01",
+    "style": "question",
+    "style_params": {
+      "keyword": "Chưa xác nhận"
+    },
+    "animation": "Cảnh riêng, có lời hook (lời 01 vào ở 0,60 s). Ba pha: quét QR rồi vòng quay (0,00–1,60 s), màn hình đổi vàng «Chưa xác nhận» và đồng hồ cát trên khay (1,60–3,40 s), quầy mờ lại và tiêu đề bật một lần ở tâm khung (3,40–5,00 s, kinetic pop, ≥ 96 px, xuống dòng «NGÂN HÀNG / NGỪNG 24 GIỜ?»). Không có nhãn chủ đề riêng (script chỉ liệt kê tiêu đề). Camera push_in 1,00→1,10 nhấn điện thoại; wipeleft sang S02 từ 4,75 s.",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 1.6,
+        "visual": "Điện thoại của Cáo áp vào ô QR trên quầy cơm, tia quét chạy qua, vòng quay hiện trên màn hình; ví nhỏ hiện cạnh điện thoại.",
+        "sfx_intent": "interaction",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 1.6,
+        "end_s": 3.4,
+        "visual": "Màn hình đổi sang vàng «Chưa xác nhận»; khay cơm hiện đồng hồ cát, hơi nóng tắt dần; thu ngân khối đứng chờ.",
+        "sfx_intent": "alert",
+        "voice_line": "01"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 3.4,
+        "end_s": 5,
+        "visual": "Quầy mờ lại, tiêu đề «NGÂN HÀNG / NGỪNG 24 GIỜ?» bật một lần ở tâm khung.",
+        "sfx_intent": "ui_appear"
+      }
+    ]
+  },
+  "header": {
+    "text": "BANKING / HỆ THỐNG LÕI",
+    "slots": [
+      "top",
+      "top_right",
+      "top_left"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "1080×1920, 30 fps. Motion graphics giáo dục dọc, hình khối bo góc, cạnh sáng mềm, ánh sáng trái trên, bóng đổ xuống phải; UI và dữ liệu là hình học tự vẽ, không logo, không tên ngân hàng, không người thật (hình khối người chỉ là silhouette không mặt). NAPAS chỉ xuất hiện ở nhãn nguồn S04. Nghĩa màu theo plan.md: #60A5FA yêu cầu/dữ liệu đang đi (gói hỏi, viền sổ), #34D399 đã xác nhận/chạy/an toàn, #FB7185 lỗi/kênh đứng/nguy cơ trùng lệnh, #FBBF24 chờ/chưa xác nhận, #94A3B8 mất kết nối, chữ #F1F5F9. Vật nhận diện xuyên suốt: cuốn sổ ghi số dư (S03, S04 thu nhỏ, S05–S09). Bố cục: header một dòng «BANKING / HỆ THỐNG LÕI» ≥ 52 px ở các ô top (S02), top_right (S03–S06, S08, S10), top_left (S07, S09, S11), vùng header y≈250–390 nên nội dung chính bắt đầu y≥420 ở mọi cảnh; phụ đề accessibility 56 px, ≤ 2 dòng, ≤ 28 ký tự/dòng ở y≈1340–1500; Cáo luôn nằm dưới/bên cạnh vật, đáy ≤ y 1290. Nhãn 56–60 px; nhãn khoá/số («Hệ thống lõi», «Lệnh 2», «24 giờ», «32 triệu / ngày») ≥ 72 px; tiêu đề opening ≥ 96 px, xuống dòng «NGÂN HÀNG / NGỪNG 24 GIỜ?». Nền theo cảnh: office S01, S02, S03, S10, S11 (23,0 s = 38,3%); database S04–S06 (21,5 s = 35,8%); incident S07, S09 (10,5 s = 17,5%); security S08 (5,1 s = 8,5%); dài nhất 3 cảnh liền, không nền nào quá 40%. Cỡ cảnh: wide, wide, medium, wide, medium, wide, medium, medium, wide, wide, medium (không quá 2 liền). Cáo xuất hiện 3 lần (S01 think 3,0 s, S07 stop 2,5 s, S11 thumbs_up 3,6 s), tổng 9,1 s ≈ 15,1%. Talking-head 0%. Chữ minh hoạ có 44 từ trong semantic_plan.texts, tương đương 43,9 từ/phút. Nút gửi ở S07 và trạng thái chờ ở S10 chỉ là icon (mũi tên gửi, đồng hồ cát), không có chữ vẽ ngoài semantic_plan.texts, nên số chữ vẽ thật cũng ≈ 44 từ (43,9 từ/phút, ≤ 45). Kinetic gồm 3 lần: tiêu đề S01 (3,40 s), «Hệ thống lõi» S05 (24,30 s toàn tập) và «Lệnh 2» S07 (39,70 s toàn tập). Số «32 triệu / ngày» (S04) dùng fade và bộ đếm chứ không kinetic để không liền S05. Bìa/thumbnail: S02 ở ≈ 3,30 s cục bộ (8,30 s toàn video): ba cổng đỏ xếp dọc và vòng đồng hồ, đọc được ở 180×320. Không hiện kết quả thanh toán ở S10, không đếm ngược, không mốc giờ cụ thể, không câu gợi rút tiền. Thời lượng 60,10 s theo bản chốt của script (S04 6,65 s do lời 05 dài thêm ≈ 0,7 s, mọi cảnh từ S05 dịch +0,7 s; bảng gốc 59,40 s); mọi mốc giây trong cảnh là mốc dự kiến theo lời của script, Producer canh lại theo TTS rồi Claude duyệt lại. Dựng picture.mp4 không phụ đề trước rồi đốt ASS. Giới hạn nói thật: Cáo là dáng tĩnh, đổi dáng bằng cắt, không nhép miệng; phone/QR/cổng/sổ phải vẽ riêng (xem renderer_reason); chưa kiểm bằng mắt ở 360×640 vì chưa có bản dựng.",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "narrative_purpose": "Opening kể tình huống: Cáo có tiền nhưng quét QR ở quầy cơm vẫn «Chưa xác nhận». Hệ quả hiện trước giây 5, rồi tiêu đề nêu chủ đề.",
+      "main_idea": "Có tiền mà giao dịch QR chưa được xác nhận, suất cơm đang chờ.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 2.35,
+      "visual_concept": "Quầy cơm ở góc toàn cảnh. Điện thoại cầm tay của Cáo áp vào ô QR trên giá đứng, tia quét chạy qua ô QR, vòng quay hiện trên màn hình; một chiếc ví nhỏ (hình, không số) hiện cạnh điện thoại. Rồi màn hình đổi sang vàng «Chưa xác nhận», khay cơm hiện đồng hồ cát nhỏ và hết hơi nóng, hình khối thu ngân đứng chờ. Cuối cảnh quầy mờ lại và tiêu đề bật một lần ở tâm khung. Cùng bộ vật và góc máy này S10 sẽ trả lại.",
+      "main_change": "Màn hình điện thoại đổi từ vòng quay trắng-xanh sang vàng, khay cơm hiện đồng hồ cát và hết hơi nóng: nhìn ra ở 360×640 qua đổi màu màn hình và vật mới trên khay.",
+      "scene_type": "object_interaction",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "app": "phone",
+        "states": [
+          {
+            "t": 0,
+            "state": "scan"
+          },
+          {
+            "t": 1.2,
+            "state": "loading"
+          },
+          {
+            "t": 1.9,
+            "state": "pending",
+            "label": "Chưa xác nhận"
+          }
+        ],
+        "stage": {
+          "backdrop": "office"
+        }
+      },
+      "environment": "office #111D30 (quầy cơm). Xa: tường xanh than, đèn treo tạo vệt sáng mờ, không bảng chữ. Giữa: mặt quầy chạy ngang (y≈1150–1320), ô QR trên giá đứng bên phải (x≈700–960, y≈700–1100), hình khối thu ngân đứng sau quầy (x≈830–990, y≈450–700), hơi nóng bốc từ khay cơm. Gần: điện thoại cầm tay (x≈280–620 lúc đầu, dịch ~60 px về phía ô QR khi quét; y≈540–1160), nhãn trạng thái ngay trên khung điện thoại (y≈430–520), ví nhỏ (x≈130–290, y≈640–800), khay cơm trên quầy (x≈330–780, y≈1190–1310). Ánh sáng trái trên, bóng đổ xuống phải. Toàn cảnh; nội dung đặt y≥420 để chừa ô header cho S10 cùng khung. Pha 3 làm mờ quầy (blur + phủ tối ≈ 60%) để tiêu đề đọc rõ.",
+      "character_action": "Cáo (think, rộng 180 px, x=103, mép đáy y=1270, 0,00–3,00 s) đứng cạnh quầy, nhìn điện thoại đang quét; không che điện thoại và khay cơm. Rời khung ở 3,00 s.",
+      "props": [
+        "Điện thoại cầm tay, màn hình đổi trạng thái (quét, vòng quay, vàng)",
+        "Ô QR hình học trên giá đứng (không mã thật, không logo)",
+        "Khay cơm có hơi nóng rồi đồng hồ cát nhỏ",
+        "Ví nhỏ (hình, không số)",
+        "Hình khối thu ngân đứng sau quầy",
+        "Tia quét"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở toàn quầy: điện thoại cách ô QR ≈ 160 px, khay cơm bốc hơi nóng, thu ngân khối đứng yên. Cáo (think) đã ở vị trí."
+        },
+        {
+          "t": 0.3,
+          "event": "Tiếng bíp khẽ: điện thoại dịch ≈ 60 px áp vào ô QR, tia quét chạy qua ô QR (0,30–0,90 s). Camera push_in 1,00→1,10 về phía điện thoại, kết thúc ở 3,40 s (nhấn màn hình điện thoại)."
+        },
+        {
+          "t": 0.6,
+          "event": "Lời 01 bắt đầu."
+        },
+        {
+          "t": 0.95,
+          "event": "Lời «có tiền»: ví nhỏ hiện cạnh điện thoại (pop 0,2 s)."
+        },
+        {
+          "t": 1.2,
+          "event": "Vòng quay hiện trên màn hình điện thoại (đang chờ đáp)."
+        },
+        {
+          "t": 1.6,
+          "event": "Vào pha conflict."
+        },
+        {
+          "t": 1.9,
+          "event": "Lời «chưa trả được»: màn hình đổi sang vàng, nhãn «Chưa xác nhận» hiện ngay trên khung điện thoại; đồng hồ cát hiện trên khay, hơi nóng mỏng dần."
+        },
+        {
+          "t": 2.4,
+          "event": "Cát chảy trong đồng hồ cát, hơi nóng tắt hẳn."
+        },
+        {
+          "t": 2.65,
+          "event": "Hết lời 01; giữ 2,35 s. Thu ngân khối đứng chờ."
+        },
+        {
+          "t": 3,
+          "event": "Cáo rời khung."
+        },
+        {
+          "t": 3.4,
+          "event": "Pha topic_reveal: quầy mờ lại, tiêu đề «NGÂN HÀNG / NGỪNG 24 GIỜ?» bật một lần (kinetic pop) ở tâm khung."
+        },
+        {
+          "t": 4.75,
+          "event": "Máy trượt về phía ba cổng (wipeleft) sang S02."
+        }
+      ],
+      "voice_over": "Có tiền trong tài khoản, sao chưa trả được?",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "concerned",
+          "emphasis": [
+            "Có tiền",
+            "chưa trả được"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.6,
+          "pause_after_s": 2.35,
+          "intonation": "rising",
+          "transition": {
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "Chưa xác nhận; NGÂN HÀNG NGỪNG 24 GIỜ?",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "có tiền",
+            "type": "concept",
+            "form": "icon",
+            "object": "ví nhỏ cạnh điện thoại",
+            "motion": "Ví hiện (pop) cạnh điện thoại khi nghe «có tiền»."
+          },
+          {
+            "term": "quét QR",
+            "type": "action",
+            "form": "animation",
+            "object": "màn hình điện thoại",
+            "motion": "Điện thoại áp vào ô QR, tia quét chạy qua, vòng quay hiện."
+          },
+          {
+            "term": "chưa trả được",
+            "type": "result",
+            "form": "status",
+            "object": "màn hình điện thoại",
+            "motion": "Màn hình đổi vàng «Chưa xác nhận»; đồng hồ cát trên khay, hơi nóng tắt."
+          }
+        ],
+        "relations": [
+          {
+            "from": "điện thoại",
+            "to": "ô QR",
+            "type": "gửi yêu cầu quét, chưa có đáp"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Chưa xác nhận",
+            "kind": "label",
+            "attach_to": "màn hình điện thoại",
+            "appear_s": 1.9,
+            "disappear_s": 3.4,
+            "effect": "fade"
+          },
+          {
+            "text": "NGÂN HÀNG NGỪNG 24 GIỜ?",
+            "kind": "message",
+            "attach_to": "tâm khung (tiêu đề opening)",
+            "appear_s": 3.4,
+            "disappear_s": 4.95,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.55
+      },
+      "sound_cues": [
+        {
+          "t": 0.3,
+          "intent": "interaction",
+          "target": "điện thoại quét ô QR",
+          "intensity": "low",
+          "reason": "Tiếng quét «bíp» khẽ khớp lúc điện thoại áp vào ô QR."
+        },
+        {
+          "t": 1.9,
+          "intent": "alert",
+          "target": "Chưa xác nhận",
+          "intensity": "low",
+          "reason": "Tiếng báo mềm đi xuống khi màn hình đổi sang trạng thái chờ: báo chưa xác nhận mà không gây hoảng."
+        },
+        {
+          "t": 3.4,
+          "intent": "ui_appear",
+          "target": "tiêu đề opening",
+          "intensity": "low",
+          "reason": "Âm báo khẽ khi tiêu đề bật một lần ở pha topic_reveal."
+        },
+        {
+          "t": 4.75,
+          "intent": "transition",
+          "target": "S01→S02",
+          "intensity": "low",
+          "reason": "Tiếng trượt ngắn khớp cú trượt máy về phía ba cổng."
+        }
+      ],
+      "transition": "wipeleft",
+      "duration_s": 5,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "0,3 s · interaction · điện thoại quét ô QR: Tiếng quét «bíp» khẽ khớp lúc điện thoại áp vào ô QR.",
+        "1,9 s · alert · Chưa xác nhận: Tiếng báo mềm đi xuống khi màn hình đổi sang trạng thái chờ: báo chưa xác nhận mà không gây hoảng.",
+        "3,4 s · ui_appear · tiêu đề opening: Âm báo khẽ khi tiêu đề bật một lần ở pha topic_reveal.",
+        "4,75 s · transition · S01→S02: Tiếng trượt ngắn khớp cú trượt máy về phía ba cổng."
+      ]
+    },
+    {
+      "scene_id": "S02",
+      "narrative_purpose": "Hook hệ quả: giả định ngừng 24 giờ làm ba kênh QR/App/ATM cùng đóng, người chờ dồn lại. Đây cũng là khung bìa/thumbnail.",
+      "main_idea": "Ngân hàng ngừng chạy thì ba kênh thanh toán cùng đứng.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.85,
+      "visual_concept": "Ba cánh cổng xếp dọc (QR, App, ATM), mỗi cổng có hai cánh trượt, đèn trạng thái và icon kênh; cả ba đang mở (xanh) và nối bằng đường mảnh sang một khối tối bên phải. Ba hình khối người lần lượt bước tới đứng chờ phía trước cổng QR. Khi giọng nói «ngân hàng ngừng chạy», ba cổng lần lượt khép lại và chuyển đỏ; vòng đồng hồ hiện cạnh khối tối, kim bắt đầu chạy; hàng người dồn lại.",
+      "main_change": "Ba cổng xanh lần lượt khép và chuyển đỏ (QR rồi App rồi ATM), kim đồng hồ chạy, hàng người dồn trước cổng QR.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "qr",
+            "label": "QR",
+            "object": "gate",
+            "t": 1.5
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "object": "gate",
+            "t": 1.9
+          },
+          {
+            "id": "atm",
+            "label": "ATM",
+            "object": "gate",
+            "t": 2.3
+          },
+          {
+            "id": "core",
+            "label": "",
+            "object": "server",
+            "t": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "qr",
+            "to": "core",
+            "kind": "normal",
+            "t": 0,
+            "stop_t": 1.5
+          },
+          {
+            "from": "app",
+            "to": "core",
+            "kind": "normal",
+            "t": 0,
+            "stop_t": 1.9
+          },
+          {
+            "from": "atm",
+            "to": "core",
+            "kind": "normal",
+            "t": 0,
+            "stop_t": 2.3
+          }
+        ],
+        "stage": {
+          "backdrop": "office"
+        }
+      },
+      "environment": "office #111D30 (hành lang quầy, cùng họ màu với S01). Xa: tường xanh than với vệt sáng mờ. Giữa: ba cổng xếp dọc, tổng cao ≈ 660 px (x≈330–800, y≈440–1100), nối bằng đường mảnh tới khối tối bên phải (x≈840–990, y≈770–1100). Gần: hàng người khối (silhouette không mặt) đứng chờ phía trước cổng QR (x≈100–300, y≈480–640), vòng đồng hồ phía trên khối tối (x≈780–990, y≈440–650). Ánh sáng trái trên, bóng đổ xuống phải; đèn cổng là nguồn sáng chính, chuyển từ xanh #34D399 sang đỏ #FB7185. Toàn cảnh, máy đứng yên để mắt theo từng cổng đóng.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Ba cổng trượt có đèn (QR, App, ATM), mỗi cổng một icon kênh",
+        "Khối tối bên phải, nối ba cổng",
+        "Ba hình khối người chờ (silhouette)",
+        "Vòng đồng hồ có kim"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt vào bằng cú trượt máy: ba cổng xanh đang mở, đường mảnh nối khối tối, đèn khối tối nhấp nhẹ."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 02 bắt đầu «Mình dựng thử»."
+        },
+        {
+          "t": 0.3,
+          "event": "Người chờ thứ nhất bước tới trước cổng QR; 0,70 s người thứ hai; 1,10 s người thứ ba."
+        },
+        {
+          "t": 1.5,
+          "event": "Lời «ngân hàng ngừng chạy»: cổng QR khép, đèn xanh sang đỏ, nhãn «QR» hiện, tiếng cạch."
+        },
+        {
+          "t": 1.9,
+          "event": "Cổng App khép, đỏ, nhãn «App»."
+        },
+        {
+          "t": 2.1,
+          "event": "Lời «hai mươi bốn giờ»: vòng đồng hồ hiện cạnh khối tối, kim bắt đầu chạy, nhãn «24 giờ»."
+        },
+        {
+          "t": 2.3,
+          "event": "Cổng ATM khép, đỏ, nhãn «ATM»; cả ba cổng đỏ (khung bìa/thumbnail ở ≈ 3,30 s tức 8,3 s toàn video)."
+        },
+        {
+          "t": 2.65,
+          "event": "Hết lời 02; giữ 1,85 s."
+        },
+        {
+          "t": 2.8,
+          "event": "Hàng người dồn thêm một nhịp về phía cổng QR."
+        },
+        {
+          "t": 3.4,
+          "event": "Cổng QR rung nhẹ hai lần, đèn đỏ nhấp."
+        },
+        {
+          "t": 3.9,
+          "event": "Kim đồng hồ quét tiếp; điểm sáng đỏ đi dọc đường nối từ cổng về khối tối rồi dừng trước khối."
+        }
+      ],
+      "voice_over": "Mình dựng thử: ngân hàng ngừng chạy hai mươi bốn giờ.",
+      "voice_direction": [
+        {
+          "line_id": "02",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "Mình dựng thử",
+            "hai mươi bốn giờ"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.85,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "QR; App; ATM; 24 giờ",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "QR",
+            "type": "entity",
+            "form": "icon",
+            "object": "cổng QR",
+            "motion": "Cổng khép và chuyển đỏ lúc 1,50 s."
+          },
+          {
+            "term": "App",
+            "type": "entity",
+            "form": "icon",
+            "object": "cổng App",
+            "motion": "Cổng khép và chuyển đỏ lúc 1,90 s."
+          },
+          {
+            "term": "ATM",
+            "type": "entity",
+            "form": "icon",
+            "object": "cổng ATM",
+            "motion": "Cổng khép và chuyển đỏ lúc 2,30 s."
+          },
+          {
+            "term": "24 giờ",
+            "type": "concept",
+            "form": "icon",
+            "object": "vòng đồng hồ",
+            "motion": "Vòng đồng hồ hiện, kim chạy."
+          },
+          {
+            "term": "ngừng chạy",
+            "type": "result",
+            "form": "status",
+            "object": "đèn đỏ trên ba cổng",
+            "motion": "Ba đèn xanh lần lượt sang đỏ."
+          },
+          {
+            "term": "người chờ",
+            "type": "result",
+            "form": "illustration",
+            "object": "ba hình khối người",
+            "motion": "Bước tới rồi dồn trước cổng QR."
+          }
+        ],
+        "relations": [
+          {
+            "from": "cổng QR",
+            "to": "khối tối",
+            "type": "cùng nối vào một khối phía sau"
+          },
+          {
+            "from": "cổng App",
+            "to": "khối tối",
+            "type": "cùng nối vào một khối phía sau"
+          },
+          {
+            "from": "cổng ATM",
+            "to": "khối tối",
+            "type": "cùng nối vào một khối phía sau"
+          }
+        ],
+        "texts": [
+          {
+            "text": "QR",
+            "kind": "label",
+            "attach_to": "cổng QR",
+            "appear_s": 1.5,
+            "disappear_s": 4.45,
+            "effect": "fade"
+          },
+          {
+            "text": "App",
+            "kind": "label",
+            "attach_to": "cổng App",
+            "appear_s": 1.9,
+            "disappear_s": 4.45,
+            "effect": "fade"
+          },
+          {
+            "text": "ATM",
+            "kind": "label",
+            "attach_to": "cổng ATM",
+            "appear_s": 2.3,
+            "disappear_s": 4.45,
+            "effect": "fade"
+          },
+          {
+            "text": "24 giờ",
+            "kind": "number",
+            "attach_to": "vòng đồng hồ",
+            "appear_s": 2.1,
+            "disappear_s": 4.45,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.85
+      },
+      "sound_cues": [
+        {
+          "t": 1.5,
+          "intent": "alert",
+          "target": "cổng QR",
+          "intensity": "low",
+          "reason": "Tiếng «cạch» ngắn khi cổng QR khép."
+        },
+        {
+          "t": 1.9,
+          "intent": "alert",
+          "target": "cổng App",
+          "intensity": "low",
+          "reason": "Tiếng «cạch» ngắn khi cổng App khép."
+        },
+        {
+          "t": 2.3,
+          "intent": "impact_risk",
+          "target": "cổng ATM",
+          "intensity": "medium",
+          "reason": "Cổng thứ ba khép: cả ba cổng đỏ, đỉnh của hệ quả hook nên cạch mạnh hơn."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 4.5,
+      "header_slot": "top",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "1,5 s · alert · cổng QR: Tiếng «cạch» ngắn khi cổng QR khép.",
+        "1,9 s · alert · cổng App: Tiếng «cạch» ngắn khi cổng App khép.",
+        "2,3 s · impact_risk · cổng ATM: Cổng thứ ba khép: cả ba cổng đỏ, đỉnh của hệ quả hook nên cạch mạnh hơn."
+      ]
+    },
+    {
+      "scene_id": "S03",
+      "narrative_purpose": "Trả ý đầu của câu hỏi: báo lỗi ở kênh không có nghĩa là mất tiền; các kênh thường phải hỏi một cuốn sổ trước.",
+      "main_idea": "Lỗi nằm ở kênh, số dư nằm ở một cuốn sổ riêng mà các kênh phải hỏi.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.61,
+      "visual_concept": "Trung cảnh: điện thoại ở phía trên trái hiện dấu lỗi đỏ; cuốn sổ lớn mở ở giữa là vật tách riêng, các dòng đứng yên (nhấn rằng lỗi ở điện thoại, sổ không đổi). Ba cổng thu nhỏ dọc mép phải. Sau câu trả lời đầu, dấu lỗi mờ đi và cuốn sổ sáng lên; ba mũi tên từ ba cổng chạm vào cuốn sổ, mỗi mũi có dấu hỏi vàng.",
+      "main_change": "Dấu lỗi đỏ chỉ nằm ở điện thoại rồi mờ đi trong khi cuốn sổ đứng yên rồi sáng lên; sau đó ba mũi tên từ ba cổng cùng chạm vào cuốn sổ.",
+      "scene_type": "object_interaction",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "target": "Sổ",
+        "props": {
+          "focus-target": "ledger"
+        },
+        "stage": {
+          "backdrop": "office"
+        }
+      },
+      "environment": "office #111D30 (bàn/quầy, cùng bối cảnh S01–S02 nhìn gần hơn). Xa: tường xanh than. Giữa: cuốn sổ mở lớn ở trung tâm (x≈330–790, y≈700–1100), điện thoại phía trên trái (x≈130–400, y≈440–880), ba cổng thu nhỏ dọc mép phải (x≈850–990, y≈480–1000). Gần: ba mũi tên xanh dương từ cổng tới sổ, dấu hỏi vàng #FBBF24 trên mũi tên. Ánh sáng trái trên, bóng đổ xuống phải. Trung cảnh, máy đứng yên.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Điện thoại có dấu lỗi đỏ",
+        "Cuốn sổ ghi số dư mở lớn (dòng kẻ, một dòng viền xanh dương, không chữ số)",
+        "Ba cổng thu nhỏ",
+        "Ba mũi tên xanh dương và ba dấu hỏi vàng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt vào: điện thoại với màn hình vàng, cuốn sổ mở ở giữa, ba cổng đỏ thu nhỏ bên phải."
+        },
+        {
+          "t": 0.12,
+          "event": "Lời 03 bắt đầu."
+        },
+        {
+          "t": 0.45,
+          "event": "Lời «báo lỗi»: dấu lỗi đỏ bật trên màn hình điện thoại."
+        },
+        {
+          "t": 1.2,
+          "event": "Lời «mất tiền»: điện thoại rung nhẹ hai lần trong khi các dòng trong sổ đứng yên (đối chiếu)."
+        },
+        {
+          "t": 1.94,
+          "event": "Hết lời 03; nghỉ 0,60 s."
+        },
+        {
+          "t": 1.95,
+          "event": "Dấu lỗi mờ đi trong 0,35 s; cuốn sổ sáng viền xanh, một dòng trong sổ sáng xanh dương."
+        },
+        {
+          "t": 2.54,
+          "event": "Lời 04 bắt đầu «Các kênh»."
+        },
+        {
+          "t": 2.6,
+          "event": "Mũi tên từ cổng QR chạm sổ; 2,85 s cổng App; 3,10 s cổng ATM."
+        },
+        {
+          "t": 3.45,
+          "event": "Lời «hỏi»: dấu hỏi vàng hiện trên từng mũi tên."
+        },
+        {
+          "t": 3.8,
+          "event": "Lời «cuốn sổ»: nhãn «Sổ» hiện gắn cuốn sổ."
+        },
+        {
+          "t": 4.59,
+          "event": "Hết lời 04; giữ 0,61 s: ba mũi tên vẫn chạm sổ, dấu hỏi nhấp nhẹ."
+        }
+      ],
+      "voice_over": "Báo lỗi chưa có nghĩa là mất tiền. Các kênh thường phải hỏi một cuốn sổ trước.",
+      "voice_direction": [
+        {
+          "line_id": "03",
+          "intent": "reveal",
+          "emotion": "reassuring",
+          "emphasis": [
+            "chưa có nghĩa là"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.12,
+          "pause_after_s": 0.6,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "04",
+          "intent": "reveal",
+          "emotion": "neutral",
+          "emphasis": [
+            "một cuốn sổ trước"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.61,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "Sổ",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "báo lỗi",
+            "type": "result",
+            "form": "status",
+            "object": "dấu lỗi đỏ trên điện thoại",
+            "motion": "Dấu lỗi bật, điện thoại rung hai lần rồi mờ đi."
+          },
+          {
+            "term": "báo lỗi chưa có nghĩa là mất tiền",
+            "type": "relation",
+            "form": "comparison",
+            "object": "cuốn sổ ghi số dư",
+            "motion": "Điện thoại rung còn các dòng trong sổ đứng yên."
+          },
+          {
+            "term": "cuốn sổ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "cuốn sổ ghi số dư",
+            "motion": "Đứng yên khi điện thoại báo lỗi, rồi sáng viền xanh."
+          },
+          {
+            "term": "hỏi",
+            "type": "action",
+            "form": "connection",
+            "object": "cuốn sổ ghi số dư",
+            "motion": "Ba mũi tên từ ba cổng chạm vào sổ, mỗi mũi một dấu hỏi."
+          }
+        ],
+        "relations": [
+          {
+            "from": "điện thoại",
+            "to": "cuốn sổ",
+            "type": "lỗi ở kênh, số dư ở sổ riêng"
+          },
+          {
+            "from": "ba cổng",
+            "to": "cuốn sổ",
+            "type": "hỏi trước"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Sổ",
+            "kind": "label",
+            "attach_to": "cuốn sổ ghi số dư",
+            "appear_s": 3.8,
+            "disappear_s": 5.2,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 0.61
+      },
+      "sound_cues": [
+        {
+          "t": 0.45,
+          "intent": "alert",
+          "target": "dấu lỗi",
+          "intensity": "low",
+          "reason": "Tiếng báo ngắn khi dấu lỗi bật trên điện thoại."
+        },
+        {
+          "t": 1.95,
+          "intent": "silence",
+          "target": "ý quan trọng",
+          "intensity": "low",
+          "duration_s": 0.55,
+          "reason": "Ý «báo lỗi chưa có nghĩa là mất tiền» cần lắng: dấu lỗi mờ và sổ sáng trong im lặng."
+        },
+        {
+          "t": 2.6,
+          "intent": "data_move",
+          "target": "ba mũi tên tới cuốn sổ",
+          "intensity": "low",
+          "reason": "Ba mũi tên chạm sổ khi giọng nói «các kênh»."
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 5.2,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "0,45 s · alert · dấu lỗi: Tiếng báo ngắn khi dấu lỗi bật trên điện thoại.",
+        "1,95 s · khoảng lặng 0,55 s · ý quan trọng: Ý «báo lỗi chưa có nghĩa là mất tiền» cần lắng: dấu lỗi mờ và sổ sáng trong im lặng.",
+        "2,6 s · data_move · ba mũi tên tới cuốn sổ: Ba mũi tên chạm sổ khi giọng nói «các kênh»."
+      ]
+    },
+    {
+      "scene_id": "S04",
+      "narrative_purpose": "Cho thước đo quy mô: mạng liên ngân hàng xử lý hàng chục triệu giao dịch mỗi ngày, chia vào nhiều hệ thống lõi (không phải một).",
+      "main_idea": "Quy mô giao dịch hằng ngày của mạng liên ngân hàng rất lớn.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.03,
+      "visual_concept": "Cụm ba cổng thu nhỏ ở trên trái phát ra dòng chấm xanh (yêu cầu) chảy xuống và tách vào ba khối lõi vô danh xếp ngang, mỗi khối có một cuốn sổ nhỏ. Nhãn nguồn «NAPAS 2025 · liên ngân hàng» gắn ở đầu dòng chảy. Khi nói «ba mươi hai triệu», số đếm chạy từ 0 lên 32 và dòng chấm dày lên cùng số; vòng ngày nhỏ quay một vòng khi nói «mỗi ngày». Không có đếm ngược về 0; cả ba khối lõi cùng nhận dòng nên không hiểu nhầm là một lõi.",
+      "main_change": "Dòng chấm xanh dày lên theo số đếm 0 đến 32 và chia vào cả ba khối lõi, không đổ vào một khối.",
+      "scene_type": "data_visualization",
+      "scene_kind": "data_flow",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "gates",
+            "label": "",
+            "object": "gate",
+            "t": 0
+          },
+          {
+            "id": "core1",
+            "label": "",
+            "object": "server",
+            "t": 1
+          },
+          {
+            "id": "core2",
+            "label": "",
+            "object": "server",
+            "t": 1.6
+          },
+          {
+            "id": "core3",
+            "label": "",
+            "object": "server",
+            "t": 2.2
+          }
+        ],
+        "edges": [
+          {
+            "from": "gates",
+            "to": "core1",
+            "kind": "normal",
+            "t": 1
+          },
+          {
+            "from": "gates",
+            "to": "core2",
+            "kind": "normal",
+            "t": 1.6
+          },
+          {
+            "from": "gates",
+            "to": "core3",
+            "kind": "normal",
+            "t": 2.2
+          }
+        ],
+        "stage": {
+          "backdrop": "server"
+        }
+      },
+      "environment": "database #101C2A (hệ thống lõi). Xa: lưới đường mạng mờ toả từ trái. Giữa: ba khối lõi vô danh xếp ngang ở nửa dưới (x≈140–940, y≈900–1180), mỗi khối một cuốn sổ nhỏ; đường chấm xanh #60A5FA chảy từ cụm ba cổng thu nhỏ ở trên trái (x≈100–420, y≈430–580). Gần: nhãn nguồn dưới cụm cổng (x≈100–600, y≈600–760), số đếm lớn ở trên phải (x≈520–990, y≈440–700). Ánh sáng trái trên, bóng đổ xuống phải. Toàn cảnh; cuối cảnh push_in 1,00→1,15 (5,00–6,65 s) về khối lõi giữa để nối S05.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Cụm ba cổng thu nhỏ (nguồn yêu cầu)",
+        "Dòng chấm xanh chảy từ cổng vào ba khối",
+        "Ba khối lõi vô danh, mỗi khối một cuốn sổ nhỏ",
+        "Số đếm 0 đến 32 triệu",
+        "Vòng ngày nhỏ"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Fade vào: cụm ba cổng nhỏ ở trên trái, ba khối lõi ở dưới (chưa có dòng chảy)."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 05 bắt đầu «Năm hai không hai lăm»."
+        },
+        {
+          "t": 0.25,
+          "event": "Nhãn «NAPAS 2025» hiện ở đầu dòng chảy; những chấm xanh đầu tiên chảy ra từ cụm cổng."
+        },
+        {
+          "t": 1,
+          "event": "Dòng chấm chảy vào khối lõi trái; cuốn sổ nhỏ của khối nhấp một dòng."
+        },
+        {
+          "t": 1.6,
+          "event": "Dòng thứ hai chảy vào khối giữa."
+        },
+        {
+          "t": 2.2,
+          "event": "Dòng thứ ba chảy vào khối phải: cả ba khối cùng nhận (không phải một lõi)."
+        },
+        {
+          "t": 3.4,
+          "event": "Lời «ba mươi hai triệu»: số đếm hiện và chạy từ 0 lên 32 (3,40–4,90 s), dòng chấm dày lên cùng số."
+        },
+        {
+          "t": 4.15,
+          "event": "Số đếm đi qua khoảng 16; mật độ chấm xanh gấp đôi so với lúc 3,40 s và cả ba khối cùng nhận."
+        },
+        {
+          "t": 4.9,
+          "event": "Số đếm dừng ở «32 triệu / ngày»."
+        },
+        {
+          "t": 5,
+          "event": "Lời «mỗi ngày»: vòng ngày nhỏ quay một vòng (5,00–5,62 s); camera bắt đầu push_in 1,00→1,15 về khối lõi giữa để nối S05."
+        },
+        {
+          "t": 5.62,
+          "event": "Hết lời 05; giữ 1,03 s, dòng chấm vẫn chảy vào ba khối."
+        }
+      ],
+      "voice_over": "Năm hai không hai lăm, mạng liên ngân hàng NAPAS bình quân hơn ba mươi hai triệu giao dịch mỗi ngày.",
+      "voice_direction": [
+        {
+          "line_id": "05",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "mạng liên ngân hàng",
+            "bình quân hơn ba mươi hai triệu"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.03,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NAPAS 2025; 32 triệu / ngày",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "mạng liên ngân hàng NAPAS",
+            "type": "entity",
+            "form": "flow",
+            "object": "đầu dòng yêu cầu",
+            "motion": "Nhãn nguồn gắn đầu dòng chấm xanh chảy từ cụm cổng."
+          },
+          {
+            "term": "32 triệu / ngày",
+            "type": "concept",
+            "form": "chart",
+            "object": "số đếm giao dịch",
+            "motion": "Đếm 0 đến 32, dòng chấm dày lên cùng số."
+          },
+          {
+            "term": "giao dịch",
+            "type": "action",
+            "form": "animation",
+            "object": "số đếm giao dịch",
+            "motion": "Chấm xanh bay từ cổng vào khối lõi, dày lên theo số đếm."
+          },
+          {
+            "term": "nhiều hệ thống lõi",
+            "type": "result",
+            "form": "illustration",
+            "object": "ba khối lõi vô danh",
+            "motion": "Ba khối lần lượt nhận dòng chấm."
+          }
+        ],
+        "relations": [
+          {
+            "from": "cụm ba cổng",
+            "to": "ba khối lõi",
+            "type": "yêu cầu chia vào nhiều lõi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NAPAS 2025",
+            "kind": "message",
+            "attach_to": "đầu dòng yêu cầu",
+            "appear_s": 0.25,
+            "disappear_s": 6.6,
+            "effect": "fade"
+          },
+          {
+            "text": "32 triệu / ngày",
+            "kind": "number",
+            "attach_to": "số đếm giao dịch",
+            "appear_s": 3.4,
+            "disappear_s": 6.6,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.03
+      },
+      "sound_cues": [
+        {
+          "t": 0.25,
+          "intent": "data_move",
+          "target": "dòng chấm xanh",
+          "intensity": "low",
+          "reason": "Chấm đầu tiên chảy ra: tiếng lách tách nhẹ nền (không nhạc)."
+        },
+        {
+          "t": 3.4,
+          "intent": "data_move",
+          "target": "số đếm 0 đến 32",
+          "intensity": "medium",
+          "reason": "Số đếm chạy và dòng chấm dày lên: lách tách dày theo số."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 6.65,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "0,25 s · data_move · dòng chấm xanh: Chấm đầu tiên chảy ra: tiếng lách tách nhẹ nền (không nhạc).",
+        "3,4 s · data_move · số đếm 0 đến 32: Số đếm chạy và dòng chấm dày lên: lách tách dày theo số."
+      ]
+    },
+    {
+      "scene_id": "S05",
+      "narrative_purpose": "Cơ chế chính: QR, app, ATM thường hỏi hệ thống lõi, nơi ghi số dư; lõi trả lời thì giao dịch mới chạy.",
+      "main_idea": "Ba kênh gửi yêu cầu tới hệ thống lõi; lõi ghi số dư rồi đáp, kênh chỉ chạy sau khi nhận đáp.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2,
+      "visual_concept": "Sơ đồ dọc cao ≈ 700 px dựng từng bước theo lời: ba kênh (QR, App, ATM) xếp dọc bên trái sáng lên đúng lúc được nhắc; ba gói hỏi xanh dương chạy từ kênh tới khối lõi ở giữa phải; khối lõi nổi lên cùng nhãn «Hệ thống lõi»; bút ghi một dòng số dư vào cuốn sổ trong lõi; rồi ba gói đáp xanh lục quay ra từng kênh, mỗi kênh đổi từ chờ (vàng) sang chạy (xanh) đúng lúc nhận đáp. Cuối cảnh giữ sơ đồ hoàn chỉnh, điểm sáng đi lại qua ba đường.",
+      "main_change": "Gói hỏi đi vào lõi, bút ghi một dòng trong sổ, gói đáp quay ra và từng kênh đổi từ vàng (chờ) sang xanh (chạy) chỉ sau khi nhận đáp.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "qr",
+            "label": "QR",
+            "object": "gate",
+            "t": 0.3
+          },
+          {
+            "id": "app",
+            "label": "App",
+            "object": "gate",
+            "t": 0.9
+          },
+          {
+            "id": "atm",
+            "label": "ATM",
+            "object": "gate",
+            "t": 1.45
+          },
+          {
+            "id": "core",
+            "label": "Hệ thống lõi",
+            "object": "server",
+            "t": 2.95
+          }
+        ],
+        "edges": [
+          {
+            "from": "qr",
+            "to": "core",
+            "kind": "normal",
+            "t": 2.4
+          },
+          {
+            "from": "app",
+            "to": "core",
+            "kind": "normal",
+            "t": 2.4
+          },
+          {
+            "from": "atm",
+            "to": "core",
+            "kind": "normal",
+            "t": 2.4
+          }
+        ],
+        "stage": {
+          "backdrop": "server"
+        }
+      },
+      "environment": "database #101C2A. Xa: lưới mờ của hệ thống phía sau. Giữa: khối lõi (x≈520–960, y≈560–1020) có cuốn sổ ở nửa dưới và bút; ba kênh xếp dọc bên trái (x≈110–330, y≈440–1140, cao tổng ≈ 700 px). Gần: gói hỏi xanh dương #60A5FA và gói đáp xanh lục #34D399 chạy trên hai làn song song, đèn trạng thái mỗi kênh (vàng chờ, xanh chạy). Ánh sáng trái trên, lõi phát sáng nhẹ khi «nổi»; nhãn không đè đường. Trung cảnh, máy đứng yên để người xem theo dõi sơ đồ.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Ba kênh QR/App/ATM (cổng thu gọn)",
+        "Khối lõi có cuốn sổ và bút",
+        "Gói hỏi xanh dương, gói đáp xanh lục",
+        "Đèn trạng thái mỗi kênh (vàng chờ rồi xanh chạy)"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut từ khối lõi giữa của S04: sơ đồ trống, ba vị trí kênh mờ ở bên trái."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 06 bắt đầu."
+        },
+        {
+          "t": 0.3,
+          "event": "Lời «QR»: kênh thứ nhất sáng, nhãn «QR» hiện."
+        },
+        {
+          "t": 0.9,
+          "event": "Lời «app»: kênh thứ hai sáng, nhãn «App»."
+        },
+        {
+          "t": 1.45,
+          "event": "Lời «ATM»: kênh thứ ba sáng, nhãn «ATM»."
+        },
+        {
+          "t": 2,
+          "event": "Khối lõi hiện mờ ở giữa phải (chưa có nhãn)."
+        },
+        {
+          "t": 2.4,
+          "event": "Lời «hỏi»: ba gói hỏi xanh dương chạy từ ba kênh tới lõi (2,40–3,10 s); đèn kênh chuyển vàng (chờ) khi gói rời."
+        },
+        {
+          "t": 2.95,
+          "event": "Lời «hệ thống lõi»: nhãn «Hệ thống lõi» bật (kinetic pop), khối lõi nổi (phóng 1,06 và sáng)."
+        },
+        {
+          "t": 3.95,
+          "event": "Lời «ghi số dư»: bút ghi một dòng trong cuốn sổ của lõi (3,95–4,60 s)."
+        },
+        {
+          "t": 5.09,
+          "event": "Hết lời 06; nghỉ 0,50 s: gói đáp xanh lục xuất hiện trong lõi."
+        },
+        {
+          "t": 5.59,
+          "event": "Lời 07 bắt đầu."
+        },
+        {
+          "t": 5.95,
+          "event": "Lời «trả lời»: gói đáp chạy từ lõi ra ba kênh (5,95–6,50 s)."
+        },
+        {
+          "t": 6.25,
+          "event": "Kênh QR nhận đáp: đèn vàng sang xanh; 6,45 s App; 6,65 s ATM."
+        },
+        {
+          "t": 7.47,
+          "event": "Hết lời 07; giữ 2,03 s sơ đồ hoàn chỉnh: điểm sáng đi lại qua ba đường (vòng 0,7 s), đèn ba kênh xanh."
+        },
+        {
+          "t": 8.2,
+          "event": "Điểm sáng đi từ ba kênh vào lõi (lượt hỏi), cuốn sổ trong lõi nhấp nhẹ."
+        },
+        {
+          "t": 8.85,
+          "event": "Điểm sáng quay ra từng kênh, đèn ba kênh nhấp xanh cùng lúc."
+        }
+      ],
+      "voice_over": "QR, app hay ATM thường hỏi hệ thống lõi, nơi ghi số dư của bạn. Lõi trả lời thì giao dịch mới chạy.",
+      "voice_direction": [
+        {
+          "line_id": "06",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "hệ thống lõi",
+            "ghi số dư"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "trả lời",
+            "mới chạy"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.5,
+          "pause_after_s": 0.45,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "QR; App; ATM; Hệ thống lõi",
+      "text_groups": 3,
+      "hold_reason": "Giữ sơ đồ hoàn chỉnh ≥ 2,0 s sau lời (R13, High); điểm sáng chạy lại qua ba đường nên hình không đứng yên.",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "QR",
+            "type": "entity",
+            "form": "icon",
+            "object": "kênh QR",
+            "motion": "Kênh sáng lên lúc 0,30 s; vàng khi chờ, xanh khi nhận đáp."
+          },
+          {
+            "term": "app",
+            "type": "entity",
+            "form": "icon",
+            "object": "kênh App",
+            "motion": "Kênh sáng lên lúc 0,90 s."
+          },
+          {
+            "term": "ATM",
+            "type": "entity",
+            "form": "icon",
+            "object": "kênh ATM",
+            "motion": "Kênh sáng lên lúc 1,45 s."
+          },
+          {
+            "term": "hệ thống lõi",
+            "type": "term",
+            "form": "illustration",
+            "object": "khối lõi",
+            "motion": "Khối lõi nổi lên (phóng 1,06, sáng) cùng nhãn."
+          },
+          {
+            "term": "hỏi",
+            "type": "action",
+            "form": "flow",
+            "object": "khối lõi",
+            "motion": "Ba gói hỏi xanh dương chạy từ kênh tới lõi."
+          },
+          {
+            "term": "ghi số dư",
+            "type": "action",
+            "form": "animation",
+            "object": "khối lõi",
+            "motion": "Bút ghi một dòng trong cuốn sổ của lõi."
+          },
+          {
+            "term": "trả lời",
+            "type": "action",
+            "form": "flow",
+            "object": "khối lõi",
+            "motion": "Ba gói đáp xanh lục chạy từ lõi ra kênh."
+          },
+          {
+            "term": "kênh chạy sau khi nhận đáp",
+            "type": "result",
+            "form": "status",
+            "object": "đèn trạng thái ba kênh",
+            "motion": "Đèn đổi vàng sang xanh đúng lúc gói đáp tới."
+          }
+        ],
+        "relations": [
+          {
+            "from": "kênh QR/App/ATM",
+            "to": "khối lõi",
+            "type": "gói hỏi"
+          },
+          {
+            "from": "khối lõi",
+            "to": "kênh QR/App/ATM",
+            "type": "gói đáp"
+          }
+        ],
+        "texts": [
+          {
+            "text": "QR",
+            "kind": "label",
+            "attach_to": "kênh QR",
+            "appear_s": 0.3,
+            "disappear_s": 9.45,
+            "effect": "fade"
+          },
+          {
+            "text": "App",
+            "kind": "label",
+            "attach_to": "kênh App",
+            "appear_s": 0.9,
+            "disappear_s": 9.45,
+            "effect": "fade"
+          },
+          {
+            "text": "ATM",
+            "kind": "label",
+            "attach_to": "kênh ATM",
+            "appear_s": 1.45,
+            "disappear_s": 9.45,
+            "effect": "fade"
+          },
+          {
+            "text": "Hệ thống lõi",
+            "kind": "keyword",
+            "attach_to": "khối lõi",
+            "appear_s": 2.95,
+            "disappear_s": 9.45,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 2.03
+      },
+      "sound_cues": [
+        {
+          "t": 0.3,
+          "intent": "ui_appear",
+          "target": "kênh QR",
+          "intensity": "low",
+          "reason": "Tiếng nhấp nhẹ khi kênh thứ nhất sáng."
+        },
+        {
+          "t": 0.9,
+          "intent": "ui_appear",
+          "target": "kênh App",
+          "intensity": "low",
+          "reason": "Tiếng nhấp nhẹ khi kênh thứ hai sáng."
+        },
+        {
+          "t": 1.45,
+          "intent": "ui_appear",
+          "target": "kênh ATM",
+          "intensity": "low",
+          "reason": "Tiếng nhấp nhẹ khi kênh thứ ba sáng."
+        },
+        {
+          "t": 2.4,
+          "intent": "data_move",
+          "target": "gói hỏi",
+          "intensity": "low",
+          "reason": "Ba gói hỏi rời kênh tới lõi."
+        },
+        {
+          "t": 5.09,
+          "intent": "silence",
+          "target": "chờ gói đáp",
+          "intensity": "low",
+          "duration_s": 0.5,
+          "reason": "Nghỉ 0,50 s sau lời 06 để gói đáp chuẩn bị trong lõi."
+        },
+        {
+          "t": 6.25,
+          "intent": "highlight",
+          "target": "kênh QR",
+          "intensity": "low",
+          "reason": "Tiếng «ting» xanh khi kênh QR nhận đáp và chạy."
+        },
+        {
+          "t": 6.45,
+          "intent": "highlight",
+          "target": "kênh App",
+          "intensity": "low",
+          "reason": "Tiếng «ting» xanh khi kênh App nhận đáp."
+        },
+        {
+          "t": 6.65,
+          "intent": "highlight",
+          "target": "kênh ATM",
+          "intensity": "low",
+          "reason": "Tiếng «ting» xanh khi kênh ATM nhận đáp."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 9.5,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "0,3 s · ui_appear · kênh QR: Tiếng nhấp nhẹ khi kênh thứ nhất sáng.",
+        "0,9 s · ui_appear · kênh App: Tiếng nhấp nhẹ khi kênh thứ hai sáng.",
+        "1,45 s · ui_appear · kênh ATM: Tiếng nhấp nhẹ khi kênh thứ ba sáng.",
+        "2,4 s · data_move · gói hỏi: Ba gói hỏi rời kênh tới lõi.",
+        "5,09 s · khoảng lặng 0,5 s · chờ gói đáp: Nghỉ 0,50 s sau lời 06 để gói đáp chuẩn bị trong lõi.",
+        "6,25 s · highlight · kênh QR: Tiếng «ting» xanh khi kênh QR nhận đáp và chạy.",
+        "6,45 s · highlight · kênh App: Tiếng «ting» xanh khi kênh App nhận đáp.",
+        "6,65 s · highlight · kênh ATM: Tiếng «ting» xanh khi kênh ATM nhận đáp."
+      ]
+    },
+    {
+      "scene_id": "S06",
+      "narrative_purpose": "Hệ quả: lõi im thì cả ba kênh đứng; và vì sao hệ thống thà dừng còn hơn ghi sai (so sánh đúng/sai).",
+      "main_idea": "Lõi im thì kênh dừng, và dừng giữ số đúng còn hơn ghi dở gây lệch số.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Nửa trên: sơ đồ S05 thu nhỏ với cùng đường nối; khối lõi chuyển xám, gói hỏi dừng giữa đường (không có gói đáp), ba kênh lần lượt đỏ. Nửa dưới mở hai ô so sánh: trái «Ghi sai», chuyển khoản dở dang, một thanh số dư đã giảm nhưng thanh kia chưa tăng, hai thanh không khớp (đỏ); phải «Dừng», cả hai thanh giữ nguyên, nút chờ, dấu kiểm xanh. Thanh số là thanh màu, không chữ số.",
+      "main_change": "Lõi chuyển xanh sang xám, ba kênh lần lượt đỏ; rồi hai ô so sánh: ô trái lệch hai thanh số (đỏ), ô phải giữ nguyên hai thanh (xanh).",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "Ghi sai",
+          "state": "bad",
+          "object": "ledger"
+        },
+        "after": {
+          "label": "Dừng",
+          "state": "ok",
+          "object": "ledger"
+        },
+        "switch_t": 2.95,
+        "stage": {
+          "backdrop": "server"
+        }
+      },
+      "environment": "database #101C2A, cùng nền S05 để giữ ngữ cảnh. Xa: lưới mờ. Giữa trên: sơ đồ S05 thu nhỏ ≈ 55% (x≈110–990, y≈430–840) với lõi xám và ba kênh đỏ. Giữa dưới: hai ô so sánh cạnh nhau (x≈100–520 và 560–980, y≈880–1300), nền ô tối hơn để thanh số đọc rõ. Gần: dấu chặn ở đường nối, dấu kiểm xanh. Ánh sáng trái trên, bóng đổ xuống phải. Toàn cảnh, máy đứng yên. Cụm cao ≈ 870 px.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Sơ đồ S05 thu nhỏ: ba kênh, khối lõi xám, gói hỏi dừng giữa đường",
+        "Hai ô so sánh",
+        "Hai thanh số dư mỗi ô (không chữ số)",
+        "Nút chờ",
+        "Dấu kiểm xanh"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut từ S05: sơ đồ thu nhỏ ở nửa trên, mọi thứ còn xanh."
+        },
+        {
+          "t": 0.12,
+          "event": "Lời 08 bắt đầu."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời «Lõi im»: khối lõi đổi xanh sang xám, đèn tắt; gói hỏi đang đi dừng giữa đường (không có gói đáp)."
+        },
+        {
+          "t": 1.15,
+          "event": "Lời «ba cánh cửa»: kênh QR đỏ (dấu chéo); 1,45 s App; 1,75 s ATM."
+        },
+        {
+          "t": 2,
+          "event": "Hết lời 08; nghỉ 0,45 s."
+        },
+        {
+          "t": 2.05,
+          "event": "Hai khung ô so sánh trượt lên ở nửa dưới (2,05–2,45 s), chưa có nội dung."
+        },
+        {
+          "t": 2.45,
+          "event": "Lời 09 bắt đầu."
+        },
+        {
+          "t": 2.75,
+          "event": "Lời «thà dừng»: ô phải hiện hai thanh số giữ nguyên, nút chờ vàng sang xanh; nhãn «Dừng» hiện lúc 2,95 s."
+        },
+        {
+          "t": 3.65,
+          "event": "Lời «ghi sai»: ô trái hiện chuyển khoản dở dang (thanh nguồn giảm, thanh đích chưa tăng), viền đỏ nhấp; nhãn «Ghi sai» lúc 3,70 s."
+        },
+        {
+          "t": 4.33,
+          "event": "Hết lời 09; giữ ≈ 1,0 s."
+        },
+        {
+          "t": 4.4,
+          "event": "Dấu kiểm xanh hiện ở ô phải; viền đỏ ô trái vẫn nhấp."
+        }
+      ],
+      "voice_over": "Lõi im, cả ba cánh cửa cùng đứng. Hệ thống thà dừng còn hơn ghi sai.",
+      "voice_direction": [
+        {
+          "line_id": "08",
+          "intent": "explanation",
+          "emotion": "concerned",
+          "emphasis": [
+            "im",
+            "cùng đứng"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.12,
+          "pause_after_s": 0.45,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "resolute",
+          "emphasis": [
+            "thà dừng",
+            "ghi sai"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.45,
+          "pause_after_s": 1,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "Ghi sai; Dừng",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Lõi im",
+            "type": "result",
+            "form": "status",
+            "object": "khối lõi xám",
+            "motion": "Lõi xanh sang xám, gói hỏi dừng giữa đường."
+          },
+          {
+            "term": "ba cánh cửa cùng đứng",
+            "type": "result",
+            "form": "status",
+            "object": "ba kênh đỏ",
+            "motion": "Ba kênh lần lượt đỏ lúc 1,15 / 1,45 / 1,75 s."
+          },
+          {
+            "term": "thà dừng",
+            "type": "concept",
+            "form": "comparison",
+            "object": "ô phải (dừng)",
+            "motion": "Hai thanh số giữ nguyên, nút chờ, dấu kiểm xanh."
+          },
+          {
+            "term": "ghi sai",
+            "type": "concept",
+            "form": "comparison",
+            "object": "ô trái (ghi sai)",
+            "motion": "Thanh nguồn giảm, thanh đích chưa tăng, hai thanh lệch (đỏ)."
+          }
+        ],
+        "relations": [
+          {
+            "from": "khối lõi xám",
+            "to": "ba kênh",
+            "type": "không có đáp nên kênh đứng"
+          },
+          {
+            "from": "Ghi sai",
+            "to": "Dừng",
+            "type": "so sánh: lệch số đối lại giữ nguyên số"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Dừng",
+            "kind": "label",
+            "attach_to": "ô phải (dừng)",
+            "appear_s": 2.95,
+            "disappear_s": 5.3,
+            "effect": "fade"
+          },
+          {
+            "text": "Ghi sai",
+            "kind": "label",
+            "attach_to": "ô trái (ghi sai)",
+            "appear_s": 3.7,
+            "disappear_s": 5.3,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.02
+      },
+      "sound_cues": [
+        {
+          "t": 0.15,
+          "intent": "impact_risk",
+          "target": "khối lõi xám",
+          "intensity": "medium",
+          "reason": "Tiếng «cạch» trầm khi lõi ngừng đáp: mở hệ quả."
+        },
+        {
+          "t": 1.15,
+          "intent": "alert",
+          "target": "kênh QR",
+          "intensity": "low",
+          "reason": "Tiếng đóng khi kênh QR đỏ."
+        },
+        {
+          "t": 1.45,
+          "intent": "alert",
+          "target": "kênh App",
+          "intensity": "low",
+          "reason": "Tiếng đóng khi kênh App đỏ."
+        },
+        {
+          "t": 1.75,
+          "intent": "alert",
+          "target": "kênh ATM",
+          "intensity": "low",
+          "reason": "Tiếng đóng khi kênh ATM đỏ."
+        },
+        {
+          "t": 2,
+          "intent": "silence",
+          "target": "hai ô so sánh",
+          "intensity": "low",
+          "duration_s": 0.45,
+          "reason": "Nghỉ 0,45 s để hai ô so sánh trượt lên trong im lặng."
+        },
+        {
+          "t": 4.4,
+          "intent": "highlight",
+          "target": "ô Dừng",
+          "intensity": "low",
+          "reason": "Tiếng «ting» khẽ khi dấu kiểm xanh hiện ở ô Dừng."
+        }
+      ],
+      "transition": "slideup",
+      "duration_s": 5.35,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "0,15 s · impact_risk · khối lõi xám: Tiếng «cạch» trầm khi lõi ngừng đáp: mở hệ quả.",
+        "1,15 s · alert · kênh QR: Tiếng đóng khi kênh QR đỏ.",
+        "1,45 s · alert · kênh App: Tiếng đóng khi kênh App đỏ.",
+        "1,75 s · alert · kênh ATM: Tiếng đóng khi kênh ATM đỏ.",
+        "2 s · khoảng lặng 0,45 s · hai ô so sánh: Nghỉ 0,45 s để hai ô so sánh trượt lên trong im lặng.",
+        "4,4 s · highlight · ô Dừng: Tiếng «ting» khẽ khi dấu kiểm xanh hiện ở ô Dừng."
+      ]
+    },
+    {
+      "scene_id": "S07",
+      "narrative_purpose": "Sai lầm thường gặp: thấy lỗi là bấm gửi lại; nếu lệnh đầu đã được ghi thì gửi lại có thể thành hai lệnh.",
+      "main_idea": "Bấm gửi lại khi lệnh đầu đã ghi có thể tạo lệnh thứ hai trong sổ.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.03,
+      "visual_concept": "Điện thoại bên trái có nút «Gửi» vàng, cuốn sổ bên phải. Con trỏ tiến sát nút Gửi rồi dừng chưa nhấp. Sổ hiện dòng «Lệnh 1» xanh dương (đã ghi). Con trỏ nhấp, nút nhấp xuống; dưới dòng 1 hiện dòng «Lệnh 2» viền nét đứt đỏ kèm biểu tượng cảnh báo (nét đứt là «có thể»). Cáo (stop) giơ tay nhìn nút Gửi ở nửa đầu cảnh.",
+      "main_change": "Sổ từ một dòng (xanh dương) thành hai dòng sau khi nhấp lại; dòng thứ hai viền nét đứt đỏ.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "label": "",
+            "object": "phone",
+            "t": 0.1
+          },
+          {
+            "label": "Lệnh 1",
+            "object": "ledger",
+            "t": 1.5
+          },
+          {
+            "label": "Lệnh 2",
+            "object": "ledger",
+            "t": 3.5
+          }
+        ],
+        "stage": {
+          "backdrop": "warning"
+        }
+      },
+      "environment": "incident #1E1931 (tím than). Xa: nền tím than chuyển sắc, vệt đỏ rất nhạt ở mép dưới. Giữa: điện thoại bên trái (x≈120–470, y≈450–980) và cuốn sổ bên phải (x≈540–990, y≈520–1020). Gần: nút Gửi vàng, con trỏ, các dòng sổ; đỏ #FB7185 chỉ dùng cho nét đứt «Lệnh 2». Ánh sáng trái trên, bóng đổ xuống phải. Trung cảnh, máy đứng yên để cú nhấp rõ; ô header trên-trái.",
+      "character_action": "Cáo (stop, rộng 160 px, x=105, mép đáy y=1270, 0,00–2,50 s) ở dưới điện thoại, giơ tay nhìn nút Gửi khi con trỏ tiến sát; rời khung trước cú nhấp ở 2,50 s.",
+      "props": [
+        "Điện thoại có nút «Gửi» vàng",
+        "Con trỏ",
+        "Cuốn sổ ghi số dư với dòng Lệnh 1 (xanh dương) và Lệnh 2 (nét đứt đỏ)",
+        "Biểu tượng cảnh báo trên dòng Lệnh 2"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt vào: điện thoại màn hình chờ vàng với nút vàng mang biểu tượng mũi tên gửi (icon, không chữ), sổ trống bên phải; Cáo giơ tay (stop)."
+        },
+        {
+          "t": 0.1,
+          "event": "Lời 10 «Khoan bấm gửi lại!»: con trỏ từ góc phải tiến sát nút Gửi (0,10–0,90 s), dừng chưa nhấp, nhúc nhích nhẹ."
+        },
+        {
+          "t": 1.01,
+          "event": "Hết lời 10; nghỉ 0,40 s: con trỏ vẫn treo trên nút."
+        },
+        {
+          "t": 1.41,
+          "event": "Lời 11 bắt đầu."
+        },
+        {
+          "t": 1.5,
+          "event": "Lời «nếu lệnh đầu đã được ghi»: sổ hiện dòng «Lệnh 1» xanh dương, nhãn «Lệnh 1» hiện."
+        },
+        {
+          "t": 2.5,
+          "event": "Cáo rời khung."
+        },
+        {
+          "t": 2.8,
+          "event": "Lời «gửi lại»: con trỏ nhấp, nút Gửi nhấp xuống, vòng gợn."
+        },
+        {
+          "t": 3.45,
+          "event": "Lời «thành hai lệnh»: dòng «Lệnh 2» viền nét đứt đỏ hiện dưới Lệnh 1 kèm biểu tượng cảnh báo; nhãn «Lệnh 2» pop (kinetic) lúc 3,50 s."
+        },
+        {
+          "t": 4.47,
+          "event": "Hết lời 11; giữ 1,03 s: sổ giữ hai dòng, nét đứt nhấp nhẹ, nút Gửi vẫn vàng."
+        }
+      ],
+      "voice_over": "Khoan bấm gửi lại! Nếu lệnh đầu đã được ghi, gửi lại có thể thành hai lệnh.",
+      "voice_direction": [
+        {
+          "line_id": "10",
+          "intent": "warning",
+          "emotion": "alert",
+          "emphasis": [
+            "Khoan"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.4,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "11",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "có thể",
+            "hai lệnh"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.4,
+          "pause_after_s": 1.03,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "Lệnh 1; Lệnh 2",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "gửi lại",
+            "type": "action",
+            "form": "animation",
+            "object": "nút Gửi",
+            "motion": "Con trỏ tiến sát nút, dừng, rồi nhấp (2,80 s); nút nhấp xuống."
+          },
+          {
+            "term": "lệnh đầu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "dòng sổ thứ nhất",
+            "motion": "Dòng xanh dương hiện trong sổ lúc 1,50 s."
+          },
+          {
+            "term": "hai lệnh (có thể)",
+            "type": "result",
+            "form": "metaphor",
+            "object": "dòng sổ thứ hai",
+            "motion": "Dòng viền nét đứt đỏ hiện dưới dòng 1, nét đứt nhấp nhẹ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "nút Gửi",
+            "to": "dòng sổ thứ hai",
+            "type": "nhấp lại có thể tạo lệnh trùng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Lệnh 1",
+            "kind": "label",
+            "attach_to": "dòng sổ thứ nhất",
+            "appear_s": 1.5,
+            "disappear_s": 5.45,
+            "effect": "fade"
+          },
+          {
+            "text": "Lệnh 2",
+            "kind": "keyword",
+            "attach_to": "dòng sổ thứ hai",
+            "appear_s": 3.5,
+            "disappear_s": 5.45,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.03
+      },
+      "sound_cues": [
+        {
+          "t": 1.01,
+          "intent": "silence",
+          "target": "sau «Khoan»",
+          "intensity": "low",
+          "duration_s": 0.4,
+          "reason": "Nghỉ 0,40 s sau lời cảnh báo ngắn để người xem thấy con trỏ treo trên nút."
+        },
+        {
+          "t": 2.8,
+          "intent": "interaction",
+          "target": "nút Gửi",
+          "intensity": "medium",
+          "reason": "Tiếng nhấp khớp lúc con trỏ nhấp nút Gửi."
+        },
+        {
+          "t": 3.5,
+          "intent": "impact_risk",
+          "target": "dòng Lệnh 2",
+          "intensity": "medium",
+          "reason": "Tiếng «cộp» khi dòng Lệnh 2 xuất hiện: nguy cơ trùng lệnh."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 5.5,
+      "header_slot": "top_left",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "1,01 s · khoảng lặng 0,4 s · sau «Khoan»: Nghỉ 0,40 s sau lời cảnh báo ngắn để người xem thấy con trỏ treo trên nút.",
+        "2,8 s · interaction · nút Gửi: Tiếng nhấp khớp lúc con trỏ nhấp nút Gửi.",
+        "3,5 s · impact_risk · dòng Lệnh 2: Tiếng «cộp» khi dòng Lệnh 2 xuất hiện: nguy cơ trùng lệnh."
+      ]
+    },
+    {
+      "scene_id": "S08",
+      "narrative_purpose": "Giải pháp: lệnh nào đã được ghi chỉ lịch sử giao dịch và thông báo chính thức mới xác nhận.",
+      "main_idea": "Hai nguồn chính thức (lịch sử, thông báo) cùng chỉ về đúng một dòng đã ghi.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.91,
+      "visual_concept": "Điện thoại bên trái chuyển sang danh sách lịch sử giao dịch; một dòng sáng xanh và nối bằng đường mảnh tới dòng sổ (Lệnh 1) bên phải. Tab lịch sử sáng lên. Hộp thông báo có khiên xanh và dấu kiểm trượt vào từ bên phải dưới; hai nguồn cùng nối vào dòng khớp, còn dòng Lệnh 2 nét đứt chuyển vàng «chưa xác nhận». Cảnh lấy nét vào chỗ hai đường nối gặp nhau (vòng sáng vàng, các phần còn lại giảm sáng).",
+      "main_change": "Một dòng lịch sử sáng xanh và nối vào đúng một dòng sổ; hộp thông báo cũng nối vào cùng dòng: hai đường nối hội tụ.",
+      "scene_type": "object_interaction",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "target": "Lịch sử",
+        "props": {
+          "focus-target": "ledger"
+        },
+        "stage": {
+          "backdrop": "neutral"
+        }
+      },
+      "environment": "security #151D34. Xa: nền xanh tím đậm với lưới an toàn mờ. Giữa: điện thoại (x≈100–470, y≈440–1100) hiện danh sách lịch sử; bên phải cuốn sổ với Lệnh 1 (xanh) và Lệnh 2 (nét đứt vàng) ở trên (x≈540–990, y≈440–740), hộp thông báo có khiên ở dưới (x≈540–990, y≈820–1100). Gần: hai đường nối xanh lục #34D399 hội tụ vào dòng khớp, vòng lấy nét vàng #FBBF24. Ánh sáng trái trên, bóng đổ xuống phải. Trung cảnh; vòng lấy nét quanh chỗ hai đường hội tụ, đồng thời giảm sáng phần còn lại.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Điện thoại hiện danh sách lịch sử giao dịch, có tab lịch sử",
+        "Cuốn sổ có Lệnh 1 (xanh) và Lệnh 2 (nét đứt vàng, chưa xác nhận)",
+        "Hộp thông báo có khiên xanh và dấu kiểm",
+        "Hai đường nối xanh lục hội tụ vào dòng khớp",
+        "Vòng lấy nét vàng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut từ S07: điện thoại bên trái, sổ bên phải với Lệnh 1 và Lệnh 2; viền nét đứt của Lệnh 2 đổi từ đỏ sang vàng (chưa xác nhận)."
+        },
+        {
+          "t": 0.1,
+          "event": "Lời 12 bắt đầu; màn hình điện thoại chuyển sang danh sách lịch sử (0,10–0,40 s)."
+        },
+        {
+          "t": 0.6,
+          "event": "Lời «đã được ghi»: một dòng lịch sử sáng xanh; đường nối vẽ từ dòng đó sang dòng Lệnh 1 trong sổ (0,60–1,30 s)."
+        },
+        {
+          "t": 1.7,
+          "event": "Lời «lịch sử giao dịch»: tab lịch sử sáng, nhãn «Lịch sử» hiện."
+        },
+        {
+          "t": 2.7,
+          "event": "Lời «thông báo chính thức»: hộp thông báo có khiên trượt vào (2,70–3,10 s), nhãn «Thông báo» hiện."
+        },
+        {
+          "t": 3.7,
+          "event": "Lời «xác nhận»: dấu kiểm xanh hiện trên hộp thông báo; đường nối từ hộp vẽ tới cùng dòng Lệnh 1 (3,70–4,20 s)."
+        },
+        {
+          "t": 4.19,
+          "event": "Hết lời 12; giữ 0,91 s: hai đường nối nhấp sáng, vòng lấy nét vàng quanh chỗ hội tụ."
+        }
+      ],
+      "voice_over": "Lệnh nào đã được ghi, chỉ lịch sử giao dịch và thông báo chính thức mới xác nhận.",
+      "voice_direction": [
+        {
+          "line_id": "12",
+          "intent": "explanation",
+          "emotion": "resolute",
+          "emphasis": [
+            "lịch sử giao dịch",
+            "thông báo chính thức"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.91,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "Lịch sử; Thông báo",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "lịch sử giao dịch",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tab lịch sử",
+            "motion": "Tab sáng, một dòng lịch sử sáng xanh nối vào dòng sổ."
+          },
+          {
+            "term": "thông báo chính thức",
+            "type": "entity",
+            "form": "illustration",
+            "object": "hộp thông báo",
+            "motion": "Hộp có khiên trượt vào, dấu kiểm xanh hiện."
+          },
+          {
+            "term": "xác nhận",
+            "type": "result",
+            "form": "status",
+            "object": "dòng khớp màu xanh",
+            "motion": "Hai đường nối hội tụ vào cùng một dòng Lệnh 1."
+          }
+        ],
+        "relations": [
+          {
+            "from": "tab lịch sử",
+            "to": "dòng Lệnh 1 trong sổ",
+            "type": "khớp một dòng"
+          },
+          {
+            "from": "hộp thông báo",
+            "to": "dòng Lệnh 1 trong sổ",
+            "type": "xác nhận cùng dòng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Lịch sử",
+            "kind": "label",
+            "attach_to": "tab lịch sử",
+            "appear_s": 1.7,
+            "disappear_s": 5.05,
+            "effect": "fade"
+          },
+          {
+            "text": "Thông báo",
+            "kind": "label",
+            "attach_to": "hộp thông báo",
+            "appear_s": 2.7,
+            "disappear_s": 5.05,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 0.91
+      },
+      "sound_cues": [
+        {
+          "t": 2.7,
+          "intent": "ui_appear",
+          "target": "hộp thông báo",
+          "intensity": "low",
+          "reason": "Chuông ngắn khi hộp thông báo hiện."
+        },
+        {
+          "t": 3.7,
+          "intent": "highlight",
+          "target": "dấu kiểm",
+          "intensity": "low",
+          "reason": "Tiếng «ting» xanh khi dấu kiểm xác nhận hiện."
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 5.1,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "2,7 s · ui_appear · hộp thông báo: Chuông ngắn khi hộp thông báo hiện.",
+        "3,7 s · highlight · dấu kiểm: Tiếng «ting» xanh khi dấu kiểm xác nhận hiện."
+      ]
+    },
+    {
+      "scene_id": "S09",
+      "narrative_purpose": "Giới hạn của dự phòng: có khối dự phòng nhưng chung một điểm lỗi thì cả hai vẫn có thể đứng (ví dụ dựng).",
+      "main_idea": "Dự phòng không đưa rủi ro về không khi hai khối dùng chung một điểm lỗi.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.14,
+      "visual_concept": "Hai khối lõi cạnh nhau: «chính» bên trái và «dự phòng» bên phải, cùng nối xuống một đường chung nằm ngang bên dưới. Khối dự phòng hiện kèm mũi tên sao chép xanh từ khối chính. Khi nói «chung một điểm lỗi», đường chung chuyển đỏ và đứt; khi nói «cả hai vẫn có thể đứng», cả hai khối cùng xám. Điểm sáng đi dọc đường chung tới chỗ đứt rồi dừng. Đây là ví dụ dựng, không phải mọi hệ thống đều thế.",
+      "main_change": "Khối dự phòng hiện và nhận bản sao, rồi đường chung đứt đỏ và cả hai khối cùng xám.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "main",
+            "label": "",
+            "object": "server",
+            "t": 0
+          },
+          {
+            "id": "backup",
+            "label": "Dự phòng",
+            "object": "server",
+            "t": 0.3
+          },
+          {
+            "id": "shared",
+            "label": "Điểm chung",
+            "object": "document",
+            "t": 1.9
+          }
+        ],
+        "edges": [
+          {
+            "from": "main",
+            "to": "backup",
+            "kind": "normal",
+            "t": 0.6
+          },
+          {
+            "from": "main",
+            "to": "shared",
+            "kind": "normal",
+            "t": 1.3,
+            "stop_t": 1.9
+          },
+          {
+            "from": "backup",
+            "to": "shared",
+            "kind": "normal",
+            "t": 1.3,
+            "stop_t": 1.9
+          }
+        ],
+        "stage": {
+          "backdrop": "warning"
+        }
+      },
+      "environment": "incident #1E1931. Xa: nền tím than, vệt cảnh báo rất nhạt. Giữa: hai khối lõi cạnh nhau (chính x≈120–470, dự phòng x≈610–960, y≈480–840), mỗi khối một cuốn sổ nhỏ. Gần: đường chung nằm ngang bên dưới (x≈160–920, y≈1000–1060) với hai nhánh dọc nối lên hai khối, điểm sáng chạy dọc đường. Cụm cao ≈ 580 px (≥ 500 theo plan, S09 được phép nhỏ hơn). Ánh sáng trái trên, bóng đổ xuống phải. Toàn cảnh, máy đứng yên.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Khối lõi chính",
+        "Khối lõi dự phòng",
+        "Mũi tên sao chép xanh",
+        "Đường chung (đứt đỏ)",
+        "Điểm sáng chạy dọc đường"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Fade vào: khối chính (xanh) và đường chung bên dưới; khối dự phòng chưa hiện."
+        },
+        {
+          "t": 0.1,
+          "event": "Lời 13 bắt đầu."
+        },
+        {
+          "t": 0.3,
+          "event": "Lời «dự phòng»: khối dự phòng hiện bên phải, nhãn «Dự phòng» hiện."
+        },
+        {
+          "t": 0.6,
+          "event": "Mũi tên sao chép xanh chạy từ khối chính sang khối dự phòng (0,60–1,20 s); khối dự phòng đổi từ viền sang đặc xanh."
+        },
+        {
+          "t": 1.3,
+          "event": "Cả hai khối nối xuống đường chung: hai nhánh dọc vẽ xuống."
+        },
+        {
+          "t": 1.9,
+          "event": "Lời «điểm lỗi»: đường chung chuyển đỏ và đứt giữa, nhãn «Điểm chung» hiện (mốc dự kiến, canh theo TTS vì lời 13 dài hơn ≈ 0,7 s)."
+        },
+        {
+          "t": 2.4,
+          "event": "Điểm sáng chạy dọc đường chung tới chỗ đứt rồi dừng."
+        },
+        {
+          "t": 3,
+          "event": "Lời «cả hai vẫn có thể đứng»: hai khối cùng xám."
+        },
+        {
+          "t": 3.86,
+          "event": "Hết lời 13; giữ 1,14 s: điểm sáng chạy ngược về nhánh, đường chung nhấp đỏ."
+        }
+      ],
+      "voice_over": "Có dự phòng, nhưng nếu chung một điểm lỗi thì cả hai vẫn có thể đứng.",
+      "voice_direction": [
+        {
+          "line_id": "13",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "chung một điểm lỗi"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.1,
+          "pause_after_s": 1.14,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "Dự phòng; Điểm chung",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "dự phòng",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khối dự phòng",
+            "motion": "Khối hiện bên phải, đổi từ viền sang đặc xanh."
+          },
+          {
+            "term": "sao chép",
+            "type": "action",
+            "form": "animation",
+            "object": "khối dự phòng",
+            "motion": "Mũi tên xanh chạy từ khối chính sang khối dự phòng."
+          },
+          {
+            "term": "chung một điểm lỗi",
+            "type": "term",
+            "form": "connection",
+            "object": "đường chung",
+            "motion": "Đường chung nối hai khối chuyển đỏ và đứt."
+          },
+          {
+            "term": "cả hai vẫn đứng",
+            "type": "result",
+            "form": "status",
+            "object": "hai khối xám",
+            "motion": "Hai khối cùng đổi xám."
+          }
+        ],
+        "relations": [
+          {
+            "from": "khối chính",
+            "to": "khối dự phòng",
+            "type": "sao chép"
+          },
+          {
+            "from": "khối chính",
+            "to": "đường chung",
+            "type": "cùng phụ thuộc"
+          },
+          {
+            "from": "khối dự phòng",
+            "to": "đường chung",
+            "type": "cùng phụ thuộc"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Dự phòng",
+            "kind": "label",
+            "attach_to": "khối dự phòng",
+            "appear_s": 0.3,
+            "disappear_s": 4.95,
+            "effect": "fade"
+          },
+          {
+            "text": "Điểm chung",
+            "kind": "label",
+            "attach_to": "đường chung",
+            "appear_s": 1.9,
+            "disappear_s": 4.95,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.14
+      },
+      "sound_cues": [
+        {
+          "t": 1.9,
+          "intent": "impact_risk",
+          "target": "đường chung",
+          "intensity": "medium",
+          "reason": "Tiếng «cạch» khi đường chung đứt: báo điểm lỗi chung."
+        }
+      ],
+      "transition": "wiperight",
+      "duration_s": 5,
+      "header_slot": "top_left",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "1,9 s · impact_risk · đường chung: Tiếng «cạch» khi đường chung đứt: báo điểm lỗi chung."
+      ]
+    },
+    {
+      "scene_id": "S10",
+      "narrative_purpose": "Trả lại tình huống mở: quay về quầy cơm, chọn kiểm tra lịch sử trước khi thử lại; không hứa kết quả thanh toán.",
+      "main_idea": "Kiểm tra (lịch sử) trước, thử lại sau.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.13,
+      "visual_concept": "Quay về đúng khung của S01: cùng góc quầy, điện thoại vàng với đồng hồ cát (nút gửi và tab lịch sử đều dạng icon, không chữ), khay cơm có đồng hồ cát. Con trỏ rời nút Gửi và chạm tab lịch sử; nút Gửi mờ đi. Không hiện kết quả thanh toán.",
+      "main_change": "Con trỏ rời nút Gửi, chạm tab lịch sử và nút Gửi mờ đi, trong cùng khung với S01.",
+      "scene_type": "object_interaction",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "app": "phone",
+        "states": [
+          {
+            "t": 0,
+            "state": "pending"
+          },
+          {
+            "t": 0.2,
+            "state": "pending",
+            "label": "Chưa xác nhận"
+          },
+          {
+            "t": 1.55,
+            "state": "history_tap"
+          },
+          {
+            "t": 1.9,
+            "state": "send_dimmed"
+          }
+        ],
+        "stage": {
+          "backdrop": "office"
+        }
+      },
+      "environment": "office #111D30 (quầy cơm, đúng khung và vật của S01: cùng điện thoại, ô QR, khay cơm, thu ngân khối; nội dung y≥420 chừa ô header trên-phải). Xa/giữa/gần như S01; ánh sáng như S01 nhưng hơi nóng đã tắt, cát đồng hồ cát chảy chậm, không có chữ trên màn hình điện thoại (chỉ icon). Toàn cảnh, máy đứng yên (cú trượt về khung S01 là chuyển cảnh wiperight).",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Điện thoại màn hình vàng có đồng hồ cát, nút gửi (icon) và tab lịch sử (icon)",
+        "Con trỏ",
+        "Ô QR hình học trên giá",
+        "Khay cơm có đồng hồ cát",
+        "Hình khối thu ngân"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Wiperight vào đúng khung S01: điện thoại vàng, khay cơm với đồng hồ cát, thu ngân khối chờ."
+        },
+        {
+          "t": 0.1,
+          "event": "Lời 14 bắt đầu «Quay lại quầy cơm»."
+        },
+        {
+          "t": 0.2,
+          "event": "Màn hình điện thoại vàng với biểu tượng đồng hồ cát (icon, không chữ; trạng thái đã được nêu bằng chữ ở S01)."
+        },
+        {
+          "t": 0.6,
+          "event": "Con trỏ hiện, treo trên nút Gửi."
+        },
+        {
+          "t": 1.2,
+          "event": "Lời «kiểm tra trước»: con trỏ rời nút Gửi, trượt xuống tab lịch sử."
+        },
+        {
+          "t": 1.55,
+          "event": "Con trỏ chạm tab lịch sử (vòng gợn), tab viền vàng."
+        },
+        {
+          "t": 1.9,
+          "event": "Lời «thử lại sau»: nút Gửi mờ đi (chờ)."
+        },
+        {
+          "t": 2.37,
+          "event": "Hết lời 14; giữ 1,13 s: cát chảy trong đồng hồ cát, tab lịch sử sáng nhẹ, nút Gửi mờ; không hiện kết quả."
+        }
+      ],
+      "voice_over": "Quay lại quầy cơm: kiểm tra trước, thử lại sau.",
+      "voice_direction": [
+        {
+          "line_id": "14",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "emphasis": [
+            "kiểm tra trước",
+            "thử lại sau"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.1,
+          "pause_after_s": 1.13,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "Chưa xác nhận",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "quay lại quầy cơm",
+            "type": "relation",
+            "form": "metaphor",
+            "object": "màn hình điện thoại",
+            "motion": "Cùng khung S01: điện thoại vẫn vàng với đồng hồ cát (icon, không chữ)."
+          },
+          {
+            "term": "kiểm tra trước",
+            "type": "action",
+            "form": "animation",
+            "object": "màn hình điện thoại",
+            "motion": "Con trỏ rời nút Gửi, chạm tab lịch sử."
+          },
+          {
+            "term": "thử lại sau",
+            "type": "action",
+            "form": "status",
+            "object": "màn hình điện thoại",
+            "motion": "Nút Gửi mờ đi (chờ)."
+          }
+        ],
+        "relations": [
+          {
+            "from": "con trỏ",
+            "to": "tab lịch sử",
+            "type": "chọn kiểm tra thay vì Gửi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Chưa xác nhận",
+            "kind": "label",
+            "attach_to": "màn hình điện thoại",
+            "appear_s": 0.2,
+            "disappear_s": 3.45,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.13
+      },
+      "sound_cues": [
+        {
+          "t": 1.55,
+          "intent": "interaction",
+          "target": "tab lịch sử",
+          "intensity": "low",
+          "reason": "Tiếng chạm khẽ khi con trỏ chạm tab lịch sử."
+        },
+        {
+          "t": 1.6,
+          "intent": "silence",
+          "target": "giữa hai vế",
+          "intensity": "low",
+          "duration_s": 0.3,
+          "reason": "Nghỉ 0,30 s giữa «kiểm tra trước» và «thử lại sau» để hai vế tách rõ."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 3.5,
+      "header_slot": "top_right",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "1,55 s · interaction · tab lịch sử: Tiếng chạm khẽ khi con trỏ chạm tab lịch sử.",
+        "1,6 s · khoảng lặng 0,3 s · giữa hai vế: Nghỉ 0,30 s giữa «kiểm tra trước» và «thử lại sau» để hai vế tách rõ."
+      ]
+    },
+    {
+      "scene_id": "S11",
+      "narrative_purpose": "Kết mở: mời người xem bình luận thói quen đầu tiên khi giao dịch báo lỗi: bấm lại hay kiểm tra lịch sử.",
+      "main_idea": "Hai lựa chọn song song để người xem bình luận.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.6,
+      "visual_concept": "Bàn quầy: hai thẻ lựa chọn lớn cạnh nhau, thẻ trái có biểu tượng vòng mũi tên (bấm lại), thẻ phải có biểu tượng danh sách và đồng hồ (lịch sử); điện thoại mờ phía sau. Cáo (thumbs_up) vào ở góc trái dưới, hướng về hai thẻ rồi ra người xem. Khi giọng nói «bấm lại» thẻ trái sáng nhẹ, «kiểm tra lịch sử» thẻ phải sáng nhẹ.",
+      "main_change": "Hai thẻ hiện cạnh nhau rồi lần lượt sáng nhẹ theo lời; Cáo đưa ngón cái.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "character_explanation",
+      "kind_params": {
+        "pose": "thumbs_up",
+        "gesture": "right",
+        "object": "card",
+        "label": "Lịch sử",
+        "stage": {
+          "backdrop": "office"
+        }
+      },
+      "environment": "office #111D30 (bàn quầy, cùng bối cảnh S01 và S10). Xa: tường xanh than. Giữa: hai thẻ lựa chọn cạnh nhau (x≈100–510 và 570–980, y≈580–980), điện thoại mờ phía sau (x≈330–750, y≈440–1000). Gần: biểu tượng trên từng thẻ, vòng sáng khi được nhắc. Ánh sáng trái trên, bóng đổ xuống phải. Trung cảnh, máy đứng yên; Cáo dưới trái (đáy y=1290), phụ đề ở dải dưới.",
+      "character_action": "Cáo (thumbs_up, rộng 175 px, x=105, mép đáy y=1290, 1,20–4,80 s) đứng dưới thẻ trái, nhìn hai thẻ rồi hướng ra người xem (dáng đứng yên, không nhép miệng); không che thẻ và phụ đề.",
+      "props": [
+        "Hai thẻ lựa chọn lớn (vòng mũi tên; danh sách và đồng hồ)",
+        "Điện thoại mờ phía sau",
+        "Vòng sáng trên thẻ được nhắc"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt vào: điện thoại mờ ở giữa trên mặt bàn quầy."
+        },
+        {
+          "t": 0.1,
+          "event": "Lời 15 bắt đầu."
+        },
+        {
+          "t": 0.2,
+          "event": "Thẻ trái (vòng mũi tên) trượt lên; 0,50 s thẻ phải (danh sách và đồng hồ) trượt lên."
+        },
+        {
+          "t": 1.2,
+          "event": "Cáo (thumbs_up) vào."
+        },
+        {
+          "t": 1.9,
+          "event": "Lời «bấm lại»: thẻ trái sáng nhẹ, nhãn «Bấm lại» hiện."
+        },
+        {
+          "t": 3.1,
+          "event": "Lời «kiểm tra lịch sử»: thẻ phải sáng nhẹ, nhãn «Lịch sử» hiện."
+        },
+        {
+          "t": 4.19,
+          "event": "Hết lời 15; đuôi im 0,61 s: hai thẻ giữ, vòng sáng nhấp nhẹ."
+        }
+      ],
+      "voice_over": "Bạn thường làm gì đầu tiên khi giao dịch báo lỗi: bấm lại, hay kiểm tra lịch sử?",
+      "voice_direction": [
+        {
+          "line_id": "15",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "bấm lại",
+            "kiểm tra lịch sử"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.6,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "Bấm lại; Lịch sử",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bấm lại",
+            "type": "action",
+            "form": "animation",
+            "object": "thẻ trái",
+            "motion": "Thẻ trái sáng nhẹ lúc 1,90 s."
+          },
+          {
+            "term": "kiểm tra lịch sử",
+            "type": "action",
+            "form": "animation",
+            "object": "thẻ phải",
+            "motion": "Thẻ phải sáng nhẹ lúc 3,10 s."
+          },
+          {
+            "term": "giao dịch báo lỗi",
+            "type": "result",
+            "form": "status",
+            "object": "điện thoại mờ phía sau",
+            "motion": "Điện thoại mờ giữ trạng thái vàng làm nền câu hỏi."
+          }
+        ],
+        "relations": [
+          {
+            "from": "thẻ trái",
+            "to": "thẻ phải",
+            "type": "hai lựa chọn song song"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Bấm lại",
+            "kind": "label",
+            "attach_to": "thẻ trái",
+            "appear_s": 1.9,
+            "disappear_s": 4.75,
+            "effect": "fade"
+          },
+          {
+            "text": "Lịch sử",
+            "kind": "message",
+            "attach_to": "thẻ phải",
+            "appear_s": 3.1,
+            "disappear_s": 4.75,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 0.6
+      },
+      "sound_cues": [
+        {
+          "t": 1.9,
+          "intent": "highlight",
+          "target": "thẻ trái",
+          "intensity": "low",
+          "reason": "Tiếng sáng khẽ khi thẻ «Bấm lại» được nhắc."
+        },
+        {
+          "t": 3.1,
+          "intent": "highlight",
+          "target": "thẻ phải",
+          "intensity": "low",
+          "reason": "Tiếng sáng khẽ khi thẻ «Lịch sử» được nhắc."
+        },
+        {
+          "t": 4.2,
+          "intent": "silence",
+          "target": "đuôi video",
+          "intensity": "low",
+          "duration_s": 0.6,
+          "reason": "Đuôi im 0,60 s cuối clip (≤ 0,7 s), không thẻ kênh."
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 4.8,
+      "header_slot": "top_left",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      },
+      "sound_effects": [
+        "1,9 s · highlight · thẻ trái: Tiếng sáng khẽ khi thẻ «Bấm lại» được nhắc.",
+        "3,1 s · highlight · thẻ phải: Tiếng sáng khẽ khi thẻ «Lịch sử» được nhắc.",
+        "4,2 s · khoảng lặng 0,6 s · đuôi video: Đuôi im 0,60 s cuối clip (≤ 0,7 s), không thẻ kênh."
+      ]
+    }
+  ]
+}

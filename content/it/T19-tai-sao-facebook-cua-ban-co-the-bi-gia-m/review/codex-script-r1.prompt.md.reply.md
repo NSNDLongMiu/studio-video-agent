@@ -1,0 +1,1 @@
+Đã ghi [script-codex-r1.md](<D:/Agent Video Studio/content/it/T19-tai-sao-facebook-cua-ban-co-the-bi-gia-m/review/script-codex-r1.md>) với 3 đoạn đề xuất viết lại, 4 lỗi hoặc rủi ro chính xác và chỉ dẫn giọng đọc cho 3 đoạn sửa. Điểm quan trọng nhất là cho thấy tin vay phát từ hồ sơ khác. Việc Cáo vẫn đăng nhập được chưa đủ để kết luận tài khoản an toàn.

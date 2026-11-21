@@ -1,0 +1,11 @@
+**Vòng 1 — Phản biện ba concept của Claude**
+
+**Trọng tâm** là vì sao người dùng Facebook vẫn có thể bị mạo danh dù họ chưa mất quyền truy cập tài khoản. Khán giả cần phân biệt tài khoản thật với hồ sơ giả và biết cách xác minh khi nhận tin vay tiền. Điểm dưới đây theo thứ tự **hook & giữ chân / khớp brief / khả thi / an toàn / độc đáo**, mỗi mục trên 10.
+
+**1. Bản sao ghép từ ba mảnh — 9 / 9 / 9 / 7 / 8.** Tin nhắn “Sao mày vừa vay tao 5 triệu?” cho thấy ngay tiền của bạn bè đang gặp rủi ro. Điểm yếu là cảnh ba mảnh bay sang khung trống dễ trông như thao tác dựng tài khoản. Dùng `DataVizScene` đặt hai hồ sơ minh họa đã hoàn chỉnh cạnh nhau, đánh dấu ảnh và tên giống nhau, rồi giải thích rằng thông tin bạn bè nếu công khai có thể giúp kẻ gian biết nên nhắn cho ai. Trước giây 5, cho thấy Cáo vẫn vào được tài khoản của mình trong khi bạn đã nhận tin từ hồ sơ khác. Đến giây 10–12, trả lời thẳng rằng tin vay tiền đến từ một tài khoản riêng. Bỏ chữ “giống hệt” vì hai hồ sơ chỉ cần đủ giống để người quen tin nhầm.
+
+**2. Hai cuộc gọi — 8 / 6 / 8 / 7 / 7.** Ngón tay dừng trước khi chuyển tiền tạo sức ép rõ, nhưng cuộc gọi trong chat “lộ bản giả” dễ khiến người xem tưởng đó là cách xác minh đáng tin. Giữ cảnh bấm gọi số đã lưu, bỏ cảnh gọi trong chat. Nếu dựng concept này riêng, dùng `UiSimulationScene` cho thấy hai hồ sơ trước giây 15 để câu hỏi vì sao có bản giả vẫn được trả lời sớm. Cảnh gọi có giá trị nhất khi làm đoạn kết cho concept 1.
+
+**3. Cáo tự kiểm hồ sơ mình — 5 / 8 / 9 / 8 / 6.** Câu hỏi “người lạ biết được những gì?” mở bằng thao tác kiểm tra, nên đến giây 5 người xem vẫn chưa thấy hậu quả. Mở bằng cảnh bạn của Cáo suýt chuyển tiền, rồi dùng `PromptReviewScene` để Cáo rà lại thông tin công khai. Đổi “Bấy nhiêu là đủ để thành tôi” thành “Nhìn quen, bạn mình có thể tưởng là mình.”
+
+**Chọn concept 1, lấy cảnh gọi số đã lưu từ concept 2.** Khoảng giây 55–65, cho thấy người bạn dừng chuyển tiền sau khi gọi Cáo. Chốt bằng bốn việc cụ thể gồm thu hẹp thông tin công khai, báo bạn bè, báo cáo tài khoản giả và gọi số đã lưu trước khi chuyển tiền. Mời người xem chọn việc họ sẽ làm đầu tiên. Ghi “Ví dụ dựng” và nhãn AI trong caption hoặc `publish.json`.

@@ -1,0 +1,11 @@
+## Lượt phản biện
+
+Thang 1–10, theo thứ tự **hook & giữ chân · khớp brief · khả thi · an toàn · độc đáo**.
+
+**A — Chìa khoá vạn năng · 7 / 9 / 9 / 8 / 7.** Bảng giá khách hàng tạo hệ quả gần với dân văn phòng. Nhưng dòng “đã gửi” ngay trong chat dễ bị hiểu là chatbot báo gửi dữ liệu. Trong hai giây đầu của hook, cho Cáo dán bảng giá vào chat. Trước giây 5, cho một bản sao trượt sang ô “Máy chủ ngoài”, kèm nhãn “Ví dụ dựng”. Trả lời “Chat đi đâu?” ngay lúc đó, rồi dùng sơ đồ quyền truy cập để giải thích vì sao tiện ích thấy được nội dung trang. Dành giây 160 để chốt hệ quả của việc gỡ. Khi nhắc quy mô vụ việc, ghi nguồn OX Security, 30/12/2025. Chưa đủ dữ kiện để khẳng định số người thực tế bị lộ.
+
+**B — Điều tra 30 phút · 5 / 7 / 8 / 8 / 8.** Một dòng lưu lượng mạng đều đặn chưa cho khán giả thấy dữ liệu công việc nào gặp rủi ro. Opening cũng dễ biến “khoảng 30 phút” thành quy luật chung. Mở bằng cảnh Cáo vừa dán thông tin khách hàng, rồi cho thấy bản sao rời trình duyệt trước giây 5. Khoảng giây 15, trả lời ai gửi và gửi gì bằng các thẻ “Tiện ích”, “Nội dung chat” và “Địa chỉ tab đã mở”. Đưa đồng hồ vào phần cơ chế, ghi “khoảng 30 phút mỗi đợt trong vụ được báo cáo”. Dùng sơ đồ gửi theo đợt và giữ hình hoàn chỉnh 2–3 giây. Bản hiện tại còn thiếu nhịp giải pháp.
+
+**C — Hai chiếc Cáo · 6 / 8 / 7 / 9 / 8.** Hai lựa chọn dễ hiểu, nhưng “Khác nhau chỗ nào?” đã có đáp án ngay khi một Cáo dừng kiểm. Hãy cho thấy hệ quả trước giây 5 ở tình huống dựng, rồi đặt câu hỏi cụ thể hơn: “Quyền nào cho tiện ích thấy tab chat?”. Khoảng giây 15, chỉ đúng mục quyền trên giao diện giả lập toàn khung. Sau đó lần lượt minh hoạ “khi nhấp”, “trên trang cụ thể” và “trên mọi trang” bằng các vùng sáng trên tab. Cắt luân phiên toàn khung để giữ chữ dễ đọc trên 9:16 và chỉ dùng Cáo ở vài nhịp chuyển.
+
+**Chọn A sau chỉnh sửa.** Mượn đồng hồ của B cho đoạn gửi theo đợt. Kết bằng hình hai trạng thái sau khi gỡ: lượt gửi tiếp theo dừng, bản đã gửi có thể còn ở ngoài. Cả ba bản cần chốt đủ ba việc: kiểm nhà phát hành và quyền trước khi cài, gỡ tiện ích không dùng, giữ mật khẩu, khoá và dữ liệu khách hàng khỏi chat. Câu mời bình luận: “Bạn thường kiểm nhà phát hành hay quyền truy cập trước?”

@@ -1,0 +1,1681 @@
+{
+  "video_id": "IT-T21-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene gõ mã IDE/terminal; ExplainerScene bố trí hàng ngang và một luồng cố định; DataVizScene tăng thanh từ 0; CharacterScene, QASequenceScene và PromptReviewScene không dựng được chat giao dịch, nhánh văn bản có điều kiện và cue tua ngược trên bàn ấm bằng props hiện có. Dùng tools/motion cho thẻ, luồng, chữ, crop và vẽ silhouette, stroke nét đứt, thanh hai đầu mút riêng bằng Pillow; FFmpeg ghép đúng mốc, overlay động eval=frame, zoompan d theo số frame nếu dùng.",
+  "opening": {
+    "scene_id": "S00",
+    "title": "TÊN AI TRÊN GIAO DỊCH?",
+    "duration_s": 8,
+    "style": "hypothetical",
+    "style_params": {
+      "keyword": "",
+      "topic": "",
+      "layout": "center_stage"
+    },
+    "animation": "Dựng riêng S00 từ hai nhịp S01 và S02, cắt nội bộ tại 3,25 s. Text engine vẽ tiêu đề từ 5,10 s một lần; dùng renderer đạo cụ riêng để mẫu không thêm chữ.",
+    "voice": true,
+    "voice_line": "01",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 2.5,
+        "visual": "Điện thoại và Cáo ở bàn, tin nhắn vào .10.",
+        "sfx_intent": "ui_appear",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 2.5,
+        "end_s": 5.1,
+        "visual": "Thẻ đỏ nét đứt hiện, cắt cận ô avatar.",
+        "sfx_intent": "impact_risk",
+        "voice_line": "02"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 5.1,
+        "end_s": 8,
+        "visual": "Tiêu đề trên thẻ đang giữ.",
+        "sfx_intent": "highlight",
+        "voice_line": "02"
+      }
+    ]
+  },
+  "header": {
+    "text": "BẢO MẬT / MƯỢN TÀI KHOẢN",
+    "title": "MƯỢN TÀI KHOẢN",
+    "slots": [
+      "top_left",
+      "top",
+      "top_right"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "1080×1920, 30 fps. Nền thay theo ngữ cảnh, thẻ bo và bóng nhẹ. Cyan #22C7E8 là dòng tiền, cam #F28C28 là cho mượn, vàng #F4B400 là nghi vấn, xanh #2FBF71 là bình thường/đúng, đỏ #E5484D chỉ nét đứt đứng màu, navy #101B2E và trắng. Chữ Segoe UI Bold, số Bahnschrift, keyword ≥72 px, nhãn ≥56 px, header ≥52 px. Header là một cụm và dùng cùng dòng đã duyệt; title là phần rút gọn, tránh in lặp. Y250–1320 cho nội dung; phụ đề riêng y1340–1500, ≤28 ký tự mỗi dòng. Nét đóng/mở là lớp đồ hoạ vẽ từng khung, Cáo dùng PNG tĩnh đổi dáng bằng cắt, camera là crop phẳng; không làm biến dạng miệng hoặc tay. Tắt nhạc. Metadata mô tả đăng có khai báo AI và ví dụ dựng theo script.",
+  "scenes": [
+    {
+      "scene_id": "S00",
+      "duration_s": 8,
+      "scene_type": "ui_simulation",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "layout": "center_stage",
+        "stage": "office"
+      },
+      "narrative_purpose": "Đặt lời nhờ bên cạnh hệ quả có thể xảy ra với người đứng tên.",
+      "main_idea": "Đặt lời nhờ bên cạnh hệ quả có thể xảy ra với người đứng tên.",
+      "visual_concept": "Tin nhắn bật trên điện thoại, thẻ nét đứt trượt vào rồi cú cắt làm ô tên thành tiêu điểm. Giữ bàn, Cáo, lịch và chip xanh. Khung hình quay vào màn hình. Tin nhắn trượt lên từ silhouette cạnh mép chat; L01 vào 0,60 s, nghỉ 0,20 s sau L01.",
+      "main_change": "Tin nhắn bật trên điện thoại, thẻ nét đứt trượt vào rồi cú cắt làm ô tên thành tiêu điểm.",
+      "environment": "office · N1. Xa là bàn gỗ ấm và bóng cửa sổ, giữa là điện thoại cao 700 px ở x≈310–950, gần là lịch trái, thẻ và sticker. Ảnh Gemini không chữ hưởng lợi cho mặt bàn S01–S02; dự phòng make_background.py office + vân gỗ và đạo cụ Pillow.",
+      "character_action": "think từ 0–3,25; surprised từ 3,35–6,10, nhìn về thẻ. Sticker sát điện thoại để tạo cảm giác đang cầm; dáng tĩnh, x≈100, đáy ≤1290, ≤1,5× nguồn.",
+      "props": [
+        "điện thoại khung bo",
+        "lịch ô khoanh",
+        "silhouette bạn thân",
+        "chip tài khoản vòng 150 px",
+        "thẻ giấy nét đứt có avatar và ô tên"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ bàn, Cáo, lịch và chip xanh. Khung hình quay vào màn hình."
+        },
+        {
+          "t": 0.1,
+          "event": "Tin nhắn trượt lên từ silhouette cạnh mép chat; L01 vào 0,60 s, nghỉ 0,20 s sau L01 (đo VieNeu)."
+        },
+        {
+          "t": 1.35,
+          "event": "Bong bóng chat nở hết chiều ngang và đẩy các hàng giả xuống."
+        },
+        {
+          "t": 2.5,
+          "event": "Thẻ viền đỏ nét đứt trượt đè nửa dưới bong bóng, ô avatar Cáo thấy rõ; vòng đổi vàng. Làm mờ chữ chat, giữ hình bong bóng. Khung 2,85 s dùng làm thumbnail, cắt cận điện thoại và thẻ, kiểm ở 180×320."
+        },
+        {
+          "t": 3.06,
+          "event": "L02 vào 3,06 s trên khung điện thoại, sau nghỉ 0,20 s nối từ L01 (đo VieNeu)."
+        },
+        {
+          "t": 3.25,
+          "event": "Cắt nội bộ S01→S02 sang crop gần điện thoại ngay sau khi L02 bắt đầu; xếp lại lớp để giữ ô tên và lịch ngoài vùng chữ cần đọc."
+        },
+        {
+          "t": 3.35,
+          "event": "Cắt dáng surprised, mắt hướng ô tên."
+        },
+        {
+          "t": 4.68,
+          "event": "Đẩy crop lớp điện thoại 1,00→1,12 quanh ô tên, giữ thẻ trong khung."
+        },
+        {
+          "t": 5.1,
+          "event": "Tiêu đề vào một lần y390–620, ≥84 px. Lớp tiêu đề đứng ngoài crop."
+        },
+        {
+          "t": 5.62,
+          "event": "Thẻ nảy nhẹ một lần."
+        },
+        {
+          "t": 6.1,
+          "event": "Cáo rời; giữ tiêu đề và thẻ, một vệt sáng di chuyển dọc mép giấy, nét đỏ giữ nguyên độ sáng."
+        },
+        {
+          "t": 7.15,
+          "event": "Vệt sáng quét qua ô avatar, giữ ô tên đến match cut sang nút tài khoản."
+        }
+      ],
+      "voice_over": "Ví dụ: bạn thân nhờ mình nhận hộ tiền, một lần thôi.\nNhận hộ thôi, sao tên mình phải giải trình?",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "concerned",
+          "pace": "brisk",
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.2,
+          "intonation": "rise_fall",
+          "emphasis": [
+            "nhận hộ tiền",
+            "một lần thôi"
+          ],
+          "transition": {
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "02",
+          "intent": "question",
+          "emotion": "curious",
+          "pace": "brisk",
+          "pause_before_s": 0.2,
+          "pause_after_s": 0.9,
+          "intonation": "rising",
+          "emphasis": [
+            "tên mình",
+            "giải trình"
+          ],
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.1,
+          "intent": "ui_appear",
+          "target": "tin nhắn",
+          "reason": "Báo tin mềm để mở tình huống.",
+          "intensity": "low"
+        },
+        {
+          "t": 2.5,
+          "intent": "impact_risk",
+          "target": "thẻ giải trình",
+          "reason": "Ting nhẹ khi thẻ trượt vào.",
+          "intensity": "low"
+        },
+        {
+          "t": 5.1,
+          "intent": "highlight",
+          "target": "tiêu đề",
+          "reason": "Tick nhẹ đúng mốc tiêu đề.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "match_cut",
+      "complexity": "low",
+      "concepts": 1,
+      "hold_after_voice_s": 1.98,
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bạn thân nhờ nhận hộ",
+            "type": "action",
+            "form": "animation",
+            "object": "silhouette và bong bóng trên điện thoại",
+            "motion": "tin bật rồi chiếm khung chat"
+          },
+          {
+            "term": "tiền nhà",
+            "type": "entity",
+            "form": "illustration",
+            "object": "lịch giấy",
+            "motion": "nằm ở rìa bàn"
+          },
+          {
+            "term": "tên mình",
+            "type": "entity",
+            "form": "icon",
+            "object": "avatar Cáo trong ô tên",
+            "motion": "crop tới avatar"
+          },
+          {
+            "term": "có thể phải giải trình",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ giấy viền đỏ nét đứt",
+            "motion": "trượt lên trên tin nhắn"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tin nhắn",
+            "to": "thẻ giải trình",
+            "type": "hệ quả giả định"
+          },
+          {
+            "from": "avatar",
+            "to": "ô tên",
+            "type": "nhận diện chủ tài khoản"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TIỀN NHÀ",
+            "kind": "label",
+            "attach_to": "lịch",
+            "appear_s": 0,
+            "disappear_s": 3.25,
+            "effect": "none"
+          },
+          {
+            "text": "Cho tao mượn tài khoản nhận hộ nha",
+            "kind": "message",
+            "attach_to": "bong bóng chat",
+            "appear_s": 0.1,
+            "disappear_s": 2.5,
+            "effect": "none"
+          },
+          {
+            "text": "YÊU CẦU GIẢI TRÌNH",
+            "kind": "label",
+            "attach_to": "thẻ giải trình",
+            "appear_s": 2.5,
+            "disappear_s": 8,
+            "effect": "none"
+          },
+          {
+            "text": "TÊN AI TRÊN GIAO DỊCH?",
+            "kind": "message",
+            "attach_to": "vùng phía trên điện thoại",
+            "appear_s": 5.1,
+            "disappear_s": 8,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.98
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "duration_s": 6.97,
+      "scene_type": "process_animation",
+      "scene_kind": "data_flow",
+      "kind_params": {
+        "layout": "stacked_chain",
+        "stage": "database"
+      },
+      "header_slot": "top_left",
+      "narrative_purpose": "Tiền đi tiếp còn tên chủ tài khoản nằm trên lượt tiền vào.",
+      "main_idea": "Tiền đi tiếp còn tên chủ tài khoản nằm trên lượt tiền vào.",
+      "visual_concept": "Hạt tiền đi qua thẻ giữa xuống silhouette dưới trong khi phiếu giao dịch ghim lại ở giữa. Nối vòng vàng S00 vào thẻ giữa, chừa ô header trên trái. Vẽ chặng cyan từ silhouette trên, thả hạt tiền xuống.",
+      "main_change": "Hạt tiền đi qua thẻ giữa xuống silhouette dưới trong khi phiếu giao dịch ghim lại ở giữa.",
+      "environment": "database · N2A. Xa navy lưới sổ giao dịch, giữa chuỗi ba tầng y450–1280, gần hạt cyan và mép phiếu sáng cam. Máy cố định để so được phiếu đứng yên với hạt di chuyển.",
+      "character_action": "",
+      "props": [
+        "silhouette xám xanh",
+        "thẻ tài khoản có vòng vàng",
+        "silhouette cam nhạt",
+        "hai chặng luồng",
+        "phiếu ghim tên"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Nối vòng vàng S00 vào thẻ giữa, chừa ô header trên trái."
+        },
+        {
+          "t": 0.25,
+          "event": "Vẽ chặng cyan từ silhouette trên, thả hạt tiền xuống."
+        },
+        {
+          "t": 1.6,
+          "event": "Đổi riêng chặng trên sang vàng nét đứt, nhãn hiện một lần."
+        },
+        {
+          "t": 2.48,
+          "event": "Hạt tới nút giữa trong nhịp nghỉ .40."
+        },
+        {
+          "t": 3,
+          "event": "Silhouette dưới và chặng cyan đi tiếp xuất hiện. Đổi lượt nhãn hai silhouette."
+        },
+        {
+          "t": 4.7,
+          "event": "Phiếu lượt tiền vào bung ra từ nút giữa và ghim tại đó."
+        },
+        {
+          "t": 5.4,
+          "event": "Ánh cam quét ô tên, hạt xuống nút dưới."
+        },
+        {
+          "t": 6.65,
+          "event": "Hạt tới người nhờ; phiếu và ô tên giữ tại nút giữa đến hết."
+        }
+      ],
+      "voice_over": "Tiền nhận hộ có thể liên quan đến lừa đảo.\nTiền đi tiếp sang người nhờ, lượt tiền vào vẫn mang tên mình.",
+      "voice_direction": [
+        {
+          "line_id": "03",
+          "intent": "reveal",
+          "emotion": "concerned",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "falling",
+          "emphasis": [
+            "có thể",
+            "liên quan đến lừa đảo"
+          ],
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "04",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "pause_before_s": 0.4,
+          "pause_after_s": 2,
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "đi tiếp",
+            "mang tên mình"
+          ],
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.6,
+          "intent": "impact_reveal",
+          "target": "chặng vàng",
+          "reason": "Bụp mềm ở thời điểm gắn nghi vấn.",
+          "intensity": "low"
+        },
+        {
+          "t": 4.7,
+          "intent": "interaction",
+          "target": "phiếu giao dịch",
+          "reason": "Tick khi phiếu được ghim.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "match_cut",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2,
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "người bị hại",
+            "type": "entity",
+            "form": "icon",
+            "object": "silhouette trên",
+            "motion": "xuất hiện cùng chặng vào"
+          },
+          {
+            "term": "nghi liên quan",
+            "type": "relation",
+            "form": "connection",
+            "object": "chặng vào vàng nét đứt",
+            "motion": "đổi khi lời nói đến liên quan"
+          },
+          {
+            "term": "tài khoản Cáo",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ giữa có avatar",
+            "motion": "vòng vàng làm mốc"
+          },
+          {
+            "term": "người nhờ",
+            "type": "entity",
+            "form": "icon",
+            "object": "silhouette dưới",
+            "motion": "nhận hạt cyan"
+          },
+          {
+            "term": "lượt tiền vào mang tên mình",
+            "type": "result",
+            "form": "animation",
+            "object": "phiếu có ô tên cạnh thẻ giữa",
+            "motion": "ghim tại chỗ khi hạt đi"
+          }
+        ],
+        "relations": [
+          {
+            "from": "silhouette trên",
+            "to": "thẻ giữa",
+            "type": "lượt vào"
+          },
+          {
+            "from": "thẻ giữa",
+            "to": "silhouette dưới",
+            "type": "tiền đi tiếp"
+          },
+          {
+            "from": "phiếu lượt vào",
+            "to": "thẻ giữa",
+            "type": "tên chủ tài khoản"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGƯỜI BỊ HẠI",
+            "kind": "label",
+            "attach_to": "silhouette trên",
+            "appear_s": 0.3,
+            "disappear_s": 1.6,
+            "effect": "none"
+          },
+          {
+            "text": "NGHI LIÊN QUAN",
+            "kind": "keyword",
+            "attach_to": "chặng trên",
+            "appear_s": 1.6,
+            "disappear_s": 6.97,
+            "effect": "kinetic"
+          },
+          {
+            "text": "NGƯỜI NHỜ",
+            "kind": "label",
+            "attach_to": "silhouette dưới",
+            "appear_s": 3,
+            "disappear_s": 4.7,
+            "effect": "none"
+          },
+          {
+            "text": "CÁO",
+            "kind": "label",
+            "attach_to": "ô tên phiếu lượt vào",
+            "appear_s": 4.7,
+            "disappear_s": 6.97,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "duration_s": 6.48,
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "layout": "diagonal_flow",
+        "stage": "incident"
+      },
+      "header_slot": "top",
+      "narrative_purpose": "Văn bản đến trước hệ quả có thể xảy ra.",
+      "main_idea": "Văn bản đến trước hệ quả có thể xảy ra.",
+      "visual_concept": "Tờ giấy từ toà nhà chạm thẻ trước khi ổ khoá nét đứt xuất hiện; dấu hỏi đi đến thẻ tên. Map vòng vàng qua thẻ tài khoản dưới sân khấu. Silhouette giơ điện thoại; chuông hướng về toà nhà.",
+      "main_change": "Tờ giấy từ toà nhà chạm thẻ trước khi ổ khoá nét đứt xuất hiện; dấu hỏi đi đến thẻ tên.",
+      "environment": "incident · N2B. Xa navy có quầng sáng theo toà nhà, giữa hàng ngang báo tin và toà nhà, gần thẻ tài khoản và giấy nét đứt phía dưới. Pan dọc lớp nền/đạo cụ 60 px khi giấy đi xuống, header cố định.",
+      "character_action": "",
+      "props": [
+        "điện thoại nhỏ và chuông",
+        "toà nhà có cờ trơn",
+        "giấy gấp góc",
+        "ổ khoá nét đứt",
+        "thẻ giải trình"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "tilt_down"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Map vòng vàng qua thẻ tài khoản dưới sân khấu."
+        },
+        {
+          "t": 0.3,
+          "event": "Silhouette giơ điện thoại; chuông hướng về toà nhà."
+        },
+        {
+          "t": 0.65,
+          "event": "Tờ văn bản hiện tại toà nhà."
+        },
+        {
+          "t": 1.1,
+          "event": "Gắn nhãn toà nhà."
+        },
+        {
+          "t": 2.6,
+          "event": "Giấy đi xuống; pan bám giấy trong khoảng .4 s."
+        },
+        {
+          "t": 3,
+          "event": "Giấy chạm thẻ."
+        },
+        {
+          "t": 3.35,
+          "event": "Ổ khoá lớn viền đỏ nét đứt đóng trên thẻ, vòng vàng thành đỏ nét đứt. Giữ màu ổn định."
+        },
+        {
+          "t": 4.57,
+          "event": "Thẻ giấy gấp góc trượt lên cạnh tài khoản, cùng mẫu mở với avatar Cáo và viền đỏ nét đứt ổn định. Dòng kẻ trơn và dấu hỏi hướng ô tên diễn tả yêu cầu giải trình."
+        },
+        {
+          "t": 5.2,
+          "event": "Dấu hỏi chạy từ phía toà nhà tới ô tên."
+        },
+        {
+          "t": 6.45,
+          "event": "Vệt sáng trung tính đi theo dấu hỏi tới ô tên trong nhịp giữ."
+        }
+      ],
+      "voice_over": "Theo văn bản của cơ quan có thẩm quyền, tài khoản có thể bị phong toả.\nNgười đứng tên có thể phải giải trình.",
+      "voice_direction": [
+        {
+          "line_id": "05",
+          "intent": "warning",
+          "emotion": "concerned",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "falling",
+          "emphasis": [
+            "văn bản",
+            "có thể bị phong toả"
+          ],
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "06",
+          "intent": "warning",
+          "emotion": "concerned",
+          "pace": "normal",
+          "pause_before_s": 0.4,
+          "pause_after_s": 1,
+          "intonation": "falling",
+          "emphasis": [
+            "Người đứng tên",
+            "có thể phải giải trình"
+          ],
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.3,
+          "intent": "ui_appear",
+          "target": "chuông",
+          "reason": "Tiếng báo nhỏ khi điện thoại giơ lên.",
+          "intensity": "low"
+        },
+        {
+          "t": 3,
+          "intent": "interaction",
+          "target": "văn bản",
+          "reason": "Tick khi giấy chạm thẻ.",
+          "intensity": "low"
+        },
+        {
+          "t": 3.35,
+          "intent": "highlight",
+          "target": "vòng trạng thái",
+          "reason": "Tụp mềm khi vòng đổi.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "cut",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "cơ quan",
+            "type": "entity",
+            "form": "icon",
+            "object": "toà nhà cờ trơn",
+            "motion": "sáng khi nhận tín hiệu"
+          },
+          {
+            "term": "văn bản",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tờ giấy gấp góc",
+            "motion": "rời toà nhà rồi chạm thẻ"
+          },
+          {
+            "term": "phong toả có thể xảy ra",
+            "type": "result",
+            "form": "status",
+            "object": "ổ khoá và vòng đỏ nét đứt",
+            "motion": "hiện sau khi văn bản tới"
+          },
+          {
+            "term": "giải trình",
+            "type": "action",
+            "form": "connection",
+            "object": "dấu hỏi và thẻ avatar Cáo",
+            "motion": "dấu hỏi nối tới ô tên"
+          }
+        ],
+        "relations": [
+          {
+            "from": "toà nhà",
+            "to": "văn bản",
+            "type": "phát văn bản"
+          },
+          {
+            "from": "văn bản",
+            "to": "ổ khoá",
+            "type": "điều kiện thể hiện trước"
+          },
+          {
+            "from": "dấu hỏi",
+            "to": "ô tên",
+            "type": "giải trình có thể xảy ra"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CƠ QUAN",
+            "kind": "label",
+            "attach_to": "toà nhà cờ",
+            "appear_s": 1.1,
+            "disappear_s": 3.35,
+            "effect": "none"
+          },
+          {
+            "text": "CÓ THỂ PHONG TOẢ",
+            "kind": "message",
+            "attach_to": "ổ khoá nét đứt",
+            "appear_s": 3.35,
+            "disappear_s": 6.48,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "duration_s": 4.63,
+      "scene_type": "data_visualization",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "layout": "focus_corner",
+        "stage": "security"
+      },
+      "header_slot": "top_right",
+      "narrative_purpose": "Gắn khung phạt vào hành vi cho mượn tài khoản.",
+      "main_idea": "Gắn khung phạt vào hành vi cho mượn tài khoản.",
+      "visual_concept": "Thanh hai đầu mút trượt lên và móc bằng đường cam vào mũi tên cho mượn. Mở trên thẻ tài khoản với vòng rủi ro nét đứt thu gọn, không vẽ luồng cyan. Mũi tên cam vẽ tới silhouette người nhờ.",
+      "main_change": "Thanh hai đầu mút trượt lên và móc bằng đường cam vào mũi tên cho mượn.",
+      "environment": "security · N2C. Xa navy ánh cam mờ, giữa thẻ và silhouette đối diện, gần thanh ngang và đường móc. Pull-out 1,16→1,00 đầu nhịp thanh đi lên để lộ cả hai đầu mút, không crop header.",
+      "character_action": "",
+      "props": [
+        "thẻ tài khoản",
+        "silhouette người nhờ",
+        "silhouette cá nhân",
+        "mũi tên cam",
+        "thanh dải hai đầu mút",
+        "dải chín ô nhỏ có icon thẻ tài khoản và vạch chặn cuối"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở trên thẻ tài khoản với vòng rủi ro nét đứt thu gọn, không vẽ luồng cyan."
+        },
+        {
+          "t": 0.3,
+          "event": "Mũi tên cam vẽ tới silhouette người nhờ."
+        },
+        {
+          "t": 1.7,
+          "event": "Silhouette cá nhân sáng cạnh thẻ."
+        },
+        {
+          "t": 2.2,
+          "event": "Thanh hai đầu mút trượt lên từ dưới, camera lùi cho thấy thanh và hành vi phía trên."
+        },
+        {
+          "t": 3.1,
+          "event": "Nối thanh bằng đường cam duy nhất vào mũi tên, bật số và sáng đầu trái."
+        },
+        {
+          "t": 3.75,
+          "event": "Sáng đầu phải khi đến số cuối."
+        },
+        {
+          "t": 4.1,
+          "event": "Dưới thanh, chín ô nhỏ có icon thẻ tài khoản sáng lần lượt đến vạch chặn cuối, gợi phạm vi dưới mười tài khoản. Giữ nhãn hành vi và dải số nối bằng đúng một đường cam."
+        }
+      ],
+      "voice_over": "Còn cho mượn tài khoản, cá nhân có thể bị phạt một trăm đến một trăm năm mươi triệu.",
+      "voice_direction": [
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.03,
+          "intonation": "falling",
+          "emphasis": [
+            "cho mượn tài khoản",
+            "một trăm đến một trăm năm mươi triệu"
+          ],
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.2,
+          "intent": "ui_appear",
+          "target": "thanh khung",
+          "reason": "Ting khi thanh xuất hiện.",
+          "intensity": "low"
+        },
+        {
+          "t": 3.1,
+          "intent": "highlight",
+          "target": "đầu trái",
+          "reason": "Tick nhỏ ở đầu dải.",
+          "intensity": "low"
+        },
+        {
+          "t": 3.75,
+          "intent": "highlight",
+          "target": "đầu phải",
+          "reason": "Tick nhỏ ở cuối dải.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "match_cut",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.03,
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "cho mượn tài khoản",
+            "type": "action",
+            "form": "connection",
+            "object": "thẻ, mũi tên cam và người nhờ",
+            "motion": "mũi tên vẽ tới người nhờ"
+          },
+          {
+            "term": "cá nhân",
+            "type": "entity",
+            "form": "icon",
+            "object": "silhouette đơn lẻ",
+            "motion": "được chiếu sáng"
+          },
+          {
+            "term": "khung phạt",
+            "type": "result",
+            "form": "chart",
+            "object": "thanh tĩnh có hai đầu mút",
+            "motion": "thanh lên và nối vào mũi tên cam"
+          }
+        ],
+        "relations": [
+          {
+            "from": "thanh khung phạt",
+            "to": "mũi tên cam",
+            "type": "gắn với hành vi cho mượn"
+          }
+        ],
+        "texts": [
+          {
+            "text": "CHO MƯỢN",
+            "kind": "keyword",
+            "attach_to": "mũi tên cam",
+            "appear_s": 0.3,
+            "disappear_s": 4.63,
+            "effect": "none"
+          },
+          {
+            "text": "100–150 TRIỆU",
+            "kind": "number",
+            "attach_to": "thanh hai đầu mút",
+            "appear_s": 3.1,
+            "disappear_s": 4.63,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.03
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "duration_s": 4.58,
+      "scene_type": "object_interaction",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "layout": "center_stage",
+        "stage": "security"
+      },
+      "header_slot": "top_left",
+      "narrative_purpose": "Một lần cho mượn vẫn nằm trong tình huống có thể bị phạt.",
+      "main_idea": "Một lần cho mượn vẫn nằm trong tình huống có thể bị phạt.",
+      "visual_concept": "Hai ô trượt từ hai phía vào khung, ký hiệu một tài khoản và một lần vẫn phân biệt. Match cut thanh S05 thành khay mở có đường nối cam ngắn. Đưa ô tài khoản từ trái.",
+      "main_change": "Hai ô trượt từ hai phía vào khung, ký hiệu một tài khoản và một lần vẫn phân biệt.",
+      "environment": "security · N2C. Xa ánh navy bên hông, giữa hai ô hình tài khoản và một dấu khấc, gần khung như khay tiếp nhận. Khóa máy nhìn từ trên để phân biệt hai hướng vào.",
+      "character_action": "",
+      "props": [
+        "khung phạt không số",
+        "ô hình tài khoản",
+        "ô dấu khấc một lần",
+        "chip vàng nét đứt"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Match cut thanh S05 thành khay mở có đường nối cam ngắn."
+        },
+        {
+          "t": 0.6,
+          "event": "Đưa ô tài khoản từ trái."
+        },
+        {
+          "t": 1.65,
+          "event": "Đưa ô một lần từ phải."
+        },
+        {
+          "t": 1.9,
+          "event": "Hai ô vào hai rãnh riêng của một khung, viền cam hiện."
+        },
+        {
+          "t": 2.6,
+          "event": "Chip vàng nét đứt không chữ, có dấu cảnh báo, bung trên mép khay cùng hình thanh khung phạt thu nhỏ từ S05. Giữ dấu khấc trong khay."
+        },
+        {
+          "t": 3.65,
+          "event": "Một vệt cam chạy từ đầu mũi tên qua mép khay; hai ô giữ trong khung."
+        }
+      ],
+      "voice_over": "Cho mượn một tài khoản, dù chỉ một lần, cũng có thể bị phạt.",
+      "voice_direction": [
+        {
+          "line_id": "08",
+          "intent": "warning",
+          "emotion": "resolute",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.36,
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "một tài khoản",
+            "một lần"
+          ],
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.9,
+          "intent": "interaction",
+          "target": "hai ô",
+          "reason": "Tick khi hai ô chạm khay.",
+          "intensity": "low"
+        },
+        {
+          "t": 2.6,
+          "intent": "highlight",
+          "target": "chip nét đứt",
+          "reason": "Tụp mềm ở hệ quả có thể.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "wipeleft",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.36,
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "một tài khoản",
+            "type": "entity",
+            "form": "illustration",
+            "object": "ô có avatar và hình thẻ",
+            "motion": "vào rãnh trái"
+          },
+          {
+            "term": "một lần",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "ô một dấu khấc to",
+            "motion": "vào rãnh phải"
+          },
+          {
+            "term": "có thể bị phạt",
+            "type": "result",
+            "form": "status",
+            "object": "chip vàng viền nét đứt",
+            "motion": "hiện trên khay"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ô tài khoản",
+            "to": "khay",
+            "type": "đơn vị đếm"
+          },
+          {
+            "from": "ô một lần",
+            "to": "khay",
+            "type": "số lần trong tình huống ví dụ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "1 TÀI KHOẢN",
+            "kind": "label",
+            "attach_to": "ô tài khoản",
+            "appear_s": 0.6,
+            "disappear_s": 4.58,
+            "effect": "none"
+          },
+          {
+            "text": "1 LẦN",
+            "kind": "label",
+            "attach_to": "ô dấu khấc",
+            "appear_s": 1.65,
+            "disappear_s": 2.6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.36
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "duration_s": 5.89,
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "layout": "left_right_split",
+        "before": {
+          "label": "NGHĨ",
+          "state": "warn",
+          "object": "ba bong bóng"
+        },
+        "after": {
+          "label": "THỰC TẾ",
+          "state": "ok",
+          "object": "phiếu ghim avatar"
+        },
+        "stage": "security"
+      },
+      "header_slot": "top",
+      "narrative_purpose": "Đối chiếu suy nghĩ chuyển đi là xong với phiếu tiền vào vẫn đứng tên Cáo.",
+      "main_idea": "Đối chiếu suy nghĩ chuyển đi là xong với phiếu tiền vào vẫn đứng tên Cáo.",
+      "visual_concept": "Bên trái các bong bóng kể ngộ nhận; bên phải tiền lao ra khỏi thẻ trong khi ô tên vẫn ở nguyên. Bong bóng bay lên cột ấm. Hai silhouette vào bong bóng thứ nhất.",
+      "main_change": "Bên trái các bong bóng kể ngộ nhận; bên phải tiền lao ra khỏi thẻ trong khi ô tên vẫn ở nguyên.",
+      "environment": "N3 đối chiếu · xa chia ấm/navy, giữa hai cột, gần bong bóng và phiếu. Cuối nhịp trái pan nhẹ lớp minh hoạ sang phải, crop 1,00→1,10, vẫn thấy cả hai cột và header tĩnh.",
+      "character_action": "",
+      "props": [
+        "ba bong bóng",
+        "hai silhouette",
+        "một dấu khấc",
+        "mũi tên cyan",
+        "phiếu lượt vào có avatar"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "pan_right"
+      },
+      "animation_timeline": [
+        {
+          "t": 0.15,
+          "event": "Bong bóng bay lên cột ấm."
+        },
+        {
+          "t": 0.9,
+          "event": "Hai silhouette vào bong bóng thứ nhất."
+        },
+        {
+          "t": 1.55,
+          "event": "Dấu khấc đơn vào bong bóng thứ hai."
+        },
+        {
+          "t": 2.15,
+          "event": "Mũi tên rời thẻ trong bong bóng thứ ba."
+        },
+        {
+          "t": 2.75,
+          "event": "Biên chia lướt nhẹ, đưa mắt sang phải trước L10 tại 2,83 (đo VieNeu)."
+        },
+        {
+          "t": 3,
+          "event": "Hạt tiền cyan lao ra khỏi phiếu ở nửa phải; phiếu neo."
+        },
+        {
+          "t": 4.2,
+          "event": "Rọi ô tên trên phiếu, giữ avatar Cáo."
+        },
+        {
+          "t": 5.3,
+          "event": "Hạt rời khung, ô tên và phiếu tiếp tục đứng yên."
+        }
+      ],
+      "voice_over": "Ai cũng nghĩ: bạn thân nhờ, chỉ một lần, chuyển đi là xong.\nTiền chuyển đi rồi, lượt tiền vào vẫn mang tên mình.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "brisk",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.25,
+          "intonation": "rise_fall",
+          "emphasis": [
+            "chỉ một lần",
+            "chuyển đi là xong"
+          ],
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "10",
+          "intent": "reveal",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "pause_before_s": 0.25,
+          "pause_after_s": 1,
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "chuyển đi rồi",
+            "vẫn mang tên mình"
+          ],
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.9,
+          "intent": "ui_appear",
+          "target": "bong bóng bạn thân",
+          "reason": "Pop nhẹ khi vế đầu có hình.",
+          "intensity": "low"
+        },
+        {
+          "t": 2.75,
+          "intent": "transition",
+          "target": "biên chia",
+          "reason": "Tụp nhẹ khi đổi trọng tâm.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "cut",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bạn thân",
+            "type": "entity",
+            "form": "icon",
+            "object": "hai silhouette sát nhau",
+            "motion": "vào bong bóng"
+          },
+          {
+            "term": "một lần",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "một dấu khấc",
+            "motion": "điền vào bong bóng"
+          },
+          {
+            "term": "chuyển đi là xong",
+            "type": "concept",
+            "form": "comparison",
+            "object": "mũi tên thoát thẻ trong bong bóng",
+            "motion": "rời sang phải"
+          },
+          {
+            "term": "tên vẫn trên giao dịch",
+            "type": "result",
+            "form": "comparison",
+            "object": "phiếu lượt vào có avatar",
+            "motion": "đứng yên sau khi hạt bay ra"
+          }
+        ],
+        "relations": [
+          {
+            "from": "NGHĨ",
+            "to": "THỰC TẾ",
+            "type": "đối chiếu"
+          },
+          {
+            "from": "phiếu lượt vào",
+            "to": "avatar Cáo",
+            "type": "tên còn trên phiếu"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGHĨ",
+            "kind": "label",
+            "attach_to": "nửa ấm",
+            "appear_s": 0.15,
+            "disappear_s": 5.89,
+            "effect": "none"
+          },
+          {
+            "text": "THỰC TẾ",
+            "kind": "label",
+            "attach_to": "nửa navy",
+            "appear_s": 2.75,
+            "disappear_s": 5.89,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "duration_s": 5.32,
+      "scene_type": "ui_simulation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "layout": "diagonal_flow",
+        "stage": "solution",
+        "steps": [
+          {
+            "label": "",
+            "object": "ghim chat",
+            "t": 1.2
+          },
+          {
+            "label": "SAO KÊ",
+            "object": "ghim sao kê",
+            "t": 2
+          },
+          {
+            "label": "NGÂN HÀNG",
+            "object": "toà nhà có đồng xu",
+            "t": 2.65
+          }
+        ]
+      },
+      "header_slot": "top_right",
+      "narrative_purpose": "Lưu bằng chứng và hỏi nơi phù hợp khi đã lỡ nhận.",
+      "main_idea": "Lưu bằng chứng và hỏi nơi phù hợp khi đã lỡ nhận.",
+      "visual_concept": "Một giao dịch có dấu hỏi xuất hiện cùng hai tài liệu được ghim rồi mở hai nhánh hỏi. Khoanh giao dịch lạ nét vàng. Khung chat bay vào ghim và hiện tích xanh.",
+      "main_change": "Một giao dịch có dấu hỏi xuất hiện cùng hai tài liệu được ghim rồi mở hai nhánh hỏi.",
+      "environment": "solution · N4. Sân khấu lưu bằng chứng tông xanh bạc hà, nhìn từ trên. Xa dùng nền make_background.py security làm mờ dưới lớp phủ sáng xanh bạc hà và họa tiết đường dẫn mảnh bằng Pillow. Giữa là phiến kính nghiêng và điện thoại cao 660 px ở x≈150–650. Gần là hai ghim trái và hai biểu tượng toà nhà x≈720–950. Giữ máy và cho ánh sáng chạy theo từng nhánh hỏi. Nền dùng hình khối, mặt kính và đường dẫn để phân biệt với bàn gỗ và bóng cửa sổ của N1.",
+      "character_action": "think 0,15–1,15 s (1,0 s), rộng 120 px, x≈16–136 (trái điện thoại x≈150–650), đáy ≤1290, dáng tĩnh không nhép; nhìn về điện thoại lúc khoanh giao dịch lạ, rời trước khi hai ghim bay vào (1,2 s). Nhịp chuyển ý S07→S08 theo Y2; ngoài sơ đồ, phụ đề và header.",
+      "props": [
+        "điện thoại",
+        "giao dịch dấu hỏi",
+        "bong bóng chat",
+        "tờ sao kê có dòng kẻ",
+        "nhà đồng xu",
+        "nhà cờ"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0.15,
+          "event": "Khoanh giao dịch lạ nét vàng."
+        },
+        {
+          "t": 1.2,
+          "event": "Hai bong bóng hội thoại lồng cạnh nhau bay vào ghim và hiện tích xanh. Bong bóng dùng hình và dấu chấm đồ hoạ."
+        },
+        {
+          "t": 2,
+          "event": "Tờ sao kê bay vào ghim thứ hai và hiện tích xanh."
+        },
+        {
+          "t": 2.65,
+          "event": "Toà nhà đồng xu nhận nhánh hỏi đầu."
+        },
+        {
+          "t": 3.6,
+          "event": "Toà nhà cờ xuất hiện; đường hỏi tách đôi từ cùng nguồn."
+        },
+        {
+          "t": 4.65,
+          "event": "Hạt sáng chạy lần lượt trên hai nhánh, giữ cả hai thẻ đã lưu."
+        }
+      ],
+      "voice_over": "Lỡ nhận rồi thì lưu tin nhắn, sao kê, rồi hỏi ngân hàng hoặc cơ quan chức năng.",
+      "voice_direction": [
+        {
+          "line_id": "11",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.36,
+          "intonation": "rise_fall",
+          "emphasis": [
+            "lưu tin nhắn, sao kê",
+            "hỏi ngân hàng"
+          ],
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.2,
+          "intent": "interaction",
+          "target": "ghim chat",
+          "reason": "Tick nhỏ ở dấu lưu thứ nhất.",
+          "intensity": "low"
+        },
+        {
+          "t": 2,
+          "intent": "interaction",
+          "target": "ghim sao kê",
+          "reason": "Tick nhỏ ở dấu lưu thứ hai.",
+          "intensity": "low"
+        },
+        {
+          "t": 2.65,
+          "intent": "ui_appear",
+          "target": "toà nhà đồng xu",
+          "reason": "Ting nhỏ khi mở đường hỏi.",
+          "intensity": "low"
+        }
+      ],
+      "transition": "cut",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.36,
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "giao dịch lạ",
+            "type": "entity",
+            "form": "status",
+            "object": "phiếu dấu hỏi trong điện thoại",
+            "motion": "viền vàng khoanh giao dịch"
+          },
+          {
+            "term": "lưu tin nhắn",
+            "type": "action",
+            "form": "animation",
+            "object": "ghim khung chat",
+            "motion": "bay vào ghim và tích xanh"
+          },
+          {
+            "term": "sao kê",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tờ giấy có dòng kẻ",
+            "motion": "ghim cạnh chat"
+          },
+          {
+            "term": "ngân hàng",
+            "type": "entity",
+            "form": "icon",
+            "object": "toà nhà có đồng xu",
+            "motion": "nhận nhánh thứ nhất"
+          },
+          {
+            "term": "cơ quan chức năng",
+            "type": "entity",
+            "form": "icon",
+            "object": "toà nhà có cờ trơn như S04",
+            "motion": "nhận nhánh thứ hai"
+          }
+        ],
+        "relations": [
+          {
+            "from": "giao dịch lạ",
+            "to": "hai ghim",
+            "type": "giữ bằng chứng"
+          },
+          {
+            "from": "giao dịch lạ",
+            "to": "hai toà nhà",
+            "type": "hai nơi có thể hỏi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SAO KÊ",
+            "kind": "label",
+            "attach_to": "ghim sao kê",
+            "appear_s": 2,
+            "disappear_s": 5.32,
+            "effect": "none"
+          },
+          {
+            "text": "NGÂN HÀNG",
+            "kind": "label",
+            "attach_to": "toà nhà đồng xu",
+            "appear_s": 2.65,
+            "disappear_s": 5.32,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.36
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "duration_s": 6.94,
+      "scene_type": "object_interaction",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "layout": "center_stage",
+        "stage": "office"
+      },
+      "header_slot": "top_left",
+      "narrative_purpose": "Trở về lúc chưa nhận lời và minh hoạ câu từ chối cùng cách nhận tiền bằng tài khoản riêng.",
+      "main_idea": "Trở về lúc chưa nhận lời và minh hoạ câu từ chối cùng cách nhận tiền bằng tài khoản riêng.",
+      "visual_concept": "Vệt tua kéo thẻ ra trước lời từ chối; dấu tay và luồng tiền mới dẫn đến thẻ riêng của người nhờ. Vệt sáng chạy ngược 0–.15 và kéo thẻ giải trình ra, chip xanh trước L12. Phục hồi đúng bố cục lúc chưa nhận lời. Dáng stop vào, lịch và khung chat cũ nhận diện qua bố cục và silhouette; phần chữ tuân cột S09.",
+      "main_change": "Vệt tua kéo thẻ ra trước lời từ chối; dấu tay và luồng tiền mới dẫn đến thẻ riêng của người nhờ.",
+      "environment": "office · N1. Xa cùng bàn và ánh cửa sổ của mở, giữa bố cục điện thoại/lịch cũ, gần bong bóng chặn tay và thẻ riêng. Tái dùng ảnh mặt bàn nếu có, hoặc make_background.py office + hình Pillow. Lùi 1,12→1,00 để mở lề phải cho thẻ riêng.",
+      "character_action": "stop .15–3.24 x105 rộng 160 px; trống 3.24–5.16; thumbs_up 5.16–6.20 rộng 180 px. Đáy ≤1290, không nhép; tay dừng hướng vào bong bóng, dáng cuối hướng người xem.",
+      "props": [
+        "điện thoại và lịch cũ",
+        "vệt sáng tua ngược",
+        "bong bóng dấu tay xanh",
+        "thanh khung nhỏ không số",
+        "thẻ riêng của bạn thân",
+        "bong bóng rỗng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Vệt sáng chạy ngược 0–.15 và kéo thẻ giải trình ra, chip xanh trước L12. Phục hồi đúng bố cục lúc chưa nhận lời."
+        },
+        {
+          "t": 0.15,
+          "event": "Dáng stop vào, lịch và khung chat cũ nhận diện qua bố cục và silhouette; phần chữ tuân cột S09."
+        },
+        {
+          "t": 0.85,
+          "event": "Bong bóng trả lời bật với dấu tay xanh."
+        },
+        {
+          "t": 2.4,
+          "event": "Thanh khung phạt nhỏ nét đứt xuất hiện cạnh bong bóng từ chối."
+        },
+        {
+          "t": 2.9,
+          "event": "Chữ chốt vào vùng y390–620, cạnh bố cục chat."
+        },
+        {
+          "t": 3.74,
+          "event": "Mũi tên chỉ về silhouette bạn thân; lùi khung để lộ khoảng bên phải."
+        },
+        {
+          "t": 4.44,
+          "event": "Viền thẻ riêng hiện theo lời; hạt tiền đi vào thẻ từ 5.06."
+        },
+        {
+          "t": 5.16,
+          "event": "Dáng thumbs_up vào. Hạt tiếp tục tới thẻ riêng trong nhịp nghỉ."
+        },
+        {
+          "t": 6.2,
+          "event": "Cắt lớp Cáo khi hạt đã vào thẻ riêng, nhường chỗ cho bong bóng mời trả lời."
+        },
+        {
+          "t": 6.25,
+          "event": "Bong bóng rỗng nở ngay trước chữ cuối của L14, mời trả lời."
+        },
+        {
+          "t": 6.5,
+          "event": "Ba chấm đồ hoạ trong bong bóng đi cùng một vệt sáng qua thẻ riêng; từ 6,34 (lời dứt) giữ đuôi im 0,60 s đến 6,94."
+        }
+      ],
+      "voice_over": "Mình không cho ai mượn tài khoản. Có khung phạt.\nCần nhận tiền thì dùng tài khoản của bạn nhé.\nBạn sẽ nhắn lại thế nào?",
+      "voice_direction": [
+        {
+          "line_id": "12",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "emphatic_fall",
+          "emphasis": [
+            "không cho ai mượn",
+            "Có khung phạt"
+          ],
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "13",
+          "intent": "conclusion",
+          "emotion": "reassuring",
+          "pace": "normal",
+          "pause_before_s": 0.5,
+          "pause_after_s": 0.6,
+          "intonation": "falling",
+          "emphasis": [
+            "tài khoản của bạn"
+          ],
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "14",
+          "intent": "question",
+          "emotion": "curious",
+          "pace": "normal",
+          "pause_before_s": 0.6,
+          "pause_after_s": 0.6,
+          "intonation": "rising",
+          "emphasis": [
+            "nhắn lại thế nào"
+          ],
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0,
+          "intent": "transition",
+          "target": "vệt sáng ngược",
+          "reason": "Vút ngược để báo quay về trước lời nhờ được chấp nhận.",
+          "intensity": "low"
+        },
+        {
+          "t": 6.25,
+          "intent": "ui_appear",
+          "target": "bong bóng rỗng",
+          "reason": "Pop nhỏ khi mời người xem trả lời.",
+          "intensity": "low"
+        },
+        {
+          "t": 6.34,
+          "intent": "silence",
+          "target": "đuôi",
+          "reason": "Đủ một nhịp nhìn thẻ riêng trước khi cắt.",
+          "intensity": "low",
+          "duration_s": 0.6
+        }
+      ],
+      "transition": "cut",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.6,
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "không cho mượn",
+            "type": "action",
+            "form": "animation",
+            "object": "bong bóng dấu tay xanh",
+            "motion": "bật dưới tin nhắn"
+          },
+          {
+            "term": "khung phạt",
+            "type": "result",
+            "form": "chart",
+            "object": "thanh nhỏ nét đứt",
+            "motion": "hiện cạnh câu từ chối"
+          },
+          {
+            "term": "tài khoản của bạn",
+            "type": "entity",
+            "form": "flow",
+            "object": "thẻ riêng gắn silhouette cam nhạt",
+            "motion": "nhận luồng tiền riêng"
+          },
+          {
+            "term": "nhắn lại",
+            "type": "action",
+            "form": "animation",
+            "object": "bong bóng rỗng",
+            "motion": "nở khi mời trả lời"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tua ngược",
+            "to": "vòng xanh",
+            "type": "trở về lúc chưa nhận lời"
+          },
+          {
+            "from": "đường tiền mới",
+            "to": "thẻ bạn thân",
+            "type": "dùng tài khoản riêng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "KHÔNG CHO MƯỢN",
+            "kind": "keyword",
+            "attach_to": "bong bóng từ chối",
+            "appear_s": 2.9,
+            "disappear_s": 6.94,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 0.6
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,3812 @@
+{
+  "video_id": "IT-T9-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "Đối chiếu R9 với sáu component hiện có. CharacterScene nhận lớp nền và PNG/đạo cụ preset, chưa có chuyển động riêng theo khung cho tương tác silhouette với máy, khay và ngăn (S00–S04, S15/S17, S20–S22, S27). UiSimulationScene có terminal gõ và banner, chưa vẽ đồng thời cửa sổ tính, log, khay và file đi qua biên (S01–S07, S10, S14, S26). ExplainerScene cho chuỗi khối và mũi tên. Trình tự tấm mô tả vào trợ lý trước lượt gọi, file qua cổng và đối chứng hai lượt cần nhiều lớp ghép/đường độc lập (S12–S13, S24–S25). Các thẻ so dựng sẵn chưa có hai tấm dài, giới hạn mép và phép bóc góc căn hàng (S09/S11/S16/S18/S19/S23). PromptReviewScene lật thẻ prompt/nhãn, chưa mở nếp giấy S08. QASequenceScene bố trí nhịp hỏi đáp và DataVizScene vẽ dữ liệu, chưa gắn đồng hồ 0 vào đúng mô-đun trong luồng S12. Nền A–J, vị trí chữ và các track camera cũng cần bố cục theo từng cảnh. Sau khi Claude duyệt dùng trực tiếp Pillow + FFmpeg với tools/motion. Vẽ vector phẳng và mặt nạ đa giác bằng Pillow, camera theo sequence.camera hoặc crop/zoompan từ nguồn dư khoảng 1,25×, zoom tối đa 1,18× theo các mốc môi trường. Dùng kết quả chiếu từ crop làm neo cho nhãn. Vẽ header, Cáo và phụ đề theo tọa độ màn hình.",
+  "opening": {
+    "scene_id": "S00",
+    "title": "Dòng ẩn trong mô tả plugin AI",
+    "topic": "SECURITY / PLUGIN AI",
+    "voice": false,
+    "duration_s": 2.4,
+    "animation": "Tại 0,12 s, chữ 86 px hai dòng và chủ đề 42 px trượt ngắn vào đầu cửa sổ cùng âm báo. Tay silhouette lần lượt chạm hai ô input, hạ xuống phím cộng trước giây 2. Crop tiến 1,00→1,18 quanh vai để giữ hai phía đường biên, khay ngoài còn trống. Cắt ở 2,40 s vào lời hook và ô kết quả."
+  },
+  "header": {
+    "text": "SECURITY / PLUGIN AI",
+    "title": "Dòng ẩn",
+    "slots": [
+      "top_left",
+      "top_right",
+      "above_captions"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "9:16, 1080×1920, 30 fps, ngân sách 179,68 s. Phong cách công sở phẳng góc bo với nền gradient ba lớp theo A–J. Màu #111A2B/#23384F nền, #8497AD trung tính, #59D2A0 đúng/đã kiểm, #FF6868 đường lệch và viền đứt quanh khối che #542C3C, #FFC36B đang rà hoặc chặn, #62C7F5 đường nhấn, #F2F6FA chữ. Một dấu cộng, file góc khuyết, mép biên và hàng che xuyên tập. Silhouette/hình học do Producer tự vẽ. Terminal và các tấm chỉ có dải phi chữ và khối che đặc, lấy icon hình học từ components.py, vẽ riêng kính lúp, ghim, phím cộng, két ngăn và thanh chốt bằng Pillow. Dùng co mặt nạ đa giác và bóng lệch cho gập/bóc, crop ảnh phẳng theo môi trường. Cáo ghép PNG tĩnh, cắt dáng có sẵn và giữ từ 2 s, không nhép miệng. Nội dung chính ở y≈250–1320, phụ đề nguyên văn 56 px tối đa 2×28 ký tự, dải y≈1340–1500. Giữ tọa độ Cáo y=1280–1290 tính tới đáy theo script và tách hộp bao phụ đề. QUYẾT ĐỊNH (Claude, 19/11/2026): giữ phụ đề ở dải dưới y≈1340–1500, dưới đáy Cáo, hộp chữ cách đáy Cáo/nội dung ≥ 50 px; câu «phụ đề trên đầu Cáo» trong AGENTS.md chỉ áp dụng cho video ngắn có Cáo làm chính, còn D8 đặt phụ đề là lớp accessibility riêng ở dải dưới và vùng này nằm trong an toàn y∈[250,1500]. Vẽ chữ từ semantic_plan.texts với text engine, text_overlay là bản kê cùng nhãn để đối chiếu. Từ S01 duy trì một header 2 dòng ở header_slot, chủ đề 42 px và tên chương 58 px theo sự kiện đầu cảnh, mặc định header.title. Dùng HeaderSpec/header_card cho tên chương từng cảnh. Chốt ô theo hộp bao bằng HeaderTrack.set_avoid. Kết xuất một ô header ở mỗi khung và đổi ngay ở ranh giới cảnh để không sinh nhóm thứ tư. Giữ khe ≥24 px sau khi tính vùng bao toàn cảnh, diện tích ≤9%, ngang ≤90%, cao ≤200 px. Nhãn UI ≥56 px, keyword tối đa 3 từ ≥72 px. Số ở S01 khoảng 114–132 px, title S00 86 px. Ba chip chỉ là icon và tick. Không nhạc nền, khai báo AI trong metadata xuất bản. Mốc hình và nhãn là giây cục bộ. Đo TTS để canh từ mốc trong 0–0,50 s sau khi được gọi tên. Cắt giọng ở khoảng lặng theo R23, giữ ≥40 ms trước và ≥120 ms sau mỗi câu, kể cả câu chuyển cảnh. Giữ nguyên ngân sách script cho bản này, chuyển cảnh gói trong thời lượng đã phân bổ.",
+  "scenes": [
+    {
+      "scene_id": "S00",
+      "narrative_purpose": "Giới thiệu chủ đề trong một cảnh riêng chưa có lời. Đặt việc tính và đích ngoài ranh giới để chuẩn bị sự cố ở hook.",
+      "main_idea": "Đặt phép cộng cạnh một ranh giới nội bộ để dẫn vào tình huống.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0,
+      "visual_concept": "Opening riêng cho tình huống cộng ở bàn công sở. Một cú tiến crop đi từ toàn vào vai, tay gõ hai ô rồi xuống phím cộng, cùng thấy khay ở ngoài viền. Tiêu đề trượt vào vùng cửa sổ, cắt ở 2,40 s trước lời hook.",
+      "scene_type": "environment_scene",
+      "environment": "A · office, toàn bàn nhìn xéo qua vai. Xa là kính lam dịu. Giữa là nhân viên silhouette đầu tròn, màn hình tính và vạch công ty. Gần là bàn phím, tay silhouette và khay chữ U phía ngoài, cùng hình S01. Vùng đầu cửa sổ x≈105–975, y≈250–535 để giữ hai dòng tiêu đề trên cửa sổ, cách cụm phép tính bên dưới ≥24 px. Đặt cụm tính và khay trong y≈565–1240 để đọc mối quan hệ. Về máy quay, Crop từ nguồn 1,25×, tiến 1,00→1,18 về vai và cửa sổ trong 0,42–2,18 s. Giữ khay ngoài trong khung.",
+      "character_action": "",
+      "props": [
+        "Bàn có silhouette nhân viên, tay và cửa sổ máy tính có hai ô hình học",
+        "Thẻ công cụ dấu cộng với icon extension, một phím cộng lớn và một khay chữ U rỗng",
+        "Viền công ty giữ cùng trục khi match hình sang hook"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khung đầu qua bàn: thấy nhân viên hình khối, hai ô nhập không chữ và khay chữ U rỗng bên kia vạch công ty. Tay chạm ô thứ nhất."
+        },
+        {
+          "t": 0.12,
+          "event": "Tiêu đề 86 px, ngắt sau «trong», trượt 36 px vào vùng đầu cửa sổ. Nhãn chủ đề 42 px đi cùng, có âm báo nhỏ. Giữ cả hai lớp chữ có thể đọc ngay từ khung hiện đầu tiên. Chỉ dịch chuyển, không fade từ alpha 0."
+        },
+        {
+          "t": 0.42,
+          "event": "Bắt đầu crop tiến 1,00→1,18 quanh vai. Tách mép cửa sổ với khay trong hai vùng. Tay chuyển ô, giữ cả hai phía của đường biên."
+        },
+        {
+          "t": 1.36,
+          "event": "Tay hạ vào phím có dấu cộng hình học trước giây 2. Ô nhập lõm xuống, khay bên kia vẫn rỗng."
+        },
+        {
+          "t": 2.18,
+          "event": "Hoàn tất crop. Giữ mép bàn, phím và vạch làm điểm cắt sang đúng cửa sổ S01."
+        }
+      ],
+      "voice_over": "",
+      "text_overlay": "Dòng ẩn trong mô tả plugin AI\nSECURITY / PLUGIN AI",
+      "sound_effects": [
+        "t=0,12 s: một âm báo mềm khoảng 0,12 s khi tiêu đề vào, nhỏ hơn giọng của các cảnh sau."
+      ],
+      "transition": "cut",
+      "duration_s": 2.4,
+      "main_change": "Từ bàn công sở, bàn tay silhouette hạ xuống phím cộng. Máy tiến vào vai và tách rõ cửa sổ tính trong biên với khay rỗng phía ngoài.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Dòng ẩn trong mô tả plugin AI",
+            "type": "concept",
+            "form": "illustration",
+            "object": "vùng đầu cửa sổ tính, có thẻ plugin icon extension",
+            "motion": "tiêu đề trượt theo đầu cửa sổ ở 0,12 s"
+          },
+          {
+            "term": "SECURITY / PLUGIN AI",
+            "type": "term",
+            "form": "icon",
+            "object": "nhãn chủ đề cạnh thẻ plugin icon extension ở đầu cửa sổ",
+            "motion": "đi vào cùng tiêu đề"
+          }
+        ],
+        "relations": [
+          {
+            "from": "silhouette nhân viên",
+            "to": "cửa sổ tính",
+            "type": "tay thực hiện tác vụ trong biên"
+          },
+          {
+            "from": "cửa sổ tính",
+            "to": "khay ngoài",
+            "type": "đứng khác phía đường biên"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Dòng ẩn trong mô tả plugin AI",
+            "kind": "message",
+            "attach_to": "vùng đầu cửa sổ máy tính, 86 px, ngắt dòng sau «trong»",
+            "appear_s": 0.12,
+            "disappear_s": 2.4,
+            "effect": "none"
+          },
+          {
+            "text": "SECURITY / PLUGIN AI",
+            "kind": "label",
+            "attach_to": "cạnh tiêu đề ở vùng đầu cửa sổ máy tính, 42 px",
+            "appear_s": 0.12,
+            "disappear_s": 2.4,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S01",
+      "header_slot": "top_left",
+      "narrative_purpose": "Ném người xem vào tình huống và đặt nghịch lý.",
+      "main_idea": "Một phép tính đúng có thể đi cùng một hành động ngoài yêu cầu.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.54,
+      "visual_concept": "Số 5 bật trong ô tính. Cùng lúc, file góc khuyết rời khe log, vượt vạch công ty và đáp vào khay phía ngoài.",
+      "scene_type": "ui_simulation",
+      "environment": "A · office, toàn qua vai. Xa là cửa kính lam dịu. Giữa là bàn, silhouette và màn hình x≈190–985, với đầu vùng thao tác y≥420. Gần là phím, khe log, file có vết khuyết ≥32 px và vạch công ty. Ô tính x≈255–550, khe log x≈562–685, vạch x≈700, khay x≈735–975. Góc trái trên để trống cho header, Cáo đứng sát mép trái cách màn hình. Về máy quay, Crop từ nguồn 1,25× ở 1,08×, tracking ngang 55 px theo file trong 1,43–2,20 s. Cuối nhịp giữ cả ô 5 lẫn khay trong khung bìa. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`think` · 2,40–4,65 s · x=110, đáy y=1290, rộng 146 px · hướng vào ô tính rồi vệt file ra biên Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–2.25 s của cảnh.",
+      "props": [
+        "Silhouette nhân viên và tối đa hai phím lớn",
+        "Cửa sổ tính, cạnh phải có khay log",
+        "File góc khuyết, vạch công ty và mũi tên"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "tracking"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp phím S00, bật ô yêu cầu khi L01 vào. Nhân viên hình khối và Cáo think cùng nhìn vào cụm tính. Để cả khay và vạch trong khung. Header cố định «SECURITY / PLUGIN AI» / «Dòng ẩn» ở top_left, chừa khoảng trên của khay và đường sang bên phải."
+        },
+        {
+          "t": 0.22,
+          "event": "Số 5 bật một lần trong ô kết quả, chốt dấu kiểm xanh. Ô yêu cầu và kết quả chung một bảng."
+        },
+        {
+          "t": 0.64,
+          "event": "Tay rời bàn phím, ô 5 giữ sáng. Nắp khe log nhích xuống khi chuyển sang phía file."
+        },
+        {
+          "t": 0.86,
+          "event": "L02 nhắc file: thẻ góc khuyết nhô từ log, mang nhãn trên thân thẻ."
+        },
+        {
+          "t": 1.43,
+          "event": "Khi nghe «gửi», mũi tên ngắn chạy qua vạch. Crop đi theo file về bên phải khoảng 55 px ở 1,08×, vẫn giữ số 5 và silhouette."
+        },
+        {
+          "t": 2.2,
+          "event": "File chạm mép khay 4,60 s, biên độ nảy chỉ 8 px, âm chạm nhỏ. Bìa lấy khung gần 4,62 s từ bản chưa đốt phụ đề."
+        }
+      ],
+      "voice_over": "Tổng đúng.\nFile đã gửi.",
+      "text_overlay": "2 + 3\n5\nFile",
+      "sound_effects": [
+        "t=2,20 s: chạm khay nhẹ trên đuôi hold, giữ tail trong ngân sách và có thể chạy liên tục sang S02."
+      ],
+      "transition": "match_cut",
+      "duration_s": 2.25,
+      "main_change": "Số 5 bật trong ô tính. Cùng lúc, file góc khuyết rời khe log, vượt vạch công ty và đáp vào khay phía ngoài.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "phép cộng",
+            "type": "action",
+            "form": "animation",
+            "object": "Hai ô kề trên màn hình",
+            "motion": "Phím hạ, ô kết quả bật viền xanh"
+          },
+          {
+            "term": "sự kiện gửi",
+            "type": "action",
+            "form": "animation",
+            "object": "Thẻ log và file góc tam giác",
+            "motion": "File trồi lên, theo mũi tên qua biên"
+          },
+          {
+            "term": "2 + 3",
+            "type": "action",
+            "form": "animation",
+            "object": "ô nhập của máy tính minh họa có hai ô số và phím cộng",
+            "motion": "bật trên mô-đun phép tính khi tay chạm phím"
+          },
+          {
+            "term": "5",
+            "type": "result",
+            "form": "status",
+            "object": "ô số của máy tính có nét dấu kiểm xanh",
+            "motion": "bật trong ô kết quả đúng mốc, giữ vị trí trong khi file hoặc tấm mô tả đổi chỗ"
+          },
+          {
+            "term": "File",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ file với vết cắt tam giác và gờ trang giấy",
+            "motion": "trồi từ log, qua vạch tới khay"
+          }
+        ],
+        "relations": [
+          {
+            "from": "phép cộng",
+            "to": "sự kiện gửi",
+            "type": "hai luồng cùng xảy ra"
+          }
+        ],
+        "texts": [
+          {
+            "text": "2 + 3",
+            "kind": "number",
+            "attach_to": "ô yêu cầu",
+            "appear_s": 0,
+            "disappear_s": 2.25,
+            "effect": "none"
+          },
+          {
+            "text": "5",
+            "kind": "number",
+            "attach_to": "ô kết quả trong cùng cụm phép tính",
+            "appear_s": 0.22,
+            "disappear_s": 2.25,
+            "effect": "kinetic"
+          },
+          {
+            "text": "File",
+            "kind": "label",
+            "attach_to": "thẻ góc khuyết ở nhật ký",
+            "appear_s": 0.86,
+            "disappear_s": 2.25,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.54
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02",
+      "header_slot": "top_left",
+      "narrative_purpose": "Giữ hệ quả từ 4,60 s và cho người xem thấy chỗ kiểm trước giây 5.",
+      "main_idea": "Nhật ký là chỗ kiểm ngay khi file đã ra ngoài.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.7,
+      "visual_concept": "File giữ nguyên trong khay bên ngoài, còn gáy log bật mở thành cửa sổ lịch sử bên cạnh ô tính.",
+      "scene_type": "environment_scene",
+      "environment": "A · office, cận mép phải cùng màn hình. Xa là cửa kính với silhouette ở mép trái, giữa là viền màn hình và hai vùng, gần là khay miệng chữ U và gáy log. Rọi lam ở máy, nền ngoài tối hơn. Giữ silhouette x≈105–270, hai ô x≈295–554 (xếp dọc), gáy log x≈560–698 và khay x≈732–975, y≈765–1045. File rộng khoảng 135 px, lõm góc khoảng 32 px. Về máy quay, Crop lùi 1,16→1,00 trong 2,53–3,60 s, từ khay có file ra bố cục bàn. Nhãn neo theo vị trí khay. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Cửa sổ tính nối S01",
+        "Khay chữ U phía ngoài biên, file góc khuyết",
+        "Gáy log kéo dọc"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt cận đúng điểm đáp của S01. Nhận ra vết góc khuyết, nhãn khay có nền rộng và khe lề 22 px mỗi bên. Header cố định «SECURITY / PLUGIN AI» / «Dòng ẩn» ở top_left, chừa cửa sổ lịch sử vừa bung và khay đang giữ file."
+        },
+        {
+          "t": 0.22,
+          "event": "Theo L03, gáy log bung thành cửa sổ lịch sử. Label Nhật ký nằm trên chính hàng đầu cửa sổ, không thêm cột chữ giả."
+        },
+        {
+          "t": 0.97,
+          "event": "Khay hạ hết sau va chạm. Vệt từ vạch công ty tách ra về khay đã có file khi L04 vào."
+        },
+        {
+          "t": 1.62,
+          "event": "Đưa đích ngoài biên vào nét, thẻ trong khay lộ góc khuyết. Cửa sổ lịch sử đứng cạnh màn hình tính."
+        },
+        {
+          "t": 2.53,
+          "event": "L05 xác nhận tình huống trong lời. Crop lùi 1,16→1,00 từ khay ra bàn và nhân viên tới 3,60 s, giữ nguyên nhận dạng khay."
+        },
+        {
+          "t": 3.61,
+          "event": "Gáy log xoay theo chiều tua sắp tới, dòng dấu biểu tượng chuyển thành trục để nối S03."
+        }
+      ],
+      "voice_over": "Mở nhật ký.\nFile ra ngoài rồi.\nĐây là ví dụ dựng.",
+      "text_overlay": "Bên ngoài\nNhật ký",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 4.3,
+      "main_change": "File giữ nguyên trong khay bên ngoài, còn gáy log bật mở thành cửa sổ lịch sử bên cạnh ô tính.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "xác nhận nhận",
+            "type": "result",
+            "form": "status",
+            "object": "File góc khuyết nằm trong khay chữ U ngoài biên",
+            "motion": "File đáp và khay sụt một nhịp"
+          },
+          {
+            "term": "nhật ký hoạt động",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Gáy log cạnh hai ô tính",
+            "motion": "Gáy trượt ra thành lịch sử"
+          },
+          {
+            "term": "Bên ngoài",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khay chữ U bên ngoài, có viền ranh giới và icon globe nhỏ",
+            "motion": "giữ file khi khay hạ hết hành trình"
+          },
+          {
+            "term": "Nhật ký",
+            "type": "entity",
+            "form": "illustration",
+            "object": "cửa sổ lịch sử có gáy và dòng biểu tượng trang giấy, mũi tên, khay",
+            "motion": "gáy mở thành bảng lịch sử sát cửa sổ tính"
+          }
+        ],
+        "relations": [
+          {
+            "from": "nhật ký hoạt động",
+            "to": "xác nhận nhận",
+            "type": "cho phép kiểm dấu vết"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Bên ngoài",
+            "kind": "label",
+            "attach_to": "khay nhận đã vào khung cuối S01",
+            "appear_s": 0,
+            "disappear_s": 4.3,
+            "effect": "none"
+          },
+          {
+            "text": "Nhật ký",
+            "kind": "label",
+            "attach_to": "cửa sổ lịch sử vừa mở",
+            "appear_s": 0.22,
+            "disappear_s": 4.3,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.7
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "header_slot": "top_left",
+      "narrative_purpose": "Đặt câu hỏi điều tra từ hai luồng hoạt động.",
+      "main_idea": "Yêu cầu cộng không giải thích được việc gửi file.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.72,
+      "visual_concept": "Cụm phép cộng và thẻ gửi tách sang hai phía. Đầu vệt gửi khuất sau khung, rồi file tua ngược vào trong viền.",
+      "scene_type": "comparison_scene",
+      "environment": "A · office, trung qua vai. Xa là kính lam. Giữa là màn hình mở với hai khe xấp xỉ x=180–510 và x=570–950. Gần là gáy log/mép file, hắt sáng lạnh. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`think` · 10,49–14,45 s · x=110, đáy y=1290, rộng 146 px · nhìn đầu vệt đỏ mất sau cửa sổ · ngoài mốc này ẩn Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=1.54–5.50 s của cảnh.",
+      "props": [
+        "Cụm ô yêu cầu/kết quả",
+        "File và thẻ gửi, đường đỏ nét đứt",
+        "Cột thẻ log hình học"
+      ],
+      "camera": {
+        "shot": "over_the_shoulder",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Qua vai trung cảnh, giữ 2 cụm trên cùng trục. L06 mở một khe tác vụ có dấu cộng. Header cố định «SECURITY / PLUGIN AI» / «Dòng ẩn» ở top_left, chừa đầu nhánh gửi bên phải và trục lật log."
+        },
+        {
+          "t": 0.65,
+          "event": "Kéo cụm tính sang trái, dấu kiểm giữ ở cạnh thẻ. Log vẫn nằm ngang riêng."
+        },
+        {
+          "t": 1.54,
+          "event": "Cáo think cắt vào, nhìn phía đầu vệt bị che. Thẻ file xoay cạnh khỏi gáy log khi L07 bắt đầu."
+        },
+        {
+          "t": 2.44,
+          "event": "Thẻ Gửi file trượt sang phải. Đường gửi ngắn phía sau thẻ kết thúc dưới mép cửa sổ, tách khỏi đường cộng."
+        },
+        {
+          "t": 3.22,
+          "event": "Nhấc cụm tính lên nhẹ và hạ thẻ gửi xuống để lộ khoảng trống giữa hai đường."
+        },
+        {
+          "t": 3.93,
+          "event": "Theo L08, lật ngược 3 thẻ biểu tượng log từ phải qua trái, đồng thời kéo file về vạch."
+        },
+        {
+          "t": 4.78,
+          "event": "File qua vạch về phía trong, cắt khớp cạnh thẻ đang lật sang điểm đầu ray bàn kiểm."
+        }
+      ],
+      "voice_over": "Máy chỉ được nhờ cộng.\nVậy ai ra lệnh gửi file?\nMình tua lại nhé.",
+      "text_overlay": "Gửi file",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 5.5,
+      "main_change": "Cụm phép cộng và thẻ gửi tách sang hai phía. Đầu vệt gửi khuất sau khung, rồi file tua ngược vào trong viền.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "phạm vi tác vụ",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Hai ô phép tính nằm riêng một nhánh",
+            "motion": "Cụm tính trượt trái"
+          },
+          {
+            "term": "nguồn chỉ dẫn",
+            "type": "relation",
+            "form": "connection",
+            "object": "Đường đỏ mất sau cửa sổ",
+            "motion": "Đường lộ từng đoạn cùng thẻ gửi"
+          },
+          {
+            "term": "tua nhật ký",
+            "type": "action",
+            "form": "animation",
+            "object": "Chuỗi thẻ sự kiện",
+            "motion": "Thẻ lật ngược và file quay về"
+          },
+          {
+            "term": "Gửi file",
+            "type": "action",
+            "form": "connection",
+            "object": "thẻ file góc khuyết cạnh mũi tên gửi, khuất một đầu dưới cửa sổ",
+            "motion": "tách sang nhánh riêng rồi tua ngược vào bên trong"
+          }
+        ],
+        "relations": [
+          {
+            "from": "phạm vi tác vụ",
+            "to": "nguồn chỉ dẫn",
+            "type": "hai dấu vết khác hướng"
+          },
+          {
+            "from": "tua nhật ký",
+            "to": "nguồn chỉ dẫn",
+            "type": "lần về nguồn"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Gửi file",
+            "kind": "label",
+            "attach_to": "thẻ cạnh nhánh đỏ",
+            "appear_s": 2.44,
+            "disappear_s": 3.93,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.72
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "header_slot": "top_right",
+      "narrative_purpose": "Đặt lời hứa về một thao tác tự kiểm.",
+      "main_idea": "Có thể thực hiện ba bước kiểm trước khi bật công cụ.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.6,
+      "visual_concept": "Ba khe kiểm mở theo một đường dẫn. Thẻ dấu cộng tiến tới khe đầu, với công tắc phía cuối đường còn tắt.",
+      "scene_type": "process_animation",
+      "environment": "I · security, bàn kiểm nhanh nhìn xéo. Xa là gradient xanh than với dải đèn hẹp. Giữa là ray chạy chéo qua ba khe và công tắc tối ở cuối. Gần là tay silhouette và thẻ dấu cộng. Ray ở y≈465–1100, nằm dưới header phải, khe mở lần lượt theo ray. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Ba khe chữ nhật cạnh bo trơn",
+        "Thẻ dấu cộng và tay silhouette",
+        "Công tắc hình viên thuốc có nút lệch về vị trí tắt"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Góc toàn xiên lộ mặt bàn có ray chạy từ trái dưới lên phải. Để ba khe phẳng dưới mặt bàn. Header cố định «SECURITY / PLUGIN AI» / «Dòng ẩn» ở top_right, dời từ trái sang phải để chừa đầu ray và cữ ba khe."
+        },
+        {
+          "t": 0.61,
+          "event": "Khe đầu mở dưới nhịp «ba bước». Nhãn đậu ở mép ngoài ray, giữ công tắc ở cuối."
+        },
+        {
+          "t": 1.15,
+          "event": "Khe thứ hai và ba nổi luân phiên, mỗi khe cách ít nhất 130 px trên khung 1080, giữ ray đọc được."
+        },
+        {
+          "t": 1.99,
+          "event": "Theo L10, tay vào chỉ hướng ray rồi từ 2,65 s đẩy thẻ dấu cộng tới khe thứ nhất."
+        },
+        {
+          "t": 3.15,
+          "event": "Thẻ mang nhãn Công cụ chạm cữ khe đầu, công tắc cuối ray có nút lệch và đèn tối."
+        },
+        {
+          "t": 3.7,
+          "event": "Mép bàn vén lên theo cạnh khe đã mở. Match cut thành ngăn dọc ở S05."
+        }
+      ],
+      "voice_over": "Mình có ba bước kiểm, dễ nhớ.\nBạn dùng được trước khi bật công cụ.",
+      "text_overlay": "3 bước\nCông cụ",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 4.3,
+      "main_change": "Ba khe kiểm mở theo một đường dẫn. Thẻ dấu cộng tiến tới khe đầu, với công tắc phía cuối đường còn tắt.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "kiểm trước khi dùng",
+            "type": "concept",
+            "form": "flow",
+            "object": "Ba khe đặt nối nhau trên mặt bàn",
+            "motion": "Mở từng khe"
+          },
+          {
+            "term": "kích hoạt công cụ",
+            "type": "action",
+            "form": "status",
+            "object": "Công tắc có nút lệch ở cuối ray",
+            "motion": "Lộ công tắc còn tắt khi thẻ tới khe đầu"
+          },
+          {
+            "term": "3 bước",
+            "type": "concept",
+            "form": "flow",
+            "object": "ba khe cạnh bo trên cùng ray tiến tới công tắc",
+            "motion": "mở từng khe về phía cuối ray"
+          },
+          {
+            "term": "Công cụ",
+            "type": "entity",
+            "form": "icon",
+            "object": "thẻ icon puzzle và dấu cộng bên công tắc",
+            "motion": "tay đẩy thẻ vào khe đầu, công tắc còn tắt"
+          }
+        ],
+        "relations": [
+          {
+            "from": "kiểm trước khi dùng",
+            "to": "kích hoạt công cụ",
+            "type": "kiểm trước kích hoạt"
+          }
+        ],
+        "texts": [
+          {
+            "text": "3 bước",
+            "kind": "label",
+            "attach_to": "cụm ba khe",
+            "appear_s": 0.61,
+            "disappear_s": 4.3,
+            "effect": "none"
+          },
+          {
+            "text": "Công cụ",
+            "kind": "label",
+            "attach_to": "thẻ dấu cộng cạnh công tắc",
+            "appear_s": 3.15,
+            "disappear_s": 4.3,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.6
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "header_slot": "top_left",
+      "narrative_purpose": "Bắt đầu lần dấu vết từ sự kiện mở.",
+      "main_idea": "Vết góc khuyết nối tài liệu của phòng với bản ghi mở.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.6,
+      "visual_concept": "Tài liệu được kéo khỏi ngăn nội bộ. Bìa mở và thẻ log dựng lên, lộ cùng vết cắt tam giác.",
+      "scene_type": "cinematic_close_up",
+      "environment": "B · incident, cận ngăn nội bộ. Xa là vùng log xanh than, giữa là viền công ty bên trái và ngăn, gần là bìa file và thẻ nổi. Đèn lạnh chỉ rọi ngăn đang mở. Về máy quay, Crop 1,00→1,13 trong 2,47–3,35 s, để hai góc khuyết cùng lớn lên trong khung. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Ngăn tài liệu trong viền công ty",
+        "File góc khuyết với hai nửa bìa chữ nhật",
+        "Thẻ log mở có icon hai trang và góc khuyết"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cột log tiến vào theo L11, để ngăn nội bộ và mép file ở trước cột. Header cố định «SECURITY / PLUGIN AI» / «Lần theo log» ở top_left, về góc trái trên, tách thẻ mở và vết góc khuyết xuống dưới."
+        },
+        {
+          "t": 0.65,
+          "event": "File nội bộ trượt khỏi ngăn, nhãn đi theo thân thẻ. Để góc khuyết lộ bên phải."
+        },
+        {
+          "t": 1.44,
+          "event": "Bìa file tách, thẻ nhật ký có icon trang mở và nhãn Mở tệp dựng dọc cạnh file."
+        },
+        {
+          "t": 2.47,
+          "event": "Sau L12, tiến crop 1,00→1,13 quanh cặp vết khuyết. Vệt lam nối hai vết cắt, không che cạnh bìa."
+        },
+        {
+          "t": 3.35,
+          "event": "Viền ngăn kéo dài về vị trí kế trên cột nhật ký để nối S06, giữ thẻ mở ở chỗ cũ."
+        }
+      ],
+      "voice_over": "Nhật ký ghi file nội bộ bị mở.\nNhìn theo dấu góc khuyết.",
+      "text_overlay": "File nội bộ\nMở tệp",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3.95,
+      "main_change": "Tài liệu được kéo khỏi ngăn nội bộ. Bìa mở và thẻ log dựng lên, lộ cùng vết cắt tam giác.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "truy cập nội bộ",
+            "type": "action",
+            "form": "animation",
+            "object": "Bìa file ở trong ngăn",
+            "motion": "Bìa tách đôi trước thẻ mở"
+          },
+          {
+            "term": "nhận dạng cùng file",
+            "type": "relation",
+            "form": "connection",
+            "object": "Hai mép cắt tam giác",
+            "motion": "Vệt chạy giữa hai mép"
+          },
+          {
+            "term": "File nội bộ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ góc khuyết, đặt ban đầu trong ngăn có viền công ty",
+            "motion": "rời ngăn theo đúng nhịp, nhãn đi cùng góc khuyết khi thẻ dịch"
+          },
+          {
+            "term": "Mở tệp",
+            "type": "action",
+            "form": "animation",
+            "object": "thẻ log có biểu tượng hai trang tách ra",
+            "motion": "bìa mở và thẻ dựng ở đầu log"
+          }
+        ],
+        "relations": [
+          {
+            "from": "truy cập nội bộ",
+            "to": "nhận dạng cùng file",
+            "type": "file và bản ghi khớp dấu"
+          }
+        ],
+        "texts": [
+          {
+            "text": "File nội bộ",
+            "kind": "label",
+            "attach_to": "thẻ góc khuyết trong ngăn",
+            "appear_s": 0.65,
+            "disappear_s": 2.28,
+            "effect": "none"
+          },
+          {
+            "text": "Mở tệp",
+            "kind": "label",
+            "attach_to": "thẻ nhật ký có trang mở",
+            "appear_s": 1.44,
+            "disappear_s": 3.95,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.6
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "header_slot": "top_left",
+      "narrative_purpose": "Thêm bản ghi thứ hai vào chuỗi.",
+      "main_idea": "Việc gửi là một sự kiện riêng, sau việc mở file.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.55,
+      "visual_concept": "Thẻ gửi có mũi tên tách thành bản ghi thứ hai. File vượt vạch, còn thẻ mở vẫn đứng nguyên phía trên.",
+      "scene_type": "object_interaction",
+      "environment": "B · incident, trung dọc vạch công ty. Xa là nền tối chia hai vùng, giữa là vạch và tầng log dọc, gần là file và hai thẻ. Rọi đỏ ở đoạn vượt biên. Về máy quay, Crop lùi 1,14→1,00 trong 2,36–3,43 s để lộ cả thẻ mở và thẻ gửi, vẫn thấy vạch. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Thẻ mở đã thấy, thẻ gửi có mũi tên",
+        "File góc khuyết và đường biên"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Nối đúng thẻ mở đứng đầu ray. Đầu dưới ray hé chỗ cho bản ghi kế tiếp khi L13 vào. Header cố định «SECURITY / PLUGIN AI» / «Lần theo log» ở top_left, chừa bên phải cho file vượt biên và thẻ gửi."
+        },
+        {
+          "t": 0.68,
+          "event": "File góc khuyết tách khỏi hình trang mở, trượt tới vạch. Gáy thẻ thứ hai bắt đầu tách khỏi ray."
+        },
+        {
+          "t": 1.39,
+          "event": "Nhãn Đã gửi trượt 34 px vào thẻ thứ hai khi nghe «đã được gửi». Mũi tên vượt vạch cùng file, không trượt đè thẻ mở."
+        },
+        {
+          "t": 2.36,
+          "event": "Theo L14, crop lùi 1,14→1,00 sau khi file ra khỏi vùng trong, để lộ cả thẻ mở còn đứng và thẻ gửi bên dưới."
+        },
+        {
+          "t": 3.43,
+          "event": "Đầu mũi tên kéo dài tới mép đích, giữ cùng tọa độ đường biên để cắt sang khay nhận."
+        }
+      ],
+      "voice_over": "Thẻ kế tiếp ghi file đã được gửi đi.\nThẻ mở vẫn ở đó.",
+      "text_overlay": "Đã gửi",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3.98,
+      "main_change": "Thẻ gửi có mũi tên tách thành bản ghi thứ hai. File vượt vạch, còn thẻ mở vẫn đứng nguyên phía trên.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nhật ký gửi",
+            "type": "action",
+            "form": "animation",
+            "object": "File và mũi tên vượt vạch",
+            "motion": "File qua biên, thẻ gửi bật"
+          },
+          {
+            "term": "thứ tự dấu vết",
+            "type": "relation",
+            "form": "connection",
+            "object": "Hai thẻ log xếp dọc",
+            "motion": "Tách và lộ lại thẻ mở trên thẻ gửi"
+          },
+          {
+            "term": "Đã gửi",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ log thứ hai có mũi tên cắt vạch",
+            "motion": "thẻ tách khỏi ray. Nhãn slide trong thẻ ở nhịp vượt biên"
+          }
+        ],
+        "relations": [
+          {
+            "from": "thứ tự dấu vết",
+            "to": "nhật ký gửi",
+            "type": "mở rồi gửi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Đã gửi",
+            "kind": "keyword",
+            "attach_to": "thẻ thứ hai cạnh mũi tên",
+            "appear_s": 1.39,
+            "disappear_s": 3.98,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 0.55
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "header_slot": "top_left",
+      "narrative_purpose": "Xác nhận đích nhận và gom chuỗi bằng chứng.",
+      "main_idea": "Khay ngoài nhận đúng file được ghi ở cả ba sự kiện.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.7,
+      "visual_concept": "File đáp vào khay bên ngoài. Ba thẻ mở, gửi, nhận dàn dọc và lần lượt lộ cùng vết khuyết.",
+      "scene_type": "process_animation",
+      "environment": "B · incident, toàn hai vùng. Xa là gradient xanh sẫm, giữa là vạch dọc và ray log, gần là khay phải và thẻ ở trái. Đèn ở khay chuyển sang tia lam chạy lên cột thẻ. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Khay chữ U và file góc khuyết",
+        "Ba thẻ log, icon hai trang/mũi tên/khay"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo «Khay», miệng chữ U rỗng vào phía ngoài vạch. Hai thẻ cũ còn trên ray nội bộ. Header cố định «SECURITY / PLUGIN AI» / «Lần theo log» ở top_left, chừa cửa vào khay và trục ba thẻ dọc."
+        },
+        {
+          "t": 0.77,
+          "event": "File góc khuyết đáp khay và thẻ thứ ba bật lên với icon khay và nhãn Đã nhận. Tiếng chạm nhỏ."
+        },
+        {
+          "t": 1.64,
+          "event": "Đến L16, ray kéo dài để ba thẻ dàn theo trục dọc. Chừa vai các thẻ, thẻ nhận không chắn thẻ gửi."
+        },
+        {
+          "t": 2.63,
+          "event": "Dải lam bản rộng dẫn qua ba vết khuyết và chạm mép khay, file nằm yên ở đích."
+        },
+        {
+          "t": 3.35,
+          "event": "Thẻ nhận hạ hết vào ray. Trùng cạnh dưới thẻ với mép giấy gập của S08."
+        }
+      ],
+      "voice_over": "Khay bên ngoài nhận file.\nCùng một góc khuyết trên cả ba thẻ.",
+      "text_overlay": "Đã nhận",
+      "sound_effects": [
+        "t=0,77 s: chạm khay ngắn, hạ mức dưới giọng."
+      ],
+      "transition": "match_cut",
+      "duration_s": 4.05,
+      "main_change": "File đáp vào khay bên ngoài. Ba thẻ mở, gửi, nhận dàn dọc và lần lượt lộ cùng vết khuyết.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "xác nhận nhận",
+            "type": "result",
+            "form": "status",
+            "object": "Khay và file ngoài vạch",
+            "motion": "Khay nhận và hạ"
+          },
+          {
+            "term": "chuỗi dấu vết",
+            "type": "relation",
+            "form": "flow",
+            "object": "Ba thẻ với lõm tam giác giống nhau",
+            "motion": "Xếp dọc, lần góc từng thẻ"
+          },
+          {
+            "term": "Đã nhận",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ log thứ ba có miệng khay và dấu nhận",
+            "motion": "thẻ hạ về ray khi đúng file đáp khay"
+          }
+        ],
+        "relations": [
+          {
+            "from": "chuỗi dấu vết",
+            "to": "xác nhận nhận",
+            "type": "chuỗi kết ở khay ngoài"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Đã nhận",
+            "kind": "label",
+            "attach_to": "thẻ thứ ba trong chuỗi log",
+            "appear_s": 0.77,
+            "disappear_s": 4.05,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.7
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "header_slot": "top_right",
+      "narrative_purpose": "Dùng tờ giấy để giải thích giới hạn của một mặt nhìn.",
+      "main_idea": "Một khung nhìn có thể bỏ khuất phần còn lại của cùng một vật.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.9,
+      "visual_concept": "Một tờ giấy gập dựng cạnh rồi mở hẳn, để lộ mặt trong có những vạch trước đó bị che.",
+      "scene_type": "metaphor_animation",
+      "environment": "C · office, cận vuông góc xuống bàn. Xa là thớ bàn lam xám dịu, giữa là tờ giấy gập cao 610 px, gần là nếp gập xiên sáng và bóng đổ, cùng bo góc với thẻ log. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Hai nửa giấy nối chung trục gập",
+        "Mặt trong có thanh ngang hình học, bóng lớp riêng"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hình mặt bàn nhìn thẳng xuống mở theo cạnh thẻ log. Tay silhouette đưa tờ còn gập vào khung khi L17 nhắc tờ giấy. Header cố định «SECURITY / PLUGIN AI» / «Lần theo log» ở top_right, sang phải để đầu tờ giấy gập và bản lề còn trọn trong khung."
+        },
+        {
+          "t": 0.84,
+          "event": "Tai nhãn Mặt trước bám nửa đang lộ, dưới ánh xiên. Nửa giấy gập nâng lên quanh một đường bản lề."
+        },
+        {
+          "t": 1.6,
+          "event": "Giữ mép gập ở góc giữa hành trình. Bóng dài của mặt gập còn dịch trên nửa giấy."
+        },
+        {
+          "t": 2.03,
+          "event": "L18 bắt đầu mở nếp bằng hai mặt nạ đa giác co giãn chung đường nối. Bóng gập ngắn lại."
+        },
+        {
+          "t": 2.36,
+          "event": "Mặt trong lật đủ để thấy các vạch trơn, nhãn dính vào nửa vừa lật. Giữ cùng phần đầu."
+        },
+        {
+          "t": 3.5,
+          "event": "Hai nửa đặt phẳng. Mép chúng kéo thẳng thành hai khung, sẵn để cắt khớp S09."
+        },
+        {
+          "t": 4.2,
+          "event": "Chừa khe giữa hai mép rộng hơn đường bản lề, còn nhận ra mép ngắn và mép dài sẽ so."
+        }
+      ],
+      "voice_over": "Hình dung một tờ giấy gập đôi.\nMở nếp gập, bạn mới thấy phần còn lại.",
+      "text_overlay": "Mặt trước\nMặt trong",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 4.85,
+      "main_change": "Một tờ giấy gập dựng cạnh rồi mở hẳn, để lộ mặt trong có những vạch trước đó bị che.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "một vật gập",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Hai nửa tờ chung bản lề",
+            "motion": "Bóng và bề rộng đổi theo nếp"
+          },
+          {
+            "term": "phần khuất",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "Mặt trong có thanh ngang",
+            "motion": "Mở nếp mới lộ diện"
+          },
+          {
+            "term": "Mặt trước",
+            "type": "entity",
+            "form": "illustration",
+            "object": "nửa giấy đang lộ ở mặt trên, có cạnh bản lề",
+            "motion": "nửa trước giữ nguyên dấu khi cạnh gập dựng"
+          },
+          {
+            "term": "Mặt trong",
+            "type": "entity",
+            "form": "illustration",
+            "object": "nửa giấy vừa lật, có các thanh hình học trơn",
+            "motion": "lộ ra theo mặt nạ đa giác từ đường gập"
+          }
+        ],
+        "relations": [
+          {
+            "from": "một vật gập",
+            "to": "phần khuất",
+            "type": "cùng vật với hai phạm vi thấy"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Mặt trước",
+            "kind": "label",
+            "attach_to": "nửa giấy đang lộ",
+            "appear_s": 0.84,
+            "disappear_s": 4.85,
+            "effect": "none"
+          },
+          {
+            "text": "Mặt trong",
+            "kind": "label",
+            "attach_to": "nửa giấy vừa lật",
+            "appear_s": 2.36,
+            "disappear_s": 4.85,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.9
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "header_slot": "top_left",
+      "narrative_purpose": "Chuyển từ ẩn dụ sang hai khung cùng công cụ.",
+      "main_idea": "Phần người dùng thấy và phần AI đọc có thể khác độ dài.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Khung dài hé rồi tách khỏi khung ngắn. Hai dấu cộng về cùng một trục, cho thấy hai khung đọc chung một nguồn.",
+      "scene_type": "comparison_scene",
+      "environment": "D · code, trung sát giao diện. Xa là gradient than, giữa là mặt hiển thị lam xám và khung dài hé bên cạnh, gần là mép gờ chặn cùng hai dấu cộng. Rọi sáng theo cạnh khung. Về máy quay, Crop 1,09×, pan tâm trái 70 px trong 0,58–1,65 s để bắt gờ khung ngắn. Khi còn Cáo, mép phải tấm dài sau crop tối đa x=776. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`surprised` · 35,58–38,30 s · x=800, đáy y=1280, rộng 152 px · nhìn tấm dài đang hé về phía mình, chừa mép phải của tấm · ngoài mốc này ẩn Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–2.72 s của cảnh.",
+      "props": [
+        "Khung xem ngắn và khung dài còn trơn",
+        "Cùng dấu cộng ở đầu hai khung"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pan_left"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cáo surprised cắt vào x=800 đúng «Khoan», đứng bên phải tấm dài chưa hé. Chừa tấm trước ở bên trái. Header cố định «SECURITY / PLUGIN AI» / «Hai khung xem» ở top_left, về trái để chừa hướng hé của tấm dài và Cáo phía phải."
+        },
+        {
+          "t": 0.58,
+          "event": "Khi L20 bắt đầu, crop 1,09× pan tâm trái 70 px tới 1,65 s để đặt gờ giới hạn ở tiêu điểm. Chốt mép xa tấm dài ≤x=776 lúc còn Cáo."
+        },
+        {
+          "t": 0.97,
+          "event": "Gờ khung ngắn lên nét, nhãn Xem trước gắn mép. Mặt tấm bên kia vẫn chưa có hàng ẩn."
+        },
+        {
+          "t": 2.23,
+          "event": "Theo «AI đọc», mặt dài hé ra trong mô-đun có icon chat. Nhãn Bản AI đọc trượt từ mép tấm trong vùng mặt tấm."
+        },
+        {
+          "t": 2.72,
+          "event": "Cắt Cáo ra ở cuối L20. Tấm dài mở qua mốc dài của khung trái, không thêm hàng che."
+        },
+        {
+          "t": 3.5,
+          "event": "L21 kéo hai khung ra hai phía hơn bề rộng đường gờ, lộ dấu cộng thứ hai."
+        },
+        {
+          "t": 4.67,
+          "event": "Hai dấu cộng trượt cùng một trục."
+        },
+        {
+          "t": 5.38,
+          "event": "Sáng một vệt lam trên hai mép căn, rồi cắt gần tới thẻ dấu cộng của terminal giả."
+        }
+      ],
+      "voice_over": "Khoan!\nPhần bạn thấy chưa phải phần AI đọc.\nMình đặt hai khung cạnh nhau nhé.",
+      "text_overlay": "Xem trước\nBản AI đọc",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 6,
+      "main_change": "Khung dài hé rồi tách khỏi khung ngắn. Hai dấu cộng về cùng một trục, cho thấy hai khung đọc chung một nguồn.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "hai khung xem",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Khung lùn và khung dài",
+            "motion": "Khung dài hé rồi hai khung tách"
+          },
+          {
+            "term": "cùng công cụ",
+            "type": "relation",
+            "form": "connection",
+            "object": "Dấu cộng giống nhau trên hai đầu",
+            "motion": "Hai dấu cùng vào trục khi tách"
+          },
+          {
+            "term": "Xem trước",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khung cửa sổ có mép cắt và phần đầu của thẻ",
+            "motion": "vào cữ ngắn trước khi tấm dài trải ra"
+          },
+          {
+            "term": "Bản AI đọc",
+            "type": "entity",
+            "form": "comparison",
+            "object": "tấm dài trong mô-đun có icon chat, cùng biểu tượng dấu cộng với bản ngắn",
+            "motion": "hé rồi tách khỏi khung xem trước"
+          }
+        ],
+        "relations": [
+          {
+            "from": "hai khung xem",
+            "to": "cùng công cụ",
+            "type": "hai mặt chung công cụ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Xem trước",
+            "kind": "keyword",
+            "attach_to": "khung ngắn",
+            "appear_s": 0.97,
+            "disappear_s": 6,
+            "effect": "none"
+          },
+          {
+            "text": "Bản AI đọc",
+            "kind": "keyword",
+            "attach_to": "tấm dài",
+            "appear_s": 2.23,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "header_slot": "top_left",
+      "narrative_purpose": "Cho thấy phần mô tả đi kèm công cụ trong ứng dụng.",
+      "main_idea": "Ứng dụng có thể dùng mô tả đi kèm plugin để trình bày công dụng.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.3,
+      "visual_concept": "Dải mô tả gài dưới cạnh thẻ plugin có dấu cộng. Cửa sổ ứng dụng nhận cả hai rồi đưa phần đầu lên vùng xem trước.",
+      "scene_type": "ui_simulation",
+      "environment": "D · code, cận terminal giả. Xa là thanh ngang mờ và gradient than, giữa là khay hệ thống bên phải và cửa sổ nhận bên trái cao 620 px, gần là thẻ cộng và dải mô tả. Không thanh trạng thái có chữ. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Terminal hình học trơn",
+        "Thẻ cộng, dải mô tả vạch trung tính",
+        "Cửa sổ nhập thẻ và khung xem trước"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khóa cận terminal giả, bắt đầu kéo khay thẻ chung từ rìa phải khi L22 vào. Header cố định «SECURITY / PLUGIN AI» / «Hai khung xem» ở top_left, chừa khe cấp thẻ và cửa sổ tiếp nhận ở vùng thao tác."
+        },
+        {
+          "t": 0.65,
+          "event": "Thẻ công cụ mang icon extension và dấu cộng vào cữ. Dùng cùng thẻ xuyên hai cách gọi."
+        },
+        {
+          "t": 1.56,
+          "event": "Đến tên plugin, nhãn gắn trực tiếp trên mép thẻ, không sinh bản sao."
+        },
+        {
+          "t": 1.99,
+          "event": "Dải mô tả đi ra từ dưới thẻ, nối liền bằng tai. Nhãn Mô tả công cụ đặt trên dải đủ rộng."
+        },
+        {
+          "t": 3.08,
+          "event": "Cửa sổ ứng dụng có viền và tab trơn mở nhận thẻ. Mép thẻ khớp khe. Nhãn Ứng dụng neo phía ngoài cửa sổ."
+        },
+        {
+          "t": 4.2,
+          "event": "Dải và thẻ cùng trượt vào vùng xem, lộ phần đầu của dải qua cửa sổ."
+        },
+        {
+          "t": 5.3,
+          "event": "Cửa xem dừng cạnh thẻ. Một đường lam dẫn mắt sang hai dấu cộng chuẩn bị so."
+        },
+        {
+          "t": 6.25,
+          "event": "Đúng nhịp phép cộng, hai dấu cộng ăn khớp. Nhãn Cộng gắn điểm khớp."
+        },
+        {
+          "t": 7.22,
+          "event": "Mép vùng xem trượt sang trái để nối hàng thước của cặp khung S11."
+        }
+      ],
+      "voice_over": "Mỗi công cụ, hay plugin, có phần mô tả công dụng.\nỨng dụng có thể dùng nó để giới thiệu công cụ.\nỞ đây là phép cộng.",
+      "text_overlay": "Plugin\nMô tả công cụ\nỨng dụng\nCộng",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 8,
+      "main_change": "Dải mô tả gài dưới cạnh thẻ plugin có dấu cộng. Cửa sổ ứng dụng nhận cả hai rồi đưa phần đầu lên vùng xem trước.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "khung xem trước",
+            "type": "relation",
+            "form": "connection",
+            "object": "Cửa sổ có khe tiếp nhận",
+            "motion": "Mở ra, thẻ cắm vào"
+          },
+          {
+            "term": "Plugin",
+            "type": "term",
+            "form": "icon",
+            "object": "thẻ công cụ có icon extension và dấu cộng",
+            "motion": "thẻ duy nhất hiện tên, nhận dải mô tả vào cạnh dưới"
+          },
+          {
+            "term": "Mô tả công cụ",
+            "type": "term",
+            "form": "illustration",
+            "object": "dải vạch hình học có tai gắn dưới thẻ plugin",
+            "motion": "gài dưới thẻ và cùng trượt sang vùng xem"
+          },
+          {
+            "term": "Ứng dụng",
+            "type": "entity",
+            "form": "illustration",
+            "object": "cửa sổ có tab và khe nhận, viền khác thân thẻ plugin",
+            "motion": "mở khe rồi kéo thẻ kèm mô tả vào"
+          },
+          {
+            "term": "Cộng",
+            "type": "action",
+            "form": "icon",
+            "object": "cặp dấu cộng trên thẻ và vùng xem trước",
+            "motion": "lặp dấu, đưa hai tâm vào cữ"
+          }
+        ],
+        "relations": [
+          {
+            "from": "plugin",
+            "to": "mô tả công cụ",
+            "type": "mô tả thuộc plugin"
+          },
+          {
+            "from": "mô tả công cụ",
+            "to": "khung xem trước",
+            "type": "ứng dụng hiển thị công dụng"
+          },
+          {
+            "from": "plugin",
+            "to": "Ứng dụng",
+            "type": "ứng dụng nhận cả thẻ lẫn mô tả"
+          },
+          {
+            "from": "Ứng dụng",
+            "to": "khung xem trước",
+            "type": "đưa dải mô tả ra vùng xem"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Plugin",
+            "kind": "label",
+            "attach_to": "thẻ dấu cộng",
+            "appear_s": 1.56,
+            "disappear_s": 3.08,
+            "effect": "none"
+          },
+          {
+            "text": "Mô tả công cụ",
+            "kind": "label",
+            "attach_to": "dải gắn dưới thẻ cộng",
+            "appear_s": 1.99,
+            "disappear_s": 5.63,
+            "effect": "none"
+          },
+          {
+            "text": "Ứng dụng",
+            "kind": "label",
+            "attach_to": "cửa sổ tiếp nhận",
+            "appear_s": 3.08,
+            "disappear_s": 5.63,
+            "effect": "none"
+          },
+          {
+            "text": "Cộng",
+            "kind": "label",
+            "attach_to": "dấu cộng khớp vùng xem",
+            "appear_s": 6.25,
+            "disappear_s": 8,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.3
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S11",
+      "header_slot": "above_captions",
+      "narrative_purpose": "Chỉ đúng chỗ giấu dòng trong bản đầy đủ.",
+      "main_idea": "Hàng bị che nằm dưới mép xem trước, trong bản đầy đủ.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.6,
+      "visual_concept": "Tấm phải dài vượt đường thước chung. Hàng che xuất hiện dưới thước ở tấm phải, trong khi tấm xem trước dừng ngay tại mép.",
+      "scene_type": "comparison_scene",
+      "environment": "D · code, toàn so ngang. Xa là gradient than, giữa là hai khung x≈110–493 và x≈585–968, khung phải cao 640 px (y≈450–1090). Gần là thước xuyên hai khung ở y≈765 và hàng bị che x≈620–921, y≈840–916. Đèn lam quét theo quan hệ. Chừa dải header gần y=1190–1316. Giữ mọi mép tấm, tai nhãn và phiếu ở y≤1160. Khóa góc để cùng cao độ của các hàng còn đọc được.",
+      "character_action": "",
+      "props": [
+        "Hai bản cùng dấu cộng, thước ngang và hai viền nối",
+        "Hàng che cố định dùng khối đặc #542C3C, viền đứt #FF6868 với cùng bề dày xuyên tập",
+        "Đối chứng phụ gồm một khối vuông trơn và một ô rỗng ở vị trí khác, trên mép thước",
+        "Hai vạch gióng song song nối đúng cặp ô so ký tự và nhãn Ký tự ẩn. Để khác cao độ hàng bị che."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L25, đưa tấm xem trước từ cạnh S10 vào bên trái, nhãn dính mép. Nền phải để vị trí đặt tấm, chưa lộ hàng nào. Header cố định «SECURITY / PLUGIN AI» / «Hai khung xem» ở above_captions, chuyển xuống trên phụ đề để chừa đầu tấm, thước và hai khung cao 640 px."
+        },
+        {
+          "t": 1.05,
+          "event": "Khung trái dừng ở nẹp đáy và đẩy nẹp ra thêm 32 px để thấy giới hạn vật lý của cửa sổ."
+        },
+        {
+          "t": 2.05,
+          "event": "Trong khoảng nghỉ, mép đáy bên trái trượt tới cữ bắt thước, phần bên phải còn trống."
+        },
+        {
+          "t": 2.75,
+          "event": "L26 nhắc bản đầy đủ: đưa tấm phải vào, nhãn gắn mép ngoài, trải dọc khoảng 640 px. Mặt dưới còn che kín."
+        },
+        {
+          "t": 3.85,
+          "event": "Khi nói «dưới mép khung», phần dài vượt nẹp trái. Thước ngang hiện từ đường nẹp, tiến sang tấm phải."
+        },
+        {
+          "t": 4.78,
+          "event": "Trong khoảng nghỉ L26→L27, đường gióng khép lại qua khe. Hai khung đứng ngang hàng."
+        },
+        {
+          "t": 5.66,
+          "event": "Theo L27, lộ hàng che đặc dưới thước ở tấm phải. Khung khoanh đỏ mở và nhãn Dòng ẩn bật một lần."
+        },
+        {
+          "t": 6.78,
+          "event": "Cặp viền thước–hàng giữ đúng vị trí, dải nhấn đi từ mép trái sang cữ phải để thấy hàng nằm dưới."
+        },
+        {
+          "t": 7.95,
+          "event": "Sau L27, vùng nhấn tách khỏi thước và dịch xuống khoảng chừa cho đối chiếu phụ. Giữ nguyên vòng khoanh hàng."
+        },
+        {
+          "t": 9.11,
+          "event": "Theo L28, đánh dấu cùng một vị trí trên hai mặt, phóng hai ô đối chiếu bằng vạch gióng song song."
+        },
+        {
+          "t": 9.66,
+          "event": "Ký tự ẩn gắn giữa cặp ô: bên xem trước là ô rỗng, bên bản đủ là khối hình học đã che. Đặt ở hàng khác hẳn dòng đỏ."
+        },
+        {
+          "t": 10.82,
+          "event": "Trong khoảng nghỉ, cặp ô thu gọn về hai mặt, đưa mắt lại vùng đầu dưới hai dấu cộng."
+        },
+        {
+          "t": 11.69,
+          "event": "Theo L29, hai đường nổi chạy từ hai viền về một thẻ dấu cộng kèm icon extension, chứng minh cùng nguồn."
+        },
+        {
+          "t": 12.74,
+          "event": "Hai đường khép cạnh thẻ. Giữ nối thẻ, thước, hai tấm và hàng đã khoanh đến hết cảnh."
+        },
+        {
+          "t": 13.4,
+          "event": "Bắt đầu nhịp giữ 2,60 s: tấm đứng yên, một dải rà rộng khoảng 64 px dịch từ dấu cộng tới thước."
+        },
+        {
+          "t": 14.62,
+          "event": "Dải rà qua nẹp khung và dừng quanh chân hàng đã khoanh, không che nhãn hoặc hai mặt. Cắt khi dải đã chạm mảng che ở t=16,00."
+        }
+      ],
+      "voice_over": "Giao diện chỉ hiện phần đầu của mô tả.\nBản đầy đủ còn kéo xuống dưới mép khung.\nDòng ẩn nằm dưới mép này, trong bản đầy đủ.\nCó ký tự giao diện không hiển thị.\nHai khung cùng trỏ về một mô tả.",
+      "text_overlay": "Xem trước\nBản đầy đủ\nDòng ẩn\nKý tự ẩn",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 16,
+      "main_change": "Tấm phải dài vượt đường thước chung. Hàng che xuất hiện dưới thước ở tấm phải, trong khi tấm xem trước dừng ngay tại mép.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "mép cắt",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Mép đáy bản ngắn và thước gióng",
+            "motion": "Thước trượt tới cữ rồi nối sang bản dài"
+          },
+          {
+            "term": "bản mô tả đầy đủ",
+            "type": "entity",
+            "form": "comparison",
+            "object": "Tấm phải cùng dấu cộng lớn hơn phần xem trước",
+            "motion": "Tấm kéo dài dọc dưới thước"
+          },
+          {
+            "term": "ký tự không hiển thị",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Khối vuông hình học đối diện ô trống riêng ở trên thước",
+            "motion": "Lam chuyển từ vùng chính sang cặp ô rồi trả lại"
+          },
+          {
+            "term": "Xem trước",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khung cửa sổ có mép cắt và phần đầu của thẻ",
+            "motion": "vào cữ ngắn trước khi tấm dài trải ra"
+          },
+          {
+            "term": "Bản đầy đủ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm tài liệu icon document cao hơn mép khung ngắn",
+            "motion": "trải hết tấm dọc và để phần dưới vượt thước"
+          },
+          {
+            "term": "Dòng ẩn",
+            "type": "concept",
+            "form": "illustration",
+            "object": "hàng che đặc bên dưới thước trên bản mô tả đủ",
+            "motion": "vòng khoanh mở quanh cùng hàng. Nhãn bật một lần"
+          },
+          {
+            "term": "Ký tự ẩn",
+            "type": "concept",
+            "form": "comparison",
+            "object": "cặp ô cùng vị trí được gióng về hai mặt: một ô trống, một ô có khối hình học đặc",
+            "motion": "cặp ô mở từ vị trí gióng, rồi khép về hai mặt"
+          }
+        ],
+        "relations": [
+          {
+            "from": "mép cắt",
+            "to": "bản mô tả đầy đủ",
+            "type": "hai phạm vi của cùng dữ liệu"
+          },
+          {
+            "from": "bản mô tả đầy đủ",
+            "to": "dòng ẩn",
+            "type": "hàng nằm dưới ngưỡng"
+          },
+          {
+            "from": "mép cắt",
+            "to": "ký tự không hiển thị",
+            "type": "đối chiếu phụ độc lập với hàng đỏ"
+          },
+          {
+            "from": "khung xem trước",
+            "to": "bản mô tả đầy đủ",
+            "type": "cùng nguồn, khác chiều dài hiển thị"
+          },
+          {
+            "from": "Ký tự ẩn",
+            "to": "dòng ẩn",
+            "type": "ô phụ minh họa hiện/không hiện ở vị trí khác hàng bị che"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Xem trước",
+            "kind": "keyword",
+            "attach_to": "tấm ngắn bên trái",
+            "appear_s": 0,
+            "disappear_s": 5.66,
+            "effect": "none"
+          },
+          {
+            "text": "Bản đầy đủ",
+            "kind": "keyword",
+            "attach_to": "tấm dài bên phải",
+            "appear_s": 2.75,
+            "disappear_s": 9.11,
+            "effect": "none"
+          },
+          {
+            "text": "Dòng ẩn",
+            "kind": "keyword",
+            "attach_to": "hàng che dưới thước",
+            "appear_s": 5.66,
+            "disappear_s": 9.11,
+            "effect": "kinetic"
+          },
+          {
+            "text": "Ký tự ẩn",
+            "kind": "keyword",
+            "attach_to": "cặp ô đối chiếu cùng vị trí của hai mặt",
+            "appear_s": 9.66,
+            "disappear_s": 11.69,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2.6
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S12",
+      "header_slot": "top_right",
+      "narrative_purpose": "Tách bước đưa mô tả vào ngữ cảnh khỏi lượt gọi công cụ.",
+      "main_idea": "Trợ lý có thể nhận mô tả lúc nạp trước khi plugin cộng được gọi.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.4,
+      "visual_concept": "Tấm mô tả nằm trong nút trợ lý. Đồng hồ gắn riêng trên plugin cộng bật 0, trong khi khay chạy phép cộng vẫn trống.",
+      "scene_type": "process_animation",
+      "environment": "E · incident, trung bảng sự cố với terminal mô phỏng nằm trên bảng. Xa là hai vùng tối tách bởi lá vạch. Giữa là khay ứng dụng x≈120–515 và nút trợ lý icon chat dưới tuyến dọc. Gần phải là đồng hồ ≥440 px chỉ gắn thẻ cộng, và ổ chạy rỗng. Cụm chính cao ≥650 px trải y≈485–1200. Rọi lam theo tấm tới nút nhận. Để vùng đầu trên phải trống cho header. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Khay ứng dụng, thẻ plugin icon extension và dấu cộng, chồng thẻ cùng kiểu",
+        "Tấm mô tả hình document, nút trợ lý icon chat và cửa nhận",
+        "Đồng hồ 0 có móc gắn riêng trên plugin cộng, nút gọi tròn chưa bấm và khay phép tính rỗng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L30, mở bảng sự cố theo chiều dọc. Thanh terminal là cửa sổ nằm trên nền bảng, chưa là đường thực thi. Header cố định «SECURITY / PLUGIN AI» / «Lúc nạp công cụ» ở top_right, chuyển lên phải để chừa tuyến nạp → trợ lý ở nửa trái."
+        },
+        {
+          "t": 0.51,
+          "event": "Chồng thẻ dấu cộng và extension vào khay danh sách dưới nhãn Nạp, bắt đầu đoạn nạp."
+        },
+        {
+          "t": 1.66,
+          "event": "Tách tấm mô tả hình trang có dải vừa thấy khỏi chồng thẻ. Gắn một vạch gióng về đúng thẻ."
+        },
+        {
+          "t": 2.95,
+          "event": "Đến phía AI: đưa tấm vào nút có icon chat mang nhãn Trợ lý, khớp mép vào cửa nhận trong khoảng nghỉ."
+        },
+        {
+          "t": 3.65,
+          "event": "Theo L31, mở móc đồng hồ trên đúng thẻ plugin cộng, tách khỏi log và đường sang trợ lý."
+        },
+        {
+          "t": 4.06,
+          "event": "Nhãn Lượt gọi plugin 56 px nằm ở đầu ô đồng hồ đủ rộng (≥440 px), cách viền trên ≥24 px, chừa ô số bên dưới."
+        },
+        {
+          "t": 5,
+          "event": "Đồng hồ trượt vào khớp móc và tách khỏi nút gọi chưa bấm. Đợi lời «không» trước khi hiện trị số."
+        },
+        {
+          "t": 5.85,
+          "event": "Số 0 xuất hiện trong chính đồng hồ. Nút chưa bấm và ổ phép tính không có kết quả."
+        },
+        {
+          "t": 6.85,
+          "event": "Nhãn Danh sách gắn khay thẻ tại nút trợ lý. Đồng hồ và khay chạy rỗng trượt sang phải để tách hai tuyến."
+        },
+        {
+          "t": 7.93,
+          "event": "Thẻ vừa đến trợ lý khớp cữ, đường nạp nằm trong mô-đun bên trái."
+        },
+        {
+          "t": 9,
+          "event": "Giữ 2,40 s: vệt rộng chạy từ danh sách tới trợ lý, tấm và đồng hồ 0 cùng còn trong khung."
+        },
+        {
+          "t": 10.23,
+          "event": "Vệt nhấn đổi điểm kết thúc sang viền khay chạy rỗng và nút chưa bấm. Chốt một khung thấy rõ đủ hai nhánh."
+        }
+      ],
+      "voice_over": "Lúc nạp công cụ, ứng dụng có thể đưa mô tả cho AI.\nBộ đếm lượt gọi của riêng plugin cộng vẫn bằng không.\nNạp chỉ cho AI biết công cụ nào có sẵn.",
+      "text_overlay": "Nạp\nTrợ lý\nLượt gọi plugin\n0\nDanh sách",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 11.4,
+      "main_change": "Tấm mô tả nằm trong nút trợ lý. Đồng hồ gắn riêng trên plugin cộng bật 0, trong khi khay chạy phép cộng vẫn trống.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nạp công cụ",
+            "type": "action",
+            "form": "flow",
+            "object": "Khay ứng dụng, tấm và nút trợ lý",
+            "motion": "Tách tấm từ chồng rồi đặt vào nút"
+          },
+          {
+            "term": "lượt gọi công cụ",
+            "type": "term",
+            "form": "status",
+            "object": "Đồng hồ riêng có tai gắn trên thẻ cộng",
+            "motion": "Lộ riêng, bật 0 và giữ ổ gọi nhả"
+          },
+          {
+            "term": "độc lập giữa hai việc",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Nút đã nhận và đồng hồ bằng không",
+            "motion": "Đặt kề trong khoảng giữ, không nhập vào cùng đường"
+          },
+          {
+            "term": "Nạp",
+            "type": "action",
+            "form": "flow",
+            "object": "khay ứng dụng nhận chồng thẻ plugin theo ray",
+            "motion": "chồng thẻ tới khay, tấm mô tả tách sang bên nhận"
+          },
+          {
+            "term": "Trợ lý",
+            "type": "entity",
+            "form": "icon",
+            "object": "nút có icon chat và cạnh nhận tấm mô tả",
+            "motion": "nhận và giữ tấm có dải vạch"
+          },
+          {
+            "term": "Lượt gọi plugin",
+            "type": "term",
+            "form": "status",
+            "object": "đồng hồ số gắn bằng móc vào đúng thẻ extension dấu cộng",
+            "motion": "vào cữ riêng và mở ô trị số cạnh nút chưa bấm"
+          },
+          {
+            "term": "0",
+            "type": "result",
+            "form": "status",
+            "object": "ô trị số của chính đồng hồ plugin cộng",
+            "motion": "hiện khi lời đến số không, giữ cùng tấm đã nhận"
+          },
+          {
+            "term": "Danh sách",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khay thẻ công cụ xếp lớp tại nút trợ lý icon chat",
+            "motion": "vệt chạy từ khay về trợ lý khi nhánh chạy còn rỗng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "nạp công cụ",
+            "to": "độc lập giữa hai việc",
+            "type": "trạng thái ngữ cảnh"
+          },
+          {
+            "from": "lượt gọi công cụ",
+            "to": "độc lập giữa hai việc",
+            "type": "trạng thái gọi cùng thời điểm"
+          },
+          {
+            "from": "mô tả công cụ",
+            "to": "Trợ lý",
+            "type": "được chuyển sang lúc nạp"
+          },
+          {
+            "from": "Lượt gọi plugin",
+            "to": "0",
+            "type": "đồng hồ riêng trên plugin cộng vẫn ở 0"
+          },
+          {
+            "from": "Danh sách",
+            "to": "khay phép tính rỗng",
+            "type": "thẻ đã nạp, lượt chạy riêng còn trống"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Nạp",
+            "kind": "label",
+            "attach_to": "khay danh sách của ứng dụng",
+            "appear_s": 0.51,
+            "disappear_s": 3.65,
+            "effect": "none"
+          },
+          {
+            "text": "Trợ lý",
+            "kind": "label",
+            "attach_to": "nút trợ lý nhận tấm mô tả",
+            "appear_s": 2.95,
+            "disappear_s": 3.65,
+            "effect": "none"
+          },
+          {
+            "text": "Lượt gọi plugin",
+            "kind": "label",
+            "attach_to": "đồng hồ của riêng thẻ cộng",
+            "appear_s": 4.06,
+            "disappear_s": 11.4,
+            "effect": "none"
+          },
+          {
+            "text": "0",
+            "kind": "number",
+            "attach_to": "giá trị trong cùng đồng hồ",
+            "appear_s": 5.85,
+            "disappear_s": 11.4,
+            "effect": "none"
+          },
+          {
+            "text": "Danh sách",
+            "kind": "label",
+            "attach_to": "khay thẻ công cụ đã có trong trợ lý",
+            "appear_s": 6.85,
+            "disappear_s": 11.4,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2.4
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S13",
+      "header_slot": "top_right",
+      "narrative_purpose": "Gắn rủi ro với nguồn mô tả và điều kiện về quyền.",
+      "main_idea": "Chỉ dẫn trong mô tả có thể dẫn tới hành động ngoài nhiệm vụ khi có quyền phù hợp.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.05,
+      "visual_concept": "Giữ tấm mô tả và nút trợ lý S12. Theo lời, kéo vệt từ khối che tới điểm rẽ, mở cổng rồi cho đúng file đã mở đi sang khay ngoài. Nhánh cộng vẫn riêng. Từ khay dẫn vệt ngược về nguồn khi gọi tên rủi ro.",
+      "scene_type": "process_animation",
+      "environment": "E · incident, toàn tuyến từ bảng sự cố tới biên. Xa là gradient than lam và đường biên dọc như S12/S14. Giữa là nút trợ lý, đường cộng lam và nhánh đỏ ngoặt qua cổng. Gần là tấm mô tả, file và khay ngoài. Chừa ô trên phải cho header. Tuyến y≈455–1210 với hai nhánh cách nhau đủ để giữ điểm rẽ, cửa chốt và điểm đáp trong cùng khung. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Nút trợ lý icon chat từ S12. Tấm nguồn với khối che đặc và hai tuyến rẽ có vạch đủ dày",
+        "Cổng ngang trượt và icon key. Vạch công ty giống hook",
+        "File nội bộ mang vết khuyết và khay chữ U bên ngoài. Dùng lại hình học S05–S07"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Nối đúng nút trợ lý icon chat và tấm mô tả S12 trên bảng incident, giữ đường cộng lam. Cổng còn ở trạng thái trung tính. Header cố định «SECURITY / PLUGIN AI» / «Lúc nạp công cụ» ở top_right, chừa mép tấm nguồn và đường rẽ. Để cổng và khay ở vùng dưới header."
+        },
+        {
+          "t": 0.65,
+          "event": "Khi L33 nói «làm theo», vệt từ hàng che chạy tới nút rẽ. Cạnh nhánh hướng sang mô-đun quyền, vẫn chưa có file dịch."
+        },
+        {
+          "t": 1.46,
+          "event": "Nhánh tách khỏi trục cộng. Tới cổng chiếu một vệt hổ phách để mắt thấy có điều kiện thực thi."
+        },
+        {
+          "t": 2.24,
+          "event": "Đến «quyền phù hợp», bật nhãn tại cổng, kéo thanh ngang khỏi đường và hiện icon key cạnh đường mở. Chốt mở hết ở khoảng nghỉ."
+        },
+        {
+          "t": 3.19,
+          "event": "Theo L34, ngăn bên trong lên nét. File góc khuyết đã mở từ chuỗi log nhích ra khỏi ngăn."
+        },
+        {
+          "t": 3.85,
+          "event": "Nhãn File nội bộ đi cùng đúng thẻ góc khuyết trên nhánh đỏ. Tăng khoảng cách nhánh cộng và nhánh file để thấy khác ngay ở 360×640."
+        },
+        {
+          "t": 4.77,
+          "event": "Đúng nhịp «tới khay ngoài», file qua thanh cổng đã mở rồi qua vạch, nhánh cộng vẫn đứng riêng."
+        },
+        {
+          "t": 5.56,
+          "event": "File đáp khay bên kia trong khoảng nghỉ. Đường biên và khay trùng với hình sự cố đã thấy."
+        },
+        {
+          "t": 6.38,
+          "event": "Nhịp gọi tên Tool poisoning: nhãn gắn tấm mô tả, vệt chạy ngược từ khay về đúng khối che."
+        },
+        {
+          "t": 7.35,
+          "event": "Trong nhịp giữ 1,05 s, vệt truy nguồn đóng kín tới mép tấm. Thấy cùng lúc file đã đến và đường cộng tồn tại."
+        }
+      ],
+      "voice_over": "AI có thể làm theo, nhất là khi có quyền phù hợp.\nTrong lần này, file của phòng đã tới khay ngoài.\nĐó là tool poisoning.",
+      "text_overlay": "Quyền thực thi\nFile nội bộ\nTool poisoning",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 8.4,
+      "main_change": "Từ hàng che, vệt đỏ rẽ khỏi đường cộng. File góc khuyết đi qua cổng mở và đến khay ngoài, rồi vệt dẫn mắt về nguồn trên tấm mô tả.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "lệch hành vi",
+            "type": "result",
+            "form": "flow",
+            "object": "Điểm rẽ và hai lối",
+            "motion": "Nhánh mọc khỏi luồng cộng"
+          },
+          {
+            "term": "Quyền thực thi",
+            "type": "concept",
+            "form": "status",
+            "object": "cổng ngang bằng thanh chốt có icon key tại đường biên",
+            "motion": "thanh lùi khỏi đường nhánh, nhãn bật ở chính cổng"
+          },
+          {
+            "term": "File nội bộ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ góc khuyết, đặt ban đầu trong ngăn có viền công ty",
+            "motion": "thẻ đã mở đi qua cổng thực thi còn mở và đáp vào khay ngoài"
+          },
+          {
+            "term": "Tool poisoning",
+            "type": "term",
+            "form": "connection",
+            "object": "tấm mô tả có khối che với vệt tới nút trợ lý và nhánh lệch",
+            "motion": "vệt dẫn ngược từ khay qua cổng về khối che"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tool poisoning",
+            "to": "lệch hành vi",
+            "type": "nguồn tác động"
+          },
+          {
+            "from": "Quyền thực thi",
+            "to": "lệch hành vi",
+            "type": "điều kiện thực thi"
+          },
+          {
+            "from": "tấm mô tả có hàng che",
+            "to": "nhánh lệch",
+            "type": "vệt từ hàng che dẫn tới điểm rẽ"
+          },
+          {
+            "from": "Quyền thực thi",
+            "to": "File nội bộ",
+            "type": "cổng mở cho thẻ qua trong tình huống dựng"
+          },
+          {
+            "from": "File nội bộ",
+            "to": "khay ngoài",
+            "type": "đáp khay sau khi vượt vạch"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Quyền thực thi",
+            "kind": "keyword",
+            "attach_to": "cổng tại ranh giới",
+            "appear_s": 2.24,
+            "disappear_s": 5.85,
+            "effect": "kinetic"
+          },
+          {
+            "text": "File nội bộ",
+            "kind": "label",
+            "attach_to": "thẻ góc khuyết đang vào khay",
+            "appear_s": 3.85,
+            "disappear_s": 5.85,
+            "effect": "none"
+          },
+          {
+            "text": "Tool poisoning",
+            "kind": "keyword",
+            "attach_to": "tấm mô tả nơi vệt bắt đầu",
+            "appear_s": 6.38,
+            "disappear_s": 8.4,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.05
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S14",
+      "header_slot": "top_left",
+      "narrative_purpose": "Kiểm lại nghịch lý bằng hai bằng chứng của cùng lượt.",
+      "main_idea": "Kết quả tính, nhật ký và mô tả đã nạp trả lời những câu hỏi khác nhau về cùng sự cố.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.01,
+      "visual_concept": "Ô tính giữ kết quả 5, còn ba thẻ log nối tới khay đã chứa file. Tấm mô tả chỉ xuất hiện khi chuyển sang lần nguồn.",
+      "scene_type": "ui_simulation",
+      "environment": "B · incident, trung đối diện bảng sự cố. Xa là vùng log tối, giữa là ô tính và ranh giới dọc, gần là màn trượt che log và khay. Đèn tách bên ô tính xanh, bên log đỏ. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Cửa sổ tính có ô kết quả",
+        "Màn trượt, ba thẻ log, khay có file",
+        "Tấm bản đã nạp hình document có đúng khối che ở mép bên cạnh log"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L36, cắt sang bảng incident trung cảnh. Cửa sổ tính quen vào từ trái, lấy trùng viền đỏ từ S13. Header cố định «SECURITY / PLUGIN AI» / «Lần theo log» ở top_left, về trái, giữ cửa sổ tính dưới header và để vùng phải cho log cùng khay."
+        },
+        {
+          "t": 0.88,
+          "event": "Đúng «năm», hiện số 5 trong ô kết quả, giữ viền kiểm cùng màu hook."
+        },
+        {
+          "t": 1.28,
+          "event": "Theo L37, màn che bảng log trượt để lộ dần các icon mở, gửi, nhận ở bên cạnh ô tính."
+        },
+        {
+          "t": 2.34,
+          "event": "Theo «khay ngoài», cùng khay có file trượt vào chân bảng phía bên kia vạch."
+        },
+        {
+          "t": 3.22,
+          "event": "Theo L38, ba thẻ bắt đầu vào trục, nhãn 5 rời khung theo kịch bản, giữ icon dấu cộng và dấu kiểm ở vị trí cũ."
+        },
+        {
+          "t": 4.35,
+          "event": "Đường nối ba bản ghi tới góc file dừng rõ ngay tại khay, giữ log như dấu vết của việc đã xảy ra."
+        },
+        {
+          "t": 5.41,
+          "event": "Theo L39, từ log, dải lam chuyển bên lấy nét sang khe bằng kích thước của tấm ở phía còn trống."
+        },
+        {
+          "t": 6.57,
+          "event": "Tấm Bản đã nạp hiện lên ở nhịp gọi tên, có đúng hàng che. Vệt lần nguồn rẽ sang tấm chứ không tự đi tiếp trong log."
+        },
+        {
+          "t": 7.34,
+          "event": "Đẩy tấm có tai nhãn theo mép hình sang bàn lưu, gối đường cạnh cho cú cắt S15."
+        }
+      ],
+      "voice_over": "Ô tính vẫn là năm.\nNhật ký ghi file tới khay ngoài.\nNhật ký cho mình biết việc đã xảy ra.\nMuốn biết vì sao, xem bản đã nạp.",
+      "text_overlay": "5\nBản đã nạp",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 8.35,
+      "main_change": "Ô tính giữ kết quả 5, còn ba thẻ log nối tới khay đã chứa file. Tấm mô tả chỉ xuất hiện khi chuyển sang lần nguồn.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "đầu ra thông thường",
+            "type": "result",
+            "form": "status",
+            "object": "Cửa sổ tính với ô 5",
+            "motion": "Bật viền rồi sang cạnh"
+          },
+          {
+            "term": "bằng chứng độc lập",
+            "type": "result",
+            "form": "comparison",
+            "object": "Log ba thẻ và khay đã giữ file",
+            "motion": "Màn mở, vệt đi từ log tới khay"
+          },
+          {
+            "term": "5",
+            "type": "result",
+            "form": "status",
+            "object": "ô số của máy tính có nét dấu kiểm xanh",
+            "motion": "bật trong ô kết quả đúng mốc, giữ vị trí trong khi file hoặc tấm mô tả đổi chỗ"
+          },
+          {
+            "term": "Bản đã nạp",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm mô tả có khối che, mép có hình document bên log",
+            "motion": "đi vào khi lời chuyển sang nguyên nhân, nhận đường lần nguồn từ log"
+          }
+        ],
+        "relations": [
+          {
+            "from": "đầu ra thông thường",
+            "to": "bằng chứng độc lập",
+            "type": "cùng một khung cho thấy hai kết quả độc lập"
+          },
+          {
+            "from": "nhật ký",
+            "to": "Bản đã nạp",
+            "type": "mốc truy sự kiện tách với vật dùng truy nguồn"
+          }
+        ],
+        "texts": [
+          {
+            "text": "5",
+            "kind": "number",
+            "attach_to": "ô kết quả quen",
+            "appear_s": 0.88,
+            "disappear_s": 3.22,
+            "effect": "none"
+          },
+          {
+            "text": "Bản đã nạp",
+            "kind": "label",
+            "attach_to": "mép tấm mô tả bên cạnh log",
+            "appear_s": 6.57,
+            "disappear_s": 8.35,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.01
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S15",
+      "header_slot": "top_left",
+      "narrative_purpose": "Thiết lập mẫu đối chiếu trước sự cố.",
+      "main_idea": "Dấu duyệt thuộc bản đầy đủ đã lưu trước sự cố.",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Phiếu lật lộ dấu kiểm riêng. Bản mô tả sạch của phép cộng trải ra, rồi được cất cùng phiếu vào ngăn.",
+      "scene_type": "object_interaction",
+      "environment": "F · security, bàn lưu hồ sơ. Xa là cụm ngăn kéo đứng xanh than, giữa là mặt bàn xiên cạnh một ngăn mở, gần là phiếu dấu kiểm và tay nhân viên. Sáng bên mép ngăn. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Tay silhouette, phiếu có đúng dấu kiểm",
+        "Tấm cao 630 px với dấu cộng và các vạch trung tính, một hàng trơn để đối chiếu",
+        "Ngăn đứng có tai ghim"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang lần duyệt trước: tay silhouette đưa phiếu đang úp lên sát ngăn, vắng hàng đỏ. Header cố định «SECURITY / PLUGIN AI» / «Bản đổi sau duyệt» ở top_left, chừa bàn lưu có ngăn và mấu phiếu bên phải."
+        },
+        {
+          "t": 0.45,
+          "event": "Đến «dấu duyệt», lật phiếu có dấu kiểm đơn và nhãn Phiếu duyệt. Bóng ở mép cho biết đây là mảnh riêng."
+        },
+        {
+          "t": 1.49,
+          "event": "Trong nhịp nghỉ khi câu hỏi dứt, phiếu đặt cạnh cữ, mép bản cũ nhô lên."
+        },
+        {
+          "t": 2.56,
+          "event": "Đến «mô tả», trải bản đầy đủ cao 630 px, mép mang nhãn Bản lưu. Thanh mô tả chỉ là dải hình học. Hàng đối chiếu trung tính."
+        },
+        {
+          "t": 3.51,
+          "event": "Dấu cộng trên thẻ plugin khớp dấu trên bản mô tả. Phiếu nằm riêng bên cạnh tai tấm cùng vạch căn."
+        },
+        {
+          "t": 4.13,
+          "event": "Theo L42, tay đẩy bản và phiếu về cùng một ngăn có tai ghim. Phiếu trượt theo đúng bản."
+        },
+        {
+          "t": 5.2,
+          "event": "Ngăn khép nửa, dải cạnh giữ ở trung tâm để S16 kéo ra cùng vị trí."
+        }
+      ],
+      "voice_over": "Còn dấu duyệt trước đây thì sao?\nLúc duyệt, mô tả chỉ nói về phép cộng.\nMình cất bản ấy đi.",
+      "text_overlay": "Phiếu duyệt\nBản lưu",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6.2,
+      "main_change": "Phiếu lật lộ dấu kiểm riêng. Bản mô tả sạch của phép cộng trải ra, rồi được cất cùng phiếu vào ngăn.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "dấu duyệt",
+            "type": "entity",
+            "form": "icon",
+            "object": "Phiếu riêng mang dấu kiểm xanh",
+            "motion": "Lật phiếu, giữ bám lề"
+          },
+          {
+            "term": "bản mô tả đã duyệt",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Tấm dài có vạch thường và hàng trơn",
+            "motion": "Trải tấm rồi đẩy ngăn"
+          },
+          {
+            "term": "lưu bản duyệt",
+            "type": "action",
+            "form": "animation",
+            "object": "Ngăn có tai ghim",
+            "motion": "Nuốt tấm và khép nửa chừng"
+          },
+          {
+            "term": "Phiếu duyệt",
+            "type": "entity",
+            "form": "icon",
+            "object": "phiếu giấy rời có đúng một icon check",
+            "motion": "trở mặt, ghé vào mép bản lưu"
+          },
+          {
+            "term": "Bản lưu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm đủ cao với dải vạch và phiếu kiểm gắn bên trái",
+            "motion": "trải ra hoặc kéo vào cữ chung. Phiếu ở lại với tấm"
+          }
+        ],
+        "relations": [
+          {
+            "from": "dấu duyệt",
+            "to": "bản mô tả đã duyệt",
+            "type": "phiếu thuộc bản cũ"
+          },
+          {
+            "from": "bản mô tả đã duyệt",
+            "to": "lưu bản duyệt",
+            "type": "mẫu được cất để đối chiếu"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Phiếu duyệt",
+            "kind": "label",
+            "attach_to": "phiếu có dấu kiểm đơn",
+            "appear_s": 0.45,
+            "disappear_s": 4.13,
+            "effect": "none"
+          },
+          {
+            "text": "Bản lưu",
+            "kind": "label",
+            "attach_to": "mép tấm đầy đủ dưới phiếu",
+            "appear_s": 2.56,
+            "disappear_s": 6.2,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S16",
+      "header_slot": "above_captions",
+      "narrative_purpose": "Cho thấy mô tả thay đổi sau lần duyệt.",
+      "main_idea": "Bản đang nạp có thể đổi một hàng dù cùng công cụ và phần đầu vẫn khớp.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.5,
+      "visual_concept": "Hai bản cùng dấu cộng chồng vào cữ. Bóc góc bản đang nạp lộ đúng hàng đổi, trong khi phiếu duyệt vẫn gắn với bản lưu.",
+      "scene_type": "comparison_scene",
+      "environment": "F · security, bàn đối chiếu nhìn vuông góc xuống. Xa là mặt kính xanh than, không thấy dãy ngăn đứng. Giữa là mặt căn có các vạch bắt cạnh và hai tấm cao 630 px. Gần là tai nhãn, phiếu dấu kiểm và góc bóc. Dải sáng phân lớp chạy dọc cữ. Chừa dải header gần y=1190–1316. Giữ mọi mép tấm, tai nhãn và phiếu ở y≤1160. Khóa góc để cùng cao độ của các hàng còn đọc được.",
+      "character_action": "",
+      "props": [
+        "Tấm lưu và tấm đang nạp, một vạch cũ và mảng che đỏ giống S11",
+        "Phiếu duyệt rời bên trái tấm cũ, bốn vạch cữ lam",
+        "Hai tai nhãn gắn riêng hai tấm, bóng đổ có độ dày 12–18 px"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L43, cắt khớp từ mép ngăn. Rút tấm lưu lên mặt căn. Giữ vùng trên hai tấm sạch để thấy mép căn. Header cố định «SECURITY / PLUGIN AI» / «Bản đổi sau duyệt» ở above_captions, chuyển xuống trên phụ đề, chừa đầu hai tấm, hai tai nhãn và phiếu duyệt."
+        },
+        {
+          "t": 0.55,
+          "event": "Tai Bản lưu gắn bên trái lớp dưới, dành tối thiểu 24 px lề ngang xung quanh chữ."
+        },
+        {
+          "t": 1.28,
+          "event": "Đến «được duyệt», phiếu kiểm ăn mấu với mép lớp dưới. Vạch nền tiếp tục kéo tấm về cữ qua nhịp nghỉ."
+        },
+        {
+          "t": 2.57,
+          "event": "Theo L44, để cửa khay ứng dụng hé ở bên kia bàn rồi thẻ mới mở lối trượt vào."
+        },
+        {
+          "t": 3.3,
+          "event": "Tấm thứ hai đi từ khe theo cữ dọc. Cùng dấu cộng ở đầu, giữ hàng dưới bị mặt trên che."
+        },
+        {
+          "t": 4.01,
+          "event": "Nhãn Bản đang nạp trượt 32 px cùng tai mép phải tấm đi vào. Cả hai tấm cao ≥630 px. Để hai tai tránh nhau và tránh phiếu."
+        },
+        {
+          "t": 5.05,
+          "event": "Khi lời nói bản đổi và vào khoảng nghỉ, mép lớp mới nâng khỏi cữ một nấc rồi đứng song song với tấm lưu. Hàng đổi chưa lộ."
+        },
+        {
+          "t": 6.03,
+          "event": "L45 kéo tấm mới chồng lên, giữ tai nhìn thấy ở hai phía để biết mỗi nhãn thuộc tấm nào."
+        },
+        {
+          "t": 7.25,
+          "event": "Hai dấu cộng cùng tâm. Ba vạch căn dịch vào cữ và mở đáy tấm đủ chỗ bóc góc."
+        },
+        {
+          "t": 8.24,
+          "event": "Trong khoảng nghỉ, cữ đầu nhập nét, mép góc kéo một đoạn nhưng hành lang dưới mặt vẫn bị che."
+        },
+        {
+          "t": 9.03,
+          "event": "Theo L46, vệt lam đi qua đúng phần đầu đã khớp, giữ nét thẳng để thấy tương đồng."
+        },
+        {
+          "t": 10.35,
+          "event": "Hai tai rút theo mốc chữ. Mặt nạ góc lớp trên bắt đầu co tại vị trí hàng bên dưới."
+        },
+        {
+          "t": 10.56,
+          "event": "Bóc góc bằng mặt nạ đa giác + bóng, lộ vạch cũ đối diện khối che. Hàng đã đổi nối bằng hai gióng, tránh đè hàng."
+        },
+        {
+          "t": 11.54,
+          "event": "Trong khoảng nghỉ, kéo cặp mép so lệch nhau thêm một nấc để đường gióng chỉ đúng cùng vị trí."
+        },
+        {
+          "t": 12.22,
+          "event": "Theo L47, nhấc tấm trên thêm, phiếu và dấu kiểm đứng yên trên lớp dưới. Chốt cả hai hàng và phiếu trước khi hết lời."
+        },
+        {
+          "t": 13.5,
+          "event": "Giữ 2,50 s: dải rà lam bắt đầu từ đầu tấm, chạy bản rộng theo cữ tới hàng lệch, không che tai hoặc dấu."
+        },
+        {
+          "t": 14.76,
+          "event": "Dải rà từ cặp hàng chuyển tới góc dưới có phiếu. Giữ hai lớp phân biệt bằng bóng và chốt phiếu đến hết cảnh."
+        }
+      ],
+      "voice_over": "Đây là bản đầy đủ lúc được duyệt.\nLần mở sau, ứng dụng có thể nạp một bản đã đổi.\nChồng hai bản lên nhau để thấy hàng nào lệch.\nPhần đầu vẫn khớp, còn hàng bên dưới đã khác.\nDấu cũ thuộc bản bên dưới.",
+      "text_overlay": "Bản lưu\nBản đang nạp\nHàng đã đổi",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 16,
+      "main_change": "Hai bản cùng dấu cộng chồng vào cữ. Bóc góc bản đang nạp lộ đúng hàng đổi, trong khi phiếu duyệt vẫn gắn với bản lưu.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "so phiên bản",
+            "type": "action",
+            "form": "comparison",
+            "object": "Hai tấm và cữ, đầu khớp và cặp hàng tách",
+            "motion": "Canh cạnh rồi bóc góc để lộ hàng khác"
+          },
+          {
+            "term": "dấu duyệt",
+            "type": "relation",
+            "form": "connection",
+            "object": "Phiếu xanh gá cạnh tấm lưu",
+            "motion": "Đứng yên khi nhấc lớp trên"
+          },
+          {
+            "term": "Bản lưu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm đủ cao với dải vạch và phiếu kiểm gắn bên trái",
+            "motion": "trải ra hoặc kéo vào cữ chung. Phiếu ở lại với tấm"
+          },
+          {
+            "term": "Bản đang nạp",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm thứ hai chạy từ khe ứng dụng và mang cùng dấu cộng",
+            "motion": "tai nhãn slide cùng tấm. Tấm trượt vào cữ chồng bản"
+          },
+          {
+            "term": "Hàng đã đổi",
+            "type": "result",
+            "form": "comparison",
+            "object": "cặp hàng tại một cao độ, vạch trơn trên bản dưới và khối che trên bản trên",
+            "motion": "bóc mặt nạ góc để hai hàng cùng thấy qua hai gióng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "bản lưu",
+            "to": "bản đang nạp",
+            "type": "hai phiên cùng công cụ"
+          },
+          {
+            "from": "so phiên bản",
+            "to": "bản đang nạp",
+            "type": "chỉ sai khác ở hàng dưới"
+          },
+          {
+            "from": "dấu duyệt",
+            "to": "bản lưu",
+            "type": "chỉ thuộc lớp lưu"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Bản lưu",
+            "kind": "label",
+            "attach_to": "mép tấm duyệt lấy từ ngăn",
+            "appear_s": 0.55,
+            "disappear_s": 10.35,
+            "effect": "none"
+          },
+          {
+            "text": "Bản đang nạp",
+            "kind": "label",
+            "attach_to": "mép tấm đi vào khay",
+            "appear_s": 4.01,
+            "disappear_s": 10.35,
+            "effect": "kinetic"
+          },
+          {
+            "text": "Hàng đã đổi",
+            "kind": "keyword",
+            "attach_to": "cặp hàng vừa lộ khi nhấc mép tấm",
+            "appear_s": 10.56,
+            "disappear_s": 16,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2.5
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S17",
+      "header_slot": "top_left",
+      "narrative_purpose": "Cho thấy lỗi lấy phê duyệt cũ để tin tấm hiện tại.",
+      "main_idea": "Dấu duyệt cũ dễ bị gán nhầm cho bản hiện tại.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.65,
+      "visual_concept": "Tay đẩy bản mới về khe trong khi phiếu duyệt nằm ở ngăn cũ. Hai tấm lệch ra để lộ người duyệt đang nhìn dấu của bản khác.",
+      "scene_type": "object_interaction",
+      "environment": "F · security, cạnh bàn lưu nhìn chéo. Xa là mặt đứng ngăn có đèn xanh dịu, giữa là khe và hai mặt phẳng nghiêng vào nhau, gần là tay silhouette và Cáo cạnh phiếu. Đèn chuyển từ phiếu sang mép lớp mới. Về máy quay, Crop 1,10×, pan tâm 65 px sang phải trong 3,04–5,50 s theo tay đưa tấm mới, vẫn giữ phiếu cũ trong khung. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`bow` · 115,93–118,51 s · x=105, đáy y=1290, rộng 154 px · cúi cạnh dấu duyệt bám ở bản lưu · ngoài mốc này ẩn Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–2.58 s của cảnh.",
+      "props": [
+        "Tay silhouette, khe nạp trơn",
+        "Phiếu duyệt bên ngăn, tấm mới có góc bóc"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pan_right"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L48, cáo bow cắt vào cạnh ngăn. Đặt tấm hiện tại cạnh tấm lưu, dùng bóng phân biệt hai mặt. Dấu cũ đứng ngay trên bản lưu. Header cố định «SECURITY / PLUGIN AI» / «Bản đổi sau duyệt» ở top_left, về trái, đặt phía trên đường vào của tay và phiếu cạnh ngăn."
+        },
+        {
+          "t": 1.07,
+          "event": "Trong khoảng nghỉ, tay silhouette cấp chỗ cho tấm mới dịch một nấc. Cáo giữ dáng cúi về phiếu cũ."
+        },
+        {
+          "t": 1.51,
+          "event": "Theo L49, tay đẩy riêng tấm hiện tại hướng tới cổng. Lấy đúng mép mới, phiếu đứng phía ngăn."
+        },
+        {
+          "t": 2.58,
+          "event": "Cắt Cáo ra, tay thôi che nơi tiếp giáp. Tấm mới tiến thêm qua khe, giữ đường về bản lưu trong tầm mắt."
+        },
+        {
+          "t": 3.04,
+          "event": "Theo L50, crop 1,10× pan tâm sang phải tới 5,50 s theo tay, khoảng 65 px. Giữ đủ phiếu ở biên trái."
+        },
+        {
+          "t": 3.76,
+          "event": "Nhãn Dấu duyệt cũ đặt trên phiếu, tách hai mặt theo chiều sâu bằng khoảng trống, tấm mới không mang dấu."
+        },
+        {
+          "t": 4.66,
+          "event": "Khi nghe «như trước», nhấc góc tấm mới về phía camera, đúng khối che xuất hiện. Giữ phiếu cách tấm."
+        },
+        {
+          "t": 5.6,
+          "event": "Trong nhịp giữ, tay dừng ở khe, ánh nhìn chuyển giữa dấu cũ và mặt mới đang lộ hàng đỏ."
+        }
+      ],
+      "voice_over": "Ối, ai cũng từng gặp.\nCáo xin lỗi trước nhé!\nMình nhìn dấu duyệt cũ rồi tưởng mọi thứ vẫn như trước.",
+      "text_overlay": "Dấu duyệt cũ",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 6.25,
+      "main_change": "Tay đẩy bản mới về khe trong khi phiếu duyệt nằm ở ngăn cũ. Hai tấm lệch ra để lộ người duyệt đang nhìn dấu của bản khác.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "tin theo dấu cũ",
+            "type": "concept",
+            "form": "connection",
+            "object": "Tay silhouette, phiếu ở ngăn và bản mới ở khe",
+            "motion": "Tay đẩy một vật khi hướng nhìn đặt về vật khác"
+          },
+          {
+            "term": "duyệt theo phiên",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Hai tấm ở hai mặt phẳng",
+            "motion": "Tách mặt, lộ hàng đỏ và phiếu nằm riêng"
+          },
+          {
+            "term": "Dấu duyệt cũ",
+            "type": "entity",
+            "form": "icon",
+            "object": "phiếu có một dấu kiểm gắn bản lưu cạnh ngăn",
+            "motion": "đứng yên khi bản khác dịch qua khe"
+          }
+        ],
+        "relations": [
+          {
+            "from": "tin theo dấu cũ",
+            "to": "duyệt theo phiên",
+            "type": "lấy dấu của sai phiên"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Dấu duyệt cũ",
+            "kind": "label",
+            "attach_to": "phiếu cạnh bản lưu",
+            "appear_s": 3.76,
+            "disappear_s": 6.25,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.65
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S18",
+      "header_slot": "top_left",
+      "narrative_purpose": "Gắn tên cơ chế với trật tự duyệt trước và thay đổi sau.",
+      "main_idea": "Rug pull là thay đổi có chỉ dẫn xấu sau khi bản trước đã được tin cậy.",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Dấu kiểm trên bản trước nối tới hàng đỏ trên bản sau. Khung ngắn hạ che hàng đổi nhưng vẫn để lộ dấu cộng quen.",
+      "scene_type": "comparison_scene",
+      "environment": "F · security, cận mặt so phiên. Xa là mặt kính xanh than có đường nối mờ, giữa là hai tấm cũ/mới đặt chéo theo trục thời gian, gần là khung xem ngắn hạ trên lớp mới. Rọi lam dọc đường nối. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Hai bản đã thấy, phiếu dấu kiểm và khối che",
+        "Khung ngắn có hai cạnh góc vuông với mép cắt phẳng"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cận hai thời điểm theo trục chéo, dùng hai tấm đã biết và phiếu cũ. Bắt đầu từ hàng trên bản mới khi L51 vào. Header cố định «SECURITY / PLUGIN AI» / «Bản đổi sau duyệt» ở top_left, chừa trục nối sang tấm mới và đường khung ngắn hạ bên phải."
+        },
+        {
+          "t": 1.06,
+          "event": "Đến đoạn «sau khi được tin cậy», dấu kiểm trên lớp cũ lên nét. Nối theo chiều từ dấu duyệt sang tấm sau."
+        },
+        {
+          "t": 2.42,
+          "event": "Ở mốc gọi tên, Rug pull trượt vào gờ nối tới đúng hàng đã đổi. Giữ cả dấu kiểm ở đầu và mảng che ở đích."
+        },
+        {
+          "t": 3.37,
+          "event": "Khoảng nghỉ: cho khung ngắn trượt tới ngay trên lớp mới, giữ rìa chuẩn bị hạ và hàng còn lộ."
+        },
+        {
+          "t": 4.21,
+          "event": "Theo L52, khung ngắn hạ tới nẹp, che hàng dưới. Dấu cộng vẫn trùng giữa hai ô xem."
+        },
+        {
+          "t": 5.65,
+          "event": "Trong nhịp giữ, nâng mép dưới ngắn một nấc để lộ lại hàng thay đổi, chốt tương phản trước khi qua bàn thử."
+        }
+      ],
+      "voice_over": "Cài chỉ dẫn xấu sau khi được tin cậy gọi là rug pull.\nThẻ ngắn vẫn chỉ hiện phần nói về phép cộng.",
+      "text_overlay": "Rug pull",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6.65,
+      "main_change": "Dấu kiểm trên bản trước nối tới hàng đỏ trên bản sau. Khung ngắn hạ che hàng đổi nhưng vẫn để lộ dấu cộng quen.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "khung xem trước",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Khung ngắn có mép phẳng",
+            "motion": "Hạ che hàng dưới nhưng lộ dấu cộng"
+          },
+          {
+            "term": "Rug pull",
+            "type": "term",
+            "form": "connection",
+            "object": "tuyến hai thời điểm từ dấu duyệt cũ đến tấm sau có đúng hàng đỏ",
+            "motion": "nhãn slide vào gờ tuyến đúng nhịp, tách khỏi khung xem ngắn"
+          }
+        ],
+        "relations": [
+          {
+            "from": "rug pull",
+            "to": "khung xem trước",
+            "type": "mặt quen không thể hiện thay đổi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Rug pull",
+            "kind": "keyword",
+            "attach_to": "đường nối từ bản đã duyệt tới hàng cam đỏ",
+            "appear_s": 2.42,
+            "disappear_s": 6.65,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S19",
+      "header_slot": "top_right",
+      "narrative_purpose": "Thử đối chứng hợp lệ và cho thấy sai khác cần duyệt lại dù chức năng tính cho cùng kết quả.",
+      "main_idea": "Kết quả vẫn có thể đúng sau cập nhật hợp lệ. Bản đổi cần được duyệt lại.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.1,
+      "visual_concept": "Cho một cập nhật hợp lệ của cùng plugin cộng lên bàn đối chiếu riêng sau hình sự cố. Hai dải mô tả giả khác nhau đưa về cùng một ô số 5. Tấm thay đổi dừng ở khay chờ duyệt để cho thấy khi nào cần kiểm lại.",
+      "scene_type": "comparison_scene",
+      "environment": "J · code, bàn đối chiếu terminal giả. Xa là gradient than và viền terminal trơn. Giữa là khe cao với vách trượt tách lượt sự cố khỏi lượt thử, hai rãnh đặt tấm và ô tính dùng chung. Gần là phiếu icon bút, dải lam không chữ và khay kiểm. Header ở trên phải, để bảng làm việc y≈430–1220. Ánh viền trung tính ở bản hợp lệ, hổ phách ở khay chờ duyệt. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Bản lưu và phiếu check, bản sự cố có hàng che và khe nạp có chốt",
+        "Hai tấm cùng thẻ extension dấu cộng, dải vạch lam khác hình. Phiếu cập nhật hình tờ giấy có bút",
+        "Ô kết quả dùng chung và khay kiểm hình kính lúp, hai rãnh terminal căn bằng một vạch ngang"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L53, ở bàn đối chiếu terminal, đặt phiếu cũ về bản lưu, thẻ sự cố có hàng đỏ đứng trước khe. Giữ cận để thấy phiếu chỉ đi với một bản. Header cố định «SECURITY / PLUGIN AI» / «Bản đổi sau duyệt» ở top_right, chuyển sang phải để chừa phiếu cũ và hai rãnh bàn đối chiếu."
+        },
+        {
+          "t": 0.87,
+          "event": "Khi nói «sót bản đổi», tấm khác chạm chốt và dừng, phiếu cũ giữ tại bản lưu. Không chuyển phiếu sang tấm mới."
+        },
+        {
+          "t": 1.7,
+          "event": "Vách ngang trượt qua mép khe để tách lượt thử riêng sau cảnh sự cố, giữ lại chính biểu tượng extension dấu cộng."
+        },
+        {
+          "t": 2.74,
+          "event": "Đến «cập nhật hợp lệ», phiếu bút có nhãn Bản hợp lệ vào cạnh tấm mới. Hai dải giả màu trung tính, không viền che đỏ. Cắt từ vùng cận sang khung trung để chứa hai rãnh và khay."
+        },
+        {
+          "t": 3.8,
+          "event": "Trong khoảng nghỉ, hai dải trượt khỏi mép tấm cho rõ một dải dài, một dải ngắn với vị trí hàng tương ứng."
+        },
+        {
+          "t": 4.64,
+          "event": "Theo L55, các vạch lam đổi hình nhưng cả hai tấm giữ cùng biểu tượng cộng, đường từ hai dấu cộng bắt đầu hội."
+        },
+        {
+          "t": 5.68,
+          "event": "Hai đường từ hai tấm tiến vào một ô tính chung. Phiếu cập nhật bám riêng tấm mới."
+        },
+        {
+          "t": 6.46,
+          "event": "Đến «vẫn như cũ» đủ nhịp, hiện 5 trong ô mà hai đường hội tới. Giữ đàn hồi nhẹ của dải lam còn thay đổi."
+        },
+        {
+          "t": 7.42,
+          "event": "Theo L56, mép tấm đổi xoay khỏi khe nạp về phía khay kiểm, số 5 giữ tại ô chung."
+        },
+        {
+          "t": 8.25,
+          "event": "Khay có icon kính lúp nhận nhãn Chờ duyệt, đi đón đúng tấm thay đổi. Chốt ở khe nạp còn hạ."
+        },
+        {
+          "t": 8.7,
+          "event": "Trong nhịp giữ, tấm mới dừng trong khay kiểm, số 5 còn thấy riêng. Mép khay dịch lên để nối wipeup sang bàn S20."
+        }
+      ],
+      "voice_over": "Chỉ duyệt một lần, sót bản đổi.\nThử một lần cập nhật hợp lệ của cùng plugin cộng.\nMô tả đổi cách diễn đạt, phép tính vẫn như cũ.\nBản đổi cần được duyệt lại.",
+      "text_overlay": "Bản hợp lệ\n5\nChờ duyệt",
+      "sound_effects": [],
+      "transition": "wipeup",
+      "duration_s": 9.8,
+      "main_change": "Một lượt thử riêng dùng hai mô tả lam khác hình cho cùng kết quả 5. Bản đổi đi vào khay chờ duyệt trước khe nạp.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bản hợp lệ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "phiếu icon bút cạnh tấm mô tả trung tính trong lượt thử riêng",
+            "motion": "trượt vào cùng tấm, hai dải lam đi về một ô tính"
+          },
+          {
+            "term": "5",
+            "type": "result",
+            "form": "status",
+            "object": "ô số của máy tính có nét dấu kiểm xanh",
+            "motion": "bật trong ô kết quả đúng mốc, giữ vị trí trong khi file hoặc tấm mô tả đổi chỗ"
+          },
+          {
+            "term": "Chờ duyệt",
+            "type": "result",
+            "form": "status",
+            "object": "khay kiểm có kính lúp đặt trước khe nạp bị giữ",
+            "motion": "dịch tới đón đúng tấm vừa thay đổi"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Bản hợp lệ",
+            "to": "5",
+            "type": "hai dải mô tả khác nhau hội về cùng phép tính"
+          },
+          {
+            "from": "Bản hợp lệ",
+            "to": "Chờ duyệt",
+            "type": "bản thay đổi dừng ở khay kiểm trước khe nạp"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Bản hợp lệ",
+            "kind": "label",
+            "attach_to": "phiếu cập nhật tượng trưng cạnh tấm mới",
+            "appear_s": 2.74,
+            "disappear_s": 7.42,
+            "effect": "none"
+          },
+          {
+            "text": "5",
+            "kind": "number",
+            "attach_to": "ô kết quả chung của hai bản",
+            "appear_s": 6.46,
+            "disappear_s": 9.8,
+            "effect": "none"
+          },
+          {
+            "text": "Chờ duyệt",
+            "kind": "label",
+            "attach_to": "khay giữ bản mới trước khi nạp",
+            "appear_s": 8.25,
+            "disappear_s": 9.8,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S20",
+      "header_slot": "top_left",
+      "narrative_purpose": "Trả lời lời hứa ba bước và mở bước đầu.",
+      "main_idea": "Bắt đầu kiểm từ toàn bộ phần mô tả.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.7,
+      "visual_concept": "Bàn kiểm mở lại ba khe đã hứa. Khung ngắn được nhấc lên, để nguyên tấm mô tả dài đi vào khe thứ nhất.",
+      "scene_type": "process_animation",
+      "environment": "G · office, toàn bàn kiểm sáng hơn nền F. Xa là cửa sổ phòng làm việc bên trái. Giữa là mặt bàn ấm, ray và ba khe, cụm cao khoảng 610 px. Gần là khung ngắn, tấm đủ và Cáo riêng bên trái. Chừa trên trái cho header và trên phải cho chip biểu tượng. Không dùng vách mạng hay đèn của bàn lưu F. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`idea` · 138,63–140,63 s · x=110, đáy y=1285, rộng 154 px · hướng về khe đầu bàn kiểm · ngoài mốc này ẩn Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–2.00 s của cảnh.",
+      "props": [
+        "Ba khe trơn đã hứa ở S04",
+        "Một tấm dài, khung xem ngắn",
+        "Ba chip chỉ gồm hình kính lúp, ghim và cổng, khoảng 64×60 px/chip, giữ nguyên thứ tự qua S27"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang toàn bàn sáng từ mép khay S19. Cáo idea nhìn khe đầu đang hé, mặt bàn còn phẳng. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_left, về trái để chip có vùng riêng ở phải, các khe ở vùng dưới."
+        },
+        {
+          "t": 0.92,
+          "event": "Cáo nhìn khe đầu đang hé và ray nhô khỏi mặt bàn. Từ cuối L57 (t=1,50 s), ba khe mở lần lượt theo thứ tự."
+        },
+        {
+          "t": 2,
+          "event": "Cắt Cáo ra đúng đầu L58, nhấc khung ngắn và bắt đầu kéo nguyên tấm dài tới khe đầu."
+        },
+        {
+          "t": 2.97,
+          "event": "Nhãn Mô tả bám tấm kéo vào. Đặt ba chip hình kính lúp, ghim, cổng bên phải header, chưa tick."
+        },
+        {
+          "t": 3.5,
+          "event": "Lựa cữ cho tấm đáp ở khe thứ nhất với tiếng chạm nhỏ, khe hai và ba nằm ở sâu hơn. Cắt khớp theo cạnh tấm sang cận S21."
+        }
+      ],
+      "voice_over": "Mẹo nhỏ cho dân văn phòng nè!\nMình kiểm từ phần mô tả trước.",
+      "text_overlay": "Mô tả",
+      "sound_effects": [
+        "t≈3,50 s: tiếng tấm nhựa vào cữ, nhẹ dưới giọng."
+      ],
+      "transition": "match_cut",
+      "duration_s": 4.2,
+      "main_change": "Bàn kiểm mở lại ba khe đã hứa. Khung ngắn được nhấc lên, để nguyên tấm mô tả dài đi vào khe thứ nhất.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "quy trình kiểm",
+            "type": "concept",
+            "form": "flow",
+            "object": "Ba khe và ba chip có thứ tự",
+            "motion": "Khe mở từng nấc, chip xuất hiện cùng thứ tự"
+          },
+          {
+            "term": "bản đầy đủ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Tấm dài nằm dưới khung ngắn",
+            "motion": "Khung nhấc, tấm trượt vào khe đầu"
+          },
+          {
+            "term": "Mô tả",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm có icon document và hàng dưới mép khung",
+            "motion": "tấm dài tiến nguyên vào khe kiểm hoặc tách sang trái tại câu hỏi cuối"
+          }
+        ],
+        "relations": [
+          {
+            "from": "bản đầy đủ",
+            "to": "quy trình kiểm",
+            "type": "đầu vào bước đầu"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Mô tả",
+            "kind": "label",
+            "attach_to": "tấm dài vào khe bàn kiểm",
+            "appear_s": 2.97,
+            "disappear_s": 4.2,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.7
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S21",
+      "header_slot": "top_left",
+      "narrative_purpose": "Thể hiện bước một và vai trò của cảnh báo.",
+      "main_idea": "Rà trên bản đầy đủ để thấy đoạn bộ quét có thể đánh dấu.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Dải quét vượt mép xem trước, đi hết tấm dài và mở vòng cảnh báo đúng hàng cần người đọc lại.",
+      "scene_type": "process_animation",
+      "environment": "G · office, cận mặt bàn sáng. Xa là thớ mặt bàn và cạnh cửa sổ làm việc mờ. Giữa là tấm cao 630 px x≈255–825, y≈465–1095, phía trên có khung ngắn. Gần là con trỏ và vệt quét. Gờ tấm đủ dài dưới mép cắt để đọc đoạn dưới. Ánh hổ phách chỉ quanh hàng mục tiêu. Chip trên phải riêng header. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Khung ngắn phủ trên tấm dài",
+        "Dải quét ngang lam, con trỏ hình học",
+        "Vòng cảnh báo hổ phách hở góc và ba chip chưa tick"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L59, khóa cận toàn tấm. Khung ngắn bắt đầu nhấc khỏi thước. Con trỏ sát mép trên chuẩn bị rà. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_left, chừa chip bên phải và tấm cùng dải quét sâu xuống dưới."
+        },
+        {
+          "t": 0.81,
+          "event": "Dải quét lam bắt đầu từ đầu khi nghe «quét». Mở chiều dài tấm dần theo nhịp nói, từ đầu qua nẹp."
+        },
+        {
+          "t": 1.73,
+          "event": "Bản đầy đủ slide một lần từ ngay mép tấm đang trải, chừa thành dải quét đi xuyên xuống dưới."
+        },
+        {
+          "t": 2.63,
+          "event": "Trong khoảng nghỉ, con trỏ và dải lam đi qua hẳn rìa nẹp, giữ bề rộng dải để thấy chuyển động."
+        },
+        {
+          "t": 3.46,
+          "event": "Theo «Bộ quét», nhãn gắn dải rà. Con trỏ dừng ở hàng dưới quen thuộc, vùng chưa viền."
+        },
+        {
+          "t": 4.46,
+          "event": "Theo nhịp «đánh dấu», nhãn Cần rà vào vòng hổ phách mở quanh hàng. Nhãn Bộ quét vừa đã rời."
+        },
+        {
+          "t": 5,
+          "event": "Giữ tấm đủ và vòng cảnh báo 1,00 s, con trỏ đáp bên ngoài vòng rồi dẫn sang khe bị dừng ở S22."
+        }
+      ],
+      "voice_over": "Bước một, duyệt và quét bản mô tả đầy đủ.\nBộ quét có thể đánh dấu vùng bất thường.",
+      "text_overlay": "Bản đầy đủ\nBộ quét\nCần rà",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "main_change": "Dải quét vượt mép xem trước, đi hết tấm dài và mở vòng cảnh báo đúng hàng cần người đọc lại.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "duyệt và quét",
+            "type": "action",
+            "form": "animation",
+            "object": "Con trỏ, dải sáng và tấm dài",
+            "motion": "Vén khung, quét qua mép và tới cuối"
+          },
+          {
+            "term": "cảnh báo",
+            "type": "result",
+            "form": "status",
+            "object": "Viền hổ phách quanh hàng bất thường",
+            "motion": "Viền mở hở góc khi dải dừng"
+          },
+          {
+            "term": "Bản đầy đủ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm tài liệu icon document cao hơn mép khung ngắn",
+            "motion": "trải hết tấm dọc và để phần dưới vượt thước"
+          },
+          {
+            "term": "Bộ quét",
+            "type": "entity",
+            "form": "animation",
+            "object": "con trỏ và dải quét lam trên chiều dài tấm",
+            "motion": "dải di chuyển từ đầu qua mép cắt xuống vùng dưới"
+          },
+          {
+            "term": "Cần rà",
+            "type": "result",
+            "form": "status",
+            "object": "vòng hổ phách hở góc gắn hàng được đánh dấu",
+            "motion": "vòng mở khi dải quét dừng, con trỏ rời ra ngoài"
+          }
+        ],
+        "relations": [
+          {
+            "from": "duyệt và quét",
+            "to": "cảnh báo",
+            "type": "có thể khoanh vùng cần rà"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Bản đầy đủ",
+            "kind": "keyword",
+            "attach_to": "tấm mở hết trong vùng rà",
+            "appear_s": 1.73,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          },
+          {
+            "text": "Bộ quét",
+            "kind": "label",
+            "attach_to": "dải rà và con trỏ",
+            "appear_s": 3.46,
+            "disappear_s": 4.42,
+            "effect": "none"
+          },
+          {
+            "text": "Cần rà",
+            "kind": "label",
+            "attach_to": "vòng hổ phách ở vùng được đánh dấu",
+            "appear_s": 4.46,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S22",
+      "header_slot": "top_left",
+      "narrative_purpose": "Chuyển cảnh báo thành thao tác kiểm có người xem.",
+      "main_idea": "Cảnh báo dẫn tới tạm dừng để người duyệt đọc cả phần ngoài khung.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Cảnh báo kéo tấm về khay kiểm và chốt hạ trước khe nạp. Tấm trượt qua mép để lộ phần dưới cần đọc.",
+      "scene_type": "object_interaction",
+      "environment": "G · office, trung cạnh bàn. Xa là ray ngoài vùng sáng của mặt bàn gỗ lam nhạt, giữa là khe nạp x≈690–955 và khay kiểm thấp hơn bên trái. Gần là chốt, tấm dài và vùng soi có gióng. Rọi ấm quanh viền được khoanh. Chip trên phải ở lớp màn hình, giữ vùng header trái trống. Về máy quay, Crop 1,12×, pan trái 95 px trong 2,83–3,82 s theo tấm về khay kiểm, để đầu thanh chắn còn ở mép phải. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Khay kiểm, khe nạp, thanh chắn ngang 36 px",
+        "Tấm có vòng khoanh, kính soi bằng vòng nối hai vạch gióng",
+        "Ba chip, dấu tick cho kính lúp"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pan_left"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L61, giữ cùng tấm và vòng hổ phách qua cú match cut, lộ khe nạp ở phải và khay đọc ở trái. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_left, chừa chip, khe nạp ở phải và vùng tấm trượt bên dưới."
+        },
+        {
+          "t": 0.38,
+          "event": "Thẻ Cảnh báo xuất hiện tại đoạn khoanh, vạch hổ phách dẫn theo tấm lùi về khay."
+        },
+        {
+          "t": 1.18,
+          "event": "Tới «tạm dừng», thanh chắn hạ cắt đường vào khe. Tấm quay khỏi trục nạp."
+        },
+        {
+          "t": 2.03,
+          "event": "Tới đoạn được đánh dấu, tách một hình phóng đại có hai gióng dẫn từ hàng che. Chỉ hình học trơn."
+        },
+        {
+          "t": 2.83,
+          "event": "Trong nhịp nghỉ, pan trái 1,12× khoảng 95 px tới t=3,82 theo tấm về bàn, để đầu thanh chắn vẫn thấy ở phải."
+        },
+        {
+          "t": 3.76,
+          "event": "Theo L62, tấm trượt ra hẳn khỏi mép khung xem, đủ lộ phần dưới đã được che. Kích thước phóng đại tránh đường của header."
+        },
+        {
+          "t": 4.16,
+          "event": "Chip kính lúp tick khi tấm đã mở hết. Giữ 1,00 s với tấm dừng ở bàn và đoạn cần đọc mở ra đến cữ."
+        }
+      ],
+      "voice_over": "Có cảnh báo thì tạm dừng để đọc đoạn bị đánh dấu.\nXem cả phần ngoài khung.",
+      "text_overlay": "Cảnh báo",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 5.15,
+      "main_change": "Cảnh báo kéo tấm về khay kiểm và chốt hạ trước khe nạp. Tấm trượt qua mép để lộ phần dưới cần đọc.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "phạm vi rà soát",
+            "type": "action",
+            "form": "animation",
+            "object": "Tấm đủ và vòng soi hàng được đánh dấu",
+            "motion": "Tấm về khay và trượt lộ đáy"
+          },
+          {
+            "term": "dừng nạp",
+            "type": "result",
+            "form": "status",
+            "object": "Thanh ngang trên khe nạp",
+            "motion": "Hạ và giữ đóng trước khi soi"
+          },
+          {
+            "term": "Cảnh báo",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ icon warning gắn vào đoạn khoanh hổ phách",
+            "motion": "đổi đường của tấm về bàn kiểm và dẫn mắt tới thanh chặn"
+          }
+        ],
+        "relations": [
+          {
+            "from": "dừng nạp",
+            "to": "phạm vi rà soát",
+            "type": "dừng để người đọc toàn bản"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Cảnh báo",
+            "kind": "label",
+            "attach_to": "thẻ hổ phách tại đoạn khoanh",
+            "appear_s": 0.38,
+            "disappear_s": 5.15,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S23",
+      "header_slot": "top_right",
+      "narrative_purpose": "Nêu cách đối chiếu bản sắp nạp mỗi phiên.",
+      "main_idea": "Ghim bản đã duyệt để có mốc so với bản sắp nạp mỗi phiên.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Bản đã duyệt được kẹp cố định. Bản sắp nạp vào cữ, lộ hàng khác rồi rẽ về khay để duyệt lại.",
+      "scene_type": "comparison_scene",
+      "environment": "J · code, trung bàn terminal trơn. Xa là tấm nền than có viền cửa sổ và rãnh nhận phiên mới. Giữa là hai tấm trên cữ so cùng hàng. Gần là mấu chữ U ở bản lưu và khay kiểm lệch trái. Giữ các vật ở y≈455–1230. Ánh viền tách tuyến nạp khỏi tuyến đưa về bàn duyệt. Chip ở ô trái khi header sang phải. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Mấu kẹp chữ U lớn với hai má ngắn",
+        "Tấm lưu có phiếu và tấm mới có khối che",
+        "Khay kiểm, chip ghim"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L63, khóa hai rãnh bàn terminal. Mép bản lưu có phiếu kiểm ở một rãnh, rãnh phiên còn trống. Chip chuyển sang trái khi header qua phải. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_right, sang phải để chip dời sang trái. Bên dưới chừa rãnh tấm và khay kiểm."
+        },
+        {
+          "t": 0.73,
+          "event": "Đến «ghim phiên bản», mấu chữ U đóng vào cạnh bản lưu, kinetic pop nhãn tại mấu. Phiếu không bị kẹp đè."
+        },
+        {
+          "t": 1.7,
+          "event": "Trong khoảng nghỉ, mấu khóa và gióng căn đưa ra khỏi mép tấm, giữ bản đã duyệt cố định."
+        },
+        {
+          "t": 2.56,
+          "event": "Bản sắp nạp vào từ khe phiên mới đúng L64, nhãn cùng mép. Hai hàng chạm thước căn trước khi tới khe bật."
+        },
+        {
+          "t": 3.58,
+          "event": "Trong khoảng nghỉ, đường căn kéo qua cả hai tấm và dừng ở cùng cao độ. Vạch vẫn chưa đổi."
+        },
+        {
+          "t": 4.15,
+          "event": "Đến «Khác», viền hàng lệch bật tại đúng cữ chung."
+        },
+        {
+          "t": 4.58,
+          "event": "Nhãn Duyệt lại gắn khay kiểm khi bản mới rẽ về khay. Chip ghim tick sau khi thấy bản đã duyệt vẫn ở nguyên."
+        },
+        {
+          "t": 5,
+          "event": "Trong nhịp giữ 1,00 s, tấm mới hoàn tất đường trượt vào khay kiểm. Cắt trực tiếp sang bảng quyền, pin và khay không đổi vai."
+        }
+      ],
+      "voice_over": "Bước hai, ghim phiên bản đã duyệt.\nSo bản sắp nạp mỗi phiên.\nKhác thì duyệt lại.",
+      "text_overlay": "Ghim phiên bản\nBản sắp nạp\nDuyệt lại",
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 6,
+      "main_change": "Bản đã duyệt được kẹp cố định. Bản sắp nạp vào cữ, lộ hàng khác rồi rẽ về khay để duyệt lại.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "kiểm tính toàn vẹn",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Hai tấm và cữ ngang theo từng hàng",
+            "motion": "Tấm mới vào cữ. Viền mở ở hàng lệch"
+          },
+          {
+            "term": "tái phê duyệt",
+            "type": "action",
+            "form": "flow",
+            "object": "Nhánh quay lại khay kiểm",
+            "motion": "Tấm lệch rời khe nạp về khay"
+          },
+          {
+            "term": "Ghim phiên bản",
+            "type": "concept",
+            "form": "animation",
+            "object": "mấu chữ U hai má kẹp vào tấm có dấu duyệt",
+            "motion": "kẹp khép đúng tấm lưu, nhãn bật ở mấu"
+          },
+          {
+            "term": "Bản sắp nạp",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm icon document đi từ rãnh phiên mới",
+            "motion": "vào cữ sát bản ghim, làm lộ vị trí hàng khác"
+          },
+          {
+            "term": "Duyệt lại",
+            "type": "action",
+            "form": "flow",
+            "object": "khay kiểm có kính lúp cạnh bàn đối chiếu",
+            "motion": "đón tấm khác rẽ khỏi khe nạp"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ghim phiên bản",
+            "to": "kiểm tính toàn vẹn",
+            "type": "lấy mẫu đã duyệt để so"
+          },
+          {
+            "from": "kiểm tính toàn vẹn",
+            "to": "tái phê duyệt",
+            "type": "phát hiện lệch thì trả lại"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Ghim phiên bản",
+            "kind": "keyword",
+            "attach_to": "mấu kẹp vào đúng bản duyệt",
+            "appear_s": 0.73,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          },
+          {
+            "text": "Bản sắp nạp",
+            "kind": "label",
+            "attach_to": "mép tấm từ khe phiên mới",
+            "appear_s": 2.56,
+            "disappear_s": 4.51,
+            "effect": "none"
+          },
+          {
+            "text": "Duyệt lại",
+            "kind": "label",
+            "attach_to": "khay kiểm nhận bản khác",
+            "appear_s": 4.58,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S24",
+      "header_slot": "top_left",
+      "narrative_purpose": "Gắn quyền tối thiểu vào nơi thực thi.",
+      "main_idea": "Chỉ cấp quyền cần cho phép cộng, giữ hai quyền ngoài nhiệm vụ ở trạng thái chặn.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Đường phép cộng vẫn thông. Hai thanh chốt lần lượt hạ ở ngăn đọc file và đường gửi ra ngoài.",
+      "scene_type": "process_animation",
+      "environment": "H · security, toàn ranh giới công ty. Xa là hai vùng lam sẫm phân chia bằng viền cùng hình hook, giữa là ba tuyến với đường cộng ở cao và ngăn công ty thấp hơn, gần là hai thanh chốt hổ phách. Rọi từ tuyến cộng về từng chốt. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Đường tác vụ có hình dấu cộng",
+        "Ngăn file nội bộ và chốt đọc",
+        "Cổng thanh ngang ở biên gửi, chip cổng"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L66, toàn ranh giới ở nơi thực thi. Đường công việc có dấu cộng sẵn, giữ hai tuyến phụ màu xám ở hai độ cao. Chip phải trên riêng header. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_left, về trái, trả chip sang phải và chừa phần trên của tuyến cổng."
+        },
+        {
+          "t": 0.81,
+          "event": "Quyền tối thiểu xuất hiện ở cụm cổng. Nhánh cộng sáng xanh khi nhiệm vụ được giao, hai thanh chốt vào tư thế chờ."
+        },
+        {
+          "t": 1.48,
+          "event": "Vệt xanh tiến dọc tuyến cộng trong khoảng nghỉ, để quan hệ nhiệm vụ–quyền đọc được."
+        },
+        {
+          "t": 2.65,
+          "event": "Theo L67, ngăn có file nội bộ lộ bên cạnh nhánh phụ thứ nhất, giữ tuyến cộng ở trên."
+        },
+        {
+          "t": 3.73,
+          "event": "Đến «đọc file», chốt hổ phách hạ ngang trước ngăn, nhãn neo bên cạnh. Hai nhánh phụ chia đủ xa."
+        },
+        {
+          "t": 4.41,
+          "event": "Đến «gửi ra ngoài», chốt thứ hai hạ tại vạch. Nhãn bám đúng chốt. Đường cộng vẫn thông."
+        },
+        {
+          "t": 5,
+          "event": "Giữ 1,00 s. Chip cổng tick sau khi hai chốt cùng hạ. Một vệt lưu thông đi hết đường cộng đến cữ phía trong."
+        }
+      ],
+      "voice_over": "Bước ba, cấp quyền tối thiểu.\nPhép cộng đâu cần đọc file hay gửi ra ngoài.",
+      "text_overlay": "Quyền tối thiểu\nĐọc file\nGửi ra ngoài",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "main_change": "Đường phép cộng vẫn thông. Hai thanh chốt lần lượt hạ ở ngăn đọc file và đường gửi ra ngoài.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "quyền đọc",
+            "type": "relation",
+            "form": "status",
+            "object": "Chốt ngang cạnh ngăn",
+            "motion": "Hạ ở ngăn nội bộ"
+          },
+          {
+            "term": "quyền gửi",
+            "type": "relation",
+            "form": "status",
+            "object": "Chốt ở ranh giới đối diện khay",
+            "motion": "Hạ tại vạch phía ngoài"
+          },
+          {
+            "term": "Quyền tối thiểu",
+            "type": "concept",
+            "form": "flow",
+            "object": "bảng ba tuyến có icon shield và chốt, chỉ tuyến dấu cộng thông",
+            "motion": "tuyến cộng sáng, hai chốt lần lượt hạ"
+          },
+          {
+            "term": "Đọc file",
+            "type": "action",
+            "form": "status",
+            "object": "nhánh ngăn tài liệu với icon document góc khuyết và khóa",
+            "motion": "thanh chắn hạ trước ngăn khi lời nhắc đọc"
+          },
+          {
+            "term": "Gửi ra ngoài",
+            "type": "action",
+            "form": "status",
+            "object": "nhánh qua vạch với khay và khóa ở mép",
+            "motion": "thanh chắn hạ ngay tại vạch, tuyến cộng còn thông"
+          }
+        ],
+        "relations": [
+          {
+            "from": "quyền tối thiểu",
+            "to": "quyền đọc",
+            "type": "nhánh ngoài tác vụ"
+          },
+          {
+            "from": "quyền tối thiểu",
+            "to": "quyền gửi",
+            "type": "nhánh ngoài tác vụ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Quyền tối thiểu",
+            "kind": "keyword",
+            "attach_to": "cụm cổng ở nơi thực thi",
+            "appear_s": 0.81,
+            "disappear_s": 3.59,
+            "effect": "none"
+          },
+          {
+            "text": "Đọc file",
+            "kind": "label",
+            "attach_to": "chốt ngăn tài liệu",
+            "appear_s": 3.73,
+            "disappear_s": 6,
+            "effect": "none"
+          },
+          {
+            "text": "Gửi ra ngoài",
+            "kind": "label",
+            "attach_to": "chốt ở đường biên",
+            "appear_s": 4.41,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S25",
+      "header_slot": "top_left",
+      "narrative_purpose": "Đối chứng bằng thay đổi riêng quyền gửi.",
+      "main_idea": "Chặn quyền gửi làm file dừng ở biên trong lượt đối chứng.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.65,
+      "visual_concept": "Cùng mô tả và cùng file đã mở ở hai lượt. Khay trên có file, còn lượt chặn giữ file sát vạch và khay dưới rỗng.",
+      "scene_type": "comparison_scene",
+      "environment": "H · security, cận hai lượt xếp dọc. Xa là nền hai vùng lam sẫm, giữa là hai khung y≈365–795 và y≈825–1295 chung vạch x≈665. Gần là hai mô tả giống nhau, hai file và hai khay. Rọi tại chốt dưới và hai miệng khay. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "",
+      "props": [
+        "Hai cửa sổ cao mỗi cửa ít nhất 410 px, cùng ranh giới",
+        "Hai mô tả có cùng hàng che, hai file cùng góc khuyết",
+        "Hai khay giống nhau và chốt gửi dưới"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt cận hai khung xếp dọc theo cùng vạch. Trên giữ file đã đáp và hàng che. Dưới đưa đúng bản mô tả và đúng file đã mở về phía trong. Header cố định «SECURITY / PLUGIN AI» / «Ba bước kiểm» ở top_left, chừa vị trí cổng, điểm dừng và hai miệng khay thẳng trục."
+        },
+        {
+          "t": 0.72,
+          "event": "Theo L68, hạ chốt gửi ở lượt dưới, nhãn gắn thanh chắn, hai mảng che giống nhau. Tách hai miệng khay để đọc từ xa."
+        },
+        {
+          "t": 1.55,
+          "event": "Trong khoảng nghỉ, file dưới tiến về vạch trong khi file trên còn trong khay. Giữ cả hai vị trí kết thúc."
+        },
+        {
+          "t": 2.03,
+          "event": "Theo L69, file dưới chạm sát chốt ở cùng đường biên, có âm chạm nhỏ. Khay dưới không nhận file."
+        },
+        {
+          "t": 3.1,
+          "event": "Trong 0,65 s giữ, vệt lam dẫn dọc đường biên qua hai miệng khay, không đổi hàng che. Cắt khớp vạch với màn hình S26."
+        }
+      ],
+      "voice_over": "Lần thử này chặn quyền gửi.\nFile dừng ở vạch.",
+      "text_overlay": "Chặn quyền gửi",
+      "sound_effects": [
+        "t≈2,03 s: chạm thanh chắn khẽ, khác tiếng đáp vào khay."
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.75,
+      "main_change": "Cùng mô tả và cùng file đã mở ở hai lượt. Khay trên có file, còn lượt chặn giữ file sát vạch và khay dưới rỗng.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "đối chứng quyền gửi",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Hai lượt dùng cùng tấm có mảng che, cùng trạng thái đầu",
+            "motion": "Chỉ thanh chắn lượt dưới đổi"
+          },
+          {
+            "term": "file bị giữ",
+            "type": "result",
+            "form": "animation",
+            "object": "File dưới, thanh ngang và khay rỗng",
+            "motion": "File trượt rồi đứng trước thanh chắn"
+          },
+          {
+            "term": "Chặn quyền gửi",
+            "type": "action",
+            "form": "comparison",
+            "object": "thanh chốt ngang ở lượt dưới, cùng đường biên với lượt trên",
+            "motion": "chốt hạ, file dưới dừng áp vạch và khay rỗng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "đối chứng quyền gửi",
+            "to": "file bị giữ",
+            "type": "chốt tạo khác biệt ở đích nhận"
+          },
+          {
+            "from": "Chặn quyền gửi",
+            "to": "khay dưới",
+            "type": "giữ file ở biên, khay phía ngoài rỗng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Chặn quyền gửi",
+            "kind": "keyword",
+            "attach_to": "thanh chốt ở lượt dưới",
+            "appear_s": 0.72,
+            "disappear_s": 3.75,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.65
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S26",
+      "header_slot": "top_right",
+      "narrative_purpose": "Trả lời câu hỏi mở và chốt phạm vi tác dụng của quyền.",
+      "main_idea": "Chặn gửi giới hạn thiệt hại trong khi hàng ẩn còn nằm trên mô tả.",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Trở lại đúng cửa sổ hook. Vòng khoanh nối hàng che tới log gửi cũ. Cổng lần chặn giữ file bên trong, còn chính hàng ấy vẫn ở nguyên.",
+      "scene_type": "ui_simulation",
+      "environment": "A · office, trung trở về đúng khung máy tính hook. Xa là cửa kính và mặt bàn lam, giữa là cửa sổ tính cùng log lịch sử ở tầng trên và cổng lần chặn ở tầng dưới. Gần là tấm đủ y≈435–1095, thước và vòng khoanh. Chừa trên phải cho header và x≤265 mép trái thấp cho Cáo. Khay trống ở bên phải vạch. Về máy quay, Crop 1,00→1,10 trong 5,00–6,00 s về giữa vòng khoanh và khay. Giữ cả hai trong khung sau crop. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`thumbs_up` · 169,73–175,73 s · x=105, đáy y=1290, rộng 160 px · đứng cạnh hàng khoanh và chừa vùng cửa chặn Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–6.00 s của cảnh.",
+      "props": [
+        "Cửa sổ tính của hook, tái hiện bằng hình khung và viền kết quả",
+        "Đúng tấm đầy đủ, thước và vòng khoanh S11",
+        "Thẻ gửi lịch sử, file bị chặn và khay rỗng lượt đối chứng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Theo L70, trở lại đúng cửa sổ hook và cùng silhouette. Cáo thumbs_up nhìn về phía tấm chuẩn bị vào, chừa khe cho log gửi cũ. Header cố định «SECURITY / PLUGIN AI» / «Trở lại phép cộng» ở top_right, sang phải để chừa lối vào tấm đầy đủ và vòng khoanh từ trái."
+        },
+        {
+          "t": 0.21,
+          "event": "Bản đầy đủ đứng cạnh ô tính, kéo vòng khoanh quanh đúng hàng dưới thước S11. Dòng ẩn bật một lần trên mép hàng."
+        },
+        {
+          "t": 1.24,
+          "event": "Đến «gửi file», vệt từ hàng khoanh tới thẻ gửi lượt gốc, ở trục trên để đọc được mối nối lịch sử."
+        },
+        {
+          "t": 2.14,
+          "event": "Giữa hai câu, vệt chạm thẻ gửi và dừng. Cụm đối chứng bắt đầu lộ trên một trục dưới riêng."
+        },
+        {
+          "t": 2.85,
+          "event": "Theo L71, trong lượt chặn, cổng đã hạ, file giữ trong biên. Nới khoảng trống quanh khay rỗng để thấy khác lượt gốc."
+        },
+        {
+          "t": 3.93,
+          "event": "Mép đối chứng và hàng khoanh đặt cùng khung. Vòng khoanh còn nguyên khi lời nhắc «mô tả» tới."
+        },
+        {
+          "t": 5,
+          "event": "Giữ 1,00 s và crop tiến 1,00→1,10 giữa vòng khoanh và khay rỗng, cả hai vẫn thấy. Giữ Cáo và header ở lớp màn hình."
+        }
+      ],
+      "voice_over": "Dòng ẩn này đã dẫn tới việc gửi file.\nQuyền chỉ giảm thiệt hại, không sửa mô tả.",
+      "text_overlay": "Dòng ẩn",
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "main_change": "Trở lại đúng cửa sổ hook. Vòng khoanh nối hàng che tới log gửi cũ. Cổng lần chặn giữ file bên trong, còn chính hàng ấy vẫn ở nguyên.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nguồn chỉ dẫn",
+            "type": "concept",
+            "form": "connection",
+            "object": "Vòng quanh hàng che S11 và thẻ log gửi",
+            "motion": "Vệt tới thẻ đã thấy ở hook"
+          },
+          {
+            "term": "giới hạn thiệt hại",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Cổng chặn và khay rỗng cạnh tấm mô tả",
+            "motion": "Đưa lượt chặn vào xem song song, giữ vòng nguồn"
+          },
+          {
+            "term": "Dòng ẩn",
+            "type": "concept",
+            "form": "illustration",
+            "object": "hàng che đặc bên dưới thước trên bản mô tả đủ",
+            "motion": "vòng khoanh mở quanh cùng hàng. Nhãn bật một lần"
+          }
+        ],
+        "relations": [
+          {
+            "from": "nguồn chỉ dẫn",
+            "to": "giới hạn thiệt hại",
+            "type": "cổng đổi hệ quả, tấm giữ nguyên"
+          },
+          {
+            "from": "Dòng ẩn",
+            "to": "thẻ gửi lượt gốc",
+            "type": "nối hàng trên bản đầy đủ tới sự kiện đã xảy ra"
+          },
+          {
+            "from": "cổng lượt chặn",
+            "to": "Dòng ẩn",
+            "type": "đổi hệ quả của file, giữ nguyên hàng che"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Dòng ẩn",
+            "kind": "keyword",
+            "attach_to": "hàng được khoanh dưới thước",
+            "appear_s": 0.21,
+            "disappear_s": 6,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S27",
+      "header_slot": "top_right",
+      "narrative_purpose": "Khép bằng hai điểm kiểm và thứ tự ba bước.",
+      "main_idea": "Nhắc người xem kiểm phần mô tả và quyền, rồi nhớ thứ tự ba bước.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.52,
+      "visual_concept": "Tấm mô tả và cổng chặn tách hai bên theo câu hỏi. Ba biểu tượng đã tick thu vào thẻ nhắc cạnh Cáo.",
+      "scene_type": "object_interaction",
+      "environment": "A · office, toàn bàn nhìn xéo. Xa là cửa kính lam dịu. Giữa là tấm x≈175–465 và cổng x≈615–975, tách cùng cao độ y≈480–1120. Gần là thẻ biểu tượng dịch về cạnh Cáo. Ánh sáng dừng ở khoảng giữa hai lựa chọn, vùng trên phải cho header. Chừa đúng ô header theo cảnh và khoảng cách ≥24 px tới mọi vật/nhãn sau crop.",
+      "character_action": "`thumbs_up` · 175,73–179,68 s · x=105, đáy y=1290, rộng 160 px · giữ lớp từ S26, đứng cạnh thẻ ba bước Dáng PNG tĩnh, cắt alpha, ghép sau camera và giữ hướng về vật. Hiện t=0.00–3.95 s của cảnh.",
+      "props": [
+        "Tấm dài có hàng khoanh, mô hình cổng chặn",
+        "Ba biểu tượng kính lúp, ghim, cổng đã tick và thẻ bo góc trơn"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt rộng cùng bàn. Giữ pose thumbs_up và tọa độ từ S26. Tấm và cổng bắt đầu từ trục giữa không che biểu tượng. Header cố định «SECURITY / PLUGIN AI» / «Trở lại phép cộng» ở top_right, chừa trục tách hai vật và thẻ ba biểu tượng chính giữa."
+        },
+        {
+          "t": 0.65,
+          "event": "Đến «mô tả», tấm có hàng khoanh đi về trái kèm nhãn Mô tả. Mép tấm mở vừa đủ nhận ra đúng hình."
+        },
+        {
+          "t": 1.11,
+          "event": "Đến «quyền», cổng thanh ngang rẽ phải kèm nhãn Quyền, đều đặt ở cùng cao độ mắt."
+        },
+        {
+          "t": 1.67,
+          "event": "Trong khoảng nghỉ, hai vật tách thêm, giữa chúng lộ ba biểu tượng kính lúp, ghim, chốt đã tick."
+        },
+        {
+          "t": 2.21,
+          "event": "Theo L73, thu lần lượt ba biểu tượng vào thẻ trơn cạnh Cáo, có tiếng chạm khẽ ở đầu thao tác."
+        },
+        {
+          "t": 3.28,
+          "event": "Giữ 0,52 s sau lời cuối, vẫn thấy hai lựa chọn và thẻ nhắc. Bắt đầu fade hình ở t=3,80 trong đuôi im 0,15 s."
+        }
+      ],
+      "voice_over": "Bạn kiểm mô tả hay quyền trước?\nLưu lại kẻo quên nha!",
+      "text_overlay": "Mô tả\nQuyền",
+      "sound_effects": [
+        "t=2,21 s: tiếng gom thẻ khẽ ở đầu thao tác, phần cuối im 0,67 s sau lời."
+      ],
+      "transition": "fade",
+      "duration_s": 3.95,
+      "main_change": "Tấm mô tả và cổng chặn tách hai bên theo câu hỏi. Ba biểu tượng đã tick thu vào thẻ nhắc cạnh Cáo.",
+      "text_groups": 3,
+      "hold_reason": "",
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "mô tả và quyền",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Tấm có vòng khoanh và cổng hổ phách",
+            "motion": "Tách về hai phía khi được nhắc"
+          },
+          {
+            "term": "ghi nhớ quy trình",
+            "type": "result",
+            "form": "flow",
+            "object": "Ba icon đã tick trên thẻ trơn",
+            "motion": "Thu vào đúng thứ tự cạnh Cáo"
+          },
+          {
+            "term": "Mô tả",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tấm có icon document và hàng dưới mép khung",
+            "motion": "tấm dài tiến nguyên vào khe kiểm hoặc tách sang trái tại câu hỏi cuối"
+          },
+          {
+            "term": "Quyền",
+            "type": "concept",
+            "form": "icon",
+            "object": "cổng chặn có thanh ngang và icon lock",
+            "motion": "tách về bên phải đối diện tấm và giữ khoảng cho thẻ tóm tắt"
+          }
+        ],
+        "relations": [
+          {
+            "from": "mô tả và quyền",
+            "to": "ghi nhớ quy trình",
+            "type": "gợi điểm kiểm rồi nhắc ba bước"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Mô tả",
+            "kind": "label",
+            "attach_to": "tấm có hàng khoanh",
+            "appear_s": 0.65,
+            "disappear_s": 3.95,
+            "effect": "none"
+          },
+          {
+            "text": "Quyền",
+            "kind": "label",
+            "attach_to": "cổng chặn",
+            "appear_s": 1.11,
+            "disappear_s": 3.95,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.52
+      },
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

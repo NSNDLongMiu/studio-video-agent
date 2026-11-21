@@ -1,0 +1,1761 @@
+{
+  "video_id": "IT-T19-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene hỗ trợ UI dựng sẵn, banner và con trỏ nhưng thiếu hai điện thoại phối với silhouette, trạng thái ngón/nút xuyên cảnh và nối thẻ có điều kiện. ExplainerScene dùng hàng bước, DataVizScene dùng thanh, QASequenceScene và PromptReviewScene dùng khung hỏi đáp/thẻ prompt. CharacterScene ghép pose và đạo cụ nhưng thiếu đồ thị hồ sơ cùng UI tương tác. Vẽ các lớp xa/giữa/gần, thẻ, đường nối, bàn tay và icon bằng Pillow. Ghép lớp theo frame, crop hoặc zoompan trên hình độ phân giải đủ và cắt theo mốc. Giữ lớp chữ, header và phụ đề đứng yên khi crop.",
+  "visual_style_note": "Đồ họa phẳng có bóng nhẹ, Segoe UI Bold hoặc Be Vietnam Pro đủ dấu. Bố cục x90–990, y250–1320, phụ đề tách ở y1340–1500, ≤28 ký tự mỗi dòng. Header nằm neo theo slot, bốn chấm tiến độ không chữ, không tranh chỗ vòng xu. Keyword ≥72 px, nhãn ≥56 px, header ≥52 px, title mở ≥84 px. Hồ sơ dùng chung ảnh đầu Cáo hoạt họa và tên Cáo đã duyệt, UI trung tính, Mít và Lan bằng silhouette. Cáo dùng sprite tĩnh, cắt dáng và dịch cả lớp để biểu đạt phản ứng. Đầu Cáo trong cuộc gọi là ảnh thẻ. Đồng xu kết nằm tại chỗ. Thumbnail lấy S00 khoảng 2,95 s, thử 180×320. SFX tổng hợp nhẹ, ưu tiên giọng, nhạc tắt. Công bố AI và ví dụ dựng ở caption/publish.json. Các mốc lời sẽ đối lại khi đo TTS.",
+  "talking_head_ratio": 0,
+  "opening": {
+    "title": "AI NHẮN THAY BẠN?",
+    "duration_s": 8,
+    "scene_id": "S00",
+    "animation": "Tiêu đề trượt vào 5,00 s, giữ đến 8,00 s.",
+    "style": "incident",
+    "style_params": {
+      "layout": "Bàn cà phê góc 3/4",
+      "title_y": 390,
+      "title_font_px": 84,
+      "title_start_s": 5
+    },
+    "voice": true,
+    "voice_line": "01",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 2.3,
+        "visual": "Mít cạnh Cáo nhận tin trên điện thoại. Điện thoại Cáo úp.",
+        "sfx_intent": "alert",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 2.3,
+        "end_s": 5,
+        "visual": "Mít hỏi, ngón tiến sát nút đỏ rồi dừng, chuyển vàng.",
+        "voice_line": "02"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 5,
+        "end_s": 8,
+        "visual": "Hiện tiêu đề, sau đó thẻ thật mở và có tích truy cập.",
+        "voice_line": "03"
+      }
+    ]
+  },
+  "header": {
+    "text": "BẢO MẬT / GIẢ MẠO",
+    "title": "AI NHẮN THAY BẠN?",
+    "slots": [
+      "top",
+      "top_left",
+      "top_right"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "scenes": [
+    {
+      "scene_id": "S00",
+      "duration_s": 8,
+      "main_idea": "Tin vay đến máy Mít trong lúc Cáo ngồi cạnh và máy Cáo úp trên bàn.",
+      "main_change": "Ngón tay tiến sát đồng xu rồi rút lại. Thẻ đăng nhập xuất hiện cạnh máy Mít vẫn còn tin vay.",
+      "complexity": "low",
+      "concepts": 1,
+      "hold_after_voice_s": 1.11,
+      "text_groups": 2,
+      "narrative_purpose": "Đặt nghịch lý và cho thấy nguy cơ trước giây 5.",
+      "visual_concept": "Bàn quán và cận ngón. Ngón tay tiến sát đồng xu rồi rút lại. Thẻ đăng nhập xuất hiện cạnh máy Mít vẫn còn tin vay.",
+      "scene_type": "object_interaction",
+      "scene_kind": "problem_cause_consequence",
+      "kind_params": {
+        "problem": {
+          "label": "",
+          "object": "Tin vay đỏ trên máy Mít"
+        },
+        "cause": {
+          "label": "TÀI KHOẢN THẬT",
+          "object": "Thẻ đăng nhập bình thường nằm cạnh máy vẫn có tin vay"
+        },
+        "consequence": {
+          "label": "",
+          "object": "Ngón Mít tiến sát vòng đồng xu"
+        },
+        "theme": "office",
+        "layout": "Bàn quán và cận ngón",
+        "objects": [
+          "Cáo và Mít ngồi cạnh",
+          "Máy Mít và tin vay",
+          "Máy Cáo úp",
+          "Nút đồng xu",
+          "Thẻ thật và hộp đã gửi trống"
+        ],
+        "focus": "Bạn thân"
+      },
+      "environment": "Quán ấm #3A2A1F. Xa là cửa kính mờ, giữa là hai ghế và bàn, gần là máy Mít cao 600 px, máy Cáo úp và ngón cái. Tại 3,70 cắt sang crop 1,15× để nhìn khe giữa ngón và nút, đặt title sau crop.",
+      "character_action": "0–3,70 surprised, bên trái, đáy 1290, nhìn máy Mít. 3,90–5,90 think, dịch ngang nhẹ nguyên sprite để gợi lắc đầu rồi ra khỏi khung. Cỡ mở ≤1,5× nguồn.",
+      "props": [
+        "Cáo và Mít ngồi cạnh",
+        "Máy Mít và tin vay",
+        "Máy Cáo úp",
+        "Nút đồng xu",
+        "Thẻ thật và hộp đã gửi trống"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "push_in"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Cáo",
+            "type": "entity",
+            "form": "illustration",
+            "object": "sprite bên trái",
+            "motion": "nhìn máy Mít"
+          },
+          {
+            "term": "Bạn thân",
+            "type": "entity",
+            "form": "illustration",
+            "object": "silhouette Mít bên phải",
+            "motion": "ngoái sang Cáo"
+          },
+          {
+            "term": "Tin vay",
+            "type": "entity",
+            "form": "illustration",
+            "object": "bong bóng đỏ có đầu Cáo",
+            "motion": "bật trên máy Mít"
+          },
+          {
+            "term": "Nguy cơ chuyển nhầm",
+            "type": "result",
+            "form": "status",
+            "object": "đồng xu và ngón cái",
+            "motion": "ngón tới sát rồi rút"
+          },
+          {
+            "term": "Tài khoản thật",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ xanh với hộp đã gửi trống",
+            "motion": "trượt vào sau Cáo"
+          },
+          {
+            "term": "Đăng nhập",
+            "type": "action",
+            "form": "status",
+            "object": "tích xanh cạnh thẻ thật",
+            "motion": "bật sáng xác nhận còn truy cập"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Tin vay",
+            "to": "Bạn thân",
+            "type": "đến máy Mít khi Cáo ở cạnh"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Cho tao vay 5 triệu nha",
+            "kind": "message",
+            "attach_to": "khung chat máy Mít",
+            "appear_s": 0.1,
+            "disappear_s": 2.3,
+            "effect": "pop"
+          },
+          {
+            "text": "Sao mày vừa vay tao 5 triệu?",
+            "kind": "message",
+            "attach_to": "bong bóng của Mít",
+            "appear_s": 2.3,
+            "disappear_s": 3.6,
+            "effect": "pop"
+          },
+          {
+            "text": "AI NHẮN THAY BẠN?",
+            "kind": "message",
+            "attach_to": "vùng trống phía trên bàn",
+            "appear_s": 5,
+            "disappear_s": 8,
+            "effect": "kinetic"
+          },
+          {
+            "text": "TÀI KHOẢN THẬT",
+            "kind": "label",
+            "attach_to": "thẻ Cáo",
+            "appear_s": 5.95,
+            "disappear_s": 8,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.11
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Máy Cáo úp, hai tay trên bàn; máy Mít hướng ra trước."
+        },
+        {
+          "t": 0.1,
+          "event": "Bong bóng đỏ mang đầu Cáo bật trên máy Mít."
+        },
+        {
+          "t": 1.3,
+          "event": "Mít xoay đầu về Cáo, tay giữ nguyên điện thoại."
+        },
+        {
+          "t": 2.3,
+          "event": "Đổi bong bóng trên màn hình thành bong bóng hỏi của Mít; giữ dấu vết tin bằng hình."
+        },
+        {
+          "t": 2.9,
+          "event": "Ngón tiến sát đồng xu, vòng đỏ xuất hiện."
+        },
+        {
+          "t": 3.69,
+          "event": "Kết lời 01 trong cú tiến ngón; giữ chuyển động qua nhịp cắt."
+        },
+        {
+          "t": 3.7,
+          "event": "Cắt gần vào máy và Cáo; bong bóng tin thu thành biểu tượng."
+        },
+        {
+          "t": 4.6,
+          "event": "Ngón dừng rồi lùi; vòng chuyển vàng."
+        },
+        {
+          "t": 5,
+          "event": "Tiêu đề trượt vào vùng y390–620 một lần."
+        },
+        {
+          "t": 5.9,
+          "event": "Cáo ra; thẻ thật trượt thế chỗ, khoang đã gửi trống."
+        },
+        {
+          "t": 7.2,
+          "event": "Tick xanh xác nhận truy cập; máy Mít hạ xuống, vẫn thấy bong bóng đỏ."
+        }
+      ],
+      "voice_over": "Bạn thân ngồi cạnh mình, mà nhận tin mình vay năm triệu.\nMình chưa nhắn gì!\nKhông ai hack mình, vẫn đăng nhập được.",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "surprised",
+          "emphasis": [
+            "Bạn thân ngồi cạnh mình",
+            "mình vay năm triệu"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.6,
+          "pause_after_s": 1.07,
+          "intonation": "rising",
+          "transition": {
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "02",
+          "intent": "reveal",
+          "emotion": "surprised",
+          "emphasis": [
+            "chưa nhắn"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 1.07,
+          "pause_after_s": 0.73,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "03",
+          "intent": "reveal",
+          "emotion": "reassuring",
+          "emphasis": [
+            "Không ai hack",
+            "đăng nhập được"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.73,
+          "pause_after_s": 1.11,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "contrast"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 0.1,
+          "intent": "alert",
+          "intensity": "low",
+          "target": "tin đến máy Mít",
+          "reason": "Cùng lúc bong bóng tin bật."
+        },
+        {
+          "t": 4.6,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "ngón dừng",
+          "reason": "Đánh dấu tay dừng trước khi chạm nút."
+        },
+        {
+          "t": 7.2,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "tích truy cập",
+          "reason": "Đánh dấu truy cập được."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "duration_s": 7.3,
+      "main_idea": "Tin vay đến từ một hồ sơ độc lập có ảnh và tên giống hồ sơ thật.",
+      "main_change": "Đường nguồn bật khỏi thẻ trên và gắn vào thẻ dưới; hai cầu nối đối chiếu ảnh và tên.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.03,
+      "text_groups": 3,
+      "header_slot": "top",
+      "narrative_purpose": "Giải đáp ai gửi tin vay.",
+      "visual_concept": "Truy nguồn qua hai thẻ. Đường nguồn bật khỏi thẻ trên và gắn vào thẻ dưới; hai cầu nối đối chiếu ảnh và tên.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "data_flow",
+      "kind_params": {
+        "theme": "incident",
+        "layout": "Truy nguồn qua hai thẻ",
+        "objects": [
+          "Tin vay đỏ",
+          "Thẻ thật",
+          "Thẻ khác viền đứt",
+          "Mũi tên nguồn",
+          "Mít"
+        ],
+        "focus": "Hồ sơ khác",
+        "header_step": 1
+      },
+      "environment": "Xa là mặt kính tối có ánh cạnh, giữa là hai thẻ dọc tổng cao 780 px, gần là bong bóng và đường nguồn dày ≥18 px. Máy nhìn thẳng để đọc hướng nối, giữ trục thẻ cho cảnh tiếp.",
+      "character_action": "",
+      "props": [
+        "Tin vay đỏ",
+        "Thẻ thật",
+        "Thẻ khác viền đứt",
+        "Mũi tên nguồn",
+        "Mít"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "static"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Tin vay",
+            "type": "entity",
+            "form": "illustration",
+            "object": "bong bóng đỏ",
+            "motion": "nảy cạnh dấu hỏi"
+          },
+          {
+            "term": "Nguồn tin",
+            "type": "relation",
+            "form": "connection",
+            "object": "mũi tên dày",
+            "motion": "bật từ thẻ trên sang thẻ dưới"
+          },
+          {
+            "term": "Tài khoản thật",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ trên viền xanh",
+            "motion": "giữ nguyên khi mũi tên bật"
+          },
+          {
+            "term": "Hồ sơ khác",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ dưới đã hoàn chỉnh",
+            "motion": "lật vào và nhận mũi tên"
+          },
+          {
+            "term": "Đủ giống",
+            "type": "relation",
+            "form": "comparison",
+            "object": "hai đường giữa ảnh và tên",
+            "motion": "sáng cùng lúc"
+          },
+          {
+            "term": "Tin nhầm",
+            "type": "result",
+            "form": "animation",
+            "object": "Mít và dấu hỏi",
+            "motion": "minh họa hướng nhìn về thẻ dưới"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nguồn tin",
+            "to": "Hồ sơ khác",
+            "type": "chỉ vào thẻ phát tin"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TÀI KHOẢN THẬT",
+            "kind": "label",
+            "attach_to": "thẻ trên",
+            "appear_s": 0,
+            "disappear_s": 7.3,
+            "effect": "none"
+          },
+          {
+            "text": "HỒ SƠ KHÁC",
+            "kind": "keyword",
+            "attach_to": "thẻ dưới",
+            "appear_s": 3.4,
+            "disappear_s": 7.3,
+            "effect": "pop"
+          }
+        ],
+        "hold_s": 1.03
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ thẻ thật và bong bóng đỏ giữa khung."
+        },
+        {
+          "t": 0.15,
+          "event": "Bong bóng nảy; dấu hỏi xuất hiện cạnh nó."
+        },
+        {
+          "t": 1.8,
+          "event": "Mũi tên tiến vào thẻ trên rồi bật ngược."
+        },
+        {
+          "t": 3.4,
+          "event": "Thẻ dưới nguyên vẹn lật vào; mũi tên đổi hướng và cắm vào thẻ dưới."
+        },
+        {
+          "t": 4.41,
+          "event": "Kẻ hai đường nối ảnh–ảnh, tên–tên ở cạnh thẻ."
+        },
+        {
+          "t": 5.25,
+          "event": "Mít nghiêng về thẻ dưới; dấu hỏi treo trên đầu."
+        },
+        {
+          "t": 6.27,
+          "event": "Hạt chạy trên hai đường nối trong lúc giữ kết quả."
+        }
+      ],
+      "voice_over": "Vậy tin vay tiền trên phở bò từ ai?\nMột hồ sơ khác, đủ giống để bạn thân tin nhầm.",
+      "voice_direction": [
+        {
+          "line_id": "04",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "từ ai"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.7,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "05",
+          "intent": "reveal",
+          "emotion": "neutral",
+          "emphasis": [
+            "Một hồ sơ khác",
+            "đủ giống"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.7,
+          "pause_after_s": 1.03,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.8,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "đường nguồn bật lại",
+          "reason": "Nghe điểm đường nguồn không gắn được."
+        },
+        {
+          "t": 4.6,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "hai đường nối",
+          "reason": "Đánh dấu hai điểm khớp."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "duration_s": 8.75,
+      "main_idea": "Ảnh và tên nếu công khai có thể được nhìn thấy dù vùng riêng vẫn khóa.",
+      "main_change": "Tầm nhìn của khách đi qua vùng ảnh/tên trong khi khóa đứng nguyên, sau đó hai hồ sơ đã tồn tại hiện cùng ảnh/tên.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.02,
+      "text_groups": 3,
+      "header_slot": "top_right",
+      "narrative_purpose": "Giải thích cơ chế có điều kiện.",
+      "visual_concept": "Lát cắt góc khách. Tầm nhìn của khách đi qua vùng ảnh/tên trong khi khóa đứng nguyên, sau đó hai hồ sơ đã tồn tại hiện cùng ảnh/tên.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "theme": "database",
+        "layout": "Lát cắt góc khách",
+        "objects": [
+          "Thẻ thật và thẻ khác đã tồn tại",
+          "Ổ khóa vùng riêng",
+          "Ảnh đầu Cáo và tên Cáo",
+          "Điều kiện công khai",
+          "Mắt khách"
+        ],
+        "focus": "Ảnh và tên",
+        "header_step": 2
+      },
+      "environment": "Xa là lưới dữ liệu navy và hạt sáng, giữa là hai thẻ dọc cao tổng 810 px, gần có ổ khóa và khung truy cập. Crop ngang trong vùng thẻ ở 1,1× từ giây 0,95–1,65 để lộ khoảng cách giữa ổ khóa và phần khách thấy. Giữ header ngoài crop.",
+      "character_action": "",
+      "props": [
+        "Thẻ thật và thẻ khác đã tồn tại",
+        "Ổ khóa vùng riêng",
+        "Ảnh đầu Cáo và tên Cáo",
+        "Điều kiện công khai",
+        "Mắt khách"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "pan_right"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Mật khẩu",
+            "type": "term",
+            "form": "icon",
+            "object": "ổ khóa xanh của vùng riêng",
+            "motion": "giữ đóng trong suốt cảnh"
+          },
+          {
+            "term": "Mạo danh",
+            "type": "action",
+            "form": "comparison",
+            "object": "thẻ khác đã có sẵn",
+            "motion": "nổi lên, sau đó đối chiếu"
+          },
+          {
+            "term": "Ảnh và tên",
+            "type": "entity",
+            "form": "illustration",
+            "object": "đầu Cáo và tên Cáo trong hai thẻ",
+            "motion": "được đóng khung chung"
+          },
+          {
+            "term": "Nếu công khai",
+            "type": "concept",
+            "form": "status",
+            "object": "khung điều kiện vàng",
+            "motion": "khoanh vùng ảnh và tên"
+          },
+          {
+            "term": "Khách",
+            "type": "entity",
+            "form": "icon",
+            "object": "ba mắt cyan bên ngoài",
+            "motion": "mở rồi nhìn đúng phần đã khoanh"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Khách",
+            "to": "Ảnh và tên",
+            "type": "thấy với điều kiện công khai; vùng mật khẩu vẫn khóa"
+          }
+        ],
+        "texts": [
+          {
+            "text": "MẬT KHẨU",
+            "kind": "label",
+            "attach_to": "ổ khóa đóng",
+            "appear_s": 1.65,
+            "disappear_s": 8.75,
+            "effect": "fade"
+          },
+          {
+            "text": "NẾU CÔNG KHAI",
+            "kind": "keyword",
+            "attach_to": "khung vàng bao ảnh và tên",
+            "appear_s": 3.95,
+            "disappear_s": 8.75,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 2.02
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ hai thẻ ở cùng trục, bỏ nhãn cảnh trước."
+        },
+        {
+          "t": 0.15,
+          "event": "Thẻ dưới nhô lên rõ khỏi mặt nền rồi trở lại."
+        },
+        {
+          "t": 1.25,
+          "event": "Mở lát cắt góc khách, vùng riêng tối sau ổ khóa đóng."
+        },
+        {
+          "t": 1.65,
+          "event": "Nhãn MẬT KHẨU xuất hiện sát ổ khóa."
+        },
+        {
+          "t": 2.64,
+          "event": "Viền phần ảnh/tên sang cyan có điều kiện; vệt tầm nhìn dừng ở ngoài."
+        },
+        {
+          "t": 3.95,
+          "event": "Khung vàng bao đúng ảnh/tên, chữ hiện theo khung."
+        },
+        {
+          "t": 5.55,
+          "event": "Ba mắt khách mở hướng vào vùng cyan."
+        },
+        {
+          "t": 6.35,
+          "event": "Cắt đối chiếu hai thẻ có sẵn; đường nối bật, vùng khóa giữ nguyên."
+        },
+        {
+          "t": 7.75,
+          "event": "Một vệt tầm nhìn đi từ mắt ngoài tới ảnh/tên, giữ cả hai thẻ, khung điều kiện và ổ khóa đóng trong khung đến 8,75 s."
+        }
+      ],
+      "voice_over": "Kẻ gian mạo danh mà chẳng cần mật khẩu.\nNếu ảnh và tên bạn công khai, hồ sơ giả có thể dùng lại.",
+      "voice_direction": [
+        {
+          "line_id": "06",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "chẳng cần mật khẩu"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "curious",
+          "emphasis": [
+            "Nếu",
+            "hồ sơ giả có thể dùng lại"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.4,
+          "pause_after_s": 2.02,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 3.95,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "khung điều kiện",
+          "reason": "Nhấn đúng lúc khung vàng giới hạn vùng công khai."
+        },
+        {
+          "t": 6.35,
+          "intent": "impact_reveal",
+          "intensity": "low",
+          "target": "đối chiếu hai thẻ",
+          "reason": "Đánh dấu điểm trùng trong hai thẻ đã có."
+        }
+      ],
+      "transition": "wipeup",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "duration_s": 5.8,
+      "main_idea": "Danh sách bạn bè nếu công khai khiến lời nhắn tới người quen nghe đáng tin hơn.",
+      "main_change": "Vòng bạn bè mở quanh thẻ thật; phong bì đi từ thẻ khác tới Mít rồi hồi đáp.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.09,
+      "text_groups": 3,
+      "header_slot": "top_left",
+      "narrative_purpose": "Mở rộng điều kiện sang danh sách bạn bè.",
+      "visual_concept": "Vòng bạn bè. Vòng bạn bè mở quanh thẻ thật; phong bì đi từ thẻ khác tới Mít rồi hồi đáp.",
+      "scene_type": "data_visualization",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "theme": "database",
+        "layout": "Vòng bạn bè",
+        "objects": [
+          "Vòng năm nút gồm Mít và chị Lan",
+          "Thẻ hồ sơ khác",
+          "Tin đỏ và hồi đáp",
+          "Vòng nút chuyển"
+        ],
+        "focus": "Người quen",
+        "header_step": 2
+      },
+      "environment": "Xa là lưới dữ liệu chung họ với S04, giữa là thẻ thật với vòng năm silhouette cao tổng 700 px, gần là đường chat và vòng đồng xu. Vòng sáng bao nút được nhắc, camera toàn tĩnh để theo đường đi.",
+      "character_action": "1,85–3,78 dáng stop rộng 160 px, x105, đáy 1270, tay hướng vào vòng bạn bè.",
+      "props": [
+        "Vòng năm nút gồm Mít và chị Lan",
+        "Thẻ hồ sơ khác",
+        "Tin đỏ và hồi đáp",
+        "Vòng nút chuyển"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Danh sách bạn bè",
+            "type": "entity",
+            "form": "illustration",
+            "object": "vòng năm silhouette",
+            "motion": "mở quanh thẻ Cáo"
+          },
+          {
+            "term": "Nếu công khai",
+            "type": "concept",
+            "form": "status",
+            "object": "cung vàng có điều kiện",
+            "motion": "bao vòng"
+          },
+          {
+            "term": "Kẻ gian nhắn",
+            "type": "action",
+            "form": "flow",
+            "object": "bong bóng đỏ từ thẻ khác tới Mít",
+            "motion": "bay một chiều"
+          },
+          {
+            "term": "Người quen",
+            "type": "entity",
+            "form": "illustration",
+            "object": "silhouette Mít và chị Lan",
+            "motion": "hai nút sáng ở hai nhịp"
+          },
+          {
+            "term": "Tin nhầm",
+            "type": "result",
+            "form": "status",
+            "object": "hồi đáp ok và đồng xu đỏ",
+            "motion": "bong bóng bật ngược, ngón tiến gần"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Kẻ gian nhắn",
+            "to": "Người quen",
+            "type": "tin tới Mít qua thông tin bạn bè công khai"
+          }
+        ],
+        "texts": [
+          {
+            "text": "BẠN BÈ",
+            "kind": "label",
+            "attach_to": "vòng năm nút",
+            "appear_s": 0.25,
+            "disappear_s": 3.55,
+            "effect": "fade"
+          },
+          {
+            "text": "NẾU CÔNG KHAI",
+            "kind": "label",
+            "attach_to": "cung vàng quanh vòng",
+            "appear_s": 0.25,
+            "disappear_s": 5.8,
+            "effect": "none"
+          },
+          {
+            "text": "Chị Lan nhờ tao nhắn mày",
+            "kind": "message",
+            "attach_to": "bong bóng tới Mít",
+            "appear_s": 3.55,
+            "disappear_s": 5.45,
+            "effect": "pop"
+          },
+          {
+            "text": "ok",
+            "kind": "message",
+            "attach_to": "bong bóng hồi đáp",
+            "appear_s": 5.0,
+            "disappear_s": 5.8,
+            "effect": "pop"
+          }
+        ],
+        "hold_s": 1.09
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Thẻ thật nhỏ lại, để trống vị trí các nút."
+        },
+        {
+          "t": 0.25,
+          "event": "Năm nút mở thành vòng, điều kiện vàng gắn trên cung."
+        },
+        {
+          "t": 1.55,
+          "event": "Đường nhìn từ thẻ khác chạm vành vòng, chưa gửi tin."
+        },
+        {
+          "t": 1.85,
+          "event": "Cáo stop vào rìa, hướng tay vào vòng bạn bè khi nghe ‘kẻ gian có thể nhắn’."
+        },
+        {
+          "t": 2.85,
+          "event": "Nút Mít nổi lên khi lời nhắc tới người quen."
+        },
+        {
+          "t": 3.78,
+          "event": "Cáo rời rìa để nhường tiêu điểm cho tin đến."
+        },
+        {
+          "t": 3.55,
+          "event": "Tin đỏ tới Mít, nút Lan sáng vàng, đồng xu đỏ lại."
+        },
+        {
+          "t": 5.0,
+          "event": "Hồi đáp ok hiện cạnh tin đỏ; tin đỏ giữ đến 5,45 s rồi thu thành icon."
+        },
+        {
+          "t": 5.2,
+          "event": "Ngón Mít tiến tới vòng đồng xu nhưng chưa chạm."
+        }
+      ],
+      "voice_over": "Nếu danh sách bạn bè công khai, kẻ gian có thể nhắn người quen mình.",
+      "voice_direction": [
+        {
+          "line_id": "08",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "danh sách bạn bè",
+            "người quen mình"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.09,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "cause_effect"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.85,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "nút Mít",
+          "reason": "Chọn điểm đến của tin."
+        },
+        {
+          "t": 3.85,
+          "intent": "alert",
+          "intensity": "low",
+          "target": "bong bóng đến Mít",
+          "reason": "Tách sự kiện nhận tin khỏi tia nhìn."
+        }
+      ],
+      "transition": "cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "duration_s": 6.2,
+      "main_idea": "Cùng cảm giác quen có thể xuất hiện ở cả hai hồ sơ.",
+      "main_change": "Tích vàng thứ nhất rơi xuống thẻ dưới; vòng sáng ôm cả ảnh và tên, rồi tích thứ hai đặt vào thẻ trên và cả hai thẻ cùng sáng.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.11,
+      "text_groups": 2,
+      "header_slot": "top",
+      "narrative_purpose": "Cho thấy giới hạn của cảm giác quen.",
+      "visual_concept": "Đối chiếu hai tích vàng. Tích vàng thứ nhất rơi xuống thẻ dưới; vòng sáng ôm cả ảnh và tên, rồi tích thứ hai đặt vào thẻ trên và cả hai thẻ cùng sáng.",
+      "scene_type": "comparison_scene",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "",
+          "object": "Thẻ dưới có tích vàng và vòng sáng quanh ảnh, tên",
+          "state": "warn"
+        },
+        "after": {
+          "label": "ĐỦ GIỐNG",
+          "object": "Hai thẻ cùng tích vàng và cùng mức sáng",
+          "state": "warn"
+        },
+        "theme": "incident",
+        "layout": "Đối chiếu hai tích vàng",
+        "objects": [
+          "Hai hồ sơ",
+          "Hai tích vàng",
+          "Mít",
+          "Hai liên kết cyan",
+          "Vòng vàng"
+        ],
+        "focus": "Chứng minh danh tính",
+        "header_step": 3
+      },
+      "environment": "Xa là kính tối, giữa là hai thẻ dọc tổng cao 820 px, gần là silhouette Mít và hai tích vàng lớn. Máy tĩnh để người xem đối chiếu cùng vị trí ảnh/tên; header trên giữa, vòng xu góc phải.",
+      "character_action": "",
+      "props": [
+        "Hai hồ sơ",
+        "Hai tích vàng",
+        "Mít",
+        "Hai liên kết cyan",
+        "Vòng vàng"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bạn thân",
+            "type": "entity",
+            "form": "illustration",
+            "object": "silhouette Mít cạnh thẻ dưới",
+            "motion": "gật ở đầu cảnh và gật lần hai khi vòng ảnh và tên sáng"
+          },
+          {
+            "term": "Ảnh và tên quen",
+            "type": "entity",
+            "form": "comparison",
+            "object": "cặp ảnh Cáo và tên hiển thị",
+            "motion": "hai tích vàng rơi lần lượt; giữa hai tích, vòng vàng bao cả ảnh và tên thẻ dưới"
+          },
+          {
+            "term": "Chứng minh danh tính",
+            "type": "concept",
+            "form": "comparison",
+            "object": "hai thẻ vẫn mang cùng dấu quen",
+            "motion": "đồng sáng cho thấy không phân biệt được"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Ảnh và tên quen",
+            "to": "Chứng minh danh tính",
+            "type": "cùng tín hiệu cho cả hai hồ sơ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "ĐỦ GIỐNG",
+            "kind": "keyword",
+            "attach_to": "cầu nối giữa thẻ",
+            "appear_s": 3.85,
+            "disappear_s": 6.2,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.11
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hai thẻ dọc vào khung, mặt ảnh/tên cùng trục."
+        },
+        {
+          "t": 0.15,
+          "event": "Mít xuất hiện cạnh thẻ dưới rồi gật bằng dịch chuyển silhouette."
+        },
+        {
+          "t": 1.55,
+          "event": "Tích vàng lớn rơi vào thẻ dưới; vòng xu vàng."
+        },
+        {
+          "t": 2.76,
+          "event": "Theo lời ‘Ảnh và tên quen’, vòng vàng dày ≥18 px bung quanh cả cụm ảnh và tên trên thẻ dưới; Mít gật lần hai."
+        },
+        {
+          "t": 3.65,
+          "event": "Tích vàng thứ hai đặt vào thẻ trên."
+        },
+        {
+          "t": 4.45,
+          "event": "Cầu nối cyan dày lên, hai tích vàng cân sáng."
+        },
+        {
+          "t": 5.3,
+          "event": "Một nhịp quét qua cả hai thẻ cùng lúc."
+        }
+      ],
+      "voice_over": "Ối, bạn thân cũng tin vì ảnh quen.\nẢnh và tên quen không chứng minh được người quen.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "bạn thân cũng tin"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.45,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "10",
+          "intent": "warning",
+          "emotion": "resolute",
+          "emphasis": [
+            "không chứng minh được"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.45,
+          "pause_after_s": 1.11,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.55,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "tích vàng dưới",
+          "reason": "Đánh dấu khi Mít nhận ra ảnh quen."
+        },
+        {
+          "t": 3.65,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "tích vàng trên",
+          "reason": "Lặp tiếng để hai tín hiệu quen ngang nhau."
+        }
+      ],
+      "transition": "cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "duration_s": 7.8,
+      "main_idea": "Gọi số đã lưu cho biết Cáo không gửi tin, nên dừng chuyển tiền.",
+      "main_change": "Ngón bỏ nút chuyển sang mục gọi; chat xám, cuộc gọi nối và đồng xu tắt.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.43,
+      "text_groups": 3,
+      "header_slot": "top_right",
+      "narrative_purpose": "Giải quyết tình huống bằng kênh độc lập.",
+      "visual_concept": "Ghế trống sang danh bạ. Ngón bỏ nút chuyển sang mục gọi; chat xám, cuộc gọi nối và đồng xu tắt.",
+      "scene_type": "process_animation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "label": "SỐ ĐÃ LƯU",
+            "object": "Mục Cáo trong danh bạ hiện rõ",
+            "t": 2.95
+          },
+          {
+            "label": "",
+            "object": "Ngón rời đồng xu sang mục gọi",
+            "t": 3.65
+          },
+          {
+            "label": "CHAT",
+            "object": "Ô chat xám lùi về sau",
+            "t": 4.55
+          },
+          {
+            "label": "",
+            "object": "Cuộc gọi nối và đồng xu tắt",
+            "t": 6.45
+          }
+        ],
+        "theme": "security",
+        "layout": "Ghế trống sang danh bạ",
+        "objects": [
+          "Ghế trống",
+          "Máy Mít",
+          "Mục Cáo đã lưu",
+          "Ô chat",
+          "Màn gọi nối",
+          "Đồng xu"
+        ],
+        "focus": "Dừng chuyển",
+        "header_step": 4
+      },
+      "environment": "0–2,55 s quán cà phê nhìn qua ghế trống, xa là cửa kính và giữa là máy Mít ở phải. Từ 2,55 s cắt sang nền gọi sáng, lớp giữa là danh bạ cao 720 px, gần là ngón tay. Crop nền hình 1,12× hướng vào mục gọi ở 2,55–3,05; lớp chữ đứng yên. Vòng xu đặt dưới header tối thiểu 35 px.",
+      "character_action": "",
+      "props": [
+        "Ghế trống",
+        "Máy Mít",
+        "Mục Cáo đã lưu",
+        "Ô chat",
+        "Màn gọi nối",
+        "Đồng xu"
+      ],
+      "camera": {
+        "shot": "over_the_shoulder",
+        "movement": "push_in"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Không ngồi cạnh",
+            "type": "relation",
+            "form": "illustration",
+            "object": "ghế trống và máy ở inset",
+            "motion": "silhouette rời ghế"
+          },
+          {
+            "term": "Số đã lưu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "mục danh bạ có ảnh Cáo",
+            "motion": "hiện và nhận thao tác bấm"
+          },
+          {
+            "term": "Cuộc chat",
+            "type": "entity",
+            "form": "illustration",
+            "object": "khung nhập và dấu cấm",
+            "motion": "lùi ra sau và xám"
+          },
+          {
+            "term": "Gọi lại",
+            "type": "action",
+            "form": "flow",
+            "object": "ngón, mục liên hệ, màn gọi",
+            "motion": "ngón đổi hướng; màn gọi nối"
+          },
+          {
+            "term": "Dừng chuyển",
+            "type": "result",
+            "form": "status",
+            "object": "đồng xu trong nút",
+            "motion": "tắt khi ảnh Cáo trong cuộc gọi phủ nhận"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Gọi lại",
+            "to": "Dừng chuyển",
+            "type": "cuộc gọi xác minh dẫn tới dừng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SỐ ĐÃ LƯU",
+            "kind": "keyword",
+            "attach_to": "mục danh bạ của Cáo",
+            "appear_s": 2.95,
+            "disappear_s": 7.8,
+            "effect": "kinetic"
+          },
+          {
+            "text": "CHAT",
+            "kind": "label",
+            "attach_to": "khung chat xám",
+            "appear_s": 4.55,
+            "disappear_s": 7.8,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.43
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Về bàn cà phê; khung inset giữ máy Mít và ngón cạnh xu."
+        },
+        {
+          "t": 0.85,
+          "event": "Silhouette Mít khuất hẳn, ghế trống; vòng xu đỏ."
+        },
+        {
+          "t": 2,
+          "event": "Ngón gần sát xu, chưa chạm."
+        },
+        {
+          "t": 2.55,
+          "event": "Cắt qua kính máy sang danh bạ."
+        },
+        {
+          "t": 2.95,
+          "event": "Mục Cáo đã lưu viền xanh hiện trọn."
+        },
+        {
+          "t": 3.65,
+          "event": "Ngón rời đồng xu sang mục gọi, vòng xu xanh."
+        },
+        {
+          "t": 4.55,
+          "event": "Ô chat lùi ra sau, xám và có dấu cấm vàng ở ô nhập."
+        },
+        {
+          "t": 6.45,
+          "event": "Cuộc gọi nối; đầu Cáo trong thẻ trượt hai nhịp để gợi lắc đầu. Đồng xu tắt."
+        },
+        {
+          "t": 7.2,
+          "event": "Ngón rút khỏi vùng điều khiển, cuộc gọi giữ kết nối."
+        }
+      ],
+      "voice_over": "Nếu bạn thân không ngồi cạnh thì sao?\nGọi lại bằng số đã lưu, đừng hỏi ngay trong cuộc chat đó.",
+      "voice_direction": [
+        {
+          "line_id": "11",
+          "intent": "question",
+          "emotion": "concerned",
+          "emphasis": [
+            "không ngồi cạnh"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.8,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "12",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "số đã lưu",
+            "đừng hỏi ngay trong cuộc chat"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.8,
+          "pause_after_s": 1.43,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.75,
+          "intent": "silence",
+          "intensity": "low",
+          "target": "ghế trống",
+          "reason": "Để khoảng nghỉ câu hỏi dẫn sang danh bạ.",
+          "duration_s": 0.8
+        },
+        {
+          "t": 3.85,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "mục gọi",
+          "reason": "Chuông ngắn khi mục gọi được bấm."
+        },
+        {
+          "t": 6.45,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "cuộc gọi nối",
+          "reason": "Tick xác nhận đúng lúc nối."
+        }
+      ],
+      "transition": "fade",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "duration_s": 7,
+      "main_idea": "Báo cho bạn bè, báo cáo hồ sơ khác và rà lại phạm vi công khai.",
+      "main_change": "Chuông đến cụm bạn, cờ gắn vào thẻ khác, nhóm mắt người lạ thu lại trên thẻ thật.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.53,
+      "text_groups": 2,
+      "header_slot": "top_left",
+      "narrative_purpose": "Bổ sung ba hành động phòng vệ.",
+      "visual_concept": "Ba hành động trên hai thẻ. Chuông đến cụm bạn, cờ gắn vào thẻ khác, nhóm mắt người lạ thu lại trên thẻ thật.",
+      "scene_type": "process_animation",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "",
+          "object": "Thẻ khác chưa có cờ và thẻ thật còn nhiều mắt người lạ",
+          "state": "warn"
+        },
+        "after": {
+          "label": "CÔNG KHAI",
+          "object": "Cờ gắn thẻ khác, chuông tới bạn bè và nhóm mắt thu lại",
+          "state": "ok"
+        },
+        "theme": "security",
+        "layout": "Ba hành động trên hai thẻ",
+        "objects": [
+          "Chuông và vòng ba bạn",
+          "Cờ",
+          "Thẻ khác",
+          "Thẻ thật",
+          "Mắt và khóa nửa"
+        ],
+        "focus": "Bản giả",
+        "header_step": 4
+      },
+      "environment": "Xa là nền sáng an toàn, giữa là cặp thẻ dọc tổng cao 610 px, gần là hàng chuông/cờ/mắt. Dùng cùng giá đỡ thẻ với S04, cho từng biểu tượng đến đúng thẻ. Máy tĩnh để giữ cả ba kết quả.",
+      "character_action": "",
+      "props": [
+        "Chuông và vòng ba bạn",
+        "Cờ",
+        "Thẻ khác",
+        "Thẻ thật",
+        "Mắt và khóa nửa"
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "static"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bản giả",
+            "type": "entity",
+            "form": "illustration",
+            "object": "thẻ viền đứt",
+            "motion": "nhấc khỏi mặt nền"
+          },
+          {
+            "term": "Báo bạn bè",
+            "type": "action",
+            "form": "flow",
+            "object": "chuông và ba silhouette",
+            "motion": "chuông bay tới, từng nút sáng"
+          },
+          {
+            "term": "Báo cáo",
+            "type": "action",
+            "form": "status",
+            "object": "cờ và thẻ khác",
+            "motion": "cờ gắn đúng thẻ, viền đổi vàng"
+          },
+          {
+            "term": "Công khai",
+            "type": "concept",
+            "form": "comparison",
+            "object": "mắt người lạ và khóa nửa ở thẻ thật",
+            "motion": "hai mắt rút đi để minh họa việc rà soát phạm vi, giữ biểu tượng khóa nửa"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Báo cáo",
+            "to": "Bản giả",
+            "type": "cờ gắn vào đúng hồ sơ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "BÁO BẠN BÈ",
+            "kind": "keyword",
+            "attach_to": "chuông",
+            "appear_s": 1.15,
+            "disappear_s": 2.15,
+            "effect": "pop"
+          },
+          {
+            "text": "BÁO CÁO",
+            "kind": "keyword",
+            "attach_to": "cờ trên thẻ khác",
+            "appear_s": 2.15,
+            "disappear_s": 3.61,
+            "effect": "pop"
+          },
+          {
+            "text": "CÔNG KHAI",
+            "kind": "keyword",
+            "attach_to": "mắt và khóa nửa trên thẻ thật",
+            "appear_s": 3.61,
+            "disappear_s": 7,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.53
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hai thẻ xếp dọc; viền đứt của thẻ khác chiếm tiêu điểm."
+        },
+        {
+          "t": 0.35,
+          "event": "Thẻ khác nhấc lên khỏi nền, đổ bóng rõ."
+        },
+        {
+          "t": 1.15,
+          "event": "Chuông bay tới vòng ba bạn; từng nút sáng."
+        },
+        {
+          "t": 2.15,
+          "event": "Cờ gắn thẻ khác, viền chuyển vàng thể hiện đã báo."
+        },
+        {
+          "t": 3.61,
+          "event": "Mắt khách xuất hiện ở vùng công khai của thẻ thật."
+        },
+        {
+          "t": 4.7,
+          "event": "Hai mắt khách rời khung, mắt còn lại hướng vào thẻ thật; khóa nửa hiện như minh họa rà phạm vi."
+        },
+        {
+          "t": 5.6,
+          "event": "Ba biểu tượng vào hàng và giữ gắn với đối tượng bằng đường dóng."
+        }
+      ],
+      "voice_over": "Thấy bản giả: báo bạn bè, báo cáo hồ sơ đó, rồi xem lại phần mình để công khai.",
+      "voice_direction": [
+        {
+          "line_id": "13",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "báo bạn bè",
+            "báo cáo hồ sơ đó"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.53,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "callback"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 1.35,
+          "intent": "highlight",
+          "intensity": "low",
+          "target": "chuông đến bạn bè",
+          "reason": "Phản hồi khi các nút bạn bè sáng."
+        },
+        {
+          "t": 2.35,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "cờ gắn",
+          "reason": "Đánh dấu đã gửi báo cáo."
+        }
+      ],
+      "transition": "match_cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "duration_s": 5.65,
+      "main_idea": "Kiểm tra bằng cuộc gọi trước khi quyết định chuyển tiền.",
+      "main_change": "Mũi tên rời ô chat qua ô gọi, đồng xu tắt tại đúng chỗ đã sáng ở mở đầu.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.65,
+      "text_groups": 2,
+      "header_slot": "top_right",
+      "narrative_purpose": "Khép tình huống mở và mời người xem phản hồi.",
+      "visual_concept": "Trở lại bàn quán. Mũi tên rời ô chat qua ô gọi, đồng xu tắt tại đúng chỗ đã sáng ở mở đầu.",
+      "scene_type": "object_interaction",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "theme": "office",
+        "layout": "Trở lại bàn quán",
+        "objects": [
+          "Máy Mít",
+          "Chat xám",
+          "Ô gọi",
+          "Mũi tên xanh",
+          "Đồng xu"
+        ],
+        "focus": "Đổi tiền",
+        "header_step": 4
+      },
+      "environment": "Xa là cửa kính ấm, giữa là bàn và silhouette Mít đúng góc 3/4 của mở đầu, gần là máy Mít cao 580 px. Vòng đồng xu ở góc phải, mép trên của vòng cách mép dưới header ít nhất 35 px, kể cả khi viền lóe. Camera tĩnh để ghép hình khớp theo vị trí điện thoại; tiêu điểm trái trống trước lúc Cáo vào.",
+      "character_action": "2,45–5,65 thumbs_up rộng 180 px, x105, đáy 1290. Hướng người xem, cử chỉ giữ theo trạng thái nút đã tắt.",
+      "props": [
+        "Máy Mít",
+        "Chat xám",
+        "Ô gọi",
+        "Mũi tên xanh",
+        "Đồng xu"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Đổi kênh",
+            "type": "action",
+            "form": "flow",
+            "object": "mũi tên từ chat đến ống nghe",
+            "motion": "chạy sang ô gọi"
+          },
+          {
+            "term": "Đổi tiền",
+            "type": "action",
+            "form": "icon",
+            "object": "đồng xu tại nút",
+            "motion": "lóe một nhịp rồi tắt tại chỗ"
+          },
+          {
+            "term": "Xác minh",
+            "type": "result",
+            "form": "status",
+            "object": "thẻ gọi và nút xám",
+            "motion": "màn gọi chiếm trước, tay rời nút"
+          },
+          {
+            "term": "Tin vay bất ngờ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tin vay đã xám trên máy Mít",
+            "motion": "thấp thoáng sau thẻ gọi"
+          }
+        ],
+        "relations": [
+          {
+            "from": "Đổi kênh",
+            "to": "Đổi tiền",
+            "type": "gọi trước quyết định về tiền"
+          }
+        ],
+        "texts": [
+          {
+            "text": "GỌI XÁC MINH",
+            "kind": "keyword",
+            "attach_to": "mép trên bàn, phía trên máy",
+            "appear_s": 0.45,
+            "disappear_s": 5,
+            "effect": "pop"
+          }
+        ],
+        "hold_s": 0.65
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Lặp khung quán, Mít giữ máy; tin vay xám và đồng xu chưa rời nút."
+        },
+        {
+          "t": 0.45,
+          "event": "Chữ chốt hiện phía trên bàn."
+        },
+        {
+          "t": 0.75,
+          "event": "Mũi tên xanh tách khỏi chat và chạy sang ô gọi."
+        },
+        {
+          "t": 1.45,
+          "event": "Ô gọi sáng trước, đồng xu chỉ lóe viền rồi nguội."
+        },
+        {
+          "t": 2.45,
+          "event": "Cáo vào rìa trái đúng lúc đồng xu tắt."
+        },
+        {
+          "t": 3.55,
+          "event": "Mít nghiêng màn về trước để thấy tay đã xa nút."
+        },
+        {
+          "t": 4.7,
+          "event": "Thẻ gọi tiến lên trước chat xám, đồng xu vẫn ở nguyên."
+        },
+        {
+          "t": 5,
+          "event": "Chữ chốt rời khung rồi giữ hình kết đến điểm cắt (5,65 s)."
+        }
+      ],
+      "voice_over": "Chốt nhé: đổi kênh trước khi đổi tiền.\nGặp tin vay tiền bất ngờ, bạn gọi ai trước?",
+      "voice_direction": [
+        {
+          "line_id": "14",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "emphasis": [
+            "đổi kênh",
+            "đổi tiền"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.2,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "15",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "gọi ai trước"
+          ],
+          "pace": "normal",
+          "pause_before_s": 1.2,
+          "pause_after_s": 0.65,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "",
+      "sound_effects": [],
+      "sound_cues": [
+        {
+          "t": 2.45,
+          "intent": "interaction",
+          "intensity": "low",
+          "target": "đồng xu tắt",
+          "reason": "Khép âm thanh nút đã mở ở S00."
+        },
+        {
+          "t": 5,
+          "intent": "silence",
+          "intensity": "low",
+          "target": "khung kết",
+          "reason": "Giữ đuôi hình sau lời mời.",
+          "duration_s": 0.65
+        }
+      ],
+      "transition": "cut",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

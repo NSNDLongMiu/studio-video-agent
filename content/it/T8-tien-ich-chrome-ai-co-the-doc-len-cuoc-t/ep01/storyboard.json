@@ -1,0 +1,558 @@
+{
+  "video_id": "IT-T8-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene dựng IDE với chữ gõ và banner. Cảnh 03, 04 và 07 cần hai thẻ cửa hàng, lớp quyền phủ các trang và chạm tab chat, và hàng đã cài biến mất. ExplainerScene nối một dãy khối trên nền tối cố định. Cảnh 05–06 cần hai tuyến độc lập, thẻ thật đổi nhánh, vòng đếm và hai thẻ nhập cùng khay. Cinematic close-up trỏ đến CharacterScene với OfficeEnvironment, trong khi 02 và 08 cần hai góc của khay máy chủ. Object interaction ở 01, 09 và 10 chưa có composition tương ứng. Pillow vẽ nền theo lớp và nội suy đạo cụ theo từng khung. FFmpeg ghép alpha, cắt khớp hình, thực hiện cú tiến máy ở 08 và ghép phụ đề sau camera.",
+  "visual_style_note": "Đồ họa 2D bo góc và Cáo cam công sở trên khung 1080×1920, 30 fps. Năm bối cảnh theo thứ tự A–E–B–C–D–E–A, dùng nền xưởng theo từng theme với lớp xa, giữa, gần. Màu nền #202B3D và #EEF2F6. Chữ #142033 hoặc #F8FAFC. Xanh #60D4AB cho luồng thường hoặc thao tác giữ dữ liệu ngoài chat, đỏ #F26B78 cho nhánh lộ hoặc điểm chặn, vàng #F4D276 cho quyền và vòng đếm đang xét, cam #FF9A45 chỉ để nhận ra hồ sơ, xám #8393A8 cho đường đã ngắt và nền phụ. Giữ chi tiết chính trong x90–990, y250–1500, với cụm hành động cao từ khoảng 560 px. Dùng Segoe UI, cỡ nhãn từ 56 px và chữ nhấn từ 72 px. Phụ đề từ 64 px, tối đa hai dòng và 24 ký tự mỗi dòng, giữ nguyên chữ và dấu theo kịch bản. Đặt phụ đề y255–425 khi có Cáo, còn lại y1300–1495. Các cửa sổ và hồ sơ dùng hình khối vô danh. Dùng đúng ba pose PNG tĩnh, để con trỏ, lớp quét và thẻ làm rõ phản ứng của Cáo. Ghép chuyển động đạo cụ bằng Pillow theo khung hoặc FFmpeg overlay với eval=frame nếu x/y phụ thuộc thời gian. Mốc animation tính theo giây kể từ đầu cảnh. Làm tròn biên tích lũy sang khung 30 fps để tổng là 1257 khung, gồm cả đuôi im 0,50 s. Mọi chuyển cảnh nối thẳng ở biên đã định. Lấy bìa từ cảnh 01 tại 1,80 s với Cáo và hai hồ sơ cam, rà ở 180×320. Âm thanh gồm giọng và ba hiệu ứng ngắn. Chữ khai báo AI và ví dụ dựng đi cùng mô tả đăng theo kịch bản.",
+  "talking_head_ratio": 0,
+  "scenes": [
+    {
+      "scene_id": "01",
+      "narrative_purpose": "Mở bằng việc Cáo dán một hồ sơ khách hàng mẫu, rồi đặt câu hỏi về bản sao khi hồ sơ gốc vẫn còn trong chat.",
+      "visual_concept": "Một hồ sơ giống hệt bật khỏi thẻ gốc ngay trong hai giây đầu. Cửa sổ chat nằm trên bàn bên phải Cáo, với biểu tượng tiện ích nhỏ trên thanh công cụ. Con trỏ dán vào vùng nội dung đã hiện. Hồ sơ gốc đứng nguyên tại đó khi bản sao bay qua viền trên của vùng nội dung ở phía phải.",
+      "scene_type": "object_interaction",
+      "environment": "A · office, ấm, nhìn chếch ngang bàn. Xa là ánh cửa sổ hắt trái, giữa là màn hình chat x360–975, y490–1300 với vùng nội dung y730–1180, và chân màn hình, gần là mép bàn thấp và Cáo trái dưới. Cửa sổ chat, biểu tượng tiện ích và pose giữ nguyên vị trí khi con trỏ cùng hồ sơ chuyển động. Chừa y255–425 cho phụ đề.",
+      "character_action": "surprised.png, hộp alpha x105, y930, rộng 216 px, cao khoảng 362 px. Giữ pose. Đặt chỗ hai thẻ bật tách về phía Cáo đang hướng mặt. Con trỏ đại diện thao tác của Cáo.",
+      "props": [
+        "Hồ sơ mẫu 270×315 px, thẻ sáng bo góc, tam giác cam #FF9A45 cạnh 82 px ở góc trên phải, một silhouette chân dung và ba vạch trừu tượng. Dùng cùng mẫu ở các cảnh có hồ sơ.",
+        "Khung chat sáng với bong bóng ở vùng nội dung và thanh công cụ chứa một biểu tượng tiện ích trung tính. Biểu tượng là ô bo có khuyết nửa tròn, giữ cùng hình qua 03, 04, 05 và 07.",
+        "Con trỏ mũi tên trơn và mép bàn. Giao diện bỏ nút gửi, chỉ diễn thao tác dán."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở trung cảnh, Cáo và hồ sơ mẫu ở mép khung chat. Con trỏ kéo vùng nhìn về phần nội dung."
+        },
+        {
+          "t": 0.35,
+          "event": "Con trỏ dán hồ sơ vào bong bóng ở vùng nội dung đã hiện. Thẻ gốc neo tại x420, y810."
+        },
+        {
+          "t": 1.15,
+          "event": "Bản sao trùng mẫu sinh chồng lên thẻ gốc rồi bật lên phải. Mở khoảng hở giữa hai silhouette. Bản gốc giữ nguyên."
+        },
+        {
+          "t": 1.8,
+          "event": "Giữ đủ độ tách để lấy khung bìa. Thẻ gốc ở x420, y810, bản sao khoảng x660, y470. Cả hai góc cam và mặt Cáo rõ."
+        },
+        {
+          "t": 2.55,
+          "event": "Mép dưới bản sao vượt hẳn viền trên của vùng nội dung chat. Đưa thẻ lên khoảng x690, y445 và thu cao còn 260 px để cả thẻ thoát viền mà vẫn nằm dưới phụ đề. Thẻ gốc yên trong bong bóng. Giữ chuyển động dưới câu hỏi bắt đầu 3,08 s."
+        },
+        {
+          "t": 3.5,
+          "event": "Đưa bản sao theo đường chéo áp sát mép phải trong vùng an toàn. Góc cam ở khoảng x940, y460 lấp phần lớn ô khớp hình cục bộ. Dùng vị trí, cỡ và hướng góc đó cho khung đầu 02."
+        }
+      ],
+      "voice_over": "Hồ sơ khách vừa dán, bản sao đã ra ngoài.\nChat lọt ra bằng cách nào?",
+      "text_overlay": "",
+      "sound_effects": [
+        "Tiếng lướt rất nhẹ tại 1,15 s khi thẻ tách. Nghỉ 0,25 s sau dấu phẩy và 0,40 s sau câu mở. Câu hỏi bắt đầu tại 3,08 s và đi liền qua cú cắt, cùng một cue nếu đang đọc dở cụm."
+      ],
+      "transition": "match_cut",
+      "duration_s": 4,
+      "main_change": "Một hồ sơ trong bong bóng thành hai thẻ cùng góc cam, đủ tách nhau ở 1,80 s. Một thẻ vượt viền còn thẻ kia đứng yên trong chat.",
+      "text_groups": 0,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "02",
+      "narrative_purpose": "Cho thấy nơi nhận trước giây 5 và đặt hệ quả của ví dụ cạnh quy mô vụ được báo cáo.",
+      "visual_concept": "Cắt khớp theo góc cam để khe máy chủ hứng đúng thẻ ở 4,00 s. Khe nằm trong phòng máy riêng, tách khỏi nơi có chat. Trong 0,80 s đầu, ô hồi chiếu cho thấy hồ sơ gốc vẫn trong bong bóng chat. Khay nhận đưa bản sao vào rãnh lưu phía trước vài thẻ trơn dùng để tạo chiều sâu.",
+      "scene_type": "cinematic_close_up",
+      "environment": "E · incident, phòng máy lạnh xanh xám, khác mặt bàn sáng. Xa là tường và cột sáng dọc mờ, giữa là mặt máy cùng khe và khay từ y440–1190, gần là mép khe và đường đỏ hẹp đi vào từ rìa. Cận chính diện để thấy rõ thẻ rời đường và vào khay. Ô hồi chiếu ở trái phía trên, phụ đề y1300–1495.",
+      "character_action": "",
+      "props": [
+        "Khung máy chủ khoảng 710×750 px với một khe dài, đèn đỏ hẹp ở miệng và khay hai lớp. Dùng lại đúng hình khe, gờ, khay và dấu góc cam ở 08.",
+        "Bản sao theo mẫu 01. Vài thẻ xám trơn thấp tương phản đặt lùi sau khay, dùng làm chiều sâu.",
+        "Ô hồi chiếu nhỏ x95–320, y505–760 có bong bóng chat và hồ sơ góc cam thu nhỏ, viền mảnh để phân biệt hai nơi."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Máy chủ hứng bản sao ngay ở đầu clip. Khớp vị trí và hướng góc cam với khung cuối 01, rồi để mép khe dừng thẻ. Ô hồi chiếu hiện ngay, cho thấy bản gốc đồng thời."
+        },
+        {
+          "t": 0.8,
+          "event": "Ô hồi chiếu thu ra rìa, trả trọn tiêu điểm cho khe nhận."
+        },
+        {
+          "t": 1.2,
+          "event": "Bản sao trượt sâu qua khe vào rãnh khay, góc cam vẫn lộ."
+        },
+        {
+          "t": 2.6,
+          "event": "Khay đẩy bản sao ra tiền cảnh trước các thẻ xám, giữ bản nhận thấy rõ."
+        },
+        {
+          "t": 3.65,
+          "event": "Cửa khay trượt khép quanh bản đã nhận. Canh gờ khay khớp cạnh đầu của thẻ cửa hàng 03, rồi cắt sang tông hồi tưởng."
+        }
+      ],
+      "voice_over": "Có vụ hàng trăm nghìn người cài.",
+      "text_overlay": "",
+      "sound_effects": [
+        "Tiếng chạm nhẹ ngay đầu cảnh ở 4,00 s tuyệt đối, dưới câu hỏi đang vắt từ 01. Khoảng nghỉ 0,75 s sau câu hỏi tính một lần. Sau lời cảnh này nghỉ 0,80 s với cửa khay khép."
+      ],
+      "transition": "match_cut",
+      "duration_s": 4.03,
+      "main_change": "Khe hứng bản sao cùng góc cam lúc bản gốc còn thấy trong ô chat, rồi đưa bản sao vào khay và giữ ở đầu bên ngoài.",
+      "text_groups": 0,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "03",
+      "narrative_purpose": "Hồi tưởng một lần việc chọn một trong hai tiện ích giả dạng trợ lý và nhận ra đúng thẻ có huy hiệu.",
+      "visual_concept": "Cửa hàng giả lập có hai thẻ riêng, dưới một nhãn chung Trợ lý AI. Featured thuộc riêng thẻ trên. Con trỏ chọn nút cài dạng hình trên chính thẻ có huy hiệu. Lựa chọn kéo thẻ đó lên thành hộp quyền. Nhãn chung nhận diện cách hai tiện ích tự trình bày, huy hiệu cho phép nhận ra thẻ được chọn.",
+      "scene_type": "ui_simulation",
+      "environment": "B · security, toàn cửa sổ cửa hàng nhìn thẳng. Xa là quầng sáng dịu ngả ấm và bóng trình duyệt, giữa là cửa sổ sáng x120–960, y460–1240 với hai hàng xếp dọc, gần là con trỏ cùng mép thẻ nổi. Hai hàng hiện lần lượt, cửa sổ giữ tĩnh. Phụ đề y1300–1495.",
+      "character_action": "Không xuất hiện. Con trỏ cùng kiểu 01 biểu đạt thao tác của Cáo.",
+      "props": [
+        "Hai thẻ sáng bo góc x160–920, cao khoảng 240 px mỗi thẻ. Cùng kiểu nền, biểu tượng ô khuyết và nút cài dạng mũi tên vào khay. Phân biệt hai thẻ bằng hình phụ xám trung tính.",
+        "Nhãn chung Trợ lý AI, Bold 72 px. Featured 56 px trong một phù hiệu vàng nhạt gắn trên thẻ trên. Dùng hình phù hiệu đơn giản do xưởng tự vẽ."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt hồi tưởng theo cạnh thẻ đã khớp với gờ khay. Hàng có huy hiệu trượt vào, tiêu đề chung ổn định trên cửa sổ."
+        },
+        {
+          "t": 1.07,
+          "event": "Hàng thứ hai trượt ra trọn vẹn. Giữ cả hai hàng đủ lâu để thấy chỉ hàng trên mang huy hiệu."
+        },
+        {
+          "t": 2.32,
+          "event": "Con trỏ bấm đúng nút hình trên hàng có Featured, hàng dưới lùi về sau và nút trên đổi trạng thái."
+        },
+        {
+          "t": 3.57,
+          "event": "Thẻ đã chọn nở thành khung hộp quyền. Thu nhãn Trợ lý AI và Featured khỏi hình khi chuyển trạng thái. Giữ mép hộp khớp vị trí mở của 04."
+        }
+      ],
+      "voice_over": "Hai tiện ích đội lốt trợ lý.\nMột bản có huy hiệu.",
+      "text_overlay": "Trợ lý AI\nFeatured",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,40 s sau lời đầu, gắn với nhịp nhìn hai thẻ và huy hiệu. Nghỉ 0,80 s sau lời thứ hai khi thẻ đã chọn nở thành hộp quyền."
+      ],
+      "transition": "match_cut",
+      "duration_s": 4.11,
+      "main_change": "Hai thẻ cùng hiện, chỉ một mang phù hiệu. Con trỏ chọn thẻ đó và chính thẻ được chọn biến thành hộp quyền.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "04",
+      "narrative_purpose": "Trả câu hỏi mở bằng phạm vi quyền đọc bao gồm tab chat và điểm bản sao được tạo trong tình huống.",
+      "visual_concept": "Cận hộp quyền bên cạnh tay Cáo. Thẻ quyền phóng riêng rồi nở xuống thành lớp vàng bán trong phủ các thẻ trang, kể cả tab chat. Đúng giây 13,00 tấm quét chạm hồ sơ, biểu tượng tiện ích ở thanh công cụ sáng viền và bản sao sinh ngay tại nút đó. Tấm quét cho thấy quyền đọc. Bản sao đổi sang đường đỏ ở biểu tượng của tiện ích trong ví dụ.",
+      "scene_type": "ui_simulation",
+      "environment": "B · security, cận hộp quyền nhìn chính diện bằng bố cục cắt sang cụm giao diện đã mở. Xa là ánh cửa sổ trình duyệt cùng tông 03, giữa là tab x345–980, y450–1200 và lớp vàng, gần là Cáo ở trái cùng thẻ bản sao đi phía phải. Hộp ở trên tab, chừa y255–425 riêng cho phụ đề.",
+      "character_action": "point_right.png, hộp alpha x100, y850, rộng 216 px và cao khoảng 262 px. Đầu ngón khoảng x313, y954 hướng chếch lên cạnh trái thẻ quyền đặt x340–980, y808–966. Chừa khe giữa tay và thẻ, nhánh đỏ ở nửa phải.",
+      "props": [
+        "Thẻ quyền sáng, x340–980, chữ Segoe UI Semibold 56 px với “Đọc và thay đổi dữ liệu” ở dòng đầu và “trên mọi trang” ở dòng sau. Chừa khoảng 27 px mỗi lề, canh trái. Tấm quét vàng #F4D276 có viền liền và phần trong đủ trong để thấy hồ sơ.",
+        "Tab chat cùng bong bóng và hồ sơ góc cam. Các thẻ trang xếp lùi sau, ký hiệu bằng vạch trừu tượng. Biểu tượng tiện ích trùng 01 và 03, đường đỏ chỉ bắt đầu phía sau nó.",
+        "Hai bản hồ sơ cùng dấu góc đúng mẫu 01, thu vừa vùng tab. Bản gốc neo trong vùng nội dung đã hiện."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt cận theo mép hộp ở cuối 03. Dòng quyền đã đọc được trong vùng y808–966, cạnh đầu ngón đang chỉ."
+        },
+        {
+          "t": 0.22,
+          "event": "Vẽ riêng mặt thẻ quyền nở cao 1,12× bằng nội suy hình khối Pillow, giữ nguyên khung máy và chừa khe trái cho tay Cáo. Từ mép thẻ, lớp vàng trải qua các trang tới ô chat. Hai dòng chữ giữ neo trên mặt thẻ, tách khỏi hồ sơ đang được quét."
+        },
+        {
+          "t": 0.86,
+          "event": "Đúng 13,00 s tuyệt đối, mép vàng chạm hồ sơ. Tiện ích sáng viền và bản sao bắt đầu tách tại chính biểu tượng. Bản gốc còn trong bong bóng."
+        },
+        {
+          "t": 2.16,
+          "event": "Bản sao vượt hẳn biểu tượng và vào nhánh đỏ, để lộ khoảng cách vật lý với hồ sơ gốc. Phần chữ vẫn có đủ thời gian đọc."
+        },
+        {
+          "t": 3.41,
+          "event": "Lớp vàng và thẻ quyền thu khỏi tab. Giữ đường rẽ đỏ và biểu tượng tại vị trí dùng để mở toàn sơ đồ 05."
+        }
+      ],
+      "voice_over": "Tiện ích đọc được mọi trang thì đọc được cả khung chat.",
+      "text_overlay": "Đọc và thay đổi dữ liệu\ntrên mọi trang",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,80 s cuối câu khi lớp quét thu lại và để lộ nút rẽ."
+      ],
+      "transition": "cut",
+      "duration_s": 4.15,
+      "main_change": "Lớp quyền phủ đến đúng tab chat, bản sao có dấu cam sinh tại biểu tượng tiện ích lúc 13,00 s rồi đi nhánh đỏ, trong khi bản gốc ở nguyên trong tab.",
+      "text_groups": 1,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "05",
+      "narrative_purpose": "Đối chiếu tuyến gửi thông thường và nhánh tiện ích trong cùng một tình huống.",
+      "visual_concept": "Mở toàn sơ đồ giữ vị trí tương đối của nút rẽ. Chat bên trái cấp điểm xuất phát chung cho hai tuyến khác tầng. Tuyến xanh mờ chạy thẳng đến bong bóng chatbot và chỉ mang một xung tròn trơn. Tại biểu tượng tiện ích phía dưới, tuyến đỏ sáng và chỉ tuyến này mang thẻ hồ sơ góc cam về khay gom.",
+      "scene_type": "comparison_scene",
+      "environment": "C · code, màn hình sơ đồ trình duyệt, toàn chính diện. Xa là lưới kỹ thuật mờ, giữa là khung chat trái, tuyến thẳng phía trên và tuyến rẽ xuống phải trong x95–985, y525–1200. Gần là thẻ góc cam, đặt trên tuyến đỏ. Phụ đề y1300–1495.",
+      "character_action": "",
+      "props": [
+        "Cửa sổ chat thu gọn giữ hồ sơ gốc, xung bong bóng trơn trên tuyến xanh #60D4AB ở khoảng 35% độ sáng của nhánh đang xét. Bong bóng hồi đáp gắn nhãn Chatbot 56 px.",
+        "Biểu tượng ô khuyết gắn nhãn Tiện ích 56 px ở đúng khúc rẽ. Tuyến đỏ #F26B78 dẫn từ điểm rẽ về khay gom xám lạnh. Dùng hai đường liên tục và duy nhất, thẻ bay ở khoảng trống giữa các nhãn.",
+        "Bản sao góc cam cùng mẫu 01, đủ diện tích để phân biệt với xung hình tròn. Khay gom giữ góc cam lộ để khớp sang 06."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt mở toàn từ tab 04. Vạch xanh mờ chạy thẳng, hồ sơ gốc thấy rõ ở chat và góc cam trên nhánh đỏ khớp vị trí ngay cạnh biểu tượng tiện ích."
+        },
+        {
+          "t": 0.48,
+          "event": "Một xung bong bóng nhỏ chạy thẳng trên tuyến xanh. Giữ tuyến này mờ và liên tục."
+        },
+        {
+          "t": 1.06,
+          "event": "Khi thẻ góc cam chạm vùng biểu tượng tiện ích, nhánh đỏ sáng từ phía ra của ô khuyết. Bản sao đổi hướng xuống khay gom và không giao tuyến xanh."
+        },
+        {
+          "t": 2.36,
+          "event": "Thẻ đáp vào khay gom, xung xanh đã tới bong bóng ở đầu còn lại. Viền khay và góc cam giữ đến cú cắt sang bộ đếm."
+        }
+      ],
+      "voice_over": "Tiện ích xấu có thể chép và gửi đi.",
+      "text_overlay": "Chatbot\nTiện ích",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,80 s khi thẻ nhập khay, dùng khay và góc cam làm điểm nối."
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.12,
+      "main_change": "Hai vật đi hai đường khác nhau. Bong bóng trơn đi thẳng trên tuyến xanh mờ. Đúng tại ô khuyết tiện ích, thẻ góc cam rẽ vào tuyến đỏ và đến khay.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "06",
+      "narrative_purpose": "Minh họa nhịp gửi theo báo cáo và hai loại dữ liệu cùng đi trong một đợt.",
+      "visual_concept": "Cắt vào cùng khay gom bên vòng đếm. Vòng vàng giảm đến hết một vòng. Khay mở một ngăn để nhận thẻ nội dung chat góc cam rồi nhận thêm thẻ có hình thanh địa chỉ. Cả hai trượt thành một cặp qua đường ra và vòng đếm trở lại mốc đầu. Chu kỳ trên hình được nén, con số hiện là con số của báo cáo.",
+      "scene_type": "process_animation",
+      "environment": "C · code, trung cảnh khay và đồng hồ trên cùng lưới 05. Xa là lưới xám xanh nhạt, giữa là vòng đếm ở phần trên và khay đôi phía dưới trong x125–955, y485–1190, gần là cặp thẻ dữ liệu đi qua thanh dẫn ở đáy. Nhãn nằm trong lòng thẻ và đi cùng thẻ, không nằm trên quỹ đạo của thẻ kia. Phụ đề y1300–1495.",
+      "character_action": "",
+      "props": [
+        "Vòng đếm vàng dày khoảng 20 px, đường kính 290 px, giảm phần cung tròn đã tô. ≈ 30 phút ở giữa vòng, Bold 72 px. Thu chữ số trước khi nhãn thẻ xuất hiện và giữ hình vòng đếm.",
+        "Khay hai hộc rõ ràng. Thẻ sáng khoảng 400×255 px, một thẻ mang mẫu chân dung và góc cam của hồ sơ 01 (dùng ở tỷ lệ vừa khay), một thẻ có thanh địa chỉ rỗng với vạch xám trừu tượng. Nhãn Nội dung chat và Địa chỉ trang ở phần chân riêng mỗi thẻ, 56 px với lề ngang khoảng 18 px.",
+        "Một đường dẫn ra ngoài chung cho cả cụm, tông đỏ tiết chế."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp khay gom từ 05. Khay đã có bản sao. Vòng vàng giảm, số báo cáo hiện đủ lâu ở giữa."
+        },
+        {
+          "t": 1.09,
+          "event": "Cung vàng hạ qua vạch lớn, vòng giữa có khoảng khuyết nhìn rõ."
+        },
+        {
+          "t": 2.39,
+          "event": "Cung chạm mốc cuối và khay mở hộc trái. Thu số ở giữa vòng. Bản sao trượt vào hộc, rồi nhãn Nội dung chat hiện trong chân thẻ."
+        },
+        {
+          "t": 3.64,
+          "event": "Thẻ địa chỉ ghép vào hộc phải, bên cạnh bản sao. Hiện Địa chỉ trang trên thẻ thứ hai, hai nhãn đồng thời đọc được."
+        },
+        {
+          "t": 4.89,
+          "event": "Hai thẻ rời khay thành một đợt qua cùng đường ra, giữ đúng khoảng cách giữa chúng. Khay trống và vòng vàng trở lại vạch đầu."
+        }
+      ],
+      "voice_over": "Theo các nhà nghiên cứu, khoảng ba mươi phút một đợt.\nGửi cả địa chỉ trang.",
+      "text_overlay": "≈ 30 phút\nNội dung chat\nĐịa chỉ trang",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,25 s sau dấu phẩy trong lời đầu khi cung đi qua vạch; 0,55 s sau câu đầu khi khay mở chỗ; 0,65 s sau lời địa chỉ khi cả cặp rời khay."
+      ],
+      "transition": "cut",
+      "duration_s": 5.57,
+      "main_change": "Cung vàng hết vòng rồi khay nhận lần lượt hai hình dữ liệu khác nhau. Hai vật đi cùng một đợt, khay trống và cung quay lại vạch đầu.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "07",
+      "narrative_purpose": "Cho thấy các mục người dùng cần mở khi kiểm tiện ích và hành động gỡ đúng tiện ích trong ví dụ.",
+      "visual_concept": "Đổi sang màn hình quản lý dọc giả lập. Con trỏ mở lần lượt hai hàng thông tin, rồi bảng thu về danh sách đã cài. Hàng có biểu tượng ô khuyết quen thuộc xuất hiện với nút Gỡ. Khi bấm, hàng đó biến mất và các hàng dưới trượt lên lấp chỗ.",
+      "scene_type": "ui_simulation",
+      "environment": "D · security, toàn chính diện. Xa là viền sáng từ phải, nền security seed khác B, giữa là cửa sổ quản lý x110–970, y480–1200 với các dải danh sách ngang xếp dọc, gần là con trỏ, hai hàng thông tin nhô khỏi mặt phẳng và nút gỡ. Bố trí giống một trang quản lý, với cột ray xám bên trái và hàng gỡ ở giữa. Phụ đề y1300–1495.",
+      "character_action": "",
+      "props": [
+        "Trang quản lý sáng, mặt chi tiết trên danh sách. Hai hàng gắn icon thẻ định danh và khung có lưới, nhãn Nhà phát hành và Quyền 56 px. Nội dung chi tiết bằng vạch trừu tượng, một hàng mở tại một thời điểm.",
+        "Hàng đã cài dùng đúng biểu tượng ô khuyết của tiện ích ở 04. Nút Gỡ 72 px vào cùng hàng, tách khỏi viền và con trỏ."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt vào trang quản lý đã mở mặt chi tiết. Hai hàng thông tin sẵn ở vị trí đọc."
+        },
+        {
+          "t": 0.37,
+          "event": "Con trỏ kéo hàng Nhà phát hành ra khỏi bảng. Ô chi tiết mở bằng các vạch xám và đường viền vàng."
+        },
+        {
+          "t": 1.22,
+          "event": "Hàng thứ nhất thu vào, hàng Quyền kéo ra và mở ô chi tiết. Giữ hàng đang xem nổi rõ."
+        },
+        {
+          "t": 1.87,
+          "event": "Mặt chi tiết thu gọn thành danh sách đã cài. Thu hai nhãn thông tin trước khi nút Gỡ xuất hiện. Nút cùng hàng với biểu tượng ô khuyết."
+        },
+        {
+          "t": 2.87,
+          "event": "Con trỏ bấm Gỡ, hàng thu và rời danh sách. Các hàng dưới trượt lên. Giữ thoáng chỗ hàng biến mất trong nhịp nghỉ rồi khớp khoảng hở sang đường đứt 08."
+        }
+      ],
+      "voice_over": "Kiểm nhà phát hành và quyền.\nGỡ tiện ích không dùng.",
+      "text_overlay": "Nhà phát hành\nQuyền\nGỡ",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,42 s khi mặt chi tiết thu lại và 0,65 s sau lời gỡ, đi cùng nhịp danh sách trượt để lấp chỗ."
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.74,
+      "main_change": "Hai hàng thông tin lần lượt bật khỏi bảng. Danh sách hiện nút gỡ và hàng có đúng biểu tượng của tiện ích biến mất, làm các hàng còn lại dồn lên.",
+      "text_groups": 2,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "08",
+      "narrative_purpose": "Cho thấy lần gửi kế bị chặn sau khi gỡ và bản sao đã nhận có thể còn bên ngoài trong tình huống minh họa.",
+      "visual_concept": "Trở lại cùng máy chủ, đổi cận sang góc nghiêng để thấy hai mặt khay. Đường đỏ gãy và xám đi, chấm đại diện lượt gửi tiếp dừng và tan trước khe. Khay mở để lộ đúng thẻ có góc cam của 02. Tiến máy ngắn sau khi khay hé để hướng mắt vào bản cũ nằm sâu trong khay.",
+      "scene_type": "cinematic_close_up",
+      "environment": "E · incident, cận nghiêng ba phần tư. Xa là cùng tường lạnh và cột sáng như 02, giữa là thân máy và khe vẽ lại theo góc nghiêng, gần là đường đỏ từ trái và môi khay trượt. Đặt cụm khe, khoảng gãy và bản cũ trong x165–920, y500–1205 trước khi crop. Cắt khớp môi khay sang mép chat. Phụ đề y1300–1495 được ghép sau crop.",
+      "character_action": "",
+      "props": [
+        "Cùng khe, khay và bản góc cam của 02, với hình mặt bên khay vẽ thành đa giác sáng lạnh. Bản cũ giữ nguyên vị trí tương đối trong khay xuyên cảnh.",
+        "Một đường đỏ đủ dày, hai đầu tách ra ít nhất 100 px, rồi đổi #8393A8. Một chấm trơn dừng trước mép gãy. Chấm là tín hiệu của lượt tiếp, hình tròn để phân biệt với bản hồ sơ."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt từ khoảng hở hàng vừa gỡ sang khe hở trên đường. Tách hai đầu đỏ trong 0,30 s đầu rồi chuyển chúng sang xám."
+        },
+        {
+          "t": 1.13,
+          "event": "Chấm của lượt tiếp chạm đầu gãy, dừng phía trái và tan. Khoảng gãy vẫn nhìn rõ."
+        },
+        {
+          "t": 2.28,
+          "event": "Ngăn nhận trượt mở để thấy bản cũ góc cam. Bắt đầu tiến máy từ 1,00× tới 1,12× trong 2,28–3,48 s. Ghép các lớp hình ở 2160×3840, sau đó dùng zoompan một khung ra mỗi khung vào (d=1, 30 fps), lấy neo x570, y935 quy đổi ×2 trên khung nguồn. Nội suy smoothstep, giữ 1,12× đến khi cắt sang 09. Sau crop mới ghép phụ đề."
+        },
+        {
+          "t": 3.48,
+          "event": "Môi khay trượt tới ngưỡng che để cắt khớp đường viền ô chat ở 09. Góc cam vẫn thấy ở rãnh ngay sau môi khay."
+        }
+      ],
+      "voice_over": "Lần gửi sau dừng.\nBản cũ có thể còn bên ngoài.",
+      "text_overlay": "",
+      "sound_effects": [
+        "Một tiếng ngắt mềm khi hai đầu đường tách. Nghỉ 0,40 s sau lời đầu khi chấm tan và 0,70 s sau lời thứ hai khi môi khay trượt."
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.94,
+      "main_change": "Chấm lượt tiếp bị chặn ở đầu đường gãy rồi tan. Khay mở và vẫn chứa bản góc cam đã nhận, cho thấy hai trạng thái cùng tồn tại.",
+      "text_groups": 0,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "09",
+      "narrative_purpose": "Trở về việc dán hồ sơ và cho thấy cách giữ ba loại dữ liệu nhạy cảm ở ngoài cửa sổ chat.",
+      "visual_concept": "Nhìn từ trên xuống bàn để đường đi và hai vùng trong/ngoài rõ ràng. Ba thẻ lần lượt tới mép chat, gặp vạch cấm đỏ rồi đổi hướng về khay ngoài có viền xanh. Hồ sơ góc cam kết thúc ngoài cửa sổ và chat vẫn trống.",
+      "scene_type": "object_interaction",
+      "environment": "A · office, toàn từ trên, ánh cửa sổ chéo bên trái và bề mặt bàn như 01, vẽ lại mặt bàn theo góc nhìn từ trên. Xa là thớ bàn sáng yên, giữa là ô chat phía phải từ y480 và khay ngoài lệch trái phía dưới, gần là ba thẻ nổi chạy trong x100–970, y515–1195. Cửa sổ và khay đứng yên để thấy ba quỹ đạo. Phụ đề y1300–1495.",
+      "character_action": "",
+      "props": [
+        "Khung chat giả lập cùng kiểu 01, vùng nội dung trống. Khay ngoài viền #60D4AB có ba rãnh cách nhau đủ để thấy dấu riêng từng thẻ.",
+        "Thẻ mật khẩu có một dãy chấm tròn to. Thẻ khóa kỹ thuật có icon chìa gắn với ổ khóa số bằng hai mạch ngắn, phần giấy xung quanh trơn. Hồ sơ cùng silhouette, ba vạch và góc cam như 01.",
+        "Vạch chặn đỏ ngắn trên mép chat, chỉ sáng theo từng lần thẻ tới."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp mép ô chat với môi khay 08, rồi thấy toàn bàn theo góc từ trên. Ba thẻ chờ ngoài chat. Thẻ mật khẩu ở sát mép."
+        },
+        {
+          "t": 0.19,
+          "event": "Thẻ mật khẩu chạm mép chat, vạch đỏ hiện rồi thẻ trượt ngang về rãnh đầu của khay ngoài."
+        },
+        {
+          "t": 1.14,
+          "event": "Thẻ khóa tới cùng mép, bị chặn và đổi hướng vào rãnh thứ hai."
+        },
+        {
+          "t": 2.19,
+          "event": "Hồ sơ góc cam tới mép, đổi hướng qua cung rộng vào rãnh cuối. Vùng nội dung chat vẫn trống."
+        },
+        {
+          "t": 2.94,
+          "event": "Ba thẻ nằm đầy đủ trong khay viền xanh, góc cam còn nổi. Giữ vị trí khay tương đối sang trung cảnh 10."
+        }
+      ],
+      "voice_over": "Đừng dán mật khẩu, khóa hay dữ liệu khách hàng.",
+      "text_overlay": "",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,25 s sau phẩy khi thẻ khóa đảo hướng, 0,60 s sau chấm khi các thẻ yên vị trong khay ngoài."
+      ],
+      "transition": "cut",
+      "duration_s": 3.27,
+      "main_change": "Ba thẻ có silhouette khác nhau lần lượt bị chặn ở mép và vào khay xanh bên ngoài. Cửa sổ chat vẫn không có thẻ nào.",
+      "text_groups": 0,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "10",
+      "narrative_purpose": "Nhắc việc kiểm hai mục trước khi cài, rồi kết ngay ở bàn với hồ sơ nằm ngoài chat và câu hỏi cho người xem.",
+      "visual_concept": "Trung cảnh Cáo bên trái và cửa sổ cài đang chờ ở phải. Hai thẻ trừu tượng mang cùng icon của 07. Thẻ Quyền trượt vào trước, thẻ nhà phát hành lật ra, rồi cả hai bung phần chi tiết bằng vạch. Chỉ sau nhịp kiểm, hai thẻ thu lại và để lộ nút xác nhận dạng hình rỗng ở trạng thái chờ. Khay ngoài giữ hồ sơ góc cam trong suốt cảnh.",
+      "scene_type": "object_interaction",
+      "environment": "A · office, trở về trung cảnh ngang bàn. Xa là ánh cửa sổ ấm từ trái, giữa là Cáo và cửa sổ cài x430–975, y480–1175, cạnh đó có mép chat và khay ở y1050–1280. Gần là mép bàn thấp, hai thẻ nổi ở nửa phải và hồ sơ góc cam trong khay. Cụm hai thẻ và Cáo phủ trục y480–1175. Phụ đề y255–425, tách khỏi hai thẻ và đầu Cáo.",
+      "character_action": "thumbs_up.png, hộp alpha x100, y710, rộng khoảng 302 px, cao khoảng 471 px (xấp xỉ 1,45× nguồn). Giữ dáng chốt hướng về hai thẻ bên phải. Hai thẻ hoạt động ở x≥438 để không che mặt hay bàn tay.",
+      "props": [
+        "Cửa sổ cài giả lập với nút xác nhận là hình rỗng, chờ suốt cảnh. Hai thẻ không chữ, cùng icon thẻ định danh nhà phát hành và khung lưới quyền của 07, chi tiết bằng vạch trừu tượng.",
+        "Khay viền xanh ngoài ô chat giữ ba thẻ của 09. Bố trí hồ sơ góc cam trên mép thấy được. Giữ kích thước Cáo theo alpha thật."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt về trung cảnh ngang bàn, Cáo cùng khay ngoài vẫn chứa hồ sơ. Cửa sổ cài ở phía phải đang chờ."
+        },
+        {
+          "t": 1.02,
+          "event": "Thẻ quyền trượt tới trước cửa sổ cài, làm rõ mục đầu tiên được mở xem trước khi xác nhận."
+        },
+        {
+          "t": 2.22,
+          "event": "Thẻ nhà phát hành lật ra cạnh thẻ quyền bằng co rồi mở bề rộng từ trục dọc. Hai mặt thẻ giữ icon ở vị trí tách nhau."
+        },
+        {
+          "t": 3.47,
+          "event": "Hai thẻ bung phần chi tiết dạng vạch xuống dưới, để người xem so hai mục trong nhịp nghỉ sau câu hỏi."
+        },
+        {
+          "t": 4.77,
+          "event": "Hai thẻ khép lại vào cửa sổ cài. Nút xác nhận lộ ra và giữ trạng thái chờ. Cáo và hồ sơ góc cam ngoài chat còn thấy. Kết trên khung này với đuôi im 0,50 s."
+        }
+      ],
+      "voice_over": "Kiểm quyền trước khi cài.\nBạn xem quyền hay nhà phát hành trước?\nBình luận cho Cáo nhé.",
+      "text_overlay": "",
+      "sound_effects": [
+        "Giọng đọc. Nghỉ 0,40 s sau lời chốt, 0,70 s sau câu hỏi với hai thẻ đang mở. Đuôi im 0,50 s sau lời mời. Kết trực tiếp trên hình, giữ đủ 41,90 s."
+      ],
+      "transition": "cut",
+      "duration_s": 5.97,
+      "main_change": "Hai thẻ thông tin mở ra trước nút cài rồi thu về, cho thấy bước kiểm trước xác nhận. Hồ sơ góc cam ở khay bên ngoài từ đầu tới cuối.",
+      "text_groups": 0,
+      "hold_reason": "",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,899 @@
+{
+  "video_id": "IT-T5-E01",
+  "status": "APPROVED",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene chỉ gõ chữ vào màn hình IDE và hiện banner, thiếu thẻ, ray, khe ghi và trạng thái vạch. CharacterScene có OfficeEnvironment và pose nhưng thiếu đạo cụ động của các cận cảnh; QASequenceScene dựng beat hội thoại trên nền cố định. ExplainerScene vẽ dãy ô/mũi tên trên #161a26, thiếu bảng ô lồng, đường đi từng thẻ và hai vỏ kho với trạng thái độc lập. DataVizScene chỉ có thanh số liệu trên nền cố định, PromptReviewScene chỉ có thẻ yêu cầu và tag, và object_interaction chưa có composition được ánh xạ. Dùng Pillow cho các lớp RGBA có mặt thẻ và dấu nhất quán, phối cảnh phẳng theo nền office → incident → database → office; dùng FFmpeg để ghép và giữ các trạng thái liên tục qua mối nối.",
+  "visual_style_note": "Khung 1080×1920, 9:16, 30 fps. Dùng ba lớp từ make_background.py, cùng ánh xanh dịu từ trên trái, nền #122438, mặt thẻ #23415C, chữ #F3F7FB, ray #9CB1C5. Cảnh báo #FF6B6B đi với vân xiên và ×; đang xét/khoá #FFCB6B đi với nét đứt hoặc ổ khoá; khay được chọn #68CCF5 đi với viền liền và ray; đã kiểm/ghi #72D8A0 đi với ✓ ngoài thẻ. Hình bo góc, mặt chính diện, trung tâm nền sạch và không có chữ.\n\nGiữ một bảng mẹ, ba khay và chín thẻ 132×58 px. Tháng 1 có tam giác, tháng 2 hình vuông, tháng 3 hình tròn; ba vị trí khuyết trên một mép phân biệt các dòng cùng khay. Chỉ thẻ tam giác dùng để tra có thêm góc gập và khuyết ở giữa. Thẻ đơn mới mang sọc chéo khác hẳn cả ba nhóm. Dấu rộng tối thiểu 27 px và tương phản rõ ở 360×640; các ray dùng khoảng trống hoặc chạy dưới mặt thẻ. Chỉ nguồn có một vạch, luôn gắn vật lý vào kho chính.\n\nCáo dùng ba PNG của bộ poses theo mốc 0–4,37 s, 17,77–22,48 s và 37,82–41,96 s; tổng 13,22 s. Nhún cả sticker cho phản ứng, cắt ở mốc vào/ra; nhân vật không nhép miệng hoặc xoay khớp. Nếu cần đổi góc, chỉ cắt, crop hay dịch lớp phẳng, dùng hình tách lớp thay cho lật 3D. Nếu dùng overlay có toạ độ đổi theo thời gian, đặt eval=frame; nếu dùng zoompan trên ảnh tĩnh, đặt d theo số khung cảnh. Áp chuyển cảnh trong các mốc đã phân, không khấu trừ thời lượng lần nữa.\n\nGiữ các vật quan trọng trong x≈90–990, y≈250–1500. Khi có Cáo, hộp nhìn chính ở y315–925 và phụ đề y940–1070, hoàn toàn trên đầu Cáo; các nhịp vắng Cáo đặt phụ đề y1290–1490, chuyển dải giữa các cue. Có thể đặt chính xác bằng ASS PlayRes 1080×1920. Segoe UI có dấu, phụ đề Semibold khoảng 56 px tối đa hai dòng, viền tối 4 px. Chỉ dựng nhãn kỹ thuật ghi trong text_overlay, dùng animation_timeline để bật/tắt từng nhãn. Không có nhãn «AI tạo» hay «Ví dụ dựng» trên hình và không có chữ/hình thừa (giám đốc yêu cầu 19/11/2026); phụ đề không tính vào text_groups.\n\nBa chip biểu tượng không chữ ở x735–975, y250–310, theo thứ tự thẻ lỗi, ba ngăn, hộp lưu. Viền sáng ở 0,00 s, 5,17 s và 26,49 s; chip đã qua có ✓. Bìa chọn khung sát 1,55 s, ưu tiên thấy Cáo, thẻ vừa bật, dấu ×, vạch và tối đa hai nhãn kỹ thuật hook; kiểm ở 180×320. Vùng vật chính cao khoảng 580–680 px, kiểm bản dựng 360×640 trước và sau mốc đổi hình.\n\nt trong animation_timeline tính từ đầu nhịp; những mốc gọi là toàn tập hoặc nhắc lại trong nội dung event dùng đồng hồ toàn tập. Giữ 41,96 s theo bảng cảnh và đo TTS để duyệt lại mốc hình; không dồn khoảng nghỉ hoặc tăng tốc bù. Chỉ giọng Minh Đức và hai tiếng báo kịch bản đã chốt, không nhạc nền. Đuôi im 0,70 s tính một lần từ hết câu hỏi cuối, thẻ còn dịch vào hốc.",
+  "talking_head_ratio": 0,
+  "scenes": [
+    {
+      "scene_id": "S01-L01",
+      "narrative_purpose": "Mở bằng sự cố vào ca tạo đơn dù bảng đã chia theo tháng.",
+      "visual_concept": "Mở ngay trên màn hình có ba ngăn và vạch báo đầy. Đơn sọc chạy tới một khe cụ thể rồi bật trở lại khi dấu × chặn miệng khe.",
+      "scene_type": "ui_simulation",
+      "environment": "office. Xa: quầng xanh dịu từ trên trái trên nền #122438. Giữa: silhouette bàn và người xử lý đơn ở mép trái, màn hình công việc x330–970, y315–925. Gần: viền bàn tối nhẹ dưới vùng an toàn. Giữ tâm sạch; khi máy dịch, lớp gần dịch nhiều hơn lớp giữa và lớp xa. Từ 1,45 s hoà riêng lớp nền sang incident, giữ nguyên màn hình và vạch.",
+      "character_action": "Giữ sticker surprised, rộng 210 px, x≈90, chân y≈1460, cao khoảng 352 px trước nhún. Dáng bất ngờ hướng về màn hình, nhún nhẹ toàn lớp lúc đơn bật lại. Vai phụ chỉ là silhouette ở nền.",
+      "props": [
+        "Màn hình bo góc cao 610 px; ba khay trong cùng một bảng, mỗi khay có ba thẻ.",
+        "Thẻ đơn sọc chéo 132×58 px; khe ghi dạng rãnh tối có hai má; dấu × đỏ cỡ 90 px.",
+        "Vạch ngang có rãnh, nắp đầu và vân xiên đỏ, gắn qua chân đỡ vào vỏ kho chính. Hai nhãn ở hai hàng riêng."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở ngay với Cáo, bảng đã có ba ngăn, hai nhãn 72 px và vạch đỏ đầy rãnh. Đặt thẻ sọc ngoài khe, chip sự cố viền sáng."
+        },
+        {
+          "t": 0.45,
+          "event": "Thẻ sọc tiến dọc ray, qua nhịp nghỉ 0,20 s sau «rồi», rồi áp sát khe."
+        },
+        {
+          "t": 1.11,
+          "event": "Vào khoảng nghỉ 0,80 s sau câu hỏi, giữ rõ điểm tiếp xúc."
+        },
+        {
+          "t": 1.38,
+          "event": "Dấu × đỏ chặn khe. Thẻ bật lùi hơn một bề ngang thẻ, mặt sọc còn đọc được. Cáo nhún phản ứng và phát tiếng lỗi."
+        },
+        {
+          "t": 1.45,
+          "event": "Hoà nền sang incident, giữ nguyên tiền cảnh. Tại 1,55 s còn thấy đường thẻ bật, dấu × và vạch đỏ, dùng làm bìa. Hoà nền tiếp sang nhịp sau đến 1,95 s."
+        }
+      ],
+      "voice_over": "Chia rồi, vẫn đầy?",
+      "text_overlay": "Tạo đơn\nKho chính",
+      "text_groups": 2,
+      "sound_effects": [
+        "Tiếng lỗi tự tạo khoảng 0,12 s ở 1,38 s toàn tập, dưới mức giọng."
+      ],
+      "transition": "fade",
+      "duration_s": 1.91,
+      "main_change": "Thẻ sọc bật ngược, × chặn ngay miệng khe; ba khay vẫn nằm dưới vạch đỏ.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S01-L02",
+      "narrative_purpose": "Cho thấy hệ quả vận hành, đơn mới nằm ngoài bảng.",
+      "visual_concept": "Góc nhìn thẳng vào mặt giao diện. Ray từ màn hình tới kho lộ rõ. Thẻ lùi về ô chờ dạng hốc nông; × nằm nguyên tại khe và ba khay bên trong còn nguyên.",
+      "scene_type": "ui_simulation",
+      "environment": "incident. Xa: quầng xanh trên trái cùng hướng với office. Giữa: silhouette cụm báo lỗi ngoài trục ray. Gần: viền vỏ máy tối mờ. Tâm dành cho màn hình và ray, ánh đỏ chỉ bám vào khe và vạch; dịch các lớp theo chiều sâu khi máy di chuyển. Hoàn tất hoà lớp nền ở 1,95 s; làm dịu rìa để ô chờ nổi rõ.",
+      "character_action": "Giữ sticker surprised, rộng 210 px, x≈90, chân y≈1460, cao khoảng 352 px trước nhún. Giữ chân và dáng qua mối nối, hướng phản ứng về ô chờ và khe lỗi.",
+      "props": [
+        "Ray liền trung tính dày 12–16 px, kết thúc tại mặt kho.",
+        "Ô chờ có viền mở, đủ rộng cho thẻ sọc; ô chờ và khe nằm trong hộp màn hình cao 610 px."
+      ],
+      "camera": {
+        "shot": "pov",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ hai nhãn 72 px và vạch ở cùng chỗ. Nét ray liền lộ dần từ dưới thẻ tới khe khi nền còn hoà."
+        },
+        {
+          "t": 0.69,
+          "event": "Thẻ sọc lùi hẳn về ô chờ; để lộ khoảng hở rõ giữa nó và dấu × tại khe."
+        },
+        {
+          "t": 1.15,
+          "event": "Trong 0,40 s sau lời, đoạn ray ngay khe chuyển từ nét liền thành nét đứt, tách hai đầu đường ghi."
+        }
+      ],
+      "voice_over": "Đơn mới chưa lưu được.",
+      "text_overlay": "Tạo đơn\nKho chính",
+      "text_groups": 2,
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 1.55,
+      "main_change": "Thẻ nằm trong hốc ở ngoài bảng; đường ghi bị đứt tại ×.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": true,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S01-L03",
+      "narrative_purpose": "Nối nơi đơn bị chặn với chỉ báo của đúng kho đang nhận đơn.",
+      "visual_concept": "Ở góc cận, ray lỗi bẻ thành chữ L dẫn tới chân đỡ của vạch đỏ. Mép nắp bảng mở dọc đường ghi khi đi vào bên trong.",
+      "scene_type": "cinematic_close_up",
+      "environment": "incident. Xa: quầng xanh trên trái cùng hướng với office. Giữa: silhouette cụm báo lỗi ngoài trục ray. Gần: viền vỏ máy tối mờ. Tâm dành cho màn hình và ray, ánh đỏ chỉ bám vào khe và vạch; dịch các lớp theo chiều sâu khi máy di chuyển. Vỏ kho và ray nằm trong hộp bao cao khoảng 610 px. Hoà lớp nền sang database từ 4,37 s; giữ hướng ray trùng qua mối nối.",
+      "character_action": "Giữ sticker surprised, rộng 210 px, x≈90, chân y≈1460, cao khoảng 352 px trước nhún. Nhìn theo ray gập tới vạch cho đến 4,37 s, sau đó ngắt lớp khi đi dọc ray vào bảng.",
+      "props": [
+        "Ray gập chữ L màu trung tính, đoạn tại khe vẫn cụt có ×; đoạn đứng nối vật lý vào chân vạch.",
+        "Vỏ kho có nắp trượt để lộ bảng mẹ; nhãn kho 72 px gắn với vạch."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "tracking"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ thẻ trong ô chờ, ray đứt cùng hai nhãn từ nhịp trước."
+        },
+        {
+          "t": 0.29,
+          "event": "Ray gập lên trên về chân vạch đỏ. Tắt «Tạo đơn» đúng lúc gập; giữ «Kho chính»."
+        },
+        {
+          "t": 0.91,
+          "event": "Chân vạch đã nối rõ với kho. Ẩn Cáo, bắt đầu nghỉ 0,80 s. Mép nắp bảng trượt ngang lộ hàng bên trong; máy đi dọc ray, vạch và nhãn rời khung cùng vỏ khi lớp nền hoà."
+        },
+        {
+          "t": 1.54,
+          "event": "Mặt bảng vào tâm; khớp đường viền mép đã mở sang dải hàng."
+        }
+      ],
+      "voice_over": "Nhìn vạch kho nhé.",
+      "text_overlay": "Tạo đơn\nKho chính",
+      "text_groups": 2,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 1.71,
+      "main_change": "Ray gãy khúc nối khe lỗi với chân vạch, rồi nắp kho trượt để lộ mặt bảng.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02-L04",
+      "narrative_purpose": "Xác lập việc định tuyến các dòng bằng giá trị của một cột.",
+      "visual_concept": "Một thẻ gập góc mở thân thành dải hàng. Tám hàng khác lộ ngay dưới trong cùng khung. Ô lịch nhô ra trước, rồi cả cột lịch gài thành một trục đứng.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Bảng x100–980, y330–1000; vỏ kho ngoài trục giữa, ánh sáng giữ cùng hướng từ nhịp trước.",
+      "character_action": "",
+      "props": [
+        "Bảng mẹ bo góc; dải hàng cao 58 px cách nhau theo bước 64 px. Phần mặt thẻ 132×58 px giữ nguyên khi dải dữ liệu mở từ cạnh.",
+        "Ô lịch bằng hình vuông có hai quai, giữa có tam giác, vuông hoặc tròn; viền đang xét hổ phách nét đứt."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp đường mép bảng đã mở. Chip sự cố thành ✓, chip chia khay sáng. Thấy thẻ gập góc trong khung bảng."
+        },
+        {
+          "t": 0.53,
+          "event": "Dải hàng bung ngang từ cạnh thẻ gập; tám dải còn lại lần lượt lộ theo trục dọc, đủ chín dấu dòng."
+        },
+        {
+          "t": 1.38,
+          "event": "Một ô ngày trượt ra khỏi lưới khoảng 90 px và lộ mặt lịch hai quai."
+        },
+        {
+          "t": 2.18,
+          "event": "Các ô ngày còn lại nhô ra và chốt thành cột viền hổ phách. Trong 0,55 s nghỉ, hiện một bản mặt lịch lớn ở bên cạnh bằng tách lớp phẳng; các thẻ giữ cỡ."
+        }
+      ],
+      "voice_over": "Partition chia các dòng theo một cột.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.73,
+      "main_change": "Thẻ mở thành hàng, nhiều hàng lộ ra, rồi các ô lịch gài thẳng thành cột.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02-L05",
+      "narrative_purpose": "Xác định ngày tạo là cột dùng để chia trong ví dụ.",
+      "visual_concept": "Khớp biểu tượng lịch sang góc cận. Ô được chọn tách lên trước bảng. Sau đó ba bản mặt lịch mang ba dấu tương ứng trượt ra đầu ba khay trống. Chín thẻ còn ở dải nguồn trái.",
+      "scene_type": "object_interaction",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Bảng cao khoảng 650 px lệch sang phải để chừa dải nguồn trái, máy dịch theo mặt lịch.",
+      "character_action": "",
+      "props": [
+        "Ô lịch cận rộng khoảng 185 px, có hai quai và dấu lớn; ba tab nhỏ có chân vuông, mỗi tab mang đúng dấu của nhóm.",
+        "Ba khay trống x270–488, x510–728, x750–968 trong cùng bảng. Dải nguồn bên trái giữ chín mặt thẻ cùng kích thước."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "pan_right"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp mặt lịch sang cận. Đặt «Ngày tạo» 56 px ở cạnh ô lịch, tránh dải thẻ."
+        },
+        {
+          "t": 0.16,
+          "event": "Ở nhịp nghỉ 0,25 s sau «Ở đây», ô ngày nhô khỏi lưới, một nét chỉ ngắn nối về cột."
+        },
+        {
+          "t": 1.35,
+          "event": "Từ ô ngày hiện ba mặt lịch khác dấu, lần lượt trượt về ba đầu khay rỗng. Dải nguồn giữ nguyên thẻ."
+        },
+        {
+          "t": 2.19,
+          "event": "Qua 0,55 s nghỉ, chân tab cài vào đầu khay, nét chỉ cột thu về. Tắt «Ngày tạo» trước khi sang 10,64 s."
+        }
+      ],
+      "voice_over": "Ở đây, cột đó là ngày tạo đơn.",
+      "text_overlay": "Ngày tạo",
+      "text_groups": 1,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.74,
+      "main_change": "Mặt lịch tách thành ba tab, cài vào ba đầu khay đang rỗng.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02-L06",
+      "narrative_purpose": "Cho thấy các dòng vào đúng khay tháng trong cùng một bảng.",
+      "visual_concept": "Nhìn ba lượt ghép theo dấu hình. Thẻ nguồn đi xuống hành lang riêng, qua ray dưới chân khay rồi rẽ lên cột đích. Các slot được lấp từ trên xuống qua lối vào ở đáy.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Góc chính diện rộng, bảng cao khoảng 670 px, chừa đường ngang dưới các slot và vùng đệm giữa thẻ với phụ đề.",
+      "character_action": "",
+      "props": [
+        "Dải nguồn x104–236, từ dưới lên là các nhóm tam giác, vuông, tròn; trong mỗi nhóm, ba mặt thẻ có ba vị trí khuyết khác nhau.",
+        "Ba khay ngang rộng 218 px mỗi khay, đủ nhãn 56 px. Dùng ray ngang dưới slot và lối lên riêng ở từng khay."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Bật ba nhãn tháng 56 px sau khi «Ngày tạo» đã tắt. Dấu lịch đặt trên tab, cách hàng chữ."
+        },
+        {
+          "t": 0.26,
+          "event": "Nhóm tam giác từ dưới dải nguồn chạy theo ray rồi lần lượt cài vào slot trên, giữa, dưới của khay trái."
+        },
+        {
+          "t": 1.01,
+          "event": "Nhóm vuông đi cùng ray, rẽ vào khay giữa. Nét nối chỉ sáng quanh tab vuông."
+        },
+        {
+          "t": 1.71,
+          "event": "Trong 0,70 s nghỉ, nhóm tròn lấp khay phải. Trong mỗi lượt, các thẻ đi gối nhau đúng ray, giữ khe và không vượt nhau hay che dấu đã cài. Tắt cả ba nhãn ở 13,04 s."
+        }
+      ],
+      "voice_over": "Đơn tháng nào vào khay tháng đó.",
+      "text_overlay": "Tháng 1\nTháng 2\nTháng 3",
+      "text_groups": 3,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.4,
+      "main_change": "Dải đơn bên trái rỗng dần; ba khay bên phải lần lượt nhận đúng thẻ cùng dấu.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02-L07",
+      "narrative_purpose": "Gắn thuật ngữ với một khay và xác lập cả ba thuộc một bảng.",
+      "visual_concept": "Viền bảng chung mở rộng ôm cả ba khay. Viền xanh lam ôm riêng khay giữa. Thanh trên hạ xuống gài vào tai cài của từng khay.",
+      "scene_type": "object_interaction",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Bảng cao khoảng 625 px giữa hành lang máy chủ. Làm dịu viền chung trong nhịp chọn, rồi dồn sáng về chốt khi gài.",
+      "character_action": "",
+      "props": [
+        "Khung ngoài bo góc có thanh ngang và ba tai cài ở ba khay.",
+        "Viền lam liền dày 12 px ôm riêng khay giữa; đặt nhãn 72 px ở dải trống bên trên cùng nét chỉ xuống viền."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Tắt các nhãn tháng. Giữ vị trí, cỡ thẻ và các vách."
+        },
+        {
+          "t": 0.16,
+          "event": "Hai mép khung mở ra hai bên, đường viền ngang nối liền thành khung bao cả ba khay."
+        },
+        {
+          "t": 1.01,
+          "event": "Viền lam chạy quanh riêng khay giữa, đặt «Partition» sát viền từ mốc này. Giữ rõ qua nghỉ 0,20 s sau từ."
+        },
+        {
+          "t": 2.11,
+          "event": "Ba tai nhô lên khỏi đầu khay hướng về một thanh chung."
+        },
+        {
+          "t": 2.63,
+          "event": "Trong 0,50 s nghỉ, thanh ngang hạ xuống gài vào ba tai. Giữ rõ từng vách khay."
+        }
+      ],
+      "voice_over": "Mỗi khay là một partition, chung một bảng.",
+      "text_overlay": "Partition",
+      "text_groups": 1,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3.13,
+      "main_change": "Viền lớn bao cả ba, viền lam khoanh riêng một khay, ba tai gài vào cùng thanh.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02-L08",
+      "narrative_purpose": "Cho người xem kiểm lại số dòng bằng dấu nhận dạng.",
+      "visual_concept": "Bên dưới các khay đang chứa thẻ, một dải chín đường bao rỗng mở ra, mô tả vị trí trước khi chia. Các nét ghép kết nối theo dấu chính và vị trí khuyết.",
+      "scene_type": "comparison_scene",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Hộp khay và dải tham chiếu cao khoảng 640 px, chừa rãnh giữa hai mảng chạy nét ghép.",
+      "character_action": "",
+      "props": [
+        "Chín viền 132×58 px chỉ có nét mảnh và dấu khuyết ở góc; chín thẻ thật vẫn có mặt tô kín.",
+        "Nét ghép dày 8 px kết thúc ở mép thẻ và viền, không chạy qua dấu nhận dạng."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Tắt «Partition». Dải ô rỗng trượt ra dưới mép bảng, ghép theo ba nhóm."
+        },
+        {
+          "t": 0.38,
+          "event": "Hai nhóm gài lần lượt đường ghép vào đúng dấu và vị trí khuyết."
+        },
+        {
+          "t": 0.7,
+          "event": "Bắt đầu nghỉ 0,90 s. Giữ các đầu ghép đã chốt trong khi đường cuối chạy theo rãnh."
+        },
+        {
+          "t": 1.13,
+          "event": "Nhóm cuối chốt ba đường, lộ đủ chín cặp; các thẻ thật đứng yên trong khay."
+        }
+      ],
+      "voice_over": "Vẫn đủ dòng.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 1.6,
+      "main_change": "Dải ô rỗng xuất hiện và nối đủ chín cặp, mỗi dây dừng ở đúng thẻ trong khay.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03-L09",
+      "narrative_purpose": "Trả lời nguyên nhân bằng cách cho thấy kích thước và số dòng được giữ.",
+      "visual_concept": "Hai cách xếp đặt cùng trục dọc, so cạnh và dấu khuyết. Dải viền rút đi để lại đúng ba khay cùng chín thẻ. Ray ghi trở vào ở cuối để quay về chỉ báo đỏ.",
+      "scene_type": "comparison_scene",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Bảng và dải đối chiếu nằm trong x330–970, y315–925. Cuối nhịp, hoà riêng nền từ database sang incident khi đi ngược đường ghi.",
+      "character_action": "Giữ sticker point_up, rộng 210 px, x≈90, chân y≈1460, cao khoảng 308 px. Đặt cặp đang so theo hướng tay giơ lên, rồi mở ray dẫn từ bảng lên vạch.",
+      "props": [
+        "Ba khay và dải viền rỗng vừa đối chiếu trong cùng hộp bao cao khoảng 610 px, ba cột thẻ 132 px, bố cục hai mảng trên/dưới.",
+        "Gờ căn thẳng cho thấy hai mặt cùng chiều rộng, chiều cao; ray hồi ở mép bảng."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cáo vào đúng dáng. Khớp cặp dấu giữa hai cách xếp và đặt mảng bảng trong vùng trên-phải."
+        },
+        {
+          "t": 0.58,
+          "event": "Hai mảng trượt lại gần trên cùng mặt phẳng, cho cạnh thẻ và viền trùng các vạch căn. Giữ cặp nổi qua nghỉ 0,25 s sau «nén»."
+        },
+        {
+          "t": 1.68,
+          "event": "Dải rỗng thu về mép. Cả chín thẻ tô kín ở nguyên trong ba khay."
+        },
+        {
+          "t": 1.95,
+          "event": "Bắt đầu nghỉ 1,05 s. Viền ngoài khép lại về dáng bảng trong màn hình, ray ghi lộ ra nối bảng với khe."
+        },
+        {
+          "t": 2.53,
+          "event": "Đi ngược ray, hoà lớp nền sang incident. Đưa khe và vạch nguyên độ dài về vị trí trùng khung mở."
+        }
+      ],
+      "voice_over": "Chia khay thì không nén, không xoá.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3,
+      "main_change": "Hai cách xếp áp gần để so cỡ; dải rỗng rút đi, ba khay và chín thẻ vẫn còn.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03-L10",
+      "narrative_purpose": "Đóng câu hỏi mở bằng đúng chỉ báo kho, rồi chuyển sang lợi ích của việc chia khay.",
+      "visual_concept": "Trở lại góc nhìn đủ thấy đúng vạch và khe như lúc mở. Bảng nằm dưới vạch; đầu ray vẫn cụt. Sau đáp án, bảng trượt ra trước và nhận một tờ lịch lọc.",
+      "scene_type": "cinematic_close_up",
+      "environment": "incident. Xa: quầng xanh trên trái cùng hướng với office. Giữa: silhouette cụm báo lỗi ngoài trục ray. Gần: viền vỏ máy tối mờ. Tâm dành cho màn hình và ray, ánh đỏ chỉ bám vào khe và vạch; dịch các lớp theo chiều sâu khi máy di chuyển. Màn hình giữ bố cục hook x330–970, y315–925. Sau 21,68 s, cho mặt bảng tiến tới và hoà lớp nền sang database theo mép bảng giữa hai góc.",
+      "character_action": "Giữ sticker point_up, rộng 210 px, x≈90, chân y≈1460, cao khoảng 308 px. Giữ dáng từ 17,77 s, tay hướng về vạch và khe ở phía trên; ẩn ở mối nối 22,48 s.",
+      "props": [
+        "Vạch kho chính đúng cùng chiều dài đỏ có vân xiên như hook, cùng chân đỡ và khe ×.",
+        "Thẻ lọc hình lịch có dấu tròn, giữ cạnh phẳng khi vào khung; nhãn kho 72 px gắn vỏ."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp khung vạch lúc mở, lộ lại đầu ray đứt cùng ×. Ba khay nằm dưới cùng vạch đỏ nguyên độ dài. Hiện «Kho chính»."
+        },
+        {
+          "t": 0.91,
+          "event": "Trong 0,80 s nghỉ, bảng trượt ra trước vạch và thẻ lịch lọc vào hành lang trước bảng. Chuyển trọng tâm sang thẻ."
+        },
+        {
+          "t": 1.43,
+          "event": "Thẻ lọc phủ đúng vùng tiêu điểm mới; vạch và chữ chỉ rời khung cùng vỏ, mức đỏ không đổi. Hoà mềm phần nền về database."
+        }
+      ],
+      "voice_over": "Vạch kho vẫn đỏ.",
+      "text_overlay": "Kho chính",
+      "text_groups": 1,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 1.71,
+      "main_change": "Trở về điểm ghi đứt ray với vạch đỏ nguyên mức, rồi bảng tiến lên đón bộ lọc.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04-L11",
+      "narrative_purpose": "Cho thấy truy vấn lọc theo tháng có thể bỏ qua khay ngoài kỳ.",
+      "visual_concept": "Thẻ lịch dấu tròn mở trước bảng. Tuyến xanh từ thẻ rẽ vào đúng khay tròn. Hai nhánh ngoài kỳ rút lại, nhưng khay và thẻ của chúng vẫn nhìn thấy được.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Góc chính diện rộng, bảng x100–980 cao khoảng 630 px, còn lối bên trái để cuối cảnh lần theo khay cũ. Hạ độ tương phản nền thay vì làm mờ số lượng thẻ.",
+      "character_action": "",
+      "props": [
+        "Thẻ lọc rộng khoảng 250 px; «Tháng 3» 56 px nằm trên thẻ, không nhắc lại trên khay.",
+        "Tuyến xanh lam dày khoảng 15 px kết thúc tại khay tròn; hai nhánh trung tính tách đầu có chỗ thu về. Ba khay giữ nguyên hộp bao và hình thẻ."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "tracking"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Ẩn Cáo ở mối nối. Giữ ba khay; khớp thẻ lọc từ cảnh trước."
+        },
+        {
+          "t": 0.07,
+          "event": "Hai quai của lịch mở lên và mặt lọc lộ «Tháng 3» cùng dấu tròn."
+        },
+        {
+          "t": 1.17,
+          "event": "Tuyến xanh đi từ dưới thẻ lọc, rẽ dứt khoát vào khay tròn. Viền liền ôm khay được đọc."
+        },
+        {
+          "t": 2.47,
+          "event": "Hai nhánh ngoài kỳ rút về điểm rẽ. Hai khay kia giảm tương phản nhẹ, giữ đủ đường bao, dấu và đúng số thẻ."
+        },
+        {
+          "t": 3.16,
+          "event": "Bắt đầu nghỉ 0,85 s, thẻ lọc khép, tuyến đang đọc lui khỏi tâm để chuyển tiêu điểm."
+        },
+        {
+          "t": 3.42,
+          "event": "Mép nắp bên khay cũ trượt mở vào khẩu độ, camera trượt dọc mép bảng tới góc đối diện; lộ khoảng trống bên phải dành cho kho lưu."
+        }
+      ],
+      "voice_over": "Truy vấn (query) lọc theo tháng có thể bỏ qua khay khác.",
+      "text_overlay": "Tháng 3",
+      "text_groups": 1,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 4.01,
+      "main_change": "Chỉ một đường xanh đi vào khay tròn, hai đường ngoài kỳ rút mà hai khay vẫn nguyên.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05-L12",
+      "narrative_purpose": "Giới thiệu Archive qua hai nơi lưu riêng và đường chép giữa chúng.",
+      "visual_concept": "Khay cũ vẫn gài ở kho chính bên trái. Một hộp lưu riêng trượt từ phải vào, đặt xuống với khe hở rõ với nguồn. Đường chép bắc giữa hai miệng kho; cửa đích mở trong nhịp nghỉ.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Góc nhìn nghiêng nhẹ mô phỏng bằng hai lớp vỏ, không đổi mặt chính của thẻ. Hộp bao hai kho x110–970, y360–1010; máy chủ ở rìa mờ để khe hở nổi rõ.",
+      "character_action": "",
+      "props": [
+        "Kho chính x110–480, kho lưu x610–970; hai vỏ bo góc có chân và rãnh riêng, khoảng hở 130 px, vạch đỏ gắn nguồn.",
+        "Đường dẫn hình ray chạy theo hành lang trống phía trên lòng hai kho. Dòng «Tuỳ hệ quản trị» ở dải dưới hai vỏ, cách phụ đề; hai nhãn kho đặt ngoài hành lang chuyển thẻ."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Bật chip lưu kho, đánh dấu ✓ hai chip trước. Khi vào cảnh thấy nguồn ở trái và khoảng trống ở phải."
+        },
+        {
+          "t": 0.26,
+          "event": "Lộ khớp gắn khay tam giác với kho chính. «Kho chính» 56 px đặt sát vỏ, vạch đỏ có vân giữ nguyên."
+        },
+        {
+          "t": 1.36,
+          "event": "Ở nhịp ngắt 0,20 s sau «lệnh», kho lưu trượt vào từ phải, dừng tách riêng với nguồn. Đặt «Kho lưu» 56 px; bật «Tuỳ hệ quản trị» 56 px từ 27,91 s."
+        },
+        {
+          "t": 2.46,
+          "event": "Mép vỏ trái và phải lộ đủ, đường chép bắc qua khe hở, nối đúng hai cửa."
+        },
+        {
+          "t": 2.87,
+          "event": "Trong 0,40 s nghỉ, cửa kho lưu tách hai má để đón bản sao; tắt nhãn điều kiện khi sang nhịp 29,76 s."
+        }
+      ],
+      "voice_over": "Archive không phải lệnh, mà là quy trình lưu trữ.",
+      "text_overlay": "Kho chính\nKho lưu\nTuỳ hệ quản trị",
+      "text_groups": 3,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 3.27,
+      "main_change": "Hộp thứ hai trượt vào, để hở một khoảng rõ; một ray nối đúng hai cửa tách biệt.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05-L13",
+      "narrative_purpose": "Cho thấy sao chép tạo thêm bản bên đích và nguồn vẫn còn.",
+      "visual_concept": "Viền hổ phách tách thành một khay sao ba thẻ ngay phía trên khay nguồn. Khối sao chạy ngang qua khe hở rồi gài vào cửa đích. Cả ba dấu khuyết vẫn còn ở nguồn.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Cặp kho nằm cùng mặt phẳng, trong hộp cao khoảng 650 px. Giữ khoảng hở và chừa hành lang phía trên mặt thẻ đã cài, giữ lớp nền ổn định.",
+      "character_action": "",
+      "props": [
+        "Hai vỏ và hai nhãn kho 56 px ở các dải cố định. Vạch đỏ vẫn đầy trên vỏ nguồn.",
+        "Bản sao cùng kích cỡ khay tam giác, ba thẻ 132×58 px mang cùng bộ dấu khuyết. Viền nét đứt hổ phách trong lúc di chuyển. Dời dấu soi ra khỏi đường vận chuyển."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt nhãn điều kiện, giữ hai tên kho và hai mép cửa. Chừa khay nguồn nguyên vẹn với ba dấu đọc được."
+        },
+        {
+          "t": 0.35,
+          "event": "Khối sao tách lên hành lang trống, dịch qua khoảng hở sang kho lưu. Đường chép nằm sau thẻ, không đè dấu trên nguồn."
+        },
+        {
+          "t": 1.21,
+          "event": "Trong 0,40 s nghỉ, khay sao giảm tốc và gài vào cửa đích tại 31,01 s. Khung tra bắt đầu trồi ra từ kho lưu, vạch nguồn vẫn đầy đỏ."
+        }
+      ],
+      "voice_over": "Sao chép sang kho khác.",
+      "text_overlay": "Kho chính\nKho lưu",
+      "text_groups": 2,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 1.61,
+      "main_change": "Một bộ thẻ thứ hai đi qua khe hở và vào đích; bộ dấu tương ứng vẫn còn ở nguồn.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05-L14",
+      "narrative_purpose": "Xác nhận đọc lại được một đơn và đối chiếu đủ cả lô trước khi bỏ nguồn.",
+      "visual_concept": "Máy đưa về góc cận phía kho lưu. Kính tra lấy đúng hình thẻ góc gập trong ô kết quả. Ba nét ghép cài vào ba cặp dấu nguồn và đích; sau cặp thứ ba mới đóng ✓ ở đích.",
+      "scene_type": "object_interaction",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Cận mặt hai kho, vẫn giữ cặp vỏ trong hộp bao cao khoảng 630 px. Ô tra ở dải phía trên, mờ cạnh xa của nguồn nhưng giữ cả ba dấu trên mép thẻ.",
+      "character_action": "",
+      "props": [
+        "Kính tra dạng vòng rỗng có tay ngắn; ô kết quả tạm hình viền, mở ở đường tra phía trên kho lưu.",
+        "Ba đường ghép đi qua khoảng hở ở ba cao độ khác nhau. Dấu ✓ xanh lá gắn phía ngoài vỏ kho lưu, chừa trước các dấu thẻ; nhãn kho 56 px."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp từ khung tra vừa trồi; kính tra đi vào cửa kho lưu và soi bộ dấu."
+        },
+        {
+          "t": 0.39,
+          "event": "Ô tra trả hình đúng thẻ gập góc có tam giác và dấu khuyết. Kho lưu vẫn đủ ba thẻ. Ba dây ngang khớp lần lượt theo dấu, cặp cuối khép trước dấu ✓."
+        },
+        {
+          "t": 0.97,
+          "event": "Bắt đầu nghỉ 0,40 s; trả đường tra về kho lưu. Dấu ✓ hiện ở đích tại khoảng 32,41 s sau khi đủ ba cặp. Vạch đỏ nguồn đứng nguyên."
+        }
+      ],
+      "voice_over": "Kiểm đủ bản sao.",
+      "text_overlay": "Kho chính\nKho lưu",
+      "text_groups": 2,
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 1.37,
+      "main_change": "Ô tra hiện đúng thẻ, ba cặp dấu gài nối, rồi ✓ mới đóng ở kho lưu.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06-L15",
+      "narrative_purpose": "Báo điều kiện khoá bảng trong thao tác tách khay trên PostgreSQL.",
+      "visual_concept": "Cận khớp ở mép bảng mẹ, còn thấy phần kho lưu đã kiểm ở rìa. Ổ khoá hổ phách kẹp vào khớp, thanh gài tiến vào dưới ổ. Khay gốc chưa tách khỏi bảng.",
+      "scene_type": "cinematic_close_up",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Vỏ nguồn và mép khung cao khoảng 615 px. Đặt khớp trung tâm, giữ dấu ✓ trên vỏ kho lưu ở rìa; ánh hổ phách chỉ nằm tại ổ khoá.",
+      "character_action": "",
+      "props": [
+        "Khớp gồm hai tai bo xen nhau, một tai thuộc bảng và một tai thuộc khay. Ổ khoá hình quai chữ U khoảng 135 px cao gắn vào hai tai; chốt ngang rộng khoảng 160 px.",
+        "Nhãn 72 px đặt sát ổ khoá trên một hàng riêng. Vạch đỏ gắn vỏ nguồn, các thẻ và dấu ngoài đường chốt."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt thẳng vào khớp; tắt hai nhãn kho. Kho lưu đã kiểm vẫn có ✓ ở rìa."
+        },
+        {
+          "t": 0.41,
+          "event": "Quai khoá trượt xuống và bắt lấy khớp bảng; hiện «Khoá bảng» sát khớp từ mốc này."
+        },
+        {
+          "t": 1.66,
+          "event": "Thanh gài trượt ngang vào dưới ổ, khoá hai tai cùng lúc. Giữ phần kho chính đầy đỏ và khay nguồn nguyên vị trí."
+        },
+        {
+          "t": 2.43,
+          "event": "Trong 0,40 s nghỉ, chốt bắt đầu nhả; khay vẫn nằm trong kho chính cho tới nhịp sau. Tắt «Khoá bảng» tại 35,57 s."
+        }
+      ],
+      "voice_over": "PostgreSQL cần khoá bảng để tách khay.",
+      "text_overlay": "Khoá bảng",
+      "text_groups": 1,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.83,
+      "main_change": "Quai kẹp hai tai của khớp, chốt trượt sang giữ chặt khay và bảng mẹ.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06-L16",
+      "narrative_purpose": "Tách thao tác tháo khay khỏi thao tác bỏ bản nguồn, từ đó giải thích lúc vạch mới hạ.",
+      "visual_concept": "Khay tam giác rời ray gắn bảng, đặt lên ray trung gian vẫn trong vỏ kho chính. Khay tiếp tục ra khỏi biên lưu bên phía nguồn và chỉ lúc ấy tải đỏ giảm. Kho lưu đứng riêng với đủ dấu và ✓.",
+      "scene_type": "process_animation",
+      "environment": "database. Xa: ánh xanh dịu từ trên trái. Giữa: silhouette dãy máy chủ thấp tương phản ở rìa. Gần: viền tủ tối nhẹ và phản sáng ở mép, dịch nhiều hơn lớp giữa và lớp xa khi máy chạy. Tâm dành cho bảng hoặc kho trên mặt phẳng giao diện. Mở rộng thấy hai vỏ cao khoảng 650 px, kho lưu được giữ sáng vừa đủ ở bên phải. Ở cuối, hoà riêng nền về office theo mặt vạch và ray, giữ nguyên trạng thái trước/sau của tiền cảnh.",
+      "character_action": "",
+      "props": [
+        "Hai vỏ và hai nhãn kho 56 px; khớp chung, ray tạm nằm trong biên kho chính, cửa bỏ nguồn ở mép trái riêng với đường chép cũ.",
+        "Thanh đỏ giữ đúng độ dài tới khi khay gốc ra khỏi biên. Nhãn trạng thái 56 px rộng khoảng 604 px, đặt trong dải trống y≈950–1030 của cảnh và có đường chỉ vào vỏ kho lưu."
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Thấy đồng thời hai kho, hai nhãn và ✓ của kho lưu. Giữ rõ ✓ qua đoạn ngắt 0,20 s sau «kho»."
+        },
+        {
+          "t": 0.23,
+          "event": "Chốt nhả, khay gốc trượt khỏi khớp của bảng mẹ theo nguyên khối, lộ hai tai khớp rời nhau."
+        },
+        {
+          "t": 1.03,
+          "event": "Khay đi ngang trên ray tạm và còn trong biên kho chính. Vạch đỏ giữ nguyên; đủ ba thẻ sao đứng trong kho lưu."
+        },
+        {
+          "t": 1.65,
+          "event": "Bắt đầu nghỉ 0,60 s. Khay gốc đi qua cửa bỏ bên mép trái của kho chính, rời hẳn biên tại khoảng 37,30 s. Đường chép cũ đứng yên."
+        },
+        {
+          "t": 1.93,
+          "event": "Vạch kho chính thu về mức thấp hơn sau khi cửa bỏ đã trống. Bật «đã chuyển sang kho lưu» với nét chỉ về kho lưu đã kiểm. Khớp vạch và ray sang giao diện đầu, chỉ hoà lớp nền."
+        }
+      ],
+      "voice_over": "Cất kho, kiểm xong mới xoá.",
+      "text_overlay": "Kho chính\nKho lưu\nđã chuyển sang kho lưu",
+      "text_groups": 3,
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.25,
+      "main_change": "Khay tách bảng nhưng còn trong kho và vạch vẫn đầy; khay rời kho hẳn rồi vạch mới hạ, bản sao ở nguyên đích.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07-L17",
+      "narrative_purpose": "Giải quyết lỗi mở và bắt đầu trả lại đơn cũ.",
+      "visual_concept": "Trở lại đúng màn hình và ray mở đầu. Thẻ sọc đi lại đường cũ, lọt qua khe và dừng phía trong với ✓. Mắt theo đường tra sang kho lưu; cửa trả đẩy thẻ nhận dạng cũ.",
+      "scene_type": "ui_simulation",
+      "environment": "office. Xa: quầng xanh dịu từ trên trái trên nền #122438. Giữa: silhouette bàn và người xử lý đơn ở mép trái, màn hình công việc x330–970, y315–925. Gần: viền bàn tối nhẹ dưới vùng an toàn. Giữ tâm sạch; khi máy dịch, lớp gần dịch nhiều hơn lớp giữa và lớp xa. Trở về đúng lớp bàn và ánh sáng mở đầu, màn hình x330–970, y315–925. Kho lưu riêng bên phải trong cùng hộp nhìn; ray ghi và ray tra ở hai cao độ.",
+      "character_action": "Giữ sticker thumbs_up, rộng 220 px, x≈90, chân y≈1460, cao khoảng 343 px. Đặt bên dưới điểm thẻ lọt qua, hướng dáng về dấu ✓ rồi giữ khi mắt chuyển sang đường tra.",
+      "props": [
+        "Màn hình mở đầu, vạch đã hạ cùng khe và thẻ sọc cũ. Dấu ✓ xanh lá ngoài mặt thẻ, không che sọc.",
+        "Kho lưu riêng có miệng trả và đường tra chạy phía trên ray ghi. Dải trạng thái 56 px nằm ở đáy trong hộp màn hình, x≈343–965, dẫn về kho lưu; «Kho chính» 72 px ở hàng trên gắn vạch."
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp bố cục office ban đầu, vạch đã hạ. Đổi nhãn «Kho chính» lên 72 px, tắt «Kho lưu», giữ nhãn trạng thái ở dải dưới."
+        },
+        {
+          "t": 0.23,
+          "event": "Thẻ sọc từ ô cũ chạy qua đúng khe. Khe mở và dấu × tắt. Cài thẻ trong bảng khoảng 38,45 s, dựng ✓ xanh lá và vang tiếng lưu."
+        },
+        {
+          "t": 1.08,
+          "event": "Đường tra ở tầng trên mở ra, dẫn từ ô kết quả sang khe kho lưu. Tiêu điểm rời thẻ vừa ghi."
+        },
+        {
+          "t": 1.14,
+          "event": "Trong 0,70 s nghỉ, khe kho lưu mở; dải trạng thái tắt đúng 39,16 s."
+        },
+        {
+          "t": 1.48,
+          "event": "Đúng thẻ cũ gập góc xác định bằng tam giác và dấu khuyết trượt lên đường tra. Khớp sang cảnh sau theo thẻ đang chạy."
+        }
+      ],
+      "voice_over": "Đơn cũ vẫn tra được.",
+      "text_overlay": "Kho chính\nđã chuyển sang kho lưu",
+      "text_groups": 2,
+      "sound_effects": [
+        "Tiếng lưu thành công tự tạo khoảng 0,12 s khi thẻ cài vào trong bảng, dự kiến 38,45 s toàn tập, dưới mức giọng."
+      ],
+      "transition": "match_cut",
+      "duration_s": 1.84,
+      "main_change": "Thẻ từng bị bật nay qua khe và cài trong bảng, rồi một thẻ khác từ kho lưu đi lên đường tra.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07-L18",
+      "narrative_purpose": "Chứng minh đơn cũ tra lại được và dừng ở câu hỏi kết.",
+      "visual_concept": "Theo thẻ tam giác gập góc từ kho lưu vào ô kết quả. Ô tìm có dấu hình và góc khuyết trùng thẻ; khi thẻ chạm đúng vị trí, một nắp bên hông trượt mở để lộ dấu nhận dạng.",
+      "scene_type": "object_interaction",
+      "environment": "office. Xa: quầng xanh dịu từ trên trái trên nền #122438. Giữa: silhouette bàn và người xử lý đơn ở mép trái, màn hình công việc x330–970, y315–925. Gần: viền bàn tối nhẹ dưới vùng an toàn. Giữ tâm sạch; khi máy dịch, lớp gần dịch nhiều hơn lớp giữa và lớp xa. Cận ô tra và kho lưu trong hộp nhìn y315–925, giữ vỏ đích ở rìa phải. Dịch máy theo đường tra, sau đó dừng trước khi thẻ cài hết.",
+      "character_action": "Giữ sticker thumbs_up, rộng 220 px, x≈90, chân y≈1460, cao khoảng 343 px. Giữ nguyên ảnh tĩnh và vị trí từ nhịp trước, hướng về ô trả phía trên.",
+      "props": [
+        "Thẻ tam giác có đúng góc gập và vị trí khuyết từng hiện ở phép tra kiểm. Mặt thẻ giữ kích cỡ khi đi.",
+        "Ô tra bo góc, viền hốc vừa thẻ, có mấu cùng dáng với dấu khuyết. Nắp trượt mở lộ chi tiết hình học như dấu nhận dạng, không dùng chữ hay ký tự mới."
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "tracking"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Tắt «Kho chính». Đón chuyển động thẻ theo đúng hướng khi rời cửa kho lưu."
+        },
+        {
+          "t": 0.34,
+          "event": "Đường tra đưa đúng một thẻ về ô kết quả; giữ mặt thẻ rành dấu tam giác, góc gập và vết khuyết."
+        },
+        {
+          "t": 1.34,
+          "event": "Vết khuyết khớp mấu ô tìm; nắp cạnh trượt ngang lộ dấu nhận dạng. Dừng máy khi hai đường bao đã khớp."
+        },
+        {
+          "t": 1.6,
+          "event": "Vào đuôi im 0,70 s duy nhất, thẻ trượt hết hành trình trong hốc, giữ dấu lộ rõ."
+        },
+        {
+          "t": 1.99,
+          "event": "Thẻ cài nốt vào gờ đích; giữ kết quả tới khung cuối. Chip lưu kho thành ✓ sau khi đơn cũ đã cài xong."
+        }
+      ],
+      "voice_over": "Bạn từng tra đơn cũ ở đâu?",
+      "text_overlay": "",
+      "text_groups": 0,
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 2.3,
+      "main_change": "Một thẻ đúng dấu từ kho lưu gài khớp vào ô tra và mở mặt nhận dạng.",
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

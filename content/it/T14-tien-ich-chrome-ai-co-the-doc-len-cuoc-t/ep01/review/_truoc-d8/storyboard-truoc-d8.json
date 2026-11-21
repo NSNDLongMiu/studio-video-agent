@@ -1,0 +1,3221 @@
+{
+  "video_id": "IT-T14-E01",
+  "status": "DRAFT",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "UiSimulationScene dùng DeveloperWorkspace để gõ dòng IDE/terminal và dựng banner. Nó không có tab chat hình học mở từng bong bóng (S10), luồng menu đến hàng bị gỡ (S23), hoặc cùng một tab đổi ba trạng thái quyền (S15–S19). ExplainerScene dựng chuỗi khối–mũi tên, thiếu biên tab có vùng quyền co giãn (S11), đường bị đứt độc lập với bản ở khe ngoài (S21) và lớp nền theo ngữ cảnh. CharacterScene có OfficeEnvironment nhưng thiếu các đạo cụ tương tác của hook và outro. Dùng tools/motion/components cho cửa sổ, thẻ, con trỏ, chỉ báo và khay; flow cho kết nối và bố cục S21; text, header và captions cho chữ. Tự vẽ bảng ba ô, bản lề khe, vùng quyền theo biên tab bằng Pillow. Dựng camera S01, S03, S05, S17 bằng sequence.camera trên lớp hình dư biên, hoặc crop/zoompan tương đương ≤ 1,15×; đặt chữ và Cáo sau crop. FFmpeg dùng eval=frame khi overlay có tọa độ động; nếu zoompan từ ảnh tĩnh, d bằng số khung đoạn. Các match cut nối hình trên đúng ranh giới, không chồng lấn thời lượng.",
+  "opening": {
+    "title": "AI ĐỌC ĐƯỢC CHAT CỦA BẠN?",
+    "duration_s": 2,
+    "animation": "S01: bật tiêu đề 0,10–1,96 s (96 px, hai dòng, chữ liền mạch), âm mềm 0,15 s. Cú dán xảy ra ngay opening, rồi crop tiến tới bảng đang nằm trong tab. S02 cắt góc thấp vào hệ quả."
+  },
+  "header": {
+    "text": "SECURITY / TRÌNH DUYỆT",
+    "hidden_scenes": [
+      "S02",
+      "S10",
+      "S11",
+      "S12",
+      "S14",
+      "S21"
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "1080×1920, 30 fps. Vùng hình x≈90–990, y≈250–1320; phụ đề 56 px ở dải y≈1340–1500, tối đa 28 ký tự/dòng, 2 dòng. Giữ các vị trí alpha Cáo theo plan; layout này đặt phụ đề bên dưới Cáo, cần Claude quyết ưu tiên nếu bắt buộc phụ đề ở trên đầu. Nội dung hình bo góc, bóng xuống phải và sáng trái trên; dùng nền theo từng môi trường, bản gốc xanh #60A5FA viền liền, bản sao rủi ro hồng #FB7185 viền răng cưa, chờ vàng #FBBF24 nét đứt, ngoài phạm vi xám #94A3B8 có vạch chắn, hành động an toàn xanh lục #34D399 có dấu kiểm, chữ #F1F5F9. S15–S17 và S19 dùng nền bàn thử code #15283A. Riêng S18 dùng security #151D34 cho trạng thái chờ cấp quyền, giữ trục tab và vị trí nút qua hai điểm cắt. Luôn dùng cùng mẫu bảng 2 ô trên/1 ô dưới và cùng khe ba tầng vát của ví dụ. Gói báo cáo dùng dấu khuyết riêng ở S12/S14. UI hình học và dữ liệu mẫu. Chữ vẽ qua text engine: nhãn 56–60 px, header 56 px tại x≥100 y≈265, từ khóa/số/nhãn đối chiếu 72 px, opening 96 px. Cột chữ của script là nguồn duy nhất. Chữ opening và header trong semantic_plan chỉ định cùng lớp với cấu hình cấp tập, vẽ mỗi dòng chữ đúng một lần. Ba dấu tiến độ hình học gắn header, đánh dấu sự cố S01–S09, giải thích S13–S20, xử lý S22–S27 khi header hiện. Cáo là ảnh alpha dáng có sẵn, đổi dáng bằng cắt, không nhép miệng hoặc làm mắt/tay chuyển động độc lập. Thẻ/gờ xoay giả lập bằng co ngang và hoán đổi hai mặt hoặc cắt khớp hai góc vẽ sẵn. Chỉ giọng Hải Đăng và hiệu ứng tự tạo ghi theo cảnh. Khai báo AI trong publish.json và nền tảng. Mốc nội dung 179,65 s, đuôi im 0,60 s; mốc dựng dự kiến, đo TTS rồi canh lại cue theo cụm từ, giữ nguyên lời và tổng đã duyệt.",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "narrative_purpose": "Opening",
+      "main_idea": "Một bảng giá mẫu được dán vào chat",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.79,
+      "visual_concept": "Mở sẵn thấy Cáo và clipboard chứa bảng mẫu. Vật chính là cụm clipboard–tab cao khoảng 690 px, bên dưới tiêu đề. Cắt cùng trục bảng giá sang góc thấp của S02. Crop lớp bàn/tab từ 1,00× đến 1,10× trong 1,20–1,92 s để kết vào ô vừa nhận; giữ chữ, Cáo và phụ đề ở lớp màn hình.",
+      "main_change": "Bảng xanh ba ô rời clipboard và nằm trọn trong ô chat đang nới, toàn khung chỉ có một bản.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: tường và bóng cửa sổ; giữa: mặt bàn nhìn từ trên, clipboard cạnh tab; gần: ô nhập đủ rộng, bàn phím hình khối và bóng vai phụ mờ ở mép phải. Ánh sáng xiên từ trái trên. Bố cục chéo từ vùng sao chép tới tab, nền xa mờ dần khi máy tiến.",
+      "character_action": "`desk_typing` 0,00–2,00 s, rộng 180 px, x=103, đáy y=1270. Dáng quay về ô chat; con trỏ thực hiện cú dán.",
+      "props": [
+        "Clipboard trơn và cửa sổ chat trung tính, ô nhập bo góc",
+        "Bảng mẫu xanh viền liền: hai ô trên, một ô dưới, mỗi ô vài vạch trơn",
+        "Con trỏ hình nêm và silhouette vai phụ"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở trên bàn, Cáo quay về ô nhập và clipboard đã chứa bảng mẫu."
+        },
+        {
+          "t": 0.1,
+          "event": "Tiêu đề bật tại cạnh trên tab và xuống hai dòng sau «ĐƯỢC»; cửa sổ bắt đầu nới. Âm báo mềm ở 0,15 s."
+        },
+        {
+          "t": 0.55,
+          "event": "L01 «dán»: con trỏ chạm ô nhập; bảng rời clipboard và vượt gờ ô."
+        },
+        {
+          "t": 0.95,
+          "event": "L01 «bảng giá»: bảng ba ô hiện trọn trong ô nhập trước 1,20 s; ô nhập giãn đón."
+        },
+        {
+          "t": 1.21,
+          "event": "Crop bàn/tab tiến sát cửa sổ và ngừng ở bảng đã dán; không sinh bản sao."
+        }
+      ],
+      "voice_over": "Mình dán bảng giá.",
+      "text_overlay": "AI ĐỌC ĐƯỢC CHAT CỦA BẠN?",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bảng giá ba ô",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng viền xanh với bố cục 2 trên 1",
+            "motion": "Trượt nguyên khối từ clipboard vào ô chat."
+          },
+          {
+            "term": "Dán dữ liệu",
+            "type": "action",
+            "form": "animation",
+            "object": "Con trỏ, clipboard và ô nhập",
+            "motion": "Con trỏ chạm ô, bảng rời nguồn, ô nới để đón."
+          },
+          {
+            "term": "Bản gốc trong chat",
+            "type": "result",
+            "form": "status",
+            "object": "Một bảng viền liền nằm bên trong ô",
+            "motion": "Viền ô căn khít sau cú dán."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Bảng giá ba ô",
+            "to": "Dán dữ liệu",
+            "type": "được chuyển từ clipboard"
+          },
+          {
+            "from": "Dán dữ liệu",
+            "to": "Bản gốc trong chat",
+            "type": "kết quả"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 2,
+            "effect": "none"
+          },
+          {
+            "text": "AI ĐỌC ĐƯỢC CHAT CỦA BẠN?",
+            "kind": "message",
+            "attach_to": "lớp cạnh trên của khung chat, y≈390–620 · opening, nêu câu hỏi chủ đề (bật lên một lần).",
+            "appear_s": 0.1,
+            "disappear_s": 1.96,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 0.79
+      },
+      "sound_effects": [
+        "0,15 s · Âm báo mềm ngắn tự tổng hợp."
+      ],
+      "transition": "match_cut",
+      "duration_s": 2,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S02",
+      "narrative_purpose": "Hook, hệ quả",
+      "main_idea": "Bản sao bảng giá rời trình duyệt",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.34,
+      "visual_concept": "Khung cận khóa để so hai bản. Cụm tab–đường–máy chủ cao khoảng 720 px, bản sao rộng khoảng 230 px; giữ gốc trong tab, khe vát ở ngoài mép phải. Bìa chọn khoảng 4,02 s toàn tập nếu thấy trọn hai dấu ba ô, biên trình duyệt và hướng đến khe tại 180×320.",
+      "main_change": "Một bảng thành hai. Bản viền răng cưa qua biên, lọt vào khe; bản xanh đứng lại ngay trong chat.",
+      "scene_type": "process_animation",
+      "environment": "office #111D30. Xa: dải tường khuất và bóng vai phụ dạng khối; giữa: mặt màn hình nhìn góc thấp, biên trình duyệt dày tách khỏi khe ngoài; gần: bảng và gờ khe. Ánh từ trái trên bắt viền hồng lúc gói qua biên.",
+      "character_action": "`surprised` 0,00–3,35 s, rộng 172 px, x=104, đáy y=1270; dáng phản ứng theo hướng bản sao rời tab.",
+      "props": [
+        "Cùng bảng xanh của S01 và bản sao cùng dấu 2 trên 1, viền hồng răng cưa",
+        "Miếng ghép có tia sáng và ổ trên thanh công cụ",
+        "Biên trình duyệt dày, tuyến có mũi, điểm nhận ba tầng và khe vát có gờ"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt sang cận thấp cùng bảng xanh, Cáo phản ứng; giữ rõ biên, ổ và khe ngoài."
+        },
+        {
+          "t": 0.45,
+          "event": "L02 «tiện ích»: miếng ghép ăn khớp ổ."
+        },
+        {
+          "t": 1.15,
+          "event": "L02 «bản sao»: tách bảng viền răng cưa từ mép bảng gốc, bản gốc không nhúc nhích."
+        },
+        {
+          "t": 1.8,
+          "event": "Bản sao qua đường biên ở 3,80 s toàn tập; giữ khe và gốc cùng khung."
+        },
+        {
+          "t": 2.15,
+          "event": "Bản sao vào khe ở 4,15 s toàn tập, tiếng chạm nhẹ. Khe hạ theo sức nặng của bảng."
+        },
+        {
+          "t": 2.7,
+          "event": "Gờ trước xoay ra, lộ ba ô ở đích trong khi gốc vẫn nằm trong tab; giữ quan hệ đến cắt."
+        }
+      ],
+      "voice_over": "Tiện ích gửi bản sao ra ngoài.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Tiện ích",
+            "type": "entity",
+            "form": "icon",
+            "object": "Miếng ghép có tia ở mép trình duyệt",
+            "motion": "Khớp vào ổ."
+          },
+          {
+            "term": "Bản sao bảng giá",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng ba ô giống gốc với viền răng cưa hồng",
+            "motion": "Tách ra rồi vượt biên."
+          },
+          {
+            "term": "Máy chủ ngoài",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Khối ba tầng có khe vát nằm ngoài biên",
+            "motion": "Khe hạ, gờ xoay và giữ bản sao."
+          },
+          {
+            "term": "Rời trình duyệt",
+            "type": "result",
+            "form": "flow",
+            "object": "Quỹ đạo qua đường biên giữa gốc và đích",
+            "motion": "Mũi hướng chạy sau bản sao, dừng ở khe."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Tiện ích",
+            "to": "Bản sao bảng giá",
+            "type": "sao chép phần đang hiện"
+          },
+          {
+            "from": "Bản sao bảng giá",
+            "to": "Máy chủ ngoài",
+            "type": "bản sao rời nguồn và đến đích"
+          }
+        ],
+        "texts": [],
+        "hold_s": 1.34
+      },
+      "sound_effects": [
+        "2,15 s · Tiếng chạm khẽ lúc khe nhận bản sao."
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.35,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "narrative_purpose": "Hook, nhận diện tình huống",
+      "main_idea": "Tình huống dựng nối lại hai vị trí của cùng một bảng giá mẫu",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.66,
+      "visual_concept": "Nhận lại đúng bảng và khe của S02 ở góc nghiêng. Pan trên lớp bàn vẽ dư biên, dịch tâm crop phải khoảng 135 px trong 0,65–1,70 s; giữ cặp dấu ba ô trong hình cuối. Hai vật cao khoảng 650 px theo nhóm; đến cuối sắp cùng trục trên–dưới cho S04.",
+      "main_change": "Mặt bảng xoay để lộ mẫu hình học, máy trượt sang bản có đúng dấu ba ô trong khe ngoài.",
+      "scene_type": "cinematic_close_up",
+      "environment": "office #111D30. Xa: bóng cửa sổ lệch trái; giữa: cạnh bàn chéo và tab/khe cùng mặt bàn; gần: mặt bảng gốc và gờ ngoài. Ánh trái trên chạy qua vạch trơn, lớp hậu cảnh dịch ít hơn tiền cảnh.",
+      "character_action": "",
+      "props": [
+        "Bảng mẫu ba ô với vạch giá trơn, tab chat và khe vát đã nhận"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pan_right"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở trên góc nghiêng, lấy dấu ba ô của bản gốc làm cầu nối."
+        },
+        {
+          "t": 0.4,
+          "event": "L03 «ví dụ»: mặt bảng xoay nghiêng rồi ngả ra để vạch giá trơn hiện rõ."
+        },
+        {
+          "t": 0.65,
+          "event": "Pan phải, lộ bản sao có dấu ba ô ở khe ngoài."
+        },
+        {
+          "t": 1.44,
+          "event": "Tiếp tục đặt hai vật theo trục dọc; thấy đồng thời hai vị trí trước cắt."
+        }
+      ],
+      "voice_over": "Đây là ví dụ mình dựng.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bảng giá mẫu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng ba ô và vạch trơn vô danh",
+            "motion": "Xoay lộ mặt."
+          },
+          {
+            "term": "Cùng một mẫu ở hai vị trí",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Bảng gốc trong tab và bảng viền hồng trong khe",
+            "motion": "Pan theo biên để đưa hai dấu giống nhau vào khung."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Bảng giá mẫu",
+            "to": "Cùng một mẫu ở hai vị trí",
+            "type": "chung dấu ba ô"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 2.1,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.66
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 2.1,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "narrative_purpose": "Hook, câu hỏi mở",
+      "main_idea": "Câu hỏi có hai vế, vì sao đọc được và có thu hồi được không",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.73,
+      "visual_concept": "Cụm tab–khe cao khoảng 760 px theo chiều dọc. Dùng hai thao tác ở hai đầu để gợi hai vế câu hỏi. Đường cong đổi dáng vẫn liền, khe vẫn giữ dấu ba ô. Sau câu hỏi, mép trên cửa sổ gập khớp mặt thẻ ở S05.",
+      "main_change": "Miếng ghép nhô trên tab, tab nghiêng lộ gốc; đường cong đưa mắt xuống khe xoay ra với bản sao vẫn nằm đó.",
+      "scene_type": "process_animation",
+      "environment": "office #111D30. Xa: vệt cửa sổ dọc bên trái; giữa: bàn bố trí tab ở trên, khe ở dưới, để trống giữa cho đường cong; gần: ổ nổi và chốt. Ánh cùng phía như S03, phần xa đứng yên để nguồn và đích nổi rõ.",
+      "character_action": "",
+      "props": [
+        "Miếng ghép và tab có bảng xanh",
+        "Đường liên hệ uốn cong, đầu tuyến mũi nhọn",
+        "Khe vát có bảng viền hồng"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Tab và khe vào trục dọc trước khi L05 bắt đầu ở 0,50 s."
+        },
+        {
+          "t": 0.9,
+          "event": "L05 «tiện ích»: miếng ghép nhô từ mép trên, giữ chung khung với khe."
+        },
+        {
+          "t": 1.95,
+          "event": "L05 «bảng giá trong chat»: tab ngả ra, hiện dấu ba ô xanh."
+        },
+        {
+          "t": 3.08,
+          "event": "L05 «gỡ»: đường nối lượn sang cạnh, hai đầu vẫn nối."
+        },
+        {
+          "t": 4.18,
+          "event": "L05 «lấy lại»: gờ khe xoay ra, dấu ba ô hồng nằm nguyên bên trong."
+        },
+        {
+          "t": 4.82,
+          "event": "Giữ đủ hai đầu trong nghỉ câu hỏi; từ 5,18 s gập viền tab thành mặt thẻ, giữ bảng/khe ở sâu cho tới cắt."
+        }
+      ],
+      "voice_over": "Vì sao tiện ích thấy cả bảng giá trong chat, và gỡ rồi có lấy lại được không?",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Nguồn đọc",
+            "type": "concept",
+            "form": "connection",
+            "object": "Miếng ghép nằm trên tab chứa bảng gốc",
+            "motion": "Nhô lên, tab ngả về trước."
+          },
+          {
+            "term": "Thu hồi bản đã tới",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "Khe ngoài cách nguồn một đường cong",
+            "motion": "Đường đổi hình rồi khe xoay, lộ bảng vẫn nằm trong khe."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nguồn đọc",
+            "to": "Thu hồi bản đã tới",
+            "type": "hai vế gắn cùng sự cố ở hai đầu tuyến"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 5.55,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.73
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 5.55,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "narrative_purpose": "Bối cảnh, cài tiện ích",
+      "main_idea": "Tiện ích tự giới thiệu là trợ lý miễn phí",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.45,
+      "visual_concept": "Từ tab dẫn về thẻ dựng. Crop phẳng mở 1,15× → 1,00× trong 0,10–1,55 s, tâm từ ô dán sang thẻ để đọc như hồi tưởng. Cụm quầy–thanh công cụ cao khoảng 700 px. Giao diện cửa hàng hoàn toàn hình học.",
+      "main_change": "Thẻ lật mặt trợ lý; cú nhấp tách miếng ghép, đồng xu trượt trả về và miếng ghép khớp vào ổ trình duyệt.",
+      "scene_type": "ui_simulation",
+      "environment": "security #151D34. Xa: mảng ô cửa hàng xếp lệch sâu; giữa: quầy thẻ giả lập đổ bóng dưới phải; gần: nút cộng, miếng ghép và đồng xu trơn. Ánh trái trên, thanh công cụ nằm lùi phía trên của quầy.",
+      "character_action": "",
+      "props": [
+        "Thẻ cửa hàng trơn có mặt bong bóng/tia sáng, nút dấu cộng",
+        "Miếng ghép rời cùng hình S02, ổ trên thanh công cụ",
+        "Đồng xu không số và con trỏ"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "pull_out"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp mép thẻ với viền tab gập ở S04."
+        },
+        {
+          "t": 0.15,
+          "event": "L06 «quay lại»: crop lùi theo đường từ vùng dán, lộ quầy và thẻ trơn."
+        },
+        {
+          "t": 1.45,
+          "event": "Thẻ dựng lên cho thấy nút cộng; con trỏ tiến từ mép quầy."
+        },
+        {
+          "t": 2.3,
+          "event": "L07 «cài»: ấn dấu cộng, tiếng nhấp nhẹ."
+        },
+        {
+          "t": 3,
+          "event": "L07 «tiện ích»: miếng ghép tách khỏi thẻ và chuyển lên phía thanh công cụ."
+        },
+        {
+          "t": 3.82,
+          "event": "Miếng ghép vượt hẳn mép quầy, lộ khoảng hở với thẻ và hướng tới ổ phía trên."
+        },
+        {
+          "t": 4.55,
+          "event": "L07 «trợ lý AI»: bong bóng và tia sáng hiện trên mặt thẻ."
+        },
+        {
+          "t": 5.65,
+          "event": "L08 «miễn phí»: đồng xu trượt ngược về mép phía người dùng."
+        },
+        {
+          "t": 6.2,
+          "event": "Miếng ghép đi hết phần đường còn lại rồi khớp ổ trước 7,35 s."
+        }
+      ],
+      "voice_over": "Quay lại trước lúc mình dán.\nMình cài một tiện ích tự giới thiệu là trợ lý AI.\nNó miễn phí.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Trợ lý AI",
+            "type": "term",
+            "form": "icon",
+            "object": "Bong bóng cạnh tia sáng trên thẻ",
+            "motion": "Hiện trên mặt thẻ sau cú nhấp."
+          },
+          {
+            "term": "Cài đặt",
+            "type": "action",
+            "form": "animation",
+            "object": "Dấu cộng, miếng ghép và ổ toolbar",
+            "motion": "Nhấp, tách miếng ghép, trượt vào ổ."
+          },
+          {
+            "term": "Miễn phí",
+            "type": "result",
+            "form": "metaphor",
+            "object": "Đồng xu trơn ở mép quầy",
+            "motion": "Trượt về phía người dùng thay vì vào quầy."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Trợ lý AI",
+            "to": "Cài đặt",
+            "type": "thẻ tự giới thiệu là trợ lý"
+          },
+          {
+            "from": "Cài đặt",
+            "to": "Miễn phí",
+            "type": "lời mời cài không thu phí"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7.65,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.45
+      },
+      "sound_effects": [
+        "2,30 s · Một tiếng nhấp khi ấn dấu cộng."
+      ],
+      "transition": "cut",
+      "duration_s": 7.65,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "narrative_purpose": "Bối cảnh, dữ liệu công việc",
+      "main_idea": "Bảng công việc có lớp dữ liệu cần giữ nội bộ",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.68,
+      "visual_concept": "Lấy cụm bảng và hai phiến cao khoảng 640 px. Phiến gửi khách mang dấu hồ sơ người vô danh; phiến nội bộ có nếp gập và khóa nhỏ, ba vạch hình học để nhận lại ở S19. Tất cả gắn vào cùng khung khi thu về. Cắt từ hai cạnh bảng sang hai cạnh thẻ vô danh.",
+      "main_change": "Một phiến đi về hồ sơ khách; phiến ẩn trượt lộ bên dưới, rồi cả hai lồng vào cùng bảng từng dán.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: vệt tường và bóng bàn mờ; giữa: mặt bàn nhìn sát, hồ sơ khách ở một phía; gần: bảng ba ô và hai phiến lồng. Ánh trái trên tách độ nổi của từng phiến khi nhấc.",
+      "character_action": "",
+      "props": [
+        "Bảng ba ô xanh, phiến giá gửi khách có dấu hồ sơ",
+        "Phiến nội bộ có nếp gập, khóa nhỏ, vạch trơn; lưu hình để dùng lại ở S19"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Nhìn sát mặt bàn, bảng xanh nằm nghiêng."
+        },
+        {
+          "t": 0.85,
+          "event": "L09: nhấc bảng khỏi mặt bàn để lộ đường ghép các lớp."
+        },
+        {
+          "t": 1.85,
+          "event": "L09 «giá cho khách»: phiến trượt tới sát hồ sơ, để hở mép bảng."
+        },
+        {
+          "t": 2.65,
+          "event": "Phiến trên ra khỏi mép lớp dưới, bóng đổ đổi theo chiều tách."
+        },
+        {
+          "t": 3.8,
+          "event": "L10 «giá nội bộ»: phiến có khóa và nếp gập trượt ra từ dưới."
+        },
+        {
+          "t": 5.1,
+          "event": "Hai phiến lệch hẳn nhau để lộ dấu nhận diện riêng."
+        },
+        {
+          "t": 5.97,
+          "event": "Hai phiến trượt về cùng khung bảng; mép hai phiến còn nhìn thấy trong 1,68 s quan sát."
+        },
+        {
+          "t": 6.84,
+          "event": "Phiến nội bộ vào dưới mép khung, hai gờ lệch nhau vẫn nhìn rõ; cạnh ngoài của bảng thẳng trục với mép thẻ S07."
+        }
+      ],
+      "voice_over": "Mình định nhờ công cụ phân tích giá cho khách.\nTrong bảng có cả mức giá nội bộ chưa từng công bố.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Giá gửi khách",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Phiến bên ngoài và hồ sơ khách",
+            "motion": "Phiến trượt về biểu tượng hồ sơ."
+          },
+          {
+            "term": "Giá nội bộ",
+            "type": "term",
+            "form": "illustration",
+            "object": "Phiến lồng có nếp gập và khóa nhỏ",
+            "motion": "Lộ ra bên dưới rồi nhập lại cùng phiến trên."
+          },
+          {
+            "term": "Tính nhạy cảm",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Cặp phiến với phạm vi sử dụng khác nhau",
+            "motion": "Mở lớp để phân biệt hai phiến, ghép lại để chứng minh cùng tệp."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Giá nội bộ",
+            "to": "Giá gửi khách",
+            "type": "cùng nằm trong tệp đầy đủ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7.65,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.68
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7.65,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "narrative_purpose": "Đối chiếu báo cáo",
+      "main_idea": "Vụ thật có hai tiện ích giả danh, quy mô chỉ nói về lượt cài",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.12,
+      "visual_concept": "Cụm thẻ/lưới cao khoảng 720 px. Hai thẻ có viền riêng: thẻ trái vát góc trên, thẻ phải có khuyết tròn bên. Mặt lật dùng cùng dấu bong bóng và tia sáng nhưng kiểu thẻ khác tiện ích dựng. Lưới tải là minh họa quy mô, không quy đổi ô thành số người.",
+      "main_change": "Hai thẻ khác dáng cùng lật ra mặt trợ lý rồi được bao quanh bằng nhiều hàng biểu tượng tải.",
+      "scene_type": "data_visualization",
+      "environment": "security #151D34. Xa: vách hồ sơ chìm, giữa: hai thẻ trên đế rộng, gần: các hàng biểu tượng tải mở ra hai bên và sau thẻ. Ánh trái trên, đế và thẻ tách rõ bằng bóng mềm.",
+      "character_action": "",
+      "props": [
+        "Hai thẻ báo cáo vô danh, mép vát và mép khuyết",
+        "Mặt nạ trợ lý chung và lưới mũi tải, không trục hay tổng số"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cạnh bảng nối cạnh đế hồ sơ; vùng trên còn trống để đặt hai thẻ."
+        },
+        {
+          "t": 0.85,
+          "event": "L11 «hai tiện ích»: thẻ trái vát và thẻ phải khuyết vào từ hai phía."
+        },
+        {
+          "t": 2.1,
+          "event": "L11 «giả danh»: thẻ trái gập mặt trước và lật ra hình bong bóng trợ lý."
+        },
+        {
+          "t": 3.25,
+          "event": "Thẻ phải hoàn tất cú lật cùng dấu trợ lý; hai thẻ vẫn phân biệt nhờ viền."
+        },
+        {
+          "t": 4.57,
+          "event": "L12: hàng tải đầu bung ra ngay khi bắt đầu nói đến quy mô cài."
+        },
+        {
+          "t": 5.73,
+          "event": "Các hàng tải kế mở rộng, không chạy bộ đếm."
+        },
+        {
+          "t": 6.3,
+          "event": "Nhãn «Lượt cài» gắn mép lưới. Sau 6,58 s lưới rút theo chiều sâu, hai thẻ nhô trước, giữ cạnh trái cho S08."
+        }
+      ],
+      "voice_over": "Ngoài đời, từng có vụ hai tiện ích giả danh trợ lý AI.\nQuy mô được báo cáo là hàng trăm nghìn người cài.",
+      "text_overlay": "Lượt cài",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Tiện ích giả danh",
+            "type": "term",
+            "form": "illustration",
+            "object": "Hai thẻ khác dáng, cùng mặt trợ lý",
+            "motion": "Lật mặt ngụy trang nối tiếp."
+          },
+          {
+            "term": "Quy mô cài đặt",
+            "type": "concept",
+            "form": "chart",
+            "object": "Lưới tải dạng hình minh họa không có đơn vị đếm",
+            "motion": "Các hàng bung dần sau hai thẻ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Tiện ích giả danh",
+            "to": "Quy mô cài đặt",
+            "type": "lưới minh họa quy mô cài của hai tiện ích trong vụ báo cáo"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7.7,
+            "effect": "none"
+          },
+          {
+            "text": "Lượt cài",
+            "kind": "label",
+            "attach_to": "mép lưới biểu tượng tải · xác định quy mô cài đặt.",
+            "appear_s": 6.3,
+            "disappear_s": 7.45,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.12
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7.7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "narrative_purpose": "Sai lầm khi nhìn huy hiệu",
+      "main_idea": "Một trong hai tiện ích của vụ báo cáo mang huy hiệu",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.15,
+      "visual_concept": "Cùng hai thẻ của S07. Chừa hộp nhãn bên dấu sao, tách đường lật khỏi vùng nhãn; giữ sao và nhãn trên mặt trước cho đến mốc 3,85 s rồi cho tấm quyền xuất hiện sau cụm «quyền truy cập».",
+      "main_change": "Một sao gắn vào đúng một thẻ; thẻ ấy lật ngửa để lộ một tấm quyền ở mặt sau, thẻ còn lại không có sao.",
+      "scene_type": "object_interaction",
+      "environment": "security #151D34. Xa: hốc hồ sơ mờ; giữa: thẻ vát trái cao khoảng 630 px và mép thẻ phải; gần: sao, con trỏ, tấm quyền rời. Ánh trái trên bắt cạnh lật, một trục bản lề cố định.",
+      "character_action": "",
+      "props": [
+        "Thẻ vát trái, mép thẻ khuyết phải từ S07",
+        "Huy hiệu sao vàng trên chốt tròn",
+        "Tấm quyền với cụm biểu tượng trang, con trỏ"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt cận khớp cạnh thẻ vát, vẫn thấy mặt trơn thẻ khuyết ở bên."
+        },
+        {
+          "t": 1.15,
+          "event": "L13 «một tiện ích»: thẻ vát tiến nhẹ khỏi thẻ còn lại, để lộ chốt."
+        },
+        {
+          "t": 2.35,
+          "event": "L13 «Featured»: sao gắn lên chốt thẻ vát cùng nhãn. Thẻ bên cạnh giữ mặt trơn."
+        },
+        {
+          "t": 3.2,
+          "event": "Con trỏ trượt về mép bản lề, rời dấu sao."
+        },
+        {
+          "t": 4.42,
+          "event": "L14 «quyền truy cập»: xoay mặt thẻ bằng co ngang và đổi mặt tại cạnh hẹp, lộ tấm có biểu tượng các trang."
+        },
+        {
+          "t": 5.85,
+          "event": "Tấm quyền nhấc khỏi mặt sau và tiến vào cùng trục với đầu tay Cáo ở S09."
+        }
+      ],
+      "voice_over": "Trong vụ đó, một tiện ích có huy hiệu Featured.\nChỉ nhìn huy hiệu, bạn sẽ bỏ qua phần quyền truy cập.",
+      "text_overlay": "Featured",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Featured",
+            "type": "term",
+            "form": "status",
+            "object": "Sao gắn thẻ vát",
+            "motion": "Chốt sao gập vào đúng một mặt, nhãn đi cùng sao."
+          },
+          {
+            "term": "Quyền truy cập",
+            "type": "concept",
+            "form": "illustration",
+            "object": "Tấm quyền nằm ở mặt sau thẻ vát",
+            "motion": "Con trỏ rời sao rồi thẻ lật để lộ tấm."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Featured",
+            "to": "Quyền truy cập",
+            "type": "hai thông tin riêng trên cùng thẻ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7,
+            "effect": "none"
+          },
+          {
+            "text": "Featured",
+            "kind": "label",
+            "attach_to": "dấu sao trên đúng một thẻ · nhận diện huy hiệu cụ thể được báo cáo.",
+            "appear_s": 2.35,
+            "disappear_s": 3.85,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.15
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "narrative_purpose": "Chuyển sang cơ chế, quyền đọc",
+      "main_idea": "Quyền đọc xác định dữ liệu trên những trang nào có thể được truy cập",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.69,
+      "visual_concept": "Tấm và chồng thẻ cao khoảng 640 px. Vòng chờ và mép các trang thể hiện một yêu cầu đang xét. Không chuyển sang chỉ báo đã cấp. Tấm quyền lui và chồng trang thu còn một cửa sổ để khớp S10.",
+      "main_change": "Tấm yêu cầu trượt ra, vòng rỗng tiến về người dùng, chồng trang xòe để chỉ đúng đối tượng yêu cầu.",
+      "scene_type": "object_interaction",
+      "environment": "security #151D34. Xa: hốc cửa hàng mờ; giữa: tấm quyền dựng trước chồng trang; gần: nút chọn rỗng và các đầu nối. Ánh trái trên làm viền vàng nổi trên trang xanh.",
+      "character_action": "`point_right` 0,00–2,00 s, rộng 160 px, x=106, đáy y=1260. Đặt cạnh tấm vào hướng đầu tay, cắt lớp Cáo khỏi khung ở 2,00 s.",
+      "props": [
+        "Tấm quyền viền vàng, vòng chọn rỗng",
+        "Chồng cửa sổ trơn với các đầu nối xanh"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cáo chỉ vào cạnh tấm vừa lộ từ S08."
+        },
+        {
+          "t": 0.8,
+          "event": "L15 «quyền đọc»: tấm trượt lên đầu tay, nhãn gắn cạnh tấm."
+        },
+        {
+          "t": 1.7,
+          "event": "Tấm ngả về người xem, chồng thẻ sau rời ra nửa mép."
+        },
+        {
+          "t": 2,
+          "event": "Cắt lớp Cáo; tấm giữ vị trí sang L16."
+        },
+        {
+          "t": 2.87,
+          "event": "L16 «xin quyền»: vòng rỗng dịch về mép người dùng."
+        },
+        {
+          "t": 4.15,
+          "event": "L16 «các trang bạn mở»: chồng thẻ xòe ra, đầu nối hiện giữa tấm và các mép."
+        },
+        {
+          "t": 5.35,
+          "event": "Trang cuối tách đủ rộng để đọc cả tập, tấm thu nhẹ về sau."
+        },
+        {
+          "t": 6.22,
+          "event": "Xếp chồng thu gọn về một cửa sổ đúng trục S10."
+        }
+      ],
+      "voice_over": "Mình tìm quyền đọc trang.\nTiện ích có thể xin quyền đọc dữ liệu trên các trang bạn mở.",
+      "text_overlay": "Quyền đọc",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Quyền đọc",
+            "type": "term",
+            "form": "illustration",
+            "object": "Tấm viền vàng nối với thẻ trang",
+            "motion": "Trượt lên theo dấu tay Cáo."
+          },
+          {
+            "term": "Xin quyền",
+            "type": "action",
+            "form": "status",
+            "object": "Vòng chọn rỗng ở đầu tấm",
+            "motion": "Trượt về mép người dùng nhưng vẫn rỗng."
+          },
+          {
+            "term": "Các trang đang mở",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Chồng cửa sổ trơn",
+            "motion": "Xòe ra để lộ từng mép được yêu cầu."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Xin quyền",
+            "to": "Quyền đọc",
+            "type": "trạng thái chờ người dùng xét"
+          },
+          {
+            "from": "Quyền đọc",
+            "to": "Các trang đang mở",
+            "type": "tấm quyền nối tới tập trang liên quan"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7,
+            "effect": "none"
+          },
+          {
+            "text": "Quyền đọc",
+            "kind": "keyword",
+            "attach_to": "tấm quyền · gọi tên quyền đang xét.",
+            "appear_s": 0.8,
+            "disappear_s": 5.7,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.69
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "narrative_purpose": "Chữ nằm trên trang",
+      "main_idea": "Nội dung hội thoại là một phần dữ liệu đang hiển thị của trang",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.1,
+      "visual_concept": "Tab cao khoảng 790 px, xấp xỉ x=145–935, y=345–1135. Dàn bong bóng trống chữ theo hai phía với đuôi đối nhau; nhịp mở dư chỗ cho bảng ở cảnh sau. Không dùng IDE, câu tin nhắn, lệnh hay ảnh giao diện thật.",
+      "main_change": "Viền chat mở trong tab; bong bóng gửi đi từ ô nhập lên trang, rồi bong bóng trả lời nổi ngay dưới, cả hai ở trong viền.",
+      "scene_type": "ui_simulation",
+      "environment": "code #101C2A. Xa: lớp cửa sổ phần mềm xếp chìm và lưới mờ; giữa: một tab có thanh trên trung tính và viền chat; gần: ô nhập, hai bong bóng và các vạch hình học. Ánh lam từ trái trên, điểm sáng bám phần hiện trong cửa sổ.",
+      "character_action": "",
+      "props": [
+        "Tab cửa sổ trung tính và ô nhập",
+        "Cặp bong bóng không chữ, mỗi phía có họ vạch hình học riêng"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp mép cửa sổ S09; chưa thấy bong bóng."
+        },
+        {
+          "t": 0.22,
+          "event": "L17 +0,10 s: tab vào nét, chờ cụm nhắc đến khung."
+        },
+        {
+          "t": 0.88,
+          "event": "L17 «khung chat»: viền hội thoại kéo trong cửa sổ."
+        },
+        {
+          "t": 1.92,
+          "event": "Viền chạm ô nhập và kẹp vào cùng tab; ô nhập nhô khỏi nền khoảng 85 px."
+        },
+        {
+          "t": 2.53,
+          "event": "L18 +0,10 s: ô nhập bắt đầu mở cho câu gửi."
+        },
+        {
+          "t": 3.02,
+          "event": "L18 «câu bạn gửi»: bong bóng xuất phát từ ô nhập và đi lên phía gửi."
+        },
+        {
+          "t": 4.18,
+          "event": "Bong bóng ổn định trong tab, các vạch trơn lộ theo mặt bong bóng."
+        },
+        {
+          "t": 4.85,
+          "event": "L19 +0,10 s: mở bong bóng thứ hai từ dưới bong bóng gửi."
+        },
+        {
+          "t": 5.84,
+          "event": "Bong bóng trả lời nở đủ chiều cao, ở hàng dưới."
+        },
+        {
+          "t": 6.4,
+          "event": "Hai bong bóng dịch lên trong cùng biên, nhường vùng nội dung dưới để bắt khớp S11."
+        }
+      ],
+      "voice_over": "Đây là khung chat trên trình duyệt.\nCâu bạn gửi hiện thành chữ trên trang.\nCâu trả lời cũng hiện bên dưới.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Khung chat",
+            "type": "term",
+            "form": "illustration",
+            "object": "Viền hội thoại nằm bên trong mép tab",
+            "motion": "Kéo dài từ thanh nội dung xuống ô nhập."
+          },
+          {
+            "term": "Câu gửi",
+            "type": "entity",
+            "form": "animation",
+            "object": "Bong bóng bên gửi khởi từ ô nhập",
+            "motion": "Trượt lên trong cửa sổ, để lại vạch hình học."
+          },
+          {
+            "term": "Câu trả lời",
+            "type": "entity",
+            "form": "animation",
+            "object": "Bong bóng đuôi đối diện",
+            "motion": "Mở dưới câu gửi."
+          },
+          {
+            "term": "Dữ liệu trên trang",
+            "type": "concept",
+            "form": "connection",
+            "object": "Cùng một biên bao cả hai bong bóng",
+            "motion": "Hai bong bóng dồn nhẹ lên trong biên để lộ vùng nội dung phía dưới."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Câu gửi",
+            "to": "Khung chat",
+            "type": "hiển thị bên trong"
+          },
+          {
+            "from": "Câu trả lời",
+            "to": "Khung chat",
+            "type": "hiển thị ngay dưới câu gửi"
+          },
+          {
+            "from": "Khung chat",
+            "to": "Dữ liệu trên trang",
+            "type": "cả hội thoại thuộc phần đang hiển thị của tab"
+          }
+        ],
+        "texts": [],
+        "hold_s": 1.1
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7.5,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S11",
+      "narrative_purpose": "Trả vế thấy bảng giá",
+      "main_idea": "Quyền đọc cho phép thấy bảng giá đang hiện, hành vi sao chép trong ví dụ thuộc về tiện ích xấu",
+      "complexity": "high",
+      "concepts": 0,
+      "hold_after_voice_s": 2.62,
+      "visual_concept": "Cận sơ đồ dọc cao 760 px. Hình lần lượt chứng minh thấy bảng nhờ quyền rồi mới có hành vi sao chép của tiện ích xấu. Bản sao vào ổ của miếng ghép, chưa đi qua biên ở cảnh này. Sơ đồ hoàn chỉnh từ 7,63 s, giữ nguyên quan hệ đến cuối.",
+      "main_change": "Mối nối chạm tab, viền bao đúng bảng đang hiện; sau đó mới mọc ra bảng thứ hai trong ổ miếng ghép.",
+      "scene_type": "process_animation",
+      "environment": "code #101C2A. Xa: lưới và lớp tab chìm như S10; giữa: cửa sổ chat và biên quyền dọc; gần: miếng ghép trên đầu tuyến, bảng gốc trong tab và ô giữ bản sao riêng. Ánh trái trên, viền quyền nổi lên khi thành phần nối khớp.",
+      "character_action": "",
+      "props": [
+        "Cửa sổ với hai bong bóng và bảng xanh 2 trên 1",
+        "Miếng ghép trợ lý và ô giữ bản sao",
+        "Vùng quyền bo góc nở theo mép tab, bản sao viền răng cưa"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt trục dọc, giữ khung chat và miếng ghép đã biết; chưa có đường quyền."
+        },
+        {
+          "t": 0.76,
+          "event": "L20 «bảng giá»: bảng gốc trượt ra ngay trong vùng nội dung."
+        },
+        {
+          "t": 1.8,
+          "event": "Bảng mở mặt, nếp viền ổn định bên dưới hai bong bóng."
+        },
+        {
+          "t": 2.5,
+          "event": "L21 bắt đầu ở 60,00 s toàn tập; hướng nét về miếng ghép và tab."
+        },
+        {
+          "t": 3.2,
+          "event": "L21 «quyền đọc»: mối nối chạm biên, vùng quyền bắt đầu mở."
+        },
+        {
+          "t": 4.32,
+          "event": "Viền dừng theo cạnh tab, bao cả bảng. Chưa xuất hiện bản thứ hai."
+        },
+        {
+          "t": 5.8,
+          "event": "L22 ở vế «sao chép»: bản sao răng cưa tách khỏi bảng chính."
+        },
+        {
+          "t": 6.8,
+          "event": "Bản sao dịch vào ổ miếng ghép, gốc vẫn trong vùng quyền."
+        },
+        {
+          "t": 7.63,
+          "event": "Giữ đủ sơ đồ 2,62 s. Quét một dải sáng trên cạnh bảng gốc rồi chuyển đến ổ bản sao; dải qua ít nhất nửa mỗi cạnh."
+        },
+        {
+          "t": 8.92,
+          "event": "Viền ổ nhận sáng theo dải quét; hai bảng vẫn tách vị trí, không di chuyển tới máy chủ."
+        }
+      ],
+      "voice_over": "Vì sao nó thấy cả bảng giá đó?\nTiện ích có quyền đọc trang đang mở.\nNếu là tiện ích xấu, nó có thể sao chép bảng giá.",
+      "text_overlay": "",
+      "text_groups": 0,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Bảng giá đang hiện",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng xanh nằm trong cửa sổ có hai bong bóng",
+            "motion": "Hiện lại từ vùng trống S10."
+          },
+          {
+            "term": "Quyền đọc trang",
+            "type": "term",
+            "form": "connection",
+            "object": "Mối nối miếng ghép và viền quanh đúng tab",
+            "motion": "Nối chạm biên, viền nở để bọc đúng cửa sổ."
+          },
+          {
+            "term": "Sao chép của tiện ích xấu",
+            "type": "action",
+            "form": "animation",
+            "object": "Bản sao răng cưa và ổ miếng ghép",
+            "motion": "Tách khỏi bảng và vào ổ, bảng gốc vẫn ở tab."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Quyền đọc trang",
+            "to": "Bảng giá đang hiện",
+            "type": "bảng nằm trong phạm vi có thể đọc"
+          },
+          {
+            "from": "Bảng giá đang hiện",
+            "to": "Sao chép của tiện ích xấu",
+            "type": "hành vi riêng xảy ra sau khi có quyền"
+          }
+        ],
+        "texts": [],
+        "hold_s": 2.62
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 10.25,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S12",
+      "narrative_purpose": "Đợt gửi trong vụ được báo cáo",
+      "main_idea": "Trong vụ được báo cáo, dữ liệu được gom và gửi nền theo đợt",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.69,
+      "visual_concept": "Cụm dọc khoảng 810 px có điểm gom, đồng hồ và đích ngoài cùng khung. Gói vụ báo cáo là phong bì hồng khuyết một góc, có hai gờ, phân biệt với tấm ba ô của tình huống dựng. Dùng lại nguyên dáng gói ở S14. Vòng chạy rút gọn, chỉ biểu diễn chu kỳ trong vụ báo cáo; giữ gói ở đích đến hết cảnh.",
+      "main_change": "Các phiến nhập thành một gói, vòng thời gian khép; gói đi qua biên, khe mở và giữ gói.",
+      "scene_type": "process_animation",
+      "environment": "incident #1E1931. Xa: mảng tuyến dọc mờ màu tím than; giữa: hai đầu tuyến qua biên, vòng hổ phách ở cạnh điểm gom; gần: phiến dữ liệu, gói có dấu khuyết, khe vát. Ánh trái trên tách vật nhận khỏi đường gửi.",
+      "character_action": "",
+      "props": [
+        "Phiến dữ liệu trơn và gói phong bì khuyết có hai gờ",
+        "Vòng thời gian vàng có vạch nhưng không có chữ số khác",
+        "Đường dọc có mũi qua biên và khối nhận với khe vát"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở trên tuyến và biên trong bố cục hồ sơ vụ báo cáo; gói chưa hình thành."
+        },
+        {
+          "t": 0.93,
+          "event": "L23: các phiến lần lượt tiến về đầu tuyến; chưa lộ loại dữ liệu bên trong."
+        },
+        {
+          "t": 2.12,
+          "event": "L23 «gom lại»: phiến khớp vào gói phong bì, vỏ đóng trước 3,32 s."
+        },
+        {
+          "t": 3.15,
+          "event": "Hai mép vỏ chụm sát; gói khuyết góc còn nguyên ở điểm gom khi bắt đầu khoảng nghỉ, chưa chạy tuyến."
+        },
+        {
+          "t": 3.68,
+          "event": "L24: vòng đồng hồ hổ phách mở và cung bắt đầu chạy."
+        },
+        {
+          "t": 4.45,
+          "event": "L24 «khoảng ba mươi phút»: gắn nhãn vào vành; cung tiếp tục khép."
+        },
+        {
+          "t": 5.23,
+          "event": "L24 «một đợt gửi»: hết vòng, gói rời điểm gom, chạy dọc qua biên."
+        },
+        {
+          "t": 6.72,
+          "event": "L25 «máy chủ ngoài»: khe ở đích lật chốt."
+        },
+        {
+          "t": 7.2,
+          "event": "Gói vào khe, phát tiếng chạm. Từ 7,46 s giữ đủ vòng, tuyến và đích đã nhận."
+        },
+        {
+          "t": 8.18,
+          "event": "Một dải sáng đi dọc đoạn tuyến đã đi qua, không vẽ thêm gói."
+        },
+        {
+          "t": 9.27,
+          "event": "Đồng hồ trả cung về vạch đầu, chốt đích hạ mà gờ gói vẫn hiện."
+        }
+      ],
+      "voice_over": "Trong vụ được báo cáo, các bản sao được gom lại.\nKhoảng ba mươi phút lại có một đợt gửi.\nDữ liệu đi ra máy chủ ngoài.",
+      "text_overlay": "≈ 30 phút",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Gom theo đợt",
+            "type": "concept",
+            "form": "flow",
+            "object": "Các phiến và gói phong bì khuyết góc",
+            "motion": "Phiến trượt nhập từ hai phía và vỏ khép."
+          },
+          {
+            "term": "Chu kỳ gửi",
+            "type": "term",
+            "form": "status",
+            "object": "Vòng hổ phách có cung và vạch",
+            "motion": "Cung chạy một vòng, rồi trở về vạch đầu."
+          },
+          {
+            "term": "Máy chủ ngoài",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Khe nhận ở đầu tuyến vượt biên",
+            "motion": "Chốt bật lúc được nhắc, nhận đúng gói."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Gom theo đợt",
+            "to": "Chu kỳ gửi",
+            "type": "gói chờ lượt"
+          },
+          {
+            "from": "Chu kỳ gửi",
+            "to": "Máy chủ ngoài",
+            "type": "hoàn tất một vòng thì gói theo tuyến tới đích"
+          }
+        ],
+        "texts": [
+          {
+            "text": "≈ 30 phút",
+            "kind": "number",
+            "attach_to": "vành đồng hồ · mốc chu kỳ riêng trong vụ được báo cáo.",
+            "appear_s": 4.45,
+            "disappear_s": 10,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2.69
+      },
+      "sound_effects": [
+        "7,20 s · Tiếng chạm ngắn tại khe nhận trong L25."
+      ],
+      "transition": "match_cut",
+      "duration_s": 10.15,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S13",
+      "narrative_purpose": "Trả vế dừng gửi mới",
+      "main_idea": "Gỡ tiện ích dừng các đợt gửi tiếp theo của chính nó",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.34,
+      "visual_concept": "Cụm biên–ổ–đường gãy cao khoảng 620 px. Chuyển về tiện ích của ví dụ dựng bằng miếng ghép có tia quen thuộc. Gói xám nét đứt là đợt giả định chưa đi; giữ trong biên và làm mờ, không có gói đến đích. Giữ đoạn kỹ thuật trọn khung theo bản đồ Cáo.",
+      "main_change": "Miếng ghép bật khỏi ổ, hai đầu tuyến giãn thành khe hở; gói xám tới vạch gãy và dừng ở phía trong.",
+      "scene_type": "process_animation",
+      "environment": "incident #1E1931. Xa: mảng tím than và dải tuyến lùi từ S12; giữa: cận mép thanh công cụ và biên đứng; gần: ổ, hai đầu tuyến, gói xám nét đứt. Ánh trái trên bắt khoảng hở sau khi tháo.",
+      "character_action": "",
+      "props": [
+        "Ổ thanh công cụ và miếng ghép dựng có tia",
+        "Hai mấu đường xám, gói dự kiến xám nét đứt"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở khớp hướng tuyến trước đó, tâm vào ổ của ví dụ dựng."
+        },
+        {
+          "t": 0.1,
+          "event": "L26 bắt đầu đúng 78,00 s toàn tập; miếng ghép và ổ vào nét."
+        },
+        {
+          "t": 0.45,
+          "event": "L26 «gỡ tiện ích»: bật miếng ghép khỏi ổ."
+        },
+        {
+          "t": 1.15,
+          "event": "Hai đầu tuyến tách khoảng 120 px quanh biên, âm ngắt nhẹ."
+        },
+        {
+          "t": 1.95,
+          "event": "L26 «các đợt gửi sau»: gói xám hiện rồi trượt tới vạch chắn nội bộ."
+        },
+        {
+          "t": 2.85,
+          "event": "Gói dừng hẳn trước khe hở, chưa qua biên."
+        },
+        {
+          "t": 3.78,
+          "event": "L27 «loại»: các biểu tượng còn lại dồn quanh vị trí vừa trống."
+        },
+        {
+          "t": 4.76,
+          "event": "Gói xám lùi nhẹ rồi mờ; ổ và tuyến đứt vẫn thấy trước cắt."
+        }
+      ],
+      "voice_over": "Gỡ tiện ích thì các đợt gửi sau từ nó dừng.\nTrình duyệt đã loại tiện ích đó.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Gỡ tiện ích",
+            "type": "action",
+            "form": "animation",
+            "object": "Miếng ghép và ổ giữ",
+            "motion": "Miếng ghép bật khỏi ổ, thanh công cụ co sau đó."
+          },
+          {
+            "term": "Tuyến gửi bị ngắt",
+            "type": "result",
+            "form": "status",
+            "object": "Hai đầu tuyến rời nhau và vạch chắn",
+            "motion": "Hai đầu lùi ra, khe hở mở rõ."
+          },
+          {
+            "term": "Đợt gửi dự kiến",
+            "type": "entity",
+            "form": "flow",
+            "object": "Gói xám rỗng nét đứt",
+            "motion": "Tiến tới trước khe hở, dừng rồi mờ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Gỡ tiện ích",
+            "to": "Tuyến gửi bị ngắt",
+            "type": "nguồn gửi của tiện ích đã mất"
+          },
+          {
+            "from": "Tuyến gửi bị ngắt",
+            "to": "Đợt gửi dự kiến",
+            "type": "gói chưa đi bị chặn bên trong"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 6.1,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.34
+      },
+      "sound_effects": [
+        "1,15 s · Âm ngắt nhẹ tại chỗ hai đầu tuyến tách."
+      ],
+      "transition": "match_cut",
+      "duration_s": 6.1,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S14",
+      "narrative_purpose": "Địa chỉ tab đi cùng",
+      "main_idea": "Đúng gói cũ của vụ được báo cáo chứa hội thoại và địa chỉ các tab",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Cụm gói–hộc–cửa sổ cao khoảng 760 px. Lấy gói khuyết từ chính khe S12 bằng thao tác mở tại đích. Mỗi hộc một phiến, nhãn riêng; giữ phiến địa chỉ dưới dạng vạch trơn và dùng cùng dấu hình ở thanh địa chỉ mỗi cửa sổ, không dùng URL thật.",
+      "main_change": "Gói cũ mở hai hộc khác nhau; phiến địa chỉ trượt tới khớp các thanh cửa sổ, phiến hội thoại vẫn nằm trong hộc trên.",
+      "scene_type": "object_interaction",
+      "environment": "incident #1E1931. Xa: tuyến tách đầu từ S13 nằm mờ bên trái; giữa: điểm nhận đặt gần trục dọc; gần: gói cũ và hai hộc dạng ngăn kéo, các cửa sổ biểu trưng nổi hai bên. Ánh trái trên hắt lên mép hộc khi mở.",
+      "character_action": "",
+      "props": [
+        "Đúng gói phong bì hai gờ từ S12, khe vát và tuyến ngắt",
+        "Hộc trên chứa phiến bong bóng, hộc dưới có phiến thanh địa chỉ với dấu hình",
+        "Hai cửa sổ biểu trưng, không URL hay chữ nhỏ"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp đầu tuyến gãy, chuyển mắt tới khe đã chứa gói khuyết từ S12."
+        },
+        {
+          "t": 0.55,
+          "event": "L28 «máy chủ nhận»: khay đẩy đúng gói cũ khỏi khe theo chiều về người xem."
+        },
+        {
+          "t": 1.65,
+          "event": "L28 «nội dung chat»: hộc trên trượt ra với phiến bong bóng và nhãn «Hội thoại»."
+        },
+        {
+          "t": 2.85,
+          "event": "L28 «địa chỉ các tab»: hộc dưới thò ra với phiến thanh địa chỉ và nhãn «Địa chỉ tab»."
+        },
+        {
+          "t": 3.8,
+          "event": "Hai hộc mở hết hành trình, cả hai phiến lộ rõ cùng lúc."
+        },
+        {
+          "t": 4.6,
+          "event": "L29 «trang nào đang mở»: phiến dưới tiến tới thanh cửa sổ thứ nhất rồi khớp dấu hình."
+        },
+        {
+          "t": 5.56,
+          "event": "Phiến dưới trượt tới cửa sổ kế, giữ phiến hội thoại ở hộc."
+        },
+        {
+          "t": 6,
+          "event": "Khay xoay để thanh địa chỉ thẳng trục với thanh trên của tab S15."
+        }
+      ],
+      "voice_over": "Trong vụ đó, máy chủ nhận nội dung chat và địa chỉ các tab.\nĐịa chỉ cho biết trang nào đang mở.",
+      "text_overlay": "Hội thoại\nĐịa chỉ tab",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Gói đã nhận",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Phong bì khuyết góc ở khe vụ báo cáo",
+            "motion": "Khay kéo gói từ khe ra phía trước."
+          },
+          {
+            "term": "Hội thoại",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Phiến có hai bong bóng trong hộc trên",
+            "motion": "Hộc trượt mở lên, phiến nâng theo."
+          },
+          {
+            "term": "Địa chỉ tab",
+            "type": "term",
+            "form": "connection",
+            "object": "Phiến thấp có vạch và dấu khớp cửa sổ",
+            "motion": "Hộc dưới bật ra, phiến dịch theo từng thanh cửa sổ."
+          },
+          {
+            "term": "Trang đang mở",
+            "type": "entity",
+            "form": "icon",
+            "object": "Cửa sổ biểu trưng có dấu riêng trên thanh địa chỉ",
+            "motion": "Sáng lần lượt khi phiến địa chỉ khớp dấu."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Gói đã nhận",
+            "to": "Hội thoại",
+            "type": "chứa trong hộc trên"
+          },
+          {
+            "from": "Gói đã nhận",
+            "to": "Địa chỉ tab",
+            "type": "chứa trong hộc dưới"
+          },
+          {
+            "from": "Địa chỉ tab",
+            "to": "Trang đang mở",
+            "type": "địa chỉ khớp cửa sổ đang mở lúc thu thập"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Hội thoại",
+            "kind": "label",
+            "attach_to": "hộc phiến bong bóng · nhận diện nội dung hội thoại.",
+            "appear_s": 1.65,
+            "disappear_s": 6.75,
+            "effect": "none"
+          },
+          {
+            "text": "Địa chỉ tab",
+            "kind": "label",
+            "attach_to": "hộc phiến thanh địa chỉ · phân biệt địa chỉ với nội dung.",
+            "appear_s": 2.85,
+            "disappear_s": 6.75,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S15",
+      "narrative_purpose": "Ví dụ giữ nguyên tab",
+      "main_idea": "Một phép so sánh giữ cùng tab và cùng tiện ích",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.87,
+      "visual_concept": "Góc ngang cạnh màn hình, cụm tab–ray cao khoảng 670 px. Neo tâm tab gần x=570, y=770 và dấu trên thanh địa chỉ đến hết phép thử; các cảnh sau chuyển quanh neo này. Ba nấc thể hiện cùng một nút chọn, chưa có kết quả cấp quyền.",
+      "main_change": "Tab có bảng và miếng ghép cố định; ba nấc rỗng và viền chọn đổi vị trí quanh cùng tab.",
+      "scene_type": "object_interaction",
+      "environment": "code #15283A. Xa: mặt bàn thử xám lam với rãnh dọc và lớp mờ xa; giữa: giá đỡ tab cố định và ray ba nấc rỗng; gần: tab xanh và miếng ghép. Ánh trái trên, bóng tab giữ đúng trục khi nền ray lướt.",
+      "character_action": "",
+      "props": [
+        "Tab ba ô cùng địa chỉ ký hiệu, miếng ghép có tia",
+        "Ray ba nấc tròn không chữ và viền chọn vàng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp thanh địa chỉ vừa xoay của S14 vào rãnh bàn thử, giữ phần còn lại mờ."
+        },
+        {
+          "t": 0.2,
+          "event": "L30 +0,10 s: bắt đầu lấy nét trục tab."
+        },
+        {
+          "t": 0.73,
+          "event": "L30 «tab chat»: tab có bảng gốc trượt vào neo x≈570, y≈770."
+        },
+        {
+          "t": 1.72,
+          "event": "L30 «tiện ích»: miếng ghép cũ vào góc tab, đúng ổ, cùng tab giữ vị trí."
+        },
+        {
+          "t": 2.82,
+          "event": "L31 +0,10 s: ray ba nấc bắt đầu chạy ở sau tab."
+        },
+        {
+          "t": 3.52,
+          "event": "L31 «đổi phạm vi»: viền chọn mở qua ba nấc rỗng, giữ nguyên tab và tiện ích."
+        },
+        {
+          "t": 4.13,
+          "event": "Viền chọn tiếp tục trượt về nấc đầu, không bật trạng thái cho phép trước S16."
+        },
+        {
+          "t": 5.18,
+          "event": "Ray dừng ở nấc đầu; tab vẫn đúng neo chuyển cảnh."
+        }
+      ],
+      "voice_over": "Giữ nguyên tab chat và tiện ích.\nMình chỉ đổi phạm vi đọc.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Cùng tab chat",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Tab mang bảng xanh và dấu hình ở thanh trên",
+            "motion": "Từ nền trượt vào neo giữa rồi đứng nguyên."
+          },
+          {
+            "term": "Cùng tiện ích",
+            "type": "entity",
+            "form": "icon",
+            "object": "Một miếng ghép có tia",
+            "motion": "Khớp cảnh vào góc tab rồi giữ ở đó."
+          },
+          {
+            "term": "Phạm vi đọc",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Một ray ba nấc và viền chọn duy nhất",
+            "motion": "Ray đưa ba nấc qua tab; viền về nấc đầu."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Phạm vi đọc",
+            "to": "Cùng tab chat",
+            "type": "chỉ đổi điều kiện cấp quyền"
+          },
+          {
+            "from": "Phạm vi đọc",
+            "to": "Cùng tiện ích",
+            "type": "giữ nguyên tiện ích qua ba nấc"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.87
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S16",
+      "narrative_purpose": "Ví dụ quyền rộng",
+      "main_idea": "Khi được cho phép trên mọi trang phù hợp, tab chat mở nằm trong vùng đọc",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.32,
+      "visual_concept": "Toàn cụm cao khoảng 750 px. Ô phụ có cùng dạng chuẩn và biểu tượng thuộc phạm vi tiện ích có thể xin. Tab chat vẫn x≈570, y≈770. Khóa mở trong chỉ báo thể hiện có quyền đọc khi mở tab; tay trỏ vắng mặt.",
+      "main_change": "Vùng quyền nở qua các cửa sổ phù hợp và trùm tab chat, chỉ báo khóa mở khi tab được mở.",
+      "scene_type": "process_animation",
+      "environment": "code #15283A. Xa: rãnh dọc bàn thử, giữa: cụm cửa sổ phụ xếp quanh neo tab S15, gần: nấc rộng, viền và khóa chỉ báo. Ánh trái trên, mảng tối giữ các cửa sổ không thuộc minh họa ở nền.",
+      "character_action": "",
+      "props": [
+        "Cụm cửa sổ phù hợp, tab chat có bảng ba ô",
+        "Một viền phạm vi hồng và khóa chỉ báo ở góc tab"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt toàn bàn thử cùng neo tab và nấc rộng đã đặt từ S15."
+        },
+        {
+          "t": 0.2,
+          "event": "L32 +0,10 s: ray dừng và cho các cửa sổ phụ tiến vào chiều sâu."
+        },
+        {
+          "t": 1.45,
+          "event": "L32 «mọi trang»: viền rộng bắt đầu trải qua các cửa sổ phụ, hiện nhãn trên mép viền."
+        },
+        {
+          "t": 2.7,
+          "event": "Viền đến cửa sổ phụ cuối, mép tiếp tục tiến về tab giữ nguyên neo."
+        },
+        {
+          "t": 3.52,
+          "event": "L32 «tab chat»: mép viền ôm đúng tab có bảng giá."
+        },
+        {
+          "t": 4.36,
+          "event": "L33 +0,10 s: cửa sổ mở mặt, bảng đang hiện nổi rõ trong vùng."
+        },
+        {
+          "t": 4.88,
+          "event": "L33 «mở trang»: chỉ báo khóa mở ngay, không có cú nhấp hay bản sao."
+        },
+        {
+          "t": 5.68,
+          "event": "Giữ khóa mở và phạm vi bao tab, hai cánh viền gập theo chiều sâu khoảng 90 px, không bỏ tab ra ngoài trước cắt."
+        }
+      ],
+      "voice_over": "Nếu cho phép trên mọi trang, tiện ích có thể đọc cả tab chat.\nQuyền có ngay khi mở trang.",
+      "text_overlay": "Mọi trang",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Mọi trang",
+            "type": "term",
+            "form": "illustration",
+            "object": "Vùng bao các cửa sổ phụ có thể xin quyền và tab chat",
+            "motion": "Trải từ nấc rộng và ôm mép từng cửa sổ."
+          },
+          {
+            "term": "Tab chat",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Tab nằm trên neo giữa bàn thử",
+            "motion": "Nội dung sáng rõ khi cửa sổ mở mặt."
+          },
+          {
+            "term": "Có quyền khi mở",
+            "type": "result",
+            "form": "status",
+            "object": "Khóa mở trên góc cửa sổ",
+            "motion": "Bật khi thấy phần đang hiển thị, không cần con trỏ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Mọi trang",
+            "to": "Tab chat",
+            "type": "tab thuộc phạm vi các trang phù hợp được phép"
+          },
+          {
+            "from": "Tab chat",
+            "to": "Có quyền khi mở",
+            "type": "khóa mở theo trạng thái tab"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7,
+            "effect": "none"
+          },
+          {
+            "text": "Mọi trang",
+            "kind": "keyword",
+            "attach_to": "viền phạm vi rộng · phân biệt nấc bao mọi trang phù hợp.",
+            "appear_s": 1.45,
+            "disappear_s": 6.65,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.32
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S17",
+      "narrative_purpose": "Ví dụ danh sách trang",
+      "main_idea": "Phạm vi theo danh sách chặn tab chat nếu trang chat vắng trong danh sách",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.27,
+      "visual_concept": "Cụm xấp xỉ 690 px. Dùng crop 1,00× → 1,08× từ 1,05–2,45 s trên lớp bàn để đưa mép danh sách bên trái lại gần; chọn tâm crop ở neo tab để tâm tab không xê dịch. UI kết quả phụ trên cùng neo, lớp chữ không hóa to theo crop.",
+      "main_change": "Viền thu khỏi tab chính, danh sách chỉ khớp cửa sổ phụ; đường về tab chat đụng vạch chắn xám và dừng.",
+      "scene_type": "process_animation",
+      "environment": "code #15283A. Xa: rãnh dọc mờ tại neo, giữa: các cửa sổ phụ tụ phía trái thành nhóm được chọn; gần: thanh danh sách ở mép trái, đường dò và khóa trên tab chính. Ánh trái trên, tab ngoài danh sách nằm ngoài viền.",
+      "character_action": "",
+      "props": [
+        "Hai cửa sổ phụ có hai dấu khớp hình, tab chính mang dấu khác",
+        "Danh sách hai mục chỉ có biểu tượng, viền khu vực, chặn xám"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Giữ neo tab cùng một dấu địa chỉ như S16."
+        },
+        {
+          "t": 0.2,
+          "event": "L34 +0,10 s: ray bắt đầu chuyển sang nấc thứ hai."
+        },
+        {
+          "t": 0.92,
+          "event": "L34 «vài trang»: viền rút khỏi phần trung tâm về nhóm cửa sổ phụ bên trái; crop tiến vào để thấy mép rút."
+        },
+        {
+          "t": 2.3,
+          "event": "L34 «danh sách»: thanh danh sách và nhãn mở, hai dấu hình trùng các cửa sổ phụ."
+        },
+        {
+          "t": 3.02,
+          "event": "Các đầu nối ghép lần lượt đúng hai cặp dấu."
+        },
+        {
+          "t": 3.47,
+          "event": "L35 +0,10 s: cùng tab chat sáng viền xanh trung tính để đối chiếu."
+        },
+        {
+          "t": 4.5,
+          "event": "L35 «bị chặn»: đường dò dừng ở biên, khóa đổi sang vạch xám chắn; dấu tab vẫn không có trong danh sách."
+        },
+        {
+          "t": 5.73,
+          "event": "Giữ kết quả. Hai thẻ phụ lùi theo chiều sâu, thanh co về gần chỉ báo nhưng giữ vạch chắn tới cú cắt."
+        }
+      ],
+      "voice_over": "Nếu chỉ cho phép trên vài trang, quyền đi theo danh sách.\nTab chat ngoài danh sách thì bị chặn.",
+      "text_overlay": "Trang đã chọn",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Trang đã chọn",
+            "type": "term",
+            "form": "illustration",
+            "object": "Vùng thu về đúng hai cửa sổ phụ có dấu trong danh sách",
+            "motion": "Viền rút khỏi tab chính, thẻ mục bật ra."
+          },
+          {
+            "term": "Đối chiếu danh sách",
+            "type": "action",
+            "form": "connection",
+            "object": "Hai dấu hình nối đúng cửa sổ có dấu trùng",
+            "motion": "Các nối ghép lần lượt; một đường về tab chat dừng sát mép."
+          },
+          {
+            "term": "Tab bị chặn",
+            "type": "result",
+            "form": "status",
+            "object": "Vạch ngang xám ở chỉ báo của tab chat",
+            "motion": "Khóa mở đổi thành vạch chắn khi đối chiếu hụt."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Trang đã chọn",
+            "to": "Đối chiếu danh sách",
+            "type": "cấp quyền theo dấu cửa sổ trùng mục"
+          },
+          {
+            "from": "Đối chiếu danh sách",
+            "to": "Tab bị chặn",
+            "type": "không có mục khớp tab chat của phép thử"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7,
+            "effect": "none"
+          },
+          {
+            "text": "Trang đã chọn",
+            "kind": "keyword",
+            "attach_to": "viền danh sách · phân biệt phạm vi của danh sách cho phép.",
+            "appear_s": 2.3,
+            "disappear_s": 6.72,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.27
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S18",
+      "narrative_purpose": "Ví dụ cấp tạm khi chọn",
+      "main_idea": "Chế độ chờ thao tác chỉ cấp quyền tạm cho tab hiện tại khi người dùng chọn tiện ích",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.89,
+      "visual_concept": "Cận cụm nút–tab cao khoảng 650 px. Giữ tâm tab và vị trí nút để match cut qua S19. Vạch chờ là cung hở, không khóa mở, không dùng viền liền. Con trỏ lơ lửng trên nút, chưa có hiệu ứng nhấn.",
+      "main_change": "Vòng chờ kéo thành viền đứt quanh đúng tab hiện tại. Con trỏ tới nút nhưng chỉ báo vẫn hở.",
+      "scene_type": "ui_simulation",
+      "environment": "security #151D34. Lớp xa: nền chàm của khu xét quyền, đường mạng mờ sát hai mép, để thoáng vùng giữa. Lớp giữa: ray bàn thử và các tab phụ xám, tab hoạt động giữ nguyên trục trong khung cận thanh công cụ. Lớp gần: nút miếng ghép, cung chờ vàng nét đứt và con trỏ. Ánh sáng từ trái trên giữ nền chìm và làm rõ cung chờ. Máy tĩnh, lớp tab phụ mờ đi khi lấy nét nút theo mốc đã ghi. Tâm tab và vị trí nút giữ nguyên để cắt khớp sang S19.",
+      "character_action": "",
+      "props": [
+        "Tab hoạt động có bảng, nút miếng ghép cũ",
+        "Cung chờ vàng nét đứt, tab phụ xám, con trỏ"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp về thanh công cụ cùng tab, nấc thứ ba vào vùng nhìn."
+        },
+        {
+          "t": 0.2,
+          "event": "L36 +0,10 s: lấy nét nút tiện ích, các tab nền mờ đi."
+        },
+        {
+          "t": 0.75,
+          "event": "L36 «khi bạn chọn»: chỉ báo chờ xuất hiện dưới nút."
+        },
+        {
+          "t": 1.8,
+          "event": "Vòng rỗng mở miệng cung, chưa khép hay đổi màu."
+        },
+        {
+          "t": 2.65,
+          "event": "L36 «cấp tạm»: cung chờ hiện rõ và mang nhãn «Cấp tạm»."
+        },
+        {
+          "t": 3.5,
+          "event": "L36 «tab đang mở»: cung kéo thành viền nét đứt của đúng tab, cửa sổ phụ vẫn xám."
+        },
+        {
+          "t": 4.48,
+          "event": "Viền chờ khớp cạnh dưới; trạng thái còn hở tại nút."
+        },
+        {
+          "t": 5.09,
+          "event": "L37 +0,10 s: con trỏ bắt đầu đi lên đúng tab thử."
+        },
+        {
+          "t": 6.25,
+          "event": "Con trỏ đổi hướng, đến ngay trên nút và dừng cách bề mặt vài px."
+        },
+        {
+          "t": 7.11,
+          "event": "Giữ 1,89 s sau lời; cung rỗng nở thêm từ 7,18 s trong khi con trỏ giữ vị trí; không có tiếng nhấp."
+        }
+      ],
+      "voice_over": "Khi bạn chọn tiện ích, quyền chỉ cấp tạm cho tab đang mở.\nMình thử ngay trên tab chat này.",
+      "text_overlay": "Cấp tạm",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Chọn tiện ích",
+            "type": "action",
+            "form": "animation",
+            "object": "Nút miếng ghép và con trỏ",
+            "motion": "Con trỏ tới sát nút và dừng, chưa bấm."
+          },
+          {
+            "term": "Cấp tạm",
+            "type": "term",
+            "form": "status",
+            "object": "Chỉ báo là vòng rỗng dưới nút",
+            "motion": "Một cung vàng mở, giữ nét đứt."
+          },
+          {
+            "term": "Tab đang mở",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Một tab có bảng, các tab phụ xám",
+            "motion": "Cung chờ kéo dài theo đúng viền tab chính."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Chọn tiện ích",
+            "to": "Cấp tạm",
+            "type": "thao tác chủ động là điều kiện"
+          },
+          {
+            "from": "Cấp tạm",
+            "to": "Tab đang mở",
+            "type": "đối tượng chờ cấp quyền trong ví dụ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 8,
+            "effect": "none"
+          },
+          {
+            "text": "Cấp tạm",
+            "kind": "keyword",
+            "attach_to": "vòng chờ của tab hoạt động · phân biệt chế độ cấp quyền tạm theo thao tác.",
+            "appear_s": 2.65,
+            "disappear_s": 7.76,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.89
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 8,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S19",
+      "narrative_purpose": "Sai lầm khi nhấp ở tab nhạy cảm",
+      "main_idea": "Nhấp tiện ích ngay trên tab có giá nội bộ sẽ cấp quyền tạm đọc phần đang hiện",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1,
+      "visual_concept": "Cắt ra bố cục toàn màn hình cao khoảng 760 px với hai cánh tab xám, bỏ ray ba nấc khỏi tiền cảnh. Giữ điểm trỏ và tab ở tọa độ kết S18. Cảnh kiểm chứng phạm vi trên tab có nội dung nhạy cảm, chỉ mở quyền, không vẽ nội dung bị sao chép.",
+      "main_change": "Phiến giá nội bộ lộ trong tab. Một cú nhấp đổi vòng chờ thành khóa mở và viền bao đúng tab; tab bên kia vẫn xám.",
+      "scene_type": "ui_simulation",
+      "environment": "code #15283A. Xa: mặt bàn thử nhìn chính diện, các tab phụ dạt sang hai cánh thay cho ray dọc; giữa: toàn màn hình ở neo cũ, góc trái dưới dành cho Cáo; gần: phiến nội bộ kéo ra, con trỏ và chỉ báo. Ánh từ trái trên bắt mép phiến, viền hồng dừng đúng mép một tab.",
+      "character_action": "`think` 3,30–5,90 s (122,30–124,90 s toàn tập), rộng 160 px, x=105, đáy y=1270; nhìn lên phiến nội bộ vừa lọt vào vùng đọc. Giữ trống hộp chỉ báo và mọi đường nối.",
+      "props": [
+        "Cùng tab, con trỏ và vòng chờ của S18",
+        "Phiến giá nội bộ y hệt S06",
+        "Chỉ báo khóa mở hồng và hai cửa sổ phụ xám"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt rộng khớp con trỏ, giữ chỉ báo ở chế độ chờ và dấu tab ở neo cũ."
+        },
+        {
+          "t": 0.62,
+          "event": "L38 «giá nội bộ»: ô chat nới, phiến đúng mẫu S06 trượt ra khỏi dưới bảng ba ô."
+        },
+        {
+          "t": 1.75,
+          "event": "Phiến ngả ra để thấy khóa nhỏ, vẫn trong tab."
+        },
+        {
+          "t": 2.82,
+          "event": "L39 «nhấp»: con trỏ ấn miếng ghép, tiếng nhấp đồng khung. Vòng chờ đổi thành khóa mở."
+        },
+        {
+          "t": 3.3,
+          "event": "Cáo vào ở 122,30 s sau khi chỉ báo đã mở; viền hồng lan theo mép tab."
+        },
+        {
+          "t": 4.42,
+          "event": "Viền ôm cả phiến, dừng ở biên tab hiện tại; tab phụ vẫn xám."
+        },
+        {
+          "t": 5.42,
+          "event": "L40 «tránh nhấp»: con trỏ lùi khỏi nút, giữ khóa mở và viền liền."
+        },
+        {
+          "t": 5.9,
+          "event": "Cắt lớp Cáo sau 2,60 s, giữ phiến và chỉ báo."
+        },
+        {
+          "t": 7,
+          "event": "Giữ trạng thái kết quả; trượt nhẹ cả cụm tab 90 px theo hướng bàn S20 ở nửa sau của nhịp giữ."
+        }
+      ],
+      "voice_over": "Giá nội bộ đang hiện rõ trên màn hình.\nMột lần nhấp đủ cấp quyền đọc phần đang hiện.\nTránh nhấp trên tab nhạy cảm.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Giá nội bộ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Phiến có nếp gập và khóa nhỏ từ S06",
+            "motion": "Trượt từ sau bảng ba ô, nằm trọn bên trong tab."
+          },
+          {
+            "term": "Nhấp tiện ích",
+            "type": "action",
+            "form": "animation",
+            "object": "Con trỏ cố định khớp S18 và nút có tia",
+            "motion": "Bấm một lần; sau đó lùi khỏi nút."
+          },
+          {
+            "term": "Đọc phần đang hiện",
+            "type": "result",
+            "form": "status",
+            "object": "Khóa mở và viền hồng liền ôm đúng tab",
+            "motion": "Thay vòng rỗng sau nhấp, viền lan tới phiến và dừng ở biên."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nhấp tiện ích",
+            "to": "Đọc phần đang hiện",
+            "type": "mở quyền tạm tại tab hiện tại"
+          },
+          {
+            "from": "Đọc phần đang hiện",
+            "to": "Giá nội bộ",
+            "type": "phiến đang hiện nằm trong vùng đọc"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 8,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1
+      },
+      "sound_effects": [
+        "2,82 s · Một tiếng nhấp nhẹ đúng lúc bấm ở L39."
+      ],
+      "transition": "match_cut",
+      "duration_s": 8,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S20",
+      "narrative_purpose": "Hai quyết định độc lập",
+      "main_idea": "Thu hẹp quyền và kiểm nhà phát hành là hai việc độc lập",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.2,
+      "visual_concept": "Cụm hai lớp cao khoảng 650 px; không chia đôi màn hình. Đầu tiên chỉ đổi phạm vi của cửa sổ. Khi sang việc kiểm nhà phát hành, cửa sổ hạ thấp làm nền và mặt hồ sơ mới xuất hiện.",
+      "main_change": "Vùng quyền co quanh một cửa sổ; hồ sơ nhà phát hành vẫn úp cho đến khi thẻ riêng trượt lên và lật.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: bóng cửa sổ và tường; giữa: bàn nghiêng, cửa sổ quyền trên mặt bàn và thẻ tiện ích úp phía sau; gần: các cánh viền và mặt hồ sơ. Ánh trái trên, hai đối tượng dùng liên tiếp cùng vùng nhìn.",
+      "character_action": "",
+      "props": [
+        "Ba cửa sổ và viền thu hẹp",
+        "Thẻ tiện ích hai mặt, hồ sơ vô danh gồm hình đầu người và vạch trơn"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Trở về bàn nghiêng; thẻ tiện ích để úp sau cụm cửa sổ."
+        },
+        {
+          "t": 0.68,
+          "event": "L41 «quyền hẹp hơn»: viền rút hai cánh khỏi các cửa sổ ngoài."
+        },
+        {
+          "t": 1.78,
+          "event": "Chỉ còn một cửa sổ trong viền; hồ sơ vẫn úp."
+        },
+        {
+          "t": 2.73,
+          "event": "L42 «kiểm nhà phát hành»: cửa sổ hạ xuống, thẻ tiến vào đúng vùng vừa nhường."
+        },
+        {
+          "t": 3.65,
+          "event": "Thẻ lật bằng co ngang qua cạnh, để mặt hồ sơ vô danh hướng trước."
+        },
+        {
+          "t": 4.22,
+          "event": "Mặt hồ sơ ngả thêm để đọc hình; mép thẻ hạ về đường biên mở S21."
+        }
+      ],
+      "voice_over": "Quyền hẹp hơn thì ít trang hơn.\nBạn vẫn cần kiểm nhà phát hành.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Quyền hẹp hơn",
+            "type": "relation",
+            "form": "comparison",
+            "object": "Viền quanh nhiều cửa sổ thu về một cửa sổ",
+            "motion": "Bỏ dần hai cánh ngoài, giữ đúng một cửa sổ."
+          },
+          {
+            "term": "Nhà phát hành",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Mặt hồ sơ phía sau thẻ tiện ích",
+            "motion": "Cửa sổ hạ; thẻ lên rồi lật mặt hồ sơ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Quyền hẹp hơn",
+            "to": "Nhà phát hành",
+            "type": "điều chỉnh cấp quyền và xác minh người phát hành là hai thao tác riêng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 5,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.2
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 5,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S21",
+      "narrative_purpose": "Trả vế bản cũ sau khi gỡ",
+      "main_idea": "Chặn gửi mới không bảo đảm thu hồi được bản đã gửi",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2.42,
+      "visual_concept": "Bố cục hai nửa cạnh nhau duy nhất, cụm x≈105–975 và cao khoảng 690 px. Đầu tiên chỉ dựng phía nguồn, rồi dựng đường đứt, sau đó mới mở nửa đích. So sánh hai quan hệ độc lập sau gỡ trong ví dụ. Góc nhìn khe đổi bằng cắt khớp giữa hai hình khe đã vẽ sẵn bên trong panel phải; giữ đường biên màn hình.",
+      "main_change": "Trái thấy ổ trống và gói mới dừng tại đường đứt; phải hiện bản ba ô đã nhận vẫn có thể còn trong khe, hai trạng thái cùng tồn tại.",
+      "scene_type": "comparison_scene",
+      "environment": "incident #1E1931. Xa: hai dải chiều sâu tách nhau bởi biên dọc; giữa: trái là trình duyệt có ổ trống, phải là khối nhận ba tầng; gần: hai mấu tuyến, gói dự kiến nét đứt và gờ khe. Cùng ánh trái trên, phần đích chỉ chiếm nửa phải từ L45.",
+      "character_action": "",
+      "props": [
+        "Panel nguồn, ổ tiện ích trống, tuyến ngắt và gói dự kiến nét đứt xám",
+        "Panel đích với khe vát hai góc vẽ sẵn và bảng sao ba ô viền răng cưa từ S02"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mép thẻ nối vào biên dọc, nửa phải chìm; giữ chỗ để trình bày đích sau."
+        },
+        {
+          "t": 0.52,
+          "event": "L43 «gỡ xong»: nửa nguồn mở, ổ trống trượt ra trước."
+        },
+        {
+          "t": 1.62,
+          "event": "L44: đường gửi hiện tại phía nguồn, gói nét đứt tiến lên."
+        },
+        {
+          "t": 2.2,
+          "event": "L44 «đã bị ngắt»: hai đầu co rời, gói xám đứng trước đầu tuyến."
+        },
+        {
+          "t": 2.35,
+          "event": "Gắn «Gửi mới» cạnh đường gãy, giữ hình ổ trống."
+        },
+        {
+          "t": 3,
+          "event": "L45 vào đúng 135,00 s toàn tập. «Bản đã gửi»: nửa phải trượt vào, thấy khe đã giữ sẵn bảng cũ."
+        },
+        {
+          "t": 3.28,
+          "event": "Gờ mở và nhãn «Bản cũ» gắn dưới khe, chừa trọn dấu ba ô ở hai phía."
+        },
+        {
+          "t": 4.48,
+          "event": "Khe lùi vào đúng nửa panel, bảng ba ô hồng vẫn hiện tại đích."
+        },
+        {
+          "t": 5.9,
+          "event": "Gờ khe nâng thêm trước L46, giữ nguyên gói xám bên trái."
+        },
+        {
+          "t": 6.93,
+          "event": "L46 «lưu bao lâu»: cắt khớp góc vẽ khe vào sâu hơn, không xuất hiện đồng hồ, ký tự hay số thời hạn."
+        },
+        {
+          "t": 7.83,
+          "event": "Giữ cả hai nửa hoàn chỉnh 2,42 s: dải sáng dừng trên vạch đứt, sau đó sáng ở gờ khe riêng, không vẽ đường thông giữa chúng."
+        },
+        {
+          "t": 9.02,
+          "event": "Gờ nghiêng vừa đủ để thấy mặt ba ô trong khe; đường gãy vẫn dễ thấy, giữ hai trạng thái trước cắt."
+        }
+      ],
+      "voice_over": "Trình duyệt gỡ xong rồi.\nĐường gửi đã bị ngắt.\nBản đã gửi có thể vẫn còn ở máy chủ ngoài.\nMình không biết bên nhận lưu bao lâu.",
+      "text_overlay": "Gửi mới\nBản cũ",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Gửi mới",
+            "type": "result",
+            "form": "status",
+            "object": "Ổ trống, đường ngắt và gói xám phía nguồn",
+            "motion": "Ổ lộ ra, hai đầu co và gói dừng phía trong."
+          },
+          {
+            "term": "Bản cũ",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng ba ô hồng đã nằm trong khe bên nhận",
+            "motion": "Nửa phải trượt vào rồi gờ hé ra để nhìn thấy bảng."
+          },
+          {
+            "term": "Lưu giữ",
+            "type": "concept",
+            "form": "comparison",
+            "object": "Hai nửa gồm đường bị ngắt và bản ở ngoài",
+            "motion": "Giữ cả hai trạng thái; chỉ đổi góc khe, không có đồng hồ hay thời hạn."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Gửi mới",
+            "to": "Bản cũ",
+            "type": "ngắt đường mới ở nguồn không xóa bản đã nhận"
+          },
+          {
+            "from": "Bản cũ",
+            "to": "Lưu giữ",
+            "type": "minh họa khả năng bản cũ còn ở nơi nhận, thời hạn chưa biết"
+          }
+        ],
+        "texts": [
+          {
+            "text": "Gửi mới",
+            "kind": "label",
+            "attach_to": "đường đứt bên trình duyệt · chỉ trạng thái của đường gửi tiếp.",
+            "appear_s": 2.35,
+            "disappear_s": 10.1,
+            "effect": "none"
+          },
+          {
+            "text": "Bản cũ",
+            "kind": "label",
+            "attach_to": "khe máy chủ · chỉ bản đã đến.",
+            "appear_s": 3.28,
+            "disappear_s": 10.1,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 2.42
+      },
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 10.25,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S22",
+      "narrative_purpose": "Việc một, kiểm trước khi cài",
+      "main_idea": "Kiểm danh tính nhà phát hành và quyền có tương xứng với việc cần làm",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.02,
+      "visual_concept": "Cụm thẻ và ngăn cao khoảng 700 px. Mở ngăn hồ sơ ở trên, rồi ngăn quyền ở dưới cùng một trục nhìn. Quan hệ quá rộng hiện bằng cửa sổ vượt khỏi khuôn của việc cần làm. Nút cộng vẫn chưa bật và con trỏ lùi.",
+      "main_change": "Hai ngăn lần lượt mở. Nhóm cửa sổ tràn ra ngoài khuôn của một việc, con trỏ rút khỏi nút cài.",
+      "scene_type": "object_interaction",
+      "environment": "security #151D34. Xa: vách thẻ chìm như S05; giữa: quầy cài có thẻ hai ngăn và khung nhiệm vụ một cửa sổ; gần: hồ sơ, nhóm quyền và dấu cộng. Ánh trái trên và bóng nhẹ giúp phần quyền tràn dễ nhận.",
+      "character_action": "`present_hand` 0,00–2,75 s (142,25–145,00 s toàn tập), rộng 165 px, x=103, đáy y=1270. Xoay hướng tay có sẵn về ngăn hồ sơ bằng vị trí đặt thẻ, giữ ảnh dáng nguyên.",
+      "props": [
+        "Thẻ tiện ích có ngăn hồ sơ vô danh và ngăn quyền",
+        "Khung nhiệm vụ với một dấu bong bóng, nhóm cửa sổ, nút cộng chưa nhấn, con trỏ"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Vào quầy và Cáo hướng tay về thẻ; hai ngăn còn đóng."
+        },
+        {
+          "t": 0.2,
+          "event": "L47 +0,10 s: lấy nét khu vực thẻ cài."
+        },
+        {
+          "t": 1.22,
+          "event": "L47 «nhà phát hành»: mặt thẻ hé ngăn hồ sơ, lộ hình đầu người và vạch trơn."
+        },
+        {
+          "t": 2.12,
+          "event": "Hồ sơ nghiêng ra trước, tránh vùng tay Cáo."
+        },
+        {
+          "t": 2.7,
+          "event": "L48 +0,10 s: chuyển chú ý xuống mép ngăn thứ hai, Cáo rời ở 2,75 s."
+        },
+        {
+          "t": 3.28,
+          "event": "L48 «danh sách quyền»: ngăn dưới bung thành nhóm cửa sổ ký hiệu."
+        },
+        {
+          "t": 4.56,
+          "event": "L49 +0,10 s: đặt khuôn nhiệm vụ hình một cửa sổ cạnh nhóm quyền."
+        },
+        {
+          "t": 5.16,
+          "event": "L49 «quá rộng»: phần cửa sổ thừa vươn vượt hẳn mép khuôn."
+        },
+        {
+          "t": 6.2,
+          "event": "L49 «mình dừng»: con trỏ lùi khỏi dấu cộng; nút vẫn rỗng."
+        },
+        {
+          "t": 6.73,
+          "event": "Giữ kết quả rồi đóng thẻ về thanh công cụ. Dấu ba chấm lên đúng tọa độ mở S23."
+        }
+      ],
+      "voice_over": "Trước khi cài, mình xem tên nhà phát hành.\nRồi mình đọc danh sách quyền.\nXin quá rộng so với việc cần làm, mình dừng.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Nhà phát hành",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Ngăn trên có hình hồ sơ vô danh và vạch trơn",
+            "motion": "Hé từ mặt thẻ ngay khi được nhắc."
+          },
+          {
+            "term": "Danh sách quyền",
+            "type": "term",
+            "form": "illustration",
+            "object": "Ngăn dưới có cụm cửa sổ biểu trưng",
+            "motion": "Bung ra lần lượt, vượt khuôn nhiệm vụ khi lời nhắc quá rộng."
+          },
+          {
+            "term": "Dừng trước cài",
+            "type": "result",
+            "form": "status",
+            "object": "Nút cộng còn rỗng và con trỏ",
+            "motion": "Con trỏ lùi, nút không nhận cú nhấp."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nhà phát hành",
+            "to": "Danh sách quyền",
+            "type": "hai phần kiểm riêng trước khi cài"
+          },
+          {
+            "from": "Danh sách quyền",
+            "to": "Dừng trước cài",
+            "type": "phạm vi vượt việc cần làm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7.75,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.02
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 7.75,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S23",
+      "narrative_purpose": "Việc hai, gỡ tiện ích thừa",
+      "main_idea": "Người xem có thể tìm và gỡ tiện ích không dùng trong Chrome",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.49,
+      "visual_concept": "Cụm cửa sổ cao khoảng 780 px. Dùng biểu tượng hình học nhất quán để thấy đường từ ba chấm đến đúng hàng không dùng. Phóng riêng panel quản lý bằng nội suy hình hộp, không dịch camera. Các thẻ còn lại giữ trục, nén khoảng trống sau thao tác.",
+      "main_change": "Ba chấm mở menu, mục ghép hình đi tới danh sách; thùng rác và dấu xác nhận làm đúng hàng biến mất, các hàng khác dồn lại.",
+      "scene_type": "ui_simulation",
+      "environment": "security #151D34. Xa: lớp quầy chìm, giữa: cửa sổ phần mềm cận với ba hàng thẻ, gần: menu, con trỏ, nút thùng rác và hộp xác nhận. Sáng trái trên, các biểu tượng luôn tách khỏi thẻ lân cận.",
+      "character_action": "",
+      "props": [
+        "Thanh ba chấm, menu có hàng biểu tượng ghép hình",
+        "Bảng quản lý ba hàng, nút thùng rác, hộp xác nhận dấu kiểm",
+        "Miếng ghép có tia để nhận đúng hàng và ô thanh công cụ trống cuối cảnh"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khớp dấu ba chấm từ S22, giữ cửa sổ đóng menu."
+        },
+        {
+          "t": 0.2,
+          "event": "L50 +0,10 s: con trỏ tiến tới dấu ba chấm."
+        },
+        {
+          "t": 0.61,
+          "event": "L50 «ba chấm»: nhấp, một hàng menu trượt ra."
+        },
+        {
+          "t": 1.3,
+          "event": "L50 «tiện ích»: hàng có biểu tượng ghép hình mở đến trục giữa."
+        },
+        {
+          "t": 2.23,
+          "event": "L51 +0,10 s: panel quản lý mở rộng từ hàng menu, tách ba hàng thẻ."
+        },
+        {
+          "t": 3.1,
+          "event": "Bảng lên đủ kích thước, giữ miếng ghép cần gỡ khác hình với hai hàng còn lại."
+        },
+        {
+          "t": 3.56,
+          "event": "L52 +0,10 s: nhấn thùng rác ở đúng hàng ngay cụm «gỡ»."
+        },
+        {
+          "t": 4.23,
+          "event": "Hộp xác nhận bật ngay cạnh hàng, không đè vào dấu của hàng bên."
+        },
+        {
+          "t": 5.18,
+          "event": "L52 «xác nhận»: con trỏ bấm dấu kiểm, âm khẽ, hàng mục tiêu bắt đầu trượt ra."
+        },
+        {
+          "t": 5.51,
+          "event": "Giữ để hai hàng còn lại dồn vào; ô biểu tượng cũ trên thanh công cụ để trống."
+        }
+      ],
+      "voice_over": "Bấm ba chấm, mở mục tiện ích.\nVào trang quản lý.\nChọn gỡ tiện ích không dùng và xác nhận.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Mục tiện ích",
+            "type": "entity",
+            "form": "icon",
+            "object": "Menu ba chấm với một hàng biểu tượng ghép hình",
+            "motion": "Menu xổ rồi hàng ghép hình nổi lên."
+          },
+          {
+            "term": "Trang quản lý",
+            "type": "term",
+            "form": "illustration",
+            "object": "Bảng ba hàng có riêng một hàng miếng ghép có tia",
+            "motion": "Panel mở rộng từ menu, giữ các hàng phân biệt."
+          },
+          {
+            "term": "Gỡ và xác nhận",
+            "type": "action",
+            "form": "animation",
+            "object": "Nút thùng rác đúng hàng và hộp dấu kiểm",
+            "motion": "Con trỏ bấm thùng rác, chuyển sang xác nhận."
+          },
+          {
+            "term": "Hàng đã gỡ",
+            "type": "result",
+            "form": "status",
+            "object": "Chỗ trống rồi hai hàng còn lại",
+            "motion": "Hàng mục tiêu trượt ra, các hàng khác dồn lên."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Mục tiện ích",
+            "to": "Trang quản lý",
+            "type": "mục dẫn đến bảng đã cài"
+          },
+          {
+            "from": "Trang quản lý",
+            "to": "Gỡ và xác nhận",
+            "type": "thao tác trên một hàng đã chọn"
+          },
+          {
+            "from": "Gỡ và xác nhận",
+            "to": "Hàng đã gỡ",
+            "type": "hàng rời khỏi danh sách"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 7,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.49
+      },
+      "sound_effects": [
+        "5,18 s · Một tiếng xác nhận khẽ ở cú bấm dấu kiểm."
+      ],
+      "transition": "cut",
+      "duration_s": 7,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S24",
+      "narrative_purpose": "Việc ba, chặn dữ liệu đầu vào",
+      "main_idea": "Giữ ba nhóm dữ liệu nhạy cảm ngoài ô chat và dùng mẫu khi phù hợp",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.79,
+      "visual_concept": "Cụm khay–tab cao khoảng 700 px; nắp khay và ô nhập dùng hai hình gờ khác nhau. Mật khẩu tạo bằng ổ khóa với chấm tròn, khóa truy cập là chìa rời, hồ sơ khách có đầu người. Bảng mẫu chỉ có vạch hình học.",
+      "main_change": "Ba vật nhạy cảm cùng vào khay kín bên ngoài tab. Chỉ bảng mẫu trượt qua mép ô chat.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: cửa sổ và tường; giữa: bàn toàn nhìn cao với khay bên trái và tab bên phải theo chiều sâu; gần: đường trượt của ba vật và tấm mẫu. Ánh trái trên, một mặt bàn liền không có vạch chia.",
+      "character_action": "",
+      "props": [
+        "Khay xanh lục có nắp, ổ khóa/chấm mật khẩu, biểu trưng khóa truy cập, hồ sơ khách",
+        "Một bảng mẫu vô danh, ô nhập chat và gờ đủ dày để đọc đường đi"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Toàn bàn có khay mở và cửa sổ chat trống, chưa có vật nhạy cảm trong ô."
+        },
+        {
+          "t": 0.2,
+          "event": "L53 +0,10 s: mở đường dẫn vào khay từ mép bàn."
+        },
+        {
+          "t": 0.61,
+          "event": "L53 «mật khẩu»: hình ổ khóa có chấm trượt vào ô đầu khay."
+        },
+        {
+          "t": 1.12,
+          "event": "L53 «khóa»: biểu trưng chìa đi vào ô thứ hai."
+        },
+        {
+          "t": 1.77,
+          "event": "L53 «dữ liệu khách hàng»: hồ sơ vào ô thứ ba."
+        },
+        {
+          "t": 2.68,
+          "event": "L53 «ngoài ô chat»: khay lùi khỏi mép tab, ba vật đều còn thấy."
+        },
+        {
+          "t": 3.49,
+          "event": "L54 +0,10 s: đưa mắt về vùng nhập còn trống."
+        },
+        {
+          "t": 4.38,
+          "event": "L54 «dữ liệu mẫu»: bảng vô danh trượt qua gờ vào ô chat; chỉ một bản."
+        },
+        {
+          "t": 5.21,
+          "event": "Gờ khay đóng sau lời, dấu kiểm hình học hiện trên nắp, ô nhập lùi cho cú cắt tới khay xử lý."
+        }
+      ],
+      "voice_over": "Giữ mật khẩu, khóa và dữ liệu khách hàng ngoài ô chat.\nBạn có thể hỏi bằng dữ liệu mẫu.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Mật khẩu",
+            "type": "term",
+            "form": "icon",
+            "object": "Ổ khóa với chấm hình học",
+            "motion": "Vào khay đầu tiên."
+          },
+          {
+            "term": "Khóa truy cập",
+            "type": "term",
+            "form": "icon",
+            "object": "Chìa rời dạng hình học",
+            "motion": "Trượt vào vị trí thứ hai của khay."
+          },
+          {
+            "term": "Dữ liệu khách hàng",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Hồ sơ có hình đầu người",
+            "motion": "Vào ngăn thứ ba ngoài chat."
+          },
+          {
+            "term": "Dữ liệu mẫu",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Bảng vô danh có vạch trơn",
+            "motion": "Chỉ bảng mẫu qua biên và nằm trong ô nhập."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Mật khẩu",
+            "to": "Dữ liệu mẫu",
+            "type": "mật khẩu ở khay, mẫu ở ô nhập"
+          },
+          {
+            "from": "Khóa truy cập",
+            "to": "Dữ liệu mẫu",
+            "type": "khóa ở khay, mẫu ở ô nhập"
+          },
+          {
+            "from": "Dữ liệu khách hàng",
+            "to": "Dữ liệu mẫu",
+            "type": "hồ sơ ở khay, mẫu ở ô nhập"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.79
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S25",
+      "narrative_purpose": "Nếu đã dán thông tin nhạy cảm",
+      "main_idea": "Nếu lỡ đưa dữ liệu nhạy cảm vào chat, xử lý theo loại dữ liệu",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.92,
+      "visual_concept": "Cụm khay cao khoảng 690 px, thực hiện lần lượt một thao tác trên một tiêu điểm. Hộp nhận nội bộ là màn hình có khiên, khác khối ba tầng ngoài trình duyệt. Mũi tên chỉ hành động báo IT bằng biểu tượng hồ sơ, không minh họa tải lên hoặc gửi thêm nội dung.",
+      "main_change": "Thẻ mật khẩu được thay, chìa khóa cũ bị gạch và rời ổ, dấu hồ sơ tiến vào hộp IT có khiên.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: tab mờ ở vùng sâu, giữa: một khay xử lý cận cảnh theo trục dọc, gần: thẻ mật khẩu, ổ chìa và hộp nhận nội bộ. Ánh trái trên để động tác thay/gạch/nhận đều nổi rõ.",
+      "character_action": "",
+      "props": [
+        "Thẻ mật khẩu cũ/mới với số chấm hình học khác nhau",
+        "Khóa truy cập và ổ, vạch xám gạch hủy",
+        "Dấu hồ sơ công ty và hộp màn hình có khiên"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp gờ khay cũ sang gờ khay xử lý. Bố trí ba vật ở ba độ sâu, một tiêu điểm."
+        },
+        {
+          "t": 0.16,
+          "event": "L55 +0,10 s, «đổi mật khẩu»: thẻ cũ gập xuống và thẻ mới trượt lên đúng chỗ."
+        },
+        {
+          "t": 1.26,
+          "event": "L56 +0,10 s, «thu hồi»: vạch chéo vào chìa cũ, chìa bị rút khỏi ổ."
+        },
+        {
+          "t": 2.36,
+          "event": "L57 +0,10 s: dấu hồ sơ công ty nâng lên khỏi khay."
+        },
+        {
+          "t": 3.08,
+          "event": "L57 «báo IT»: dấu hồ sơ theo mũi ngắn vào hộp có khiên, không sinh bản sao."
+        },
+        {
+          "t": 4.08,
+          "event": "Hộp khép, dấu nhận sáng xanh lục; canh cạnh nắp trùng mép bàn của S26."
+        }
+      ],
+      "voice_over": "Đổi mật khẩu.\nThu hồi khóa.\nDữ liệu công ty thì báo IT.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Đổi mật khẩu",
+            "type": "action",
+            "form": "animation",
+            "object": "Hai thẻ chấm với mép khác nhau",
+            "motion": "Thẻ cũ gập đi, thẻ mới chiếm đúng vị trí."
+          },
+          {
+            "term": "Thu hồi khóa",
+            "type": "action",
+            "form": "status",
+            "object": "Chìa cũ, ổ và vạch hủy",
+            "motion": "Vạch chéo xuất hiện rồi chìa trượt rời ổ."
+          },
+          {
+            "term": "Báo IT",
+            "type": "action",
+            "form": "flow",
+            "object": "Dấu hồ sơ và hộp nhận có khiên",
+            "motion": "Dấu hồ sơ đi theo mũi tên ngắn tới hộp nhận nội bộ."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Đổi mật khẩu",
+            "to": "Thu hồi khóa",
+            "type": "ứng phó theo từng loại thông tin"
+          },
+          {
+            "from": "Thu hồi khóa",
+            "to": "Báo IT",
+            "type": "sự cố dữ liệu công ty cần báo bộ phận nội bộ"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 5,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.92
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 5,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S26",
+      "narrative_purpose": "Outro, trả đúng tình huống",
+      "main_idea": "Trả đúng cả hai vế của tình huống mở",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.2,
+      "visual_concept": "Trở lại đúng góc bàn của S01 với chi tiết khe vát từ S02, cụm cao khoảng 770 px. Khớp ba vật theo ba lời. Giữ hình ảnh bản cũ nằm ở khe như một khả năng trong ví dụ; chỉ nguồn lui tuyến, không vẽ dữ liệu rời khe.",
+      "main_change": "Viền ôm bảng gốc, đầu nối về trạng thái gãy với ổ trống, đúng khe mở đầu xoay lộ dấu bản đã nhận.",
+      "scene_type": "process_animation",
+      "environment": "office #111D30. Xa: đúng tường và bóng cửa sổ S01; giữa: cùng bàn, tab, tuyến và điểm nhận hở khoảng cách; gần: bảng gốc xanh, ổ trống và gờ khe hồng. Ánh trái trên, chung một khung dọc liền mặt bàn.",
+      "character_action": "`think` 0,00–6,00 s, rộng 175 px, x=105, đáy y=1290. Hướng về khe của hook, chừa gờ khe và bảng ngoài vùng alpha.",
+      "props": [
+        "Cùng bảng gốc, tab và vùng quyền của S01/S11",
+        "Ổ trống, hai đầu tuyến gãy của S13",
+        "Khe vát và dấu ba ô viền răng cưa của S02"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mép nắp khớp mép bàn S01, Cáo nhìn về phía khe, bảng gốc đã nằm trong tab."
+        },
+        {
+          "t": 0.42,
+          "event": "L58 «bảng giá»: bảng lộ mặt ba ô ở đúng nơi dán."
+        },
+        {
+          "t": 1.34,
+          "event": "L58 «quyền đọc trang»: viền trùm đúng tab, dừng ở mép cửa sổ."
+        },
+        {
+          "t": 2.52,
+          "event": "L59 «gỡ»: vị trí miếng ghép về ổ trống, hai đầu tuyến tách."
+        },
+        {
+          "t": 3.76,
+          "event": "L60 «bản cũ»: khe vát xoay lộ cùng dấu ba ô có viền răng cưa."
+        },
+        {
+          "t": 4.8,
+          "event": "Giữ 1,20 s; đầu tuyến nguồn lùi thêm khỏi tab, khe đã hé giữ nguyên dấu. Cạnh khe đưa hướng sang tấm hai mặt S27."
+        }
+      ],
+      "voice_over": "Tiện ích thấy bảng giá nhờ quyền đọc trang.\nGỡ dừng gửi mới.\nBản cũ có thể còn.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Quyền đọc trang",
+            "type": "term",
+            "form": "connection",
+            "object": "Viền ôm đúng tab có bản xanh",
+            "motion": "Khớp tab theo lời đầu."
+          },
+          {
+            "term": "Dừng gửi mới",
+            "type": "result",
+            "form": "status",
+            "object": "Ổ trống và đường đứt",
+            "motion": "Mấu tuyến rời nhau, vị trí miếng ghép trống."
+          },
+          {
+            "term": "Bản cũ có thể còn",
+            "type": "result",
+            "form": "illustration",
+            "object": "Dấu ba ô hồng nằm trong khe nhận hook",
+            "motion": "Khe nghiêng ra khi được nhắc, gói không dịch khỏi khe."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Quyền đọc trang",
+            "to": "Dừng gửi mới",
+            "type": "đọc được trước khi gỡ, đường gửi dừng sau khi gỡ"
+          },
+          {
+            "from": "Dừng gửi mới",
+            "to": "Bản cũ có thể còn",
+            "type": "cắt đường mới không chạm tới bản cũ ở đích"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 6,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 1.2
+      },
+      "sound_effects": [],
+      "transition": "match_cut",
+      "duration_s": 6,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    },
+    {
+      "scene_id": "S27",
+      "narrative_purpose": "Outro, mời bình luận",
+      "main_idea": "Câu hỏi bình luận về thói quen kiểm tiện ích",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.6,
+      "visual_concept": "Thẻ hai mặt và bong bóng thành cụm cao khoảng 650 px. Hình hai mặt đã biết từ S20/S22 để nhận ra đề tài mời bình luận. Giữ một dáng Cáo, dùng hướng đặt thẻ và chuyển động của bong bóng về người xem để chuyển sự chú ý.",
+      "main_change": "Một tấm lật từ mặt hồ sơ sang mặt quyền; bong bóng bình luận trơn mở ra bên cạnh và ổn định ở cuối.",
+      "scene_type": "object_interaction",
+      "environment": "office #111D30. Xa: bóng cửa sổ cũ lệch trái; giữa: mặt bàn nghiêng như S20 với một thẻ ở bên phải Cáo; gần: hồ sơ, mặt cửa sổ và bong bóng trơn. Ánh trái trên, thẻ đứng ở trục lật ổn định.",
+      "character_action": "`thumbs_up` 0,00–5,65 s, rộng 180 px, x=105, đáy y=1290. Cắt sang dáng này khi vào cảnh, giữ đến hết. Đặt thẻ gần hướng tay, bong bóng mở về phía trước.",
+      "props": [
+        "Thẻ lật hai mặt: hồ sơ vô danh và nhóm cửa sổ",
+        "Bong bóng bình luận hình học rỗng, không nút hay chữ mới"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp cạnh khe vào cạnh thẻ, Cáo `thumbs_up` cạnh bàn."
+        },
+        {
+          "t": 0.65,
+          "event": "L61 «nhà phát hành»: mặt hồ sơ ngả ra cho thấy dấu đầu người."
+        },
+        {
+          "t": 1.65,
+          "event": "Tấm dựng theo cạnh hẹp để chờ vế tiếp."
+        },
+        {
+          "t": 2.06,
+          "event": "L61 «quyền truy cập trang»: tấm lật sang mặt cửa sổ và ổn định trong nhịp hỏi."
+        },
+        {
+          "t": 3.33,
+          "event": "L62 +0,10 s: bong bóng rỗng nở cạnh tấm theo lời mời."
+        },
+        {
+          "t": 4.36,
+          "event": "L62 «bình luận»: đuôi bong bóng mở về phía trước, giữ tấm và Cáo trọn khung."
+        },
+        {
+          "t": 5.05,
+          "event": "Đuôi im 0,60 s: bong bóng hoàn tất chuyển động và giữ hình đến cắt đen ở 5,65 s."
+        }
+      ],
+      "voice_over": "Bạn thường kiểm nhà phát hành hay quyền truy cập trang trước?\nKể mình nghe ở phần bình luận nhé.",
+      "text_overlay": "",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Nhà phát hành",
+            "type": "entity",
+            "form": "illustration",
+            "object": "Mặt hồ sơ trên tấm hai mặt",
+            "motion": "Thẻ ngả mặt hồ sơ tới trước."
+          },
+          {
+            "term": "Quyền truy cập trang",
+            "type": "term",
+            "form": "illustration",
+            "object": "Mặt nhóm cửa sổ trên cùng tấm thẻ",
+            "motion": "Thẻ lật qua cạnh hẹp sang nhóm trang."
+          },
+          {
+            "term": "Bình luận",
+            "type": "action",
+            "form": "metaphor",
+            "object": "Bong bóng rỗng cạnh tấm",
+            "motion": "Nở, đuôi vươn về hướng người xem rồi ổn định."
+          }
+        ],
+        "relations": [
+          {
+            "from": "Nhà phát hành",
+            "to": "Quyền truy cập trang",
+            "type": "hai lựa chọn trên hai mặt của cùng thẻ"
+          },
+          {
+            "from": "Quyền truy cập trang",
+            "to": "Bình luận",
+            "type": "câu hỏi mời chia sẻ thói quen kiểm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "SECURITY / TRÌNH DUYỆT",
+            "kind": "label",
+            "attach_to": "mép trên của nền, x≥100 và y≈265 · header, nhận diện chủ đề.",
+            "appear_s": 0,
+            "disappear_s": 5.65,
+            "effect": "none"
+          }
+        ],
+        "hold_s": 0.6
+      },
+      "sound_effects": [],
+      "transition": "cut",
+      "duration_s": 5.65,
+      "quality_check": {
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "silent_comprehensible": true,
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true
+      }
+    }
+  ]
+}

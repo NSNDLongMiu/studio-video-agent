@@ -1,0 +1,3 @@
+Đã sửa góp ý vòng 1. S18 dùng nền `security #151D34` cho trạng thái chờ cấp quyền, giữ nguyên hình, chữ và mốc. Chuỗi cùng nền dài nhất là 4 cảnh. Bản JSON hợp lệ theo schema và ở trạng thái `DRAFT`. [storyboard.json](<D:/Agent Video Studio/content/it/T14-tien-ich-chrome-ai-co-the-doc-len-cuoc-t/ep01/storyboard.json>) · [storyboard.md](<D:/Agent Video Studio/content/it/T14-tien-ich-chrome-ai-co-the-doc-len-cuoc-t/ep01/storyboard.md>)
+
+27 cảnh · 179,65 giây · talking-head 0%. Sáu loại cảnh gồm `object_interaction`, `process_animation`, `cinematic_close_up`, `ui_simulation`, `data_visualization` và `comparison_scene`.

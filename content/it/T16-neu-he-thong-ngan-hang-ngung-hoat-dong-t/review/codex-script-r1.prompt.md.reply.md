@@ -1,0 +1,1 @@
+Chưa xác định được số đoạn viết lại hay số lỗi kỹ thuật. Chính sách chặn lệnh đọc tài liệu và thư mục chỉ có quyền đọc, nên chưa tạo `review/script-codex-r1.md`. Điểm cần kiểm tra trước tiên là từng khẳng định kỹ thuật ở lời 06–09, 11 và 13 có nguồn và sự kiện hình minh chứng theo R11 hay chưa.

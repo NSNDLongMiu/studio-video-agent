@@ -1,0 +1,1 @@
+Chưa xác định được số đoạn cần viết lại hay số lỗi kỹ thuật. Môi trường chặn đọc bản nháp và chỉ cho phép đọc tệp, nên mình chưa tạo `review/script-codex-r1.md`. Điểm cần đối chiếu trước tiên là lời S03, S06–S09 với phán quyết cuối và bằng chứng hình. Nếu bạn đính kèm các tệp nguồn, mình có thể soạn nội dung review ngay trong chat.

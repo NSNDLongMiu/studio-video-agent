@@ -1,0 +1,2370 @@
+{
+  "video_id": "IT-T17-E01",
+  "status": "APPROVED",
+  "authored_by": "Claude thay Codex (giám đốc ra lệnh 21/11/2026; Codex lỗi sandbox chỉ-đọc)",
+  "renderer": "pillow-ffmpeg",
+  "renderer_reason": "Các cảnh Remotion có sẵn (UiSimulationScene với DeveloperWorkspace IDE/terminal, ExplainerScene khối–mũi tên, DataVizScene thanh số liệu, QASequenceScene, CharacterScene, PromptReviewScene) đều chạy trên nền tối cố định và không có điện thoại, thẻ quảng cáo, micro, kính lúp, lưới ứng dụng, slide hay silhouette; không đáp ứng Y4 (bàn ăn, màn hình điện thoại, nền dữ liệu, bàn nghiên cứu, phòng họp). Dùng Pillow+FFmpeg với tools/motion: core (Canvas, Palette, easing), text (text engine duy nhất, attach_label), components (panel, card, window, cursor, tray, badge, sticker cho Cáo), flow (connection, packet), charts.counter, kinetic.kinetic_text, header (HeaderTrack, opening_plate), sequence (render_scene, camera, concat, write_scenes_json), renderlog. Bộ icon của components chỉ có user/server/database/lock/key/chat/cloud/warning/check/cross/gear/puzzle/document/clock/globe/shield/extension: KHÔNG có điện thoại, micro, kính lúp, đôi giày, tai, con dấu, dấu hỏi, lưới ứng dụng, slide; mọi vật này, cùng bàn ăn, silhouette \"bạn\" và phòng họp, Producer tự vẽ bằng Pillow theo mô tả trong props và environment (không dùng ảnh AI, plan.md không cần). scene_kind/kind_params khai cách tổ chức và mốc giây theo R27; render_scene_kind của scene_kinds.py chỉ có đạo cụ browser/bubble/extension/server/document/packet/badge và đổi object lạ thành icon tài liệu, nên KHÔNG gọi nguyên bản cho cảnh nào của video này; mọi label trong kind_params là tên nội bộ, không vẽ lên hình (Y1). Opening: opening_sequence của thư viện vẽ hình mẫu chung (quét/chia nhánh/đảo chiều với icon tài liệu, khoá, dấu kiểm), không biểu đạt đôi giày, điện thoại, micro; Producer tự vẽ hai pha đầu rồi dùng header.opening_plate cho pha topic_reveal. Camera (R12): chỉ S01 (push_in 1,00→1,10× lúc 1,75–2,50 s rồi 1,10→1,25× lúc 2,60–3,20 s để dẫn mắt tới thẻ quảng cáo rồi cận điện thoại) và S09 (push_in 1,00→1,08× lúc 5,00–7,00 s về hộp bằng chứng trống), dựng bằng sequence.camera trên lớp hình dư biên (vẽ ở ≥ 1,3× độ phân giải), zoom ≤ 1,3×, đặt chữ và Cáo SAU crop; các cảnh còn lại static. FFmpeg: overlay có tọa độ động dùng eval=frame; nếu dùng zoompan từ ảnh tĩnh thì d bằng số khung đoạn. Chuyển cảnh: cut (S01→S03, S10→S11, S11), circleopen (S03→S04, mở từ nút điện thoại), match_cut (S04→S05, ngăn dấu vết đứng nguyên chỗ), fade (S05→S06 đổi nền, S09→S10), wipeleft (S06→S07), slideup (S07→S08), wiperight (S08→S09).",
+  "opening": {
+    "title": "ĐÔI GIÀY CHƯA TỪNG TÌM",
+    "topic": "BẢO MẬT / QUẢNG CÁO",
+    "duration_s": 6.9,
+    "scene_id": "S01",
+    "voice": true,
+    "voice_line": "01",
+    "style": "surprise",
+    "style_params": {
+      "keyword": "NGHE LÉN?",
+      "scene_id": "S01",
+      "voice": [
+        [
+          0.65,
+          2.51
+        ],
+        [
+          3,
+          3.93
+        ],
+        [
+          4.33,
+          5.49
+        ]
+      ]
+    },
+    "animation": "Opening 6,9 s gộp S01+S02 của script thành MỘT cảnh `S01` (role opening) để khớp quy tắc cảnh opening riêng, một cảnh duy nhất ở đầu. Hai pha đầu Producer tự vẽ bằng Pillow (bàn ăn, bong bóng giày, điện thoại, thẻ quảng cáo, thanh tìm trống, micro, mũi tên nguồn); pha cuối dùng header.opening_plate với tiêu đề hai dòng ≥ 84 px (text engine) và nhãn chủ đề BẢO MẬT / QUẢNG CÁO, hiện 1,45 s. Kinetic của pha conflict là nhãn NGHE LÉN?. Âm: thông báo mềm lúc thẻ hiện, cảnh báo nhẹ ở micro, âm nhẹ khi tiêu đề vào.",
+    "phases": [
+      {
+        "phase": "visual_hook",
+        "start_s": 0,
+        "end_s": 2.9,
+        "visual": "Bàn ăn nhìn từ trên: Cáo (surprised), silhouette \"bạn\", đôi giày trên bàn, điện thoại nằm yên. Bong bóng hình đôi giày bay lên rồi tan giữa không khí; điện thoại sáng và thẻ quảng cáo giày bật lên (1,75 s) không có dây hay sóng nối.",
+        "sfx_intent": "ui_appear",
+        "voice_line": "01"
+      },
+      {
+        "phase": "conflict",
+        "start_s": 2.9,
+        "end_s": 5.45,
+        "visual": "Camera đẩy cận điện thoại: thanh tìm kiếm trống và danh sách gần đây trống ngay dưới thẻ quảng cáo; micro nhỏ viền đỏ, mũi tên nguồn đỏ, nhãn NGHE LÉN? (kinetic). Cáo đổi sang think rồi trượt ra.",
+        "sfx_intent": "alert",
+        "voice_line": "02,03"
+      },
+      {
+        "phase": "topic_reveal",
+        "start_s": 5.45,
+        "end_s": 6.9,
+        "visual": "Tấm tiêu đề: nhãn chủ đề BẢO MẬT / QUẢNG CÁO và tiêu đề ĐÔI GIÀY CHƯA TỪNG TÌM; đôi giày trượt tới cạnh thanh tìm trống.",
+        "sfx_intent": "impact_reveal"
+      }
+    ]
+  },
+  "captions": {
+    "layer": "accessibility",
+    "burn_in": true,
+    "position": "bottom",
+    "font_px": 56,
+    "max_lines": 2
+  },
+  "header": {
+    "text": "BẢO MẬT / QUẢNG CÁO",
+    "slots": [
+      "top_left",
+      "top_right",
+      "top"
+    ]
+  },
+  "talking_head_ratio": 0,
+  "visual_style_note": "1080×1920, 30 fps. Vùng hình y ≈ 250–1320 (nội dung sau opening từ y ≥ 408 để chừa ô header); phụ đề accessibility 56 px, ≤ 2 dòng, ≤ 28 ký tự/dòng ở dải y ≈ 1340–1500. Bảng màu theo plan: nền tối #0F1B2D, nền ấm bàn ăn #3A2A1F, chữ #FFFFFF, Cáo cam #F28C28; nghĩa màu: cyan #38BDF8 dấu vết/dữ liệu, vàng #F5B731 đang xét hoặc \"có thể\", xanh lá #2ECC71 đã kiểm, đỏ #E74C3C nghi ngờ (chỉ ở opening), cam là Cáo và nhấn. Phong cách phẳng 3D nhẹ, cạnh bo, sáng trái trên, bóng xuống phải, UI giả lập không logo, không tên hãng, không người thật (vai phụ là silhouette). Font Be Vietnam Pro hoặc Segoe UI Bold; chữ khoá và số ≥ 72 px, nhãn ≥ 56 px, tối đa 3 nhóm chữ cùng lúc (chỉ S08 có 3), ≤ 8 từ cùng lúc. Năm nền: Bàn ăn (S01, S11), Màn hình điện thoại (S03–S05, S10), Nền dữ liệu (S06–S07), Bàn nghiên cứu (S08), Phòng họp (S09); nền lớn nhất 30,9%, chuỗi liền dài nhất 3 cảnh. Cáo: S01 0–4,7 s (surprised rồi think, lớn ≈ 1,5× nguồn), S06 2,60–4,40 s (point_right ≈ 160 px), S11 0,20–1,80 s (bow ≈ 170 px) và 6,30–8,30 s (thumbs_up ≈ 180 px) = 10,1 s ≈ 14,9% thời lượng (hẹp hơn bản đồ Cáo của plan 21% nhưng nằm trong các khoảng của plan); đáy Cáo ≤ y 1290, khe ≥ 50 px tới phụ đề. Sticker Cáo tĩnh: đổi dáng là cắt (có nảy), không nhép miệng, không quay đầu; hướng nhìn thể hiện bằng vị trí và nhịp. Header BẢO MẬT / QUẢNG CÁO từ S03 đến S11 qua HeaderTrack (thẻ ≤ 9% khung, dòng chủ đề ≥ 40 px, khe ≥ 24 px), ô trái/phải trên luân phiên theo cảnh, kèm 4 chấm tiến độ không chữ (Tình huống ✓ ở opening; Cơ chế S03–S07; Bằng chứng S08–S09; Việc làm S10–S11, tick tại S03, S08, S10); header không có dòng tiêu đề rút gọn vì script chỉ khai chuỗi BẢO MẬT / QUẢNG CÁO. Trong opening nhãn chủ đề do opening_plate vẽ. Bìa (R7): khung ≈ 4,8 s (điện thoại cận có thẻ quảng cáo giày, thanh tìm trống, micro viền đỏ, nhãn NGHE LÉN?), đọc được ở 180×320; lưu ý plan.md ghi micro vàng còn script ghi viền đỏ, dùng viền đỏ theo script. Trạng thái \"mũi tên nguồn\" đổi 5 lần: đỏ chỉ micro (opening) → vàng nét đứt, micro mờ (S03) → cyan chỉ hồ sơ (S06) → vàng nét đứt nối nhóm (S07) → ba nhánh dấu hỏi (S11), trả đúng điện thoại và thẻ quảng cáo giày của S01. Không nhãn «AI tạo» hay «Ví dụ dựng» trên hình; khai báo AI và \"(ví dụ dựng)\" ở publish.json và công tắc nền tảng. Không nhạc nền (layers.music.enabled tắt). Mọi giờ trong bản này là mốc dự kiến theo script, Producer căn lại theo đo TTS. Các ô quality_check là tự chấm khi thiết kế, chưa đo trên bản dựng.",
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "narrative_purpose": "Opening 6,9 s (gộp S01 và S02 của script, cùng `role: opening`): đặt người xem vào tình huống \"vừa nhắc đôi giày, quảng cáo đã hiện\", hệ quả \"mình chưa tìm nó\" và câu hỏi mở \"điện thoại nghe lén à?\" trước giây 5,5, rồi hiện tiêu đề.",
+      "main_idea": "Chỉ nhắc đôi giày bằng lời, chưa tìm gì, vậy mà quảng cáo giày hiện ra: người xem nghi điện thoại nghe lén.",
+      "main_change": "0–2,9 s (thẻ hiện ở 1,75 s): điện thoại từ tối sang sáng và thẻ quảng cáo giày bật lên trong khi bong bóng giày tan giữa không khí, không có dây hay sóng nối tới điện thoại. 2,9–5,45 s: camera đẩy vào điện thoại, thanh tìm kiếm trống nằm ngay dưới thẻ quảng cáo, rồi micro sáng viền đỏ cùng mũi tên nguồn đỏ chỉ vào đó. 5,45–6,9 s: tấm tiêu đề thay toàn khung. Ở 360×640 nhìn ra mảng sáng của điện thoại, vòng đỏ ở micro và khối tiêu đề.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 1.4,
+      "hold_reason": "Sau lời 03 (5,49 s) còn 1,41 s: 5,45 s tấm tiêu đề vào (đổi hình lớn) rồi 6,2 s hình đôi giày và thanh tìm trống trên tấm chạy một lần; không có đoạn tĩnh trên 1,5 s.",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nghe lén",
+            "type": "concept",
+            "form": "icon",
+            "object": "micro nhỏ ở mép điện thoại",
+            "motion": "viền đỏ sáng lên, mũi tên nguồn đỏ vẽ dần từ thẻ quảng cáo tới micro, dấu hỏi lớn nảy lên (4,60–5,05 s)"
+          },
+          {
+            "term": "chưa tìm",
+            "type": "result",
+            "form": "status",
+            "object": "thanh tìm kiếm trống, con trỏ nhấp nháy, danh sách tìm gần đây trống",
+            "motion": "thanh tìm phóng sáng nhẹ lúc 3,00 s rồi đứng yên, các hàng xám lướt nhẹ ở 3,95 s"
+          },
+          {
+            "term": "quảng cáo đã hiện",
+            "type": "result",
+            "form": "illustration",
+            "object": "thẻ quảng cáo giày (hình giày và hai thanh xám, không chữ, không logo)",
+            "motion": "màn hình sáng, thẻ bật 0,8→1,0× và nảy một lần (1,75–2,00 s; nảy lại 2,60 s)"
+          }
+        ],
+        "relations": [
+          {
+            "from": "bong bóng đôi giày",
+            "to": "điện thoại",
+            "type": "KHÔNG nối: không dây, không sóng; bong bóng chỉ tan trong không khí (bằng chứng hình của hook)"
+          },
+          {
+            "from": "thẻ quảng cáo",
+            "to": "micro nhỏ ở mép điện thoại",
+            "type": "mũi tên nguồn đỏ: nghi ngờ nguồn của quảng cáo (trạng thái hook 1/5)"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGHE LÉN?",
+            "kind": "keyword",
+            "attach_to": "micro nhỏ ở mép điện thoại",
+            "appear_s": 4.65,
+            "disappear_s": 5.45,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1.4
+      },
+      "visual_concept": "Mở bằng bàn ăn nhìn từ trên: Cáo (surprised) bên trái, silhouette \"bạn\" đối diện phía trên, đôi giày chạy bộ trên bàn, điện thoại nằm yên màn hình hướng lên. Lời nhắc đôi giày hiện thành bong bóng chứa hình giày bay lên rồi tan; điện thoại không nối gì mà vẫn sáng và hiện thẻ quảng cáo giày. Camera đẩy vào điện thoại: thanh tìm kiếm trống ngay dưới thẻ quảng cáo, rồi micro viền đỏ + mũi tên nguồn + nhãn NGHE LÉN?. Cuối cùng tấm tiêu đề hiện chủ đề và tên tập. Mọi giao diện tự vẽ, không logo.",
+      "scene_type": "object_interaction",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "Điện thoại nằm yên, chưa có quảng cáo",
+          "state": "ok",
+          "object": "phone"
+        },
+        "after": {
+          "label": "Thẻ quảng cáo giày đã hiện",
+          "state": "warn",
+          "object": "ad_card"
+        },
+        "switch_t": 1.25,
+        "drawn_by": "Producer tự vẽ bằng Pillow: bàn ăn, silhouette, điện thoại, thẻ quảng cáo, micro, đôi giày, bong bóng. Nhãn trong before/after chỉ là tên nội bộ, không vẽ lên hình (Y1)."
+      },
+      "environment": "Bàn ăn. Xa: mặt bàn gỗ ấm #3A2A1F nhìn từ trên xuống, vẽ phẳng 3D nhẹ, không dùng ảnh nền sinh bằng AI. Giữa: điện thoại nằm yên (màn hình hướng lên, ≈ x 560–940, y 600–1220) và đôi giày chạy bộ (≈ x 380–550, y 570–700). Gần: Cáo ở trái (đáy y ≈ 1290), silhouette \"bạn\" phía trên đối diện Cáo (≈ x 280–600, y 330–620). Ánh sáng từ trên trái, bóng đổ xuống phải; màn hình điện thoại sáng lên là nguồn sáng lạnh duy nhất. Pha conflict: camera đẩy vào điện thoại ≈ 1,25× (điện thoại cao ≈ 775 px, ≈ x 512–988). Pha cuối: tấm tiêu đề thay toàn khung, đôi giày cạnh thanh tìm trống.",
+      "character_action": "Cáo dáng surprised (≈ 1,5× nguồn, ≈ 258×432 px, x ≈ 100–358, đáy y ≈ 1290) có mặt từ 0 s, nảy giật mình khi thẻ hiện (1,25 s). Đổi sang think (≈ 1,5× nguồn, ≈ 307×496 px, đáy y ≈ 1290) lúc 2,90 s, đứng cạnh điện thoại cận, trượt ra trái 4,50–4,70 s. Tổng 4,7 s. Sticker tĩnh: hướng nhìn thể hiện bằng vị trí và nhịp nảy, không quay đầu được.",
+      "props": [
+        "Bàn ăn gỗ nhìn từ trên (vẽ phẳng)",
+        "Silhouette \"bạn\" (hình khối, không mặt, không người thật)",
+        "Đôi giày chạy bộ phẳng, không logo",
+        "Bong bóng hình đôi giày",
+        "Điện thoại (màn hình hướng lên) có bảng tin",
+        "Thẻ quảng cáo giày (không chữ, không logo)",
+        "Thanh tìm kiếm trống có con trỏ nhấp nháy",
+        "Danh sách tìm gần đây trống",
+        "Biểu tượng micro nhỏ viền đỏ",
+        "Mũi tên nguồn đỏ",
+        "Dấu hỏi lớn (hình)",
+        "Tấm tiêu đề opening (chữ do text engine vẽ)",
+        "Cáo: surprised rồi think"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Khung mở: bàn ăn nhìn từ trên; Cáo (surprised) bên trái, silhouette \"bạn\" phía trên, đôi giày trên bàn, điện thoại tối nằm yên. Chưa có bong bóng. Không có header (opening)."
+        },
+        {
+          "t": 0.88,
+          "event": "Lời 01 (vào 0,65 s, theo voice_start_min_s) \"nhắc đôi giày\": bong bóng chứa hình đôi giày bay lên từ phía bạn (0,88–1,70 s, lên ≈ 75 px, nhỏ dần) rồi tan thành hạt giữa không khí. Không có dây hay sóng tới điện thoại."
+        },
+        {
+          "t": 1.75,
+          "event": "Điện thoại sáng lên; thẻ quảng cáo giày bật lên ở bảng tin (1,75–2,00 s). Cáo giật mình (nảy ≈ 14 px). Camera đẩy chậm 1,00→1,10× về điện thoại (1,75–2,50 s) để dẫn mắt tới thẻ vừa hiện."
+        },
+        {
+          "t": 2.55,
+          "event": "Thẻ quảng cáo nảy một lần trong nhịp nghỉ sau lời 01 (lời 01 dứt 2,51 s, lời 02 vào 3,00 s)."
+        },
+        {
+          "t": 2.6,
+          "event": "Camera đẩy tiếp 1,10→1,25× tới cận điện thoại (2,60–3,20 s); đôi giày và silhouette trượt ra ngoài khung. Cắt lớp sticker Cáo sau crop."
+        },
+        {
+          "t": 2.9,
+          "event": "Cáo đổi sang dáng think (cắt, nảy nhẹ), đứng trái điện thoại."
+        },
+        {
+          "t": 3,
+          "event": "Lời 02 \"Mình chưa tìm nó\": thanh tìm kiếm trống ngay dưới thẻ quảng cáo phóng sáng nhẹ, con trỏ nhấp nháy; danh sách tìm gần đây trống."
+        },
+        {
+          "t": 3.95,
+          "event": "Hết lời 02: thanh tìm hết sáng, các hàng xám của danh sách tìm gần đây lướt nhẹ rồi đứng yên (vẫn trống)."
+        },
+        {
+          "t": 4.6,
+          "event": "Lời 03 \"Điện thoại nghe lén à?\": micro nhỏ ở mép điện thoại sáng viền đỏ; mũi tên nguồn đỏ vẽ từ thẻ quảng cáo tới micro (4,60–5,05 s); dấu hỏi lớn nảy lên."
+        },
+        {
+          "t": 4.65,
+          "event": "Nhãn NGHE LÉN? (từ khoá, ≥ 72 px, đỉnh kinetic pop ≈ 88 px) hiện cạnh micro, phía trên điện thoại (≈ x 420–900, y 440–530), giữ đến 5,45 s. Producer căn lại theo mốc từ \"nghe lén\" sau đo TTS (ước tính 4,79–5,26 s); nếu trễ hơn 0,2 s thì dịch khối 4,60–5,45 s."
+        },
+        {
+          "t": 4.7,
+          "event": "Cáo trượt ra trái (4,50–4,70 s) nhường chỗ cho tấm tiêu đề."
+        },
+        {
+          "t": 5.45,
+          "event": "Pha topic_reveal: tấm tiêu đề thay toàn khung (hoà 0,2 s). Nhãn chủ đề BẢO MẬT / QUẢNG CÁO (≥ 56 px) và tiêu đề ĐÔI GIÀY CHƯA TỪNG TÌM (hai dòng, ≥ 84 px, text engine vẽ) giữ đến hết cảnh (1,45 s)."
+        },
+        {
+          "t": 6.2,
+          "event": "Trong tấm: đôi giày trượt tới cạnh thanh tìm kiếm trống, con trỏ nhấp nháy (hình nhấn chữ \"chưa từng tìm\"); tấm đẩy nhẹ 1,00→1,06×."
+        }
+      ],
+      "voice_over": "Vừa nhắc đôi giày, quảng cáo đã hiện! Mình chưa tìm nó. Điện thoại nghe lén à?",
+      "voice_direction": [
+        {
+          "line_id": "01",
+          "intent": "hook",
+          "emotion": "surprised",
+          "emphasis": [
+            "quảng cáo đã hiện"
+          ],
+          "pace": "brisk",
+          "pause_before_s": 0.65,
+          "pause_after_s": 0.49,
+          "intonation": "rising",
+          "transition": {
+            "to_next": "cause_effect"
+          }
+        },
+        {
+          "line_id": "02",
+          "intent": "hook",
+          "emotion": "concerned",
+          "emphasis": [
+            "chưa tìm"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.1,
+          "pause_after_s": 0.4,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "03",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "nghe lén"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0,
+          "pause_after_s": 1,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NGHE LÉN?",
+      "sound_effects": [
+        "1,80 s · tiếng thông báo mềm khi thẻ quảng cáo hiện",
+        "4,65 s · tiếng cảnh báo nhẹ khi micro viền đỏ",
+        "5,45 s · âm nhẹ khi tấm tiêu đề hiện"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.8,
+          "intent": "ui_appear",
+          "target": "thẻ quảng cáo giày",
+          "intensity": "low",
+          "reason": "Thông báo mềm đúng lúc thẻ hiện: bằng chứng \"quảng cáo hiện mà điện thoại không nối gì\"."
+        },
+        {
+          "t": 4.65,
+          "intent": "alert",
+          "target": "micro viền đỏ",
+          "intensity": "low",
+          "reason": "Nhấn nghi ngờ nghe lén một lần, nhẹ để không thành hù doạ."
+        },
+        {
+          "t": 5.45,
+          "intent": "impact_reveal",
+          "target": "tấm tiêu đề",
+          "intensity": "low",
+          "reason": "Đánh dấu chuyển từ hook sang tiêu đề; khớp mốc hình pha topic_reveal."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 6.9,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S03",
+      "narrative_purpose": "Trả lời sớm câu hỏi mở: chưa có bằng chứng micro nghe lén, nhưng quảng cáo vẫn có thể trúng qua một đường khác.",
+      "main_idea": "Đường micro chưa có bằng chứng; có một đường thứ hai (dấu vết) vẫn tới được thẻ quảng cáo mà không cần micro.",
+      "main_change": "Hai làn từ điện thoại: làn trên (micro → quảng cáo) đứt giữa chừng và khay \"bằng chứng\" trống dù kính lúp đã quét; làn dưới mọc chuỗi chấm cyan vòng qua micro rồi chạm thẻ quảng cáo, micro mờ dần. Nhìn ra ở 360×640: một nét đứt đứng yên so với chuỗi chấm cyan chạy tới thẻ.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "hold_reason": "Giữ 1,0 s ở trạng thái hoàn chỉnh (hai làn): chấm cyan vẫn chạy dọc làn dưới và thẻ quảng cáo sáng nhịp, không phải màn hình chết.",
+      "header_slot": "top_left",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "micro",
+            "type": "term",
+            "form": "icon",
+            "object": "biểu tượng micro vàng",
+            "motion": "kính lúp quét qua micro (1,40–1,78 s); micro mờ dần 0,6 rồi 0,25 khi lời nói \"không cần micro\" (5,31 s)"
+          },
+          {
+            "term": "chưa có bằng chứng",
+            "type": "result",
+            "form": "status",
+            "object": "khay bằng chứng trống và đường micro nét đứt bị đứt giữa chừng",
+            "motion": "kính lúp dừng trên khay vẫn trống; mũi tên nguồn chuyển vàng nét đứt"
+          },
+          {
+            "term": "vẫn có thể trúng",
+            "type": "result",
+            "form": "animation",
+            "object": "chuỗi chấm cyan từ điện thoại tới thẻ quảng cáo",
+            "motion": "đường chấm mọc từ điện thoại, vòng dưới micro, chạm thẻ quảng cáo; thẻ sáng nhịp (3,68–4,75 s)"
+          }
+        ],
+        "relations": [
+          {
+            "from": "micro",
+            "to": "thẻ quảng cáo",
+            "type": "nét đứt vàng, đứt giữa chừng: chưa có bằng chứng"
+          },
+          {
+            "from": "điện thoại",
+            "to": "thẻ quảng cáo",
+            "type": "chuỗi chấm cyan (dấu vết) đi thẳng, không qua micro"
+          }
+        ],
+        "texts": [
+          {
+            "text": "MICRO",
+            "kind": "label",
+            "attach_to": "biểu tượng micro vàng",
+            "appear_s": 1.2,
+            "disappear_s": 6.6,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1
+      },
+      "visual_concept": "Sơ đồ hai làn trên nền màn hình điện thoại: điện thoại ở trái, thẻ quảng cáo giày (đã quen từ S01) ở phải. Làn trên đi qua micro vàng; kính lúp quét micro và khay \"bằng chứng\" nhưng khay trống, đường nét đứt đi tới nửa chừng rồi đứt. Làn dưới là chuỗi chấm cyan (bảng nghĩa màu: dấu vết) đi vòng dưới micro tới thẻ quảng cáo. Micro mờ dần mà thẻ vẫn nhận chấm: hình trả lời \"không cần micro\".",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "phone",
+            "object": "phone",
+            "t": 0
+          },
+          {
+            "id": "evidence",
+            "object": "evidence_tray",
+            "t": 0.7
+          },
+          {
+            "id": "mic",
+            "object": "mic",
+            "t": 1.1
+          },
+          {
+            "id": "ad",
+            "object": "ad_card",
+            "t": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "phone",
+            "to": "mic",
+            "kind": "normal",
+            "t": 1.1
+          },
+          {
+            "from": "mic",
+            "to": "ad",
+            "kind": "blocked",
+            "t": 1.78,
+            "stop_t": 2.2
+          },
+          {
+            "from": "phone",
+            "to": "ad",
+            "kind": "normal",
+            "t": 3.68
+          }
+        ],
+        "drawn_by": "Cạnh blocked của mẫu animated_diagram vẽ dấu khoá; ở đây Producer thay bằng khoảng đứt nét đứt vàng (không khoá, vì lời nói \"chưa có bằng chứng\", không phải \"bị chặn\"). Điện thoại, micro, kính lúp, khay, thẻ quảng cáo tự vẽ bằng Pillow."
+      },
+      "environment": "Màn hình điện thoại. Xa: nền xanh đêm #0F1B2D có lưới mờ và hạt sáng rất nhẹ, hợp bảng màu nghĩa (cyan dữ liệu, vàng đang xét). Giữa: điện thoại ≈ x 100–290, y 760–1100 (trái); làn trên ≈ y 470–720, làn dưới ≈ y 900–1230; thẻ quảng cáo ≈ x 760–990, y 640–1000 (phải), tổng sơ đồ cao ≈ 760 px. Gần: kính lúp ≈ ø 150 px và khay \"bằng chứng\" trống nét đứt ≈ 140×120 px cạnh micro. Ánh sáng đều, không đổ bóng gắt; chuyển động chỉ ở đường chấm, kính lúp và nhịp sáng của thẻ.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Điện thoại (node)",
+        "Micro vàng",
+        "Kính lúp",
+        "Khay bằng chứng trống (nét đứt)",
+        "Thẻ quảng cáo giày",
+        "Đường micro → quảng cáo (nét đứt vàng, đứt giữa chừng)",
+        "Chuỗi chấm cyan (dấu vết) đi tới thẻ quảng cáo",
+        "Mũi tên nguồn (đỏ → vàng nét đứt)"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Hai nút điện thoại (trái) và thẻ quảng cáo (phải, mờ) đã có mặt; mũi tên nguồn đỏ của hook còn mờ ở rìa."
+        },
+        {
+          "t": 0.7,
+          "event": "Lời 04, \"bằng chứng\": khay bằng chứng trống nét đứt hiện dưới làn trên."
+        },
+        {
+          "t": 1.1,
+          "event": "\"micro\": micro vàng hiện trên làn trên, nối với điện thoại bằng nét liền mảnh. Nhãn MICRO (nhãn ≥ 56 px) gắn micro lúc 1,20 s."
+        },
+        {
+          "t": 1.4,
+          "event": "Kính lúp trượt tới quét micro (1,40–1,78 s) rồi dịch sang khay (1,78–2,20 s)."
+        },
+        {
+          "t": 1.78,
+          "event": "\"nghe lén\": nét đứt vàng mọc từ micro hướng tới thẻ quảng cáo và dừng ở giữa đường (1,78–2,20 s), không tới nơi."
+        },
+        {
+          "t": 2.2,
+          "event": "Mũi tên nguồn đổi từ đỏ sang vàng nét đứt (trạng thái hook 2/5); micro mờ còn 0,6, không gạch chéo."
+        },
+        {
+          "t": 2.48,
+          "event": "Nghỉ 0,5 s sau lời 04: kính lúp dừng trên khay vẫn trống (khoảng lặng có chủ đích cho người xem nhìn khay trống)."
+        },
+        {
+          "t": 3.3,
+          "event": "Lời 05, \"Nhưng quảng cáo\": thẻ quảng cáo sáng lên rõ hơn (đổi trọng tâm sang đầu ra)."
+        },
+        {
+          "t": 3.68,
+          "event": "\"vẫn có thể trúng\": chuỗi chấm cyan mọc từ điện thoại dọc làn dưới, vòng dưới micro, đi thẳng tới thẻ (3,68–4,75 s); gói chấm bắt đầu chạy dọc đường."
+        },
+        {
+          "t": 4.7,
+          "event": "Chấm chạm thẻ quảng cáo: thẻ nảy sáng một nhịp."
+        },
+        {
+          "t": 5.31,
+          "event": "\"không cần micro\": micro mờ hẳn còn 0,25 trong khi chấm cyan vẫn chạy tới thẻ."
+        },
+        {
+          "t": 6,
+          "event": "Trạng thái hoàn chỉnh: hai làn, khay trống, micro mờ; chấm cyan chạy dọc làn dưới, thẻ sáng nhịp (giữ 1,0 s)."
+        },
+        {
+          "t": 6.5,
+          "event": "Gói chấm chạy vòng tiếp, viền thẻ quảng cáo sáng nhẹ lần hai trước cú cắt."
+        }
+      ],
+      "voice_over": "Chưa có bằng chứng micro nghe lén bạn. Nhưng quảng cáo vẫn có thể trúng mà không cần micro.",
+      "voice_direction": [
+        {
+          "line_id": "04",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "Chưa có bằng chứng"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "cause_effect",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "05",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "vẫn có thể",
+            "không cần micro"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0,
+          "pause_after_s": 1,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "MICRO",
+      "sound_effects": [
+        "2,48 s · khoảng lặng 0,5 s khi kính lúp dừng",
+        "3,68 s · tick nhẹ khi chuỗi chấm mọc",
+        "4,70 s · nhịp nhẹ khi thẻ nhận chấm"
+      ],
+      "sound_cues": [
+        {
+          "t": 2.48,
+          "intent": "silence",
+          "target": "khay bằng chứng trống",
+          "intensity": "low",
+          "duration_s": 0.5,
+          "reason": "Khoảng lặng 0,5 s cho người xem nhìn khay trống sau câu \"chưa có bằng chứng\"."
+        },
+        {
+          "t": 3.68,
+          "intent": "data_move",
+          "target": "chuỗi chấm cyan",
+          "intensity": "low",
+          "reason": "Tick nhẹ lúc đường chấm bắt đầu mọc (script yêu cầu)."
+        },
+        {
+          "t": 4.7,
+          "intent": "highlight",
+          "target": "thẻ quảng cáo",
+          "intensity": "low",
+          "reason": "Thẻ quảng cáo nhận chấm: kết quả \"vẫn trúng\" khớp mốc hình."
+        }
+      ],
+      "transition": "circleopen",
+      "duration_s": 7,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S04",
+      "narrative_purpose": "Bước 1 của ví dụ: mỗi thao tác xem hoặc thích để lại một dấu vết (chấm) trong ngăn.",
+      "main_idea": "Xem clip và thích trang thể thao, mỗi việc cho một chấm \"dấu vết\".",
+      "main_change": "Hai chấm cyan lần lượt rơi từ clip và từ nút thích của trang vào ngăn \"dấu vết\" dưới màn hình: ngăn đi từ trống sang hai chấm. Nhìn ra ở 360×640 qua chấm rơi và ngăn rung nhẹ.",
+      "complexity": "low",
+      "concepts": 1,
+      "hold_after_voice_s": 1.1,
+      "hold_reason": "Giữ ≈ 1,1 s cuối: ngăn rung nhẹ, hai chấm lăn và phát sáng (không tĩnh quá 1,0 s).",
+      "header_slot": "top_left",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "dấu vết",
+            "type": "concept",
+            "form": "illustration",
+            "object": "ngăn dấu vết",
+            "motion": "ngăn trượt lên từ dưới (0–0,4 s), mỗi chấm cyan rơi vào ngăn và nảy nhẹ"
+          },
+          {
+            "term": "mỗi thao tác một chấm",
+            "type": "result",
+            "form": "animation",
+            "object": "chấm cyan rơi từ clip và từ nút thích vào ngăn",
+            "motion": "chấm 1 rơi lúc 0,90 s, chấm 2 lúc 1,70 s, mỗi chấm đi khoảng 0,5 s"
+          }
+        ],
+        "relations": [
+          {
+            "from": "clip chạy bộ",
+            "to": "ngăn dấu vết",
+            "type": "một lượt xem cho một chấm"
+          },
+          {
+            "from": "nút thích trang thể thao",
+            "to": "ngăn dấu vết",
+            "type": "một lượt thích cho một chấm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "DẤU VẾT",
+            "kind": "keyword",
+            "attach_to": "ngăn dấu vết",
+            "appear_s": 0.7,
+            "disappear_s": 3.5,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.1
+      },
+      "visual_concept": "Màn hình điện thoại giả lập cận cảnh: thẻ clip chạy bộ (người que chạy, thanh phát) ở trên, thẻ trang thể thao có nút thích ở giữa, ngăn \"dấu vết\" màu cyan ở dưới. Mỗi thao tác phát một chấm rơi xuống ngăn: người xem thấy ngay \"mỗi việc mình làm để lại một vết\", chưa cần chữ giải thích. Đây là ví dụ dựng.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "data_flow",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "clip",
+            "object": "clip",
+            "t": 0.65
+          },
+          {
+            "id": "sports_page",
+            "object": "sports_page",
+            "t": 1.5
+          },
+          {
+            "id": "tray",
+            "object": "trace_tray",
+            "t": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "clip",
+            "to": "tray",
+            "kind": "normal",
+            "t": 0.9
+          },
+          {
+            "from": "sports_page",
+            "to": "tray",
+            "kind": "normal",
+            "t": 1.7
+          }
+        ],
+        "drawn_by": "Mẫu data_flow chỉ biết browser/server/document; clip, trang thể thao và ngăn dấu vết do Producer tự vẽ bằng Pillow (components.panel/card/window cho khung, flow.connection cho đường rơi). Không dùng payload chữ trên cạnh (Y1)."
+      },
+      "environment": "Màn hình điện thoại. Xa: nền xanh đêm #0F1B2D như S03 để nối liền mạch. Giữa: khung màn hình giả lập ≈ x 220–860, y 430–1090 (cao ≈ 660 px) với thẻ clip phía trên và thẻ trang thể thao phía dưới. Gần: ngăn dấu vết cyan ≈ x 220–860, y 1130–1300. Ánh sáng đều từ trên, bóng nhẹ xuống phải; chuyển động ở chấm, nút thích và ngăn. Vị trí ngăn giữ nguyên sang S05.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Màn hình điện thoại giả lập (không logo)",
+        "Thẻ clip chạy bộ (người que chạy, thanh phát)",
+        "Thẻ trang thể thao có nút thích",
+        "Ngăn dấu vết (khay cyan)",
+        "Hai chấm cyan"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Mở từ hình tròn của S03 (circleopen từ nút điện thoại): màn hình giả lập hiện, ngăn dấu vết trượt lên từ dưới (0–0,4 s), còn trống."
+        },
+        {
+          "t": 0.65,
+          "event": "Lời 06, \"clip\": thẻ clip chạy bộ phát, người que chạy, thanh phát chạy."
+        },
+        {
+          "t": 0.7,
+          "event": "Nhãn DẤU VẾT (≥ 72 px) gắn ngăn."
+        },
+        {
+          "t": 0.9,
+          "event": "\"xem\": chấm cyan thứ nhất tách khỏi clip và rơi vào ngăn (0,90–1,40 s)."
+        },
+        {
+          "t": 1.6,
+          "event": "\"thích trang\": nút thích trên thẻ trang thể thao sáng và nhấp một lần."
+        },
+        {
+          "t": 1.7,
+          "event": "Chấm cyan thứ hai rơi từ nút thích vào ngăn (1,70–2,20 s). Ngăn có hai chấm."
+        },
+        {
+          "t": 2.48,
+          "event": "Hết lời 06: ngăn rung nhẹ, hai chấm lăn và phát sáng (nghỉ 0,6 s)."
+        },
+        {
+          "t": 3,
+          "event": "Giữ 0,5 s trạng thái hoàn chỉnh: hai chấm nằm trong ngăn, viền ngăn sáng nhẹ."
+        }
+      ],
+      "voice_over": "Bạn xem clip chạy bộ, thích trang thể thao.",
+      "voice_direction": [
+        {
+          "line_id": "06",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "clip chạy bộ",
+            "thích trang"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.6,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "elaboration"
+          }
+        }
+      ],
+      "text_overlay": "DẤU VẾT",
+      "sound_effects": [
+        "0,95 s · tick nhẹ khi chấm 1 vào ngăn",
+        "1,60 s · nhấp nhẹ khi bấm thích",
+        "1,75 s · tick nhẹ khi chấm 2 vào ngăn"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.95,
+          "intent": "data_move",
+          "target": "chấm 1 vào ngăn",
+          "intensity": "low",
+          "reason": "Tick nhẹ mỗi chấm theo yêu cầu của script, khớp hình rơi."
+        },
+        {
+          "t": 1.6,
+          "intent": "interaction",
+          "target": "nút thích",
+          "intensity": "low",
+          "reason": "Tiếng bấm khi bấm thích trang."
+        },
+        {
+          "t": 1.75,
+          "intent": "data_move",
+          "target": "chấm 2 vào ngăn",
+          "intensity": "low",
+          "reason": "Tick thứ hai, nhẹ hơn cảm giác lặp."
+        }
+      ],
+      "transition": "match_cut",
+      "duration_s": 3.6,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S05",
+      "narrative_purpose": "Bước 2 của ví dụ: bộ đếm trên trang cửa hàng ghi thêm một chấm dù người dùng ghé qua rồi quên.",
+      "main_idea": "Trang cửa hàng thể thao có bộ đếm, ghi lượt ghé; trang đóng rồi nhưng chấm vẫn nằm trong ngăn.",
+      "main_change": "Chấm cyan thứ ba rời mảnh bộ đếm ở mép trang và rơi vào ngăn; trang đóng lại và mờ thành khung ma, ba chấm vẫn ở trong ngăn. Nhìn ra ở 360×640: trang biến mất nhưng chấm còn.",
+      "complexity": "medium",
+      "concepts": 0,
+      "hold_after_voice_s": 1.4,
+      "hold_reason": "Giữ ≈ 1,4 s cuối: khung ma của trang mờ dần và ba chấm lăn phát sáng (ý \"đã quên mà dấu còn\").",
+      "header_slot": "top_right",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "bộ đếm",
+            "type": "term",
+            "form": "illustration",
+            "object": "mảnh bộ đếm ở mép trên trang",
+            "motion": "mảnh nhỏ viền cyan nhấp nháy hai lần (1,55 s) rồi nhả chấm ở 2,90 s"
+          },
+          {
+            "term": "ghé qua rồi quên",
+            "type": "result",
+            "form": "animation",
+            "object": "trang cửa hàng đóng lại, chấm thứ ba còn trong ngăn",
+            "motion": "trang co và mờ (3,40–3,75 s) trong khi ba chấm lăn phát sáng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "mảnh bộ đếm",
+            "to": "ngăn dấu vết",
+            "type": "bộ đếm thuộc trang, chấm thuộc ngăn: mở trang là có thêm một chấm"
+          }
+        ],
+        "texts": [
+          {
+            "text": "BỘ ĐẾM",
+            "kind": "keyword",
+            "attach_to": "mảnh bộ đếm ở mép trên trang",
+            "appear_s": 1.45,
+            "disappear_s": 5.1,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.4
+      },
+      "visual_concept": "Trang cửa hàng thể thao giả lập (lưới sáu thẻ giày phẳng, không logo, không tên hãng) thay phần trên của màn hình, ngăn dấu vết giữ nguyên bên dưới với hai chấm từ S04. Một mảnh bộ đếm nhỏ ở mép trên trang nhấp nháy; khi trang vừa mở, mảnh nhả chấm thứ ba xuống ngăn. Sau đó trang đóng lại, chỉ còn khung mờ: người dùng đã quên nhưng ba chấm còn. Đây là ví dụ dựng, trang là cửa hàng thể thao chứ không phải trang đôi giày trong hook.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "step_by_step",
+      "kind_params": {
+        "steps": [
+          {
+            "label": "Mở trang cửa hàng",
+            "object": "store_page",
+            "t": 0
+          },
+          {
+            "label": "Bộ đếm ghi một chấm",
+            "object": "counter_shard",
+            "t": 2.9
+          },
+          {
+            "label": "Đóng trang, chấm ở lại",
+            "object": "trace_tray",
+            "t": 3.4
+          }
+        ],
+        "drawn_by": "Mẫu step_by_step vẽ thanh bước có nhãn chữ bên phải; ở đây KHÔNG dùng thanh đó (nhãn trong steps là tên nội bộ, Y1). Producer tự vẽ trang cửa hàng, mảnh bộ đếm và dùng lại ngăn dấu vết của S04."
+      },
+      "environment": "Màn hình điện thoại. Xa: nền xanh đêm #0F1B2D như S04. Giữa: trang cửa hàng giả lập ≈ x 140–940, y 470–1090 (cao ≈ 620 px), lưới sáu thẻ giày phẳng; mảnh bộ đếm ≈ x 170–290, y 440–480 ở mép trên. Gần: ngăn dấu vết giữ nguyên ≈ x 220–860, y 1130–1300 với hai chấm từ S04. Khác S04 ở bố cục: trang ngang rộng, không còn thẻ clip/nút thích; ngăn vẫn ở đáy. Ánh sáng đều, bóng nhẹ.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Trang cửa hàng thể thao giả lập (lưới sáu thẻ giày, không logo)",
+        "Mảnh bộ đếm viền cyan",
+        "Ngăn dấu vết (giữ từ S04)",
+        "Ba chấm cyan",
+        "Khung mờ của trang đã đóng"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt khớp từ S04 (match_cut): ngăn dấu vết với hai chấm đứng nguyên chỗ; phần trên đổi từ màn hình clip sang trang cửa hàng thể thao."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 07 \"Cửa hàng thể thao\": các thẻ giày trên trang sáng lần lượt từ trái sang phải (0,15–1,30 s)."
+        },
+        {
+          "t": 1.45,
+          "event": "\"bộ đếm\": nhãn BỘ ĐẾM (≥ 72 px) hiện cạnh mảnh nhỏ ở mép trên trang (≈ x 310–620, y 408–470)."
+        },
+        {
+          "t": 1.55,
+          "event": "Mảnh bộ đếm viền cyan nhấp nháy hai lần."
+        },
+        {
+          "t": 2.3,
+          "event": "Con trỏ lướt qua một thẻ giày rồi rút lại (ý \"ghé qua\"); thẻ sáng một nhịp."
+        },
+        {
+          "t": 2.9,
+          "event": "Lời 08 \"ghé qua\": chấm cyan thứ ba tách khỏi mảnh bộ đếm, lăn theo cạnh trang rồi rơi vào ngăn (2,90–3,40 s)."
+        },
+        {
+          "t": 3.4,
+          "event": "\"rồi quên\": trang cửa hàng co lại và mờ thành khung ma (3,40–3,75 s); ngăn còn ba chấm."
+        },
+        {
+          "t": 3.8,
+          "event": "Giữ: ba chấm lăn và phát sáng trong ngăn, khung ma mờ dần (giữ 0,8 s sau khoảng nghỉ 0,6 s)."
+        },
+        {
+          "t": 4.6,
+          "event": "Viền ngăn dấu vết sáng nhẹ một nhịp cuối, báo ngăn sắp trượt vào giữa ở S06."
+        }
+      ],
+      "voice_over": "Cửa hàng thể thao gắn bộ đếm trên trang. Bạn ghé qua rồi quên.",
+      "voice_direction": [
+        {
+          "line_id": "07",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "bộ đếm"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "08",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "ghé qua rồi quên"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0,
+          "pause_after_s": 0.6,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "continuous",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "BỘ ĐẾM",
+      "sound_effects": [
+        "1,55 s · nhịp nhẹ khi mảnh bộ đếm nháy",
+        "3,40 s · tick nhẹ khi chấm 3 vào ngăn"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.55,
+          "intent": "highlight",
+          "target": "mảnh bộ đếm",
+          "intensity": "low",
+          "reason": "Nhấn thuật ngữ vừa được gọi tên, khớp lúc mảnh nháy."
+        },
+        {
+          "t": 3.4,
+          "intent": "data_move",
+          "target": "chấm 3 vào ngăn",
+          "intensity": "low",
+          "reason": "Tick nhẹ khi chấm thứ ba vào ngăn, cùng họ với S04."
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 5.2,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S06",
+      "narrative_purpose": "Cơ chế chính (một cơ chế của video): nền tảng có thể gom các dấu vết thành hồ sơ sở thích, nên hồ sơ đầy dù người dùng chưa gõ tìm.",
+      "main_idea": "Ba dấu vết có thể được gom thành hồ sơ \"quan tâm chạy bộ\", không cần gõ tìm.",
+      "main_change": "Ngăn ba chấm trượt vào giữa, từng chấm bay vào thẻ hồ sơ (trống → có thẻ quan tâm \"chạy bộ\" viền vàng); thanh tìm kiếm trống hiện cạnh hồ sơ; viền hồ sơ chuyển cyan và mũi tên nguồn chuyển cyan chỉ vào hồ sơ. Nhìn ra ở 360×640: thẻ hồ sơ từ trống sang đầy cạnh thanh tìm vẫn trống.",
+      "complexity": "high",
+      "concepts": 1,
+      "hold_after_voice_s": 2,
+      "hold_reason": "Giữ 2,0 s ở trạng thái hoàn chỉnh (thanh tìm trống, hồ sơ đầy, mũi tên nguồn cyan): hạt sáng chạy quanh viền hồ sơ và con trỏ thanh tìm nhấp nháy.",
+      "header_slot": "top_left",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "hồ sơ",
+            "type": "term",
+            "form": "illustration",
+            "object": "thẻ hồ sơ",
+            "motion": "thẻ sáng lúc 2,30 s, kinetic pop; hạt sáng chạy quanh viền khi giữ"
+          },
+          {
+            "term": "quan tâm chạy bộ",
+            "type": "result",
+            "form": "illustration",
+            "object": "thẻ quan tâm nhỏ trong hồ sơ",
+            "motion": "thẻ nhỏ sáng viền vàng (\"có thể\") lúc 2,95 s"
+          },
+          {
+            "term": "chưa gõ tìm",
+            "type": "result",
+            "form": "status",
+            "object": "thanh tìm kiếm trống cạnh hồ sơ",
+            "motion": "thanh tìm hiện nhỏ cạnh hồ sơ lúc 4,40 s, con trỏ nhấp nháy, vẫn trống"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ngăn ba chấm",
+            "to": "thẻ hồ sơ",
+            "type": "ba chấm bay vào thẻ từng chấm: dấu vết được gom"
+          },
+          {
+            "from": "thẻ quảng cáo",
+            "to": "thẻ hồ sơ",
+            "type": "mũi tên nguồn cyan chỉ vào hồ sơ (trạng thái hook 3/5)"
+          }
+        ],
+        "texts": [
+          {
+            "text": "HỒ SƠ",
+            "kind": "keyword",
+            "attach_to": "thẻ hồ sơ",
+            "appear_s": 2.3,
+            "disappear_s": 7.9,
+            "effect": "kinetic"
+          },
+          {
+            "text": "CHẠY BỘ",
+            "kind": "label",
+            "attach_to": "thẻ quan tâm nhỏ trong hồ sơ",
+            "appear_s": 3.2,
+            "disappear_s": 7.9,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 2
+      },
+      "visual_concept": "Nền dữ liệu tối có hạt sáng. Ngăn ba chấm (từ S04–S05) trượt vào khung trái; bên phải là thẻ hồ sơ trống cao ≥ 560 px. Ba chấm lần lượt bay vào thẻ, thẻ sáng và hiện thẻ quan tâm nhỏ \"chạy bộ\" viền vàng (vì chỉ là \"có thể\"). Cáo (point_right, nhỏ) chỉ vào hồ sơ ở nhịp chuyển ý. Thanh tìm kiếm trống hiện cạnh hồ sơ để trả lại chữ \"chưa tìm\" của hook; viền hồ sơ chuyển cyan và mũi tên nguồn cyan chỉ vào hồ sơ.",
+      "scene_type": "process_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "tray",
+            "object": "trace_tray",
+            "t": 0.15
+          },
+          {
+            "id": "profile",
+            "object": "profile_card",
+            "t": 0.15
+          },
+          {
+            "id": "interest",
+            "object": "interest_card",
+            "t": 2.95
+          },
+          {
+            "id": "search",
+            "object": "empty_search_bar",
+            "t": 4.4
+          },
+          {
+            "id": "ad",
+            "object": "ad_card_mini",
+            "t": 5.3
+          }
+        ],
+        "edges": [
+          {
+            "from": "tray",
+            "to": "profile",
+            "kind": "normal",
+            "t": 1.1
+          },
+          {
+            "from": "profile",
+            "to": "interest",
+            "kind": "normal",
+            "t": 2.95
+          },
+          {
+            "from": "ad",
+            "to": "profile",
+            "kind": "normal",
+            "t": 5.3
+          }
+        ],
+        "drawn_by": "Mẫu animated_diagram cho bố cục nút–cạnh, đạo cụ ngoài bộ props (ngăn, thẻ hồ sơ, thẻ quan tâm, thanh tìm, thẻ quảng cáo thu nhỏ) Producer tự vẽ bằng Pillow. Mũi tên nguồn là cạnh ad → profile."
+      },
+      "environment": "Nền dữ liệu. Xa: nền tối #0F1B2D có hạt sáng chuyển chậm, đổi khỏi nền điện thoại để báo \"cơ chế phía nền tảng\". Giữa: ngăn ba chấm ≈ x 100–470, y 620–780 (trái, sau khi trượt); thẻ hồ sơ ≈ x 540–990, y 450–1020 (cao ≈ 570 px); thẻ quan tâm nhỏ ≈ x 600–930, y 560–680; thanh tìm trống ≈ x 540–800, y 1050–1130; thẻ quảng cáo thu nhỏ ≈ x 830–990, y 1050–1150. Gần: Cáo point_right ≈ x 105–265, y 1076–1270 ở dưới ngăn. Ánh sáng từ trái, cyan là màu dữ liệu, vàng là \"có thể\".",
+      "character_action": "Cáo dáng point_right (≈ 160 px rộng, ≈ 14,8% khung, x ≈ 105, đáy y ≈ 1270) xuất hiện 2,60–4,40 s, chỉ vào thẻ hồ sơ khi hồ sơ sáng và hiện thẻ \"chạy bộ\". Không nhép miệng, không che ngăn hay hồ sơ.",
+      "props": [
+        "Ngăn ba chấm (từ S04)",
+        "Ba chấm cyan",
+        "Thẻ hồ sơ (≥ 560 px cao)",
+        "Thẻ quan tâm nhỏ viền vàng",
+        "Thanh tìm kiếm trống có con trỏ",
+        "Thẻ quảng cáo giày thu nhỏ",
+        "Mũi tên nguồn cyan",
+        "Hạt sáng chạy quanh viền hồ sơ",
+        "Cáo point_right"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Fade từ S05: nền đổi sang nền dữ liệu tối; ngăn ba chấm ở đáy (như S05)."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 09 \"Nền tảng\": ngăn trượt lên giữa-trái (0,15–0,90 s) trong khi thẻ hồ sơ trống nét đứt trượt vào từ phải."
+        },
+        {
+          "t": 1.1,
+          "event": "\"gom\": ba chấm bay từng chấm sang thẻ hồ sơ (chấm lần lượt 1,10 / 1,35 / 1,60 s, tới nơi 1,30 / 1,55 / 1,80 s)."
+        },
+        {
+          "t": 2.3,
+          "event": "\"hồ sơ\": thẻ hồ sơ sáng; nhãn HỒ SƠ (≥ 72 px, kinetic pop đỉnh ≈ 88 px) hiện trên thẻ."
+        },
+        {
+          "t": 2.6,
+          "event": "Cáo (point_right) vào khung, nảy nhẹ, chỉ về thẻ hồ sơ (2,60–4,40 s)."
+        },
+        {
+          "t": 2.95,
+          "event": "\"quan tâm\": thẻ quan tâm nhỏ trong hồ sơ sáng viền vàng nét đứt (\"có thể\")."
+        },
+        {
+          "t": 3.2,
+          "event": "\"chạy bộ\": nhãn CHẠY BỘ (≥ 56 px) gắn thẻ nhỏ."
+        },
+        {
+          "t": 3.8,
+          "event": "Viền vàng của thẻ CHẠY BỘ nhấp nháy một nhịp để nhấn \"có thể\"."
+        },
+        {
+          "t": 4.4,
+          "event": "Lời 10 \"chưa gõ tìm\": Cáo trượt ra (4,30–4,40 s); thanh tìm kiếm trống hiện nhỏ cạnh hồ sơ, con trỏ nhấp nháy, vẫn trống."
+        },
+        {
+          "t": 5.3,
+          "event": "\"dấu vết vẫn đủ\": viền hồ sơ chuyển cyan; thẻ quảng cáo thu nhỏ hiện và mũi tên nguồn cyan chỉ vào hồ sơ (5,30–5,80 s) (trạng thái hook 3/5)."
+        },
+        {
+          "t": 6.23,
+          "event": "Giữ 2,0 s: hạt sáng chạy quanh viền hồ sơ, con trỏ thanh tìm nhấp nháy; thanh tìm trống đứng cạnh hồ sơ đầy."
+        },
+        {
+          "t": 7.4,
+          "event": "Viền hồ sơ sáng một nhịp cuối, hạt sáng quay thêm một vòng trước cú cắt."
+        }
+      ],
+      "voice_over": "Nền tảng có thể gom các dấu vết thành hồ sơ: quan tâm chạy bộ. Bạn chưa gõ tìm, nhưng dấu vết vẫn đủ.",
+      "voice_direction": [
+        {
+          "line_id": "09",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "hồ sơ",
+            "quan tâm chạy bộ"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "10",
+          "intent": "reveal",
+          "emotion": "neutral",
+          "emphasis": [
+            "chưa gõ tìm",
+            "vẫn đủ"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0,
+          "pause_after_s": 1.8,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "callback",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "HỒ SƠ · CHẠY BỘ",
+      "sound_effects": [
+        "1,30 s · tick khi chấm 1 vào thẻ",
+        "1,55 s · tick khi chấm 2",
+        "1,80 s · tick khi chấm 3",
+        "2,30 s · âm \"ting\" nhẹ khi hồ sơ sáng"
+      ],
+      "sound_cues": [
+        {
+          "t": 1.3,
+          "intent": "data_move",
+          "target": "chấm 1 vào thẻ hồ sơ",
+          "intensity": "low",
+          "reason": "Tick mỗi chấm vào thẻ theo script."
+        },
+        {
+          "t": 1.55,
+          "intent": "data_move",
+          "target": "chấm 2 vào thẻ hồ sơ",
+          "intensity": "low",
+          "reason": "Tick thứ hai."
+        },
+        {
+          "t": 1.8,
+          "intent": "data_move",
+          "target": "chấm 3 vào thẻ hồ sơ",
+          "intensity": "low",
+          "reason": "Tick thứ ba, chấm cuối."
+        },
+        {
+          "t": 2.3,
+          "intent": "highlight",
+          "target": "thẻ hồ sơ",
+          "intensity": "medium",
+          "reason": "Âm \"ting\" nhẹ khi hồ sơ sáng: cảnh trọng tâm của video."
+        }
+      ],
+      "transition": "wipeleft",
+      "duration_s": 8.25,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S07",
+      "narrative_purpose": "Bước 4–5 khép cơ chế: nhà bán chọn nhóm khớp sở thích, và quảng cáo giày có thể hiện ra ở bảng tin dù người dùng không tìm gì.",
+      "main_idea": "Nhà bán chọn nhóm \"chạy bộ\"; thẻ quảng cáo giày có thể hiện ở đúng chỗ đã thấy ở S01.",
+      "main_change": "Con trỏ bấm vào ô nhóm trùng thẻ chạy bộ, rồi thẻ quảng cáo giày bay từ bảng chọn vào bảng tin điện thoại (viền vàng nét đứt \"có thể\") và mũi tên nguồn nét đứt vàng nối thẻ với nhóm. Nhìn ra ở 360×640: một ô được chọn, một thẻ bay sang điện thoại trống.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.58,
+      "hold_reason": "Giữ 1,58 s: thẻ quảng cáo nảy nhẹ, hạt sáng chạy theo mũi tên nguồn, ô nhóm sáng nhịp.",
+      "header_slot": "top_right",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nhóm",
+            "type": "term",
+            "form": "illustration",
+            "object": "ô nhóm chạy bộ trên bảng chọn",
+            "motion": "con trỏ bấm, ô viền vàng sáng lên (0,85 s)"
+          },
+          {
+            "term": "nhà bán",
+            "type": "entity",
+            "form": "illustration",
+            "object": "bảng chọn nhóm của nhà bán",
+            "motion": "bảng với năm ô hình học, con trỏ di chuyển trên bảng"
+          },
+          {
+            "term": "quảng cáo giày có thể hiện ra",
+            "type": "result",
+            "form": "animation",
+            "object": "thẻ quảng cáo bay từ ô nhóm vào bảng tin điện thoại",
+            "motion": "bay 1,55–2,70 s, hạ xuống bảng tin 2,75 s, nảy nhẹ; mũi tên nguồn vẽ nét đứt vàng"
+          }
+        ],
+        "relations": [
+          {
+            "from": "ô nhóm chạy bộ",
+            "to": "thẻ quảng cáo giày",
+            "type": "mũi tên nguồn nét đứt vàng: nhóm khớp thẻ sở thích khớp thẻ quảng cáo (trạng thái hook 4/5)"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NHÓM",
+            "kind": "keyword",
+            "attach_to": "ô nhóm chạy bộ trên bảng chọn",
+            "appear_s": 0.95,
+            "disappear_s": 4.7,
+            "effect": "fade"
+          },
+          {
+            "text": "NHÀ BÁN",
+            "kind": "label",
+            "attach_to": "bảng chọn nhóm của nhà bán",
+            "appear_s": 0.45,
+            "disappear_s": 4.7,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.58
+      },
+      "visual_concept": "Bảng chọn của nhà bán (giả lập, nền dữ liệu) bên trái: năm ô nhóm sở thích là hình học không chữ, ô chạy bộ khớp thẻ nhỏ của hồ sơ ở S06. Điện thoại bên phải đứng đúng khung và vị trí như S01 (≈ x 560–940, y 600–1220) với bảng tin trống. Con trỏ bấm ô chạy bộ; thẻ quảng cáo giày bay sang và hạ vào bảng tin, viền vàng nét đứt vì chỉ là \"có thể\". Mũi tên nguồn nối thẻ với nhóm.",
+      "scene_type": "process_animation",
+      "scene_kind": "data_flow",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "seller_chooser",
+            "object": "seller_chooser",
+            "t": 0
+          },
+          {
+            "id": "group",
+            "object": "group_cell",
+            "t": 0.85
+          },
+          {
+            "id": "phone_feed",
+            "object": "phone_feed",
+            "t": 0
+          }
+        ],
+        "edges": [
+          {
+            "from": "group",
+            "to": "phone_feed",
+            "kind": "normal",
+            "t": 1.55
+          }
+        ],
+        "drawn_by": "Mẫu data_flow chỉ có browser/server/document; bảng chọn, ô nhóm, điện thoại, thẻ quảng cáo do Producer tự vẽ bằng Pillow. Không payload chữ trên cạnh."
+      },
+      "environment": "Nền dữ liệu. Xa: nền tối #0F1B2D có hạt sáng như S06. Giữa: bảng chọn của nhà bán ≈ x 100–520, y 450–1150 (cao ≈ 700 px) với năm ô nhóm cao ≈ 100 px, ô chạy bộ ≈ x 120–500, y 600–700; điện thoại ≈ x 560–940, y 600–1220 (đúng như S01). Gần: thẻ quảng cáo và con trỏ. Khác S06: bố cục hai cột trái–phải ngang, không còn thẻ hồ sơ lớn. Ánh sáng đều; cyan là dữ liệu, vàng là \"có thể\".",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Bảng chọn của nhà bán (năm ô nhóm hình học)",
+        "Ô nhóm chạy bộ",
+        "Con trỏ",
+        "Điện thoại có bảng tin (đúng vị trí S01)",
+        "Thẻ quảng cáo giày viền vàng nét đứt",
+        "Mũi tên nguồn nét đứt vàng",
+        "Hạt sáng chạy theo mũi tên"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Quét ngang (wipeleft) từ S06: bảng chọn bên trái và điện thoại với bảng tin trống bên phải."
+        },
+        {
+          "t": 0.4,
+          "event": "Lời 11 \"Nhà bán chọn\": con trỏ vào từ dưới, di chuyển về ô chạy bộ (0,40–0,80 s)."
+        },
+        {
+          "t": 0.85,
+          "event": "\"nhóm\": con trỏ bấm ô chạy bộ (gợn tròn), ô viền vàng sáng lên."
+        },
+        {
+          "t": 0.95,
+          "event": "Nhãn NHÓM (≥ 72 px) gắn ô vừa chọn (≈ x 120–420, y 710–770)."
+        },
+        {
+          "t": 1.55,
+          "event": "\"quảng cáo giày\": một bản thẻ quảng cáo thu nhỏ tách khỏi ô nhóm và bay sang phải (1,55–2,70 s)."
+        },
+        {
+          "t": 2.15,
+          "event": "Thẻ bay giữa khe, đuôi sáng mờ theo đường cong."
+        },
+        {
+          "t": 2.75,
+          "event": "\"hiện ra\": thẻ hạ vào bảng tin điện thoại, đúng khung và vị trí S01, viền vàng nét đứt (\"có thể\"); thông báo mềm."
+        },
+        {
+          "t": 2.8,
+          "event": "Mũi tên nguồn nét đứt vàng vẽ nối thẻ quảng cáo với ô nhóm (2,80–3,20 s) (trạng thái hook 4/5)."
+        },
+        {
+          "t": 3.2,
+          "event": "Thẻ quảng cáo nảy nhẹ một lần (hết lời 11 ở 3,17 s)."
+        },
+        {
+          "t": 3.6,
+          "event": "Giữ: hạt sáng chạy dọc mũi tên nguồn từ nhóm sang thẻ."
+        },
+        {
+          "t": 4.3,
+          "event": "Ô nhóm sáng một nhịp cuối, hạt sáng chạy thêm một vòng trước cú cắt."
+        }
+      ],
+      "voice_over": "Nhà bán chọn nhóm này, và quảng cáo giày có thể hiện ra.",
+      "voice_direction": [
+        {
+          "line_id": "11",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "Nhà bán",
+            "có thể hiện ra"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.8,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NHÓM",
+      "sound_effects": [
+        "0,85 s · tiếng bấm nhẹ",
+        "2,80 s · thông báo mềm khi thẻ vào bảng tin"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.85,
+          "intent": "interaction",
+          "target": "ô nhóm chạy bộ",
+          "intensity": "low",
+          "reason": "Tiếng bấm khi nhà bán chọn nhóm."
+        },
+        {
+          "t": 2.8,
+          "intent": "ui_appear",
+          "target": "thẻ quảng cáo vào bảng tin",
+          "intensity": "medium",
+          "reason": "Thông báo mềm nhắc lại S01: cùng thẻ, cùng chỗ, nhưng lần này người xem đã biết nguồn."
+        }
+      ],
+      "transition": "slideup",
+      "duration_s": 4.75,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S08",
+      "narrative_purpose": "Bằng chứng 1: nghiên cứu 2018 trên Android không thấy ứng dụng nào lén bật micro, nhưng chỉ thử trên Android, hồi đó (bằng chứng có giới hạn).",
+      "main_idea": "Một nghiên cứu có nguồn nói không thấy ứng dụng nào bật micro lén, trong phạm vi Android đã thử.",
+      "main_change": "Lưới ứng dụng lấp đầy, vạch quét chạy qua và mọi biểu tượng micro vẫn tắt, khung xanh lá khép quanh lưới; rồi vùng ngoài khung mờ xám với dấu hỏi (chưa thử). Nhìn ra ở 360×640: khung xanh với lưới tắt và vùng xám có dấu hỏi.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "hold_reason": "Giữ 1,0 s: vùng ngoài khung nhấp nháy dấu hỏi nhẹ, khung xanh sáng nhịp; không tĩnh.",
+      "header_slot": "top_left",
+      "text_groups": 3,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "Northeastern 2018",
+            "type": "entity",
+            "form": "illustration",
+            "object": "tờ báo cáo nghiên cứu",
+            "motion": "tờ nhảy vào góc phải trên lúc 0,15 s, nhãn nguồn hiện 0,50 s"
+          },
+          {
+            "term": "17.000+ ứng dụng",
+            "type": "result",
+            "form": "chart",
+            "object": "lưới ứng dụng Android",
+            "motion": "ô lấp theo sóng (2,71–4,10 s), số đếm lên 17.000+ (3,00–4,10 s)"
+          },
+          {
+            "term": "không cái nào lén bật micro",
+            "type": "result",
+            "form": "animation",
+            "object": "vạch quét và các biểu tượng micro vẫn tắt",
+            "motion": "vạch quét chạy qua lưới (5,03–6,60 s), không micro nào sáng; khung xanh lá khép (6,60–6,89 s)"
+          },
+          {
+            "term": "chỉ Android",
+            "type": "result",
+            "form": "status",
+            "object": "khung xanh quanh lưới và vùng ngoài khung mờ có dấu hỏi",
+            "motion": "vùng ngoài mờ xám, dấu hỏi nhấp nháy (7,39–9,00 s)"
+          }
+        ],
+        "relations": [
+          {
+            "from": "khung xanh lá",
+            "to": "lưới ứng dụng Android",
+            "type": "đúng: đã kiểm, micro đều tắt"
+          },
+          {
+            "from": "vùng ngoài khung",
+            "to": "máy và hệ khác",
+            "type": "chưa thử: dấu hỏi"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NORTHEASTERN 2018",
+            "kind": "label",
+            "attach_to": "tờ báo cáo nghiên cứu",
+            "appear_s": 0.5,
+            "disappear_s": 9.9,
+            "effect": "fade"
+          },
+          {
+            "text": "17.000+",
+            "kind": "number",
+            "attach_to": "lưới ứng dụng Android",
+            "appear_s": 3,
+            "disappear_s": 9.9,
+            "effect": "fade"
+          },
+          {
+            "text": "CHỈ ANDROID",
+            "kind": "keyword",
+            "attach_to": "khung xanh quanh lưới và vùng ngoài khung mờ có dấu hỏi",
+            "appear_s": 7.6,
+            "disappear_s": 9.9,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 1
+      },
+      "visual_concept": "Bàn nghiên cứu tối giản: tờ báo cáo có tên nguồn ở góc phải trên; lưới ứng dụng Android (nhiều ô, mỗi ô có biểu tượng micro nhỏ đang tắt) chiếm giữa khung, cao ≥ 560 px. Vạch quét quét từ trên xuống: không micro nào sáng, khung xanh lá khép quanh lưới (bảng nghĩa màu: đã kiểm). Bên phải lưới là vùng khác (máy/hệ khác) mờ xám có dấu hỏi: chưa thử. Nhãn \"CHỈ ANDROID\" gắn khung nói rõ giới hạn.",
+      "scene_type": "data_visualization",
+      "scene_kind": "before_after",
+      "kind_params": {
+        "before": {
+          "label": "Trước quét: micro ứng dụng đều tắt",
+          "state": "warn",
+          "object": "app_grid"
+        },
+        "after": {
+          "label": "Sau quét: vẫn tắt, trong khung đã thử",
+          "state": "ok",
+          "object": "app_grid_framed"
+        },
+        "switch_t": 6.6,
+        "drawn_by": "Mẫu before_after chỉ dựng hai ô trình duyệt/tài liệu; lưới ứng dụng, vạch quét, khung xanh và vùng ngoài khung do Producer tự vẽ bằng Pillow (components.card/icon cho ô, charts.counter cho số đếm). Nhãn trong before/after chỉ là tên nội bộ."
+      },
+      "environment": "Bàn nghiên cứu. Xa: mặt bàn xanh xám tối #14263A nhìn thẳng, ánh sáng đèn bàn từ trên trái, khác nền điện thoại và nền dữ liệu. Giữa: lưới ứng dụng Android ≈ x 110–700, y 600–1200 (cao ≈ 600 px, sáu cột × sáu hàng, mỗi ô có micro nhỏ tắt) trong khung xanh lá ≈ x 98–712, y 588–1212; vùng chưa thử ≈ x 730–990, y 600–1200 (ô mờ xám + dấu hỏi). Gần: tờ báo cáo + thẻ nguồn ≈ x 470–990, y 408–560; nhãn 17.000+ ≈ x 110–440, y 500–590; nhãn CHỈ ANDROID ≈ x 110–600, y 1215–1295. Chuyển động: sóng lấp ô, vạch quét, khung khép.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Tờ báo cáo nghiên cứu + thẻ nguồn",
+        "Lưới ứng dụng Android (36 ô, micro nhỏ tắt)",
+        "Vạch quét",
+        "Khung xanh lá",
+        "Vùng ngoài khung mờ xám có dấu hỏi",
+        "Bộ đếm 17.000+"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Nền bàn nghiên cứu (hiện bằng slideup từ S07); bàn còn trống, chỉ khung ghost của lưới chưa hiện."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 12 \"Năm 2018\": tờ báo cáo nhảy vào góc phải trên, nghiêng nhẹ rồi định vị."
+        },
+        {
+          "t": 0.5,
+          "event": "Nhãn NORTHEASTERN 2018 (nhãn ≥ 56 px, hai dòng) hiện cạnh tờ báo cáo."
+        },
+        {
+          "t": 1.3,
+          "event": "Tờ báo cáo mở ra, các dòng xám chạy như đang đọc (đổi hình trong lúc chờ lời tới \"hơn mười bảy nghìn\")."
+        },
+        {
+          "t": 1.8,
+          "event": "\"nhóm nghiên cứu thử\": khung ghost của lưới ứng dụng hiện mờ ở giữa bàn."
+        },
+        {
+          "t": 2.71,
+          "event": "\"hơn mười bảy nghìn ứng dụng\": các ô ứng dụng lấp vào khung theo sóng từ trên xuống (2,71–4,10 s)."
+        },
+        {
+          "t": 3,
+          "event": "Nhãn 17.000+ (≥ 72 px) hiện, số đếm lên từ 0 (3,00–4,10 s)."
+        },
+        {
+          "t": 3.6,
+          "event": "Giữa sóng lấp: ô ứng dụng đầy một nửa, số đếm đang tăng."
+        },
+        {
+          "t": 4.3,
+          "event": "Lưới đầy; các micro nhỏ trên từng ô lộ ra, đều tắt (xám)."
+        },
+        {
+          "t": 5.03,
+          "event": "\"không cái nào lén bật micro\": vạch quét bắt đầu chạy từ trên xuống qua toàn lưới (5,03–6,60 s); không micro nào sáng."
+        },
+        {
+          "t": 5.8,
+          "event": "Vạch quét ở giữa lưới; các hàng đã quét giữ nguyên tắt."
+        },
+        {
+          "t": 6.6,
+          "event": "Khung xanh lá vẽ khép quanh lưới (6,60–6,89 s)."
+        },
+        {
+          "t": 6.89,
+          "event": "Nghỉ 0,5 s sau lời 12: vạch quét thu về điểm đầu."
+        },
+        {
+          "t": 7.39,
+          "event": "Lời 13 \"Nhưng chỉ thử\": vùng ngoài khung (bên phải) mờ xám, các dấu hỏi hiện và nhấp nháy."
+        },
+        {
+          "t": 7.6,
+          "event": "Nhãn CHỈ ANDROID (≥ 72 px, kinetic pop đỉnh ≈ 84 px) hiện dưới khung xanh."
+        },
+        {
+          "t": 8.5,
+          "event": "Dấu hỏi vùng ngoài nhấp nháy lần hai, khung xanh sáng nhịp."
+        },
+        {
+          "t": 9.02,
+          "event": "Giữ 1,0 s: vùng ngoài nhấp nháy dấu hỏi nhẹ, khung xanh vẫn bao lưới."
+        },
+        {
+          "t": 9.6,
+          "event": "Sáng viền khung xanh một nhịp cuối trước cú cắt."
+        }
+      ],
+      "voice_over": "Năm 2018, nhóm nghiên cứu thử hơn mười bảy nghìn ứng dụng Android: không cái nào lén bật micro. Nhưng chỉ thử trên Android, hồi đó.",
+      "voice_direction": [
+        {
+          "line_id": "12",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "mười bảy nghìn",
+            "không cái nào"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "13",
+          "intent": "warning",
+          "emotion": "concerned",
+          "emphasis": [
+            "chỉ thử",
+            "Android"
+          ],
+          "pace": "slow",
+          "pause_before_s": 0,
+          "pause_after_s": 1,
+          "intonation": "falling",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NORTHEASTERN 2018 · 17.000+ · CHỈ ANDROID",
+      "sound_effects": [
+        "5,03 s · tiếng quét nhẹ khi vạch chạy",
+        "6,60 s · nhịp nhẹ khi khung xanh khép",
+        "7,60 s · nhịp nhẹ khi vùng chưa thử hiện"
+      ],
+      "sound_cues": [
+        {
+          "t": 5.03,
+          "intent": "data_move",
+          "target": "vạch quét",
+          "intensity": "low",
+          "reason": "Tiếng quét nhẹ theo script, khớp lúc vạch chạy."
+        },
+        {
+          "t": 6.6,
+          "intent": "highlight",
+          "target": "khung xanh lá",
+          "intensity": "medium",
+          "reason": "Nhấn \"đã kiểm trong phạm vi thử\": khung khép."
+        },
+        {
+          "t": 7.6,
+          "intent": "alert",
+          "target": "vùng chưa thử",
+          "intensity": "low",
+          "reason": "Nhấn giới hạn của nghiên cứu, nhẹ để không hù doạ."
+        }
+      ],
+      "transition": "wiperight",
+      "duration_s": 10,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S09",
+      "narrative_purpose": "Bằng chứng 2: một bản chào bán quảng cáo nhắc \"nghe chủ động\" chỉ là lời quảng bá, chưa phải bằng chứng kỹ thuật.",
+      "main_idea": "Slide chào bán có lời hứa; hộp bằng chứng kỹ thuật cạnh đó vẫn trống.",
+      "main_change": "Slide chào bán (biểu tượng tai và micro) vào phòng họp, dấu đóng vàng hạ xuống slide; hộp \"bằng chứng kỹ thuật\" bên dưới sáng viền vàng vẫn trống và nét nối từ slide tới hộp vươn ra rồi rụt lại không chạm. Nhìn ra ở 360×640: slide có dấu đóng trên, hộp trống viền vàng dưới.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1,
+      "hold_reason": "Giữ 1,0 s: hộp bằng chứng trống nhấp nháy viền vàng, camera hoàn thành đẩy 1,08×.",
+      "header_slot": "top_right",
+      "text_groups": 2,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "nghe chủ động",
+            "type": "term",
+            "form": "icon",
+            "object": "biểu tượng tai và micro trên slide",
+            "motion": "tai-micro phóng 1,0→1,3× (3,90 s); nhãn hiện kế bên"
+          },
+          {
+            "term": "lời chào bán",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "dấu đóng vàng trên slide",
+            "motion": "dấu đóng hạ xuống slide (5,60 s), slide nảy nhẹ khi dấu chạm"
+          },
+          {
+            "term": "chưa phải bằng chứng kỹ thuật",
+            "type": "result",
+            "form": "status",
+            "object": "hộp bằng chứng kỹ thuật trống",
+            "motion": "hộp sáng viền vàng, nét nối từ slide vươn ra rồi rụt lại (6,30–7,40 s)"
+          }
+        ],
+        "relations": [
+          {
+            "from": "slide chào bán",
+            "to": "hộp bằng chứng kỹ thuật",
+            "type": "không nối được: lời hứa không phải bằng chứng"
+          }
+        ],
+        "texts": [
+          {
+            "text": "NGHE CHỦ ĐỘNG",
+            "kind": "keyword",
+            "attach_to": "biểu tượng tai và micro trên slide",
+            "appear_s": 3.95,
+            "disappear_s": 8.4,
+            "effect": "pop"
+          },
+          {
+            "text": "LỜI CHÀO BÁN",
+            "kind": "label",
+            "attach_to": "dấu đóng vàng trên slide",
+            "appear_s": 5.6,
+            "disappear_s": 8.4,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1
+      },
+      "visual_concept": "Phòng họp tối giản với màn hình chiếu: slide chào bán (≈ 860×580 px) có biểu tượng tai và micro và các thanh xám thay tiêu đề (không chữ, không tên công ty). Bên dưới là hộp \"bằng chứng kỹ thuật\" nét đứt, trống. Dấu đóng vàng hạ lên slide (bảng nghĩa màu: vàng là chưa kiểm chứng), nhãn LỜI CHÀO BÁN. Từ slide vươn một nét nối tới hộp rồi rụt lại: lời hứa không nối được vào bằng chứng. Năm 2024 chỉ nói bằng lời; slide có biểu tượng lịch không chữ.",
+      "scene_type": "object_interaction",
+      "scene_kind": "detail_focus",
+      "kind_params": {
+        "target": "Hộp bằng chứng kỹ thuật trống",
+        "object": "evidence_box",
+        "zoom": 1.08,
+        "keep_in_safe_area": true,
+        "drawn_by": "Mẫu detail_focus vẽ cửa sổ trình duyệt và ô kính lúp có nhãn; ở đây Producer tự vẽ phòng họp, slide, dấu đóng, hộp và dùng sequence.camera để đẩy 1,08× về hộp (target_bbox = hộp). Nhãn \"target\" chỉ là tên nội bộ."
+      },
+      "environment": "Phòng họp. Xa: tường và màn chiếu xám ấm #2B2F3A, vẽ phẳng, khác nền điện thoại/nền dữ liệu/bàn nghiên cứu. Giữa: slide chào bán ≈ x 110–970, y 430–1010 (cao ≈ 580 px), biểu tượng tai-micro ≈ x 140–420, y 560–880; dấu đóng vàng ≈ x 400–920, y 800–970. Gần: hộp bằng chứng kỹ thuật nét đứt ≈ x 250–830, y 1060–1290. Ánh sáng từ máy chiếu phía trên, bóng nhẹ; chuyển động: slide trượt vào và nghiêng, dấu đóng hạ, camera đẩy nhẹ 1,08×.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Màn chiếu phòng họp",
+        "Slide chào bán (không chữ, không tên công ty)",
+        "Biểu tượng tai và micro",
+        "Biểu tượng lịch không chữ",
+        "Dấu đóng vàng",
+        "Hộp bằng chứng kỹ thuật trống nét đứt",
+        "Nét nối từ slide tới hộp"
+      ],
+      "camera": {
+        "shot": "medium",
+        "movement": "push_in"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Quét ngang (wiperight) từ S08: phòng họp với màn chiếu trống; hộp bằng chứng trống đã nằm ở dưới."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 14 \"Năm 2024\": slide chào bán trượt vào từ phải (0,15–0,65 s); biểu tượng lịch không chữ hiện ở góc slide (không hiện số, vì cột chữ của script không có \"2024\")."
+        },
+        {
+          "t": 1.1,
+          "event": "Slide định vị ở giữa màn chiếu."
+        },
+        {
+          "t": 2.24,
+          "event": "\"bản chào bán\": slide nghiêng 4° và các thanh xám thay tiêu đề hiện (2,24–2,70 s)."
+        },
+        {
+          "t": 3.2,
+          "event": "Biểu tượng tai và micro hiện mờ trên slide."
+        },
+        {
+          "t": 3.9,
+          "event": "\"nghe chủ động\": biểu tượng tai-micro phóng 1,0→1,3×; nhãn NGHE CHỦ ĐỘNG (≥ 72 px, hai dòng, pop) hiện ở 3,95 s kế bên biểu tượng."
+        },
+        {
+          "t": 5,
+          "event": "Lời 15: camera bắt đầu đẩy 1,00→1,08× về hộp bằng chứng (5,00–7,00 s), giữ slide và hộp trong khung."
+        },
+        {
+          "t": 5.6,
+          "event": "\"lời quảng bá\": dấu đóng vàng hạ xuống slide, slide nảy nhẹ; nhãn LỜI CHÀO BÁN (≥ 56 px) hiện trên dấu."
+        },
+        {
+          "t": 6.3,
+          "event": "\"chưa phải bằng chứng\": hộp bằng chứng kỹ thuật trống sáng viền vàng."
+        },
+        {
+          "t": 6.8,
+          "event": "\"kỹ thuật\": nét nối từ slide vươn tới hộp rồi rụt lại, không chạm (6,80–7,40 s)."
+        },
+        {
+          "t": 7.6,
+          "event": "Giữ: hộp trống nhấp nháy viền vàng, slide đứng yên."
+        },
+        {
+          "t": 8.2,
+          "event": "Viền vàng của hộp sáng thêm một nhịp trước cú cắt."
+        }
+      ],
+      "voice_over": "Năm 2024, một bản chào bán quảng cáo nhắc đến nghe chủ động. Đó là lời quảng bá, chưa phải bằng chứng kỹ thuật.",
+      "voice_direction": [
+        {
+          "line_id": "14",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "chào bán",
+            "nghe chủ động"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.4,
+          "intonation": "flat",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "contrast"
+          }
+        },
+        {
+          "line_id": "15",
+          "intent": "explanation",
+          "emotion": "neutral",
+          "emphasis": [
+            "lời quảng bá",
+            "chưa phải bằng chứng kỹ thuật"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0,
+          "pause_after_s": 1,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "contrast",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "NGHE CHỦ ĐỘNG · LỜI CHÀO BÁN",
+      "sound_effects": [
+        "5,60 s · tiếng đóng dấu nhẹ"
+      ],
+      "sound_cues": [
+        {
+          "t": 5.6,
+          "intent": "impact_reveal",
+          "target": "dấu đóng vàng",
+          "intensity": "low",
+          "reason": "Tiếng đóng dấu nhẹ khi dấu hạ (script yêu cầu), khớp lúc dấu chạm slide."
+        }
+      ],
+      "transition": "fade",
+      "duration_s": 8.5,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S10",
+      "narrative_purpose": "Giải pháp làm được ngay: từ thẻ quảng cáo mở phần tùy chọn quảng cáo và xem mình bị gán sở thích gì.",
+      "main_idea": "Từ một thẻ quảng cáo mở được danh sách sở thích đang bị gán, trong đó có đúng thẻ \"chạy bộ\" của ví dụ.",
+      "main_change": "Con trỏ bấm ba chấm trên thẻ quảng cáo, menu xổ ra, bấm mục tùy chọn quảng cáo, danh sách sở thích hiện và thẻ \"chạy bộ\" sáng viền cyan (khớp S06). Nhìn ra ở 360×640: menu mở từ thẻ và một thẻ sáng cyan.",
+      "complexity": "medium",
+      "concepts": 1,
+      "hold_after_voice_s": 1.9,
+      "hold_reason": "Giữ 1,0 s thẻ chạy bộ sáng nhịp rồi menu khép 0,9 s (chuyển ý): có chuyển động suốt, không tĩnh quá 1,0 s.",
+      "header_slot": "top_left",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "tùy chọn quảng cáo",
+            "type": "term",
+            "form": "illustration",
+            "object": "mục tùy chọn quảng cáo trên menu",
+            "motion": "con trỏ chạm mục, mục sáng viền (1,10 s), danh sách sở thích trượt vào"
+          },
+          {
+            "term": "sở thích bị gán",
+            "type": "result",
+            "form": "illustration",
+            "object": "danh sách thẻ sở thích có thẻ chạy bộ sáng cyan",
+            "motion": "thẻ chạy bộ sáng viền cyan (2,60 s), nhịp sáng hết lời"
+          }
+        ],
+        "relations": [
+          {
+            "from": "thẻ quảng cáo",
+            "to": "danh sách sở thích",
+            "type": "từ quảng cáo mở được danh sách sở thích bị gán"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TÙY CHỌN QUẢNG CÁO",
+            "kind": "label",
+            "attach_to": "mục tùy chọn quảng cáo trên menu",
+            "appear_s": 0.75,
+            "disappear_s": 4.2,
+            "effect": "fade"
+          }
+        ],
+        "hold_s": 1.9
+      },
+      "visual_concept": "Màn hình cài đặt giả lập cận cảnh, trung tính, không logo: thẻ quảng cáo giày ở trên cùng với nút ba chấm. Con trỏ bấm ba chấm, menu bốn dòng xổ ra, bấm mục \"Tùy chọn quảng cáo\", danh sách sở thích (lưới thẻ biểu tượng không chữ) trượt vào; thẻ chạy bộ sáng viền cyan, đúng thẻ ở hồ sơ ví dụ S06. Menu khép lại rồi cắt về bàn ăn. Tên mục là chung chung, chưa kiểm tên hiện hành ở từng nền tảng.",
+      "scene_type": "ui_simulation",
+      "scene_kind": "ui_simulation",
+      "kind_params": {
+        "app": "settings_menu",
+        "states": [
+          {
+            "t": 0.3,
+            "state": "request"
+          },
+          {
+            "t": 1.1,
+            "state": "granted"
+          },
+          {
+            "t": 2.6,
+            "state": "consequence"
+          }
+        ],
+        "cursor_path": [
+          {
+            "t": 0.15,
+            "x": 0.8,
+            "y": 0.9
+          },
+          {
+            "t": 0.3,
+            "x": 0.86,
+            "y": 0.12
+          },
+          {
+            "t": 0.75,
+            "x": 0.5,
+            "y": 0.4
+          },
+          {
+            "t": 1.1,
+            "x": 0.5,
+            "y": 0.4
+          }
+        ],
+        "drawn_by": "Mẫu ui_simulation chỉ nhận app dialog/browser/terminal/ide; \"settings_menu\" không có trong mẫu, nên Producer tự vẽ màn hình cài đặt trên điện thoại (components.window/card/cursor, text.attach_label) theo mô tả, không gọi render_scene_kind nguyên bản cho cảnh này."
+      },
+      "environment": "Màn hình điện thoại. Xa: nền xanh đêm #0F1B2D như S03–S05 nhưng vẽ màn hình cài đặt sáng hơn để tách khỏi nền dữ liệu. Giữa: khung màn hình ≈ x 170–910, y 430–1250 (cao ≈ 820 px) với thẻ quảng cáo ở trên, menu xổ ra ≈ y 560–900, lưới sở thích ≈ y 640–1200. Gần: con trỏ và nhãn TÙY CHỌN QUẢNG CÁO (≥ 56 px, hai dòng) trên hàng được chọn. Ánh sáng đều; chuyển động ở menu, danh sách và nhịp sáng thẻ chạy bộ.",
+      "character_action": "không xuất hiện",
+      "props": [
+        "Màn hình cài đặt giả lập (không logo)",
+        "Thẻ quảng cáo giày với nút ba chấm",
+        "Menu bốn dòng",
+        "Mục tùy chọn quảng cáo",
+        "Lưới thẻ sở thích hình học",
+        "Thẻ chạy bộ viền cyan",
+        "Con trỏ"
+      ],
+      "camera": {
+        "shot": "close_up",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Fade từ S09: màn hình cài đặt, thẻ quảng cáo giày ở trên cùng; con trỏ ở góc dưới phải."
+        },
+        {
+          "t": 0.3,
+          "event": "Lời 16 \"Mở\": con trỏ chạm nút ba chấm; menu bốn dòng xổ ra (0,30–0,70 s)."
+        },
+        {
+          "t": 0.75,
+          "event": "\"tùy chọn\": con trỏ trượt tới hàng thứ hai; nhãn TÙY CHỌN QUẢNG CÁO gắn hàng."
+        },
+        {
+          "t": 1.1,
+          "event": "\"quảng cáo\": con trỏ bấm hàng, hàng sáng viền."
+        },
+        {
+          "t": 1.6,
+          "event": "\"xem\": danh sách sở thích (lưới thẻ biểu tượng không chữ) trượt vào thay menu (1,60–2,10 s)."
+        },
+        {
+          "t": 2.6,
+          "event": "\"sở thích\": thẻ chạy bộ sáng viền cyan (khớp thẻ ở hồ sơ S06)."
+        },
+        {
+          "t": 3.2,
+          "event": "Hết lời 16 (3,17 s): thẻ chạy bộ sáng nhịp (giữ 1,0 s)."
+        },
+        {
+          "t": 4.2,
+          "event": "Chuyển ý: menu và danh sách khép (4,20–5,10 s), chỉ còn thẻ quảng cáo trước cú cắt về bàn ăn."
+        }
+      ],
+      "voice_over": "Mở phần tùy chọn quảng cáo, xem mình bị gán sở thích gì.",
+      "voice_direction": [
+        {
+          "line_id": "16",
+          "intent": "explanation",
+          "emotion": "reassuring",
+          "emphasis": [
+            "tùy chọn quảng cáo",
+            "sở thích gì"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 1.9,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "new_topic"
+          }
+        }
+      ],
+      "text_overlay": "TÙY CHỌN QUẢNG CÁO",
+      "sound_effects": [
+        "0,30 s · tiếng bấm nhẹ",
+        "2,60 s · nhịp nhẹ khi thẻ chạy bộ sáng"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.3,
+          "intent": "interaction",
+          "target": "nút ba chấm",
+          "intensity": "low",
+          "reason": "Tiếng bấm khi mở menu."
+        },
+        {
+          "t": 2.6,
+          "intent": "highlight",
+          "target": "thẻ chạy bộ",
+          "intensity": "low",
+          "reason": "Nhấn thẻ sở thích khớp hồ sơ ví dụ, nối lại với S06."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 5.1,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    },
+    {
+      "scene_id": "S11",
+      "narrative_purpose": "Kết trả đúng tình huống mở: một lần trùng chưa đủ để biết nguồn quảng cáo, và mời người xem kể cú trùng của mình.",
+      "main_idea": "Mình nhớ lần trùng và quên lần không, nên một lần trùng chưa đủ để biết quảng cáo đến từ đâu.",
+      "main_change": "Thẻ quảng cáo giày sáng giữa hàng chục thẻ khác trôi qua bảng tin rồi các thẻ không trùng mờ đi; từ thẻ sáng, mũi tên nguồn chia ba nhánh dấu hỏi nhấp nháy thay cho một câu trả lời chắc; bong bóng rỗng nở cạnh điện thoại. Nhìn ra ở 360×640: một thẻ sáng giữa nhiều thẻ mờ, rồi ba dấu hỏi.",
+      "complexity": "low",
+      "concepts": 0,
+      "hold_after_voice_s": 0.57,
+      "hold_reason": "Đuôi 0,57 s sau lời 19 là đuôi im có chủ đích: bong bóng rỗng giữ nhịp thở nhẹ, không thêm hình mới; ngoài ra có chuyển động suốt cảnh.",
+      "header_slot": "top_right",
+      "text_groups": 1,
+      "semantic_plan": {
+        "keywords": [
+          {
+            "term": "trùng ≠ bằng chứng",
+            "type": "concept",
+            "form": "metaphor",
+            "object": "thẻ giày sáng giữa hàng thẻ mờ và ba nhánh dấu hỏi",
+            "motion": "thẻ sáng nổi giữa hàng thẻ mờ (0,60 s), thẻ mờ tan (1,40 s), mũi tên nguồn chia ba nhánh (2,74–3,30 s)"
+          },
+          {
+            "term": "chưa biết quảng cáo đến từ đâu",
+            "type": "result",
+            "form": "status",
+            "object": "ba nhánh dấu hỏi từ mũi tên nguồn",
+            "motion": "ba dấu hỏi nhấp nháy lần lượt 4,30 / 4,70 / 5,10 s (trạng thái hook 5/5)"
+          },
+          {
+            "term": "nhớ lần trùng, quên lần không",
+            "type": "result",
+            "form": "metaphor",
+            "object": "thẻ trùng sáng, thẻ không trùng tan dần",
+            "motion": "thẻ không trùng giảm độ sáng và tan (1,40–2,24 s)"
+          }
+        ],
+        "relations": [
+          {
+            "from": "thẻ quảng cáo giày sáng",
+            "to": "ba nhánh dấu hỏi",
+            "type": "một thẻ trùng chưa chỉ ra nguồn: nhiều nguồn có thể, đều chưa chắc"
+          }
+        ],
+        "texts": [
+          {
+            "text": "TRÙNG ≠ BẰNG CHỨNG",
+            "kind": "message",
+            "attach_to": "thẻ giày sáng giữa hàng thẻ mờ và ba nhánh dấu hỏi",
+            "appear_s": 3,
+            "disappear_s": 8.2,
+            "effect": "kinetic"
+          }
+        ],
+        "hold_s": 0.57
+      },
+      "visual_concept": "Bàn ăn cùng góc với S01, điện thoại đứng đúng chỗ cũ (≈ x 560–940, y 600–1220). Bảng tin cuộn qua hàng chục thẻ quảng cáo mờ (túi, tai nghe, ly cà phê, ghế) và một thẻ giày sáng: ý \"nhớ lần trùng\". Các thẻ mờ tan đi (\"quên lần không\"). Từ thẻ sáng, mũi tên nguồn (trạng thái hook, nay đổi) chia ba nhánh kết thúc bằng dấu hỏi trong vòng tròn: không còn một câu trả lời chắc. Chữ chốt TRÙNG ≠ BẰNG CHỨNG hiện trên đầu điện thoại. Bong bóng rỗng nở cạnh điện thoại mời người xem trả lời; Cáo vào lúc cúi chào và lúc giơ ngón cái hướng về người xem.",
+      "scene_type": "metaphor_animation",
+      "scene_kind": "animated_diagram",
+      "kind_params": {
+        "nodes": [
+          {
+            "id": "lit_card",
+            "object": "ad_card",
+            "t": 0.6
+          },
+          {
+            "id": "q1",
+            "object": "question_mark",
+            "t": 3
+          },
+          {
+            "id": "q2",
+            "object": "question_mark",
+            "t": 3
+          },
+          {
+            "id": "q3",
+            "object": "question_mark",
+            "t": 3
+          }
+        ],
+        "edges": [
+          {
+            "from": "lit_card",
+            "to": "q1",
+            "kind": "normal",
+            "t": 2.74
+          },
+          {
+            "from": "lit_card",
+            "to": "q2",
+            "kind": "normal",
+            "t": 2.74
+          },
+          {
+            "from": "lit_card",
+            "to": "q3",
+            "kind": "normal",
+            "t": 2.74
+          }
+        ],
+        "drawn_by": "Mẫu animated_diagram cho cấu trúc một nút chia ba nhánh; thẻ, hàng thẻ mờ, dấu hỏi, bong bóng rỗng và bàn ăn Producer tự vẽ bằng Pillow. Cáo là sticker đặt sau lớp hình."
+      },
+      "environment": "Bàn ăn. Xa: mặt bàn gỗ ấm #3A2A1F nhìn từ trên như S01, đổi sang khung đứng thay vì toàn cảnh. Giữa: điện thoại ≈ x 560–940, y 600–1220 với bảng tin cuộn hàng chục thẻ mờ và một thẻ giày sáng; ba nhánh dấu hỏi ở khoảng giữa bàn ≈ x 330–540 với vòng tròn dấu hỏi ≈ 110 px. Gần: Cáo ở trái dưới (đáy y ≈ 1290), bong bóng rỗng ≈ x 110–440, y 440–640, chữ chốt ≈ x 490–990, y 410–590. Ánh sáng ấm từ trên trái; chuyển động: cuộn thẻ, tan thẻ mờ, nhánh vẽ dần, dấu hỏi nhấp nháy.",
+      "character_action": "Cáo bow (≈ 170 px rộng, ≈ 15,7% khung, x ≈ 105, đáy y ≈ 1290) lúc 0,20–1,80 s, cúi nhẹ khi nói \"ai cũng hay nhớ lần trùng\". Cáo thumbs_up (≈ 180 px rộng, ≈ 16,7% khung, x ≈ 105, đáy y ≈ 1290) lúc 6,30–8,30 s, hướng về người xem khi mời bình luận. Tổng 3,6 s; không che ba nhánh dấu hỏi hay bong bóng.",
+      "props": [
+        "Bàn ăn gỗ nhìn từ trên",
+        "Điện thoại (đúng vị trí S01)",
+        "Hàng chục thẻ quảng cáo mờ (túi, tai nghe, ly cà phê, ghế)",
+        "Thẻ quảng cáo giày sáng",
+        "Mũi tên nguồn chia ba nhánh",
+        "Ba dấu hỏi trong vòng tròn",
+        "Bong bóng rỗng mời trả lời (không chữ)",
+        "Cáo: bow rồi thumbs_up"
+      ],
+      "camera": {
+        "shot": "wide",
+        "movement": "static"
+      },
+      "animation_timeline": [
+        {
+          "t": 0,
+          "event": "Cắt từ S10 về bàn ăn: điện thoại đúng vị trí S01, bảng tin trống."
+        },
+        {
+          "t": 0.15,
+          "event": "Lời 17: bảng tin bắt đầu cuộn, hàng thẻ mờ trôi qua điện thoại."
+        },
+        {
+          "t": 0.2,
+          "event": "Cáo dáng bow vào khung, nảy nhẹ, cúi nhẹ (0,20–1,80 s)."
+        },
+        {
+          "t": 0.6,
+          "event": "\"nhớ lần trùng\": thẻ giày sáng nổi lên giữa hàng thẻ mờ, trôi qua giữa điện thoại."
+        },
+        {
+          "t": 1.4,
+          "event": "\"quên lần không\": các thẻ không trùng giảm sáng và tan dần (1,40–2,24 s); thẻ giày vẫn sáng."
+        },
+        {
+          "t": 1.8,
+          "event": "Cáo trượt ra trái."
+        },
+        {
+          "t": 2.74,
+          "event": "Lời 18 \"Một lần trùng\": mũi tên nguồn từ thẻ sáng chia ba nhánh kết thúc bằng dấu hỏi trong vòng tròn (2,74–3,30 s) (trạng thái hook 5/5)."
+        },
+        {
+          "t": 3,
+          "event": "Nhãn chốt TRÙNG ≠ BẰNG CHỨNG (≥ 72 px, hai dòng, kinetic pop đỉnh ≈ 88 px) hiện trên đầu điện thoại."
+        },
+        {
+          "t": 3.7,
+          "event": "Ba nhánh vẽ xong, chữ chốt giữ nguyên; thẻ sáng nhịp nhẹ."
+        },
+        {
+          "t": 4.3,
+          "event": "\"biết quảng cáo đến từ đâu\": ba dấu hỏi nhấp nháy lần lượt (4,30 / 4,70 / 5,10 s)."
+        },
+        {
+          "t": 5.1,
+          "event": "Dấu hỏi thứ ba nhấp nháy (nhánh dưới), kết thúc lượt nhấp nháy ba nhánh."
+        },
+        {
+          "t": 5.8,
+          "event": "Nghỉ ý quan trọng 0,8 s sau lời 18: ba nhánh và chữ chốt đứng yên, thẻ sáng nhịp nhẹ."
+        },
+        {
+          "t": 6.3,
+          "event": "Lời 19: Cáo (thumbs_up) vào khung, nảy nhẹ, hướng về người xem."
+        },
+        {
+          "t": 6.4,
+          "event": "Bong bóng rỗng nở cạnh điện thoại (6,40–6,90 s), mời trả lời."
+        },
+        {
+          "t": 7.2,
+          "event": "Bong bóng nhịp thở nhẹ; thẻ sáng và ba dấu hỏi dịu đi."
+        }
+      ],
+      "voice_over": "Ai cũng hay nhớ lần trùng, quên lần không. Một lần trùng chưa đủ để biết quảng cáo đến từ đâu. Bạn từng gặp cú trùng nào?",
+      "voice_direction": [
+        {
+          "line_id": "17",
+          "intent": "reveal",
+          "emotion": "reassuring",
+          "emphasis": [
+            "nhớ lần trùng",
+            "quên lần không"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0.15,
+          "pause_after_s": 0.5,
+          "intonation": "rise_fall",
+          "transition": {
+            "from_prev": "new_topic",
+            "to_next": "elaboration"
+          }
+        },
+        {
+          "line_id": "18",
+          "intent": "conclusion",
+          "emotion": "resolute",
+          "emphasis": [
+            "Một lần trùng",
+            "chưa đủ"
+          ],
+          "pace": "measured",
+          "pause_before_s": 0,
+          "pause_after_s": 0.8,
+          "intonation": "emphatic_fall",
+          "transition": {
+            "from_prev": "elaboration",
+            "to_next": "continuous"
+          }
+        },
+        {
+          "line_id": "19",
+          "intent": "question",
+          "emotion": "curious",
+          "emphasis": [
+            "cú trùng nào"
+          ],
+          "pace": "normal",
+          "pause_before_s": 0,
+          "pause_after_s": 0.6,
+          "intonation": "rising",
+          "transition": {
+            "from_prev": "continuous"
+          }
+        }
+      ],
+      "text_overlay": "TRÙNG ≠ BẰNG CHỨNG",
+      "sound_effects": [
+        "0,60 s · nhịp nhẹ khi thẻ giày sáng",
+        "2,80 s · âm chốt khi chia ba nhánh",
+        "6,40 s · âm nhẹ khi bong bóng nở",
+        "7,73 s · đuôi im 0,55 s"
+      ],
+      "sound_cues": [
+        {
+          "t": 0.6,
+          "intent": "highlight",
+          "target": "thẻ giày sáng",
+          "intensity": "low",
+          "reason": "Nhấn thẻ \"trùng\" giữa hàng thẻ mờ, đúng ý \"nhớ lần trùng\"."
+        },
+        {
+          "t": 2.8,
+          "intent": "impact_reveal",
+          "target": "ba nhánh dấu hỏi",
+          "intensity": "medium",
+          "reason": "Âm chốt khi mũi tên chia ba nhánh và chữ chốt hiện: thông điệp chính của video."
+        },
+        {
+          "t": 6.4,
+          "intent": "ui_appear",
+          "target": "bong bóng rỗng",
+          "intensity": "low",
+          "reason": "Âm nhẹ khi bong bóng mời trả lời nở, khớp mốc hình."
+        },
+        {
+          "t": 7.73,
+          "intent": "silence",
+          "target": "đuôi im",
+          "intensity": "low",
+          "duration_s": 0.55,
+          "reason": "Đuôi im 0,55 s (≤ 0,7 s) để câu hỏi cuối đọng lại trước khi cắt."
+        }
+      ],
+      "transition": "cut",
+      "duration_s": 8.3,
+      "quality_check": {
+        "text_repeats_voiceover": false,
+        "change_visible_at_360": true,
+        "has_real_illustration": true,
+        "repeats_previous_layout": false,
+        "repeats_previous_kind": false,
+        "silent_comprehensible": true
+      }
+    }
+  ]
+}

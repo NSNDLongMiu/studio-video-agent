@@ -1,0 +1,763 @@
+{
+  "version": 1,
+  "config_version": "audio-2026-11-20.1",
+  "sample_rate": 48000,
+  "effects": [
+    {
+      "id": "ui_pop_01",
+      "family": "ui_pop",
+      "variant": 1,
+      "intent": "ui_appear",
+      "file": "library/sfx/ui_pop_01.wav",
+      "dur_s": 0.19,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -10.628801368110201,
+      "seed": "cao-van-phong-sfx-v1:ui_pop_01",
+      "params": {
+        "variant": [
+          410,
+          810,
+          0.9,
+          0.05,
+          0.26
+        ],
+        "noise_hz": [
+          400,
+          2800
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "ui_pop_02",
+      "family": "ui_pop",
+      "variant": 2,
+      "intent": "ui_appear",
+      "file": "library/sfx/ui_pop_02.wav",
+      "dur_s": 0.19,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -12.09524053824743,
+      "seed": "cao-van-phong-sfx-v1:ui_pop_02",
+      "params": {
+        "variant": [
+          530,
+          940,
+          1.5,
+          0.03,
+          0.31
+        ],
+        "noise_hz": [
+          400,
+          2800
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "ui_pop_03",
+      "family": "ui_pop",
+      "variant": 3,
+      "intent": "ui_appear",
+      "file": "library/sfx/ui_pop_03.wav",
+      "dur_s": 0.19,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -11.42582474304761,
+      "seed": "cao-van-phong-sfx-v1:ui_pop_03",
+      "params": {
+        "variant": [
+          670,
+          490,
+          1.1,
+          0.07,
+          0.37
+        ],
+        "noise_hz": [
+          400,
+          2800
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "whoosh_01",
+      "family": "whoosh",
+      "variant": 1,
+      "intent": "transition",
+      "file": "library/sfx/whoosh_01.wav",
+      "dur_s": 0.33,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -20.362418445094317,
+      "seed": "cao-van-phong-sfx-v1:whoosh_01",
+      "params": {
+        "variant": [
+          230,
+          480,
+          1.8,
+          0.76,
+          0.78
+        ],
+        "noise_hz": [
+          180,
+          2400
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "whoosh_02",
+      "family": "whoosh",
+      "variant": 2,
+      "intent": "transition",
+      "file": "library/sfx/whoosh_02.wav",
+      "dur_s": 0.33,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -19.91608888505829,
+      "seed": "cao-van-phong-sfx-v1:whoosh_02",
+      "params": {
+        "variant": [
+          470,
+          190,
+          1.4,
+          0.92,
+          0.51
+        ],
+        "noise_hz": [
+          180,
+          2400
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "whoosh_03",
+      "family": "whoosh",
+      "variant": 3,
+      "intent": "transition",
+      "file": "library/sfx/whoosh_03.wav",
+      "dur_s": 0.33,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -21.884411546996887,
+      "seed": "cao-van-phong-sfx-v1:whoosh_03",
+      "params": {
+        "variant": [
+          310,
+          630,
+          2.2,
+          1.0,
+          0.35
+        ],
+        "noise_hz": [
+          180,
+          2400
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "warning_tone_01",
+      "family": "warning_tone",
+      "variant": 1,
+      "intent": "alert",
+      "file": "library/sfx/warning_tone_01.wav",
+      "dur_s": 0.32,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -12.38549801582835,
+      "seed": "cao-van-phong-sfx-v1:warning_tone_01",
+      "params": {
+        "variant": [
+          510,
+          650,
+          1.2,
+          0.035,
+          0.32
+        ],
+        "noise_hz": [
+          350,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "warning_tone_02",
+      "family": "warning_tone",
+      "variant": 2,
+      "intent": "alert",
+      "file": "library/sfx/warning_tone_02.wav",
+      "dur_s": 0.32,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -13.52364109298739,
+      "seed": "cao-van-phong-sfx-v1:warning_tone_02",
+      "params": {
+        "variant": [
+          625,
+          545,
+          1.7,
+          0.05,
+          0.28
+        ],
+        "noise_hz": [
+          350,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "warning_tone_03",
+      "family": "warning_tone",
+      "variant": 3,
+      "intent": "alert",
+      "file": "library/sfx/warning_tone_03.wav",
+      "dur_s": 0.32,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -13.033659739620926,
+      "seed": "cao-van-phong-sfx-v1:warning_tone_03",
+      "params": {
+        "variant": [
+          455,
+          565,
+          1.4,
+          0.08,
+          0.43
+        ],
+        "noise_hz": [
+          350,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "digital_sweep_01",
+      "family": "digital_sweep",
+      "variant": 1,
+      "intent": "data_move",
+      "file": "library/sfx/digital_sweep_01.wav",
+      "dur_s": 0.28,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -13.96841140386529,
+      "seed": "cao-van-phong-sfx-v1:digital_sweep_01",
+      "params": {
+        "variant": [
+          420,
+          980,
+          1.65,
+          0.14,
+          0.49
+        ],
+        "noise_hz": [
+          480,
+          3100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "digital_sweep_02",
+      "family": "digital_sweep",
+      "variant": 2,
+      "intent": "data_move",
+      "file": "library/sfx/digital_sweep_02.wav",
+      "dur_s": 0.28,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -12.99827442073367,
+      "seed": "cao-van-phong-sfx-v1:digital_sweep_02",
+      "params": {
+        "variant": [
+          750,
+          365,
+          1.2,
+          0.19,
+          0.68
+        ],
+        "noise_hz": [
+          480,
+          3100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "digital_sweep_03",
+      "family": "digital_sweep",
+      "variant": 3,
+      "intent": "data_move",
+      "file": "library/sfx/digital_sweep_03.wav",
+      "dur_s": 0.28,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -14.308413814847212,
+      "seed": "cao-van-phong-sfx-v1:digital_sweep_03",
+      "params": {
+        "variant": [
+          550,
+          1230,
+          2.1,
+          0.1,
+          0.59
+        ],
+        "noise_hz": [
+          480,
+          3100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "accent_01",
+      "family": "accent",
+      "variant": 1,
+      "intent": "highlight",
+      "file": "library/sfx/accent_01.wav",
+      "dur_s": 0.25,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -13.60462418350567,
+      "seed": "cao-van-phong-sfx-v1:accent_01",
+      "params": {
+        "variant": [
+          620,
+          760,
+          1.7,
+          0.045,
+          0.29
+        ],
+        "noise_hz": [
+          600,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "accent_02",
+      "family": "accent",
+      "variant": 2,
+      "intent": "highlight",
+      "file": "library/sfx/accent_02.wav",
+      "dur_s": 0.25,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -14.178031673244192,
+      "seed": "cao-van-phong-sfx-v1:accent_02",
+      "params": {
+        "variant": [
+          710,
+          880,
+          2.1,
+          0.03,
+          0.38
+        ],
+        "noise_hz": [
+          600,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "accent_03",
+      "family": "accent",
+      "variant": 3,
+      "intent": "highlight",
+      "file": "library/sfx/accent_03.wav",
+      "dur_s": 0.25,
+      "peak_dbfs": -4.0000883347026726,
+      "rms_dbfs": -12.945476985821024,
+      "seed": "cao-van-phong-sfx-v1:accent_03",
+      "params": {
+        "variant": [
+          850,
+          635,
+          1.35,
+          0.06,
+          0.47
+        ],
+        "noise_hz": [
+          600,
+          2100
+        ],
+        "target_peak_dbfs": -4,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "click_01",
+      "family": "click",
+      "variant": 1,
+      "intent": "interaction",
+      "file": "library/sfx/click_01.wav",
+      "dur_s": 0.11,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -16.74824002963298,
+      "seed": "cao-van-phong-sfx-v1:click_01",
+      "params": {
+        "variant": [
+          1230,
+          370,
+          2.5,
+          0.25,
+          0.57
+        ],
+        "noise_hz": [
+          650,
+          3700
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "click_02",
+      "family": "click",
+      "variant": 2,
+      "intent": "interaction",
+      "file": "library/sfx/click_02.wav",
+      "dur_s": 0.11,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -18.453303844653725,
+      "seed": "cao-van-phong-sfx-v1:click_02",
+      "params": {
+        "variant": [
+          950,
+          540,
+          3.4,
+          0.37,
+          0.3
+        ],
+        "noise_hz": [
+          650,
+          3700
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "click_03",
+      "family": "click",
+      "variant": 3,
+      "intent": "interaction",
+      "file": "library/sfx/click_03.wav",
+      "dur_s": 0.11,
+      "peak_dbfs": -4.99990598233068,
+      "rms_dbfs": -17.131912577254845,
+      "seed": "cao-van-phong-sfx-v1:click_03",
+      "params": {
+        "variant": [
+          1570,
+          690,
+          3.0,
+          0.19,
+          0.42
+        ],
+        "noise_hz": [
+          650,
+          3700
+        ],
+        "target_peak_dbfs": -5,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_hook_01",
+      "family": "impact_hook",
+      "variant": 1,
+      "intent": "impact_hook",
+      "file": "library/sfx/impact_hook_01.wav",
+      "dur_s": 0.43,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -11.828974390397168,
+      "seed": "cao-van-phong-sfx-v1:impact_hook_01",
+      "params": {
+        "variant": [
+          153,
+          59,
+          1.55,
+          0.23,
+          0.35
+        ],
+        "noise_hz": [
+          120,
+          1000
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_hook_02",
+      "family": "impact_hook",
+      "variant": 2,
+      "intent": "impact_hook",
+      "file": "library/sfx/impact_hook_02.wav",
+      "dur_s": 0.43,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -11.647032219492425,
+      "seed": "cao-van-phong-sfx-v1:impact_hook_02",
+      "params": {
+        "variant": [
+          190,
+          68,
+          1.95,
+          0.17,
+          0.37
+        ],
+        "noise_hz": [
+          120,
+          1000
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_hook_03",
+      "family": "impact_hook",
+      "variant": 3,
+      "intent": "impact_hook",
+      "file": "library/sfx/impact_hook_03.wav",
+      "dur_s": 0.43,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -11.299986149927193,
+      "seed": "cao-van-phong-sfx-v1:impact_hook_03",
+      "params": {
+        "variant": [
+          129,
+          51,
+          1.28,
+          0.29,
+          0.46
+        ],
+        "noise_hz": [
+          120,
+          1000
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_reveal_01",
+      "family": "impact_reveal",
+      "variant": 1,
+      "intent": "impact_reveal",
+      "file": "library/sfx/impact_reveal_01.wav",
+      "dur_s": 0.49,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -11.857293076316115,
+      "seed": "cao-van-phong-sfx-v1:impact_reveal_01",
+      "params": {
+        "variant": [
+          178,
+          302,
+          1.28,
+          0.13,
+          0.5
+        ],
+        "noise_hz": [
+          190,
+          1750
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_reveal_02",
+      "family": "impact_reveal",
+      "variant": 2,
+      "intent": "impact_reveal",
+      "file": "library/sfx/impact_reveal_02.wav",
+      "dur_s": 0.49,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -13.040716254645119,
+      "seed": "cao-van-phong-sfx-v1:impact_reveal_02",
+      "params": {
+        "variant": [
+          212,
+          405,
+          1.65,
+          0.16,
+          0.61
+        ],
+        "noise_hz": [
+          190,
+          1750
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_reveal_03",
+      "family": "impact_reveal",
+      "variant": 3,
+      "intent": "impact_reveal",
+      "file": "library/sfx/impact_reveal_03.wav",
+      "dur_s": 0.49,
+      "peak_dbfs": -2.9999878172428636,
+      "rms_dbfs": -12.15828070405644,
+      "seed": "cao-van-phong-sfx-v1:impact_reveal_03",
+      "params": {
+        "variant": [
+          239,
+          327,
+          1.4,
+          0.1,
+          0.42
+        ],
+        "noise_hz": [
+          190,
+          1750
+        ],
+        "target_peak_dbfs": -3,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_risk_01",
+      "family": "impact_risk",
+      "variant": 1,
+      "intent": "impact_risk",
+      "file": "library/sfx/impact_risk_01.wav",
+      "dur_s": 0.45,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -11.65541595898005,
+      "seed": "cao-van-phong-sfx-v1:impact_risk_01",
+      "params": {
+        "variant": [
+          135,
+          57,
+          1.62,
+          0.25,
+          0.42
+        ],
+        "noise_hz": [
+          100,
+          930
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_risk_02",
+      "family": "impact_risk",
+      "variant": 2,
+      "intent": "impact_risk",
+      "file": "library/sfx/impact_risk_02.wav",
+      "dur_s": 0.45,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -12.890125752378017,
+      "seed": "cao-van-phong-sfx-v1:impact_risk_02",
+      "params": {
+        "variant": [
+          179,
+          62,
+          2.12,
+          0.31,
+          0.31
+        ],
+        "noise_hz": [
+          100,
+          930
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    },
+    {
+      "id": "impact_risk_03",
+      "family": "impact_risk",
+      "variant": 3,
+      "intent": "impact_risk",
+      "file": "library/sfx/impact_risk_03.wav",
+      "dur_s": 0.45,
+      "peak_dbfs": -1.9998490310736532,
+      "rms_dbfs": -10.79160682130951,
+      "seed": "cao-van-phong-sfx-v1:impact_risk_03",
+      "params": {
+        "variant": [
+          116,
+          49,
+          1.32,
+          0.21,
+          0.54
+        ],
+        "noise_hz": [
+          100,
+          930
+        ],
+        "target_peak_dbfs": -2,
+        "edge_fade_s": 0.008,
+        "filter_order": 2
+      },
+      "license": "Original (tools/audio/sfx_synth.py) — CC0"
+    }
+  ]
+}
